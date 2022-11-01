@@ -20,7 +20,7 @@
       '';
       settings = {
         system-features = [ "i686-linux" "x86_64-linux" "big-parallel" ];
-      }
+      };
     };
     time = {
       hardwareClockInLocalTime = true;
@@ -71,7 +71,7 @@
 
     services = {
       fwupd.enable = true;
-    }
+    };
 
     # DO NOT CHANGE THIS
     stateVersion = "22.05";
