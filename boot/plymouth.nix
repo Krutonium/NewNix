@@ -5,9 +5,9 @@ let
   cfg = config.sys.desktop;
 in
 {
-  config = mkIf (cfg.bootloader == "plymouth_enabled") {
+  config = mkIf (cfg.plymouth_enabled == true) {
     environment.systemPackages = [ pkgs.plymouth ];
-    boot.plymouth.enable = cfg.bootloader;
+    boot.plymouth.enable = cfg.plymouth_enabled;
     boot.plymouth.theme = cfg.plymouth_theme;
   };
 }
