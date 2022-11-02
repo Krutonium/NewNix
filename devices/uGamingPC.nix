@@ -5,6 +5,14 @@ let
 in
 {
   boot.kernelPackages = kernel;
-  sys.boot.bootloader = "uefi";
-  sys.desktop = "gnome";
+  sys = {
+    boot = {
+      bootloader = "uefi";
+    };
+    desktop = {
+      desktop = "gnome";
+      wayland = true;
+      pipeWire = true;
+    };
+  };
 }
