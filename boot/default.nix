@@ -10,6 +10,20 @@ with builtins;
         Your system's firmware.
       '';
     };
+    plymouth_enabled = mkOption {
+      type = types.bool;
+      default = true;
+      description = ''
+        Whether to enable plymouth.
+      '';
+    };
+    plymouth_theme = mkOption {
+      type = types.str;
+      default = "bgrt";
+      description = ''
+        The plymouth theme to use.
+      '';
+    };
   };
   imports = [ ./uefi.nix ./bios.nix ];
 }
