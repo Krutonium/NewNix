@@ -5,6 +5,11 @@ let
 in
 {
   boot.kernelPackages = kernel;
+  imports = [
+    ../boot
+    ../audio
+    ../desktop
+  ];
   sys = {
     boot = {
       bootloader = "uefi";
