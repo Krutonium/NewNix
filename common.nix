@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 {
     imports = [
-      defaultPackages.nix
+      ./defaultPackages.nix
       ./boot
     ];
     boot = {

@@ -9,11 +9,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = { self }@inputs: {
+  outputs = { self, nixpkgs, nixpkgs-unstable, nixos-hardware, home-manager, deploy-cs }: {
     #############
     # uGamingPC #
     #############
-    nixosConfiguration.uGamingPC = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.uGamingPC = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         ./common.nix
