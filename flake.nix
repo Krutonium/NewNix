@@ -17,7 +17,7 @@
       system = "x86_64-linux";
       modules = [
         ./common.nix
-
+        ./devices/uGamingPC.nix
       ];
     };
   };

@@ -6,5 +6,5 @@ in
 {
   boot.kernelPackages = kernel;
   sys.boot.bootloader = "uefi";
-
+  sys.desktop = "gnome";
 }
