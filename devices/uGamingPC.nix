@@ -12,7 +12,9 @@ in
     desktop = {
       desktop = "gnome";
       wayland = true;
-      pipeWire = true;
+    };
+    audio = {
+      server = "pipewire";
     };
   };
 }

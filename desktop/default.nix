@@ -24,13 +24,6 @@ with builtins;
         Whether to automatically suspend the system when the lid is closed.
       '';
     };
-    pipeWire = mkOption {
-      type = types.bool;
-      default = true;
-      description = ''
-        Whether to enable PipeWire.
-      '';
-    };
   };
   imports = [ ./gnome.nix ./kde.nix ./none.nix ];
 }
