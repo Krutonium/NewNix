@@ -6,6 +6,8 @@
       ./audio
       ./desktop
       ./user
+      ./services
+      ./minecraft
     ];
     boot = {
       cleanTmpDir = true;
