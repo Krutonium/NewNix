@@ -1,10 +1,10 @@
 { config, pkgs, ... }:
 {
   imports = [
-    ./krutonium-hm-extras/dconf.nix
-    ./krutonium-hm-extras/git.nix
-    ./krutonium-hm-extras/gnome-config.nix
-    ./krutonium-hm-extras/packages.nix
+    ./dconf.nix
+    ./git.nix
+    ./gnome-config.nix
+    ./packages.nix
   ];
   programs.home-manager.enable = true;
 

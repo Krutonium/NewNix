@@ -1,16 +1,15 @@
 { config, pkgs, ...}:
 let
   kernel = pkgs.linuxPackages_zen;
-  Hostname = "uGamingPC";
+  Hostname = "uHPLaptop";
 in
 {
   boot.kernelPackages = kernel;
   networking.hostName = Hostname;
-  imports =  [ ./uGamingPC-hw.nix ];
-
+  imports =  [ ./uHPLaptop-hw.nix ];
   sys = {
     boot = {
-      bootloader = "uefi";
+      bootloader = "bios";
     };
     desktop = {
       desktop = "gnome";

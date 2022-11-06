@@ -15,7 +15,7 @@
     pkgs.btop
     pkgs.killall
     pkgs.nix-index
-    #pkgs.deploy-cs #Add Back Later
+    pkgs.deploy-cs
     pkgs.appimage-run
     pkgs.unison
     pkgs.p7zip

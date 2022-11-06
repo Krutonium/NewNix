@@ -1,13 +1,12 @@
 { config, pkgs, ...}:
 let
   kernel = pkgs.linuxPackages_zen;
-  Hostname = "uGamingPC";
+  Hostname = "uMsiLaptop";
 in
 {
   boot.kernelPackages = kernel;
   networking.hostName = Hostname;
-  imports =  [ ./uGamingPC-hw.nix ];
-
+  imports =  [ ./uMsiLaptop-hw.nix ];
   sys = {
     boot = {
       bootloader = "uefi";

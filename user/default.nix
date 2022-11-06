@@ -17,6 +17,13 @@ with builtins;
         Enable user Krutonium
       '';
     };
+    root = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        Enable root via PubKeyAuth
+      '';
+    };
   };
   imports = [ ./krutonium.nix ];
 }

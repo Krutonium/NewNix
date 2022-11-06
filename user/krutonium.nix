@@ -17,6 +17,6 @@ in
     home-manager.users.krutonium = if (cfg.home-manager == true) then
       import ./krutonium-hm.nix
     else
-      { ... }: { home.stateVersion = "22.05"; };
+      { ... }: { programs.home-manager.enable = false; home.stateVersion = "22.05"; };
   };
 }

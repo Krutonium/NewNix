@@ -29,7 +29,103 @@
              };
            };
          }
-      ];
+        ({ pkgs, ... }: {
+          nixpkgs.overlays = [
+            (self: super: {
+              deploy-cs = deploy-cs.defaultPackage.x86_64-linux;
+            })
+          ];
+        })
+      ]  ++ (with nixos-hardware.nixosModules; [
+        common-pc
+        common-pc-ssd
+        common-cpu-amd
+      ]);
+      specialArgs = {
+        pkgs-unstable = import pkgs-unstable {
+          system = "x86_64-linux";
+          config.allowUnfree = true;
+        };
+      };
     };
+
+    ##############
+    # uWebServer #
+    ##############
+    nixosConfigurations.uWebServer = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [
+        ./common.nix
+        ./devices/uWebServer.nix
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.useGlobalPkgs = false;
+          home-manager.useUserPackages = true;
+          home-manager.extraSpecialArgs = {
+            pkgs-unstable = import pkgs-unstable {
+              system = "x86_64-linux";
+              config.allowUnfree = true;
+            };
+          };
+        }
+        ({ pkgs, ... }: {
+          nixpkgs.overlays = [
+            (self: super: {
+              deploy-cs = deploy-cs.defaultPackage.x86_64-linux;
+            })
+          ];
+        })
+      ] ++ (with nixos-hardware.nixosModules; [
+        common-pc
+        common-pc-ssd
+        common-cpu-intel
+      ]);
+      specialArgs = {
+        pkgs-unstable = import pkgs-unstable {
+          system = "x86_64-linux";
+          config.allowUnfree = true;
+        };
+      };
+    };
+
+    #############
+    # uHPLaptop #
+    #############
+    nixosConfigurations.uHPLaptop = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [
+        ./common.nix
+        ./devices/uHPLaptop.nix
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.useGlobalPkgs = false;
+          home-manager.useUserPackages = true;
+          home-manager.extraSpecialArgs = {
+            pkgs-unstable = import pkgs-unstable {
+              system = "x86_64-linux";
+              config.allowUnfree = true;
+            };
+          };
+        }
+        ({ pkgs, ... }: {
+          nixpkgs.overlays = [
+            (self: super: {
+              deploy-cs = deploy-cs.defaultPackage.x86_64-linux;
+            })
+          ];
+        })
+      ] ++ (with nixos-hardware.nixosModules; [
+        common-pc
+        common-pc-ssd
+        common-cpu-intel
+      ]);
+      specialArgs = {
+        pkgs-unstable = import pkgs-unstable {
+          system = "x86_64-linux";
+          config.allowUnfree = true;
+        };
+      };
+    };
+
   };
 }
