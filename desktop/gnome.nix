@@ -27,9 +27,6 @@ in
       opengl = {
         enable = true;
       };
-      pulseaudio = mkIf(!cfg.pipewire){
-        enable = true;
-      };
     };
     programs = {
       xwayland = {

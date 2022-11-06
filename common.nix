@@ -3,6 +3,8 @@
     imports = [
       ./defaultPackages.nix
       ./boot
+      ./audio
+      ./desktop
     ];
     boot = {
       cleanTmpDir = true;
