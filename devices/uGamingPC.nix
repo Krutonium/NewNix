@@ -16,5 +16,9 @@ in
     audio = {
       server = "pipewire";
     };
+    users = {
+      krutonium = true;
+      home-manager = true;
+    };
   };
 }

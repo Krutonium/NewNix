@@ -5,6 +5,7 @@
       ./boot
       ./audio
       ./desktop
+      ./user
     ];
     boot = {
       cleanTmpDir = true;

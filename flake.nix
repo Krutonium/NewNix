@@ -18,6 +18,17 @@
       modules = [
         ./common.nix
         ./devices/uGamingPC.nix
+         home-manager.nixosModules.home-manager
+         {
+           home-manager.useGlobalPkgs = false;
+           home-manager.useUserPackages = true;
+           home-manager.extraSpecialArgs = {
+             pkgs-unstable = import nixpkgs-unstable {
+               system = "x86_64-linux";
+               config.allowUnfree = true;
+             };
+           };
+         }
       ];
     };
   };
