@@ -59,6 +59,13 @@ with builtins;
         Synapse
       '';
     };
+    nginx = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        Nginx
+      '';
+    };
   };
   imports = [
     ./plex.nix
@@ -68,5 +75,6 @@ with builtins;
     ./satisfactory-server.nix
     ./ssh.nix
     ./synapse.nix
+    ./nginx.nix
   ];
 }
