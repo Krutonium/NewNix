@@ -23,17 +23,10 @@ in
       home-manager = false;
       root = true;
     };
-  };
-  services.modded-minecraft-servers = {
-    eula = true;
-    instances = {
-      stoneblock3 = {
-        enable = true;
-        serverConfig = {
-          server-port = 25565;
-          motd = "Kappa";
-        };
-      };
+    services = {
+      plex = true;
+      avahi = true;
+      coredns = true;
     };
   };
 }

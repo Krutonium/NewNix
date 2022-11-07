@@ -24,5 +24,8 @@ in
       home-manager = true;
       root = true;
     };
+    services = {
+      avahi = true;
+    };
   };
 }

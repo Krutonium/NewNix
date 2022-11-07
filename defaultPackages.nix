@@ -23,5 +23,6 @@
     pkgs.android-tools
     pkgs.nixpkgs-fmt
     pkgs.btrfs-progs
+    pkgs.cifs-utils
   ];
 }
