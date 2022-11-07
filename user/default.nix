@@ -25,5 +25,5 @@ with builtins;
       '';
     };
   };
-  imports = [ ./krutonium.nix ];
+  imports = [ ./krutonium.nix ./root.nix ./gameserver.nix ];
 }

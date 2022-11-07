@@ -25,6 +25,8 @@ in
     };
     services = {
       avahi = true;
+      ssh = true;
+      sshGuard = true;
     };
   };
 }

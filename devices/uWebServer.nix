@@ -27,6 +27,10 @@ in
       plex = true;
       avahi = true;
       coredns = true;
+      samba = true;
+      satisfactory_server = true;
+      ssh = true;
+      sshGuard = true;
     };
   };
 }
