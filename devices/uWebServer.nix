@@ -31,6 +31,7 @@ in
       satisfactory_server = true;
       ssh = true;
       sshGuard = true;
+      synapse = true;
     };
   };
 }

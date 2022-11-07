@@ -40,7 +40,7 @@ with builtins;
     };
     ssh = mkOption {
       type = types.bool;
-      default = trtue;
+      default = true;
       description = ''
         SSH
       '';
@@ -52,6 +52,13 @@ with builtins;
         SSHGuard
       '';
     };
+    synapse = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        Synapse
+      '';
+    };
   };
   imports = [
     ./plex.nix
@@ -60,5 +67,6 @@ with builtins;
     ./samba.nix
     ./satisfactory-server.nix
     ./ssh.nix
+    ./synapse.nix
   ];
 }
