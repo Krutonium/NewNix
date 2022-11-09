@@ -11,5 +11,5 @@ with builtins;
       '';
     };
   };
-  imports = [ steam.nix ];
+  imports = [ ./steam.nix ];
 }
