@@ -66,6 +66,13 @@ with builtins;
         Nginx
       '';
     };
+    nginx = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        Gitea
+      '';
+    };
   };
   imports = [
     ./plex.nix
@@ -76,5 +83,6 @@ with builtins;
     ./ssh.nix
     ./synapse.nix
     ./nginx.nix
+    ./gitea.nix
   ];
 }
