@@ -66,7 +66,7 @@ with builtins;
         Nginx
       '';
     };
-    nginx = mkOption {
+    gitea = mkOption {
       type = types.bool;
       default = false;
       description = ''
