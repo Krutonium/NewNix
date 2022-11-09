@@ -5,7 +5,7 @@ let
   cfg = config.sys.services;
 in
 {
-  config = mkIf (cfg.satisfactory_server == true) {
+  config = mkIf (cfg.satisfactoryServer == true) {
     networking.firewall.allowedTCPPorts = [ 15777 15000 7777 ];
     networking.firewall.allowedUDPPorts = [ 15777 15000 7777 ];
     systemd.services.satisfactory = {
