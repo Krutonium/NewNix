@@ -32,6 +32,7 @@ in
       ssh = true;
       sshGuard = true;
       synapse = true;
+      gitea = true;
     };
   };
 }

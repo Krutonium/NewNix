@@ -8,7 +8,7 @@ let
   mainFont = "SF Pro Text Regular 11";
   monoFont = "Ubuntu Mono 13";
   cursorTheme = "Bibata-Modern-Pink";
-  iconTheme = "candy-icons";
+  iconTheme = "WhiteSur-dark";
   soundTheme = "";
   superMenuLogo = "${./supermenu.png}";
 in
