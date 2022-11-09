@@ -28,5 +28,8 @@ in
       ssh = true;
       sshGuard = true;
     };
+    steam = {
+      steam = true;
+    };
   };
 }

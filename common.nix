@@ -8,6 +8,7 @@
       ./user
       ./services
       ./minecraft
+      ./steam
     ];
     boot = {
       cleanTmpDir = true;
