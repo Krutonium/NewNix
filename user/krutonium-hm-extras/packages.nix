@@ -176,5 +176,6 @@ in
       pkgs-unstable.tdesktop
       pkgs.element-desktop
       pkgs.fractal
+      pkgs-unstable.discord
     ];
 }

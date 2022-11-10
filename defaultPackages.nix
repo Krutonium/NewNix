@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, pkgs-unstable, ... }:
 {
   environment.systemPackages = [
     pkgs.nano #Editor
