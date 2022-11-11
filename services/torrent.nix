@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs-unstable, lib, ... }:
 with lib;
 with builtins;
 let
@@ -7,6 +7,7 @@ in
 {
   config = mkIf (cfg.torrent == true) {
     services.deluge = {
+      package = pkgs-unstable.deluge;
       enable = true;
       dataDir = "/transmission";
       declarative = true;
