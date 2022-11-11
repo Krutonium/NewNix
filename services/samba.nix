@@ -11,8 +11,6 @@ in
     services.samba = {
       enable = true;
       openFirewall = true;
-      syncPasswordsByPam = true;
-      # run $ sudo smbpasswd -a <username>
       extraConfig = ''
         browsable = yes
         read only = no

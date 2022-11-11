@@ -28,7 +28,7 @@ in
       avahi = true;
       coredns = true;
       samba = true;
-      satisfactory_server = true;
+      satisfactoryServer = true;
       ssh = true;
       sshGuard = true;
       synapse = true;

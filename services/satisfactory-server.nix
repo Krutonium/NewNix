@@ -24,7 +24,7 @@ in
         steamcmd +force_install_dir /srv/games/satisfactory +login anonymous +app_update 1690800 +quit
         steam-run /srv/games/satisfactory/Server/FactoryServer.sh -NOSTEAM
       '';
-      enable = cfg.satisfactory_server;
+      enable = cfg.satisfactoryServer;
     };
   };
 }
