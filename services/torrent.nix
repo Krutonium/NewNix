@@ -18,7 +18,7 @@ in
         share_ratio_limit = "120.0";
         dont_count_slow_torrents = true;
         pre_allocate_storage = true;
-        listen_ports = [ 50023 ];
+        listen_ports = [ 50023 50023 ];
         random_port = false;
         listen_random_port = "None";
         dht = false;
