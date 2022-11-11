@@ -19,7 +19,7 @@ in
       };
       web = {
         enable = true;
-        port = "8112";
+        port = 8112;
       };
     };
   };
