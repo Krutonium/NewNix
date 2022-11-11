@@ -26,6 +26,7 @@ in
         utpex = false;
         lsd = false;
         max_connections_global = 600;
+        max_upload_slots_global = -1;
       };
       web = {
         enable = true;
