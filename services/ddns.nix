@@ -9,8 +9,8 @@ in
     services.ddclient = {
       enable = true;
       protocol = "namecheap";
-      username = "PFCKrutonium@gmail.com";
-      domains = [ "krutonium.ca" ];
+      username = "krutonium.ca";
+      domains = [ "*" "@" ];
       ipv6 = true;
       passwordFile = "/persist/ddclient.auth";
     };
