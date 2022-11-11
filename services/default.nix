@@ -80,6 +80,13 @@ with builtins;
         Torrent Client
       '';
     };
+    ddns = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        NameCheap Dynamic DNS
+      '';
+    };
   };
 
   imports = [
@@ -93,5 +100,6 @@ with builtins;
     ./nginx.nix
     ./gitea.nix
     ./torrent.nix
+    ./ddns.nix
   ];
 }
