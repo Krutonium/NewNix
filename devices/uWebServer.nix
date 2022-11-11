@@ -33,6 +33,7 @@ in
       sshGuard = true;
       synapse = true;
       gitea = true;
+      torrent = true;
     };
   };
 }

@@ -73,7 +73,15 @@ with builtins;
         Gitea
       '';
     };
+    torrent = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        Torrent Client
+      '';
+    };
   };
+
   imports = [
     ./plex.nix
     ./avahi.nix
@@ -84,5 +92,6 @@ with builtins;
     ./synapse.nix
     ./nginx.nix
     ./gitea.nix
+    ./torrent.nix
   ];
 }
