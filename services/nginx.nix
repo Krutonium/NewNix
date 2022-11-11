@@ -134,24 +134,6 @@ in
         enableACME = true;
         locations."/".proxyPass = "http://127.0.0.1:8008";
       };
-      "torrent.krutonium.ca" = {
-        forceSSL = true;
-        enableACME = true;
-        locations."/".proxyPass = "http://127.0.0.1:8112";
-        extraConfig = ''
-          proxy_set_header Host $host;
-          proxy_set_header X-Real-IP $remote_addr;
-          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-          proxy_set_header X-Forwarded-Proto $scheme;
-          proxy_set_header X-Forwarded-Host $http_host;
-          proxy_set_header Upgrade $http_upgrade;
-          proxy_pass_request_headers on;
-          proxy_set_header Connection $http_connection;
-          proxy_buffering off;
-          proxy_http_version 1.1;
-          proxy_redirect off;
-        '';
-      };
       "jellyfin.krutonium.ca" = {
         forceSSL = true;
         enableACME = true;

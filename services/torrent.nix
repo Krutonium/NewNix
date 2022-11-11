@@ -8,6 +8,7 @@ in
   config = mkIf (cfg.torrent == true) {
     services.deluge = {
       package = pkgs-unstable.deluge;
+      openFirewall = true;
       enable = true;
       dataDir = "/transmission";
       declarative = true;
@@ -21,6 +22,7 @@ in
       web = {
         enable = true;
         port = 8112;
+        openFirewall = true;
       };
     };
   };
