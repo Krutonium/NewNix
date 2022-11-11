@@ -34,6 +34,7 @@ in
       synapse = true;
       gitea = true;
       torrent = true;
+      ddns = true;
     };
   };
 }
