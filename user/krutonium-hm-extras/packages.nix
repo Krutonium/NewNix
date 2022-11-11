@@ -170,7 +170,8 @@ in
       # File Sync
       pkgs.dropbox
       #pkgs.nextcloud-client
-      pkgs.transmission-remote-gtk
+      #pkgs.transmission-remote-gtk
+      pkgs.deluge
       #pkgs.seafile-client
 
       # Communications
