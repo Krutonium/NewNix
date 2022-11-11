@@ -10,6 +10,7 @@ in
       enable = true;
       dataDir = "/transmission";
       declarative = true;
+      authFile = "/persist/deluge.auth";
       config = {
         max_upload_speed = "1000.0";
         share_ratio_limit = "120.0";
