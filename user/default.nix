@@ -30,6 +30,7 @@ with builtins;
       description = ''
         Enable user Kea
       '';
+    };
   };
   imports = [ ./krutonium.nix ./root.nix ./kea.nix ./gameserver.nix ];
 }

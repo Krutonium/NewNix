@@ -23,6 +23,7 @@ in
       krutonium = true;
       home-manager = false;
       root = true;
+      kea = true;
     };
     services = {
       plex = true;
