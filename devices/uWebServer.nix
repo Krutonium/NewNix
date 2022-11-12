@@ -4,6 +4,7 @@ let
   Hostname = "uWebServer";
 in
 {
+  networking.firewall.allowedTCPPorts = [ 25565 ];
   boot.kernelPackages = kernel;
   networking.hostName = Hostname;
   imports =  [ ./uWebServer-hw.nix ];
@@ -35,6 +36,7 @@ in
       gitea = true;
       torrent = true;
       ddns = true;
+      nginx = true;
     };
   };
 }
