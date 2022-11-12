@@ -24,6 +24,12 @@ with builtins;
         Enable root via PubKeyAuth
       '';
     };
+    kea = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        Enable user Kea
+      '';
   };
-  imports = [ ./krutonium.nix ./root.nix ./gameserver.nix ];
+  imports = [ ./krutonium.nix ./root.nix ./kea.nix ./gameserver.nix ];
 }
