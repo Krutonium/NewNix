@@ -134,6 +134,11 @@ in
         enableACME = true;
         locations."/".proxyPass = "http://127.0.0.1:8008";
       };
+      "torrent.krutonium.ca" = {
+        forceSSL = true;
+        enableACME = true;
+        locations."/".proxyPass = "http://127.0.0.1:8112";
+      };
       "jellyfin.krutonium.ca" = {
         forceSSL = true;
         enableACME = true;
