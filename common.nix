@@ -79,6 +79,11 @@
       fwupd.enable = true;
     };
 
+    #virtualisation = {
+    #  cores = 4;
+    #  memorySize = 4096;
+    #};
+
     # DO NOT CHANGE THIS
     system.stateVersion = "22.05";
 
