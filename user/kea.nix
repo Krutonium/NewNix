@@ -8,6 +8,8 @@ in
   config = mkIf (cfg.kea == true) {
     users.users.kea = {
       isNormalUser = true;
+      home = "/home/kea";
+      uid = 1001;
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFZaIK7NUUlJRaxVCnRc3Bq78aVw9LRd2zDNGKQMixuW kea@WARFSTATION"
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIElh2sqH+6bZWIDBL5haoTn0VPuFmHoROpernmr7Jrao kea@TWIST"

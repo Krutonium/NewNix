@@ -7,6 +7,8 @@ in
 {
   config = mkIf (cfg.krutonium == true) {
     users.users.krutonium = {
+      uid = 1002;
+      home = "/home/krutonium";
       isNormalUser = true;
       shell = pkgs.fish;
       extraGroups = [ "wheel" "networkmanager" "libvirtd" "docker" "deluge" ];
