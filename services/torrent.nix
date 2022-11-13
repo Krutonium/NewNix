@@ -6,6 +6,7 @@ let
 in
 {
   config = mkIf (cfg.torrent == true) {
+    networking.firewall.allowedTCPPorts = [ 58846 ];
     services.deluge = {
       package = pkgs-unstable.deluge;
       openFirewall = true;
