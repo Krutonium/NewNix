@@ -10,14 +10,14 @@ in
     networking.firewall.allowedTCPPorts = [ 53 ];
     networking.firewall.allowedUDPPorts = [ 53 ];
     services.coredns.config =
-    ''
-      . {
-          # Use Cloudflare then Google for requests
-          forward . 1.1.1.1 1.0.0.1 8.8.8.8 8.8.4.4
-          cache
+      ''
+        . {
+            # Use Cloudflare then Google for requests
+            forward . 1.1.1.1 1.0.0.1 8.8.8.8 8.8.4.4
+            cache
+          }
         }
-      }
-      log
-    '';
+        log
+      '';
   };
 }

@@ -1,9 +1,9 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.05";                       # NixOS release channel
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";           # NixOS unstable channel
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";              # NixOS hardware channel
-    home-manager.url = "github:nix-community/home-manager/release-22.05";   # Home Manager release channel
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.05"; # NixOS release channel
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable"; # NixOS unstable channel
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master"; # NixOS hardware channel
+    home-manager.url = "github:nix-community/home-manager/release-22.05"; # Home Manager release channel
     deploy-cs = {
       url = "github:Krutonium/deploy-cs";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -18,17 +18,17 @@
       modules = [
         ./common.nix
         ./devices/uGamingPC.nix
-         home-manager.nixosModules.home-manager
-         {
-           home-manager.useGlobalPkgs = false;
-           home-manager.useUserPackages = true;
-           home-manager.extraSpecialArgs = {
-             pkgs-unstable = import nixpkgs-unstable {
-               system = "x86_64-linux";
-               config.allowUnfree = true;
-             };
-           };
-         }
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.useGlobalPkgs = false;
+          home-manager.useUserPackages = true;
+          home-manager.extraSpecialArgs = {
+            pkgs-unstable = import nixpkgs-unstable {
+              system = "x86_64-linux";
+              config.allowUnfree = true;
+            };
+          };
+        }
         ({ pkgs, ... }: {
           nixpkgs.overlays = [
             (self: super: {
@@ -36,7 +36,7 @@
             })
           ];
         })
-      ]  ++ (with nixos-hardware.nixosModules; [
+      ] ++ (with nixos-hardware.nixosModules; [
         common-pc
         common-pc-ssd
         common-cpu-amd

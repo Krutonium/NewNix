@@ -11,7 +11,7 @@ in
       enable = true;
       permitRootLogin = "yes";
       passwordAuthentication = false;
-      ports = [22];
+      ports = [ 22 ];
       forwardX11 = true;
     };
     services.sshguard = {

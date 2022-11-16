@@ -11,11 +11,11 @@ with builtins;
       '';
     };
     wayland = mkOption {
-     type = types.bool;
-     default = true;
-     description = ''
-       Whether to use Wayland or X11.
-     '';
+      type = types.bool;
+      default = true;
+      description = ''
+        Whether to use Wayland or X11.
+      '';
     };
     autoSuspend = mkOption {
       type = types.bool;

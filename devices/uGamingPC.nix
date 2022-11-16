@@ -1,4 +1,4 @@
-{ config, pkgs, ...}:
+{ config, pkgs, ... }:
 let
   kernel = pkgs.linuxPackages_zen;
   Hostname = "uGamingPC";
@@ -6,7 +6,7 @@ in
 {
   boot.kernelPackages = kernel;
   networking.hostName = Hostname;
-  imports =  [ ./uGamingPC-hw.nix ];
+  imports = [ ./uGamingPC-hw.nix ];
 
   sys = {
     boot = {

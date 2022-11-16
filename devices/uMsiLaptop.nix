@@ -1,4 +1,4 @@
-{ config, pkgs, ...}:
+{ config, pkgs, ... }:
 let
   kernel = pkgs.linuxPackages_zen;
   Hostname = "uMsiLaptop";
@@ -6,7 +6,7 @@ in
 {
   boot.kernelPackages = kernel;
   networking.hostName = Hostname;
-  imports =  [ ./uMsiLaptop-hw.nix ];
+  imports = [ ./uMsiLaptop-hw.nix ];
   sys = {
     boot = {
       bootloader = "uefi";
