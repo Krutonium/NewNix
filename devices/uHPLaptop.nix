@@ -6,6 +6,7 @@ in
 {
   boot.kernelPackages = kernel;
   networking.hostName = Hostname;
+  boot.kernelParams = [ "acpi_backlight=native" ];
   imports = [ ./uHPLaptop-hw.nix ];
   sys = {
     boot = {
