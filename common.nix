@@ -79,7 +79,7 @@
     fwupd.enable = true;
   };
 
-  boot.kernelPatched = [ {
+  boot.kernelPatched = [{
     name = "enable RT_FULL";
     patch = null;
     extraConfig = ''
@@ -89,7 +89,7 @@
       PREEMPT_COUNT y
       PREEMPTION y
     '';
-  } ];
+  }];
 
 
   #virtualisation = {
