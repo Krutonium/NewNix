@@ -13,6 +13,9 @@ in
   networking.defaultGateway6 = { address = "fe80::1"; interface = "enp3s0"; };
   # Disabled IPV6 in the hopes of getting a naturally working IP
   imports = [ ./uWebServer-hw.nix ];
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.opengl.enable = true;
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
   sys = {
     boot = {
       bootloader = "uefi";

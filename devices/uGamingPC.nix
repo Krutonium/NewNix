@@ -7,7 +7,9 @@ in
   boot.kernelPackages = kernel;
   networking.hostName = Hostname;
   imports = [ ./uGamingPC-hw.nix ];
-
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.opengl.enable = true;
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
   sys = {
     boot = {
       bootloader = "uefi";
