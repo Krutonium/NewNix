@@ -79,7 +79,7 @@
     fwupd.enable = true;
   };
 
-  boot.kernelPatched = [{
+  boot.kernelPatches = [{
     name = "enable RT_FULL";
     patch = null;
     extraConfig = ''
