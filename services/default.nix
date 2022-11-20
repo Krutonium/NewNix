@@ -87,6 +87,13 @@ with builtins;
         NameCheap Dynamic DNS
       '';
     };
+    autoDeploy = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        Runs deploy-cs every 2 hours to keep everything up to date.
+      '';
+    };
   };
 
   imports = [
@@ -101,5 +108,6 @@ with builtins;
     ./gitea.nix
     ./torrent.nix
     ./ddns.nix
+    ./deploy.nix
   ];
 }

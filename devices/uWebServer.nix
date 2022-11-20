@@ -46,6 +46,7 @@ in
       torrent = true;
       ddns = false;
       nginx = true;
+      autoDeploy = true;
     };
   };
 }
