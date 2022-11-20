@@ -25,5 +25,5 @@ with builtins;
       '';
     };
   };
-  imports = [ ./uefi.nix ./bios.nix ];
+  imports = [ ./uefi.nix ./bios.nix ./plymouth.nix ];
 }

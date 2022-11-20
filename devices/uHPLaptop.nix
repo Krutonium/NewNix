@@ -11,6 +11,7 @@ in
   sys = {
     boot = {
       bootloader = "bios";
+      plymouth_enabled = true;
     };
     desktop = {
       desktop = "gnome";

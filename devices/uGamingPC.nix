@@ -13,6 +13,7 @@ in
   sys = {
     boot = {
       bootloader = "uefi";
+      plymouth_enabled = true;
     };
     desktop = {
       desktop = "gnome";
