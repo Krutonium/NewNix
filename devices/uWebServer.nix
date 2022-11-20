@@ -11,7 +11,6 @@ in
   networking.interfaces."enp3s0".ipv4.addresses = [{ address = "192.168.0.10"; prefixLength = 24; }];
   networking.defaultGateway = { address = "192.168.0.1"; interface = "enp3s0"; };
   networking.defaultGateway6 = { address = "fe80::1"; interface = "enp3s0"; };
-  # Disabled IPV6 in the hopes of getting a naturally working IP
   imports = [ ./uWebServer-hw.nix ];
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.opengl.enable = true;
