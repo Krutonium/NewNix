@@ -7,6 +7,7 @@ in
 {
   config = mkIf (cfg.ssh == true) {
     networking.firewall.allowedTCPPorts = [ 22 ];
+    networking.firewall.allowedUDPPortRanges = [{ from = 60000; to = 61000; }];
     services.openssh = {
       enable = true;
       permitRootLogin = "yes";
