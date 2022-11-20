@@ -18,5 +18,6 @@ in
       enable = cfg.sshGuard;
       whitelist = [ "192.168.0.0/16" ]; # whitelist your local network
     };
+    programs.mosh.enable = true;
   };
 }
