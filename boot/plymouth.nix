@@ -2,7 +2,7 @@
 with lib;
 with builtins;
 let
-  cfg = config.sys.desktop;
+  cfg = config.sys.boot;
 in
 {
   config = mkIf (cfg.plymouth_enabled == true) {
