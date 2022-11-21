@@ -5,7 +5,6 @@
     ./git.nix
     ./gnome-config.nix
     ./packages.nix
-    ./monado.nix
   ];
   programs.home-manager.enable = true;
 
