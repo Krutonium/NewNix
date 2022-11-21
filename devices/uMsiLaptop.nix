@@ -49,7 +49,7 @@ in
     hardware.nvidia = {
       package = config.boot.kernelPackages.nvidiaPackages.stable;
       modesetting.enable = true;
-      powermanagement.enable = true;
+      powerManagement.enable = true;
       prime = {
         offload.enable = true;
         nvidiaBusId = "PCI:1:0:0";
