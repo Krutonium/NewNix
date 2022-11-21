@@ -43,10 +43,9 @@ in
   boot.kernelModules = [ "mem_sleep_default=deep" ];
   specialisation."nVidia".configuration = {
     system.nixos.tags = [ "with-nvidia" ];
-    services.xserver.videoDrivers = [ "nvidia" ];
+    services.xserver.videoDrivers = [ "nvidia" "modesetting" ];
     hardware.opengl.enable = true;
     environment.systemPackages = [ nvidia-offload ];
-    services.xserver.videoDrivers = [ "modesetting" ];
     hardware.nvidia = {
       package = config.boot.kernelPackages.nvidiaPackages.stable;
       modesetting.enable = true;
