@@ -36,7 +36,6 @@
             })
           ];
         })
-        ./overlays/overlay.nix
       ] ++ (with nixos-hardware.nixosModules; [
         common-pc
         common-pc-ssd
