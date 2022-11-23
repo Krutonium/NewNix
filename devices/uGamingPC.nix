@@ -9,7 +9,7 @@ in
   imports = [ ./uGamingPC-hw.nix ];
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.opengl.enable = true;
-  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.latest;
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.beta;
   boot.initrd.availableKernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
   sys = {
     boot = {
