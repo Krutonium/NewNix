@@ -35,7 +35,7 @@
             '';
             passthru.unwrapped = prev.element-desktop;
             meta = {
-              inherit (prev.discord.meta) homepage description longDescription maintainers;
+              inherit (prev.element-desktop.meta) homepage description longDescription maintainers;
               mainProgram = "element-desktop";
             };
           };
