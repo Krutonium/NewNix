@@ -11,7 +11,7 @@ in
   hardware.opengl.enable = true;
   hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.beta;
   boot.initrd.availableKernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
-  boot.kernelParams = [ "iommu=soft" "udev.event-timeout=1" ]; #VL805 USB Card
+  #boot.kernelParams = [ "iommu=soft" "udev.event-timeout=1" ]; #VL805 USB Card
   hardware.nvidia.modesetting.enable = true;
   sys = {
     boot = {
