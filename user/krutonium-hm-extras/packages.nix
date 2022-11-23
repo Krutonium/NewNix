@@ -166,6 +166,7 @@ in
       pkgs-unstable.heroic
       pkgs.steam-run
       pkgs.yuzu-ea
+      pkgs.monado
 
       # File Sync
       pkgs.dropbox
