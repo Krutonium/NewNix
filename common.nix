@@ -9,6 +9,7 @@
     ./services
     ./minecraft
     ./steam
+    ./overlays/overlay.nix
   ];
   boot = {
     cleanTmpDir = true;

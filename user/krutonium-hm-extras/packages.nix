@@ -64,16 +64,6 @@ in
           ${pkgs.steam-run}/bin/steam-run ${pkgs.jetbrains.rider}/bin/rider
         '';
       rider = pkgs.jetbrains.rider.overrideAttrs (oldAttrs: { meta.priority = 10; });
-      discord = pkgs-unstable.discord.overrideAttrs (oldAttrs: { meta.priority = 10; });
-      DiscordWayland = pkgs.makeDesktopItem {
-        name = "discord";
-        exec = "Discord --use-gl=desktop";
-        icon = "discord";
-        mimeTypes = [ "x-scheme-handler/discord" ];
-        genericName = "All-in-one cross-platform voice and text chat for gamers";
-        desktopName = "Discord";
-        categories = [ "Chat" "Network" "InstantMessaging" ];
-      };
     in
     [
       # Browser
@@ -188,7 +178,6 @@ in
       pkgs-unstable.tdesktop
       pkgs.element-desktop
       pkgs.fractal
-      discord
-      DiscordWayland
+      pkgs.discord
     ];
 }
