@@ -10,7 +10,7 @@ in
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.opengl.enable = true;
   hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.nvidia_x11_legacy470
-  hardware.nvidia.modesetting.enable = true;
+    hardware.nvidia.modesetting.enable = true;
   boot.initrd.availableKernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
   sys = {
     boot = {
