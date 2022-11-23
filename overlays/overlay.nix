@@ -21,24 +21,22 @@
           };
         };
     })
-  ]
-    [
-      (final: prev: {
-        element-desktop =
-          final.symlinkJoin {
-            name = "element-desktop";
-            paths = [ prev.element-desktop ];
-            nativeBuildInputs = [ final.makeWrapper ];
+    (final: prev: {
+      element-desktop =
+        final.symlinkJoin {
+          name = "element-desktop";
+          paths = [ prev.element-desktop ];
+          nativeBuildInputs = [ final.makeWrapper ];
 
-            postBuild = ''
-              wrapProgram $out/bin/element-desktop --add-flags "--use-gl=desktop"
-            '';
-            passthru.unwrapped = prev.element-desktop;
-            meta = {
-              inherit (prev.element-desktop.meta) homepage description longDescription maintainers;
-              mainProgram = "element-desktop";
-            };
+          postBuild = ''
+            wrapProgram $out/bin/element-desktop --add-flags "--use-gl=desktop"
+          '';
+          passthru.unwrapped = prev.element-desktop;
+          meta = {
+            inherit (prev.element-desktop.meta) homepage description longDescription maintainers;
+            mainProgram = "element-desktop";
           };
-      })
-    ];
+        };
+    })
+  ];
 }
