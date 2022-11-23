@@ -64,6 +64,7 @@ in
           ${pkgs.steam-run}/bin/steam-run ${pkgs.jetbrains.rider}/bin/rider
         '';
       rider = pkgs.jetbrains.rider.overrideAttrs (oldAttrs: { meta.priority = 10; });
+      discord = pkgs-unstable.discord.overrideAttrs (oldAttrs: { meta.priority = 10; });
       DiscordWayland = pkgs.makeDesktopItem {
         name = "discord";
         exec = "Discord --use-gl=desktop";
@@ -187,7 +188,7 @@ in
       pkgs-unstable.tdesktop
       pkgs.element-desktop
       pkgs.fractal
-      pkgs-unstable.discord
+      discord
       DiscordWayland
     ];
 }
