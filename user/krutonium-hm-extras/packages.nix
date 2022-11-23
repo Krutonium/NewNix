@@ -68,7 +68,7 @@ in
         name = "Discord";
         exec = "discord --use-gl=desktop";
         icon = "discord";
-        MimeType = "x-scheme-handler/discord";
+        mimeType = "x-scheme-handler/discord";
         genericName = "All-in-one cross-platform voice and text chat for gamers";
         desktopName = "Discord";
         categories = "Chat;Network;InstantMessaging;";
