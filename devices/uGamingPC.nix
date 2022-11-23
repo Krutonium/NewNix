@@ -11,6 +11,7 @@ in
   hardware.opengl.enable = true;
   hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.beta;
   boot.initrd.availableKernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
+  hardware.nvidia.modesetting.enable = true;
   sys = {
     boot = {
       bootloader = "uefi";
