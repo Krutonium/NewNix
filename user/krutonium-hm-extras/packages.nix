@@ -70,7 +70,7 @@ in
         icon = "discord";
         mimeTypes = [ "x-scheme-handler/discord" ];
         genericName = "All-in-one cross-platform voice and text chat for gamers";
-        desktopName = "Discord";
+        desktopName = "discord";
         categories = [ "Chat" "Network" "InstantMessaging" ];
       };
     in
