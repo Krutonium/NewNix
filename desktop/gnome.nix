@@ -13,7 +13,6 @@ in
           gdm = {
             enable = true;
             wayland = cfg.wayland;
-            nvidiaWayland = cfg.wayland;
             autoSuspend = cfg.autoSuspend;
           };
         };
