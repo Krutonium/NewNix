@@ -66,7 +66,7 @@ in
       rider = pkgs.jetbrains.rider.overrideAttrs (oldAttrs: { meta.priority = 10; });
       DiscordWayland = pkgs.makeDesktopItem {
         name = "Discord";
-        exec = "discord --use-gl=desktop";
+        exec = "Discord --use-gl=desktop";
         icon = "discord";
         mimeTypes = [ "x-scheme-handler/discord" ];
         genericName = "All-in-one cross-platform voice and text chat for gamers";
