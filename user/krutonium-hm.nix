@@ -5,7 +5,6 @@
     ./krutonium-hm-extras/git.nix
     ./krutonium-hm-extras/gnome-config.nix
     ./krutonium-hm-extras/packages.nix
-    ../../overlays/overlay.nix
   ];
   programs.home-manager.enable = true;
 
