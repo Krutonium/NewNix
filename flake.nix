@@ -34,9 +34,9 @@
             (self: super: {
               deploy-cs = deploy-cs.defaultPackage.x86_64-linux;
             })
-            ./overlays/overlay.nix
           ];
         })
+        ./overlays/overlay.nix
       ] ++ (with nixos-hardware.nixosModules; [
         common-pc
         common-pc-ssd
