@@ -16,10 +16,13 @@ in
       rootUrl = "https://gitea.krutonium.ca/";
       httpPort = 3001;
       cookieSecure = true;
-      ssh = {
-        enable = true;
-        clonePort = 22;
+      settings = {
+        DISABLE_REGISTRATION = true;
       };
+      #ssh = {
+      #  enable = true;
+      #  clonePort = 22;
+      #};
       disableRegistration = true;
     };
   };
