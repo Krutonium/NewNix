@@ -43,7 +43,7 @@ in
   boot.kernelModules = [ "mem_sleep_default=deep" ];
   specialisation."nVidia".configuration = {
     system.nixos.tags = [ "with-nvidia" ];
-    system.nixos.label = "NixOS - Now with nVidia's stinky drivers!";
+    system.nixos.label = "nVidia";
     services.xserver.videoDrivers = [ "nvidia" "modesetting" ];
     hardware.opengl.enable = true;
     environment.systemPackages = [ nvidia-offload ];
