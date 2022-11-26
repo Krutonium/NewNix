@@ -3,8 +3,8 @@
 
 with lib.hm.gvariant;
 let
-  userTheme = "Sweet-Dark"; #Shell Theme
-  mainTheme = "Sweet-Dark"; #Application Theme
+  userTheme = "Adwaita"; #Shell Theme
+  mainTheme = "Adwaita"; #Application Theme
   mainFont = "SF Pro Text Regular 11";
   monoFont = "Ubuntu Mono 13";
   cursorTheme = "Bibata-Modern-Pink";
