@@ -1,9 +1,9 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.05"; # NixOS release channel
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11"; # NixOS release channel
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable"; # NixOS unstable channel
     nixos-hardware.url = "github:NixOS/nixos-hardware/master"; # NixOS hardware channel
-    home-manager.url = "github:nix-community/home-manager/release-22.05"; # Home Manager release channel
+    home-manager.url = "github:nix-community/home-manager/release-22.11"; # Home Manager release channel
     deploy-cs = {
       url = "github:Krutonium/deploy-cs";
       inputs.nixpkgs.follows = "nixpkgs";
