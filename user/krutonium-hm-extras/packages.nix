@@ -80,7 +80,7 @@ in
       pkgs.bibata-extra-cursors
       pkgs.gnomeExtensions.appindicator
       pkgs.gnome.dconf-editor
-      pkgs.gnomeExtensions.arcmenu
+      pkgs-unstable.gnomeExtensions.arcmenu
 
       # Development
       openjdk8-low
