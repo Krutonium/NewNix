@@ -14,8 +14,10 @@
     cleanTmpDir = true;
   };
   nix = {
-    autoOptimiseStore = true;
-    trustedUsers = [ "@wheel" ];
+    settings = {
+      auto-optimise-store = true;
+      trusted-users = [ "@wheel" ];
+    };
     gc = {
       automatic = true;
       options = "--delete-older-than 7d";
