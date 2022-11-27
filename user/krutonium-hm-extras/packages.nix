@@ -51,7 +51,7 @@ in
   home.packages =
     let
       openjdk8-low = pkgs.openjdk8.overrideAttrs (oldAttrs: { meta.priority = 10; });
-      dotnet = (with pkgs.dotnetCorePackages; combinePackages [ sdk_5_0 sdk_6_0 ]);
+      dotnet = (with pkgs.dotnetCorePackages; combinePackages [ dotnet-sdk dotnet-sdk_7 dotnet-sdk_5 dotnet-sdk_3 ]);
 
       # Run Idea and Rider using steam-run to fix plugins not working.
       ideaScript = pkgs.writeShellScriptBin "idea-ultimate"
