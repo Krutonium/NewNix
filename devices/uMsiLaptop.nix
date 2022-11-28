@@ -17,7 +17,7 @@ in
   swapDevices = [
     {
       device = "/swap";
-      size = "8192";
+      size = 8192;
       priority = 0;
     }
   ];
