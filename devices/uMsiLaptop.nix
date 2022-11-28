@@ -15,16 +15,16 @@ in
   networking.hostName = Hostname;
   imports = [ ./uMsiLaptop-hw.nix ];
   swapDevices = [
-  {
-    device = "/swap";
-    size = "8G";
-    priority = 0;
-  }
-  zram = {
+    {
+      device = "/swap";
+      size = "8G";
+      priority = 0;
+    }
+    zram = {
     enable = true;
     priority = 1;
   };
-  sys = {
+    sys = {
     boot = {
       bootloader = "uefi";
       plymouth_enabled = true;
@@ -50,8 +50,8 @@ in
       steam = true;
     };
   };
-  boot.kernelModules = [ "mem_sleep_default=deep" ];
-  specialisation."nVidia".configuration = {
+    boot.kernelModules = [ "mem_sleep_default=deep" ];
+    specialisation."nVidia".configuration = {
     system.nixos.tags = [ "with-nvidia" ];
     system.nixos.label = "nVidia";
     services.xserver.videoDrivers = [ "nvidia" "modesetting" ];
@@ -68,4 +68,4 @@ in
       };
     };
   };
-}
+    }
