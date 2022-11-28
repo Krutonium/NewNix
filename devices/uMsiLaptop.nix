@@ -19,7 +19,7 @@ in
       device = "/swap";
       size = "8G";
       priority = 0;
-    }
+    };
     zram = {
     enable = true;
     priority = 1;
