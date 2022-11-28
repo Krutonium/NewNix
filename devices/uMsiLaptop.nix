@@ -14,6 +14,16 @@ in
   boot.kernelPackages = kernel;
   networking.hostName = Hostname;
   imports = [ ./uMsiLaptop-hw.nix ];
+  swapDevices = [
+  {
+    device = "/swap";
+    size = "8G";
+    priority = 0;
+  }
+  zram = {
+    enable = true;
+    priority = 1;
+  };
   sys = {
     boot = {
       bootloader = "uefi";
