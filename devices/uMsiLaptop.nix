@@ -22,7 +22,7 @@ in
     }
   ];
 
-  zram = {
+  zramSwap = {
     enable = true;
     priority = 1;
   };
