@@ -8,6 +8,17 @@ in
   networking.hostName = Hostname;
   boot.kernelParams = [ "acpi_backlight=native" ];
   imports = [ ./uHPLaptop-hw.nix ];
+  swapDevices = [
+    {
+      device = "/swap";
+      size = 8192;
+      priority = 0;
+    }
+  ];
+  zramSwap = {
+    enable = true;
+    priority = 1;
+  };
   sys = {
     boot = {
       bootloader = "bios";

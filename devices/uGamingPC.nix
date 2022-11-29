@@ -7,6 +7,17 @@ in
   boot.kernelPackages = kernel;
   networking.hostName = Hostname;
   imports = [ ./uGamingPC-hw.nix ];
+  swapDevices = [
+    {
+      device = "/swap";
+      size = 8192;
+      priority = 0;
+    }
+  ];
+  zramSwap = {
+    enable = true;
+    priority = 1;
+  };
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.opengl.enable = true;
   hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.beta;

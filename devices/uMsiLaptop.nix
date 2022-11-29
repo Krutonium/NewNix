@@ -21,7 +21,6 @@ in
       priority = 0;
     }
   ];
-
   zramSwap = {
     enable = true;
     priority = 1;
