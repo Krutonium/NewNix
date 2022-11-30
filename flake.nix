@@ -4,12 +4,16 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable"; # NixOS unstable channel
     nixos-hardware.url = "github:NixOS/nixos-hardware/master"; # NixOS hardware channel
     home-manager.url = "github:nix-community/home-manager/release-22.11"; # Home Manager release channel
+    update = {
+      url = "github:ryantm/nixpkgs-update";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     deploy-cs = {
       url = "github:Krutonium/deploy-cs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = { self, nixpkgs, nixpkgs-unstable, nixos-hardware, home-manager, deploy-cs }: {
+  outputs = { self, nixpkgs, nixpkgs-unstable, nixos-hardware, home-manager, deploy-cs, update}: {
     #############
     # uGamingPC #
     #############
@@ -33,6 +37,7 @@
           nixpkgs.overlays = [
             (self: super: {
               deploy-cs = deploy-cs.defaultPackage.x86_64-linux;
+              nixpkgs-update = update.defaultPackage.x86_64-linux;
             })
           ];
         })
@@ -72,6 +77,7 @@
           nixpkgs.overlays = [
             (self: super: {
               deploy-cs = deploy-cs.defaultPackage.x86_64-linux;
+              nixpkgs-update = update.defaultPackage.x86_64-linux;
             })
           ];
         })
@@ -111,6 +117,7 @@
           nixpkgs.overlays = [
             (self: super: {
               deploy-cs = deploy-cs.defaultPackage.x86_64-linux;
+              nixpkgs-update = update.defaultPackage.x86_64-linux;
             })
           ];
         })
@@ -150,6 +157,7 @@
           nixpkgs.overlays = [
             (self: super: {
               deploy-cs = deploy-cs.defaultPackage.x86_64-linux;
+              nixpkgs-update = update.defaultPackage.x86_64-linux;
             })
           ];
         })
