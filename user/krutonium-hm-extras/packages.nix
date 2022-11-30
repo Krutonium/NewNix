@@ -86,6 +86,7 @@ in
       openjdk8-low
       pkgs.openjdk17
       pkgs.github-desktop
+      pkgs.hub
       pkgs.mono
       idea
       ideaScript
