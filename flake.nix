@@ -10,7 +10,6 @@
     };
     deploy-cs = {
       url = "github:Krutonium/deploy-cs";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
   outputs = { self, nixpkgs, nixpkgs-unstable, nixos-hardware, home-manager, deploy-cs, update }: {
