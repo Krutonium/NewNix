@@ -146,7 +146,7 @@ in
       pkgs.oh-my-fish
       pkgs.babelfish
       pkgs.thefuck
-      pkgs.sapling
+      pkgs-unstable.sapling
       pkgs.powerline-fonts
       pkgs.unzip
       pkgs.yt-dlp
