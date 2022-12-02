@@ -26,7 +26,7 @@
     },
     {
       "Name": "uHPLaptop",
-      "Ip": "192.168.0.196",
+      "Ip": "192.168.0.30",
       "isBuildHost": false,
       "isDeployTarget": true,
       "User": "root",
