@@ -7,6 +7,7 @@ in
 {
   config = mkIf (cfg.torrent == true) {
     networking.firewall.allowedTCPPorts = [ 58846 ];
+    networking.firewall.allowedUDPPorts = [ 58846 ];
     services.deluge = {
       package = pkgs-unstable.deluge;
       openFirewall = true;
@@ -28,6 +29,7 @@ in
         lsd = false;
         max_connections_global = 600;
         max_upload_slots_global = -1;
+        allow_remote = true;
       };
       web = {
         enable = true;
