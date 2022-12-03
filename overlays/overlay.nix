@@ -38,5 +38,15 @@
           };
         };
     })
+    (final: prev: {
+      gnomeExtensions.arcmenu = prev.gnomeExtensions.arcmenu (oldAttrs: rec {
+        version = 43;
+        pname = oldAttrs.pname;
+        src = prev.fetchFromGitLab {
+          inherit src;
+          sha256 = "sha256-Mb3C2H7jq+zVcLjb0iaiIdO6zmU54vhuYxhN6oBCyP8=";
+        };
+      });
+    }; 
   ];
 }
