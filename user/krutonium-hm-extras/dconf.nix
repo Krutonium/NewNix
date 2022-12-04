@@ -5,7 +5,7 @@ with lib.hm.gvariant;
 let
   userTheme = "Adwaita"; #Shell Theme
   mainTheme = "Adwaita"; #Application Theme
-  mainFont = "SF Pro Text Regular 11";
+  mainFont = "gg sans Normal 12";
   monoFont = "Ubuntu Mono 13";
   cursorTheme = "Bibata-Modern-Pink";
   iconTheme = "WhiteSur-dark";
