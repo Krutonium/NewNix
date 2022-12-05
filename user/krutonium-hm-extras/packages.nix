@@ -81,6 +81,7 @@ in
       pkgs.gnomeExtensions.appindicator
       pkgs.gnome.dconf-editor
       pkgs-master.gnomeExtensions.arcmenu
+      pkgs.gnomeExtensions.no-overview
 
       # Development
       openjdk8-low
