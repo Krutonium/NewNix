@@ -173,7 +173,8 @@ in
       pkgs.monado
 
       # File Sync
-      pkgs.dropbox
+      #pkgs.dropbox
+      pkgs.megasync
       #pkgs.nextcloud-client
       #pkgs.transmission-remote-gtk
       pkgs.deluge
