@@ -1,4 +1,4 @@
-{ config, pkgs, pkgs-unstable, lib, makeDestopItem, ... }:
+{ config, pkgs, pkgs-unstable, pkgs-master, lib, makeDestopItem, ... }:
 let
 
 in
@@ -80,7 +80,7 @@ in
       pkgs.bibata-extra-cursors
       pkgs.gnomeExtensions.appindicator
       pkgs.gnome.dconf-editor
-      pkgs-unstable.gnomeExtensions.arcmenu
+      pkgs-master.gnomeExtensions.arcmenu
 
       # Development
       openjdk8-low
