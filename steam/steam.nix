@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, pkgs-master, ... }:
 with lib;
 with builtins;
 let
@@ -9,6 +9,7 @@ in
     programs.steam = {
       enable = true;
       remotePlay.openFirewall = true;
+      package = pkgs-master.steam;
     };
   };
 }
