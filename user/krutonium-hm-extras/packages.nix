@@ -141,6 +141,7 @@ in
       pkgs.nixpkgs-review
       pkgs.libreoffice
       pkgs.mate.engrampa
+      pkgs.fzf
 
       # Terminal
       pkgs.fish
