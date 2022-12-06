@@ -2,7 +2,7 @@
 {
   programs.starship = {
     enable = true;
-    enableFish1Integration = true;
+    enableFishIntegration = true;
     settings = {
       format = builtins.concatStringsSep "" [
         "$username"
