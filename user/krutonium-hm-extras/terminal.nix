@@ -12,9 +12,9 @@
       source "${pkgs.fzf}/share/fzf/key-bindings.zsh"
       source "${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh"
       source "${pkgs.zsh-fzf-tab}/share/fzf-tab/lib/zsh-ls-colors/ls-colors.zsh"
-    ''; 
+    '';
   };
-  
+
   programs.starship = {
     enable = true;
     enableZshIntegration = true;
