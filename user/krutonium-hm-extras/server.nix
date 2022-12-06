@@ -2,7 +2,6 @@
 {
   imports = [
     ./git.nix
-    ./server.nix
     ./terminal.nix
   ];
   programs.home-manager.enable = true;
