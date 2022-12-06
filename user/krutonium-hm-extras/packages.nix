@@ -137,7 +137,7 @@ in
       pkgs.gparted
       pkgs.ffmpeg-full
       pkgs.openrgb
-      #pkgs.calibre
+      pkgs.calibre
       pkgs.nixpkgs-review
       pkgs.libreoffice
       pkgs.mate.engrampa
