@@ -39,7 +39,7 @@ in
     services = {
       avahi = true;
       ssh = true;
-      sshGuard = true;
+      sshGuard = false;
     };
     steam = {
       steam = true;
