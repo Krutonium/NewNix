@@ -10,7 +10,6 @@ in
     networking.firewall.allowedUDPPorts = [ 137 138 ];
     services.samba = {
       enable = true;
-      nsswins = true;
       openFirewall = true;
       extraConfig = ''
         browsable = yes
