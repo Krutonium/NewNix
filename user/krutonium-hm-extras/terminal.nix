@@ -1,5 +1,13 @@
 { config, pkgs, ... }:
 {
+  # Create .config/fish/config.fish with contents
+  home.file = {
+    ".config/fish/config.fish".text = ''
+      if status is-interactive
+        eval (starship init fish)
+      end
+    '';
+  };
   programs.starship = {
     enable = true;
     enableFishIntegration = true;
