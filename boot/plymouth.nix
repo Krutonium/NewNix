@@ -9,6 +9,6 @@ in
     environment.systemPackages = [ pkgs.plymouth ];
     boot.plymouth.enable = cfg.plymouth_enabled;
     boot.plymouth.theme = cfg.plymouth_theme;
-    boot.initrd.availableKernelModules = [ "plymouth" ];
+    boot.initrd.availableKernelModules = [ "plymouthd" ];
   };
 }
