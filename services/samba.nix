@@ -28,6 +28,10 @@ in
           path = "/transmission";
           browsable = true;
         };
+        Krutonium = {
+          path = "/home/krutonium";
+          browseable = true;
+        };
       };
     };
   };
