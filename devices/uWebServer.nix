@@ -18,7 +18,7 @@ in
   sys = {
     boot = {
       bootloader = "uefi";
-      plymouth-enabled = false;
+      plymouth_enabled = false;
     };
     desktop = {
       desktop = "none";
