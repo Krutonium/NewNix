@@ -18,6 +18,7 @@ in
   sys = {
     boot = {
       bootloader = "uefi";
+      plymout-enabled = false;
     };
     desktop = {
       desktop = "none";
