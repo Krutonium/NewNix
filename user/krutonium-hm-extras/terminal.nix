@@ -23,8 +23,8 @@
       ];
       directory.style = "blue";
       character = {
-        success_symbol = "[✔️](green)";
-        error_symbol = "[✖️](red)";
+        success_symbol = "[✔ >> ](green)";
+        error_symbol = "[✖ >> ](red)";
         vicmd_symbol = "[«](green)";
       };
       git_branch = {
