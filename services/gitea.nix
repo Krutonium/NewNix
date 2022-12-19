@@ -24,5 +24,4 @@ in
         REPO_INDEXER_ENABLED = true
       ''
         };
-    };
-  }
+    }
