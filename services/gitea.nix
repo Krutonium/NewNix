@@ -19,10 +19,11 @@ in
         DISABLE_REGISTRATION = true;
         COOKIE_SECURE = true;
       };
-      extraConfig = ''
-        [indexer]
-        REPO_INDEXER_ENABLED = true
-      '';
+      settings = {
+        indexer = {
+          REPO_INDEXER_ENABLED = true;
+        };
+      };
     };
   };
 }
