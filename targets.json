@@ -33,6 +33,6 @@
       "Comment": "HP Laptop"
     }
   ],
-  "BuildHostEnabled": false,
-  "ParallelDeploy": false
+  "UseRemoteBuilders": true,
+  "UseParallellDeploy": true
 }
