@@ -2,7 +2,7 @@
   "Devices": [
     {
       "Name": "uWebServer",
-      "Ip": "192.168.0.10",
+      "Ip": "127.0.0.1",
       "User": "root",
       "isBuilder": true,
       "isDeployTarget": true,
