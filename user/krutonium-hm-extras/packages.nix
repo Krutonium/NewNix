@@ -160,6 +160,7 @@ in
       # Wine/Windows Shit
       pkgs.lutris
       pkgs.bottles
+      pkgs.pcem
       # Gaming
       # Steam is already installed at the system level because it has special requirements
       pkgs.openrct2
