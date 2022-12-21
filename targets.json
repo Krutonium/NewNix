@@ -4,7 +4,7 @@
       "Name": "uWebServer",
       "Ip": "192.168.0.10",
       "User": "root",
-      "isBuildHost": true,
+      "isBuilder": true,
       "isDeployTarget": true,
       "Comment": "This is my Web Server. It hosts many things."
     },
@@ -12,14 +12,14 @@
       "Name": "uGamingPC",
       "Ip": "192.168.0.40",
       "User": "root",
-      "isBuildHost": true,
+      "isBuilder": true,
       "isDeployTarget": true,
       "Comment": "Gaming PC - For Gaming and software development"
     },
     {
       "Name": "uMsiLaptop",
       "Ip": "192.168.0.20",
-      "isBuildHost": false,
+      "isBuilder": false,
       "isDeployTarget": true,
       "User": "root",
       "Comment": "My Laptop - For bedside entertainment!"
@@ -27,7 +27,7 @@
     {
       "Name": "uHPLaptop",
       "Ip": "192.168.0.30",
-      "isBuildHost": false,
+      "isBuilder": false,
       "isDeployTarget": true,
       "User": "root",
       "Comment": "HP Laptop"
