@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1671621003,
-        "narHash": "sha256-YaSP0H7aN1TFtUcy7SEUP9huAdqNbx1FlGMn7qJlj3U=",
+        "lastModified": 1671621299,
+        "narHash": "sha256-EMWd+m+tPYn5U43y4K6drRdboHAmIAhBEJnSAqIf/vo=",
         "owner": "Krutonium",
         "repo": "deploy-cs",
-        "rev": "aa59ab6d8da844b9aaf8eb1be7cb6ac3105866ea",
+        "rev": "6fed5c4d166623aff5c1c7ab368c0c836600be60",
         "type": "github"
       },
       "original": {
