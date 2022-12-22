@@ -9,6 +9,7 @@
     ./services
     ./minecraft
     ./steam
+    ./lib/bwrap.nix
   ];
   boot = {
     cleanTmpDir = true;

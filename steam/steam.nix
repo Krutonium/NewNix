@@ -111,11 +111,9 @@ let
                 '';
               }
             }"
-    ] ++ [
       "--setenv VR_OVERRIDE ${open_composite}"
       "--setenv XR_RUNTIME_JSON ${monado}/share/openxr/1/openxr_monado.json"
       "--setenv PRESSURE_VESSEL_FILESYSTEMS_RW $XDG_RUNTIME_DIR/monado_comp_ipc"
-      "--setenv SLAM_SUBMIT_FROM_START 1"
     ];
   };
 in
@@ -149,7 +147,7 @@ in
             };
           } // steam_common))
 
-      ] ++ [
+      ] ++ optionals prefs.steam.vr_integration [
         (lib.bwrapIt {
           name = "steam-vr";
           package = monado;
