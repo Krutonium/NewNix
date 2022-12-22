@@ -34,5 +34,5 @@
     }
   ],
   "UseRemoteBuilders": false,
-  "UseParallellDeploy": true
+  "UseParallellDeploy": false
 }
