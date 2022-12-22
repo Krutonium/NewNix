@@ -33,6 +33,7 @@
       "Comment": "HP Laptop"
     }
   ],
-  "UseRemoteBuilders": false,
-  "UseParallellDeploy": false
+  "UseParallelBuilders": true,
+  "UseParallelDeploy": true,
+  "DerivationStoragePath": "/home/krutonium/builds/"
 }
