@@ -20,6 +20,10 @@
 # sudo setcap -r /home/shiryel/bwrap/steam/.local/share/Steam/steamapps/common/SteamVR/bin/linux64/vrcompositor-launcher
 #
 
+
+# Based on https://github.com/shiryel/nixos-dotfiles/blob/master/system/modules/steam.nix
+
+
 { config, pkgs, lib, pkgs-unstable, ... }:
 with lib;
 with builtins;
@@ -103,5 +107,8 @@ in
       enable = true;
       remotePlay.openFirewall = true;
     };
+    services.xserver.config = ''
+      Option "AllowHMD" "yes"
+    '';
   };
 }
