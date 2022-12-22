@@ -96,6 +96,7 @@ in
     environment.systemPackages = with pkgs;[
       monado
       openhmd
+      steam-run
     ];
     services.udev.packages = [ rift_s_udev ];
     programs.steam = {
