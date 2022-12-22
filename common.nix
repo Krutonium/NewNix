@@ -9,7 +9,6 @@
     ./services
     ./minecraft
     ./steam
-    ./lib
   ];
   boot = {
     cleanTmpDir = true;

@@ -1,1 +1,0 @@
-Borrowed from https://github.com/shiryel/nixos-dotfiles

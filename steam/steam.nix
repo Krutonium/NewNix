@@ -1,3 +1,25 @@
+########################
+# VR: MONADO + STEAMVR #
+########################
+
+# To run monado + SteamVR you need to use steam-run to patch the SteamVR
+# drivers:
+# steam-run ./.local/share/Steam/steamapps/common/SteamVR/bin/vrpathreg.sh adddriver ${monado}/share/steamvr-monado
+#
+# SteamVR needs CAP_SYS_NICE+ep to be able to work properly:
+# sudo setcap 'cap_sys_nice+ep' /home/shiryel/bwrap/steam/.local/share/Steam/steamapps/common/SteamVR/bin/linux64/vrcompositor-launcher
+#
+# Check with:
+# steam-run getcap ~/.local/share/Steam/steamapps/common/SteamVR/bin/linux64/vrcompositor-launcher
+#
+# Finaly, enable the monado-service(?) with steam-vr and try run a game
+# You can check the logs with:
+# steam-run cat ~/.steam/steam/logs/vrserver.txt
+#
+# You can unset the CAP_SYS_NICE with:
+# sudo setcap -r /home/shiryel/bwrap/steam/.local/share/Steam/steamapps/common/SteamVR/bin/linux64/vrcompositor-launcher
+#
+
 { config, pkgs, lib, pkgs-unstable, ... }:
 with lib;
 with builtins;
@@ -68,99 +90,17 @@ let
     '';
     destination = "/lib/udev/rules.d/70-xrhardware.rules";
   };
-
-  #########
-  # STEAM #
-  #########
-
-  steam_common = {
-    dev = true; # required for vulkan
-    net = true;
-    tmp = true;
-    xdg = prefs.steam.vr_integration;
-    binds =
-      [
-        # you can run a proton game with the TARGET: explorer.exe
-        # to verify if the proton is not accessing the wrong files
-        {
-          from = "~/bwrap/steam";
-          to = "~/";
-        }
-      ] ++ prefs.bwrap_binds.game;
-    custom_config = [
-      # FIXES: Proton games breaking on wayland
-      "--unsetenv XDG_SESSION_TYPE"
-      "--unsetenv CLUTTER_BACKEND"
-      "--unsetenv QT_QPA_PLATFORM"
-      "--unsetenv SDL_VIDEODRIVER"
-      "--unsetenv SDL_AUDIODRIVER"
-      "--unsetenv NIXOS_OZONE_WL"
-      "--setenv STEAM_EXTRA_COMPAT_TOOLS_PATHS ${
-              pkgs.stdenv.mkDerivation rec {
-                pname = "proton-ge-custom";
-                version = "GE-Proton7-35";
-
-                src = pkgs.fetchurl {
-                  url = "https://github.com/GloriousEggroll/proton-ge-custom/releases/download/${version}/${version}.tar.gz";
-                  sha256 = "sha256-ZMdsn5mShBpAyqlkSH1xWs076UTE952AZsJL8luZLoc=";
-                };
-
-                buildCommand = ''
-                  mkdir -p $out
-                  tar -C $out --strip=1 -x -f $src
-                '';
-              }
-            }"
-      "--setenv VR_OVERRIDE ${open_composite}"
-      "--setenv XR_RUNTIME_JSON ${monado}/share/openxr/1/openxr_monado.json"
-      "--setenv PRESSURE_VESSEL_FILESYSTEMS_RW $XDG_RUNTIME_DIR/monado_comp_ipc"
-    ];
-  };
 in
 {
   config = mkIf (cfg.steam == true) {
-    config = mkIf (cfg.steam == true) {
-      environment.systemPackages = with pkgs;[
-        monado
-        openhmd
-
-        (lib.bwrapIt
-          ({
-            name = "steam-run";
-            package = steam-run;
-            args = "$@";
-          } // steam_common))
-
-        (lib.bwrapIt
-          ({
-            name = "steam";
-            args = "-console";
-            package = steam.override {
-              runtimeOnly = true;
-              extraPkgs = pkgs: [ ];
-              extraLibraries = pkgs:
-                [ elfutils ] ++
-                  # Fixes: dxvk::DxvkError
-                  (with config.hardware.opengl; if pkgs.hostPlatform.is64bit
-                  then [ package ] ++ extraPackages
-                  else [ package32 ] ++ extraPackages32);
-            };
-          } // steam_common))
-
-      ] ++ optionals prefs.steam.vr_integration [
-        (lib.bwrapIt {
-          name = "steam-vr";
-          package = monado;
-          exec = "bin/monado-service";
-          args = "$@";
-          dev = true; # required for vulkan
-          tmp = true;
-          xdg = true;
-          binds = [ ];
-        })
-      ];
-
-      services.udev.packages = [ rift_s_udev ];
+    environment.systemPackages = with pkgs;[
+      monado
+      openhmd
+    ];
+    services.udev.packages = [ rift_s_udev ];
+    programs.steam = {
+      enable = true;
+      remotePlay.openFirewall = true;
     };
   };
 }
