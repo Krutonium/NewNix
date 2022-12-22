@@ -23,6 +23,9 @@ in
   hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.beta;
   boot.initrd.availableKernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
   #boot.kernelParams = [ "iommu=soft" "udev.event-timeout=1" ]; #VL805 USB Card
+  environment.systemPackages = [
+    hardware.nvidia.package
+  ];
   hardware.nvidia.modesetting.enable = true;
   sys = {
     boot = {
