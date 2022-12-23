@@ -26,7 +26,7 @@ in
   environment.systemPackages = [
     config.boot.kernelPackages.nvidiaPackages.beta
   ];
-  hardware.nvidia.modesetting.enable = true;
+  #hardware.nvidia.modesetting.enable = true;
   sys = {
     boot = {
       bootloader = "uefi";
