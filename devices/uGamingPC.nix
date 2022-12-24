@@ -53,7 +53,7 @@ in
       steam = true;
     };
     virtualization = {
-      server = virtd;
+      server = "virtd";
     };
   };
 }
