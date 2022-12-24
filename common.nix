@@ -9,6 +9,7 @@
     ./services
     ./minecraft
     ./steam
+    ./virtualization
   ];
   boot = {
     cleanTmpDir = true;

@@ -50,6 +50,9 @@ in
     steam = {
       steam = true;
     };
+    virtualization = {
+      server = virtd;
+    };
   };
   boot.kernelModules = [ "mem_sleep_default=deep" ];
   specialisation."nVidia".configuration = {

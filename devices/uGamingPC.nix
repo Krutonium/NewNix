@@ -52,5 +52,8 @@ in
     steam = {
       steam = true;
     };
+    virtualization = {
+      server = virtd;
+    };
   };
 }
