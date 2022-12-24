@@ -51,7 +51,7 @@ in
       steam = true;
     };
     virtualization = {
-      server = "virtd";
+      server = "vbox";
     };
   };
   boot.kernelModules = [ "mem_sleep_default=deep" ];
