@@ -5,7 +5,7 @@ let
   cfg = config.sys.virtualization;
 in
 {
-  config = mkIf (cfg.server == vbox) {
+  config = mkIf (cfg.server == "vbox") {
     nixpkgs.config.allowUnfree = true;
     virtualisation.virtualbox.host.enable = true;
     virtualisation.virtualbox.host.enableExtensionPack = true;
