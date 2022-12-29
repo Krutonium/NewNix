@@ -48,7 +48,7 @@ in
       nginx = true;
       autoDeploy = true;
     };
-    virtualisation = {
+    virtualization = {
       server = "virtd";
     };
   };
