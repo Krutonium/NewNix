@@ -48,5 +48,8 @@ in
       nginx = true;
       autoDeploy = true;
     };
+    virtualisation = {
+      server = "virtd";
+    };
   };
 }
