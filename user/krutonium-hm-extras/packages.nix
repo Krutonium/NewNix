@@ -144,6 +144,7 @@ in
       pkgs.fzf
 
       # Terminal
+      pkgs.nixpkgs-review
       pkgs.fish
       pkgs.oh-my-fish
       pkgs.babelfish
