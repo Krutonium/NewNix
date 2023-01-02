@@ -6,13 +6,12 @@ let
 in
 {
   config = mkIf (cfg.server == "virtd") {
+    networking.firewall.allowedTCPPorts = [ 5900 ];
     virtualisation.libvirtd = {
       enable = true;
 
       onShutdown = "suspend";
       onBoot = "ignore";
-
-      networking.firewall.allowedTCPPorts = [ 5900 ];
 
       qemu = {
         package = pkgs.qemu_kvm;
