@@ -12,6 +12,8 @@ in
       onShutdown = "suspend";
       onBoot = "ignore";
 
+      networking.firewall.allowedTCPPorts = [ 5900 ];
+
       qemu = {
         package = pkgs.qemu_kvm;
         ovmf.enable = true;
