@@ -10,6 +10,7 @@
     ./minecraft
     ./steam
     ./virtualization
+    ./scripts.nix
   ];
   boot = {
     cleanTmpDir = true;
