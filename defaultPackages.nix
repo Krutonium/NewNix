@@ -42,7 +42,7 @@ in
     pkgs.nixpkgs-fmt
     pkgs.btrfs-progs
     pkgs.cifs-utils
-    #pkgs.nixpkgs-update
+    pkgs.nixpkgs-review
   ];
 
 }

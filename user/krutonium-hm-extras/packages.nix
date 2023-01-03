@@ -138,7 +138,7 @@ in
       pkgs.ffmpeg-full
       pkgs.openrgb
       pkgs.calibre
-      pkgs.nixpkgs-review
+      #pkgs.nixpkgs-review #moved to common
       pkgs.libreoffice
       pkgs.mate.engrampa
       pkgs.fzf
