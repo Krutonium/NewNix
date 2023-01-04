@@ -110,11 +110,11 @@ in
     #services.xserver.config = ''
     #  Option \"AllowHMD\" \"yes\"
     #'';
-    services.xserver.deviceSection = ''
-      Identifier             "Device0"
-      Driver                 "nvidia"
+    #services.xserver.deviceSection = ''
+    #  Identifier             "Device0"
+    #  Driver                 "nvidia"#
 
-      Option "AllowHMD"      "yes"
-    '';
+    #Option "AllowHMD"      "yes"
+    #'';
   };
 }
