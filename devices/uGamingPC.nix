@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 let
   kernel = pkgs.linuxPackages_zen;
+  video = config.boot.kernelPackages.nvidiaPacakges.stable;
   Hostname = "uGamingPC";
 in
 {
@@ -20,11 +21,11 @@ in
   };
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.opengl.enable = true;
-  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.beta;
+  hardware.nvidia.package = video;
   boot.initrd.availableKernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
   #boot.kernelParams = [ "iommu=soft" "udev.event-timeout=1" ]; #VL805 USB Card
   environment.systemPackages = [
-    config.boot.kernelPackages.nvidiaPackages.beta
+    video
   ];
   hardware.nvidia.modesetting.enable = true;
   sys = {
