@@ -108,7 +108,7 @@ in
       remotePlay.openFirewall = true;
     };
     services.xserver.config = ''
-      Option "AllowHMD" "yes"
+      Option \"AllowHMD\" \"yes\"
     '';
   };
 }
