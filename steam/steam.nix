@@ -111,7 +111,11 @@ in
     #  Option \"AllowHMD\" \"yes\"
     #'';
     services.xserver.deviceSection = ''
-      Option "AllowHMD" "yes"
+      Section "Device"
+        Identifier             "Device0"
+        Driver                 "nvidia"
+
+        Option "AllowHMD"      "yes"
     '';
   };
 }
