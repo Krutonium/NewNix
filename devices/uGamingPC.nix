@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 let
   kernel = pkgs.linuxPackages_latest;
-  video = config.boot.kernelPackages.nvidiaPackages.stable;
+  video = config.boot.kernelPackages.nvidiaPackages.beta;
   Hostname = "uGamingPC";
 in
 {
