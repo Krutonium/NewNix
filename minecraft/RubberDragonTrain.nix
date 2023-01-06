@@ -22,7 +22,8 @@ in
       path = [ pkgs.jre pkgs.steam-run-native pkgs.screen ];
       script =
         ''
-          screen -DmS rubber /srv/games/RubberDragonTrain/run.sh
+          #screen -DmS rubber 
+          /srv/games/RubberDragonTrain/run.sh
         '';
     };
   };
