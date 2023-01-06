@@ -22,7 +22,7 @@ in
       path = [ pkgs.jre pkgs.bash pkgs.screen ];
       script =
         ''
-          #${pkgs.screen}/screen -DmS rubber 
+          # ${pkgs.screen}/screen -DmS rubber 
           ${pkgs.bash}/bash /srv/games/RubberDragonTrain/run.sh
         '';
     };
