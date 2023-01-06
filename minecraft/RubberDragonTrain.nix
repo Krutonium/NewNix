@@ -8,7 +8,7 @@ in
 {
   config = mkIf (cfg.rubberdragontrain == true) {
     networking.firewall.allowedTCPPorts = [ port ];
-    systemd.services.stoneblock3 = {
+    systemd.services.rubber = {
       description = "RubberDragonTrains Minecraft Server";
       serviceConfig = {
         Type = "simple";
