@@ -3,7 +3,7 @@ with lib;
 with builtins;
 let
   cfg = config.sys.minecraft;
-  port = "25565";
+  port = 25565;
 in
 {
   config = mkIf (cfg.rubberdragontrain == true) {
