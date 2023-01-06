@@ -12,8 +12,8 @@ in
       description = "RubberDragonTrains Minecraft Server";
       serviceConfig = {
         Type = "simple";
-        WorkingDirectory = "/srv/games/RubberDragonTrain";
-        User = "gameserver";
+        WorkingDirectory = "/home/krutonium/RubberDragonTrain";
+        User = "krutonium";
         Restart = "always";
         KillSignal = "SIGINT";
       };
@@ -23,7 +23,7 @@ in
       script =
         ''
           # ${pkgs.screen}/screen -DmS rubber 
-          ${pkgs.bash}/bash /srv/games/RubberDragonTrain/run.sh
+          ${pkgs.bash}/bash /home/krutonium/RubberDragonTrain/run.sh
         '';
     };
   };
