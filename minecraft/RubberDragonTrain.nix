@@ -23,7 +23,7 @@ in
       script =
         ''
           # ${pkgs.screen}/screen -DmS rubber 
-          ${pkgs.bash}/bash /home/krutonium/RubberDragonTrain/run.sh
+          /home/krutonium/RubberDragonTrain/run.sh
         '';
     };
   };
