@@ -166,7 +166,7 @@
   fileSystems."/srv" =
     {
       device = "/dev/disk/by-uuid/a018b12f-6567-4edb-8026-be9292738b4d";
-      fstype = "btrfs";
+      fsType = "btrfs";
       option = [ "subvol=gameserver" ];
     };
 
