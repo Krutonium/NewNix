@@ -14,6 +14,13 @@ with builtins;
         StoneBlock 3 Server
       '';
     };
+    rubberdragontrain = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        Enable RDT Server
+      '';
+    };
     stoneblock3Memory = mkOption {
       type = types.int;
       default = 10240;
@@ -22,6 +29,6 @@ with builtins;
       '';
     };
   };
-  imports = [ ./stoneblock3.nix ];
+  imports = [ ./stoneblock3.nix ./RubberDragonTrain.nix ];
 
 }

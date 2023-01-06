@@ -51,5 +51,8 @@ in
     virtualization = {
       server = "virtd";
     };
+    minecraft = {
+      rubberdragontrain = true;
+    };
   };
 }
