@@ -19,7 +19,7 @@ in
       };
       wantedBy = [ "multi-user.target" ];
       after = [ "network.target" ];
-      path = [ pkgs.openjdk17 pkgs.steam-run-native pkgs.screen ];
+      path = [ pkgs.jre pkgs.steam-run-native pkgs.screen ];
       script =
         ''
           screen -DmS rubber /srv/games/RubberDragonTrain/run.sh
