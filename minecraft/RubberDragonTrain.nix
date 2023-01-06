@@ -19,7 +19,7 @@ in
       };
       wantedBy = [ "multi-user.target" ];
       after = [ "network.target" ];
-      path = [ pkgs.jre pkgs.steam-run-native pkgs.screen ];
+      path = [ pkgs.jre pkgs.bash pkgs.screen ];
       script =
         ''
           #screen -DmS rubber 
