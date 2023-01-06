@@ -168,10 +168,10 @@
       dvice = "/dev/disk/by-uuid/a018b12f-6567-4edb-8026-be9292738b4d";
       fstype = "btrfs";
       option = [ "subvol=gameserver" ];
-    }
+    };
 
 
-      swapDevices = [ ];
+  swapDevices = [ ];
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
