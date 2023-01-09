@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 let
   kernel = pkgs.linuxPackages_zen;
   Hostname = "uMsiLaptop";
