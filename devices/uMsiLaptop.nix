@@ -58,6 +58,7 @@ in
   specialisation."nVidia".configuration = {
     system.nixos.tags = [ "with-nvidia" ];
     system.nixos.label = "nVidia";
+    sys.desktop.wayland = lib.mkForce false;
     services.xserver.videoDrivers = [ "nvidia" "modesetting" ];
     hardware.opengl.enable = true;
     environment.systemPackages = [ nvidia-offload ];
