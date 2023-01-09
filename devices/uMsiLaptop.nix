@@ -61,6 +61,7 @@ in
     services.xserver.videoDrivers = [ "nvidia" "modesetting" ];
     hardware.opengl.enable = true;
     environment.systemPackages = [ nvidia-offload ];
+    sys.desktop.wayland = false;
     hardware.nvidia = {
       package = config.boot.kernelPackages.nvidiaPackages.stable;
       modesetting.enable = true;
