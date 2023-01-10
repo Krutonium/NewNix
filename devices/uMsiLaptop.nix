@@ -59,7 +59,6 @@ in
     system.nixos.tags = [ "with-nvidia" ];
     system.nixos.label = "nVidia";
     sys.desktop.wayland = lib.mkForce false;
-    boot.blacklistedKernelModules = [ "i915" ];
     services.xserver.videoDrivers = [ "nvidia" ];
     hardware.opengl.enable = true;
     environment.systemPackages = [ nvidia-offload ];
