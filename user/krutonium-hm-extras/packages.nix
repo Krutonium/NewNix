@@ -58,8 +58,7 @@ in
         ''
           ${pkgs.steam-run}/bin/steam-run ${pkgs.jetbrains.idea-ultimate}/bin/idea-ultimate
         '';
-      idea = pkgs.jetbrains.idea-ultimate.overrw
-        ideAttrs
+      idea = pkgs.jetbrains.idea-ultimate.overrwideAttrs
         (oldAttrs: { meta.priority = 10; });
       riderScript = pkgs.writeShellScriptBin "rider"
         ''
