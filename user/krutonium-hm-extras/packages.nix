@@ -94,7 +94,7 @@ in
       ideaScript
       rider
       riderScript
-      vscode
+      pkgs.vscode
       pkgs.gitkraken
       #dotnet
       pkgs.dotnet-sdk
