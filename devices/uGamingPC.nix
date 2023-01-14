@@ -35,7 +35,7 @@ in
     };
     desktop = {
       desktop = "gnome";
-      wayland = true;
+      wayland = false;
     };
     audio = {
       server = "pipewire";
