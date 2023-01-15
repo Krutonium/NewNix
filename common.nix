@@ -82,6 +82,7 @@
   services = {
     fwupd.enable = true;
   };
+  programs.noisetorch.enable = true;
 
   # DO NOT CHANGE THIS
   system.stateVersion = "22.05";
