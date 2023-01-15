@@ -191,5 +191,6 @@ in
       pkgs.element-desktop
       pkgs.fractal
       pkgs.discord
+      pkgs.noisetorch
     ];
 }
