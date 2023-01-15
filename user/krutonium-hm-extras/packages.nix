@@ -125,6 +125,7 @@ in
       pkgs.vlc
       pkgs.spotify
       pkgs-unstable.obs-studio
+      pkgs-unstable.libcef
 
       # Audio Filtering
       pkgs.easyeffects
