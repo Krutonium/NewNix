@@ -124,8 +124,6 @@ in
       # Media
       pkgs.vlc
       pkgs.spotify
-      pkgs-unstable.obs-studio
-      pkgs-unstable.libcef
 
       # Audio Filtering
       pkgs.easyeffects
@@ -193,4 +191,11 @@ in
       pkgs.fractal
       pkgs.discord
     ];
+    programs.obs-studio = {
+      enable = true;
+      plugins = with pkgs.obs-studio-plugins; [
+        obs-backgroundremoval
+        obs-nvfbc
+      ];
+    };
 }
