@@ -23,6 +23,7 @@
       modules = [
         ./common.nix
         ./devices/uGamingPC.nix
+        hyprland.nixosModules.default
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = false;

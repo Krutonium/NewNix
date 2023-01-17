@@ -20,23 +20,22 @@ in
     priority = 1;
   };
   services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.nvidia.open = false;
+  #hardware.nvidia.open = false;
   hardware.opengl.enable = true;
   hardware.nvidia.package = video;
   boot.initrd.availableKernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
-  #boot.kernelParams = [ "iommu=soft" "udev.event-timeout=1" ]; #VL805 USB Card
   environment.systemPackages = [
     video
   ];
-  hardware.nvidia.modesetting.enable = true;
+  hardware.nvidia.modesetting.enable = false;
   sys = {
     boot = {
       bootloader = "uefi";
       plymouth_enabled = true;
     };
     desktop = {
-      desktop = "hyprland";
-      wayland = false;
+      desktop = "gnome";
+      wayland = true;
     };
     audio = {
       server = "pipewire";
