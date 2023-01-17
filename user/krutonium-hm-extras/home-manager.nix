@@ -3,7 +3,8 @@
   imports = [
     ./dconf.nix
     ./git.nix
-    ./gnome-config.nix
+    ./user-config.nix
+    ./hyprland.nix
     ./packages.nix
   ];
   programs.home-manager.enable = true;
