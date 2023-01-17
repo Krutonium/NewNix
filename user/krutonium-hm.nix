@@ -3,10 +3,11 @@
   imports = [
     ./krutonium-hm-extras/dconf.nix
     ./krutonium-hm-extras/git.nix
-    ./krutonium-hm-extras/gnome-config.nix
+    ./krutonium-hm-extras/user-config.nix
     ./krutonium-hm-extras/packages.nix
     ../overlays/overlay.nix
     ./krutonium-hm-extras/terminal.nix
+    ./krutonium-hm-extras/hyprland.nix
   ];
   programs.home-manager.enable = true;
 
