@@ -27,5 +27,10 @@ in
         greeters.gtk.enable = true;
       };
     };
+    environment.variables.LIBVA_DRIVER_NAME = "nvidia";
+    environment.variables.XDG_SESSION_TYPE = "wayland";
+    environment.variables.GBM_BACKEND = "nvidia-drm";
+    environment.variables.__GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    environment.variables.WLR_NO_HARDWARE_CURSORS = "1";
   };
 }

@@ -24,6 +24,13 @@ with builtins;
         Whether to automatically suspend the system when the lid is closed.
       '';
     };
+    nvidia = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        If we need to do nVidia shit
+      '';
+    }; 
   };
   imports = [ ./gnome.nix ./kde.nix ./hyprland.nix ./none.nix ];
 }

@@ -27,7 +27,7 @@ in
   environment.systemPackages = [
     video
   ];
-  hardware.nvidia.modesetting.enable = false;
+  hardware.nvidia.modesetting.enable = true;
   sys = {
     boot = {
       bootloader = "uefi";
