@@ -20,6 +20,12 @@ in
     };
     environment.systemPackages = [ pkgs.kitty startup ];
     hardware.opengl.enable = true;
-    
+    services.xserver = {
+      enable = true;
+      displayManager.lightdm = {
+        enable = true;
+        greeters.gtk.enable = true;
+      };
+    };
   };
 }
