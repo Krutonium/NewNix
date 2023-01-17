@@ -31,7 +31,7 @@ in
       plymouth_enabled = true;
     };
     desktop = {
-      desktop = "gnome";
+      desktop = "hyprland";
       wayland = true;
     };
     audio = {
