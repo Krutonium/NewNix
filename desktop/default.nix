@@ -30,7 +30,7 @@ with builtins;
       description = ''
         If we need to do nVidia shit
       '';
-    }; 
+    };
   };
   imports = [ ./gnome.nix ./kde.nix ./hyprland.nix ./none.nix ];
 }

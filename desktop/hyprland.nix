@@ -3,7 +3,7 @@ with lib;
 with builtins;
 let
   cfg = config.sys.desktop;
-  startup = pkgs.writeShellScriptBin "startup"''
+  startup = pkgs.writeShellScriptBin "startup" ''
     export LIBVA_DRIVER_NAME=nvidia
     export XDG_SESSION_TYPE=wayland
     export GBM_BACKEND=nvidia-drm
