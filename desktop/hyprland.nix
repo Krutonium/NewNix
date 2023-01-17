@@ -13,7 +13,7 @@ let
   '';
 in
 {
-  config = mkIf (cfg.desktop == "gnome") {
+  config = mkIf (cfg.desktop == "hyprland") {
     programs.hyprland = {
       enable = true;
       nvidiaPatches = true;
