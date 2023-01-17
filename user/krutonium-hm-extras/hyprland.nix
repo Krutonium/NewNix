@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }:
 {
-  config = mkIf (config.networking.hostName == "uGamingPC") {
+  config = lib.mkIf (config.networking.hostName == "uGamingPC") {
     home.file = {
       ".config/hypr/displays.conf".text = ''
         monitor=HDMI-A-1, 1920x1080@144, 3840x0, 1

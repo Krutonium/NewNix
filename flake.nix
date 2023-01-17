@@ -120,6 +120,7 @@
       modules = [
         ./common.nix
         ./devices/uHPLaptop.nix
+        hyprland.nixosModules.default
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = false;
@@ -168,6 +169,7 @@
       modules = [
         ./common.nix
         ./devices/uMsiLaptop.nix
+        hyprland.nixosModules.default
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = false;
