@@ -7,7 +7,7 @@
     home-manager.url = "github:nix-community/home-manager/release-22.11"; # Home Manager release channel
     hyprland = {
       url = "github:hyprwm/Hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
+      #inputs.nixpkgs.follows = "nixpkgs";
     };
     update = {
       url = "github:ryantm/nixpkgs-update";
