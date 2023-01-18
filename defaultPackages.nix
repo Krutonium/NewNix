@@ -19,6 +19,7 @@ in
 {
   fonts.fonts = [ fonts pkgs.rPackages.fontawesome ];
   environment.systemPackages = [
+    pkgs.rPackages.fontawesome
     pkgs.nano #Editor
     pkgs.git
     pkgs.tldr #Replace man
