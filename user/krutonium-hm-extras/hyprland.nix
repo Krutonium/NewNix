@@ -10,6 +10,7 @@
   };
   home.packages = [
     pkgs.waybar
+    pkgs.libappindicator
   ];
 }
 
