@@ -17,7 +17,7 @@ let
   };
 in
 {
-  fonts.fonts = [ fonts rPackages.fontawesome ];
+  fonts.fonts = [ fonts pkgs.rPackages.fontawesome ];
   environment.systemPackages = [
     pkgs.nano #Editor
     pkgs.git
