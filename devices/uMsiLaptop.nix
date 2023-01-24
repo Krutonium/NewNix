@@ -12,7 +12,9 @@ let
 in
 {
   boot.kernelPackages = kernel;
+  boot.initrd.availableKernelModules = [ "nouveau" ];
   networking.hostName = Hostname;
+
   imports = [ ./uMsiLaptop-hw.nix ];
   swapDevices = [
     {
