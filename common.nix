@@ -15,6 +15,7 @@
   boot = {
     cleanTmpDir = true;
   };
+  hardware.enableAllFirmware = true;
   nix = {
     settings = {
       auto-optimise-store = true;
