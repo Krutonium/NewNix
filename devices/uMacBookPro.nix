@@ -45,7 +45,6 @@ in
       max_temp = 60;
     };
   };
-  boot.kernelParams = [ "nomodeset" ];
-  services.cpupower-gui.enable = true;
+  boot.kernelParams = [ ];
   powerManagement.cpuFreqGovernor = "performance";
 }
