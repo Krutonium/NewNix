@@ -8,7 +8,8 @@ in
   hardware.opengl.enable = true;
   hardware.enableAllFirmware = true;
   boot.kernelPackages = kernel;
-  boot.initrd.availableKernelModules = [ "nouveau" ]; #Fix not grabbing the display before login manager
+  #boot.initrd.availableKernelModules = [ "nouveau" ]; #Fix not grabbing the display before login manager
+  boot.initrd.kernelModules = [ "nvidia" ];
   hardware.nvidia = {
     package = config.boot.kernelPackages.nvidiaPackages.legacy_340;
   };
