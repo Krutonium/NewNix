@@ -46,4 +46,6 @@ in
     };
   };
   boot.kernelParams = [ "nomodeset" ];
+  services.cpupower-gui.enable = true;
+  powerManagement.cpuFreqGovernor = "performance";
 }
