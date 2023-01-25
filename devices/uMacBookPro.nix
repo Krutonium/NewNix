@@ -15,7 +15,7 @@ in
   #  package = config.boot.kernelPackages.nvidiaPackages.legacy_340;
   #};
   #services.xserver.videoDrivers = [ "nvidia" ];
-  boot.kernelModules = [ "nouveau" ];
+  #boot.kernelModules = [ "nouveau" ];
   #nixpkgs.config.allowBroken = true;
 
   imports = [ ./uMacBookPro-hw.nix ];
@@ -55,8 +55,8 @@ in
     };
   };
   boot.kernelParams = [
-    "nouveau.config=NvBios=${../firmware/8600M_GT.rom}"
-    # "nomodeset"
+    #"nouveau.config=NvBios=${../firmware/8600M_GT.rom}"
+    "nomodeset"
   ];
   powerManagement.cpuFreqGovernor = "performance";
 }
