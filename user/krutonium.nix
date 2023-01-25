@@ -10,6 +10,7 @@ in
       uid = 1002;
       home = "/home/krutonium";
       isNormalUser = true;
+      description = "Krutonium";
       shell = pkgs.fish;
       extraGroups = [ "wheel" "networkmanager" "libvirtd" "docker" "deluge" ];
       openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBGydZMghVpYF+glHje55hN0/00i9nOEA+OP4A/eneXp" ];

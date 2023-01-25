@@ -35,4 +35,15 @@ in
       steam = true;
     };
   };
+
+  #Hardware Specific Quirks:
+  services.mbpfan = {
+    enable = true;
+    settings.general = {
+      low_temp = 30;
+      high_temp = 45;
+      max_temp = 60;
+    };
+  };
+  boot.kernelPrams = [ "nomodeset" ];
 }
