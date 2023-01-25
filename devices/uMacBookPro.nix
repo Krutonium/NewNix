@@ -45,6 +45,6 @@ in
       max_temp = 60;
     };
   };
-  boot.kernelParams = [ "nouveau.config=PLATFORM" ];
+  boot.kernelParams = [ "nouveau.config=NvBios=PLATFORM" ];
   powerManagement.cpuFreqGovernor = "performance";
 }
