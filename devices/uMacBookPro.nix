@@ -45,5 +45,5 @@ in
       max_temp = 60;
     };
   };
-  boot.kernelPrams = [ "nomodeset" ];
+  boot.kernelParams = [ "nomodeset" ];
 }
