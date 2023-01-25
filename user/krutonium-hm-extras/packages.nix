@@ -98,8 +98,8 @@ in
       pkgs.gitkraken
       #dotnet
       pkgs.dotnet-sdk
-      pkgs.godot-mono
-      pkgs.godot-export-templates
+      #pkgs.godot-mono
+      #pkgs.godot-export-templates
 
 
       # Wine
