@@ -6,6 +6,9 @@ in
 {
   networking.hostName = Hostname;
   hardware.opengl.enable = true;
+  hardware.enableAllFirmware = true;
+  boot.kernelPackages = kernel;
+  boot.initrd.availableKernelModules = [ "nouveau" ]; #Fix not grabbing the display before login manager
   mports = [ ./uMacBookPro-hw.nix ];
   sys = {
     boot = {
