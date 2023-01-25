@@ -9,7 +9,7 @@ in
   hardware.enableAllFirmware = true;
   boot.kernelPackages = kernel;
   boot.initrd.availableKernelModules = [ "nouveau" ]; #Fix not grabbing the display before login manager
-  mports = [ ./uMacBookPro-hw.nix ];
+  imports = [ ./uMacBookPro-hw.nix ];
   sys = {
     boot = {
       bootloader = "uefi";
