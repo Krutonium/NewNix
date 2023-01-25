@@ -9,7 +9,7 @@ in
   hardware.enableAllFirmware = true;
   boot.kernelPackages = kernel;
   #boot.initrd.availableKernelModules = [ "nouveau" ]; #Fix not grabbing the display before login manager
-  boot.kernelModules = [ "nvidia" "nvidia_uvm" "nvidia_modeset" ];
+  boot.kernelModules = [ "nvidia" ];
   hardware.nvidia = {
     package = config.boot.kernelPackages.nvidiaPackages.legacy_340;
   };
@@ -54,7 +54,7 @@ in
   };
   boot.kernelParams = [
     # "nouveau.config=NvBios=${../firmware/8600M_GT.rom}"
-    "nouveau.config=NvGrUseFw=1"
+    "nomodeset"
   ];
   powerManagement.cpuFreqGovernor = "performance";
 }
