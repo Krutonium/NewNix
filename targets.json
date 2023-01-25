@@ -31,6 +31,14 @@
       "isDeployTarget": true,
       "User": "root",
       "Comment": "HP Laptop"
+    },
+    {
+      "Name": "uMacBookPro",
+      "Ip": "192.168.0.12",
+      "isBuilder": false,
+      "isDeployTarget": true,
+      "User": "root",
+      "Comment": "MacBookPro3,1"
     }
   ],
   "UseParallelBuilders": true,
