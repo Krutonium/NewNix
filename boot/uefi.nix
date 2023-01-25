@@ -3,7 +3,7 @@ with lib;
 with builtins;
 let
   cfg = config.sys.boot;
-  mountPoint = "/boot";
+  #mountPoint = "/boot";
   devices = "nodev";
   default = "saved";
 in
@@ -12,7 +12,7 @@ in
     boot = {
       loader = {
         efi = {
-          efiSysMountPoint = mountPoint;
+          efiSysMountPoint = cfg.uefiPath;
           canTouchEfiVariables = true;
         };
         grub = {

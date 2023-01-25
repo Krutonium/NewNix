@@ -10,6 +10,13 @@ with builtins;
         Your system's firmware.
       '';
     };
+    uefiPath = mkOption {
+      type = types.str;
+      default = "/boot";
+      description = ''
+        Where the EFI partition is.
+      '';
+    };
     plymouth_enabled = mkOption {
       type = types.bool;
       default = true;

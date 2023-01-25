@@ -14,6 +14,7 @@ in
     boot = {
       bootloader = "uefi";
       plymouth_enabled = true;
+      uefiPath = "/boot/efi";      
     };
     desktop = {
       desktop = "pantheon";
