@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 let
-  kernel = pkgs.linuxPackages_5_4;
+  #kernel = pkgs.linuxPackages_5_4;
+  kernel = pkgs.linuxPackages_latest;
   Hostname = "uMacBookPro";
 in
 {
@@ -9,12 +10,13 @@ in
   hardware.enableAllFirmware = true;
   boot.kernelPackages = kernel;
   #boot.initrd.availableKernelModules = [ "nouveau" ]; #Fix not grabbing the display before login manager
-  boot.kernelModules = [ "nvidia" ];
-  hardware.nvidia = {
-    package = config.boot.kernelPackages.nvidiaPackages.legacy_340;
-  };
-  services.xserver.videoDrivers = [ "nvidia" ];
-  nixpkgs.config.allowBroken = true;
+  #boot.kernelModules = [ "nvidia" ];
+  #hardware.nvidia = {
+  #  package = config.boot.kernelPackages.nvidiaPackages.legacy_340;
+  #};
+  #services.xserver.videoDrivers = [ "nvidia" ];
+  boot.kernelModules = [ "nouveau" ];
+  #nixpkgs.config.allowBroken = true;
 
   imports = [ ./uMacBookPro-hw.nix ];
   sys = {
@@ -53,8 +55,8 @@ in
     };
   };
   boot.kernelParams = [
-    # "nouveau.config=NvBios=${../firmware/8600M_GT.rom}"
-    "nomodeset"
+    "nouveau.config=NvBios=${../firmware/8600M_GT.rom}"
+    # "nomodeset"
   ];
   powerManagement.cpuFreqGovernor = "performance";
 }
