@@ -5,10 +5,6 @@
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master"; # NixOS hardware channel
     home-manager.url = "github:nix-community/home-manager/release-22.11"; # Home Manager release channel
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
-      #inputs.nixpkgs.follows = "nixpkgs";
-    };
     update = {
       url = "github:ryantm/nixpkgs-update";
     };
@@ -17,7 +13,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-master, nixos-hardware, home-manager, deploy-cs, update, hyprland }: {
+  outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-master, nixos-hardware, home-manager, deploy-cs, update }: {
     #############
     # uGamingPC #
     #############
@@ -26,7 +22,6 @@
       modules = [
         ./common.nix
         ./devices/uGamingPC.nix
-        hyprland.nixosModules.default
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = false;
@@ -75,7 +70,6 @@
       modules = [
         ./common.nix
         ./devices/uWebServer.nix
-        hyprland.nixosModules.default
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = false;
@@ -124,7 +118,6 @@
       modules = [
         ./common.nix
         ./devices/uHPLaptop.nix
-        hyprland.nixosModules.default
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = false;
@@ -173,7 +166,6 @@
       modules = [
         ./common.nix
         ./devices/uMsiLaptop.nix
-        hyprland.nixosModules.default
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = false;

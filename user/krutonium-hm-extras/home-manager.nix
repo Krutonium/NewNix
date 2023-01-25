@@ -4,7 +4,6 @@
     ./dconf.nix
     ./git.nix
     ./user-config.nix
-    ./hyprland.nix
     ./packages.nix
   ];
   programs.home-manager.enable = true;

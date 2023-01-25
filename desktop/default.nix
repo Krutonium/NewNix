@@ -4,7 +4,7 @@ with builtins;
 {
   options.sys.desktop = {
     desktop = mkOption {
-      type = types.enum [ "gnome" "kde" "hyprland" "none" "pantheon" ];
+      type = types.enum [ "gnome" "kde" "none" "pantheon" ];
       default = "none";
       description = ''
         Your desktop of choice.
@@ -32,5 +32,5 @@ with builtins;
       '';
     };
   };
-  imports = [ ./gnome.nix ./kde.nix ./hyprland.nix ./pantheon.nix ./none.nix ];
+  imports = [ ./gnome.nix ./kde.nix ./pantheon.nix ./none.nix ];
 }
