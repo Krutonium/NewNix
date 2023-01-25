@@ -13,7 +13,7 @@ in
     package = config.boot.kernelPackages.nvidiaPackages.legacy_340;
   };
   services.xserver.videoDrivers = [ "nvidia" ];
-  allowBroken = true;
+  config.allowBroken = true;
 
   imports = [ ./uMacBookPro-hw.nix ];
   sys = {
