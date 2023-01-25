@@ -6,6 +6,7 @@ in
 {
   networking.hostName = Hostname;
   hardware.opengl.enable = true;
+  mports = [ ./uMacBookPro-hw.nix ];
   sys = {
     boot = {
       bootloader = "uefi";
