@@ -45,6 +45,6 @@ in
       max_temp = 60;
     };
   };
-  boot.kernelParams = [ "nouveau.config=NvBios=PCIROM" ];
+  boot.kernelParams = [ "nouveau.config=NvBios=PRAMIN" ];
   powerManagement.cpuFreqGovernor = "performance";
 }
