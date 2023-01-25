@@ -9,7 +9,7 @@ in
   hardware.enableAllFirmware = true;
   boot.kernelPackages = kernel;
   #boot.initrd.availableKernelModules = [ "nouveau" ]; #Fix not grabbing the display before login manager
-  boot.kernelModules = [ "nvidia" ];
+  boot.kernelModules = [ "nvidia" "nvidia_uvm" "nvidia_modeset" ];
   hardware.nvidia = {
     package = config.boot.kernelPackages.nvidiaPackages.legacy_340;
   };
