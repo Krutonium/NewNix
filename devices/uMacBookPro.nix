@@ -26,7 +26,7 @@ in
       uefiPath = "/boot/efi";
     };
     desktop = {
-      desktop = "gnome";
+      desktop = "pantheon";
     };
     audio = {
       server = "pipewire";
