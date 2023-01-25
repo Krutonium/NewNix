@@ -9,6 +9,10 @@ in
   hardware.enableAllFirmware = true;
   boot.kernelPackages = kernel;
   boot.initrd.availableKernelModules = [ "nouveau" ]; #Fix not grabbing the display before login manager
+  hardware.nvidia = {
+    package = config.boot.kernelPackages.nvidiaPackages.legacy_340;
+  };
+
   imports = [ ./uMacBookPro-hw.nix ];
   sys = {
     boot = {
