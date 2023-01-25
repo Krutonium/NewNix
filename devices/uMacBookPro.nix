@@ -12,6 +12,7 @@ in
   hardware.nvidia = {
     package = config.boot.kernelPackages.nvidiaPackages.legacy_340;
   };
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   imports = [ ./uMacBookPro-hw.nix ];
   sys = {
