@@ -45,6 +45,6 @@ in
       max_temp = 60;
     };
   };
-  boot.blacklistedKernelModules = [ "i915" ];
+  boot.kernelParams = [ "nouveau.config" ];
   powerManagement.cpuFreqGovernor = "performance";
 }
