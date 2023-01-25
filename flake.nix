@@ -205,5 +205,52 @@
         };
       };
     };
+    #############
+    # uMacBookPro #
+    #############
+    nixosConfigurations.uMacBookPro = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [
+        ./common.nix
+        ./devices/uMacBookPro.nix
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.useGlobalPkgs = false;
+          home-manager.useUserPackages = true;
+          home-manager.extraSpecialArgs = {
+            pkgs-unstable = import nixpkgs-unstable {
+              system = "x86_64-linux";
+              config.allowUnfree = true;
+            };
+            pkgs-master = import nixpkgs-master {
+              system = "x86_64-linux";
+              config.allowUnfree = true;
+            };
+          };
+        }
+        ({ pkgs, ... }: {
+          nixpkgs.overlays = [
+            (self: super: {
+              deploy-cs = deploy-cs.defaultPackage.x86_64-linux;
+              nixpkgs-update = update.defaultPackage.x86_64-linux;
+            })
+          ];
+        })
+      ] ++ (with nixos-hardware.nixosModules; [
+        common-pc
+        common-pc-ssd
+        common-cpu-intel
+      ]);
+      specialArgs = {
+        pkgs-unstable = import nixpkgs-unstable {
+          system = "x86_64-linux";
+          config.allowUnfree = true;
+        };
+        pkgs-master = import nixpkgs-master {
+          system = "x86_64-linux";
+          config.allowUnfree = true;
+        };
+      };
+    };
   };
 }
