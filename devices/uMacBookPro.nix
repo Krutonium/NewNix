@@ -45,6 +45,6 @@ in
       max_temp = 60;
     };
   };
-  boot.kernelParams = [ "nouveau.config=NvBios=PLATFORM" ];
+  boot.kernelParams = [ "nouveau.config=NvBios=${../firmware/8600M_GT.rom}" ];
   powerManagement.cpuFreqGovernor = "performance";
 }
