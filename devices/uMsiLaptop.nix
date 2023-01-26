@@ -15,6 +15,10 @@ in
   boot.initrd.availableKernelModules = [ "nouveau" ];
   networking.hostName = Hostname;
 
+  boot.kernelParams = [
+    "nouveau.config=NvBios=${../firmware/GTX_950M_OC.rom}"
+  ];
+
   imports = [ ./uMsiLaptop-hw.nix ];
   swapDevices = [
     {
