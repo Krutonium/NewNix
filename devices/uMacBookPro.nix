@@ -55,7 +55,7 @@ in
     };
   };
   boot.kernelParams = [
-    "nouveau.config=NvBios=PRAMIN"
+    "nouveau.config=NvBios=PROM"
     #"nomodeset"
   ];
   powerManagement.cpuFreqGovernor = "performance";
