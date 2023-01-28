@@ -34,7 +34,7 @@
     },
     {
       "Name": "uMacBookPro",
-      "Ip": "192.168.0.12",
+      "Ip": "192.168.0.159",
       "isBuilder": false,
       "isDeployTarget": true,
       "User": "root",
