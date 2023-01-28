@@ -189,7 +189,7 @@ in
       pkgs-unstable.tdesktop
       pkgs.element-desktop
       pkgs.fractal
-      pkgs.polari
+      pkgs.gnome.polari
       pkgs.discord
     ];
   programs.obs-studio = {
