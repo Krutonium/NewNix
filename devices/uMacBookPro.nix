@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 let
-  #kernel = pkgs.linuxPackages_5_4;
-  kernel = pkgs.linuxPackages_latest;
+  kernel = pkgs.linuxPackages_5_4;
+  #kernel = pkgs.linuxPackages_latest;
   Hostname = "uMacBookPro";
 in
 {
@@ -56,7 +56,7 @@ in
   };
   boot.kernelParams = [
     #"nouveau.config=NvBios=${../firmware/8600M_GT.rom}"
-    "nomodeset"
+    #"nomodeset"
   ];
   powerManagement.cpuFreqGovernor = "performance";
 }
