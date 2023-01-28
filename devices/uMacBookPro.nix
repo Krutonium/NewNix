@@ -57,7 +57,7 @@ in
   };
   boot.kernelParams = [
     #"nouveau.config=NvBios=PCIROM"
-    #"nomodeset"
+    "nomodeset"
   ];
   powerManagement.cpuFreqGovernor = "performance";
 }
