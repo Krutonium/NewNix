@@ -56,7 +56,7 @@ in
     };
   };
   boot.kernelParams = [
-    "nouveau.config=NvBios=${../firmware/8600M_GT.rom}"
+    "nouveau.config=NvBios=${../firmware/8600M_GT.rom},NvForcePost=1"
     #"nomodeset"
   ];
   powerManagement.cpuFreqGovernor = "performance";
