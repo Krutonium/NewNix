@@ -22,7 +22,7 @@ in
   imports = [ ./uMacBookPro-hw.nix ];
   sys = {
     boot = {
-      bootloader = "uefi";
+      bootloader = "bios";
       plymouth_enabled = true;
       uefiPath = "/boot/efi";
     };
