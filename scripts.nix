@@ -7,7 +7,8 @@ let
   '';
   updateindex = pkgs.writeShellScriptBin "updateindex" ''
     mkdir -p ~/.cache/nix-index && cd ~/.cache/nix-index
-    wget -q -N https://github.com/Mic92/nix-index-database/releases/latest/download/index-x86_64-linux -O files
+    wget -N https://github.com/Mic92/nix-index-database/releases/latest/download/index-x86_64-linux -O files
+    echo Update Complete.
   '';
 
 in
