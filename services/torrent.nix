@@ -16,7 +16,7 @@ in
       declarative = true;
       authFile = "/persist/deluge.auth";
       config = {
-        max_upload_speed = "1000.0";
+        max_upload_speed = "100.0";
         share_ratio_limit = "120.0";
         dont_count_slow_torrents = true;
         pre_allocate_storage = true;
