@@ -11,6 +11,7 @@ in
   hardware.enableAllFirmware = true;
   boot.kernelPackages = kernel;
   boot.initrd.kernelModules = [ "nouveau" "msr" ];
+  boot.kernelModules = [ "msr" ];
   boot.loader.grub.gfxmodeBios = "1680x1050";
   boot.loader.grub.gfxpayloadBios = "keep";
   imports = [ ./uMacBookPro-hw.nix ];
