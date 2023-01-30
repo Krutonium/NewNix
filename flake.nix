@@ -22,8 +22,10 @@
       modules = [
         ./common.nix
         ./devices/uGamingPC.nix
+        { nix.registry.self.flake = inputs.self; }
         home-manager.nixosModules.home-manager
         {
+          nix.registry.self.flake = inputs.self;
           home-manager.useGlobalPkgs = false;
           home-manager.useUserPackages = true;
           home-manager.extraSpecialArgs = {
@@ -70,8 +72,10 @@
       modules = [
         ./common.nix
         ./devices/uWebServer.nix
+        { nix.registry.self.flake = inputs.self; }
         home-manager.nixosModules.home-manager
         {
+          nix.registry.self.flake = inputs.self;
           home-manager.useGlobalPkgs = false;
           home-manager.useUserPackages = true;
           home-manager.extraSpecialArgs = {
@@ -118,8 +122,10 @@
       modules = [
         ./common.nix
         ./devices/uHPLaptop.nix
+        { nix.registry.self.flake = inputs.self; }
         home-manager.nixosModules.home-manager
         {
+          nix.registry.self.flake = inputs.self;
           home-manager.useGlobalPkgs = false;
           home-manager.useUserPackages = true;
           home-manager.extraSpecialArgs = {
@@ -166,8 +172,10 @@
       modules = [
         ./common.nix
         ./devices/uMsiLaptop.nix
+        { nix.registry.self.flake = inputs.self; }
         home-manager.nixosModules.home-manager
         {
+          nix.registry.self.flake = inputs.self;
           home-manager.useGlobalPkgs = false;
           home-manager.useUserPackages = true;
           home-manager.extraSpecialArgs = {
@@ -213,8 +221,10 @@
       modules = [
         ./common.nix
         ./devices/uMacBookPro.nix
+        { nix.registry.self.flake = inputs.self; }
         home-manager.nixosModules.home-manager
         {
+          nix.registry.self.flake = inputs.self;
           home-manager.useGlobalPkgs = false;
           home-manager.useUserPackages = true;
           home-manager.extraSpecialArgs = {
