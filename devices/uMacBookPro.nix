@@ -10,15 +10,9 @@ in
   hardware.opengl.enable = true;
   hardware.enableAllFirmware = true;
   boot.kernelPackages = kernel;
-  #boot.initrd.availableKernelModules = [ "nouveau" ]; #Fix not grabbing the display before login manager
-  #boot.kernelModules = [ "nvidia" ];
-  #hardware.nvidia = {
-  #  package = config.boot.kernelPackages.nvidiaPackages.legacy_340;
-  #};
-  #services.xserver.videoDrivers = [ "nvidia" ];
-  #boot.kernelModules = [ "nouveau" ];
-  #nixpkgs.config.allowBroken = true;
-
+  boot.initrd.kernelModules = [ "nouveau" "msr" ];
+  boot.loader.grub.gfxmodeBios = "1680x1050";
+  boot.loader.grub.gfxpayloadBios = "keep";
   imports = [ ./uMacBookPro-hw.nix ];
   sys = {
     boot = {
