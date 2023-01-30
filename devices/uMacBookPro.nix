@@ -27,7 +27,7 @@ in
       uefiPath = "/boot/";
     };
     desktop = {
-      desktop = "pantheon";
+      desktop = "gnome";
     };
     audio = {
       server = "pipewire";
@@ -61,4 +61,5 @@ in
     #"nomodeset"
   ];
   powerManagement.cpuFreqGovernor = "performance";
+  environment.systemPackages = [ pkgs.msr pkgs.msr-tools ];
 }
