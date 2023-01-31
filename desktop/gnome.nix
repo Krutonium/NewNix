@@ -38,5 +38,6 @@ in
         enable = true;
       };
     };
+    environment.systemPackages = [ pkgs.qjackctl ];
   };
 }
