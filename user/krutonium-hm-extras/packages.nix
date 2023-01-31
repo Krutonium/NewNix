@@ -173,6 +173,7 @@ in
       pkgs.goverlay
       pkgs.dolphin-emu-beta
       pkgs-unstable.heroic
+      pkgs-unstable.cemu
       pkgs.steam-run
       pkgs.yuzu-ea
       pkgs.monado
