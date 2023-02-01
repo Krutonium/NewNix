@@ -175,6 +175,7 @@ in
       pkgs.dolphin-emu-beta
       pkgs-unstable.heroic
       pkgs-unstable.cemu
+      pkgs-unstable.citra
       pkgs.steam-run
       pkgs.yuzu-ea
       pkgs.monado
