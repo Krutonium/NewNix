@@ -69,6 +69,7 @@ in
     [
       # Browser
       pkgs.firefox-wayland
+      pkgs.tor-browser-bundle-bin
 
       # Gnome Stuff
       pkgs.gnome.gnome-tweaks
