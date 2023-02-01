@@ -85,6 +85,8 @@
   };
   programs.noisetorch.enable = true;
 
+  boot.kernelParams = [ "mitigations=off" ];
+
   # DO NOT CHANGE THIS
   system.stateVersion = "22.05";
 
