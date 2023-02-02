@@ -101,13 +101,11 @@ in
       monado
       openhmd
       steam-run
-    ];
-    services.udev.packages = [ rift_s_udev ];
-    environment.systemPackages = with pkgs; [
       (steam.override {
         extraPkgs = pkgs: [ glxinfo jre8 ];
       }).run
     ];
+    services.udev.packages = [ rift_s_udev ];
     programs.steam = {
       enable = true;
       remotePlay.openFirewall = true;
