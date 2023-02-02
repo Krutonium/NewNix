@@ -167,7 +167,8 @@ in
       # Gaming
       # Steam is already installed at the system level because it has special requirements
       pkgs-master.openrct2
-      pkgs.runescape
+      #pkgs.runescape #doesn't currently build
+      pkgs.gamescope
       pkgs.jstest-gtk
       pkgs-unstable.prismlauncher
       pkgs.protonup
