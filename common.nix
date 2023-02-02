@@ -84,7 +84,7 @@
     fwupd.enable = true;
   };
   programs.noisetorch.enable = true;
-
+  systemd.extraConfig = "DefaultLimitNOFILE=1048576";
   boot.kernelParams = [ "mitigations=off" ];
 
   # DO NOT CHANGE THIS
