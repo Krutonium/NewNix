@@ -103,18 +103,24 @@ in
       steam-run
     ];
     services.udev.packages = [ rift_s_udev ];
-    programs.steam = {
-      enable = true;
-      remotePlay.openFirewall = true;
-    };
-    #services.xserver.config = ''
-    #  Option \"AllowHMD\" \"yes\"
-    #'';
-    #services.xserver.deviceSection = ''
-    #  Identifier             "Device0"
-    #  Driver                 "nvidia"#
+    environment.systemPackages = with pkgs; [
+      (steam.override {
+        extraPkgs = pkgs;
+        [ glxinfo jre8 ];
+        }).run
+        ];
+        programs.steam = {
+          enable = true;
+          remotePlay.openFirewall = true;
+        };
+        #services.xserver.config = ''
+        #  Option \"AllowHMD\" \"yes\"
+        #'';
+        #services.xserver.deviceSection = ''
+        #  Identifier             "Device0"
+        #  Driver                 "nvidia"#
 
-    #Option "AllowHMD"      "yes"
-    #'';
-  };
-}
+        #Option "AllowHMD"      "yes"
+        #'';
+      };
+      }
