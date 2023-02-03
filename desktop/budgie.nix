@@ -16,6 +16,11 @@ in
             autoSuspend = cfg.autoSuspend;
           };
         };
+        desktopManager = {
+          gnome = {
+            enable = true;
+          };
+        };
       };
     };
     hardware = {
