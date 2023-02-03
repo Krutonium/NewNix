@@ -62,6 +62,10 @@
           system = "x86_64-linux";
           config.allowUnfree = true;
         };
+        pkgs-budgie = import nixpkgs-budgie {
+          system = "x86_64-linux";
+          config.allowUnfree = true;
+        };
       };
     };
 
@@ -162,6 +166,10 @@
           system = "x86_64-linux";
           config.allowUnfree = true;
         };
+        pkgs-budgie = import nixpkgs-budgie {
+          system = "x86_64-linux";
+          config.allowUnfree = true;
+        };
       };
     };
 
@@ -212,6 +220,10 @@
           system = "x86_64-linux";
           config.allowUnfree = true;
         };
+        pkgs-budgie = import nixpkgs-budgie {
+          system = "x86_64-linux";
+          config.allowUnfree = true;
+        };
       };
     };
     #############
@@ -258,6 +270,10 @@
           config.allowUnfree = true;
         };
         pkgs-master = import nixpkgs-master {
+          system = "x86_64-linux";
+          config.allowUnfree = true;
+        };
+        pkgs-budgie = import nixpkgs-budgie {
           system = "x86_64-linux";
           config.allowUnfree = true;
         };

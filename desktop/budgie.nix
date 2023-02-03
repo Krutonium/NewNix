@@ -1,4 +1,4 @@
-{ config, pkgs, lib, nixpkgs-budgie, ... }:
+{ config, pkgs, lib, pkgs-budgie, ... }:
 with lib;
 with builtins;
 let
@@ -33,6 +33,6 @@ in
         enable = true;
       };
     };
-    environment.systemPackages = [ pkgs.qjackctl nixpkgs-budgie.budgie-desktop nixpkgs-budgie.budgie-screensaver ];
+    environment.systemPackages = [ pkgs.qjackctl pkgs-budgie.budgie-desktop pkgs-budgie.budgie-screensaver ];
   };
 }
