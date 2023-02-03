@@ -6,33 +6,33 @@ let
 in
 {
   config = mkIf (cfg.desktop == "budgie") {
-        services = {
-          xserver = {
+    services = {
+      xserver = {
+        enable = true;
+        displayManager = {
+          gdm = {
             enable = true;
-            displayManager = {
-              gdm = {
-                enable = true;
-                wayland = false;
-                autoSuspend = cfg.autoSuspend;
-              };
-            };
+            wayland = false;
+            autoSuspend = cfg.autoSuspend;
           };
         };
-        hardware = {
-          opengl = {
-            enable = true;
-          };
-        };
-        programs = {
-          xwayland = {
-            enable = true;
-          };
-        };
-        security = {
-          rtkit = {
-            enable = true;
-          };
-        };
-        environment.systemPackages = [ pkgs.qjackctl nixpkgs-budgie.budgie-desktop nixpkgs-budgie.budgie-screensaver ];
+      };
+    };
+    hardware = {
+      opengl = {
+        enable = true;
+      };
+    };
+    programs = {
+      xwayland = {
+        enable = true;
+      };
+    };
+    security = {
+      rtkit = {
+        enable = true;
+      };
+    };
+    environment.systemPackages = [ pkgs.qjackctl nixpkgs-budgie.budgie-desktop nixpkgs-budgie.budgie-screensaver ];
   };
 }
