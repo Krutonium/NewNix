@@ -16,6 +16,11 @@ in
             autoSuspend = cfg.autoSuspend;
           };
         };
+        desktopManager = {
+          budgie = {
+            enable = true;
+          };
+        };
       };
     };
     hardware = {
@@ -33,6 +38,6 @@ in
         enable = true;
       };
     };
-    environment.systemPackages = [ pkgs.qjackctl pkgs-budgie.budgie-desktop pkgs-budgie.budgie-screensaver ];
+    environment.systemPackages = [ pkgs.qjackctl ];
   };
 }
