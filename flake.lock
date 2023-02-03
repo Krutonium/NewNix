@@ -95,6 +95,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-budgie": {
+      "locked": {
+        "lastModified": 1673406173,
+        "narHash": "sha256-zRWpn2ydk5S2yqqK2AyNCRNGFMI90makLTjUjuSxv58=",
+        "owner": "FedericoSchonborn",
+        "repo": "nixpkgs",
+        "rev": "c36541e285b11ab826805600f67cc7c5090e8ad2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "FedericoSchonborn",
+        "ref": "budgie-desktop-nixos",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-for-manual": {
       "locked": {
         "lastModified": 1663819393,
@@ -113,11 +129,11 @@
     },
     "nixpkgs-master": {
       "locked": {
-        "lastModified": 1675421899,
-        "narHash": "sha256-B8EHtEGfpPeAWdII/yTSqRGHc9tSjE/anEAX+yhvXB0=",
+        "lastModified": 1675426148,
+        "narHash": "sha256-eP+cPqzYK246hL7/59d5jh/lT5mf7jDDnQzZlS95DaQ=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "3bc57a4bdc4953989e34891f180d318588700687",
+        "rev": "ebd2070df8e9721e5b66a9bce1e72e820314aa60",
         "type": "github"
       },
       "original": {
@@ -179,6 +195,7 @@
         "home-manager": "home-manager",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",
+        "nixpkgs-budgie": "nixpkgs-budgie",
         "nixpkgs-master": "nixpkgs-master",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "update": "update"
