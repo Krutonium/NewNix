@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 let
   #kernel = pkgs.linuxPackages_5_4;
-  kernel = pkgs.linuxPackages_latest;
+  kernel = pkgs.linuxPackages_zen;
   #kernel = pkgs.linuxPackages_4_14;
   Hostname = "uMacBookPro";
 in
