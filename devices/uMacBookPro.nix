@@ -22,7 +22,8 @@ in
       uefiPath = "/boot/";
     };
     desktop = {
-      desktop = "kde";
+      desktop = "gnome";
+      wayland = true;
     };
     audio = {
       server = "pipewire";
