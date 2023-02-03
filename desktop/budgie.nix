@@ -12,7 +12,7 @@ in
         displayManager = {
           gdm = {
             enable = true;
-            wayland = false;
+            wayland = cfg.wayland;
             autoSuspend = cfg.autoSuspend;
           };
         };
