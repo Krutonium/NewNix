@@ -171,7 +171,7 @@ in
       # RetroArch
       pkgs.libretro.parallel-n64
       pkgs.libretro.snex9x
-      (retroarch.override {
+      (pkgs.retroarch.override {
         cores = [
           pkgs.libretro.snes9x
           pkgs.libretrio.parallel-n64
