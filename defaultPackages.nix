@@ -44,6 +44,7 @@ in
     pkgs.btrfs-progs
     pkgs.cifs-utils
     pkgs.nixpkgs-review
+    pkgs.unrar
   ];
 
 }
