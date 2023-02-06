@@ -167,7 +167,17 @@ in
       # Gaming
       # Steam is already installed at the system level because it has special requirements
       pkgs-master.openrct2
+
+      # RetroArch
       pkgs.libretro.parallel-n64
+      pkgs.libretro.snex9x
+      (retroarch.override {
+        cores = [
+          pkgs.libretro.snes9x
+          pkgs.libretrio.parallel-n64
+        ];
+      })
+
       #pkgs.runescape #doesn't currently build
       pkgs.gamescope
       pkgs.jstest-gtk
