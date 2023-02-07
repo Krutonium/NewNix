@@ -9,9 +9,9 @@ in
     environment.systemPackages = [ pkgs.ddcutil ];
     services.udev.extraRules = ''
       # Assigns the i2c devices to group i2c, and gives that group RW access:
-      KERNEL=="i2c-[0-9]*", GROUP="i2c", MODE="0660"
+      # KERNEL=="i2c-[0-9]*", GROUP="i2c", MODE="0660"
       # Gives everyone RW access to the /dev/i2c devices:
-      # KERNEL=="i2c-[0-9]*",  MODE="0666"
+      KERNEL=="i2c-[0-9]*",  MODE="0666"
 
       # ==== #
 

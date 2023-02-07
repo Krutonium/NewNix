@@ -84,6 +84,7 @@ in
       pkgs.gnome.dconf-editor
       pkgs.gnomeExtensions.arcmenu
       pkgs.gnomeExtensions.no-overview
+      pkgs.gnomeExtensions.adjust-display-brightness
 
       # Development
       openjdk8-low
