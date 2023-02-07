@@ -38,7 +38,8 @@ in
       wayland = true;
     };
     custom = {
-      ddcutils = true;
+      ddcutil = true;
+      ddcutil_nvidiaFix = true;
     };
     audio = {
       server = "pipewire";
