@@ -178,7 +178,7 @@ in
         ];
       })
 
-      #pkgs.runescape #doesn't currently build
+      pkgs-unstable.runescape #doesn't currently build
       pkgs.gamescope
       pkgs.jstest-gtk
       pkgs-unstable.prismlauncher
