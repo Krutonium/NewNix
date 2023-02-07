@@ -17,7 +17,7 @@ in
           };
         };
         desktopManager = {
-          budgie = {
+          gnome = {
             enable = true;
           };
         };
