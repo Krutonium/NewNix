@@ -17,7 +17,7 @@ in
           };
         };
         desktopManager = {
-          gnome = {
+          budgie = {
             enable = true;
           };
         };
@@ -38,6 +38,6 @@ in
         enable = true;
       };
     };
-    environment.systemPackages = [ pkgs.qjackctl pkgs-budgie.budgie.budgie-desktop ];
+    environment.systemPackages = [ pkgs.qjackctl ];
   };
 }

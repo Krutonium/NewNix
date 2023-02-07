@@ -10,6 +10,7 @@
     ./minecraft
     ./steam
     ./virtualization
+    ./custom-packages
     ./scripts.nix
   ];
   boot = {
