@@ -3,13 +3,20 @@ with lib;
 with builtins;
 {
   options.sys.custom = {
-    ddcutils = mkOption {
+    ddcutil = mkOption {
       type = types.bool;
       default = false;
       description = ''
-        Your desktop of choice.
+        Enable ddcutil.
+      '';
+    };
+    ddcutil_nvidiaFix = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        Enable ddcutil nvidia fix.
       '';
     };
   };
-  imports = [ ./ddcutils.nix ];
+  imports = [ ./ddcutil.nix ];
 }

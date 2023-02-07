@@ -5,7 +5,7 @@ let
   cfg = config.sys.custom;
 in
 {
-  config = mkIf (cfg.ddcutils == true) {
+  config = mkIf (cfg.ddcutil == true) {
     environment.systemPackages = [ pkgs.ddcutil ];
     services.udev.extraRules = ''
       # Assigns the i2c devices to group i2c, and gives that group RW access:
@@ -30,6 +30,17 @@ in
       # Identifies a particular monitor device by its vid/pid.
       # The values in this example are for an Apple Cinema Display, model A1082.
       # SUBSYSTEM=="usbmisc", ATTRS{idVendor}=="05ac", ATTRS{idProduct}=="9223",  MODE="0666"
+    '';
+  };
+  config = mkIf (cfg.ddcutil_nvidiaFix) {
+    services.xserver.config = ''
+      Section "Device"
+         Driver "nvidia"
+         Identifier "Dev0"
+         Option     "RegistryDwords"  "RMUseSwI2c=0x01; RMI2cSpeed=100"
+         # solves problem of i2c errors with nvidia driver
+         # per https://devtalk.nvidia.com/default/topic/572292/-solved-does-gddccontrol-work-for-anyone-here-nvidia-i2c-monitor-display-ddc/#4309293
+      EndSection
     '';
   };
 }
