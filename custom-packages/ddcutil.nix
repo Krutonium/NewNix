@@ -7,6 +7,7 @@ in
 {
   config = mkIf (cfg.ddcutil == true) {
     environment.systemPackages = [ pkgs.ddcutil ];
+    hardware.i2c.enable = true;
     services.udev.extraRules = ''
       # Assigns the i2c devices to group i2c, and gives that group RW access:
       # KERNEL=="i2c-[0-9]*", GROUP="i2c", MODE="0660"
