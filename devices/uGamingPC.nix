@@ -37,6 +37,9 @@ in
       desktop = "gnome";
       wayland = true;
     };
+    custom = {
+      ddcutils = true;
+    };
     audio = {
       server = "pipewire";
     };
