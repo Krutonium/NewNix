@@ -18,5 +18,5 @@ with builtins;
       '';
     };
   };
-  imports = [ ./ddcutil.nix ];
+  imports = [ ./ddcutil.nix ./ddcutil_nvidiaFix.nix ];
 }
