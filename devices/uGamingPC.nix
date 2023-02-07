@@ -19,6 +19,10 @@ in
     enable = true;
     priority = 1;
   };
+  services.hardware.openrgb = {
+    enable = true;
+    motherboard = "amd";
+  };
   services.xserver.videoDrivers = [ "nvidia" ];
   #hardware.nvidia.open = false;
   hardware.opengl.enable = true;
