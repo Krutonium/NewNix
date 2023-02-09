@@ -22,8 +22,8 @@ in
       uefiPath = "/boot/";
     };
     desktop = {
-      desktop = "pantheon";
-      wayland = true;
+      desktop = "gnome";
+      wayland = false;
     };
     audio = {
       server = "pipewire";
