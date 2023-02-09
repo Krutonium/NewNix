@@ -4,7 +4,7 @@ let
   Hostname = "uWebServer";
 in
 {
-  networking.firewall.allowedTCPPorts = [ 25565 ];
+  networking.firewall.allowedTCPPorts = [ 25565 25566 ];
   boot.kernelPackages = kernel;
   networking.hostName = Hostname;
   networking.interfaces."enp3s0".ipv6.addresses = [{ address = "2607:fea8:7a5f:2a00::916c"; prefixLength = 64; }];
