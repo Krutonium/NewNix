@@ -16,9 +16,9 @@
   boot = {
     cleanTmpDir = true;
     kernel.sysctl = {
-      "vm.max_map_count = 1000000" };
-      };
-      hardware.enableAllFirmware = true;
+      "vm.max_map_count = 1000000"
+        };
+        hardware.enableAllFirmware = true;
       nix = {
         settings = {
           auto-optimise-store = true;
