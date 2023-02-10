@@ -18,6 +18,7 @@
     kernel.sysctl = {
       "vm.max_map_count = 1000000"
         };
+        };
         hardware.enableAllFirmware = true;
       nix = {
         settings = {
