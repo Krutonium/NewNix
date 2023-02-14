@@ -99,7 +99,7 @@ in
   config = mkIf (cfg.steam == true) {
     environment.systemPackages = with pkgs;[
       monado
-      openhmd
+      #openhmd
       steam-run
       (steam.override {
         extraPkgs = pkgs: [ glxinfo jre8 ];
