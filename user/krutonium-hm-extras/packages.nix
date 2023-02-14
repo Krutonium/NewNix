@@ -106,7 +106,7 @@ in
       pkgs.vscode
       pkgs.gitkraken
       dotnet
-      msbuild
+      pkgs.msbuild
       #pkgs.dotnet-sdk
       #pkgs.godot-mono
       #pkgs.godot-export-templates
