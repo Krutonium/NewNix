@@ -98,7 +98,7 @@ in
 {
   config = mkIf (cfg.steam == true) {
     environment.systemPackages = with pkgs;[
-      monado
+      #monado
       #openhmd
       steam-run
       (steam.override {
