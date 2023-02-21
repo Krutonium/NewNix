@@ -137,6 +137,12 @@
       fsType = "ext4";
     };
 
+  fileSystems."/media2" =
+    {
+      device = "/dev/disk/by-id/ata-WDC_WD60EDAZ-11U78B0_WD-WX92D622XA45-part1";
+      fsType = "ext4";
+    };
+
   fileSystems."/var/lib/jellyfin" =
     {
       device = "/dev/disk/by-uuid/a018b12f-6567-4edb-8026-be9292738b4d";
