@@ -37,7 +37,7 @@ in
       plymouth_enabled = true;
     };
     desktop = {
-      desktop = "budgie";
+      desktop = "gnome";
       wayland = true;
     };
     audio = {

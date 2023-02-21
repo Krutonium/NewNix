@@ -5,7 +5,6 @@
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master"; # NixOS hardware channel
     home-manager.url = "github:nix-community/home-manager/release-22.11"; # Home Manager release channel
-    nixpkgs-budgie.url = "github:FedericoSchonborn/nixpkgs/budgie-desktop-nixos";
     update = {
       url = "github:ryantm/nixpkgs-update";
     };
@@ -14,7 +13,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-master, nixos-hardware, home-manager, deploy-cs, update, nixpkgs-budgie }@inputs: {
+  outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-master, nixos-hardware, home-manager, deploy-cs, update }@inputs: {
     #############
     # uGamingPC #
     #############
@@ -59,10 +58,6 @@
           config.allowUnfree = true;
         };
         pkgs-master = import nixpkgs-master {
-          system = "x86_64-linux";
-          config.allowUnfree = true;
-        };
-        pkgs-budgie = import nixpkgs-budgie {
           system = "x86_64-linux";
           config.allowUnfree = true;
         };
@@ -166,10 +161,6 @@
           system = "x86_64-linux";
           config.allowUnfree = true;
         };
-        pkgs-budgie = import nixpkgs-budgie {
-          system = "x86_64-linux";
-          config.allowUnfree = true;
-        };
       };
     };
 
@@ -220,10 +211,6 @@
           system = "x86_64-linux";
           config.allowUnfree = true;
         };
-        pkgs-budgie = import nixpkgs-budgie {
-          system = "x86_64-linux";
-          config.allowUnfree = true;
-        };
       };
     };
     #############
@@ -270,10 +257,6 @@
           config.allowUnfree = true;
         };
         pkgs-master = import nixpkgs-master {
-          system = "x86_64-linux";
-          config.allowUnfree = true;
-        };
-        pkgs-budgie = import nixpkgs-budgie {
           system = "x86_64-linux";
           config.allowUnfree = true;
         };
