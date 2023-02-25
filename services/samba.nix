@@ -20,6 +20,10 @@ in
           path = "/media";
           browsable = true;
         };
+        media2 = {
+          path = "/media2";
+          browsable = true;
+        };
         share = {
           path = "/home/krutonium/share";
           browsable = true;
