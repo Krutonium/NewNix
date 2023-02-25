@@ -221,6 +221,7 @@ in
     enable = true;
     plugins = with pkgs.obs-studio-plugins; [
       obs-backgroundremoval
+      obs-multi-rtmp
     ];
   };
 }
