@@ -52,9 +52,7 @@
   networking = {
     networkmanager = {
       enable = true;
-      insertNameservers = [ "99.248.154.165" "2607:fea8:7a5f:2a00::916c" ];
     };
-    tempAddresses = "disabled";
     firewall = {
       enable = true;
     };
@@ -67,13 +65,16 @@
       "2606:4700:4700::1111"
     ];
   };
+
   i18n = {
     defaultLocale = "en_CA.UTF-8";
   };
+
   console = {
     font = "Lat2-Terminus16";
     keyMap = "us";
   };
+
   systemd = {
     enableEmergencyMode = false;
     network = {
