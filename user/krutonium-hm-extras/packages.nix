@@ -216,6 +216,7 @@ in
       pkgs.fractal
       pkgs.srain
       pkgs.discord
+      pkgs.ripcord
     ];
   programs.obs-studio = {
     enable = true;
