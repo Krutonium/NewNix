@@ -1,4 +1,4 @@
-{ config, pkgs, lib, pkgs-budgie, ... }:
+{ config, pkgs, lib, ... }:
 with lib;
 with builtins;
 let
@@ -17,7 +17,7 @@ in
           };
         };
         desktopManager = {
-          gnome = {
+          budgie = {
             enable = true;
           };
         };
@@ -38,6 +38,5 @@ in
         enable = true;
       };
     };
-    environment.systemPackages = [ pkgs.qjackctl ];
   };
 }
