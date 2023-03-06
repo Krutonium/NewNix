@@ -21,7 +21,7 @@ in
         wantedBy = [ "timers.target" ];
         partOf = [ "updateSystems.service" ];
         timerConfig = {
-          OnCalendar = "*-*-* 00,02,04,06,08,10,12,14,16,18,20,22:00:00"; # Every 2 hours
+          OnCalendar = "*-*-* 00,02,04,06,08,10,12,14,22:00:00"; # Every 2 hours, except when streaming
           Unit = "updateSystems.service";
         };
         enable = true;
