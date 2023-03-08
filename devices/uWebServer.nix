@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 let
-  kernel = pkgs.linuxPackages_latest;
+  kernel = pkgs.linuxPackages;
   Hostname = "uWebServer";
 in
 {
