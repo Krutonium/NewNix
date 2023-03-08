@@ -30,7 +30,7 @@ in
           targetPkgs = pkgs: (with pkgs;
             [
               alsaLib
-              dotnetCorePackages.sdk_5_0
+              #dotnetCorePackages.sdk_5_0
               libGL
               libpulseaudio
               udev
@@ -51,14 +51,7 @@ in
   home.packages =
     let
       openjdk8-low = pkgs.openjdk8.overrideAttrs (oldAttrs: { meta.priority = 10; });
-      dotnet = (with pkgs.dotnetCorePackages; combinePackages
-        [
-          sdk_3_1
-          sdk_5_0
-          sdk_6_0
-          sdk_7_0
-        ]
-      );
+      dotnetCombined = with dotnetCorePackages; combinePackages [ sdk_3_1 sdk_6_0 sdk_7_0 sdk_8_0 ];
 
       # Run Idea and Rider using steam-run to fix plugins not working.
       ideaScript = pkgs.writeShellScriptBin "idea-ultimate"
@@ -105,7 +98,7 @@ in
       riderScript
       pkgs.vscode
       pkgs.gitkraken
-      dotnet
+      dotnetCombined
       #pkgs.msbuild
       #pkgs.dotnet-sdk
       #pkgs.godot-mono
