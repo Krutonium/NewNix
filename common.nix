@@ -21,6 +21,7 @@
       };
     };
   };
+  qt5.style = "adwaita-dark";
   hardware.enableAllFirmware = true;
   nix = {
     settings = {
