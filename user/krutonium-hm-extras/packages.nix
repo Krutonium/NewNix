@@ -100,7 +100,7 @@ in
       pkgs.gitkraken
       dotnetCombined
       pkgs.notepad-next
-      pkgs.msbuild
+      #pkgs.msbuild
       #pkgs.dotnet-sdk
       #pkgs.godot-mono
       #pkgs.godot-export-templates
