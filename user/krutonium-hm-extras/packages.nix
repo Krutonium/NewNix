@@ -99,7 +99,8 @@ in
       pkgs.vscode
       pkgs.gitkraken
       dotnetCombined
-      #pkgs.msbuild
+      pkgs.notepad-next
+      pkgs.msbuild
       #pkgs.dotnet-sdk
       #pkgs.godot-mono
       #pkgs.godot-export-templates
