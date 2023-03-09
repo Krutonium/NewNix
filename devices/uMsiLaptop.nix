@@ -52,6 +52,8 @@ in
       avahi = true;
       ssh = true;
       sshGuard = true;
+      noisetorch = true;
+      noisetorchDevice = "alsa_input.pci-0000_00_1b.0.analog-stereo";
     };
     steam = {
       steam = true;

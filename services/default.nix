@@ -94,6 +94,20 @@ with builtins;
         Runs deploy-cs every 2 hours to keep everything up to date.
       '';
     };
+    noisetorch = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        Enables NoiseTorch
+      '';
+    };
+    noisetorchDevice = mkOption {
+      type = types.string;
+      default = "";
+      description = ''
+        The device it should listen to.
+      '';
+    };
   };
 
   imports = [
@@ -109,5 +123,6 @@ with builtins;
     ./torrent.nix
     ./ddns.nix
     ./deploy.nix
+    ./noisetorch.nix
   ];
 }

@@ -15,7 +15,7 @@ in
           cd /home/krutonium/NixOS/
           deploy-cs
         '';
-        enable = false;
+        enable = true;
       };
       timers.updateSystems = {
         wantedBy = [ "timers.target" ];
@@ -24,7 +24,7 @@ in
           OnCalendar = "*-*-* 00,02,04,06,08,10,12,14,22:00:00"; # Every 2 hours, except when streaming
           Unit = "updateSystems.service";
         };
-        enable = false;
+        enable = true;
       };
     };
   };
