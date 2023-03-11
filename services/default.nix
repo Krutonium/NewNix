@@ -108,12 +108,13 @@ with builtins;
         The device it should listen to.
       '';
     };
-    7daystodie = mkOption {
+    sevendaystodie = mkOption {
       type = types.bool;
       default = false;
       description = ''
         Installs and runs the 7 Days to Die Dedicated Server
       '';
+    };
   };
 
   imports = [

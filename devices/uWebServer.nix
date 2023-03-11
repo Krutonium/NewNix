@@ -57,7 +57,7 @@ in
       ddns = false;
       nginx = true;
       autoDeploy = false;
-      7daystodie = true;
+      sevendaystodie = true;
     };
     virtualization = {
       server = "virtd";

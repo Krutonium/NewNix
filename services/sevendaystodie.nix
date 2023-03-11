@@ -6,7 +6,7 @@ let
   gamePath = "/home/krutonium/7daystodie";
 in
 {
-  config = mkIf (cfg.7daystodie == true) {
+  config = mkIf (cfg.sevendaystodie == true) {
     networking.firewall.allowedTCPPorts = [ 26900 ];
     networking.firewall.allowedUDPPortRanges = [ { from = 26900; to = 26903; } ];
     systemd = {          
