@@ -17,7 +17,7 @@ in
         script = ''
 	  mkdir -p ${gamePath}
           cd ${gamePath}
-          steamcmd +force_install_dir ./ +login anonymous +app_update 294420 +quit
+          steamcmd +force_install_dir ${gamePath} +login anonymous +app_update 294420 +quit
           steam-run ./startserver.sh -configfile=serverconfig-7dtd.xml
         '';
         enable = true;
