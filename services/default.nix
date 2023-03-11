@@ -108,6 +108,12 @@ with builtins;
         The device it should listen to.
       '';
     };
+    7daystodie = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        Installs and runs the 7 Days to Die Dedicated Server
+      '';
   };
 
   imports = [
@@ -124,5 +130,6 @@ with builtins;
     ./ddns.nix
     ./deploy.nix
     ./noisetorch.nix
+    ./7daystodie.nix
   ];
 }
