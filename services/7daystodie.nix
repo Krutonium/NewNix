@@ -8,7 +8,8 @@ in
 {
   config = mkIf (cfg.7daystodie == true) {
     networking.firewall.allowedTCPPorts = [ 26900 ];
-    systemd = {
+    networking.firewall.allowedUDPPortRanges = [ { from = 26900; to = 26903; } ];
+    systemd = {          
       services.7daystodie = {
         serviceConfig.Type = "oneshot";
         serviceConfig.User = "krutonium";
