@@ -10,7 +10,7 @@ in
     networking.firewall.allowedTCPPorts = [ 26900 ];
     networking.firewall.allowedUDPPortRanges = [ { from = 26900; to = 26903; } ];
     systemd = {          
-      services.7daystodie = {
+      services."7daystodie" = {
         serviceConfig.Type = "oneshot";
         serviceConfig.User = "krutonium";
         path = with pkgs; [ pkgs.steam-run pkgs.steamcmd ];
