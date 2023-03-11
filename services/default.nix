@@ -131,6 +131,6 @@ with builtins;
     ./ddns.nix
     ./deploy.nix
     ./noisetorch.nix
-    ./7daystodie.nix
+    ./sevendaystodie.nix
   ];
 }
