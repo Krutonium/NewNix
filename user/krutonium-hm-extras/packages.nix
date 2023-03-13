@@ -186,7 +186,6 @@ in
       pkgs.jstest-gtk
       pkgs-unstable.prismlauncher
       pkgs.protonup
-      pkgs.mangohud
       pkgs.goverlay
       pkgs.dolphin-emu-beta
       pkgs-unstable.heroic
@@ -218,5 +217,10 @@ in
       obs-backgroundremoval
       obs-multi-rtmp
     ];
+  };
+  programs.mangohud = {
+    enable = true;
+    enableSessionWide = true;
+    package = pkgs.mangohud;
   };
 }
