@@ -167,7 +167,8 @@ in
       pkgs.pcem
       # Gaming
       # Steam is already installed at the system level because it has special requirements
-      pkgs-master.openrct2
+      pkgs.openrct2
+      pkgs.mesa-demos
 
       # RetroArch
       pkgs.libretro.parallel-n64
