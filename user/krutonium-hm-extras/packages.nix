@@ -107,10 +107,8 @@ in
 
 
       # Wine
-      pkgs-unstable.wineWowPackages.stable
-      pkgs-unstable.wine-wayland
-      pkgs-unstable.winetricks
-
+      pkgs.wineWowPackages.full
+      pkgs.winetricks
 
       # Keyboard Stuff
       pkgs.unzip
