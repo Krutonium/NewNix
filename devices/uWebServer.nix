@@ -56,8 +56,8 @@ in
       torrent = true;
       ddns = false;
       nginx = true;
-      autoDeploy = false;
-      sevendaystodie = true;
+      autoDeploy = true;
+      sevendaystodie = false;
     };
     virtualization = {
       server = "virtd";
