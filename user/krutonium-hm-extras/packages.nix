@@ -152,7 +152,7 @@ in
       pkgs.oh-my-fish
       pkgs.babelfish
       pkgs.thefuck
-      pkgs-unstable.sapling
+      pkgs.sapling
       pkgs.powerline-fonts
       pkgs.unzip
       pkgs.yt-dlp
