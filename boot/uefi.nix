@@ -21,6 +21,7 @@ in
           useOSProber = true;
           default = default;
           enable = true;
+          memtest86.enable = true;
           extraEntries = ''
             title iPXE
               chainloader netbootxyz.efi
