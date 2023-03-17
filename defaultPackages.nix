@@ -45,6 +45,7 @@ in
     pkgs.cifs-utils
     pkgs.nixpkgs-review
     pkgs.unrar
+    pkgs.netbootxyz-efi
   ];
 
 }
