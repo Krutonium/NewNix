@@ -21,6 +21,10 @@ in
           useOSProber = true;
           default = default;
           enable = true;
+          extraEntries = ''
+            title iPXE
+              chainloader ${pkgs.netbootxyz-efi}
+          '';
         };
       };
     };
