@@ -22,9 +22,12 @@ in
           default = default;
           enable = true;
           memtest86.enable = true;
+          extraFiles = {
+            "netbootxyz.efi" = "${pkgs.netbootxyz-efi}";
+          };
           extraEntries = ''
             title iPXE
-              chainloader netbootxyz.efi
+              chainloader /netbootxyz.efi
           '';
         };
       };
