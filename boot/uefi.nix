@@ -26,8 +26,9 @@ in
             "netbootxyz.efi" = "${pkgs.netbootxyz-efi}";
           };
           extraEntries = ''
-            title iPXE
+            menuentry "iPXE" {
               chainloader /netbootxyz.efi
+            }
           '';
         };
       };
