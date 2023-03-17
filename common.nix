@@ -20,7 +20,7 @@
         "vm.max_map_count" = 1000000;
       };
     };
-    loader.systemd-boot.netbootxys.enable = true;
+    loader.systemd-boot.netbootxyz.enable = true;
   };
   qt5.style = "adwaita-dark";
   hardware.enableAllFirmware = true;
