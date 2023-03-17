@@ -25,7 +25,7 @@ in
             enable = true;
             extraEntries = ''
               title iPXE
-                chainloader 
+                chainloader netbootxyz.efi
             '';
           };
         };
