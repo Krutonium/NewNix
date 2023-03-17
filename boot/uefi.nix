@@ -10,7 +10,8 @@ in
 {
   config = mkIf (cfg.bootloader == "uefi") {
     environment.boot = {
-      netbootxyz.efi.source = ${pkgs.netbootxyz-efi} };
+      netbootxyz.efi.source = {
+        $ pkgs.netbootxyz-efi} };
       boot = {
         loader = {
           efi = {
@@ -30,5 +31,5 @@ in
           };
         };
       };
-    };
-  }
+      };
+    }
