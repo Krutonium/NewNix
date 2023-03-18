@@ -2,7 +2,6 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11"; # NixOS release channel
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable"; # NixOS unstable channel
-    nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master"; # NixOS hardware channel
     home-manager.url = "github:nix-community/home-manager/release-22.11"; # Home Manager release channel
     update = {
@@ -13,7 +12,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-master, nixos-hardware, home-manager, deploy-cs, update }@inputs: {
+  outputs = { self, nixpkgs, nixpkgs-unstable, nixos-hardware, home-manager, deploy-cs, update }@inputs: {
     #############
     # uGamingPC #
     #############
@@ -30,10 +29,6 @@
           home-manager.useUserPackages = true;
           home-manager.extraSpecialArgs = {
             pkgs-unstable = import nixpkgs-unstable {
-              system = "x86_64-linux";
-              config.allowUnfree = true;
-            };
-            pkgs-master = import nixpkgs-master {
               system = "x86_64-linux";
               config.allowUnfree = true;
             };
@@ -54,10 +49,6 @@
       ]);
       specialArgs = {
         pkgs-unstable = import nixpkgs-unstable {
-          system = "x86_64-linux";
-          config.allowUnfree = true;
-        };
-        pkgs-master = import nixpkgs-master {
           system = "x86_64-linux";
           config.allowUnfree = true;
         };
@@ -83,10 +74,6 @@
               system = "x86_64-linux";
               config.allowUnfree = true;
             };
-            pkgs-master = import nixpkgs-master {
-              system = "x86_64-linux";
-              config.allowUnfree = true;
-            };
           };
         }
         ({ pkgs, ... }: {
@@ -104,10 +91,6 @@
       ]);
       specialArgs = {
         pkgs-unstable = import nixpkgs-unstable {
-          system = "x86_64-linux";
-          config.allowUnfree = true;
-        };
-        pkgs-master = import nixpkgs-master {
           system = "x86_64-linux";
           config.allowUnfree = true;
         };
@@ -133,10 +116,6 @@
               system = "x86_64-linux";
               config.allowUnfree = true;
             };
-            pkgs-master = import nixpkgs-master {
-              system = "x86_64-linux";
-              config.allowUnfree = true;
-            };
           };
         }
         ({ pkgs, ... }: {
@@ -154,10 +133,6 @@
       ]);
       specialArgs = {
         pkgs-unstable = import nixpkgs-unstable {
-          system = "x86_64-linux";
-          config.allowUnfree = true;
-        };
-        pkgs-master = import nixpkgs-master {
           system = "x86_64-linux";
           config.allowUnfree = true;
         };
@@ -183,10 +158,6 @@
               system = "x86_64-linux";
               config.allowUnfree = true;
             };
-            pkgs-master = import nixpkgs-master {
-              system = "x86_64-linux";
-              config.allowUnfree = true;
-            };
           };
         }
         ({ pkgs, ... }: {
@@ -204,10 +175,6 @@
       ]);
       specialArgs = {
         pkgs-unstable = import nixpkgs-unstable {
-          system = "x86_64-linux";
-          config.allowUnfree = true;
-        };
-        pkgs-master = import nixpkgs-master {
           system = "x86_64-linux";
           config.allowUnfree = true;
         };
@@ -232,10 +199,6 @@
               system = "x86_64-linux";
               config.allowUnfree = true;
             };
-            pkgs-master = import nixpkgs-master {
-              system = "x86_64-linux";
-              config.allowUnfree = true;
-            };
           };
         }
         ({ pkgs, ... }: {
@@ -253,10 +216,6 @@
       ]);
       specialArgs = {
         pkgs-unstable = import nixpkgs-unstable {
-          system = "x86_64-linux";
-          config.allowUnfree = true;
-        };
-        pkgs-master = import nixpkgs-master {
           system = "x86_64-linux";
           config.allowUnfree = true;
         };

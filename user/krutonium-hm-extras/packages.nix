@@ -1,4 +1,4 @@
-{ config, pkgs, pkgs-unstable, pkgs-master, lib, makeDestopItem, ... }:
+{ config, pkgs, pkgs-unstable, lib, makeDestopItem, ... }:
 let
 
 in
