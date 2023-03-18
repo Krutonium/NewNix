@@ -20,6 +20,7 @@
         "vm.max_map_count" = 1000000;
       };
     };
+    supportedFilesystems = [ "ntfs" ]; #Add explicit NTFS support
   };
   qt5.style = "adwaita-dark";
   hardware.enableAllFirmware = true;
