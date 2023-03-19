@@ -1,4 +1,4 @@
-{ config, pkgs-unstable, lib, ... }:
+{ config, pkgs, lib, ... }:
 with lib;
 with builtins;
 let
@@ -9,7 +9,7 @@ in
     networking.firewall.allowedTCPPorts = [ 58846 ];
     networking.firewall.allowedUDPPorts = [ 58846 ];
     services.deluge = {
-      package = pkgs-unstable.deluge;
+      package = pkgs.unstable.deluge;
       openFirewall = true;
       enable = true;
       dataDir = "/transmission";

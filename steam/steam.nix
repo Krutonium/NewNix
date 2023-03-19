@@ -24,7 +24,7 @@
 # Based on https://github.com/shiryel/nixos-dotfiles/blob/master/system/modules/steam.nix
 
 
-{ config, pkgs, lib, pkgs-unstable, ... }:
+{ config, pkgs, lib, ... }:
 with lib;
 with builtins;
 let
@@ -47,7 +47,7 @@ let
       cmake
     ];
 
-    buildInputs = with pkgs-unstable; [
+    buildInputs = with pkgs.unstable; [
       vulkan-loader
       vulkan-headers
       libGLU
@@ -62,8 +62,8 @@ let
     '';
   };
 
-  monado = (pkgs-unstable.monado.overrideAttrs (old: {
-    src = pkgs-unstable.fetchFromGitLab {
+  monado = (pkgs.unstable.monado.overrideAttrs (old: {
+    src = pkgs.unstable.fetchFromGitLab {
       domain = "gitlab.freedesktop.org";
       owner = "monado";
       repo = "monado";
