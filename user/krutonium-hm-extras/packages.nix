@@ -94,7 +94,7 @@ in
       pkgs.nmap
       pkgs.gparted
       pkgs.ffmpeg-full
-      pkgs.openrgb
+      pkgs.unstable.openrgb
       pkgs.calibre
       #pkgs.nixpkgs-review #moved to common
       pkgs.libreoffice

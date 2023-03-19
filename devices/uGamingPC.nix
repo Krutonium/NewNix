@@ -22,6 +22,7 @@ in
   services.hardware.openrgb = {
     enable = true;
     motherboard = "amd";
+    package = pkgs.unstable.openrgb;
   };
   services.xserver.videoDrivers = [ "nvidia" ];
   #hardware.nvidia.open = false;
