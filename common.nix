@@ -87,16 +87,16 @@
     services = {
       systemd-udev-settle.enable = false;
     };
-    extraConfig = ''
-      DefaultTimeoutStopSec=10s
-    '';
   };
 
   services = {
     fwupd.enable = true;
   };
   programs.noisetorch.enable = true;
-  systemd.extraConfig = "DefaultLimitNOFILE=1048576";
+  systemd.extraConfig = ''
+    DefaultLimitNOFILE=1048576
+    DefaultTimeoutStopSec=10s
+  '';
   boot.kernelParams = [ "mitigations=off" ];
 
   # DO NOT CHANGE THIS
