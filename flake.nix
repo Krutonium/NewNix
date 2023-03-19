@@ -21,7 +21,7 @@
         {
           nix.registry.nixos.flake = inputs.self;
           environment.etc."nix/inputs/nixpkgs".source = nixpkgs.outPath;
-          nix.nixPath = [ "nixpkgs=/etc/nix/inputs/nixpkgs" ];
+          nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
         }
         home-manager.nixosModules.home-manager
         {

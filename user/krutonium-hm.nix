@@ -17,6 +17,5 @@
   home.homeDirectory = "/home/krutonium";
   home.sessionVariables.EDITOR = "nano";
   home.sessionVariables.VISUAL = "nano";
-  home.sessionVariables.NIX_PATH = "nixpkgs=${config.xdg.configHome}/nix/inputs/nixpkgs$\{NIX_PATH:+:$NIX_PATH}";
   home.stateVersion = "22.05";
 }
