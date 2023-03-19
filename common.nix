@@ -87,6 +87,9 @@
     services = {
       systemd-udev-settle.enable = false;
     };
+    extraConfig = ''
+      DefaultTimeoutStopSec=10s
+    '';
   };
 
   services = {
