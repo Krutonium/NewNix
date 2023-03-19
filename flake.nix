@@ -103,7 +103,7 @@
           common-pc-ssd
           common-pc-laptop
           common-cpu-intel
-        ]) ++ [ ./devices/uWebServer.nix ];
+        ]) ++ [ ./devices/uMacBookPro.nix ];
       };
     };
 }
