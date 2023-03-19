@@ -28,6 +28,12 @@
           nix.registry.nixos.flake = inputs.self;
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
+          modules = [
+            (args: {
+              xdg.configFile."nix/inputs/nixpkgs".source = nixpkgs.outPath;
+              home.sessionVariables.NIX_PATH = "nixpkgs=${args.config.xdg.configHome}/nix/inputs/nixpkgs$\{NIX_PATH:+:$NIX_PATH}";
+            })
+          ];
         }
         ({ pkgs, ... }: {
           nixpkgs.overlays = [
