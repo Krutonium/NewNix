@@ -9,11 +9,11 @@ in
 
   networking = {
     hostName = Hostname;
-    networkmanager.insertNameservers = [ "2607:fea8:7a5f:2a00::3976" ];
+    networkmanager.insertNameservers = [ "2607:fea8:7a5f:2a00::29e9" ];
     interfaces = {
-      "enp0s3" = {
+      "enp3s0" = {
         ipv4.addresses = [{ address = "192.168.0.10"; prefixLength = 24; }];
-        ipv6.addresses = [{ address = "2607:fea8:7a5f:2a00::3976"; prefixLength = 64; }];
+        ipv6.addresses = [{ address = "2607:fea8:7a5f:2a00::29e9"; prefixLength = 128; }];
       };
     };
     defaultGateway = { address = "192.168.0.1"; interface = "enp3s0"; };
