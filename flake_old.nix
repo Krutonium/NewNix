@@ -2,18 +2,17 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11"; # NixOS release channel
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable"; # NixOS unstable channel
-    nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master"; # NixOS hardware channel
     home-manager.url = "github:nix-community/home-manager/release-22.11"; # Home Manager release channel
     update = {
       url = "github:ryantm/nixpkgs-update";
     };
     deploy-cs = {
-      url = "github:Krutonium/deploy-cs";
+      url = "github:Krutonium/deploy-cs/parallel-build-parallel-deploy";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-master, nixos-hardware, home-manager, deploy-cs, update }: {
+  outputs = { self, nixpkgs, nixpkgs-unstable, nixos-hardware, home-manager, deploy-cs, update }@inputs: {
     #############
     # uGamingPC #
     #############
@@ -22,16 +21,18 @@
       modules = [
         ./common.nix
         ./devices/uGamingPC.nix
+        {
+          nix.registry.nixos.flake = inputs.self;
+          environment.etc."nix/inputs/nixpkgs".source = nixpkgs.outPath;
+          nix.nixPath = ["nixpkgs=/etc/nix/inputs/nixpkgs"];
+        }
         home-manager.nixosModules.home-manager
         {
+          nix.registry.nixos.flake = inputs.self;
           home-manager.useGlobalPkgs = false;
           home-manager.useUserPackages = true;
           home-manager.extraSpecialArgs = {
             pkgs-unstable = import nixpkgs-unstable {
-              system = "x86_64-linux";
-              config.allowUnfree = true;
-            };
-            pkgs-master = import nixpkgs-master {
               system = "x86_64-linux";
               config.allowUnfree = true;
             };
@@ -55,10 +56,6 @@
           system = "x86_64-linux";
           config.allowUnfree = true;
         };
-        pkgs-master = import nixpkgs-master {
-          system = "x86_64-linux";
-          config.allowUnfree = true;
-        };
       };
     };
 
@@ -70,16 +67,14 @@
       modules = [
         ./common.nix
         ./devices/uWebServer.nix
+        { nix.registry.nixos.flake = inputs.self; }
         home-manager.nixosModules.home-manager
         {
+          nix.registry.nixos.flake = inputs.self;
           home-manager.useGlobalPkgs = false;
           home-manager.useUserPackages = true;
           home-manager.extraSpecialArgs = {
             pkgs-unstable = import nixpkgs-unstable {
-              system = "x86_64-linux";
-              config.allowUnfree = true;
-            };
-            pkgs-master = import nixpkgs-master {
               system = "x86_64-linux";
               config.allowUnfree = true;
             };
@@ -100,10 +95,6 @@
       ]);
       specialArgs = {
         pkgs-unstable = import nixpkgs-unstable {
-          system = "x86_64-linux";
-          config.allowUnfree = true;
-        };
-        pkgs-master = import nixpkgs-master {
           system = "x86_64-linux";
           config.allowUnfree = true;
         };
@@ -118,16 +109,14 @@
       modules = [
         ./common.nix
         ./devices/uHPLaptop.nix
+        { nix.registry.nixos.flake = inputs.self; }
         home-manager.nixosModules.home-manager
         {
+          nix.registry.nixos.flake = inputs.self;
           home-manager.useGlobalPkgs = false;
           home-manager.useUserPackages = true;
           home-manager.extraSpecialArgs = {
             pkgs-unstable = import nixpkgs-unstable {
-              system = "x86_64-linux";
-              config.allowUnfree = true;
-            };
-            pkgs-master = import nixpkgs-master {
               system = "x86_64-linux";
               config.allowUnfree = true;
             };
@@ -148,10 +137,6 @@
       ]);
       specialArgs = {
         pkgs-unstable = import nixpkgs-unstable {
-          system = "x86_64-linux";
-          config.allowUnfree = true;
-        };
-        pkgs-master = import nixpkgs-master {
           system = "x86_64-linux";
           config.allowUnfree = true;
         };
@@ -166,16 +151,14 @@
       modules = [
         ./common.nix
         ./devices/uMsiLaptop.nix
+        { nix.registry.nixos.flake = inputs.self; }
         home-manager.nixosModules.home-manager
         {
+          nix.registry.nixos.flake = inputs.self;
           home-manager.useGlobalPkgs = false;
           home-manager.useUserPackages = true;
           home-manager.extraSpecialArgs = {
             pkgs-unstable = import nixpkgs-unstable {
-              system = "x86_64-linux";
-              config.allowUnfree = true;
-            };
-            pkgs-master = import nixpkgs-master {
               system = "x86_64-linux";
               config.allowUnfree = true;
             };
@@ -199,7 +182,44 @@
           system = "x86_64-linux";
           config.allowUnfree = true;
         };
-        pkgs-master = import nixpkgs-master {
+      };
+    };
+    #############
+    # uMacBookPro #
+    #############
+    nixosConfigurations.uMacBookPro = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [
+        ./common.nix
+        ./devices/uMacBookPro.nix
+        { nix.registry.nixos.flake = inputs.self; }
+        home-manager.nixosModules.home-manager
+        {
+          nix.registry.nixos.flake = inputs.self;
+          home-manager.useGlobalPkgs = false;
+          home-manager.useUserPackages = true;
+          home-manager.extraSpecialArgs = {
+            pkgs-unstable = import nixpkgs-unstable {
+              system = "x86_64-linux";
+              config.allowUnfree = true;
+            };
+          };
+        }
+        ({ pkgs, ... }: {
+          nixpkgs.overlays = [
+            (self: super: {
+              deploy-cs = deploy-cs.defaultPackage.x86_64-linux;
+              nixpkgs-update = update.defaultPackage.x86_64-linux;
+            })
+          ];
+        })
+      ] ++ (with nixos-hardware.nixosModules; [
+        common-pc
+        common-pc-ssd
+        common-cpu-intel
+      ]);
+      specialArgs = {
+        pkgs-unstable = import nixpkgs-unstable {
           system = "x86_64-linux";
           config.allowUnfree = true;
         };

@@ -12,27 +12,22 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = { self, nixpkgs, nixpkgs-unstable, nixos-hardware, home-manager, deploy-cs, update }@inputs: {
-    #############
-    # uGamingPC #
-    #############
-    nixosConfigurations.uGamingPC = nixpkgs.lib.nixosSystem {
+  outputs = { self, nixpkgs, nixpkgs-unstable, nixos-hardware, home-manager, deploy-cs, update }@inputs:
+    let
+      # This is a Generic Block of St00f
       system = "x86_64-linux";
-      modules = [
+      genericModules = [
         ./common.nix
-        ./devices/uGamingPC.nix
-        { nix.registry.nixos.flake = inputs.self; }
+        {
+          nix.registry.nixos.flake = inputs.self;
+          environment.etc."nix/inputs/nixpkgs".source = nixpkgs.outPath;
+          nix.nixPath = [ "nixpkgs=/etc/nix/inputs/nixpkgs" ];
+        }
         home-manager.nixosModules.home-manager
         {
           nix.registry.nixos.flake = inputs.self;
-          home-manager.useGlobalPkgs = false;
+          home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = {
-            pkgs-unstable = import nixpkgs-unstable {
-              system = "x86_64-linux";
-              config.allowUnfree = true;
-            };
-          };
         }
         ({ pkgs, ... }: {
           nixpkgs.overlays = [
@@ -42,184 +37,73 @@
             })
           ];
         })
-      ] ++ (with nixos-hardware.nixosModules; [
-        common-pc
-        common-pc-ssd
-        common-cpu-amd
-      ]);
-      specialArgs = {
-        pkgs-unstable = import nixpkgs-unstable {
-          system = "x86_64-linux";
+        ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable ]; })
+      ];
+      overlay-unstable = final: prev: {
+        unstable = import nixpkgs-unstable {
+          inherit system;
           config.allowUnfree = true;
         };
       };
-    };
-
-    ##############
-    # uWebServer #
-    ##############
-    nixosConfigurations.uWebServer = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        ./common.nix
-        ./devices/uWebServer.nix
-        { nix.registry.nixos.flake = inputs.self; }
-        home-manager.nixosModules.home-manager
-        {
-          nix.registry.nixos.flake = inputs.self;
-          home-manager.useGlobalPkgs = false;
-          home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = {
-            pkgs-unstable = import nixpkgs-unstable {
-              system = "x86_64-linux";
-              config.allowUnfree = true;
-            };
-          };
-        }
-        ({ pkgs, ... }: {
-          nixpkgs.overlays = [
-            (self: super: {
-              deploy-cs = deploy-cs.defaultPackage.x86_64-linux;
-              nixpkgs-update = update.defaultPackage.x86_64-linux;
-            })
-          ];
-        })
-      ] ++ (with nixos-hardware.nixosModules; [
-        common-pc
-        common-pc-ssd
-        common-cpu-intel
-      ]);
-      specialArgs = {
-        pkgs-unstable = import nixpkgs-unstable {
-          system = "x86_64-linux";
-          config.allowUnfree = true;
-        };
+    in
+    {
+      ##################
+      ### uWebServer ###
+      ##################
+      nixosConfigurations.uWebServer = nixpkgs.lib.nixosSystem {
+        inherit system;
+        modules = genericModules ++ (with nixos-hardware.nixosModules; [
+          common-pc
+          common-pc-ssd
+          common-cpu-intel
+        ]) ++ [ ./devices/uWebServer.nix ];
+      };
+      #################
+      ### uGamingPC ###
+      #################
+      nixosConfigurations.uGamingPC = nixpkgs.lib.nixosSystem {
+        inherit system;
+        modules = genericModules ++ (with nixos-hardware.nixosModules; [
+          common-pc
+          common-pc-ssd
+          common-cpu-amd
+        ]) ++ [ ./devices/uGamingPC.nix ];
+      };
+      ##################
+      ### uMsiLaptop ###
+      ##################
+      nixosConfigurations.uMsiLaptop = nixpkgs.lib.nixosSystem {
+        inherit system;
+        modules = genericModules ++ (with nixos-hardware.nixosModules; [
+          common-pc
+          common-pc-ssd
+          common-pc-laptop
+          common-cpu-intel
+        ]) ++ [ ./devices/uMsiLaptop.nix ];
+      };
+      #################
+      ### uHPLaptop ###
+      #################
+      nixosConfigurations.uHPLaptop = nixpkgs.lib.nixosSystem {
+        inherit system;
+        modules = genericModules ++ (with nixos-hardware.nixosModules; [
+          common-pc
+          common-pc-ssd
+          common-pc-laptop
+          common-cpu-intel
+        ]) ++ [ ./devices/uHPLaptop.nix ];
+      };
+      ###################
+      ### uMacBookPro ###
+      ###################
+      nixosConfigurations.uMacBookPro = nixpkgs.lib.nixosSystem {
+        inherit system;
+        modules = genericModules ++ (with nixos-hardware.nixosModules; [
+          common-pc
+          common-pc-ssd
+          common-pc-laptop
+          common-cpu-intel
+        ]) ++ [ ./devices/uWebServer.nix ];
       };
     };
-
-    #############
-    # uHPLaptop #
-    #############
-    nixosConfigurations.uHPLaptop = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        ./common.nix
-        ./devices/uHPLaptop.nix
-        { nix.registry.nixos.flake = inputs.self; }
-        home-manager.nixosModules.home-manager
-        {
-          nix.registry.nixos.flake = inputs.self;
-          home-manager.useGlobalPkgs = false;
-          home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = {
-            pkgs-unstable = import nixpkgs-unstable {
-              system = "x86_64-linux";
-              config.allowUnfree = true;
-            };
-          };
-        }
-        ({ pkgs, ... }: {
-          nixpkgs.overlays = [
-            (self: super: {
-              deploy-cs = deploy-cs.defaultPackage.x86_64-linux;
-              nixpkgs-update = update.defaultPackage.x86_64-linux;
-            })
-          ];
-        })
-      ] ++ (with nixos-hardware.nixosModules; [
-        common-pc
-        common-pc-ssd
-        common-cpu-intel
-      ]);
-      specialArgs = {
-        pkgs-unstable = import nixpkgs-unstable {
-          system = "x86_64-linux";
-          config.allowUnfree = true;
-        };
-      };
-    };
-
-    #############
-    # uMsiLaptop #
-    #############
-    nixosConfigurations.uMsiLaptop = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        ./common.nix
-        ./devices/uMsiLaptop.nix
-        { nix.registry.nixos.flake = inputs.self; }
-        home-manager.nixosModules.home-manager
-        {
-          nix.registry.nixos.flake = inputs.self;
-          home-manager.useGlobalPkgs = false;
-          home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = {
-            pkgs-unstable = import nixpkgs-unstable {
-              system = "x86_64-linux";
-              config.allowUnfree = true;
-            };
-          };
-        }
-        ({ pkgs, ... }: {
-          nixpkgs.overlays = [
-            (self: super: {
-              deploy-cs = deploy-cs.defaultPackage.x86_64-linux;
-              nixpkgs-update = update.defaultPackage.x86_64-linux;
-            })
-          ];
-        })
-      ] ++ (with nixos-hardware.nixosModules; [
-        common-pc
-        common-pc-ssd
-        common-cpu-intel
-      ]);
-      specialArgs = {
-        pkgs-unstable = import nixpkgs-unstable {
-          system = "x86_64-linux";
-          config.allowUnfree = true;
-        };
-      };
-    };
-    #############
-    # uMacBookPro #
-    #############
-    nixosConfigurations.uMacBookPro = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        ./common.nix
-        ./devices/uMacBookPro.nix
-        { nix.registry.nixos.flake = inputs.self; }
-        home-manager.nixosModules.home-manager
-        {
-          nix.registry.nixos.flake = inputs.self;
-          home-manager.useGlobalPkgs = false;
-          home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = {
-            pkgs-unstable = import nixpkgs-unstable {
-              system = "x86_64-linux";
-              config.allowUnfree = true;
-            };
-          };
-        }
-        ({ pkgs, ... }: {
-          nixpkgs.overlays = [
-            (self: super: {
-              deploy-cs = deploy-cs.defaultPackage.x86_64-linux;
-              nixpkgs-update = update.defaultPackage.x86_64-linux;
-            })
-          ];
-        })
-      ] ++ (with nixos-hardware.nixosModules; [
-        common-pc
-        common-pc-ssd
-        common-cpu-intel
-      ]);
-      specialArgs = {
-        pkgs-unstable = import nixpkgs-unstable {
-          system = "x86_64-linux";
-          config.allowUnfree = true;
-        };
-      };
-    };
-  };
 }
