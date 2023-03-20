@@ -6,6 +6,8 @@ let
 in
 {
   boot.kernelPackages = kernel;
+  boot.loader.grub.gfxmodeEfi = "1920x1080";
+  boot.loader.grub.gfxpayloadEfi = "keep";
   networking.hostName = Hostname;
   imports = [ ./uGamingPC-hw.nix ];
   swapDevices = [
