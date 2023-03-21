@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }:
 let
-  kernel = pkgs.linuxPackages_zen;
+  kernel = pkgs.unstable.linuxPackages_zen;
   Hostname = "uMsiLaptop";
   nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
     export __NV_PRIME_RENDER_OFFLOAD=1
@@ -14,7 +14,8 @@ in
   boot.kernelPackages = kernel;
   boot.initrd.availableKernelModules = [ "nouveau" ];
   networking.hostName = Hostname;
-
+  boot.loader.grub.gfxmodeEfi = "1920x1080";
+  boot.loader.grub.gfxpayloadEfi = "keep";
   boot.kernelParams = [
     "nouveau.config=NvBios=${../firmware/GTX_950M_OC.rom}"
   ];
