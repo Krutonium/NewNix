@@ -11,13 +11,18 @@
       url = "github:Krutonium/deploy-cs/parallel-build-parallel-deploy";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
-  outputs = { self, nixpkgs, nixpkgs-unstable, nixos-hardware, home-manager, deploy-cs, update }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, nixos-hardware, home-manager, deploy-cs, update, sops-nix }@inputs:
     let
       # This is a Generic Block of St00f
       system = "x86_64-linux";
       genericModules = [
         ./common.nix
+        sops-nix.nixosModules.sops
         {
           nix.registry.nixos.flake = inputs.self;
           environment.etc."nix/inputs/nixpkgs".source = nixpkgs.outPath;
