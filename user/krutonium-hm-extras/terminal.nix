@@ -43,7 +43,7 @@
         format = "[$duration]($style) ";
         style = "yellow";
       };
-      command_timeout = "2000";
+      command_timeout = 2000;
     };
   };
 }
