@@ -24,4 +24,5 @@ From there, each device calls it's own `devices/<device>.nix` file, which contai
    - Hardware Quirks.
  - Imports the Users
     - And specifies if they should have Home Manager enabled.
- 
+
+Finally, once that's all done, You've basically already traversed most of the config! Feel free to explore and ask questions!
