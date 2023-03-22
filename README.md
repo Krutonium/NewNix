@@ -26,3 +26,8 @@ From there, each device calls it's own `devices/<device>.nix` file, which contai
     - And specifies if they should have Home Manager enabled.
 
 Finally, once that's all done, You've basically already traversed most of the config! Feel free to explore and ask questions!
+
+## How do the modules work?
+
+Basically, inside of `common.nix`, I import each directory where I've put a module. Each module contains a `default.nix` file, which then defines properties and so on for what I want available. For example in `desktop` you can pick between Gnome, KDE and Budgie, as well as decide if you want Wayland (if it's supported).
+This allows for a lot of flexability and a huge amount of code-reuse. I encourage others to copy this design and use it for their own configs.
