@@ -41,7 +41,7 @@ in
       plymouth_enabled = true;
     };
     desktop = {
-      desktop = "gnome";
+      desktop = "kde";
       wayland = false;
     };
     custom = {
