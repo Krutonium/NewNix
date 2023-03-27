@@ -137,22 +137,23 @@ with builtins;
       '';
     };
 
-    imports = [
-      ./plex.nix
-      ./avahi.nix
-      ./coredns.nix
-      ./samba.nix
-      ./satisfactory-server.nix
-      ./ssh.nix
-      ./synapse.nix
-      ./nginx.nix
-      ./gitea.nix
-      ./torrent.nix
-      ./ddns.nix
-      ./deploy.nix
-      ./noisetorch.nix
-      ./sevendaystodie.nix
-      ./headscale.nix
-      ./tailscale.nix
-    ];
-  }
+  imports = [
+    ./plex.nix
+    ./avahi.nix
+    ./coredns.nix
+    ./samba.nix
+    ./satisfactory-server.nix
+    ./ssh.nix
+    ./synapse.nix
+    ./nginx.nix
+    ./gitea.nix
+    ./torrent.nix
+    ./ddns.nix
+    ./deploy.nix
+    ./noisetorch.nix
+    ./sevendaystodie.nix
+    ./headscale.nix
+    ./tailscale.nix
+  ];
+};
+}
