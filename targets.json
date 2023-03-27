@@ -2,7 +2,7 @@
   "Devices": [
     {
       "Name": "uWebServer",
-      "Ip": "192.168.0.10",
+      "Ip": "uwebserver",
       "User": "root",
       "isBuilder": true,
       "isDeployTarget": true,
@@ -10,7 +10,7 @@
     },
     {
       "Name": "uGamingPC",
-      "Ip": "192.168.0.40",
+      "Ip": "ugamingpc",
       "User": "root",
       "isBuilder": true,
       "isDeployTarget": true,
@@ -18,7 +18,7 @@
     },
     {
       "Name": "uMsiLaptop",
-      "Ip": "192.168.0.20",
+      "Ip": "umsilaptop",
       "isBuilder": false,
       "isDeployTarget": true,
       "User": "root",
@@ -26,7 +26,7 @@
     },
     {
       "Name": "uHPLaptop",
-      "Ip": "192.168.0.30",
+      "Ip": "uhplaptop",
       "isBuilder": false,
       "isDeployTarget": true,
       "User": "root",
@@ -34,7 +34,7 @@
     },
     {
       "Name": "uMacBookPro",
-      "Ip": "192.168.0.50",
+      "Ip": "umacbookpro",
       "isBuilder": false,
       "isDeployTarget": true,
       "User": "root",
