@@ -129,14 +129,13 @@ with builtins;
         Installs and runs the Tailscale Client
       '';
     };
-  };
-  tailscaleUseExitNode = mkOption {
-    type = types.bool;
-    default = false;
-    description = ''
-      AutoConnect to TailScale with Exit Node
-    '';
-  };
+    tailscaleUseExitNode = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        AutoConnect to TailScale with Exit Node
+      '';
+    };
 
   imports = [
     ./plex.nix
