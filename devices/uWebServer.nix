@@ -60,7 +60,7 @@ in
       sevendaystodie = false;
       headscale = false;
       tailscale = true;
-
+      tailscaleUseExitNode = false;
     };
     virtualization = {
       server = "virtd";
