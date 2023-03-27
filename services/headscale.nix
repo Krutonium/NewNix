@@ -4,6 +4,7 @@ with builtins;
 let
   cfg = config.sys.services;
   domain = "headscale.krutonium.ca";
+  port = 8080;
 in
 {
   config = mkIf (cfg.headscale == true) {
@@ -11,7 +12,7 @@ in
       headscale = {
         enable = true;
         address = "0.0.0.0";
-        port = 8080;
+        port = port;
         serverUrl = "https://${domain}";
         dns = { baseDomain = "krutonium.ca"; };
         settings = { logtail.enabled = false; };
@@ -22,7 +23,7 @@ in
         enableACME = true;
         locations."/" = {
           proxyPass =
-            "http://127.0.0.1:${toString config.services.headscale.port}";
+            "http://127.0.0.1:${port};";
           proxyWebsockets = true;
         };
       };
