@@ -58,7 +58,9 @@ in
       nginx = true;
       autoDeploy = true;
       sevendaystodie = false;
-      headscale = true;
+      headscale = false;
+      tailscale = true;
+
     };
     virtualization = {
       server = "virtd";
