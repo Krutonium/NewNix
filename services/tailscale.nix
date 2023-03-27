@@ -26,7 +26,7 @@ in
       '';
       enable = cfg.tailscaleUseExitNode;
     };
-    systemd.services.tailscaleConnect = {
+    systemd.services.tailscaleHost = {
       description = "Connects to TailScale";
       serviceConfig = {
         Type = "oneshot";
