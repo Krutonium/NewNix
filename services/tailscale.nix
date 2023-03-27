@@ -12,10 +12,12 @@ in
       trustedInterfaces = [ "tailscale0" ];
       allowedUDPPorts = [ config.services.tailscale.port ];
     };
+  };
+  cfg = mkIf (cfg.tailscaleUseExitNode == true) {
     systemd.services.tailscaleConnect = {
       description = "Connects to TailScale and Routes Traffic";
       serviceConfig = {
-        Type = "simple";
+        Type = "oneshot";
         User = "root";
       };
       wantedBy = [ "multi-user.target" ];
