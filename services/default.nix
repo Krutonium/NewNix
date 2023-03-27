@@ -115,6 +115,20 @@ with builtins;
         Installs and runs the 7 Days to Die Dedicated Server
       '';
     };
+    headscale = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        Runs the Headscale Server
+      '';
+    };
+    tailscale = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        Installs and runs the Tailscale Client
+      '';
+    };
   };
 
   imports = [
@@ -132,5 +146,7 @@ with builtins;
     ./deploy.nix
     ./noisetorch.nix
     ./sevendaystodie.nix
+    ./headscale.nix
+    ./tailscale.nix
   ];
 }
