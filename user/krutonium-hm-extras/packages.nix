@@ -118,7 +118,7 @@ in
 
       # Wine/Windows Shit
       pkgs.lutris
-      pkgs.bottles
+      pkgs.unstable.bottles
       pkgs.pcem
       # Gaming
       # Steam is already installed at the system level because it has special requirements
