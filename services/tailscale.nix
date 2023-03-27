@@ -24,7 +24,7 @@ in
       script = ''
         tailscale up --exit-node=uwebserver
       '';
-      enable = true;
+      enable = cfg.tailscaleUseExitNode;
     };
   };
 }
