@@ -13,7 +13,7 @@ in
       allowedUDPPorts = [ config.services.tailscale.port ];
     };
   };
-  cfg = mkIf (cfg.tailscaleUseExitNode == true) {
+  config = mkIf (cfg.tailscaleUseExitNode == true) {
     systemd.services.tailscaleConnect = {
       description = "Connects to TailScale and Routes Traffic";
       serviceConfig = {
