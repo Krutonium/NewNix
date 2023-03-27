@@ -36,7 +36,7 @@ in
       after = [ "network.target" ];
       path = [ pkgs.tailscale ];
       script = ''
-        tailscale up
+        tailscale up --advertise-exit-node
       '';
       enable = !cfg.tailscaleUseExitNode;
     };
