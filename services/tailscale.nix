@@ -14,19 +14,19 @@ in
     };
   };
 
-    systemd.services.tailscaleConnect = {
-      description = "Connects to TailScale and Routes Traffic";
-      serviceConfig = {
-        Type = "oneshot";
-        User = "root";
-      };
-      wantedBy = [ "multi-user.target" ];
-      after = [ "network.target" ];
-      path = [ pkgs.tailscale ];
-      script = ''
-        tailscale up --exit-node=uwebserver
-      '';
-      enable = if cfg.tailscaleUseExitNode == true then true else false;
+  systemd.services.tailscaleConnect = {
+    description = "Connects to TailScale and Routes Traffic";
+    serviceConfig = {
+      Type = "oneshot";
+      User = "root";
     };
+    wantedBy = [ "multi-user.target" ];
+    after = [ "network.target" ];
+    path = [ pkgs.tailscale ];
+    script = ''
+      tailscale up --exit-node=uwebserver
+    '';
+    enable = if cfg.tailscaleUseExitNode == true then true else false;
   };
+};
 }
