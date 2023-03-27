@@ -26,5 +26,19 @@ in
       '';
       enable = cfg.tailscaleUseExitNode;
     };
+    systemd.services.tailscaleConnect = {
+      description = "Connects to TailScale";
+      serviceConfig = {
+        Type = "oneshot";
+        User = "root";
+      };
+      wantedBy = [ "multi-user.target" ];
+      after = [ "network.target" ];
+      path = [ pkgs.tailscale ];
+      script = ''
+        tailscale up
+      '';
+      enable = !cfg.tailscaleUseExitNode;
+    };
   };
 }
