@@ -23,7 +23,7 @@ in
         enableACME = true;
         locations."/" = {
           proxyPass =
-            "http://127.0.0.1:${toString port}";
+            "http://localhost:${toString port}";
           proxyWebsockets = true;
         };
       };
