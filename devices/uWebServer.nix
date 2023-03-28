@@ -59,7 +59,7 @@ in
       autoDeploy = true;
       sevendaystodie = false;
       headscale = false;
-      tailscale = true;
+      tailscale = false;
       tailscaleUseExitNode = false;
     };
     virtualization = {

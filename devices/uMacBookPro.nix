@@ -36,8 +36,8 @@ in
     services = {
       avahi = true;
       ssh = true;
-      tailscale = true;
-      tailscaleUseExitNode = true;
+      tailscale = false;
+      tailscaleUseExitNode = false;
     };
     steam = {
       steam = true;
