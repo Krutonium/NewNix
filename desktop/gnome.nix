@@ -10,13 +10,10 @@ in
       xserver = {
         enable = true;
         displayManager = {
-          #gdm = {
-          #  enable = true;
-          #  wayland = cfg.wayland;
-          #  autoSuspend = cfg.autoSuspend;
-          #};
-          sddm = {
+          gdm = {
             enable = true;
+            wayland = cfg.wayland;
+            autoSuspend = cfg.autoSuspend;
           };
         };
         desktopManager = {
