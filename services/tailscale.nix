@@ -22,7 +22,7 @@ in
       after = [ "network.target" ];
       path = [ pkgs.tailscale ];
       script = ''
-        tailscale up --exit-node=uwebserver
+        tailscale up
       '';
       enable = cfg.tailscaleUseExitNode;
     };
