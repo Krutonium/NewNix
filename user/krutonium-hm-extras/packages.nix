@@ -175,7 +175,7 @@ in
     plugins = with pkgs.obs-studio-plugins; [
       obs-backgroundremoval
       obs-multi-rtmp
-      obs-ndi
+      #obs-ndi
     ];
   };
   programs.mangohud = {
