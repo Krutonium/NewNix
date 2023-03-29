@@ -1,7 +1,7 @@
 { config, pkgs, lib, makeDestopItem, fetchurl, ... }:
 let
   ndi = builtins.fetchurl {
-    url = https://downloads.ndi.tv/SDK/NDI_SDK_Linux/InstallNDISDK_v5_Linux.tar.gz;
+    url = https://downloads.ndi.tv/SDK/NDI_SDK_Linux/Install_NDI_SDK_v5_Linux.tar.gz;
     sha256 = "sha256:181ypfj1bl0kljzrfr6037i14ykg2y4plkzdhym6m3z7kcrnm1fl";
   };
 in
