@@ -1,6 +1,9 @@
 { config, pkgs, lib, makeDestopItem, fetchurl, ... }:
 let
-  ndi = builtins.fetchurl https://downloads.ndi.tv/SDK/NDI_SDK_Linux/InstallNDISDK_v4_Linux.tar.gz;
+  ndi = builtins.fetchurl {
+    url = https://downloads.ndi.tv/SDK/NDI_SDK_Linux/InstallNDISDK_v4_Linux.tar.gz;
+    sha256 = "";
+  };
 in
 {
   home.file.".config/NDI".source = ndi; # This ensures it's in the store.
