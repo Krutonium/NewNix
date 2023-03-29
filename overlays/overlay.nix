@@ -40,7 +40,7 @@
     })
     (self: super: {
       my_ndi = super.ndi.overrideAttrs
-        (old: {
+        (old: rec {
           src = fetchurl {
             name = "${attrs.pname}-${attrs.version}.tar.gz";
             url = "https://downloads.ndi.tv/SDK/NDI_SDK_Linux/Install_NDI_SDK_v5_Linux.tar.gz";
