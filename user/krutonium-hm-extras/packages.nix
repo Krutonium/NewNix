@@ -24,10 +24,6 @@ in
         '';
       rider = pkgs.unstable.jetbrains.rider.overrideAttrs (oldAttrs: { meta.priority = 10; });
 
-      pkgs.obs-studio-plugins.obs-ndi = pkgs.obs-studio-plugins.obs-ndi.overrideAttrs (attrs: rec {
-        src = downloadedNdi;
-        unpackPhase = ''unpackFile ${src}; echo y | ./${attrs.installerName}.sh; sourceRoot="NDI SDK for Linux";'';
-      });
     in
     [
       # Browser
@@ -179,8 +175,16 @@ in
     plugins = with pkgs.obs-studio-plugins; [
       obs-backgroundremoval
       obs-multi-rtmp
-      myNDI
-    ];
+    ] ++ (obs-ndi.override {
+      ndi = ndi.overrideAttrs (attrs: rec {
+        src = fetchurl {
+          name = "${attrs.pname}-${attrs.version}.tar.gz";
+          url = "https://downloads.ndi.tv/SDK/NDI_SDK_Linux/Install_NDI_SDK_v5_Linux.tar.gz";
+          hash = "sha256:0lsiw523sqr6ydwxnikyijayfi55q5mzvh1zi216swvj5kfbxl00";
+        };
+        unpackPhase = ''unpackFile ${src}; echo y | ./${attrs.installerName}.sh; sourceRoot="NDI SDK for Linux";'';
+      });
+    });
   };
   programs.mangohud = {
     enable = true;
