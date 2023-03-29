@@ -1,8 +1,9 @@
-{ config, pkgs, lib, makeDestopItem, ... }:
+{ config, pkgs, lib, makeDestopItem, fetchurl, ... }:
 let
-
+  ndi = builtins.fetchurl https://downloads.ndi.tv/SDK/NDI_SDK_Linux/InstallNDISDK_v4_Linux.tar.gz;
 in
 {
+  home.file.".config/NDI".source = ndi;  # This ensures it's in the store.
   home.packages =
     let
       openjdk8-low = pkgs.openjdk8.overrideAttrs (oldAttrs: { meta.priority = 10; });
@@ -170,6 +171,7 @@ in
     plugins = with pkgs.obs-studio-plugins; [
       obs-backgroundremoval
       obs-multi-rtmp
+      obs-ndi
     ];
   };
   programs.mangohud = {
