@@ -175,18 +175,8 @@ in
     plugins = with pkgs.obs-studio-plugins; [
       obs-backgroundremoval
       obs-multi-rtmp
-    ]; # ++ [
-    # (obs-ndi.override {
-    #   ndi = ndi.overrideAttrs (attrs: rec {
-    #     src = fetchurl {
-    #       name = "${attrs.pname}-${attrs.version}.tar.gz";
-    #       url = "https://downloads.ndi.tv/SDK/NDI_SDK_Linux/Install_NDI_SDK_v5_Linux.tar.gz";
-    #       hash = "sha256:0lsiw523sqr6ydwxnikyijayfi55q5mzvh1zi216swvj5kfbxl00";
-    #     };
-    #     unpackPhase = ''unpackFile ${src}; echo y | ./${attrs.installerName}.sh; sourceRoot="NDI SDK for Linux";'';
-    #   });
-    # })
-    #];
+      obs-ndi
+    ];
   };
   programs.mangohud = {
     enable = true;
