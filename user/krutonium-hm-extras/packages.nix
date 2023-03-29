@@ -6,7 +6,7 @@ let
   };
 in
 {
-  home.file.".config/NDI".source = ndi; # This ensures it's in the store.
+  home.file.".config/Install_NDI_SDK_v5_Linux.tar.gz".source = ndi; # This ensures it's in the store.
   home.packages =
     let
       openjdk8-low = pkgs.openjdk8.overrideAttrs (oldAttrs: { meta.priority = 10; });
