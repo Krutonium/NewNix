@@ -38,5 +38,16 @@
           };
         };
     })
+    (self: super: {
+      my_ndi = super.ndi.overrideAttrs
+        (old: {
+          src = fetchurl {
+            name = "${attrs.pname}-${attrs.version}.tar.gz";
+            url = "https://downloads.ndi.tv/SDK/NDI_SDK_Linux/Install_NDI_SDK_v5_Linux.tar.gz";
+            hash = "sha256:0lsiw523sqr6ydwxnikyijayfi55q5mzvh1zi216swvj5kfbxl00";
+          };
+        });
+    })
   ];
+
 }
