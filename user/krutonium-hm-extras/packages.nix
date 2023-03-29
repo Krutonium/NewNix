@@ -25,11 +25,11 @@ in
         '';
       rider = pkgs.unstable.jetbrains.rider.overrideAttrs (oldAttrs: { meta.priority = 10; });
       myNDI = pkgs.obs-ndi.override {
-         ndi = ndi.overrideAttrs (attrs: rec {
-           src = ndi;
-           unpackPhase = ''unpackFile ${src}; echo y | ./${attrs.installerName}.sh; sourceRoot="NDI SDK for Linux";'';
-         });
-       };
+        ndi = ndi.overrideAttrs (attrs: rec {
+          src = ndi;
+          unpackPhase = ''unpackFile ${src}; echo y | ./${attrs.installerName}.sh; sourceRoot="NDI SDK for Linux";'';
+        });
+      };
     in
     [
       # Browser
