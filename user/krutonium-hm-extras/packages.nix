@@ -3,7 +3,7 @@ let
   ndi = builtins.fetchurl https://downloads.ndi.tv/SDK/NDI_SDK_Linux/InstallNDISDK_v4_Linux.tar.gz;
 in
 {
-  home.file.".config/NDI".source = ndi;  # This ensures it's in the store.
+  home.file.".config/NDI".source = ndi; # This ensures it's in the store.
   home.packages =
     let
       openjdk8-low = pkgs.openjdk8.overrideAttrs (oldAttrs: { meta.priority = 10; });
