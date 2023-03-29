@@ -1,6 +1,6 @@
 { config, pkgs, lib, makeDestopItem, fetchurl, ... }:
 let
-  ndi = builtins.fetchurl {
+  downloadedNdi = builtins.fetchurl {
     url = https://downloads.ndi.tv/SDK/NDI_SDK_Linux/Install_NDI_SDK_v5_Linux.tar.gz;
     sha256 = "sha256:0lsiw523sqr6ydwxnikyijayfi55q5mzvh1zi216swvj5kfbxl00";
   };
@@ -24,9 +24,9 @@ in
           ${pkgs.steam-run}/bin/steam-run ${pkgs.unstable.jetbrains.rider}/bin/rider
         '';
       rider = pkgs.unstable.jetbrains.rider.overrideAttrs (oldAttrs: { meta.priority = 10; });
-      myNDI = pkgs.obs-ndi.override {
+      myNDI = pkgs.obs-studio-plugins.obs-ndi.override {
         ndi = ndi.overrideAttrs (attrs: rec {
-          src = ndi;
+          src = downloadedNdi;
           unpackPhase = ''unpackFile ${src}; echo y | ./${attrs.installerName}.sh; sourceRoot="NDI SDK for Linux";'';
         });
       };
