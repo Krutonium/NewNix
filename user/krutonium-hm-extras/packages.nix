@@ -175,7 +175,7 @@ in
     plugins = with pkgs.obs-studio-plugins; [
       obs-backgroundremoval
       obs-multi-rtmp
-    ] ++ (obs-ndi.override {
+    ] ++ [(obs-ndi.override {
       ndi = ndi.overrideAttrs (attrs: rec {
         src = fetchurl {
           name = "${attrs.pname}-${attrs.version}.tar.gz";
@@ -184,7 +184,7 @@ in
         };
         unpackPhase = ''unpackFile ${src}; echo y | ./${attrs.installerName}.sh; sourceRoot="NDI SDK for Linux";'';
       });
-    });
+    })];
   };
   programs.mangohud = {
     enable = true;
