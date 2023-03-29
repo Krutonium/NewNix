@@ -24,6 +24,12 @@ in
           ${pkgs.steam-run}/bin/steam-run ${pkgs.unstable.jetbrains.rider}/bin/rider
         '';
       rider = pkgs.unstable.jetbrains.rider.overrideAttrs (oldAttrs: { meta.priority = 10; });
+      myNDI = pkgs.obs-ndi.override {
+         ndi = ndi.overrideAttrs (attrs: rec {
+           src = ndi;
+           unpackPhase = ''unpackFile ${src}; echo y | ./${attrs.installerName}.sh; sourceRoot="NDI SDK for Linux";'';
+         });
+       };
     in
     [
       # Browser
@@ -169,12 +175,13 @@ in
       pkgs.discord
       pkgs.ripcord
     ];
+
   programs.obs-studio = {
     enable = true;
     plugins = with pkgs.obs-studio-plugins; [
       obs-backgroundremoval
       obs-multi-rtmp
-      obs-ndi
+      myNDI
     ];
   };
   programs.mangohud = {
