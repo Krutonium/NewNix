@@ -26,7 +26,7 @@ in
 
       myNDI = pkgs.obs-studio-plugins.obs-ndi.overrideAttrs (oldAttrs: {
         src = downloadedNdi;
-        unpackPhase = ''unpackFile ${src}; echo y | ./${attrs.installerName}.sh; sourceRoot="NDI SDK for Linux";'';
+        unpackPhase = ''unpackFile ${downloadedNdi}; echo y | ./${attrs.installerName}.sh; sourceRoot="NDI SDK for Linux";'';
       });
     in
     [
