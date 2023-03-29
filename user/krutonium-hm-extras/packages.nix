@@ -23,12 +23,11 @@ in
           ${pkgs.steam-run}/bin/steam-run ${pkgs.unstable.jetbrains.rider}/bin/rider
         '';
       rider = pkgs.unstable.jetbrains.rider.overrideAttrs (oldAttrs: { meta.priority = 10; });
-      myNDI = pkgs.obs-studio-plugins.obs-ndi.override {
-        ndi = ndi.overrideAttrs (attrs: rec {
-          src = downloadedNdi;
-          unpackPhase = ''unpackFile ${src}; echo y | ./${attrs.installerName}.sh; sourceRoot="NDI SDK for Linux";'';
-        });
-      };
+
+      myNDI = pkgs.obs-studio-plugins.obs-ndi.overrideAttrs (oldAttrs: {
+        src = downloadedNdi;
+        unpackPhase = ''unpackFile ${src}; echo y | ./${attrs.installerName}.sh; sourceRoot="NDI SDK for Linux";'';
+      });
     in
     [
       # Browser
