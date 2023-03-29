@@ -24,9 +24,9 @@ in
         '';
       rider = pkgs.unstable.jetbrains.rider.overrideAttrs (oldAttrs: { meta.priority = 10; });
 
-      myNDI = pkgs.obs-studio-plugins.obs-ndi.overrideAttrs (oldAttrs: {
+      myNDI = pkgs.obs-studio-plugins.obs-ndi.overrideAttrs (attrs: rec {
         src = downloadedNdi;
-        unpackPhase = ''unpackFile ${downloadedNdi}; echo y | ./${attrs.installerName}.sh; sourceRoot="NDI SDK for Linux";'';
+        unpackPhase = ''unpackFile ${src}; echo y | ./${attrs.installerName}.sh; sourceRoot="NDI SDK for Linux";'';
       });
     in
     [
