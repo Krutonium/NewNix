@@ -128,6 +128,7 @@ in
       # Steam is already installed at the system level because it has special requirements
       pkgs.openrct2
       pkgs.mesa-demos
+      pkgs.unstable.oversteer
 
       # RetroArch
       pkgs.libretro.parallel-n64
