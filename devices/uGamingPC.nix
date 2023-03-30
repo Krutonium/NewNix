@@ -34,6 +34,7 @@ in
   environment.systemPackages = [
     video
   ];
+  programs.wireshark.enable = true;
   hardware.nvidia.modesetting.enable = true;
   sys = {
     boot = {
