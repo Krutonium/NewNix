@@ -12,19 +12,15 @@
       url = "github:Krutonium/deploy-cs/parallel-build-parallel-deploy";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    sops-nix = {
-      url = "github:Mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
-  outputs = { self, nixpkgs, nixpkgs-unstable, nixos-hardware, home-manager, deploy-cs, update, sops-nix, nixpkgs-teleport }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, nixos-hardware, home-manager, deploy-cs, update, nixpkgs-teleport }@inputs:
     let
       # This is a Generic Block of St00f
       system = "x86_64-linux";
       genericModules = [
         ./common.nix
-        sops-nix.nixosModules.sops
         {
+          # This fixes things that don't use Flakes, but do want to use NixPkgs.
           nix.registry.nixos.flake = inputs.self;
           environment.etc."nix/inputs/nixpkgs".source = nixpkgs.outPath;
           nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
@@ -35,22 +31,33 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
         }
-        ({ pkgs, ... }: {
-          nixpkgs.overlays = [
-            (self: super: {
-              deploy-cs = deploy-cs.defaultPackage.x86_64-linux;
-              nixpkgs-update = update.defaultPackage.x86_64-linux;
-            })
-          ];
-        })
-        ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable overlay-teleport ]; })
+        #({ pkgs, ... }: {
+        #  nixpkgs.overlays = [
+        #    (self: super: {
+        #      deploy-cs = deploy-cs.defaultPackage.x86_64-linux;
+        #      nixpkgs-update = update.defaultPackage.x86_64-linux;
+        #    })
+        #  ];
+        #})
+        # Make sure you add Overlays here
+        ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable overlay-teleport deploy-cs nixpkgs-update]; })
       ];
+      # Overlays
+      # nixpkgs-unstable
       overlay-unstable = final: prev: {
         unstable = import nixpkgs-unstable {
           inherit system;
           config.allowUnfree = true;
         };
       };
+      deploy-cs = final: prev: {
+        deploy-cs = deploy-cs.defaultPackage.x86_64-linux;
+      };
+      nixpkgs-update = final: prev: {
+        nixpkgs-update = update.defaultPackage.x86_64-linux;
+      };
+      # TEMPORARY
+      # used for obs-teleport
       overlay-teleport = final: prev: {
         teleport = import nixpkgs-teleport {
           inherit system;
