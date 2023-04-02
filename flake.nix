@@ -40,7 +40,8 @@
         #  ];
         #})
         # Make sure you add Overlays here
-        ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable overlay-teleport deploy-cs nixpkgs-update ]; })
+
+        ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable overlay-teleport deploy-cs-overlay nixpkgs-update-overlay ]; })
       ];
       # Overlays
       # nixpkgs-unstable
@@ -50,10 +51,10 @@
           config.allowUnfree = true;
         };
       };
-      deploy-cs = final: prev: {
+      deploy-cs-overlay = final: prev: {
         deploy-cs = deploy-cs.defaultPackage.x86_64-linux;
       };
-      nixpkgs-update = final: prev: {
+      nixpkgs-update-overlay = final: prev: {
         nixpkgs-update = update.defaultPackage.x86_64-linux;
       };
       # TEMPORARY
