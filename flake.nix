@@ -53,9 +53,11 @@
           config.allowUnfree = true;
         };
       };
+      # overlayh for deploy-cs
       overlay-deploy-cs = final: prev: {
         deploy-cs = deploy-cs.defaultPackage.x86_64-linux;
       };
+      # overlay for nixpkgs-update
       overlay-nixpkgs-update = final: prev: {
         nixpkgs-update = update.defaultPackage.x86_64-linux;
       };
