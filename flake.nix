@@ -31,16 +31,8 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
         }
-        #({ pkgs, ... }: {
-        #  nixpkgs.overlays = [
-        #    (self: super: {
-        #      deploy-cs = deploy-cs.defaultPackage.x86_64-linux;
-        #      nixpkgs-update = update.defaultPackage.x86_64-linux;
-        #    })
-        #  ];
-        #})
-        # Make sure you add Overlays here
 
+        # Make sure you add Overlays here
         ({ config, pkgs, ... }:
           {
             nixpkgs.overlays =
