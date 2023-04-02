@@ -42,13 +42,14 @@
         # Make sure you add Overlays here
 
         ({ config, pkgs, ... }:
-          { nixpkgs.overlays =
-            [
-              overlay-unstable
-              overlay-teleport
-              deploy-cs-overlay
-              nixpkgs-update-overlay
-            ];
+          {
+            nixpkgs.overlays =
+              [
+                overlay-unstable
+                overlay-teleport
+                deploy-cs-overlay
+                nixpkgs-update-overlay
+              ];
           }
         )
       ];
