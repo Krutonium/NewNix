@@ -40,7 +40,7 @@
         #  ];
         #})
         # Make sure you add Overlays here
-        ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable overlay-teleport deploy-cs nixpkgs-update]; })
+        ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable overlay-teleport deploy-cs nixpkgs-update ]; })
       ];
       # Overlays
       # nixpkgs-unstable
