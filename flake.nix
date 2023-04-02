@@ -43,7 +43,7 @@
             })
           ];
         })
-        ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable ]; })
+        ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable overlay-teleport ]; })
       ];
       overlay-unstable = final: prev: {
         unstable = import nixpkgs-unstable {
