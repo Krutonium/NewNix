@@ -163,11 +163,10 @@ in
 
   programs.obs-studio = {
     enable = true;
-    package = pkgs.teleport.obs-studio;
-    plugins = with pkgs.teleport.obs-studio-plugins; [
-      obs-backgroundremoval
-      obs-multi-rtmp
-      obs-teleport
+    plugins = [
+      pkgs.obs-studio-plugins.obs-backgroundremoval
+      pkgs.obs-studio-plugins.obs-multi-rtmp
+      plgs.teleport.obs-studio-plugins.obs-teleport
     ];
   };
   programs.mangohud = {
