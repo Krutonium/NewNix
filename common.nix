@@ -94,6 +94,7 @@
 
   services = {
     fwupd.enable = true;
+    netdata.enable = true;
   };
   programs.noisetorch.enable = true;
   systemd.extraConfig = ''
