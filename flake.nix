@@ -39,8 +39,8 @@
               [
                 overlay-unstable
                 overlay-teleport
-                deploy-cs-overlay
-                nixpkgs-update-overlay
+                overlay-deploy-cs
+                overlay-nixpkgs-update
               ];
           }
         )
@@ -53,10 +53,10 @@
           config.allowUnfree = true;
         };
       };
-      deploy-cs-overlay = final: prev: {
+      overlay-deploy-cs = final: prev: {
         deploy-cs = deploy-cs.defaultPackage.x86_64-linux;
       };
-      nixpkgs-update-overlay = final: prev: {
+      overlay-nixpkgs-update = final: prev: {
         nixpkgs-update = update.defaultPackage.x86_64-linux;
       };
       # TEMPORARY
