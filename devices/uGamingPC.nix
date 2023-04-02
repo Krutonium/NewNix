@@ -9,6 +9,7 @@ in
   boot.loader.grub.gfxmodeEfi = "1920x1080";
   boot.loader.grub.gfxpayloadEfi = "keep";
   networking.hostName = Hostname;
+  networking.firewall.allowedTCPPorts = [ 1337 ];
   imports = [ ./uGamingPC-hw.nix ];
   swapDevices = [
     {
