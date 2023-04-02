@@ -127,6 +127,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-teleport": {
+      "locked": {
+        "lastModified": 1680209500,
+        "narHash": "sha256-EkjBi1aI9EmyHFw79QUN8oOY/YSRQCgkWyu1+4s/4cs=",
+        "owner": "paveloom",
+        "repo": "nixpkgs",
+        "rev": "712adfbb27f3369b18adee28a6e0939833d8ec31",
+        "type": "github"
+      },
+      "original": {
+        "owner": "paveloom",
+        "ref": "obs-teleport",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-unstable": {
       "locked": {
         "lastModified": 1680213900,
@@ -179,6 +195,7 @@
         "home-manager": "home-manager",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",
+        "nixpkgs-teleport": "nixpkgs-teleport",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "sops-nix": "sops-nix",
         "update": "update"
