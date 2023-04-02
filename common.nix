@@ -22,7 +22,7 @@
     };
     supportedFilesystems = [ "ntfs" ]; #Add explicit NTFS support
   };
-  documentation.enable = false;
+  documentation.enable = true;
   qt5.style = "adwaita-dark";
   hardware.enableAllFirmware = true;
   boot.binfmt.emulatedSystems = [ "aarch64-linux" "riscv64-linux" ];
