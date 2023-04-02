@@ -130,16 +130,6 @@ in
       pkgs.mesa-demos
       pkgs.unstable.oversteer
 
-      # RetroArch
-      pkgs.libretro.parallel-n64
-      pkgs.libretro.snes9x
-      (pkgs.retroarch.override {
-        cores = [
-          pkgs.libretro.snes9x
-          pkgs.libretro.parallel-n64
-        ];
-      })
-
       #pkgs.unstable.runescape #doesn't currently build
       pkgs.gamescope
       pkgs.jstest-gtk
@@ -176,7 +166,7 @@ in
     plugins = with pkgs.obs-studio-plugins; [
       obs-backgroundremoval
       obs-multi-rtmp
-      #obs-ndi
+      pkgs.teleport.obs-studio-plugins.obs-ndi
     ];
   };
   programs.mangohud = {

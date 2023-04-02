@@ -2,6 +2,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11"; # NixOS release channel
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable"; # NixOS unstable channel
+    nixpkgs-teleport.url = "github:paveloom/nixpkgs/obs-teleport";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master"; # NixOS hardware channel
     home-manager.url = "github:nix-community/home-manager/release-22.11"; # Home Manager release channel
     update = {
@@ -16,7 +17,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = { self, nixpkgs, nixpkgs-unstable, nixos-hardware, home-manager, deploy-cs, update, sops-nix }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, nixos-hardware, home-manager, deploy-cs, update, sops-nix, nixpkgs-teleport }@inputs:
     let
       # This is a Generic Block of St00f
       system = "x86_64-linux";
@@ -46,6 +47,12 @@
       ];
       overlay-unstable = final: prev: {
         unstable = import nixpkgs-unstable {
+          inherit system;
+          config.allowUnfree = true;
+        };
+      };
+      overlay-teleport = final: prev: {
+        teleport = import nixpkgs-teleport {
           inherit system;
           config.allowUnfree = true;
         };
