@@ -25,7 +25,7 @@
   documentation.enable = true;
   qt5.style = "adwaita-dark";
   hardware.enableAllFirmware = true;
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" "riscv64-linux" "i686-linux" ];
+  #boot.binfmt.emulatedSystems = [ "aarch64-linux" "riscv64-linux" "i686-linux" ];
   nix = {
     settings = {
       auto-optimise-store = true;
