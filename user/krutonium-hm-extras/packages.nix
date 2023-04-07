@@ -24,6 +24,7 @@ in
         '';
       rider = pkgs.unstable.jetbrains.rider.overrideAttrs (oldAttrs: { meta.priority = 10; });
 
+      home.file.".net".source = dotnetCombined;
     in
     [
       # Browser
