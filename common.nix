@@ -25,7 +25,7 @@
   documentation.enable = true;
   qt5.style = "adwaita-dark";
   hardware.enableAllFirmware = true;
-  #boot.binfmt.emulatedSystems = [ "aarch64-linux" "riscv64-linux" "i686-linux" ];
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" "riscv64-linux" ];
   nix = {
     settings = {
       auto-optimise-store = true;
@@ -38,7 +38,7 @@
     package = pkgs.nixFlakes;
     extraOptions = ''
       experimental-features = nix-command flakes
-      extra-platforms = x86_64-linux aarch64-linux riscv64-linux
+      extra-platforms = x86_64-linux i686-linux aarch64-linux riscv64-linux
     '';
     settings = {
       system-features = [ "i686-linux" "x86_64-linux" "big-parallel" ];
