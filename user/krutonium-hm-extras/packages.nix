@@ -6,6 +6,7 @@ let
   };
 in
 {
+  home.directory.".net".source = dotnetCombined;
   home.packages =
     let
       openjdk8-low = pkgs.openjdk8.overrideAttrs (oldAttrs: { meta.priority = 10; });
@@ -24,7 +25,7 @@ in
         '';
       rider = pkgs.unstable.jetbrains.rider.overrideAttrs (oldAttrs: { meta.priority = 10; });
 
-      home.directory.".net".source = dotnetCombined;
+
     in
     [
       # Browser
