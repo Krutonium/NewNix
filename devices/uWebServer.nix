@@ -4,7 +4,8 @@ let
   Hostname = "uWebServer";
 in
 {
-  networking.firewall.allowedTCPPorts = [ 25565 25566 ];
+  networking.firewall.allowedTCPPorts = [ 25565 25566 50056 ];
+  networking.firewall.allowedUDPPorts = [ 50056 ];
   boot.kernelPackages = kernel;
 
   networking = {
