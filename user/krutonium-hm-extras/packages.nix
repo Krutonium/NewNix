@@ -14,6 +14,8 @@ let
     '';
   idea = pkgs.unstable.jetbrains.idea-ultimate.overrideAttrs
     (oldAttrs: { meta.priority = 10; });
+
+  yuzu = pkgs.yuzu-ea.overrideAttrs (oldAttrs: { meta.priority = 10; });
   riderScript = pkgs.writeShellScriptBin "rider"
     ''
       ${pkgs.steam-run}/bin/steam-run ${pkgs.unstable.jetbrains.rider}/bin/rider
@@ -139,7 +141,8 @@ in
     pkgs.unstable.cemu
     pkgs.unstable.citra
     pkgs.steam-run
-    pkgs.yuzu-ea
+    #pkgs.yuzu-ea
+    yuzu
     pkgs.monado
 
     # File Sync
