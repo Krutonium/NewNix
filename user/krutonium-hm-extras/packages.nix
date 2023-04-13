@@ -159,7 +159,7 @@ in
     pkgs.fractal
     pkgs.srain
     pkgs.discord
-    pkgs.ripcord
+    pkgs.wormhole-rs
   ];
 
   programs.obs-studio = {
