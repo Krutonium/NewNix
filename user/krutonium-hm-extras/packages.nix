@@ -171,7 +171,7 @@ in
     ];
   };
   programs.mangohud = {
-    enable = false;
+    enable = true;
     enableSessionWide = true;
     package = pkgs.master.mangohud;
   };
