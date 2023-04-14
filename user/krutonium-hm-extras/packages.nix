@@ -173,6 +173,5 @@ in
   programs.mangohud = {
     enable = true;
     enableSessionWide = true;
-    package = pkgs.mangohud;
   };
 }
