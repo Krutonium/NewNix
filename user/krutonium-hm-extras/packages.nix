@@ -170,9 +170,9 @@ in
       pkgs.teleport.obs-studio-plugins.obs-teleport
     ];
   };
-  #programs.mangohud = {
-  #  enable = false;
-  #  enableSessionWide = true;
-  #  package = pkgs.mangohud;
-  #};
+  programs.mangohud = {
+    enable = false;
+    enableSessionWide = true;
+    package = pkgs.unstable.mangohud;
+  };
 }
