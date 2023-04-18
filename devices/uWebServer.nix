@@ -36,6 +36,9 @@ in
     };
     interfaces = {
       "wan" = {
+        ipv4.addresses = [{ address = "192.168.0.10"; prefixLength = 24; }];
+        ipv6.addresses = [{ address = "2607:fea8:7a5f:2a00::9b46"; prefixLength = 128; }];
+        useDHCP = false;
         useDHCP = false;
       };
       "lan_1" = {
@@ -44,11 +47,6 @@ in
         useDHCP = false;
       };
       "lan_wifi" = {
-        useDHCP = false;
-      };
-      "enp4s0" = {
-        ipv4.addresses = [{ address = "192.168.0.10"; prefixLength = 24; }];
-        ipv6.addresses = [{ address = "2607:fea8:7a5f:2a00::9b46"; prefixLength = 128; }];
         useDHCP = false;
       };
     };
