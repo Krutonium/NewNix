@@ -56,7 +56,7 @@ in
 
   services.dhcpd4 = {
     enable = true;
-    interfaces = [ "lan_1 lan_wifi" ];
+    interfaces = [ "lan_1" ];
     extraConfig = ''
       option domain-name-servers 8.8.8.8;
       option subnet-mask 255.255.255.0;
