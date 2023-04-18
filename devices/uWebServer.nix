@@ -7,30 +7,74 @@ in
 {
   networking.firewall.allowedTCPPorts = [ 25565 25566 50056 ];
   networking.firewall.allowedUDPPorts = [ 50056 ];
-  boot.kernelPackages = kernel;
-
+  boot = {
+    kernelPackages = kernel;
+    kernel.sysctl = {
+        "net.ipv4.conf.all.forwarding" = true;
+        "net.ipv6.conf.all.forwarding" = true;
+        "net.ipv6.conf.all.accept_ra" = 0;
+        "net.ipv6.conf.all.autoconf" = 0;
+        "net.ipv6.conf.all.use_tempaddr" = 0;
+    };
+  };
   networking = {
     hostName = Hostname;
-    networkmanager.insertNameservers = [ "2607:fea8:7a5f:2a00::9b46" ];
+    nameserver = [ "8.8.8.8" "2001:4860:4860:0:0:0:0:8888" ];
+    vlans = {
+      wan = {
+        id = 10;
+        interface = Internet_In;
+      };
+      lan_1 = {
+        id = 20;
+        interface = "enp2s0f0";
+      };
+      lan_wifi = {
+        id = 30;
+        interface = "enp3s0f1";
+      };
+    };
     interfaces = {
-      enp4s0 = {
+      "wan" = {
+        useDHCP = false;
+      };
+      "lan_1" = {
+        ipv4.addresses = [ { address = "10.0.0.1"; prefixLength = 24; } ];
+        ipv6.addresses = [ { address = "fd00:0:0:1::1"; prefixLength = 64; } ];
+        useDHCP = false;
+      };
+      "lan_wifi" = {
+        useDHCP = false;
+      };
+      "enp4s0" = {
         ipv4.addresses = [{ address = "192.168.0.10"; prefixLength = 24; }];
         ipv6.addresses = [{ address = "2607:fea8:7a5f:2a00::9b46"; prefixLength = 128; }];
+        useDHCP = false;
       };
     };
     defaultGateway = { address = "192.168.0.1"; interface = Internet_In; };
     defaultGateway6 = { address = "fe80::1"; interface = Internet_In; };
     tempAddresses = "disabled";
   };
-  services.create_ap = {
+
+  services.dhcpd4 = {
     enable = true;
-    settings = {
-      INTERNET_IFACE = "enp4s0";
-      WIFI_IFACE = "wlp12s0";
-      SSID = "TestNetwork";
-      PASSPHRASE = "12345678";
-    };
+    interfaces = [ "lan_1 lan_wifi" ];
+    extraConfig = ''
+      option domain-name-servers 8.8.8.8, 2001:4860:4860:0:0:0:0:8888;
+      option subnet-mask 255.255.255.0;
+
+      subnet 10.0.0.1 netmask 255.255.255.0 {
+        option broadcast-address 10.0.0.255;
+        option routers 10.0.0.1;
+        interface lan;
+        range 10.0.0.2 10.0.0254;
+      }
+
+
+    '';
   };
+
   imports = [ ./uWebServer-hw.nix ];
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.opengl.enable = true;
