@@ -19,7 +19,7 @@ in
   };
   networking = {
     hostName = Hostname;
-    nameserver = [ "8.8.8.8" "2001:4860:4860:0:0:0:0:8888" ];
+    nameservers = [ "8.8.8.8" "2001:4860:4860:0:0:0:0:8888" ];
     vlans = {
       wan = {
         id = 10;
