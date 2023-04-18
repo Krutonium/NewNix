@@ -10,11 +10,11 @@ in
   boot = {
     kernelPackages = kernel;
     kernel.sysctl = {
-        "net.ipv4.conf.all.forwarding" = true;
-        "net.ipv6.conf.all.forwarding" = true;
-        "net.ipv6.conf.all.accept_ra" = 0;
-        "net.ipv6.conf.all.autoconf" = 0;
-        "net.ipv6.conf.all.use_tempaddr" = 0;
+      "net.ipv4.conf.all.forwarding" = true;
+      "net.ipv6.conf.all.forwarding" = true;
+      "net.ipv6.conf.all.accept_ra" = 0;
+      "net.ipv6.conf.all.autoconf" = 0;
+      "net.ipv6.conf.all.use_tempaddr" = 0;
     };
   };
   networking = {
@@ -39,8 +39,8 @@ in
         useDHCP = false;
       };
       "lan_1" = {
-        ipv4.addresses = [ { address = "10.0.0.1"; prefixLength = 24; } ];
-        ipv6.addresses = [ { address = "fd00:0:0:1::1"; prefixLength = 64; } ];
+        ipv4.addresses = [{ address = "10.0.0.1"; prefixLength = 24; }];
+        ipv6.addresses = [{ address = "fd00:0:0:1::1"; prefixLength = 64; }];
         useDHCP = false;
       };
       "lan_wifi" = {
