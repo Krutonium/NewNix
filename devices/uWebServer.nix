@@ -2,6 +2,7 @@
 let
   kernel = pkgs.linuxPackages;
   Hostname = "uWebServer";
+  Internet_In = "enp4s0";
 in
 {
   networking.firewall.allowedTCPPorts = [ 25565 25566 50056 ];
@@ -12,16 +13,24 @@ in
     hostName = Hostname;
     networkmanager.insertNameservers = [ "2607:fea8:7a5f:2a00::9b46" ];
     interfaces = {
-      "enp4s0" = {
+      Internet_In = {
         ipv4.addresses = [{ address = "192.168.0.10"; prefixLength = 24; }];
         ipv6.addresses = [{ address = "2607:fea8:7a5f:2a00::9b46"; prefixLength = 128; }];
       };
     };
-    defaultGateway = { address = "192.168.0.1"; interface = "enp4s0"; };
-    defaultGateway6 = { address = "fe80::1"; interface = "enp4s0"; };
+    defaultGateway = { address = "192.168.0.1"; interface = Internet_In; };
+    defaultGateway6 = { address = "fe80::1"; interface = Internet_In; };
     tempAddresses = "disabled";
   };
-
+  services.create_ap = {
+    enable = true;
+    settings = {
+      INTERNET_IFACE = Internet_In;
+      WIFI_IFACE = "wlp12s0";
+      SSID = "TestNetwork";
+      PASSPHRASE = "12345678";
+    };
+  };
   imports = [ ./uWebServer-hw.nix ];
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.opengl.enable = true;
