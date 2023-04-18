@@ -12,13 +12,13 @@ in
     hostName = Hostname;
     networkmanager.insertNameservers = [ "2607:fea8:7a5f:2a00::9b46" ];
     interfaces = {
-      "enp2s0" = {
+      "enp4s0" = {
         ipv4.addresses = [{ address = "192.168.0.10"; prefixLength = 24; }];
         ipv6.addresses = [{ address = "2607:fea8:7a5f:2a00::9b46"; prefixLength = 128; }];
       };
     };
-    defaultGateway = { address = "192.168.0.1"; interface = "enp2s0"; };
-    defaultGateway6 = { address = "fe80::1"; interface = "enp2s0"; };
+    defaultGateway = { address = "192.168.0.1"; interface = "enp4s0"; };
+    defaultGateway6 = { address = "fe80::1"; interface = "enp4s0"; };
     tempAddresses = "disabled";
   };
 
