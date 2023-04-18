@@ -10,7 +10,7 @@ let
   # Run Idea and Rider using steam-run to fix plugins not working.
   ideaScript = pkgs.writeShellScriptBin "idea-ultimate"
     ''
-      ${pkgs.steam-run}/bin/steam-run ${pkgs.unstable.jetbrains.idea-ultimate}/bin/idea-ultimate
+      ${pkgs.steam-run}/bin/steam-run ${pkgs.jetbrains.idea-ultimate}/bin/idea-ultimate
     '';
   idea = pkgs.unstable.jetbrains.idea-ultimate.overrideAttrs
     (oldAttrs: { meta.priority = 10; });
@@ -18,7 +18,7 @@ let
   yuzu = pkgs.yuzu-ea.overrideAttrs (oldAttrs: { meta.priority = 10; });
   riderScript = pkgs.writeShellScriptBin "rider"
     ''
-      ${pkgs.steam-run}/bin/steam-run ${pkgs.unstable.jetbrains.rider}/bin/rider
+      ${pkgs.steam-run}/bin/steam-run ${pkgs.jetbrains.rider}/bin/rider
     '';
   rider = pkgs.unstable.jetbrains.rider.overrideAttrs (oldAttrs: { meta.priority = 10; });
 in
