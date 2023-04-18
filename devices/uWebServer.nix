@@ -58,7 +58,7 @@ in
     enable = true;
     interfaces = [ "lan_1 lan_wifi" ];
     extraConfig = ''
-      option domain-name-servers 8.8.8.8, 2001:4860:4860:0:0:0:0:8888;
+      option domain-name-servers 8.8.8.8;
       option subnet-mask 255.255.255.0;
 
       subnet 10.0.0.1 netmask 255.255.255.0 {
