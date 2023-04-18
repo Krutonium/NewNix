@@ -25,7 +25,7 @@ in
   services.create_ap = {
     enable = true;
     settings = {
-      INTERNET_IFACE = Internet_In;
+      INTERNET_IFACE = "enp4s0";
       WIFI_IFACE = "wlp12s0";
       SSID = "TestNetwork";
       PASSPHRASE = "12345678";
