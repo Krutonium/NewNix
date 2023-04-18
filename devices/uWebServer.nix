@@ -65,7 +65,7 @@ in
         option broadcast-address 10.0.0.255;
         option routers 10.0.0.1;
         interface lan;
-        range 10.0.0.2 10.0.0254;
+        range 10.0.0.2 10.0.0.254;
       }
 
 
