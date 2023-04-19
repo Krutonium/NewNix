@@ -63,7 +63,6 @@ in
       option routers 10.0.0.1;
 
       subnet 10.0.0.0 netmask 255.0.0.0 {
-        interface lan_1;
         range 10.0.0.2 10.0.0.254;
       }
 
