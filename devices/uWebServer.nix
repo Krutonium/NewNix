@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 let
   kernel = pkgs.linuxPackages;
   Hostname = "uWebServer";
