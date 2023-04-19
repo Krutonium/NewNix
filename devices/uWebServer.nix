@@ -7,6 +7,7 @@ in
 {
   networking.firewall.allowedTCPPorts = [ 25565 25566 50056 ];
   networking.firewall.allowedUDPPorts = [ 50056 67 68 ];
+  networking.firewall.enable = lib.mkForce false;
   boot = {
     kernelPackages = kernel;
     kernel.sysctl = {
@@ -61,7 +62,7 @@ in
       option domain-name-servers 8.8.8.8, 1.1.1.1, 8.8.4.4, 1.0.0.1;
       option subnet-mask 255.255.255.0;
       option routers 10.0.0.1;
-
+      option domain krutonium.ca
       subnet 10.0.0.0 netmask 255.0.0.0 {
         range 10.0.0.2 10.0.0.254;
         interface enp2s0f0;
