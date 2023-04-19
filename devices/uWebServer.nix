@@ -29,10 +29,10 @@ in
         id = 20;
         interface = "enp2s0f0";
       };
-      lan_wifi = {
-        id = 30;
-        interface = "enp3s0f1";
-      };
+      #lan_wifi = {
+      #  id = 30;
+      #  interface = "enp3s0f1";
+      #};
     };
     interfaces = {
       "enp4s0" = {
@@ -56,7 +56,7 @@ in
 
   services.dhcpd4 = {
     enable = true;
-    interfaces = [ "lan_1" "lan_wifi" ];
+    interfaces = [ "lan_1" ];
     extraConfig = ''
       option domain-name-servers 8.8.8.8;
       option subnet-mask 255.255.255.0;
