@@ -62,11 +62,11 @@ in
       }
     '';
     machines = [{
-        ethernetAddress = "18:C0:4D:04:05:E7";
-        hostName = "uGamingPC";
-        ipAddress = "10.0.0.2";
-      }];
-    };
+      ethernetAddress = "18:C0:4D:04:05:E7";
+      hostName = "uGamingPC";
+      ipAddress = "10.0.0.2";
+    }];
+  };
 
   imports = [ ./uWebServer-hw.nix ];
   services.xserver.videoDrivers = [ "nvidia" ];
