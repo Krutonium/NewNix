@@ -58,10 +58,11 @@ in
     enable = true;
     interfaces = [ "lan_1" ];
     extraConfig = ''
-      option domain-name-servers 8.8.8.8;
+      option domain-name-servers 8.8.8.8, 1.1.1.1, 8.8.4.4, 1.0.0.1;
       option subnet-mask 255.255.255.0;
+      option routers 10.0.0.1;
 
-      subnet 10.0.0.0 netmask 255.255.255.0 {
+      subnet 10.0.0.0 netmask 255.0.0.0 {
         interface lan_1;
         range 10.0.0.2 10.0.0.254;
       }
