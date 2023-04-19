@@ -21,6 +21,12 @@ in
   networking = {
     hostName = Hostname;
     nameservers = [ "8.8.8.8" "2001:4860:4860:0:0:0:0:8888" ];
+    nat = {
+      enable = true;
+      externalInterface = "enp4s0";
+      internalInterfaces = [ "enp2s0f0" ];
+      internalIPs = [ "10.0.0.0/24" ];
+    };
     #vlans = {
     #wan = {
     #  id = 10;
