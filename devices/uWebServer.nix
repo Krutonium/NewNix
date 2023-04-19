@@ -7,7 +7,6 @@ in
 {
   networking.firewall.allowedTCPPorts = [ 25565 25566 50056 ];
   networking.firewall.allowedUDPPorts = [ 50056 67 68 ];
-  #networking.firewall.enable = lib.mkForce false;
   boot = {
     kernelPackages = kernel;
     kernel.sysctl = {
