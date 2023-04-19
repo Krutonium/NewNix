@@ -32,20 +32,6 @@ in
         destination = "10.0.0.1:1-65535";
       }];
     };
-    #vlans = {
-    #wan = {
-    #  id = 10;
-    #  interface = Internet_In;
-    #};
-    #lan_1 = {
-    #  id = 20;
-    #  interface = "enp2s0f0";
-    #};
-    #lan_wifi = {
-    #  id = 30;
-    #  interface = "enp3s0f1";
-    #};
-    #};
     interfaces = {
       "enp4s0" = {
         ipv4.addresses = [{ address = "192.168.0.10"; prefixLength = 24; }];
@@ -57,37 +43,10 @@ in
         ipv6.addresses = [{ address = "fd00:0:0:1::1"; prefixLength = 64; }];
         useDHCP = false;
       };
-      #"lan_wifi" = {
-      #  useDHCP = false;
-      #};
     };
     defaultGateway = { address = "192.168.0.1"; interface = Internet_In; };
     defaultGateway6 = { address = "fe80::1"; interface = Internet_In; };
     tempAddresses = "disabled";
-
-    #nftables = {
-    #  ruleset = ''
-    #    table inet filter {
-    #      flowtable f {
-    #        hook ingress priority 0;
-    #        devices = { enp4s0, enp2s0f0 };
-    #      };
-    #      
-    #      chain output {
-    #        type filter hook output priority 100; policy accept;
-    #      };
-    #
-    #      chain input {
-    #        type filter hook input priority filter; policy drop;
-    #        
-    #        iifname {
-    #          "enp2s0f0",
-    #        } counter accept
-    #        
-    #        
-    #      };
-    #  '';
-    #};
   };
 
   services.dhcpd4 = {
@@ -101,9 +60,13 @@ in
         range 10.0.0.2 10.0.0.254;
         interface enp2s0f0;
       }
-
     '';
-    #machines = { };
+    machines = {
+      "uGamingPC" = {
+        ethernetAddress = "18:C0:4D:04:05:E7";
+        hostName = "uGamingPC";
+        ipAddress = "10.0.0.2";
+     };
   };
 
   imports = [ ./uWebServer-hw.nix ];
