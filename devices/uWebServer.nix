@@ -20,31 +20,31 @@ in
   networking = {
     hostName = Hostname;
     nameservers = [ "8.8.8.8" "2001:4860:4860:0:0:0:0:8888" ];
-    vlans = {
-      #wan = {
-      #  id = 10;
-      #  interface = Internet_In;
-      #};
-      lan_1 = {
-        id = 20;
-        interface = "enp2s0f0";
-      };
-      #lan_wifi = {
-      #  id = 30;
-      #  interface = "enp3s0f1";
-      #};
-    };
+    #vlans = {
+    #wan = {
+    #  id = 10;
+    #  interface = Internet_In;
+    #};
+    #lan_1 = {
+    #  id = 20;
+    #  interface = "enp2s0f0";
+    #};
+    #lan_wifi = {
+    #  id = 30;
+    #  interface = "enp3s0f1";
+    #};
+    #};
     interfaces = {
       "enp4s0" = {
         ipv4.addresses = [{ address = "192.168.0.10"; prefixLength = 24; }];
         ipv6.addresses = [{ address = "2607:fea8:7a5f:2a00::9b46"; prefixLength = 128; }];
         useDHCP = false;
       };
-      "lan_1" = {
-        ipv4.addresses = [{ address = "10.0.0.1"; prefixLength = 24; }];
-        ipv6.addresses = [{ address = "fd00:0:0:1::1"; prefixLength = 64; }];
-        #useDHCP = false;
-      };
+      #"lan_1" = {
+      #  ipv4.addresses = [{ address = "10.0.0.1"; prefixLength = 24; }];
+      #  ipv6.addresses = [{ address = "fd00:0:0:1::1"; prefixLength = 64; }];
+      #  #useDHCP = false;
+      #};
       #"lan_wifi" = {
       #  useDHCP = false;
       #};
@@ -56,7 +56,7 @@ in
 
   services.dhcpd4 = {
     enable = true;
-    interfaces = [ "lan_1" ];
+    interfaces = [ "enp3s0f0" ];
     extraConfig = ''
       option domain-name-servers 8.8.8.8, 1.1.1.1, 8.8.4.4, 1.0.0.1;
       option subnet-mask 255.255.255.0;
@@ -64,7 +64,7 @@ in
 
       subnet 10.0.0.0 netmask 255.0.0.0 {
         range 10.0.0.2 10.0.0.254;
-        interface lan_1;
+        interface enp3s0f0;
       }
 
     '';
