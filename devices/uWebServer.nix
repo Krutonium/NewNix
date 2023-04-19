@@ -66,6 +66,7 @@ in
         ethernetAddress = "18:C0:4D:04:05:E7";
         hostName = "uGamingPC";
         ipAddress = "10.0.0.2";
+        };
       };
     };
 
