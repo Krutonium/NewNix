@@ -7,7 +7,6 @@ in
 {
   networking.firewall.allowedTCPPorts = [ 25565 25566 50056 ];
   networking.firewall.allowedUDPPorts = [ 50056 67 68 ];
-  networking.firewall.enable = lib.mkForce false;
   boot = {
     kernelPackages = kernel;
     kernel.sysctl = {
@@ -44,7 +43,7 @@ in
       "lan_1" = {
         ipv4.addresses = [{ address = "10.0.0.1"; prefixLength = 24; }];
         ipv6.addresses = [{ address = "fd00:0:0:1::1"; prefixLength = 64; }];
-        useDHCP = false;
+        #useDHCP = false;
       };
       #"lan_wifi" = {
       #  useDHCP = false;
