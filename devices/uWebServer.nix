@@ -21,10 +21,10 @@ in
     hostName = Hostname;
     nameservers = [ "8.8.8.8" "2001:4860:4860:0:0:0:0:8888" ];
     vlans = {
-      wan = {
-        id = 10;
-        interface = Internet_In;
-      };
+      #wan = {
+      #  id = 10;
+      #  interface = Internet_In;
+      #};
       lan_1 = {
         id = 20;
         interface = "enp2s0f0";
@@ -35,7 +35,7 @@ in
       };
     };
     interfaces = {
-      "wan" = {
+      "enp4s0" = {
         ipv4.addresses = [{ address = "192.168.0.10"; prefixLength = 24; }];
         ipv6.addresses = [{ address = "2607:fea8:7a5f:2a00::9b46"; prefixLength = 128; }];
         useDHCP = false;
