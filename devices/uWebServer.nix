@@ -53,6 +53,30 @@ in
     defaultGateway = { address = "192.168.0.1"; interface = Internet_In; };
     defaultGateway6 = { address = "fe80::1"; interface = Internet_In; };
     tempAddresses = "disabled";
+
+    #nftables = {
+    #  ruleset = ''
+    #    table inet filter {
+    #      flowtable f {
+    #        hook ingress priority 0;
+    #        devices = { enp4s0, enp2s0f0 };
+    #      };
+    #      
+    #      chain output {
+    #        type filter hook output priority 100; policy accept;
+    #      };
+    #
+    #      chain input {
+    #        type filter hook input priority filter; policy drop;
+    #        
+    #        iifname {
+    #          "enp2s0f0",
+    #        } counter accept
+    #        
+    #        
+    #      };
+    #  '';
+    #};
   };
 
   services.dhcpd4 = {
