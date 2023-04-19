@@ -26,7 +26,7 @@ in
       externalInterface = "enp4s0";
       internalInterfaces = [ "enp2s0f0" ];
       internalIPs = [ "10.0.0.0/24" ];
-      forwardPorts.*.loopbackIPs = [ "99.248.154.165" ];
+      forwardPorts."enp4s0".loopbackIPs = [ "99.248.154.165" ];
     };
     #vlans = {
     #wan = {
