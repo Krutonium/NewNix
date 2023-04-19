@@ -41,8 +41,8 @@ in
         useDHCP = false;
       };
       "lan_1" = {
-        #ipv4.addresses = [{ address = "10.0.0.1"; prefixLength = 24; }];
-        #ipv6.addresses = [{ address = "fd00:0:0:1::1"; prefixLength = 64; }];
+        ipv4.addresses = [{ address = "10.0.0.1"; prefixLength = 24; }];
+        ipv6.addresses = [{ address = "fd00:0:0:1::1"; prefixLength = 64; }];
         useDHCP = false;
       };
       #"lan_wifi" = {
