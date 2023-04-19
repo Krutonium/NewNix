@@ -45,9 +45,9 @@ in
         ipv6.addresses = [{ address = "fd00:0:0:1::1"; prefixLength = 64; }];
         useDHCP = false;
       };
-      "lan_wifi" = {
-        useDHCP = false;
-      };
+      #"lan_wifi" = {
+      #  useDHCP = false;
+      #};
     };
     defaultGateway = { address = "192.168.0.1"; interface = Internet_In; };
     defaultGateway6 = { address = "fe80::1"; interface = Internet_In; };
