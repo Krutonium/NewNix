@@ -29,7 +29,7 @@ in
       forwardPorts = [{
         sourcePort = "1:65565";
         loopbackIPs = [ "99.248.154.165" ];
-        destination = "10.0.0.1";
+        destination = "10.0.0.1:1-65565";
       }];
     };
     #vlans = {
