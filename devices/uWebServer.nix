@@ -61,11 +61,18 @@ in
         interface enp2s0f0;
       }
     '';
-    machines = [{
-      ethernetAddress = "18:C0:4D:04:05:E7";
-      hostName = "uGamingPC";
-      ipAddress = "10.0.0.2";
-    }];
+    machines = [
+      {
+        ethernetAddress = "18:C0:4D:04:05:E7";
+        hostName = "uGamingPC";
+        ipAddress = "10.0.0.2";
+      }
+      {
+        ethernetAddress = "30:9c:23:d3:06:fd";
+        hostName = "uRenderPC";
+        ipAddress = "10.0.0.3";
+      }
+    ];
   };
 
   imports = [ ./uWebServer-hw.nix ];
