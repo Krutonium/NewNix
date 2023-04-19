@@ -41,8 +41,8 @@ in
         useDHCP = false;
       };
       "lan_1" = {
-        ipv4.addresses = [{ address = "10.0.0.1"; prefixLength = 24; }];
-        ipv6.addresses = [{ address = "fd00:0:0:1::1"; prefixLength = 64; }];
+        #ipv4.addresses = [{ address = "10.0.0.1"; prefixLength = 24; }];
+        #ipv6.addresses = [{ address = "fd00:0:0:1::1"; prefixLength = 64; }];
         useDHCP = false;
       };
       #"lan_wifi" = {
@@ -62,14 +62,12 @@ in
       option subnet-mask 255.255.255.0;
 
       subnet 10.0.0.0 netmask 255.255.255.0 {
-        option broadcast-address 10.0.0.255;
-        option routers 10.0.0.1;
         interface lan_1;
         range 10.0.0.2 10.0.0.254;
       }
 
-
     '';
+    machines = { };
   };
 
   imports = [ ./uWebServer-hw.nix ];
