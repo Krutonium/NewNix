@@ -39,7 +39,7 @@ in
       };
       "enp2s0f0" = {
         ipv4.addresses = [{ address = "10.0.0.1"; prefixLength = 24; }];
-        ipv6.addresses = [{ address = "fd00:0:0:1::1"; prefixLength = 64; }];
+        ipv6.addresses = [{ address = "2607:fea8:7a5f:2a00::9b46"; prefixLength = 128; }];
         useDHCP = false;
       };
     };
@@ -47,7 +47,15 @@ in
     defaultGateway6 = { address = "fe80::1"; interface = Internet_In; };
     tempAddresses = "disabled";
   };
-
+  services.radvd = {
+    enable = true;
+    config = ''
+      interface enp2s0f0 {
+        AdvSendAdvert on;
+        prefix 2607:fea8:7a5f:2a00::/64
+      };
+    '';
+  };
   services.dhcpd4 = {
     enable = true;
     interfaces = [ "enp2s0f0" ];
