@@ -64,6 +64,7 @@ in
 
       subnet 10.0.0.0 netmask 255.0.0.0 {
         range 10.0.0.2 10.0.0.254;
+        interface lan_1;
       }
 
     '';
