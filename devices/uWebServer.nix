@@ -67,7 +67,7 @@ in
       }
 
     '';
-    machines = { };
+    #machines = { };
   };
 
   imports = [ ./uWebServer-hw.nix ];
