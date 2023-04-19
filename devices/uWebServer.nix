@@ -66,55 +66,55 @@ in
         ethernetAddress = "18:C0:4D:04:05:E7";
         hostName = "uGamingPC";
         ipAddress = "10.0.0.2";
-     };
-  };
+      };
+    };
 
-  imports = [ ./uWebServer-hw.nix ];
-  services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.opengl.enable = true;
-  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
-  sys = {
-    boot = {
-      bootloader = "uefi";
-      plymouth_enabled = false;
+    imports = [ ./uWebServer-hw.nix ];
+    services.xserver.videoDrivers = [ "nvidia" ];
+    hardware.opengl.enable = true;
+    hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
+    sys = {
+      boot = {
+        bootloader = "uefi";
+        plymouth_enabled = false;
+      };
+      desktop = {
+        desktop = "none";
+        wayland = false;
+      };
+      audio = {
+        server = "none";
+      };
+      users = {
+        krutonium = true;
+        home-manager = false;
+        root = true;
+        kea = true;
+      };
+      services = {
+        plex = true;
+        avahi = true;
+        coredns = true;
+        samba = true;
+        satisfactoryServer = false;
+        ssh = true;
+        sshGuard = false;
+        synapse = true;
+        gitea = true;
+        torrent = true;
+        ddns = false;
+        nginx = true;
+        autoDeploy = true;
+        sevendaystodie = false;
+        headscale = false;
+        tailscale = false;
+        tailscaleUseExitNode = false;
+      };
+      virtualization = {
+        server = "virtd";
+      };
+      minecraft = {
+        rubberdragontrain = true;
+      };
     };
-    desktop = {
-      desktop = "none";
-      wayland = false;
-    };
-    audio = {
-      server = "none";
-    };
-    users = {
-      krutonium = true;
-      home-manager = false;
-      root = true;
-      kea = true;
-    };
-    services = {
-      plex = true;
-      avahi = true;
-      coredns = true;
-      samba = true;
-      satisfactoryServer = false;
-      ssh = true;
-      sshGuard = false;
-      synapse = true;
-      gitea = true;
-      torrent = true;
-      ddns = false;
-      nginx = true;
-      autoDeploy = true;
-      sevendaystodie = false;
-      headscale = false;
-      tailscale = false;
-      tailscaleUseExitNode = false;
-    };
-    virtualization = {
-      server = "virtd";
-    };
-    minecraft = {
-      rubberdragontrain = true;
-    };
-  };
-}
+  }
