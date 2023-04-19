@@ -52,7 +52,7 @@ in
     config = ''
       interface enp2s0f0 {
         AdvSendAdvert on;
-        prefix 2607:fea8:7a5f:2a00::/64
+        prefix 2607:fea8:7a5f:2a00::/64 { };
       };
     '';
   };
