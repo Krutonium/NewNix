@@ -28,7 +28,7 @@ in
       internalIPs = [ "10.0.0.0/24" ];
       forwardPorts = [{
         loopbackIPs = [ "99.248.154.165" ];
-        destination = "10.0.0.1";
+        destination = "10.0.0.1:1-65565";
       }];
     };
     #vlans = {
