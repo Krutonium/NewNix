@@ -47,13 +47,15 @@ in
     defaultGateway6 = { address = "fe80::1"; interface = Internet_In; };
     tempAddresses = "disabled";
   };
-  services.radvd = {
+
+  services.dhcpd6 = {
     enable = true;
-    config = ''
-      interface enp2s0f0 {
-        AdvSendAdvert on;
-        prefix 2607:fea8:7a5f:2a00::/64 { };
-      };
+    interfaces = [ "enp2s0f0" ];
+    extraConfig = ''
+      option dhcp6.name-servers = "2001:4860:4860::8888, 2001:4860:4860::8844";
+      subnet6 2607:fea8:7a5f:2a00::/64 {
+        range6 2607:fea8:7a5f:2a00::2 2607:fea8:7a5f:2a00::254;        
+      }
     '';
   };
   services.dhcpd4 = {
