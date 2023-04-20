@@ -54,7 +54,8 @@ in
     extraConfig = ''
       option dhcp6.name-servers = "2001:4860:4860::8888, 2001:4860:4860::8844";
       subnet6 2607:fea8:7a5f:2a00::/64 {
-        range6 2607:fea8:7a5f:2a00::2 2607:fea8:7a5f:2a00::254;        
+        range6 2607:fea8:7a5f:2a00::2 2607:fea8:7a5f:2a00::254;
+        interface enp2s0f0
       }
     '';
   };
