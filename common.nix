@@ -26,7 +26,7 @@
   qt5.style = "adwaita-dark";
   hardware.enableAllFirmware = true;
   boot.binfmt = {
-    emulatedSystems = [ "aarch64-linux" "riscv64-linux" "x86_64-windows" ];
+    emulatedSystems = [ "aarch64-linux" "riscv64-linux" ];
   };
 
   nix = {
