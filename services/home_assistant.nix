@@ -11,6 +11,7 @@ in
       extraComponents = [
         "met"
         "radio_browser"
+        "tuya"
       ];
       config = {
         default_config = { };
