@@ -12,6 +12,7 @@ in
         "met"
         "radio_browser"
         "tuya"
+        "zeroconf"
       ];
       config = {
         default_config = { };
