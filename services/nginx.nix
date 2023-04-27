@@ -50,11 +50,6 @@ in
           proxyPass = "http://127.0.0.1:8008"; # without a trailing /
         };
       };
-      "dynmap.krutonium.ca" = {
-        forceSSL = true;
-        enableACME = true;
-        locations."/".proxyPass = "http://127.0.0.1:8123/";
-      };
       "plex.krutonium.ca" = {
         forceSSL = true;
         enableACME = true;
@@ -139,23 +134,12 @@ in
         enableACME = true;
         locations."/".proxyPass = "http://127.0.0.1:8112";
       };
-      "jellyfin.krutonium.ca" = {
+      "ha.krutonium.ca" = {
         forceSSL = true;
         enableACME = true;
-        locations."/".proxyPass = "http://127.0.0.1:8096";
-        extraConfig = ''
-          proxy_set_header Host $host;
-          proxy_set_header X-Real-IP $remote_addr;
-          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-          proxy_set_header X-Forwarded-Proto $scheme;
-          proxy_set_header X-Forwarded-Host $http_host;
-          proxy_set_header Upgrade $http_upgrade;
-          proxy_pass_request_headers on;
-          proxy_set_header Connection $http_connection;
-          proxy_buffering off;
-          proxy_http_version 1.1;
-          proxy_redirect off;
-        '';
+        locations."/".proxyPass = "http://[::1]:8123";
+        locations."/".proxyWebsockets = true;
+        extraConfig = "proxy_buffering off;";
       };
     };
   };

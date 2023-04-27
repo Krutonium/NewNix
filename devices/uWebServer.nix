@@ -125,6 +125,7 @@ in
       headscale = false;
       tailscale = false;
       tailscaleUseExitNode = false;
+      homeManager = true;
     };
     virtualization = {
       server = "virtd";

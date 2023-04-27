@@ -136,6 +136,13 @@ with builtins;
         AutoConnect to TailScale with Exit Node
       '';
     };
+    homeAssistant = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        Home Assistant
+      '';
+    };
   };
   imports = [
     ./plex.nix
@@ -154,5 +161,6 @@ with builtins;
     ./sevendaystodie.nix
     ./headscale.nix
     ./tailscale.nix
+    ./home_assistant.nix
   ];
 }
