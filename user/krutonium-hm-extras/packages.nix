@@ -154,7 +154,7 @@ in
     #pkgs.seafile-client
 
     # Communications
-    pkgs.unstable.tdesktop
+    pkgs.tdesktop
     pkgs.element-desktop
     pkgs.fractal
     pkgs.srain
