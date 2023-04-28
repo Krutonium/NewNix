@@ -20,10 +20,16 @@ in
   networking = {
     hostName = Hostname;
     nameservers = [ "8.8.8.8" "2001:4860:4860:0:0:0:0:8888" ];
+
+    bridges = {
+      "bridge" = {
+        interfaces = [ "enp3s0f0" "enp3s0f1" "enp3s0f2" "enp3s0f3" ];
+      };
+    };
     nat = {
       enable = true;
       externalInterface = "enp4s0";
-      internalInterfaces = [ "enp2s0f0" ];
+      internalInterfaces = [ "bridge" ];
       internalIPs = [ "10.0.0.0/24" ];
       forwardPorts = [{
         sourcePort = "1:65535";
@@ -37,7 +43,7 @@ in
         ipv6.addresses = [{ address = "2607:fea8:7a43:7740::ef4a"; prefixLength = 128; }];
         useDHCP = true;
       };
-      "enp2s0f0" = {
+      "bridge" = {
         ipv4.addresses = [{ address = "10.0.0.1"; prefixLength = 24; }];
         ipv6.addresses = [{ address = "2607:fea8:7a43:7740::ef4a"; prefixLength = 128; }];
         useDHCP = false;
@@ -61,14 +67,14 @@ in
   #};
   services.dhcpd4 = {
     enable = true;
-    interfaces = [ "enp2s0f0" ];
+    interfaces = [ "bridge" ];
     extraConfig = ''
       option domain-name-servers 8.8.8.8, 1.1.1.1, 8.8.4.4, 1.0.0.1;
       option subnet-mask 255.255.255.0;
       option routers 10.0.0.1;
       subnet 10.0.0.0 netmask 255.0.0.0 {
         range 10.0.0.2 10.0.0.254;
-        interface enp2s0f0;
+        interface bridge;
       }
     '';
     machines = [
