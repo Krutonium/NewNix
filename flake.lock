@@ -113,32 +113,16 @@
     },
     "nixpkgs-master": {
       "locked": {
-        "lastModified": 1682660105,
-        "narHash": "sha256-WgUNYHj+D6SoXhH6e5prX/ghQS9c9tDxzrL3knXl2VA=",
+        "lastModified": 1682707864,
+        "narHash": "sha256-/DL7xHeW1hNZenlRh9FqKBTHnFJgLPRVKEN+SdkyJFE=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "fb132593f249fec3d6012d913434d59cd3291521",
+        "rev": "f518d3b6cf8abe757f4566d1dd47cb1ee22a2efd",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
         "ref": "master",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs-teleport": {
-      "locked": {
-        "lastModified": 1680209500,
-        "narHash": "sha256-EkjBi1aI9EmyHFw79QUN8oOY/YSRQCgkWyu1+4s/4cs=",
-        "owner": "paveloom",
-        "repo": "nixpkgs",
-        "rev": "712adfbb27f3369b18adee28a6e0939833d8ec31",
-        "type": "github"
-      },
-      "original": {
-        "owner": "paveloom",
-        "ref": "obs-teleport",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -196,7 +180,6 @@
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-master": "nixpkgs-master",
-        "nixpkgs-teleport": "nixpkgs-teleport",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "update": "update"
       }
