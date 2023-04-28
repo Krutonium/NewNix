@@ -167,7 +167,7 @@ in
     plugins = [
       pkgs.obs-studio-plugins.obs-backgroundremoval
       pkgs.obs-studio-plugins.obs-multi-rtmp
-      pkgs.teleport.obs-studio-plugins.obs-teleport
+      pkgs.master.obs-studio-plugins.obs-teleport
     ];
   };
   programs.mangohud = {
