@@ -52,7 +52,7 @@ in
     };
     #defaultGateway = { address = "192.168.0.1"; interface = Internet_In; };
     #defaultGateway6 = { address = "fe80::1"; interface = Internet_In; };
-    tempAddresses = "enabled";
+    tempAddresses = "disabled";
   };
   services.dhcpd4 = {
     enable = true;
