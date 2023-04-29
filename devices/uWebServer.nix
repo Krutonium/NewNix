@@ -12,7 +12,7 @@ in
     kernel.sysctl = {
       "net.ipv4.conf.all.forwarding" = true;
       "net.ipv6.conf.all.forwarding" = true;
-      "net.ipv6.conf.all.accept_ra" = 1;
+      "net.ipv6.conf.all.accept_ra" = 0;
       "net.ipv6.conf.all.autoconf" = 0;
       "net.ipv6.conf.all.use_tempaddr" = 0;
     };
@@ -52,7 +52,7 @@ in
     };
     #defaultGateway = { address = "192.168.0.1"; interface = Internet_In; };
     #defaultGateway6 = { address = "fe80::1"; interface = Internet_In; };
-    tempAddresses = "disabled";
+    tempAddresses = "enabled";
   };
   services.dhcpd4 = {
     enable = true;
