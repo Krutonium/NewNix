@@ -74,7 +74,7 @@ in
       option subnet-mask 255.255.255.0;
       option routers 10.0.0.1;
       subnet 10.0.0.0 netmask 255.0.0.0 {
-        range 10.0.0.5 10.0.0.254;
+        range 10.0.0.10 10.0.0.254;
         interface bridge;
       }
     '';
