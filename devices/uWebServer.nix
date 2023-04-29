@@ -120,7 +120,7 @@ in
     services = {
       plex = true;
       avahi = true;
-      coredns = true;
+      coredns = false;
       samba = true;
       satisfactoryServer = false;
       ssh = true;
