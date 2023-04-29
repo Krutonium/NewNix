@@ -89,6 +89,21 @@ in
         hostName = "uRenderPC";
         ipAddress = "10.0.0.3";
       }
+      {
+        ethernetAddress = "F8:16:54:A5:A5:91";
+        hostName = "uMsiLaptop";
+        ipAddress = "10.0.0.4";
+      }
+      {
+        ethernetAddress = "10:1F:74:0F:5A:E1";
+        hostName = "uHPLaptop";
+        ipAddress = "10.0.0.5";
+      }
+      {
+        ethernetAddress = "00:1B:63:95:F1:2D";
+        hostName = "uMacBookPro";
+        ipAddress = "10.0.0.6";
+      }
     ];
   };
 
