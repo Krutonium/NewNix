@@ -5,30 +5,35 @@
       "Name": "uWebServer",
       "User": "root",
       "Ip": "10.0.0.1",
+      "Verb": "switch",
       "Comment": "Web Server"
     },
     {
       "Name": "uGamingPC",
       "User": "root",
       "Ip": "10.0.0.2",
+      "Verb": "switch",
       "Comment": "Gaming PC"
     },
     {
       "Name": "uMsiLaptop",
       "User": "root",
       "Ip": "10.0.0.4",
+      "Verb": "switch",
       "Comment": "MSI Laptop"
     },
     {
       "Name": "uHPLaptop",
       "User": "root",
       "Ip": "10.0.0.5",
+      "Verb": "switch",
       "Comment": "HP Laptop"
     },
     {
       "Name": "uMacBookPro",
       "User": "root",
       "Ip": "10.0.0.6",
+      "Verb": "switch",
       "Comment": "MacBookPro3,1"
     }
   ]
