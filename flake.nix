@@ -9,7 +9,7 @@
       url = "github:ryantm/nixpkgs-update";
     };
     deploy-cs = {
-      url = "github:Krutonium/deploy-cs/parallel-build-parallel-deploy";
+      url = "github:Krutonium/deploy-cs/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
