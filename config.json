@@ -1,5 +1,5 @@
 {
-  "MaxParallel": 1,
+  "MaxParallel": 5,
   "_machines": [
     {
       "Name": "uWebServer",
