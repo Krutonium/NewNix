@@ -13,7 +13,7 @@ in
         path = with pkgs; [ pkgs.deploy-cs pkgs.nix pkgs.nixos-rebuild pkgs.git pkgs.openssh pkgs.nixpkgs-fmt ];
         script = ''
           cd /home/krutonium/NixOS/
-          deploy-cs
+          deploy
         '';
         enable = true;
       };

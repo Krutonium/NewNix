@@ -1,0 +1,35 @@
+{
+  "MaxParallel": 1,
+  "_machines": [
+    {
+      "Name": "uWebServer",
+      "User": "root",
+      "Ip": "10.0.0.1",
+      "Comment": "Web Server"
+    },
+    {
+      "Name": "uGamingPC",
+      "User": "root",
+      "Ip": "10.0.0.2",
+      "Comment": "Gaming PC"
+    },
+    {
+      "Name": "uMsiLaptop",
+      "User": "root",
+      "Ip": "10.0.0.4",
+      "Comment": "MSI Laptop"
+    },
+    {
+      "Name": "uHPLaptop",
+      "User": "root",
+      "Ip": "10.0.0.5",
+      "Comment": "HP Laptop"
+    },
+    {
+      "Name": "uMacBookPro",
+      "User": "root",
+      "Ip": "10.0.0.6",
+      "Comment": "MacBookPro3,1"
+    }
+  ]
+}
