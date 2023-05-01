@@ -94,7 +94,10 @@ in
       }
     ];
   };
-
+  zramSwap = {
+    enable = true;
+    priority = 1;
+  };
   imports = [ ./uWebServer-hw.nix ];
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.opengl.enable = true;
