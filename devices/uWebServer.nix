@@ -99,9 +99,9 @@ in
     priority = 1;
   };
   imports = [ ./uWebServer-hw.nix ];
-  services.xserver.videoDrivers = [ "nvidia" ];
+  #services.xserver.videoDrivers = [ "nvidia" ];
   hardware.opengl.enable = true;
-  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
+  #hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
   sys = {
     boot = {
       bootloader = "uefi";
