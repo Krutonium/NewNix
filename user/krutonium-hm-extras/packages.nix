@@ -5,7 +5,7 @@ let
     sha256 = "sha256:0lsiw523sqr6ydwxnikyijayfi55q5mzvh1zi216swvj5kfbxl00";
   };
   openjdk8-low = pkgs.openjdk8.overrideAttrs (oldAttrs: { meta.priority = 10; });
-  dotnetCombined = with pkgs.dotnetCorePackages; combinePackages [ sdk_7_0 ];
+  dotnetCombined = with pkgs.dotnetCorePackages; combinePackages [ sdk_7_0 sdk_6_0 ];
 
   # Run Idea and Rider using steam-run to fix plugins not working.
   ideaScript = pkgs.writeShellScriptBin "idea-ultimate"
