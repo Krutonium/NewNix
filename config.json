@@ -1,5 +1,6 @@
 {
   "MaxParallel": 5,
+  "Update_Flake": true,
   "_machines": [
     {
       "Name": "uWebServer",
