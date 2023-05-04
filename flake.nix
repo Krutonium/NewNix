@@ -39,7 +39,7 @@
               [
                 overlay-unstable
                 overlay-master
-                overlay-deploy-cs
+                #overlay-deploy-cs
                 overlay-nixpkgs-update
               ];
           }
