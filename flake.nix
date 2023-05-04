@@ -59,7 +59,7 @@
           config.allowUnfree = true;
         };
       };
-      # overlayh for deploy-cs
+      # overlay for deploy-cs
       overlay-deploy-cs = final: prev: {
         deploy-cs = deploy-cs.defaultPackage.x86_64-linux;
       };
