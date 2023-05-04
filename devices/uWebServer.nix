@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }:
 let
-  kernel = pkgs.linuxPackages_latest;
+  kernel = pkgs.linuxPackages_stable;
   Hostname = "uWebServer";
   Internet_In = "enp4s0";
 in
