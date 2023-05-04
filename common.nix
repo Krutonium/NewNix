@@ -99,6 +99,7 @@
     fwupd.enable = true;
   };
   programs.noisetorch.enable = true;
+  programs.command-not-found.enable = false;
   systemd.extraConfig = ''
     DefaultLimitNOFILE=1048576
     DefaultTimeoutStopSec=10s

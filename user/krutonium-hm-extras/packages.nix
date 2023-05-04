@@ -175,4 +175,8 @@ in
     enableSessionWide = true;
     package = pkgs.master.mangohud;
   };
+  programs.nix-index = {
+    enable = true;
+    enableFishIntegration = true;
+  };
 }
