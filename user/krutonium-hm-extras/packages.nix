@@ -5,7 +5,7 @@ let
     sha256 = "sha256:0lsiw523sqr6ydwxnikyijayfi55q5mzvh1zi216swvj5kfbxl00";
   };
   openjdk8-low = pkgs.openjdk8.overrideAttrs (oldAttrs: { meta.priority = 10; });
-  dotnetCombined = with pkgs.dotnetCorePackages; combinePackages [ sdk_7_0 sdk_6_0 ];
+  #dotnetCombined = with pkgs.dotnetCorePackages; combinePackages [ sdk_7_0 sdk_6_0 ];
 
   # Run Idea and Rider using steam-run to fix plugins not working.
   ideaScript = pkgs.writeShellScriptBin "idea-ultimate"
@@ -23,7 +23,7 @@ let
   rider = pkgs.unstable.jetbrains.rider.overrideAttrs (oldAttrs: { meta.priority = 10; });
 in
 {
-  home.file.".net".source = dotnetCombined;
+  #home.file.".net".source = dotnetCombined;
   home.file.".msbuild".source = pkgs.msbuild;
   home.packages = [
     # Browser
@@ -57,7 +57,7 @@ in
     riderScript
     pkgs.vscode
     pkgs.gitkraken
-    dotnetCombined
+    #dotnetCombined
     pkgs.notepad-next
     #pkgs.msbuild
     #pkgs.dotnet-sdk
