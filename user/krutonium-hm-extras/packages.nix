@@ -135,7 +135,7 @@ in
     #pkgs.unstable.runescape #doesn't currently build
     pkgs.gamescope
     pkgs.jstest-gtk
-    pkgs.unstable.prismlauncher
+    pkgs.prismlauncher
     pkgs.protonup
     pkgs.goverlay
     pkgs.dolphin-emu-beta
