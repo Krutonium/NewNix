@@ -59,6 +59,7 @@ in
     pkgs.gitkraken
     #dotnetCombined
     pkgs.dotnetCorePackages.sdk_6_0
+    pkgs.dotnetPackages.StyleCopMSBuild
     pkgs.notepad-next
     #pkgs.msbuild
     #pkgs.dotnet-sdk
