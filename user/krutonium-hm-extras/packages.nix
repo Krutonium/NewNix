@@ -58,6 +58,7 @@ in
     pkgs.vscode
     pkgs.gitkraken
     #dotnetCombined
+    pkgs.dotnetCorePackages.sdk_6_0
     pkgs.notepad-next
     #pkgs.msbuild
     #pkgs.dotnet-sdk
@@ -142,7 +143,7 @@ in
     pkgs.unstable.citra
     pkgs.steam-run
     #pkgs.yuzu-ea
-    yuzu
+    #yuzu
     pkgs.monado
 
     # File Sync
