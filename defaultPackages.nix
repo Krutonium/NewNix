@@ -34,7 +34,7 @@ in
     pkgs.btop
     pkgs.killall
     pkgs.nix-index
-    #pkgs.deploy-cs
+    pkgs.deploy-cs
     pkgs.appimage-run
     pkgs.unison
     pkgs.p7zip
