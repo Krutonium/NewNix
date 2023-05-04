@@ -9,7 +9,7 @@ in
     systemd = {
       services.updateSystems = {
         serviceConfig.Type = "oneshot";
-        serviceConfig.User = "krutonium";
+        serviceConfig.User = "root";
         path = with pkgs; [ pkgs.deploy-cs pkgs.nix pkgs.nixos-rebuild pkgs.git pkgs.openssh pkgs.nixpkgs-fmt ];
         script = ''
           cd /home/krutonium/NixOS/
