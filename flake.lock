@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1683242670,
-        "narHash": "sha256-qqOUTysWXg3zbGM7oOQwtByPgjhDzoyBChX3jsHR4jE=",
+        "lastModified": 1683245784,
+        "narHash": "sha256-aleudxASPMPlUn14OuCcx7c9WBOX2PaiZMBAzihTuZw=",
         "owner": "Krutonium",
         "repo": "deploy-cs",
-        "rev": "2187c546809d3fc7d67277a9b56b4bb585187d07",
+        "rev": "701312f075bdd7fcb42a7f212749f93f0a0a2889",
         "type": "github"
       },
       "original": {
@@ -113,11 +113,11 @@
     },
     "nixpkgs-master": {
       "locked": {
-        "lastModified": 1683242159,
-        "narHash": "sha256-jzI6R7hFmW7xTuqtFmYQdnTzZKR1aqiIhWqbo0d8jEc=",
+        "lastModified": 1683244828,
+        "narHash": "sha256-v+NrcxyGjhm3hhwRszZE+0H4TLdFcr4dGcjaeSsfG+Q=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "6a6f328ef5e27994b6e3768c5aec873986a7b668",
+        "rev": "ae55ff1d1b4dcf017434d1e4325f77a555854717",
         "type": "github"
       },
       "original": {
