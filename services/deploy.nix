@@ -10,7 +10,7 @@ in
       services.updateSystems = {
         serviceConfig.Type = "oneshot";
         serviceConfig.User = "root";
-        path = with pkgs; [ pkgs.deploy-cs pkgs.nix pkgs.nixos-rebuild pkgs.git pkgs.openssh pkgs.nixpkgs-fmt ];
+        path = with pkgs; [ pkgs.deploy-cs pkgs.nix pkgs.nixos-rebuild pkgs.git pkgs.openssh ];
         script = ''
           cd /home/krutonium/NixOS/
           deploy
