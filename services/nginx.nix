@@ -17,6 +17,11 @@ in
     security.acme.defaults.email = "PFCKrutonium@gmail.com";
     security.acme.acceptTerms = true;
     services.nginx.virtualHosts = {
+      "win11.krutonium.ca" = {
+        forceSSL = false;
+        enableACME = false;
+        root = "/var/www/home/Win11";
+      };
       "krutonium.ca" = {
         forceSSL = true;
         enableACME = true;
