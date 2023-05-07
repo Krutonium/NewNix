@@ -26,10 +26,10 @@
     { device = "/dev/disk/by-uuid/6E00-6801";
       fsType = "vfat";
     };
-  
-  
-
-
+  fileSystems."/games" = 
+    { device = "/dev/disk/by-uuid/5232156274849982933"
+      fsType = "zfs";
+    };
   swapDevices = [ ];
 
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
