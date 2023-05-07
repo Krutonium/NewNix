@@ -139,6 +139,7 @@ in
     pkgs.protonup
     pkgs.goverlay
     pkgs.dolphin-emu-beta
+    pkgs.higan
     pkgs.unstable.heroic
     pkgs.unstable.cemu
     pkgs.unstable.citra
