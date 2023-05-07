@@ -27,7 +27,7 @@
       fsType = "vfat";
     };
   fileSystems."/games" = 
-    { device = "/dev/disk/by-uuid/5232156274849982933"
+    { device = "/dev/disk/by-uuid/5232156274849982933";
       fsType = "zfs";
     };
   swapDevices = [ ];
