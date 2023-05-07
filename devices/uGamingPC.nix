@@ -6,6 +6,7 @@ let
 in
 {
   boot.kernelPackages = kernel;
+  boot.zfs.enabled = true;
   boot.loader.grub.gfxmodeEfi = "1920x1080";
   boot.loader.grub.gfxpayloadEfi = "keep";
   networking.hostName = Hostname;
@@ -31,7 +32,7 @@ in
   #hardware.nvidia.open = false;
   hardware.opengl.enable = true;
   hardware.nvidia.package = video;
-  boot.initrd.availableKernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" "zfs" ];
+  boot.initrd.availableKernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
   environment.systemPackages = [
     video
   ];
