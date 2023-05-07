@@ -40,6 +40,7 @@ in
   sys = {
     boot = {
       bootloader = "uefi";
+      uefiPath = "/boot/efi";
       plymouth_enabled = true;
     };
     desktop = {
