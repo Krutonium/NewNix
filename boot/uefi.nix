@@ -25,7 +25,7 @@ in
           extraFiles = {
             "netbootxyz.efi" = "${pkgs.netbootxyz-efi}";
           };
-          theme = pkgs.fetchFromGithub {
+          theme = pkgs.fetchFromGitHub {
             owner = "shvchk";
             repo = "fallout-grub-theme";
             rev = "80734103d0b48d724f0928e8082b6755bd3b2078";
