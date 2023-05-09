@@ -25,6 +25,12 @@ in
           extraFiles = {
             "netbootxyz.efi" = "${pkgs.netbootxyz-efi}";
           };
+          theme = pkgs.fetchFromGithub {
+            owner = "shvchk";
+            repo = "fallout-grub-theme";
+            rev = "80734103d0b48d724f0928e8082b6755bd3b2078";
+            sha256 = "sha256-7kvLfD6Nz4cEMrmCA9yq4enyqVyqiTkVZV5y4RyUatU=";
+          };
           extraEntries = ''
             menuentry "iPXE" {
               chainloader /netbootxyz.efi
