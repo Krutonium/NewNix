@@ -146,6 +146,7 @@ in
     pkgs.steam-run
     #pkgs.yuzu-ea
     #yuzu
+    pkgs.ryujinx
     pkgs.monado
 
     # File Sync
