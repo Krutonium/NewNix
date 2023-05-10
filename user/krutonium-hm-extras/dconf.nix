@@ -45,7 +45,7 @@ in
     };
 
     "org/gnome/desktop/wm/preferences" = {
-      num-workspaces = 2;
+      num-workspaces = 1;
       visual-bell = false;
       visual-bell-type = "frame-flash";
       audible-bell = false;
