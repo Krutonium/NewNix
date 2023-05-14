@@ -135,8 +135,14 @@
 
     #Alias bpytop as top
     ".config/fish/functions/top.fish".text = ''
-      function top --wraps=bpytop --description 'alias top=bpytop'
-        bpytop $argv;
+      function top --wraps=btop --description 'alias top=btop'
+        btop $argv;
+      end
+    '';
+    #Alias bat as cat
+    ".config/fish/functions/bat.fish".text = ''
+      function cat --wraps=bat --description 'alias cat=bat'
+        bat $argv;
       end
     '';
   };

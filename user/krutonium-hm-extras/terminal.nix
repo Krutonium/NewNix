@@ -4,6 +4,10 @@
   programs.fish = {
     enable = true;
   };
+  home.packages = [
+    pkgs.bat
+  ];
+  
 
   programs.starship = {
     enable = true;
