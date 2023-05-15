@@ -37,6 +37,8 @@ in
   ];
   programs.wireshark.enable = true;
   hardware.nvidia.modesetting.enable = true;
+  #Fix Discord and other Chromium based Bullshit
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
   sys = {
     boot = {
       bootloader = "uefi";
