@@ -45,7 +45,7 @@ in
     };
     desktop = {
       desktop = "gnome";
-      wayland = false;
+      wayland = true;
     };
     custom = {
       ddcutil = true;
