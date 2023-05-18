@@ -92,6 +92,11 @@ in
         hostName = "uMacBookPro";
         ipAddress = "10.0.0.6";
       }
+      {
+        ethernetAddress = "14:EB:B6:58:A1:D4";
+        hostName = "Archer";
+        ipAddress = "10.0.0.7";
+      }
     ];
   };
   zramSwap = {
