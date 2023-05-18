@@ -164,6 +164,9 @@ in
     pkgs.srain
     pkgs.discord
     pkgs.wormhole-rs
+
+    #AI Stuff I find interesting
+    pkgs.unstable.mods
   ];
 
   programs.obs-studio = {
