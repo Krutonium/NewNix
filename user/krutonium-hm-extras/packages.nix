@@ -167,6 +167,7 @@ in
 
     #AI Stuff I find interesting
     pkgs.unstable.mods
+    pkgs.glow
   ];
 
   programs.obs-studio = {
