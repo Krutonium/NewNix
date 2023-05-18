@@ -181,7 +181,7 @@ in
   programs.mangohud = {
     enable = true;
     enableSessionWide = true;
-    package = pkgs.master.mangohud;
+    package = pkgs.mangohud;
   };
   programs.nix-index = {
     enable = true;
