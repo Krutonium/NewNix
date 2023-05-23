@@ -18,16 +18,19 @@
   networking.hostId = "ad53f8bc";
   systemd.services.zfs-mount.enable = false;
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/951a0148-0822-4aea-ba95-75012cb64027";
+    {
+      device = "/dev/disk/by-uuid/951a0148-0822-4aea-ba95-75012cb64027";
       fsType = "ext4";
     };
 
   fileSystems."/boot/efi" =
-    { device = "/dev/disk/by-uuid/6E00-6801";
+    {
+      device = "/dev/disk/by-uuid/6E00-6801";
       fsType = "vfat";
     };
-  fileSystems."/games" = 
-    { device = "Games";
+  fileSystems."/games" =
+    {
+      device = "Games";
       fsType = "zfs";
     };
   swapDevices = [ ];

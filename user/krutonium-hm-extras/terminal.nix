@@ -7,7 +7,7 @@
   home.packages = [
     pkgs.bat
   ];
-  
+
 
   programs.starship = {
     enable = true;
