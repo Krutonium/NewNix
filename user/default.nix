@@ -31,6 +31,13 @@ with builtins;
         Enable user Kea
       '';
     };
+    gameserver = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        Enable gameserver host account
+      '';
+    };
   };
   imports = [ ./krutonium.nix ./root.nix ./kea.nix ./gameserver.nix ];
 }
