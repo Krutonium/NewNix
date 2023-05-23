@@ -5,6 +5,7 @@ let
   Internet_In = "enp4s0";
 in
 {
+  system.autoUpgrade.allowReboot = true;
   networking.firewall.allowedTCPPorts = [ 25565 25566 50056 ];
   networking.firewall.allowedUDPPorts = [ 50056 67 68 ];
   boot = {
