@@ -153,4 +153,7 @@ in
       rubberdragontrain = true;
     };
   };
+  services.cron.systemCronJobs = [
+    "0 6 * * * root systemctl reboot"
+  ];
 }
