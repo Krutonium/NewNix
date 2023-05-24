@@ -6,7 +6,7 @@
       "Name": "uWebServer",
       "User": "root",
       "Ip": "10.0.0.1",
-      "Verb": "switch",
+      "Verb": "boot",
       "Comment": "Web Server"
     },
     {
