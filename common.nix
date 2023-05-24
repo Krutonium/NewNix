@@ -91,7 +91,7 @@
       };
     };
     services = {
-      systemd-udev-settle.enable = false;
+      systemd-udev-settle.enable = true;
     };
   };
 

@@ -16,7 +16,7 @@
   boot.supportedFilesystems = [ "ntfs" "zfs" ];
   boot.zfs.forceImportRoot = false;
   networking.hostId = "ad53f8bc";
-  systemd.services.zfs-mount.enable = false;
+  systemd.services.zfs-mount.enable = true;
   fileSystems."/" =
     {
       device = "/dev/disk/by-uuid/951a0148-0822-4aea-ba95-75012cb64027";
@@ -28,11 +28,12 @@
       device = "/dev/disk/by-uuid/6E00-6801";
       fsType = "vfat";
     };
-  fileSystems."/games" =
-    {
-      device = "Games";
-      fsType = "zfs";
-    };
+  #fileSystems."/games" =
+  #  {
+  #    device = "Games";
+  #    fsType = "zfs";
+  #  };
+  boot.zfs.extraPools = ["Games"];
   swapDevices = [ ];
 
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

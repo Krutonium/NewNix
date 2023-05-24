@@ -2,6 +2,7 @@
 let
   kernel = config.boot.zfs.package.latestCompatibleLinuxPackages;
   video = config.boot.kernelPackages.nvidiaPackages.latest;
+  zenpower = config.boot.kernelPackages.zenpower;
   Hostname = "uGamingPC";
 in
 {
@@ -32,6 +33,8 @@ in
   hardware.opengl.enable = true;
   hardware.nvidia.package = video;
   boot.initrd.availableKernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
+  boot.extraModulePackages = with config.boot.kernelPackages; [ zenpower.out ];
+  boot.blacklistedKernelModules = [ "k10temp" ];
   environment.systemPackages = [
     video
   ];
