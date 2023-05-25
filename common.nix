@@ -13,6 +13,7 @@
     ./custom-packages
     ./scripts.nix
   ];
+  environment.sessionVariables.NIXPKGS_ALLOW_UNFREE = "1";
   boot = {
     cleanTmpDir = true;
     kernel = {
