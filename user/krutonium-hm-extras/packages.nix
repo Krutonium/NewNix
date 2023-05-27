@@ -131,6 +131,7 @@ in
     pkgs.openrct2
     pkgs.mesa-demos
     pkgs.unstable.oversteer
+    pkgs.appimage-run
 
     #pkgs.unstable.runescape #doesn't currently build
     pkgs.gamescope
