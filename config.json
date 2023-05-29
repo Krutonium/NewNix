@@ -1,6 +1,7 @@
 {
   "MaxParallel": 5,
   "Update_Flake": true,
+  "Path_Private_SSH_Key": "/home/krutonium/.ssh/id_ed25519",
   "_machines": [
     {
       "Name": "uWebServer",
