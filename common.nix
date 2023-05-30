@@ -24,7 +24,7 @@
     supportedFilesystems = [ "ntfs" ]; #Add explicit NTFS support
   };
   documentation.enable = true;
-  qt.style = "adwaita-dark";
+ # qt.style = "adwaita-dark";
   hardware.enableAllFirmware = true;
   boot.binfmt = {
     emulatedSystems = [ "aarch64-linux" "riscv64-linux" ];

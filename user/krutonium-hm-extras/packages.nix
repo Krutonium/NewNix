@@ -39,6 +39,7 @@ in
     pkgs.whitesur-icon-theme
     pkgs.ubuntu_font_family
     #pkgs.bibata-extra-cursors Broken 23.05 #TODO REPLACE
+    pkgs.simp1e-cursors;
     pkgs.gnomeExtensions.appindicator
     pkgs.gnome.dconf-editor
     pkgs.gnomeExtensions.arcmenu
