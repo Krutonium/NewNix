@@ -15,9 +15,6 @@ in
   networking.hostName = Hostname;
   boot.loader.grub.gfxmodeEfi = "1920x1080";
   boot.loader.grub.gfxpayloadEfi = "keep";
-  boot.kernelParams = [
-    "nouveau.config=NvBios=${../firmware/GTX_950M_OC.rom}"
-  ];
 
   imports = [ ./uMsiLaptop-hw.nix ];
   swapDevices = [
@@ -37,7 +34,7 @@ in
       plymouth_enabled = true;
     };
     desktop = {
-      desktop = "budgie";
+      desktop = "gnome";
       wayland = true;
     };
     audio = {
