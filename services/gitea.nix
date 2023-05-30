@@ -17,7 +17,7 @@ in
         service = {
           DISABLE_REGISTRATION = true;
           COOKIE_SECURE = true;
-        }
+        };
         indexer = {
           REPO_INDEXER_ENABLED = true;
         };
