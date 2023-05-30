@@ -32,5 +32,5 @@ with builtins;
       '';
     };
   };
-  imports = [ ./gnome.nix ./kde.nix ./pantheon.nix ./none.nix ]; # ./budgie.nix
+  imports = [ ./gnome.nix ./kde.nix ./pantheon.nix ./none.nix ./budgie.nix ];
 }
