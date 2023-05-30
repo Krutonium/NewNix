@@ -139,7 +139,7 @@ in
       torrent = true;
       ddns = false;
       nginx = true;
-      autoDeploy = true;
+      autoDeploy = false;
       sevendaystodie = false;
       headscale = false;
       tailscale = false;
