@@ -10,10 +10,12 @@ in
     networking.firewall.allowedUDPPortRanges = [{ from = 60000; to = 61000; }];
     services.openssh = {
       enable = true;
-      permitRootLogin = "yes";
-      passwordAuthentication = false;
       ports = [ 22 ];
-      forwardX11 = true;
+      settings = {
+        PermitRootLogin = "yes";
+        PasswordAuthentication = false;
+        X11Forwarding = true;
+      };
     };
     services.sshguard = {
       enable = cfg.sshGuard;

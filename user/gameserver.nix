@@ -8,7 +8,7 @@ in
   config = mkIf (cfg.gameserver == true) {
     users.users.gameserver = {
       uid = 500;
-      isNormalUser = true;
+      isSystemUser = true;
       home = "/srv/games/";
       createHome = true;
       group = "gameserver";

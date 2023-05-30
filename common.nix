@@ -15,7 +15,7 @@
   ];
   environment.sessionVariables.NIXPKGS_ALLOW_UNFREE = "1";
   boot = {
-    cleanTmpDir = true;
+    tmp.cleanOnBoot = true;
     kernel = {
       sysctl = {
         "vm.max_map_count" = 1000000;
@@ -24,7 +24,7 @@
     supportedFilesystems = [ "ntfs" ]; #Add explicit NTFS support
   };
   documentation.enable = true;
-  qt5.style = "adwaita-dark";
+  qt.style = "adwaita-dark";
   hardware.enableAllFirmware = true;
   boot.binfmt = {
     emulatedSystems = [ "aarch64-linux" "riscv64-linux" ];

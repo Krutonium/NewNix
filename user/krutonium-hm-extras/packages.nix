@@ -38,7 +38,7 @@ in
     pkgs.whitesur-gtk-theme
     pkgs.whitesur-icon-theme
     pkgs.ubuntu_font_family
-    pkgs.bibata-extra-cursors
+    #pkgs.bibata-extra-cursors Broken 23.05 #TODO REPLACE
     pkgs.gnomeExtensions.appindicator
     pkgs.gnome.dconf-editor
     pkgs.gnomeExtensions.arcmenu
@@ -48,7 +48,7 @@ in
     # Development
     openjdk8-low
     pkgs.openjdk17
-    pkgs.github-desktop
+    #pkgs.github-desktop Broken 23.05 OpenSSL_1_1 #TODO REPLACE OR FIX
     pkgs.hub
     pkgs.mono
     idea
