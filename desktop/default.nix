@@ -4,7 +4,7 @@ with builtins;
 {
   options.sys.desktop = {
     desktop = mkOption {
-      type = types.enum [ "gnome" "kde" "none" "pantheon" ]; # "budgie"
+      type = types.enum [ "gnome" "kde" "none" "pantheon" "budgie" ];
       default = "none";
       description = ''
         Your desktop of choice.
