@@ -9,7 +9,7 @@ in
     services = {
       xserver = {
         enable = true;
-        excludePackages = [ "xterm" ];
+        excludePackages = [ pkgs.xterm ];
         displayManager = {
           gdm = {
             enable = true;
