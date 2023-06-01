@@ -10,8 +10,11 @@ let
     wget -N https://github.com/Mic92/nix-index-database/releases/latest/download/index-x86_64-linux -O files
     echo Update Complete.
   '';
+  why-installed = pkgs.writeShellScriptBin "why-installed" ''
+    nix why-depends /run/current-system (command -v $@)
+  '';
 
 in
 {
-  environment.systemPackages = [ sshr updateindex ];
+  environment.systemPackages = [ sshr updateindex why-installed];
 }
