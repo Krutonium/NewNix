@@ -14,7 +14,7 @@ let
     nix why-depends /run/current-system $(command -v $1)
   '';
   where-installed = pkgs.writeShellScriptBin "where-installed" ''
-    nix eval --json "/etc/nixos#nixosConfigurations.$(hostname).options.environment.systemPackages.files" | jq -r ".[]" | xargs rg $1
+    nix eval --json "/home/krutonium/.#nixosConfigurations.$(hostname).options.environment.systemPackages.files" | jq -r ".[]" | xargs rg $1
   '';
 
 in
