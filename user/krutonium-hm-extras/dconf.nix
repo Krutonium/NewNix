@@ -143,7 +143,7 @@ in
       ];
     };
     "org/gnome/shell/extensions/burn-my-windows" = {
-      active-profile = "/home/krutonium/.config/burn-my-windows/profiles/1685604429464762.conf"
+      active-profile = "/home/krutonium/.config/burn-my-windows/profiles/1685604429464762.conf";
     };
     "org/gnome/shell/extensions/dash-to-panel" = {
       animate-appicon-hover-animation-extent = "{'RIPPLE': 4, 'PLANK': 4, 'SIMPLE': 1}";
