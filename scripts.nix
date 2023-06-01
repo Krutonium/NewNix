@@ -11,7 +11,7 @@ let
     echo Update Complete.
   '';
   why-installed = pkgs.writeShellScriptBin "why-installed" ''
-    nix why-depends /run/current-system (command -v $@)
+    nix why-depends /run/current-system $(command -v $1)
   '';
 
 in
