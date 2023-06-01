@@ -91,6 +91,7 @@ in
         "appindicatorsupport@rgcjonas.gmail.com"
         "no-overview@fthx"
         "gnome-extension-brightness@bruno.englert.gitlab.com"
+        "burn-my-windows@schneegans.github.com"
       ];
       # favorite-apps = [ "org.gnome.Nautilus.desktop" "firefox.desktop" "element-desktop.desktop" "discord.desktop" "telegramdesktop.desktop" "org.polymc.PolyMC.desktop" "com.obsproject.Studio.desktop" "idea-ultimate.desktop" "rider.desktop" ];
       favorite-apps = [ "org.gnome.Nautilus.desktop" "firefox.desktop" ];
@@ -141,7 +142,9 @@ in
         "rider.desktop"
       ];
     };
-
+    "org/gnome/shell/extensions/burn-my-windows" = {
+      active-profile = "/home/krutonium/.config/burn-my-windows/profiles/1685604429464762.conf"
+    };
     "org/gnome/shell/extensions/dash-to-panel" = {
       animate-appicon-hover-animation-extent = "{'RIPPLE': 4, 'PLANK': 4, 'SIMPLE': 1}";
       appicon-margin = 4;

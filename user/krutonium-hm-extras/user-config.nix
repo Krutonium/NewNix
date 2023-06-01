@@ -145,5 +145,18 @@
         bat $argv;
       end
     '';
+    ".config/burn-my-windows/1685604310611376.conf".text = ''
+       [burn-my-windows-profile]
+       profile-animation-type=1
+       fire-enable-effect=false
+       hexagon-enable-effect=true
+    '';
+    ".config/burn-my-windows/1685604429464762.conf".text = '' 
+      [burn-my-windows-profile]
+      profile-window-type=0
+      profile-animation-type=2
+      fire-enable-effect=false
+      snap-enable-effect=true
+    '';
   };
 }
