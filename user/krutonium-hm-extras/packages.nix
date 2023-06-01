@@ -33,7 +33,8 @@ in
     # Gnome Stuff
     pkgs.gnome.gnome-tweaks
     pkgs.gnomeExtensions.dash-to-panel
-    pkgs.whitesur-icon-theme
+    #pkgs.whitesur-icon-theme
+    pkgs.iconpack-obsidian
     pkgs.ubuntu_font_family
     pkgs.bibata-cursors
     pkgs.gnomeExtensions.appindicator
