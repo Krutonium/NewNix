@@ -33,6 +33,8 @@ in
     # Gnome Stuff
     pkgs.gnome.gnome-tweaks
     pkgs.gnomeExtensions.dash-to-panel
+    pkgs.gnomeExtensions.burn-my-windows
+    pkgs.gnomeExtensions.ddterm
     #pkgs.whitesur-icon-theme
     pkgs.iconpack-obsidian
     pkgs.ubuntu_font_family
