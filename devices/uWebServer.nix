@@ -133,7 +133,7 @@ in
       samba = true;
       satisfactoryServer = false;
       ssh = true;
-      sshGuard = false;
+      sshGuard = true;
       synapse = true;
       gitea = true;
       torrent = true;

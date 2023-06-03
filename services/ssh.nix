@@ -12,14 +12,18 @@ in
       enable = true;
       ports = [ 22 ];
       settings = {
-        PermitRootLogin = "yes";
+        PermitRootLogin = "no";
         PasswordAuthentication = false;
         X11Forwarding = true;
       };
+      extraConfig = ''
+      Match Address  10.0.0.*
+          PermitRootLogin yes
+      '';
     };
     services.sshguard = {
       enable = cfg.sshGuard;
-      whitelist = [ "192.168.0.0/16" ]; # whitelist your local network
+      whitelist = [ "10.0.0.0/16" ]; # whitelist your local network
     };
     programs.mosh.enable = true;
   };
