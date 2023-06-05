@@ -15,6 +15,17 @@ in
         PermitRootLogin = "no";
         PasswordAuthentication = false;
         X11Forwarding = true;
+        Ciphers = [ 
+          "hmac-sha2-512"
+          "hmac-sha2-256"
+          "umac-128@openssh.com"
+          "chacha20-poly1305@openssh.com"
+          "aes256-gcm@openssh.com"
+          "aes128-gcm@openssh.com"
+          "aes256-ctr"
+          "aes192-ctr"
+          "aes128-ctr"
+        ];
       };
       extraConfig = ''
       Match Address  10.0.0.*
