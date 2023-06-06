@@ -33,7 +33,7 @@
   #    device = "Games";
   #    fsType = "zfs";
   #  };
-  boot.zfs.extraPools = ["Games"];
+  boot.zfs.extraPools = [ "Games" ];
   swapDevices = [ ];
 
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

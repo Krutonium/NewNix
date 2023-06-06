@@ -64,16 +64,19 @@ in
   };
   boot.kernelModules = [ "mem_sleep_default=deep" ];
   specialisation."nVidia".configuration = {
+    boot.initrd.availableKernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
+    boot.blacklistedKernelModules = [ "nouveau" ];
     system.nixos.tags = [ "with-nvidia" ];
     system.nixos.label = "nVidia";
     sys.desktop.wayland = lib.mkForce false;
     services.xserver.videoDrivers = [ "nvidia" ];
     hardware.opengl.enable = true;
-    environment.systemPackages = [ nvidia-offload ];
+    environment.systemPackages = [ nvidia-offload nvidia ];
+    environment.sessionVariables.NIXOS_OZONE_WL = "1";
     hardware.nvidia = {
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
+      package = config.boot.kernelPackages.nvidiaPackages.latest;
       modesetting.enable = true;
-      open = true;
+      open = false;
       powerManagement.enable = true;
       prime = {
         offload.enable = true;
