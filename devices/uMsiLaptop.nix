@@ -71,7 +71,7 @@ in
     sys.desktop.wayland = lib.mkForce false;
     services.xserver.videoDrivers = [ "nvidia" ];
     hardware.opengl.enable = true;
-    environment.systemPackages = [ nvidia-offload nvidia ];
+    environment.systemPackages = [ nvidia-offload config.boot.kernelPackages.nvidiaPackages.latest ];
     environment.sessionVariables.NIXOS_OZONE_WL = "1";
     hardware.nvidia = {
       package = config.boot.kernelPackages.nvidiaPackages.latest;
