@@ -5,6 +5,7 @@
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master"; # NixOS hardware channel
     home-manager.url = "github:nix-community/home-manager/release-23.05"; # Home Manager release channel
+    nbfc.url = "github:nbfc-linux/nbfc-linux";
     update = {
       url = "github:ryantm/nixpkgs-update";
     };
@@ -40,7 +41,8 @@
                 overlay-unstable
                 overlay-master
                 overlay-deploy-cs
-                #overlay-nixpkgs-update
+                overlay-nixpkgs-update
+                overlay-nbfc-linux
               ];
           }
         )
@@ -62,6 +64,10 @@
       # overlay for deploy-cs
       overlay-deploy-cs = final: prev: {
         deploy-cs = deploy-cs.defaultPackage.x86_64-linux;
+      };
+      # overlay for nbfc-linux
+      overlay-nbfc-linux = final: prev: {
+        nbfc-linux = nbfc-linux.defaultPackage.x86_64-linux;
       };
       # overlay for nixpkgs-update
       overlay-nixpkgs-update = final: prev: {

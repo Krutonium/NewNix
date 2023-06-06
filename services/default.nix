@@ -143,6 +143,13 @@ with builtins;
         Home Assistant
       '';
     };
+    nbfc = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        Notebook Fan Control
+      '';
+    };
   };
   imports = [
     ./plex.nix
@@ -162,5 +169,6 @@ with builtins;
     ./headscale.nix
     ./tailscale.nix
     ./home_assistant.nix
+    ./nbfc.nix
   ];
 }

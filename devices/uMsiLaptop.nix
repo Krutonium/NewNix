@@ -53,6 +53,7 @@ in
       #noisetorchDevice = "alsa_input.pci-0000_00_1b.0.analog-stereo";
       tailscale = false;
       tailscaleUseExitNode = false;
+      nbfc = true;
     };
     steam = {
       steam = true;
