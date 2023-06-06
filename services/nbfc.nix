@@ -16,6 +16,7 @@ in
       script = "${pkgs.nbfc-linux}/${command}";
       wantedBy = [ "multi-user.target" ];
     };
+    environment.systemPackages = [ pkgs.nbfc-linux ];
   };
 }
 
