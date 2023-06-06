@@ -17,8 +17,8 @@ in
         X11Forwarding = true;
       };
       extraConfig = ''
-      Match Address  10.0.0.*
-          PermitRootLogin yes
+        Match Address  10.0.0.*
+            PermitRootLogin yes
       '';
     };
     services.sshguard = {

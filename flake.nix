@@ -5,7 +5,10 @@
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master"; # NixOS hardware channel
     home-manager.url = "github:nix-community/home-manager/release-23.05"; # Home Manager release channel
-    nbfc.url = "github:nbfc-linux/nbfc-linux";
+    nbfc = {
+      url = "github:nbfc-linux/nbfc-linux";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     update = {
       url = "github:ryantm/nixpkgs-update";
     };
@@ -14,7 +17,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-master, nixos-hardware, home-manager, deploy-cs, update }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-master, nixos-hardware, home-manager, deploy-cs, update, nbfc }@inputs:
     let
       # This is a Generic Block of St00f
       system = "x86_64-linux";
@@ -67,7 +70,7 @@
       };
       # overlay for nbfc-linux
       overlay-nbfc-linux = final: prev: {
-        nbfc-linux = nbfc-linux.defaultPackage.x86_64-linux;
+        nbfc-linux = nbfc.defaultPackage.x86_64-linux;
       };
       # overlay for nixpkgs-update
       overlay-nixpkgs-update = final: prev: {
