@@ -13,7 +13,7 @@ in
       description = "NoteBook FanControl service";
       serviceConfig.Type = "simple"; #related upstream config: https://github.com/nbfc-linux/nbfc-linux/blob/main/etc/systemd/system/nbfc_service.service.in
       path = [ pkgs.kmod pkgs.nbfc-linux ];
-      script = "${pkgs.nbfc-linux}${command}";
+      script = "${pkgs.nbfc-linux}/${command}";
       wantedBy = [ "multi-user.target" ];
     };
   };

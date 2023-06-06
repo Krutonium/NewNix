@@ -64,7 +64,9 @@
     },
     "nbfc": {
       "inputs": {
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
         "utils": "utils"
       },
       "locked": {
@@ -163,22 +165,6 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1684938444,
-        "narHash": "sha256-47gVpnmQivtYCueVdHiam3yjloJK2NxgvLLOGkxLKmw=",
-        "owner": "nixOS",
-        "repo": "nixpkgs",
-        "rev": "d6568f85178f773ac73642e3b2c3435e01847805",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixOS",
-        "ref": "release-23.05",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_3": {
-      "locked": {
         "lastModified": 1685865905,
         "narHash": "sha256-XJZ/o17eOd2sEsGif+/MQBnfa2DKmndWgJyc7CWajFc=",
         "owner": "NixOS",
@@ -193,7 +179,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_4": {
+    "nixpkgs_3": {
       "locked": {
         "lastModified": 1672428209,
         "narHash": "sha256-eejhqkDz2cb2vc5VeaWphJz8UXNuoNoM8/Op8eWv2tQ=",
@@ -213,7 +199,7 @@
         "home-manager": "home-manager",
         "nbfc": "nbfc",
         "nixos-hardware": "nixos-hardware",
-        "nixpkgs": "nixpkgs_3",
+        "nixpkgs": "nixpkgs_2",
         "nixpkgs-master": "nixpkgs-master",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "update": "update"
@@ -237,7 +223,7 @@
     "update": {
       "inputs": {
         "mmdoc": "mmdoc",
-        "nixpkgs": "nixpkgs_4"
+        "nixpkgs": "nixpkgs_3"
       },
       "locked": {
         "lastModified": 1681047420,
