@@ -3,7 +3,7 @@ with lib;
 with builtins;
 let
   cfg = config.sys.services;
-  myUser = "Krutonium";
+  myUser = "krutonium";
   command = "bin/nbfc_service --config-file '/home/${myUser}/.config/nbfc.json'";
 in
 {
