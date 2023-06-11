@@ -55,7 +55,7 @@ in
       headscale = false;
       tailscale = false;
       tailscaleUseExitNode = false;
-      homeAssistant = true;
+      homeAssistant = false;
     };
     virtualization = {
       server = "virtd";
@@ -67,4 +67,26 @@ in
   services.cron.systemCronJobs = [
     "0 6 * * * root systemctl reboot"
   ];
+
+  systemd.services.duckdns = {
+    description = "DuckDNS dynamic DNS updater.";
+    serviceConfig.Type = "oneshot";
+    after = [ network.target ];
+    wantedBy = [ multi-user.target ];
+    path = [ pkgs.curl ];
+    script = ''
+      token=$(cat /persist/duckdns_token.txt)
+      ipv4=$(curl -s ipv4.icanhazip.com)
+      ipv6=$(curl -s ipv6.icanhazip.com)
+      url=\"https://www.duckdns.org/update?domains=krutonium&token=$token&ip=$ipv4&ipv6=$ipv6\"
+      curl $url
+    '';
+    enabled = true;
+  };
+
+  systemd.timers.duckdns = {
+    wantedBy = [ "timers.target" ];
+    partOf = [ "duckdns.service" ];
+    timerConfig.OnCalendar = [ "*:0/5" ];
+  };
 }
