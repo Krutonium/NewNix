@@ -8,7 +8,6 @@
     "net.ipv6.conf.all.use_tempaddr" = 0;
   };
   networking = {
-    hostName = Hostname;
     nameservers = [ "8.8.8.8" "2001:4860:4860:0:0:0:0:8888" ];
 
     bridges = {
@@ -87,3 +86,4 @@
       }
     ];
   };
+}
