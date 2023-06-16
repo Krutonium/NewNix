@@ -1,7 +1,8 @@
 { config, pkgs, ... }:
 let
   kernel = config.boot.zfs.package.latestCompatibleLinuxPackages;
-  video = config.boot.kernelPackages.nvidiaPackages.latest;
+  #video = config.boot.kernelPackages.nvidiaPackages.latest;
+  video = with pkgs; master.linuxPackages.nvidia_x11_beta;
   zenpower = config.boot.kernelPackages.zenpower;
   Hostname = "uGamingPC";
 in
