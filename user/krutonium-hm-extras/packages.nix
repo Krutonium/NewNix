@@ -51,6 +51,7 @@ in
     #pkgs.github-desktop Broken 23.05 OpenSSL_1_1 #TODO REPLACE OR FIX
     pkgs.hub
     pkgs.mono
+    pkgs.ghc
     idea
     ideaScript
     rider

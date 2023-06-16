@@ -6,7 +6,7 @@ let
 in
 {
   system.autoUpgrade.allowReboot = true;
-  networking.firewall.allowedTCPPorts = [ 25565 25566 50056 ];
+  networking.firewall.allowedTCPPorts = [ 25565 25566 50056 9000 ];
   networking.firewall.allowedUDPPorts = [ 50056 67 68 ];
   networking.hostName = Hostname;
   boot = {
