@@ -1,12 +1,12 @@
 { config, pkgs, ... }:
 let
-  #kernel = config.boot.zfs.package.latestCompatibleLinuxPackages;
-  kernel = with pkgs; linuxPackages.zfs.latestCompatibleLinuxPackages;
-  video = with pkgs; master.linuxPackages.nvidia_x11_beta;
+  kernel = config.boot.zfs.package.latestCompatibleLinuxPackages;
+  video = config.boot.kernelPackages.nvidiaPackages.latest;
   zenpower = config.boot.kernelPackages.zenpower;
   Hostname = "uGamingPC";
 in
 {
+  
   boot.kernelPackages = kernel;
   boot.loader.grub.gfxmodeEfi = "1920x1080";
   boot.loader.grub.gfxpayloadEfi = "keep";
