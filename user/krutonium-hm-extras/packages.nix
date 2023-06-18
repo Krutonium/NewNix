@@ -30,6 +30,9 @@ in
     pkgs.firefox-wayland
     pkgs.tor-browser-bundle-bin
 
+    #KDE Stuff
+    pkgs.yakuake
+
     # Gnome Stuff
     pkgs.gnome.gnome-tweaks
     pkgs.gnomeExtensions.dash-to-panel
