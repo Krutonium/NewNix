@@ -106,6 +106,19 @@
     DefaultTimeoutStopSec=10s
   '';
   boot.kernelParams = [ "mitigations=off" ];
+  
+  nixpkgs.overlays = [(final: prev: {
+    mesa-fix = let
+      nixpkgs-fix = builtins.fetchTarball {
+        url = "https://github.com/nixos/nixpkgs/tarball/19be5ac0119740b050ddcfd8608691ebf65abf9e";
+        sha256 = "0z38lf6gq8ciq5nlw9ziryi9j9klhwzz2xims10pgcwllbn3acw7";
+      };
+    in (import nixpkgs-fix { inherit (pkgs) system; }).mesa;
+  } )];
+  hardware.opengl = {
+    package = pkgs.mesa-fix.drivers;
+    package32 = pkgs.pkgsi686Linux.mesa-fix.drivers;
+  };
 
   # DO NOT CHANGE THIS
   system.stateVersion = "22.05";
