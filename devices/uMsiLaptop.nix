@@ -15,7 +15,7 @@ in
   networking.hostName = Hostname;
   boot.loader.grub.gfxmodeEfi = "1920x1080";
   boot.loader.grub.gfxpayloadEfi = "keep";
-
+  environment.systemPackages = [ kernel.perf ];
   imports = [ ./uMsiLaptop-hw.nix ];
   swapDevices = [
     {
@@ -71,7 +71,7 @@ in
     sys.desktop.wayland = lib.mkForce false;
     services.xserver.videoDrivers = [ "nvidia" ];
     hardware.opengl.enable = true;
-    environment.systemPackages = [ nvidia-offload config.boot.kernelPackages.nvidiaPackages.latest ];
+    environment.systemPackages = [ nvidia-offload kernel.nvidiaPackages.latest ];
     environment.sessionVariables.NIXOS_OZONE_WL = "1";
     hardware.nvidia = {
       package = config.boot.kernelPackages.nvidiaPackages.latest;
