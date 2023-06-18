@@ -16,8 +16,11 @@ let
   where-installed = pkgs.writeShellScriptBin "where-installed" ''
     nix eval --json "/home/krutonium/NixOS/.#nixosConfigurations.$(hostname).options.environment.systemPackages.files" | jq -r ".[]" | xargs rg $1
   '';
+  zink = pkgs.writeShellScriptBin "zink" ''
+    MESA_LOADER_DRIVER_OVERRIDE=zink $@
+  '';
 
 in
 {
-  environment.systemPackages = [ sshr updateindex why-installed where-installed pkgs.jq ];
+  environment.systemPackages = [ sshr updateindex why-installed where-installed pkgs.jq zink];
 }
