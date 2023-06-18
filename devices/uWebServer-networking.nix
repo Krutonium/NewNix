@@ -1,8 +1,8 @@
 { config, pkgs, lib, ... }:
 {
   boot.kernel.sysctl = {
-    "net.ipv4.conf.all.forwarding" = true;
-    "net.ipv6.conf.all.forwarding" = true;
+    "net.ipv4.conf.all.forwarding" = 1;
+    "net.ipv6.conf.all.forwarding" = 1;
     "net.ipv6.conf.all.accept_ra" = 0;
     "net.ipv6.conf.all.autoconf" = 0;
     "net.ipv6.conf.all.use_tempaddr" = 0;
@@ -21,15 +21,15 @@
       externalInterface = "enp4s0";
       internalInterfaces = [ "bridge" ];
       internalIPs = [ "10.0.0.0/24" ];
-      forwardPorts = [{
-        sourcePort = "1:65535";
-        loopbackIPs = [ "99.248.154.165" ];
-        destination = "10.0.0.1:1-65535";
-      }];
+      #forwardPorts = [{
+      #  sourcePort = "1:65535";
+      #  loopbackIPs = [ "99.248.154.165" ];
+      #  destination = "10.0.0.1:1-65535";
+      #}];
     };
     interfaces = {
       "enp4s0" = {
-        ipv4.addresses = [{ address = "192.168.0.10"; prefixLength = 24; }];
+        ipv4.addresses = [{ address = "99.248.72.15"; prefixLength = 23; }];
         useDHCP = true;
       };
       "bridge" = {
