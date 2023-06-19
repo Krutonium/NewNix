@@ -8,6 +8,7 @@
     "net.ipv6.conf.all.use_tempaddr" = 0;
   };
   networking = {
+    # We're not using NetworkManager, as it apparently kinda just dies when given access to the raw internet.
     networkmanager.enable = lib.mkForce false;
     useNetworkd = true;
     nameservers = [ "8.8.8.8" "2001:4860:4860:0:0:0:0:8888" ];
@@ -23,24 +24,18 @@
       externalInterface = "enp4s0";
       internalInterfaces = [ "bridge" ];
       internalIPs = [ "10.0.0.0/24" ];
-      #forwardPorts = [{
-      #  sourcePort = "1:65535";
-      #  loopbackIPs = [ "99.248.154.165" ];
-      #  destination = "10.0.0.1:1-65535";
-      #}];
     };
     interfaces = {
       "enp4s0" = {
-        #ipv4.addresses = [{ address = "99.248.72.15"; prefixLength = 23; }];
+        #We're getting the IP dynamically from the ISP.
         useDHCP = true;
       };
       "bridge" = {
+        # For now we're setting this statically, but I don't think there is any reason we couldn't use DHCP here.
         ipv4.addresses = [{ address = "10.0.0.1"; prefixLength = 24; }];
         useDHCP = false;
       };
     };
-    #defaultGateway = { address = "192.168.0.1"; interface = Internet_In; };
-    #defaultGateway6 = { address = "fe80::1"; interface = Internet_In; };
     tempAddresses = "disabled";
   };
   services.dhcpd4 = {
