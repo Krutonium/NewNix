@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 {
   imports = [
-    ./krutonium-hm-extras/dconf.nix
+    #./krutonium-hm-extras/dconf.nix
     ./krutonium-hm-extras/git.nix
     ./krutonium-hm-extras/user-config.nix
     ./krutonium-hm-extras/packages.nix

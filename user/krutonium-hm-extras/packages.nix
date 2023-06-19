@@ -32,7 +32,8 @@ in
 
     #KDE Stuff
     pkgs.yakuake
-
+    pkgs.tokodon
+    
     # Gnome Stuff
     pkgs.gnome.gnome-tweaks
     pkgs.gnomeExtensions.dash-to-panel
