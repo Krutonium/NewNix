@@ -8,6 +8,8 @@
     "net.ipv6.conf.all.use_tempaddr" = 0;
   };
   networking = {
+    networkmanager.enable = lib.mkForce false;
+    useNetworkd = true;
     nameservers = [ "8.8.8.8" "2001:4860:4860:0:0:0:0:8888" ];
 
     bridges = {
@@ -29,7 +31,7 @@
     };
     interfaces = {
       "enp4s0" = {
-        ipv4.addresses = [{ address = "99.248.72.15"; prefixLength = 23; }];
+        #ipv4.addresses = [{ address = "99.248.72.15"; prefixLength = 23; }];
         useDHCP = true;
       };
       "bridge" = {

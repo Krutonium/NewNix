@@ -115,10 +115,10 @@
       };
     in (import nixpkgs-fix { inherit (pkgs) system; }).mesa;
   } )];
-  hardware.opengl = {
-    package = pkgs.mesa-fix.drivers;
-    package32 = pkgs.pkgsi686Linux.mesa-fix.drivers;
-  };
+  #hardware.opengl = {
+  #  package = pkgs.mesa-fix.drivers;
+  #  package32 = pkgs.pkgsi686Linux.mesa-fix.drivers;
+  #};
 
   # DO NOT CHANGE THIS
   system.stateVersion = "22.05";
