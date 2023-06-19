@@ -65,9 +65,9 @@ in
       rubberdragontrain = true;
     };
   };
-  services.cron.systemCronJobs = [
-    "0 6 * * * root systemctl reboot"
-  ];
+  #services.cron.systemCronJobs = [
+  #  "0 6 * * * root systemctl reboot"
+  #];
 
   systemd.services.duckdns = {
     description = "DuckDNS dynamic DNS updater.";
