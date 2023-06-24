@@ -46,6 +46,7 @@ in
     pkgs.nixpkgs-review
     pkgs.unrar
     pkgs.zfs
+    pkgs.ncurses
   ];
 
 }

@@ -63,6 +63,12 @@ in
     };
   };
   boot.kernelModules = [ "mem_sleep_default=deep" ];
+  # Experiment
+  hardware.bumblebee = {
+    enable = true;
+    driver = "nvidia";
+    pmMethod = "bbswitch";
+  };
   specialisation."nVidia".configuration = {
     boot.initrd.availableKernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
     boot.blacklistedKernelModules = [ "nouveau" ];
