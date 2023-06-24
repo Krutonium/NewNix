@@ -7,6 +7,8 @@
     "net.ipv6.conf.all.autoconf" = 0;
     "net.ipv6.conf.all.use_tempaddr" = 0;
   };
+  systemd.network.enable = true;
+  services.resolved.enable = true;
   networking = {
     # We're not using NetworkManager, as it apparently kinda just dies when given access to the raw internet.
     networkmanager.enable = lib.mkForce false;

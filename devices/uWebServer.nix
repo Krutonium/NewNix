@@ -72,7 +72,7 @@ in
   systemd.services.duckdns = {
     description = "DuckDNS dynamic DNS updater.";
     serviceConfig.Type = "oneshot";
-    after = [ "network.target" ];
+    after = [ "network-online.target" "sys-subsystem-net-devices-enp4s0.device" ];
     wantedBy = [ "multi-user.target" ];
     path = [ pkgs.curl ];
     script = ''
