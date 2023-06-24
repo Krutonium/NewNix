@@ -42,13 +42,16 @@
   services.dnsmasq = {
     enable = true;
     alwaysKeepRunning = true;
-    settings = {
+    extraConfig = ''
       interface = "bridge";
       domain = "krutonium.ca, 10.0.0.1";
-      dhcp-range = ["10.0.0.10, 10.0.0.254, 5m" "::f,::ff,constructor:bridge"];
-      dhcp-option = [ "3,10.0.0.1" "6,1.1.1.1,8.8.8.8" "121,10.0.0.0/24,10.0.0.1"];
-      dhcp-host = [ "F8:16:54:A5:A5:10.0.0.4" ];
-    };
+      dhcp-range = "10.0.0.10, 10.0.0.254, 5m";
+      dhcp-option = "3,10.0.0.1";
+      dhcp-option = "6,1.1.1.1,8.8.8.8";
+      dhcp-option ="121,10.0.0.0/24,10.0.0.1";
+      dhcp-range = "::f,::ff,constructor:bridge";
+      dhcp-host = "F8:16:54:A5:A5:10.0.0.4";
+    '';
   };
 
 
