@@ -40,7 +40,7 @@
   };
 
   services.dnsmasq = {
-    enable = true;
+    enable = false;
     alwaysKeepRunning = true;
     extraConfig = ''
       interface = bridge;
@@ -57,7 +57,7 @@
 
 
   services.dhcpd4 = {
-    enable = false;
+    enable = true;
     interfaces = [ "bridge" ];
     extraConfig = ''
       option domain-name-servers 8.8.8.8, 1.1.1.1, 8.8.4.4, 1.0.0.1;
