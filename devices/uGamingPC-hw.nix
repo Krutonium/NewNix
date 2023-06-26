@@ -19,7 +19,7 @@
   systemd.services.zfs-mount.enable = true;
   fileSystems."/" =
     {
-      device = "/dev/disk/by-uuid/951a0148-0822-4aea-ba95-75012cb64027";
+      device = "/dev/disk/by-uuid/0e42e4fb-ff8c-4ba2-aba3-5239546fcdd5";
       fsType = "ext4";
     };
 
