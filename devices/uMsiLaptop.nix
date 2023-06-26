@@ -67,7 +67,7 @@ in
   hardware.bumblebee = {
     enable = true;
     driver = "nvidia";
-    pmMethod = "bbswitch";
+    pmMethod = "switcheroo";
   };
   specialisation."nVidia".configuration = {
     boot.initrd.availableKernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
