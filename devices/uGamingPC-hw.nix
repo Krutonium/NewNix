@@ -13,10 +13,8 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
-  boot.supportedFilesystems = [ "ntfs" "zfs" ];
-  boot.zfs.forceImportRoot = false;
+  boot.supportedFilesystems = [ "ntfs" ];
   networking.hostId = "ad53f8bc";
-  systemd.services.zfs-mount.enable = true;
   fileSystems."/" =
     {
       device = "/dev/disk/by-uuid/0e42e4fb-ff8c-4ba2-aba3-5239546fcdd5";
