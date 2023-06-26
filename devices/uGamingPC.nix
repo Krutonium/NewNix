@@ -1,13 +1,13 @@
 { config, pkgs, ... }:
 let
-  kernel = with pkgs; master.linuxPackages_latest;
-  video = kernel.nvidia_x11_beta;
+  #kernel = with pkgs; master.linuxPackages_latest;
+  video = config.boot.kernelPackages.nvidia_x11_beta;
   zenpower = config.boot.kernelPackages.zenpower;
   Hostname = "uGamingPC";
 in
 {
   
-  boot.kernelPackages = kernel;
+  #boot.kernelPackages = kernel;
   boot.loader.grub.gfxmodeEfi = "1920x1080";
   boot.loader.grub.gfxpayloadEfi = "keep";
   networking.hostName = Hostname;
@@ -38,6 +38,7 @@ in
   boot.blacklistedKernelModules = [ "k10temp" ];
   environment.systemPackages = [
     video
+    pkgs.bcachefs-tools
   ];
   programs.wireshark.enable = true;
   hardware.nvidia.modesetting.enable = true;

@@ -13,11 +13,11 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
-  boot.supportedFilesystems = [ "ntfs" ];
+  boot.supportedFilesystems = [ "ntfs" "bcachefs" ];
   networking.hostId = "ad53f8bc";
   fileSystems."/" =
     {
-      device = "/dev/disk/by-uuid/0e42e4fb-ff8c-4ba2-aba3-5239546fcdd5";
+      device = "/dev/disk/by-uuid/e918ba08-3692-42a9-b53a-ee6d04877088";
       fsType = "ext4";
     };
 
