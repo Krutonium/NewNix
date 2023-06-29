@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }:
 let
-  kernel = pkgs.unstable.linuxPackages_zen;
+  kernel = pkgs.linuxPackages_latest;
   Hostname = "uMsiLaptop";
   nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
     export __NV_PRIME_RENDER_OFFLOAD=1
@@ -67,7 +67,7 @@ in
   hardware.bumblebee = {
     enable = true;
     driver = "nvidia";
-    pmMethod = "switcheroo";
+    pmMethod = "bbswitch";
   };
   specialisation."nVidia".configuration = {
     boot.initrd.availableKernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
