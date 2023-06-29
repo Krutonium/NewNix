@@ -78,11 +78,11 @@ in
     script = ''
       token=$(cat /persist/duckdns_token.txt)
       ipv4=$(curl -s ipv4.icanhazip.com)
-      ipv6=$(curl -s ipv6.icanhazip.com)
+      #ipv6=$(curl -s ipv6.icanhazip.com)
       url4=$(echo https://www.duckdns.org/update?domains=krutonium\&token=$token\&ipv4=$ipv4)
-      url6=$(echo https://www.duckdns.org/update?domains=krutonium\&token=$token\&ipv6=$ipv6)
+      #url6=$(echo https://www.duckdns.org/update?domains=krutonium\&token=$token\&ipv6=$ipv6)
       curl -k -s $url4
-      curl -k -s $url6
+      #curl -k -s $url6
     '';
   };
 
