@@ -31,5 +31,6 @@ in
         enable = true;
       };
     };
+    environment.systemPackages = [ pkgs.flameshot ];
   };
 }
