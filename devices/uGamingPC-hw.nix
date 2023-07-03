@@ -29,7 +29,7 @@
   fileSystems."/games" =
     {
       device = "/dev/disk/by-id/ata-TOSHIBA_MQ01ABB200_X3TKP7X4T:/dev/disk/by-id/ata-ST9500325AS_S2W07D8T:/dev/disk/by-id/ata-Samsung_SSD_870_EVO_1TB_S6PTNZ0R613083A";
-      fsType = "bcachefs";
+      #fsType = "bcachefs";
     };
   boot.zfs.extraPools = [ "Games" ];
   swapDevices = [ ];
