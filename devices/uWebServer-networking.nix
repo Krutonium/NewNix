@@ -8,12 +8,12 @@
     "net.ipv6.conf.all.use_tempaddr" = 0;
   };
   systemd.network.enable = true;
-  #services.resolved.enable = true;
+  services.resolved.enable = false;
   networking = {
     # We're not using NetworkManager, as it apparently kinda just dies when given access to the raw internet.
     networkmanager.enable = lib.mkForce false;
     useNetworkd = true;
-    nameservers = [ "8.8.8.8" "2001:4860:4860:0:0:0:0:8888" ];
+    #nameservers = [ "10.0.0.1" ]; #Configured in Common
 
     bridges = {
       "bridge" = {
@@ -41,18 +41,40 @@
     tempAddresses = "disabled";
   };
 
+  networking.firewall.interfaces."bridge".allowedTCPPorts = [ 53 67 ];
+  networking.firewall.interfaces."bridge".allowedUDPPorts = [ 53 67 ];
   services.dnsmasq = {
     enable = true;
     alwaysKeepRunning = true;
     extraConfig = ''
-      interface=bridge;
+      interface=bridge
       domain=krutonium.ca,10.0.0.1
       dhcp-range=10.0.0.10,10.0.0.254,5m
       dhcp-option=3,10.0.0.1
       dhcp-option=6,1.1.1.1,8.8.8.8
       dhcp-option=121,10.0.0.0/24,10.0.0.1
       dhcp-range=::f,::ff,constructor:bridge
-      dhcp-host=F8:16:54:A5:A5:10.0.0.4
+      
+      #uWebServer is hardcoded 10.0.0.1 above
+      #uGamingPC
+      dhcp-host=18:C0:4D:04:05:E7,10.0.0.2
+      #uRenderPC
+      dhcp-host=30:9c:23:d3:06:fd,10.0.0.3
+      #uMsiLaptop
+      dhcp-host=F8:16:54:A5:A5:91,10.0.0.4
+      #uHPLaptop
+      dhcp-host=10:1F:74:0F:5A:E1,10.0.0.5
+      #uMacBookPro
+      dhcp-host=00:1B:63:95:F1:2D,10.0.0.6
+      #Archer AP
+      dhcp-host=14:EB:B6:58:A1:D4,10.0.0.7
+
+      # DNS Stuff
+      listen-address=::1,127.0.0.1,10.0.0.1
+      expand-hosts
+      server=1.1.1.1
+      server=8.8.8.8
+      address=/krutonium.ca/10.0.0.1
     '';
   };
 
