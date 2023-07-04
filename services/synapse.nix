@@ -25,7 +25,7 @@ in
           turn_shared_secret = "openrelayprojectsecret";
           listeners = [{
             port = 8008;
-            bind_addresses = [ "127.0.0.1" ]; # only local, handled by nginx reverse-proxy
+            bind_addresses = [ "127.0.0.1" "::1" ]; # only local, handled by nginx reverse-proxy
             type = "http";
             tls = false;
             x_forwarded = true;

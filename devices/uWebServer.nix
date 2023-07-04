@@ -84,6 +84,7 @@ in
       curl -k -s $url4
       #curl -k -s $url6
     '';
+    #Disabled IPv6 here because my ISP seems to be handing out broken routes.
   };
 
   systemd.timers.duckdns = {
