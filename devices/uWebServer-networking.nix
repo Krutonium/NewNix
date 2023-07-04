@@ -3,7 +3,8 @@
   boot.kernel.sysctl = {
     "net.ipv4.conf.all.forwarding" = 1;
     "net.ipv6.conf.all.forwarding" = 1;
-    "net.ipv6.conf.all.accept_ra" = 1;
+    "net.ipv6.conf.all.accept_ra" = 0;
+    "net.ipv6.conf.all.request_prefix" = 0;
     "net.ipv6.conf.all.autoconf" = 0;
     "net.ipv6.conf.all.use_tempaddr" = 0;
   };
@@ -26,6 +27,8 @@
       externalInterface = "enp4s0";
       internalInterfaces = [ "bridge" ];
       internalIPs = [ "10.0.0.0/24" ];
+      enableIPv6 = true;
+      internalIPv6s = [ "2001:db8:1234:5678::/64" ];
     };
     interfaces = {
       "enp4s0" = {
@@ -40,6 +43,16 @@
     };
     tempAddresses = "disabled";
   };
+  
+  services.radvd = {
+    enable = true;
+    config = ''
+      interface bridge {
+        AdvSendAdvert on;
+        prefix 2001:db8:1234:5678::/64 { };
+      };
+    '';
+  };
 
   networking.firewall.interfaces."bridge".allowedTCPPorts = [ 53 67 ];
   networking.firewall.interfaces."bridge".allowedUDPPorts = [ 53 67 ];
@@ -53,8 +66,7 @@
       dhcp-option=3,10.0.0.1
       dhcp-option=6,1.1.1.1,8.8.8.8
       dhcp-option=121,10.0.0.0/24,10.0.0.1
-      dhcp-range=::f,::ff,constructor:bridge
-      
+
       #uWebServer is hardcoded 10.0.0.1 above
       #uGamingPC
       dhcp-host=18:C0:4D:04:05:E7,10.0.0.2
@@ -68,6 +80,7 @@
       dhcp-host=00:1B:63:95:F1:2D,10.0.0.6
       #Archer AP
       dhcp-host=14:EB:B6:58:A1:D4,10.0.0.7
+
 
       # DNS Stuff
       listen-address=::1,127.0.0.1,10.0.0.1
