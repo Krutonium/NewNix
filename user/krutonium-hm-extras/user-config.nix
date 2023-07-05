@@ -125,8 +125,8 @@
       background_color=020202
       position=top-left
       text_color=ffffff
-      round_corners=0
-      toggle_hud=Shift_R+F12
+      round_corners=1
+      toggle_hud=Home
       toggle_logging=Shift_L+F2
       upload_log=F5
       output_folder=/home/krutonium
