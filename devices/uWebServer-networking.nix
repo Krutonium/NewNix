@@ -80,6 +80,8 @@
       dhcp-host=00:1B:63:95:F1:2D,10.0.0.6
       #Archer AP
       dhcp-host=14:EB:B6:58:A1:D4,10.0.0.7
+      #Brother Printer
+      dhcp-host=b0:68:e6:97:f4:37,10.0.0.8
 
 
       # DNS Stuff
