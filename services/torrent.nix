@@ -6,13 +6,14 @@ let
 in
 {
   config = mkIf (cfg.torrent == true) {
-    networking.firewall.allowedTCPPorts = [ 58846 ];
-    networking.firewall.allowedUDPPorts = [ 58846 ];
+    networking.firewall.allowedTCPPorts = [ 50023 ];
+    networking.firewall.allowedUDPPorts = [ 50023 ];
+    networking.firewall.interfaces."bridge".allowedTCPPorts = [ 8112 ]
     services.deluge = {
-      package = pkgs.unstable.deluge;
+      package = pkgs.deluge;
       openFirewall = true;
       enable = true;
-      dataDir = "/transmission";
+      dataDir = "/media2/transmission";
       declarative = true;
       authFile = "/persist/deluge.auth";
       config = {
@@ -34,7 +35,7 @@ in
       web = {
         enable = true;
         port = 8112;
-        openFirewall = true;
+        openFirewall = false;
       };
     };
   };
