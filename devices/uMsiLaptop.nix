@@ -11,7 +11,7 @@ let
 in
 {
   boot.kernelPackages = kernel;
-  boot.initrd.availableKernelModules = [ "nouveau" ];
+  boot.initrd.availableKernelModules = [ "nvidia" ];
   networking.hostName = Hostname;
   boot.loader.grub.gfxmodeEfi = "1920x1080";
   boot.loader.grub.gfxpayloadEfi = "keep";
@@ -69,6 +69,7 @@ in
     driver = "nvidia";
     pmMethod = "bbswitch";
   };
+  boot.blacklistedKernelModules = [ "nouveau" ];
   specialisation."nVidia".configuration = {
     boot.initrd.availableKernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
     boot.blacklistedKernelModules = [ "nouveau" ];
