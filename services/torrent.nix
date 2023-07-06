@@ -8,7 +8,7 @@ in
   config = mkIf (cfg.torrent == true) {
     networking.firewall.allowedTCPPorts = [ 50023 ];
     networking.firewall.allowedUDPPorts = [ 50023 ];
-    networking.firewall.interfaces."bridge".allowedTCPPorts = [ 8112 ]
+    networking.firewall.interfaces."bridge".allowedTCPPorts = [ 8112 ];
     services.deluge = {
       package = pkgs.deluge;
       openFirewall = true;
