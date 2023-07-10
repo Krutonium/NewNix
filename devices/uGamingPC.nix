@@ -52,7 +52,7 @@ in
     };
     desktop = {
       desktop = "kde";
-      wayland = true;
+      wayland = false;
     };
     custom = {
       ddcutil = true;

@@ -4,7 +4,7 @@
 
 # To run monado + SteamVR you need to use steam-run to patch the SteamVR
 # drivers:
-# steam-run ./.local/share/Steam/steamapps/common/SteamVR/bin/vrpathreg.sh adddriver ${monado}/share/steamvr-monado
+# steam-run ./.local/share/Steam/steamapps/common/SteamVR/bin/vrpathreg.sh adddriver ${monado}/share/steamvr-wmonado
 #
 # SteamVR needs CAP_SYS_NICE+ep to be able to work properly:
 # sudo setcap 'cap_sys_nice+ep' /home/shiryel/bwrap/steam/.local/share/Steam/steamapps/common/SteamVR/bin/linux64/vrcompositor-launcher
@@ -63,8 +63,9 @@ let
   };
 
   patch-vr = pkgs.writeShellScriptBin "patch-vr" ''
-    steam-run ./.local/share/Steam/steamapps/common/SteamVR/bin/vrpathreg.sh adddriver ${monado}/share/steamvr-monado
-    '';
+    steam-run ~/.local/share/Steam/steamapps/common/SteamVR/bin/vrpathreg.sh removedriverswithname monado
+    steam-run ~/.local/share/Steam/steamapps/common/SteamVR/bin/vrpathreg.sh adddriver ${monado}/share/steamvr-monado
+  '';
 
   monado = (pkgs.unstable.monado.overrideAttrs (old: {
     src = pkgs.unstable.fetchFromGitLab {
@@ -106,23 +107,25 @@ in
       openhmd
       steam-run
       (steam.override {
-        extraPkgs = pkgs: [ glxinfo jre8 ];
+        extraPkgs = pkgs: [ glxinfo jre8 monado ];
       }).run
       patch-vr
     ];
-    #services.udev.packages = [ rift_s_udev ];
+    services.udev.packages = [ rift_s_udev ];
     programs.steam = {
       enable = true;
       remotePlay.openFirewall = true;
     };
-    services.xserver.config = ''
-      Option "AllowHMD" "yes"
-    '';
-    #services.xserver.deviceSection = ''
-    #  Identifier             "Device0"
-    #  Driver                 "nvidia"#
-
-    #Option "AllowHMD"      "yes"
+    #services.xserver.config = ''
+    #  Option "AllowHMD" "yes"
     #'';
+    services.xserver.deviceSection = ''
+      #Identifier             "Dev0"
+      Driver                 "nvidia"
+      VendorName             "NVIDIA Corporation"
+      BoardName              "NVIDIA GeForce RTX 3070"
+      Option                 "AllowHMD" "yes"
+    '';
+    services.xserver.logFile = null;
   };
 }
