@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }:
 let
-  kernel = pkgs.linuxPackages_latest;
+  kernel = pkgs.linuxPackages_zen;
   Hostname = "uMsiLaptop";
   nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
     export __NV_PRIME_RENDER_OFFLOAD=1
@@ -11,7 +11,7 @@ let
 in
 {
   boot.kernelPackages = kernel;
-  boot.initrd.availableKernelModules = [ "nvidia" ];
+  #boot.initrd.availableKernelModules = [ "nvidia" ];
   networking.hostName = Hostname;
   boot.loader.grub.gfxmodeEfi = "1920x1080";
   boot.loader.grub.gfxpayloadEfi = "keep";

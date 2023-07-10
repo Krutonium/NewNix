@@ -29,6 +29,7 @@
   documentation.enable = true;
  # qt.style = "adwaita-dark";
   hardware.enableAllFirmware = true;
+  hardware.bluetooth.enable = true;
   boot.binfmt = {
     emulatedSystems = [ "aarch64-linux" "riscv64-linux" ];
   };
