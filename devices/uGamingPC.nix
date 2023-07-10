@@ -42,6 +42,14 @@ in
   ];
   programs.wireshark.enable = true;
   hardware.nvidia.modesetting.enable = true;
+  services.xserver.deviceSection = ''
+    #Identifier             "Dev0"
+    Driver                 "nvidia"
+    VendorName             "NVIDIA Corporation"
+    BoardName              "NVIDIA GeForce RTX 3070"
+    Option                 "AllowHMD" "yes"
+  '';
+  services.xserver.logFile = null;
   #Fix Discord and other Chromium based Bullshit
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   sys = {

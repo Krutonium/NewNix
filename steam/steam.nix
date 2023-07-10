@@ -116,16 +116,5 @@ in
       enable = true;
       remotePlay.openFirewall = true;
     };
-    #services.xserver.config = ''
-    #  Option "AllowHMD" "yes"
-    #'';
-    services.xserver.deviceSection = ''
-      #Identifier             "Dev0"
-      Driver                 "nvidia"
-      VendorName             "NVIDIA Corporation"
-      BoardName              "NVIDIA GeForce RTX 3070"
-      Option                 "AllowHMD" "yes"
-    '';
-    services.xserver.logFile = null;
   };
 }
