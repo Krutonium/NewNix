@@ -62,6 +62,10 @@ let
     '';
   };
 
+  patch-vr = pkgs.writeShellScriptBin "patch-vr" ''
+    steam-run ./.local/share/Steam/steamapps/common/SteamVR/bin/vrpathreg.sh adddriver ${monado}/share/steamvr-monado
+    '';
+
   monado = (pkgs.unstable.monado.overrideAttrs (old: {
     src = pkgs.unstable.fetchFromGitLab {
       domain = "gitlab.freedesktop.org";
@@ -104,6 +108,7 @@ in
       (steam.override {
         extraPkgs = pkgs: [ glxinfo jre8 ];
       }).run
+      patch-vr
     ];
     #services.udev.packages = [ rift_s_udev ];
     programs.steam = {
