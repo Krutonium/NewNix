@@ -98,21 +98,21 @@ in
 {
   config = mkIf (cfg.steam == true) {
     environment.systemPackages = with pkgs;[
-      #monado
-      #openhmd
+      monado
+      openhmd
       steam-run
-      #(steam.override {
-      #  extraPkgs = pkgs: [ glxinfo jre8 ];
-      #}).run
+      (steam.override {
+        extraPkgs = pkgs: [ glxinfo jre8 ];
+      }).run
     ];
     #services.udev.packages = [ rift_s_udev ];
     programs.steam = {
       enable = true;
       remotePlay.openFirewall = true;
     };
-    #services.xserver.config = ''
-    #  Option \"AllowHMD\" \"yes\"
-    #'';
+    services.xserver.config = ''
+      Option "AllowHMD" "yes"
+    '';
     #services.xserver.deviceSection = ''
     #  Identifier             "Device0"
     #  Driver                 "nvidia"#
