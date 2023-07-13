@@ -44,6 +44,7 @@ in
       coredns = false;
       samba = true;
       satisfactoryServer = false;
+      unturnedServer = false;
       ssh = true;
       sshGuard = true;
       synapse = true;

@@ -38,6 +38,13 @@ with builtins;
         Satisfactory Server
       '';
     };
+    unturnedServer = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        Unturned Server
+      '';
+    };
     ssh = mkOption {
       type = types.bool;
       default = true;
@@ -157,6 +164,7 @@ with builtins;
     ./coredns.nix
     ./samba.nix
     ./satisfactory-server.nix
+    ./unturned-server.nix
     ./ssh.nix
     ./synapse.nix
     ./nginx.nix
