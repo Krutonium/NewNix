@@ -19,6 +19,7 @@ in
 {
   fonts.fonts = [ fonts pkgs.rPackages.fontawesome ];
   environment.systemPackages = [
+    pkgs.xorg.xf86inputmouse
     pkgs.rPackages.fontawesome
     pkgs.nano #Editor
     pkgs.git
