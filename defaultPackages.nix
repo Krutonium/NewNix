@@ -23,6 +23,7 @@ in
     pkgs.nano #Editor
     pkgs.git
     pkgs.tldr #Replace man
+    pkgs.screen
     pkgs.colmena
     pkgs.tmux
     pkgs.file
