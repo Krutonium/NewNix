@@ -63,6 +63,7 @@ in
     };
   };
   boot.kernelModules = [ "mem_sleep_default=deep" ];
+  boot.kernelParams = [ "acpi_osi=!" "acpi_osi=\"Windows 2009\"" ];
   # Experiment
   hardware.bumblebee = {
     enable = true;
