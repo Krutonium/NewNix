@@ -15,7 +15,7 @@ in
   networking.hostName = Hostname;
   boot.loader.grub.gfxmodeEfi = "1920x1080";
   boot.loader.grub.gfxpayloadEfi = "keep";
-  environment.systemPackages = [ kernel.perf pkgs.firefoxOverlay.firefox-nightly-bin];
+  environment.systemPackages = [ kernel.perf ];
   imports = [ ./uMsiLaptop-hw.nix ];
   swapDevices = [
     {
