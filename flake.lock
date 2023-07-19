@@ -21,22 +21,6 @@
         "type": "github"
       }
     },
-    "firefox": {
-      "locked": {
-        "lastModified": 1687771476,
-        "narHash": "sha256-TSpqz6qYVRoqkEdOCawEQ4/cWt/4pracmvw17HK1tgE=",
-        "owner": "mozilla",
-        "repo": "nixpkgs-mozilla",
-        "rev": "3a44b8783514e7d6db4b63df96071b6c2b014b07",
-        "type": "github"
-      },
-      "original": {
-        "owner": "mozilla",
-        "ref": "master",
-        "repo": "nixpkgs-mozilla",
-        "type": "github"
-      }
-    },
     "home-manager": {
       "inputs": {
         "nixpkgs": "nixpkgs"
@@ -149,11 +133,11 @@
     },
     "nixpkgs-master": {
       "locked": {
-        "lastModified": 1689742610,
-        "narHash": "sha256-OmkVRvF5mBo9exgbTJiyJZW7MkautIIrRdTIHnekzPw=",
+        "lastModified": 1689799581,
+        "narHash": "sha256-zYqJzBK/3BJEG6Gt62MYuxXRqJyTpxuPQ8nw4jqa6+E=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "93da236e055c2cde21d10226bdba6a510bec5f65",
+        "rev": "dbd0bd32f956a4f8a64857da4bba61313477714b",
         "type": "github"
       },
       "original": {
@@ -165,11 +149,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1689534811,
-        "narHash": "sha256-jnSUdzD/414d94plCyNlvTJJtiTogTep6t7ZgIKIHiE=",
+        "lastModified": 1689679375,
+        "narHash": "sha256-LHUC52WvyVDi9PwyL1QCpaxYWBqp4ir4iL6zgOkmcb8=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "6cee3b5893090b0f5f0a06b4cf42ca4e60e5d222",
+        "rev": "684c17c429c42515bafb3ad775d2a710947f3d67",
         "type": "github"
       },
       "original": {
@@ -181,11 +165,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1689605451,
-        "narHash": "sha256-u2qp2k9V1smCfk6rdUcgMKvBj3G9jVvaPHyeXinjN9E=",
+        "lastModified": 1689680872,
+        "narHash": "sha256-brNix2+ihJSzCiKwLafbyejrHJZUP0Fy6z5+xMOC27M=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "53657afe29748b3e462f1f892287b7e254c26d77",
+        "rev": "08700de174bc6235043cb4263b643b721d936bdb",
         "type": "github"
       },
       "original": {
@@ -212,7 +196,6 @@
     "root": {
       "inputs": {
         "deploy-cs": "deploy-cs",
-        "firefox": "firefox",
         "home-manager": "home-manager",
         "nbfc": "nbfc",
         "nixos-hardware": "nixos-hardware",
