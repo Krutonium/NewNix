@@ -15,7 +15,7 @@ in
   networking.hostName = Hostname;
   boot.loader.grub.gfxmodeEfi = "1920x1080";
   boot.loader.grub.gfxpayloadEfi = "keep";
-  environment.systemPackages = [ kernel.perf ];
+  environment.systemPackages = [ kernel.perf pkgs.firefoxOverlay.firefox-nightly-bin];
   imports = [ ./uMsiLaptop-hw.nix ];
   swapDevices = [
     {
@@ -67,7 +67,6 @@ in
     system.nixos.tags = [ "with-bumblebee" ];
     system.nixos.label = "bumblebee";
     services.xserver.videoDrivers = [ "modesetting" "nvidia" ];
-    boot.kernelParams = [ "acpi_osi=!" "acpi_osi=\"Windows 2009\"" ];
     hardware.bumblebee = {
       enable = true;
       driver = "nvidia";
