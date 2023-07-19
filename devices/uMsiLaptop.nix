@@ -13,7 +13,6 @@ in
   boot.kernelPackages = kernel;
   #boot.initrd.availableKernelModules = [ "nvidia" ];
   networking.hostName = Hostname;
-  services.xserver.videoDrivers = [ "modesetting" "nvidia" ];
   boot.loader.grub.gfxmodeEfi = "1920x1080";
   boot.loader.grub.gfxpayloadEfi = "keep";
   environment.systemPackages = [ kernel.perf ];
@@ -64,14 +63,18 @@ in
     };
   };
   boot.kernelModules = [ "mem_sleep_default=deep" ];
-  boot.kernelParams = [ "acpi_osi=!" "acpi_osi=\"Windows 2009\"" ];
-  # Experiment
-  hardware.bumblebee = {
-    enable = true;
-    driver = "nvidia";
-    pmMethod = "bbswitch";
+  specialisation."bumblebee".configuration = {
+    system.nixos.tags = [ "with-bumblebee" ];
+    system.nixos.label = "bumblebee";
+    services.xserver.videoDrivers = [ "modesetting" "nvidia" ];
+    boot.kernelParams = [ "acpi_osi=!" "acpi_osi=\"Windows 2009\"" ];
+    hardware.bumblebee = {
+      enable = true;
+      driver = "nvidia";
+      pmMethod = "bbswitch";
+    };
+    boot.blacklistedKernelModules = [ "nouveau" ];
   };
-  boot.blacklistedKernelModules = [ "nouveau" ];
   specialisation."nVidia".configuration = {
     boot.initrd.availableKernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
     boot.blacklistedKernelModules = [ "nouveau" ];
