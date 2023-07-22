@@ -111,6 +111,7 @@ in
     pkgs.libreoffice
     pkgs.mate.engrampa
     pkgs.fzf
+    pkgs.fsearch
 
     # Terminal
     pkgs.nixpkgs-review
