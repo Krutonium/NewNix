@@ -28,17 +28,17 @@
     };
   fileSystems."/games/SSD" =
     {
-      device = "/dev/disk/by-id/ata-Samsung_SSD_870_EVO_1TB_S6PTNZ0R613083A";
+      device = "/dev/disk/by-uuid/5c1a2a62-f86a-42a6-b980-d7b08faca798";
       fsType = "ext4";
     };
   fileSystems."/games/500G" = 
     {
-      device = "/dev/disk/by-id/ata-ST9500325AS_S2W07D8T";
+      device = "/dev/disk/by-uuid/fcac9ff4-d9d9-4d95-98e0-41c903923dbf";
       fsType = "ext4";
     };
   fileSystems."/games/2TB" = 
     {
-      device = "/dev/disk/by-id/ata-TOSHIBA_MQ01ABB200_X3TKP7X4T";
+      device = "/dev/disk/by-uuid/9dc02eac-67cb-46b2-9332-dfecdf50e4a2";
       fsType = "ext4";
     };
 
