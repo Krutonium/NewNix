@@ -26,11 +26,22 @@
       device = "/dev/disk/by-uuid/6E00-6801";
       fsType = "vfat";
     };
-  #fileSystems."/games" =
-  #  {
-  #    device = "/dev/disk/by-id/ata-TOSHIBA_MQ01ABB200_X3TKP7X4T:/dev/disk/by-id/ata-ST9500325AS_S2W07D8T:/dev/disk/by-id/ata-Samsung_SSD_870_EVO_1TB_S6PTNZ0R613083A";
-  #    fsType = "mount.bcachefs";
-  #  };
+  fileSystems."/games/SSD" =
+    {
+      device = "/dev/disk/by-id/ata-Samsung_SSD_870_EVO_1TB_S6PTNZ0R613083A";
+      fsType = "ext4";
+    };
+  fileSystems."/games/500G" = 
+    {
+      device = "/dev/disk/by-id/ata-ST9500325AS_S2W07D8T";
+      fsType = "ext4";
+    };
+  fileSystems."/games/2TB" = 
+    {
+      device = "/dev/disk/by-id/ata-TOSHIBA_MQ01ABB200_X3TKP7X4T";
+      fsType = "ext4";
+    };
+
   boot.zfs.extraPools = [ "Games" ];
   swapDevices = [ ];
 
