@@ -157,6 +157,13 @@ with builtins;
         Notebook Fan Control
       '';
     };
+    cockpit = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        Dashboard
+      '';
+    };
   };
   imports = [
     ./plex.nix
@@ -178,5 +185,6 @@ with builtins;
     ./tailscale.nix
     ./home_assistant.nix
     ./nbfc.nix
+    ./cockpit.nix
   ];
 }
