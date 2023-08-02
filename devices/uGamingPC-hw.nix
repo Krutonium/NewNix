@@ -13,7 +13,7 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
-  boot.supportedFilesystems = [ "ntfs" "bcachefs" ];
+  boot.supportedFilesystems = [ "ntfs" ];
   networking.hostId = "ad53f8bc";
   fileSystems."/" =
     {
