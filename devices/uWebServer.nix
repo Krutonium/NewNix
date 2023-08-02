@@ -58,6 +58,7 @@ in
       tailscale = false;
       tailscaleUseExitNode = false;
       homeAssistant = false;
+      cockpit = true;
     };
     virtualization = {
       server = "virtd";
