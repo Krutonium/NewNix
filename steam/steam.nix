@@ -110,6 +110,10 @@ in
         extraPkgs = pkgs: [ glxinfo jre8 monado ];
       }).run
       patch-vr
+      xdotool
+      xxd
+      xwinfo
+      yad
     ];
     services.udev.packages = [ rift_s_udev ];
     programs.steam = {
