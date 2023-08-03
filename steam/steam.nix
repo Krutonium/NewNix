@@ -114,6 +114,7 @@ in
       xxd
       xwinfo
       yad
+      protonup-qt
     ];
     services.udev.packages = [ rift_s_udev ];
     programs.steam = {
