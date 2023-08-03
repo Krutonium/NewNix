@@ -112,7 +112,6 @@ in
       patch-vr
       xdotool
       xxd
-      xwinfo
       yad
       protonup-qt
     ];
