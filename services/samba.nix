@@ -29,7 +29,7 @@ in
           browsable = true;
         };
         LinuxIsos = {
-          path = "/transmission";
+          path = "/media2/transmission";
           browsable = true;
         };
         Krutonium = {
