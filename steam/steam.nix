@@ -111,9 +111,9 @@ in
       }).run
       patch-vr
       xdotool
-      xxd
-      yad
       protonup-qt
+      proton-caller
+      protontricks
     ];
     services.udev.packages = [ rift_s_udev ];
     programs.steam = {
