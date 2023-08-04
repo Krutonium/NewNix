@@ -180,9 +180,7 @@ in
   programs.obs-studio = {
     enable = true;
     plugins = [
-      pkgs.obs-studio-plugins.obs-backgroundremoval
-      pkgs.obs-studio-plugins.obs-multi-rtmp
-      pkgs.master.obs-studio-plugins.obs-teleport
+      pkgs.obs-studio-plugins.obs-teleport
     ];
   };
   programs.mangohud = {
