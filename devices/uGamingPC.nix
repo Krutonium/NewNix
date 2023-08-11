@@ -29,8 +29,19 @@ in
     motherboard = "amd";
     package = pkgs.unstable.openrgb;
   };
-  services.xserver.videoDrivers = [ "nvidia" ];
-  #hardware.nvidia.open = false;
+  services.xserver = {
+    videoDrivers = [ "nvidia" ];
+    deviceSection = ''
+        Driver                 "nvidia"
+        VendorName             "NVIDIA Corporation"
+        BoardName              "NVIDIA GeForce RTX 3070"
+        Option                 "AllowHMD" "yes"
+      '';
+    logFile = null;
+    displayManager.setupCommands = ''
+      xrandr --output HDMI-O --mode 1920x1080 --pos 3840x0 --rotate normal --output DP-0 --mode 1920x1080 --pos 1920x0 --rotate normal --output DP-2 --mode 1920x1080 --pos 0x0 --rotate normal
+    '';
+    };
   hardware.opengl.enable = true;
   hardware.nvidia.package = video;
   boot.initrd.availableKernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
@@ -41,14 +52,6 @@ in
   ];
   programs.wireshark.enable = true;
   hardware.nvidia.modesetting.enable = true;
-  services.xserver.deviceSection = ''
-    #Identifier             "Dev0"
-    Driver                 "nvidia"
-    VendorName             "NVIDIA Corporation"
-    BoardName              "NVIDIA GeForce RTX 3070"
-    Option                 "AllowHMD" "yes"
-  '';
-  services.xserver.logFile = null;
   #Fix Discord and other Chromium based Bullshit
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   sys = {
