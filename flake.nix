@@ -27,7 +27,7 @@
           # This fixes things that don't use Flakes, but do want to use NixPkgs.
           nix.registry.nixos.flake = inputs.self;
           environment.etc."nix/inputs/nixpkgs".source = nixpkgs.outPath;
-          nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
+          nix.nixPath = [ "nixpkgs=${nixpkgs.outPath}" ];
         }
         home-manager.nixosModules.home-manager
         {
