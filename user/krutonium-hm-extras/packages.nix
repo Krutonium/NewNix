@@ -149,7 +149,7 @@ in
     pkgs.higan
     pkgs.unstable.heroic
     pkgs.unstable.cemu
-    pkgs.unstable.citra
+    #pkgs.unstable.citra
     pkgs.steam-run
     #pkgs.yuzu-ea
     #yuzu
