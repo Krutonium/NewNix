@@ -4,6 +4,11 @@ let
     url = https://downloads.ndi.tv/SDK/NDI_SDK_Linux/Install_NDI_SDK_v5_Linux.tar.gz;
     sha256 = "sha256:0lsiw523sqr6ydwxnikyijayfi55q5mzvh1zi216swvj5kfbxl00";
   };
+  OOTROM = builtins.fetchurl {
+    url = https://archive.org/download/ship-of-harkinian/ZELOOTD.zip/PAL%20GC.z64;
+    sha256 = "sha256:1lim6has47jjhh1wgmfxpwawc5s22g245wp53gczihxa4wypk27p";
+    name = "PAL_GC.z64";
+  };
   openjdk8-low = pkgs.openjdk8.overrideAttrs (oldAttrs: { meta.priority = 10; });
   #dotnetCombined = with pkgs.dotnetCorePackages; combinePackages [ sdk_7_0 sdk_6_0 ];
 
@@ -21,6 +26,12 @@ let
       ${pkgs.steam-run}/bin/steam-run ${pkgs.jetbrains.rider}/bin/rider
     '';
   rider = pkgs.unstable.jetbrains.rider.overrideAttrs (oldAttrs: { meta.priority = 10; });
+  shipwright = pkgs.unstable.shipwright.override { oot = {
+                                                     enable = true;
+                                                     variant = "pal_gc";
+                                                     rom = OOTROM;
+                                                   };
+                                                 };
 in
 {
   #home.file.".net".source = dotnetCombined;
@@ -35,19 +46,19 @@ in
     pkgs.tokodon
     
     # Gnome Stuff
-    pkgs.gnome.gnome-tweaks
-    pkgs.gnomeExtensions.dash-to-panel
-    pkgs.gnomeExtensions.burn-my-windows
-    pkgs.gnomeExtensions.ddterm
+    #pkgs.gnome.gnome-tweaks
+    #pkgs.gnomeExtensions.dash-to-panel
+    #pkgs.gnomeExtensions.burn-my-windows
+    #pkgs.gnomeExtensions.ddterm
     #pkgs.whitesur-icon-theme
-    pkgs.iconpack-obsidian
-    pkgs.ubuntu_font_family
-    pkgs.bibata-cursors
-    pkgs.gnomeExtensions.appindicator
-    pkgs.gnome.dconf-editor
-    pkgs.gnomeExtensions.arcmenu
-    pkgs.gnomeExtensions.no-overview
-    pkgs.gnomeExtensions.adjust-display-brightness
+    #pkgs.iconpack-obsidian
+    #pkgs.ubuntu_font_family
+    #pkgs.bibata-cursors
+    #pkgs.gnomeExtensions.appindicator
+    #pkgs.gnome.dconf-editor
+    #pkgs.gnomeExtensions.arcmenu
+    #pkgs.gnomeExtensions.no-overview
+    #pkgs.gnomeExtensions.adjust-display-brightness
 
     # Development
     openjdk8-low
@@ -138,6 +149,8 @@ in
     pkgs.mesa-demos
     pkgs.unstable.oversteer
     pkgs.appimage-run
+    shipwright
+
 
     #pkgs.unstable.runescape #doesn't currently build
     pkgs.gamescope
