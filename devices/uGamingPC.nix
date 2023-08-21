@@ -6,7 +6,7 @@ let
   Hostname = "uGamingPC";
 in
 {
-  
+  boot.kernelParams = "drm.edid_firmware=/home/krutonium/NixOS/firmware/Displays.bin";
   boot.kernelPackages = kernel;
   boot.loader.grub.gfxmodeEfi = "1920x1080";
   boot.loader.grub.gfxpayloadEfi = "keep";
