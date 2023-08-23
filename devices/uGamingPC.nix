@@ -6,7 +6,14 @@ let
   Hostname = "uGamingPC";
 in
 {
-  boot.kernelParams = "drm.edid_firmware=/home/krutonium/NixOS/firmware/Displays.bin";
+  #hardware.firmware = [(
+  #  pkgs.runCommandNoCC "edidFW" { } ''
+  #    mkdir -p $out/lib/firmware/edid
+  #    cp ${../firmware/Displays.bin} $out/lib/firmware/edid/Displays.bin
+  #  ''
+  #)];
+  #boot.kernelParams = [ "drm.edid_firmware=${../firmware/Displays.bin}" ];
+     
   boot.kernelPackages = kernel;
   boot.loader.grub.gfxmodeEfi = "1920x1080";
   boot.loader.grub.gfxpayloadEfi = "keep";
@@ -36,6 +43,7 @@ in
         VendorName             "NVIDIA Corporation"
         BoardName              "NVIDIA GeForce RTX 3070"
         Option                 "AllowHMD" "yes"
+        Option                 "ModeValidation" "AllowNonEdidModes"
       '';
     logFile = null;
     displayManager.setupCommands = ''
