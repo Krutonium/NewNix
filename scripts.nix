@@ -19,8 +19,15 @@ let
   zink = pkgs.writeShellScriptBin "zink" ''
     MESA_LOADER_DRIVER_OVERRIDE=zink $@
   '';
-
+  update = pkgs.writeShellScriptBin "update" ''
+    cd ~/NixOS
+    git push
+    git pull
+    nix flake update --commit-lock-file
+    git push
+    sudo nixos-rebuild --flake .#$(uname -r) switch
+  '';
 in
 {
-  environment.systemPackages = [ sshr updateindex why-installed where-installed pkgs.jq zink];
+  environment.systemPackages = [ sshr updateindex why-installed where-installed pkgs.jq zink update ];
 }
