@@ -25,7 +25,7 @@ let
     git pull
     nix flake update --commit-lock-file
     git push
-    sudo nixos-rebuild --flake .#$(uname -r) switch
+    sudo nixos-rebuild --flake .#$(uname -n) switch
   '';
 in
 {
