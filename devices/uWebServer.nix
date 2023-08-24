@@ -7,7 +7,8 @@ in
 {
   system.autoUpgrade.allowReboot = true;
   networking.firewall.allowedTCPPorts = [ 25565 25566 50056 9000 ];
-  networking.firewall.allowedUDPPorts = [ 50056 67 68 ];
+  networking.firewall.allowedUDPPorts = [ 50056 67 68 10578 ];
+  # 10578 is Skyrim Together
   networking.hostName = Hostname;
   boot = {
     kernelPackages = kernel;
@@ -70,7 +71,8 @@ in
   #services.cron.systemCronJobs = [
   #  "0 6 * * * root systemctl reboot"
   #];
-
+  virtualisation.docker.enable = true;
+  users.users.krutonium.extraGroups = [ "docker" ];
   systemd.services.duckdns = {
     description = "DuckDNS dynamic DNS updater.";
     serviceConfig.Type = "oneshot";
