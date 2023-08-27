@@ -26,9 +26,13 @@
         dhcpV6Config = {
           WithoutRA = "solicit";
           PrefixDelegationHint = "::/56";
+          ForceDHCPv6PDOtherInformation="yes";
         };
         ipv6SendRAConfig = {
           Managed = true;
+        };
+        ipv6AcceptRAConfig = {
+          DHCPv6Client = "yes";
         };
       };
     };
