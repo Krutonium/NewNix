@@ -41,6 +41,69 @@
       device = "/dev/disk/by-uuid/9dc02eac-67cb-46b2-9332-dfecdf50e4a2";
       fsType = "ext4";
     };
+  fileSystems."/games/Remote1" =
+      {
+        device = "krutonium@krutonium.ca:/media/SteamLibrary";
+        fsType = "sshfs";
+        options =
+          [ "allow_other"          # for non-root access
+            "default_permissions"
+            "idmap=user"
+            "_netdev"              # requires network to mount
+            "x-systemd.automount"  # mount on demand
+            "uid=1000"             # id -a
+            "gid=100"
+            "compression=yes"      # Compression should be fine given thehost machine
+            "max_conns=20"         # MOAR THREADS (when needed)
+            "IdentityFile=/home/krutonium/.ssh/id_ed25519"
+            # Handle connection drops better
+            "ServerAliveInterval=2"
+            "ServerAliveCountMax=2"
+            "reconnect"
+          ];
+      };
+  fileSystems."/games/Remote2" =
+      {
+        device = "krutonium@krutonium.ca:/media2/SteamLibrary";
+        fsType = "sshfs";
+        options =
+          [ "allow_other"          # for non-root access
+            "default_permissions"
+            "idmap=user"
+            "_netdev"              # requires network to mount
+            "x-systemd.automount"  # mount on demand
+            "uid=1000"             # id -a
+            "gid=100"
+            "compression=yes"      # Compression should be fine given thehost machine
+            "max_conns=20"         # MOAR THREADS (when needed)
+            "IdentityFile=/home/krutonium/.ssh/id_ed25519"
+            # Handle connection drops better
+            "ServerAliveInterval=2"
+            "ServerAliveCountMax=2"
+            "reconnect"
+          ];
+      };
+  fileSystems."/uWebServer" =
+      {
+        device = "krutonium@krutonium.ca:/";
+        fsType = "sshfs";
+        options =
+          [ "allow_other"          # for non-root access
+            "default_permissions"
+            "idmap=user"
+            "_netdev"              # requires network to mount
+            "x-systemd.automount"  # mount on demand
+            "uid=1000"             # id -a
+            "gid=100"
+            "compression=yes"      # Compression should be fine given thehost machine
+            "max_conns=20"         # MOAR THREADS (when needed)
+            "IdentityFile=/home/krutonium/.ssh/id_ed25519"
+            # Handle connection drops better
+            "ServerAliveInterval=2"
+            "ServerAliveCountMax=2"
+            "reconnect"
+          ];
+      };
 
   boot.zfs.extraPools = [ "Games" ];
   swapDevices = [ ];
