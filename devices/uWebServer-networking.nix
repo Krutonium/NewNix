@@ -13,7 +13,7 @@
     enable = true;
     networks = {
       "wan" = {
-        matchConfig.Name = "enp4s0";
+        matchConfig.MACAddress = "40:8d:5c:54:89:96";
         networkConfig = {
           IPv6AcceptRA = true;
           IPv6SendRA = true;
