@@ -3,7 +3,7 @@
   boot.kernel.sysctl = {
     "net.ipv4.conf.all.forwarding" = 1;
     "net.ipv6.conf.all.forwarding" = 1;
-    "net.ipv6.conf.all.accept_ra" = 1;
+    "net.ipv6.conf.all.accept_ra" = 2;
     "net.ipv6.conf.all.request_prefix" = 1;
     "net.ipv6.conf.all.autoconf" = 1;
     "net.ipv6.conf.all.use_tempaddr" = 0;
