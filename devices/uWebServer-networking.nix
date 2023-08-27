@@ -15,8 +15,9 @@
       "wan" = {
         matchConfig.Name = "enp4s0";
         networkConfig = {
-          DHCPPrefixDelegation = true;
-          IPv6SendRA = true;
+          IPv6AcceptRA=true;
+          DHCP = "ipv6";
+          KeepConfiguration = true;
         };
         dhcpPrefixDelegationConfig = {
           SubnetId = "64";
@@ -26,7 +27,10 @@
         };
         dhcpV6Config = {
           WithoutRA = "solicit";
-          PrefixDelegationHint = "::/56";
+          PrefixDelegationHint = "::/64";
+        };
+        ipv6SendRAConfig = {
+          Managed = true;
         };
       };
     };
