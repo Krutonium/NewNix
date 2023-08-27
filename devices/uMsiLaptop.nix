@@ -56,11 +56,14 @@ in
       nbfc = false;
     };
     steam = {
-      steam = true;
+      steam = false;
     };
     virtualization = {
       server = "virtd";
     };
+  };
+  programs.steam = {
+    enable = true;
   };
   boot.kernelModules = [ "mem_sleep_default=deep" ];
   specialisation."bumblebee".configuration = {
