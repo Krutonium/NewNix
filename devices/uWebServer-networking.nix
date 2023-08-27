@@ -21,15 +21,6 @@
         dhcpPrefixDelegationConfig = {
           SubnetId = "64";
         };
-        ipv6SendRAConfig = {
-          RouterLifetimeSec = 1800;
-          EmitDNS = true;
-          DNS = "::1";
-          EmitDomains = true;
-          Domains = [
-            "krutonium.ca"
-          ];
-        };
         linkConfig = {
           RequiredForOnline = "routable";
         };
