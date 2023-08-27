@@ -13,11 +13,11 @@
     enable = true;
     networks = {
       "wan" = {
-        matchConfig.MACAddress = "40:8d:5c:54:89:96";
+        matchConfig.PermanentMACAddress = "40:8d:5c:54:89:96";
         networkConfig = {
           IPv6AcceptRA = true;
           IPv6SendRA = true;
-          DHCP = "ipv6";
+          DHCP = "yes";
           KeepConfiguration = true;
         };
         linkConfig = {
@@ -25,7 +25,7 @@
         };
         dhcpV6Config = {
           WithoutRA = "solicit";
-          PrefixDelegationHint = "::/64";
+          PrefixDelegationHint = "::/56";
         };
         ipv6SendRAConfig = {
           Managed = true;
