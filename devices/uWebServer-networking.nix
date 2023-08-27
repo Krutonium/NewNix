@@ -17,7 +17,7 @@
           ConfigureWithoutCarrier = true;
           DHCPPrefixDelegation = true;
           IPv6AcceptRA = true;
-          IPv6SendRA = false;
+          IPv6SendRA = true;
         };
       };
     };
