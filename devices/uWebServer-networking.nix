@@ -14,13 +14,11 @@
     networks = {
       "wan" = {
         matchConfig.Name = "enp4s0";
+        linkConfig.RequiredForOnline = "routable";
         networkConfig = {
           IPv6AcceptRA=true;
           DHCP = "ipv6";
           KeepConfiguration = true;
-        };
-        dhcpPrefixDelegationConfig = {
-          SubnetId = "64";
         };
         linkConfig = {
           RequiredForOnline = "routable";
