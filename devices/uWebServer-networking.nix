@@ -8,6 +8,7 @@
     "net.ipv6.conf.all.autoconf" = 1;
     "net.ipv6.conf.all.use_tempaddr" = 0;
   };
+  networking.firewall.allowedUDPPorts = [ 546 ]; #DHCPv6-PD
   systemd.network = {
     enable = true;
     networks = {
@@ -16,11 +17,23 @@
         networkConfig = {
           ConfigureWithoutCarrier = true;
           DHCPPrefixDelegation = true;
-          IPv6AcceptRA = true;
+          IPv6AcceptRA = false;
           IPv6SendRA = true;
         };
         dhcpPrefixDelegationConfig = {
           SubnetId = "64";
+        };
+        ipv6SendRAConfig = {
+          RouterLifetimeSec = 1800;
+          EmitDNS = true;
+          DNS = "::1";
+          EmitDomains = true;
+          Domains = [
+            "krutonium.ca"
+          ];
+        };
+        linkConfig = {
+          RequiredForOnline = "routable";
         };
       };
     };
