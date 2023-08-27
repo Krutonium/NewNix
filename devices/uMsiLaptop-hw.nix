@@ -13,7 +13,7 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
-
+  system.fsPackages = [ pkgs.sshfs ];
   fileSystems."/" =
     {
       device = "/dev/disk/by-uuid/a387c76d-cc06-435a-8278-f81fba61e0e4";
@@ -30,6 +30,28 @@
     {
       device = "/dev/disk/by-uuid/4d4d93e3-8b59-45b2-b29a-53759dcc9dd4";
       fsType = "ext4";
+    };
+  fileSystems."/uWebServer" =
+    {
+      device = "krutonium@krutonium.ca:/";
+      #mountPoint = "";
+      fsType = "sshfs";
+      options =
+        [ "allow_other"          # for non-root access
+          "_netdev"              # requires network to mount
+          "x-systemd.automount"  # mount on demand
+
+          # The ssh key must not be encrypted, have strict
+          # permissions (like 600) and owned by root.
+          "IdentityFile=/home/krutonium/id_ed25519";
+
+          # Handle connection drops better
+          "ServerAliveInterval=15"
+          "reconnect"
+          # Uncomment this if you're having a hard time
+          # figuring why mounting is failing.
+          #"debug"
+        ];
     };
 
   swapDevices = [ ];
