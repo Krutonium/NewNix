@@ -24,6 +24,10 @@
         linkConfig = {
           RequiredForOnline = "routable";
         };
+        dhcpV6Config = {
+          WithoutRA = "solicit";
+          PrefixDelegationHint = "::/56";
+        };
       };
     };
   };
