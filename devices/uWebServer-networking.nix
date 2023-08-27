@@ -14,9 +14,9 @@
     networks = {
       "wan" = {
         matchConfig.Name = "enp4s0";
-        linkConfig.RequiredForOnline = "routable";
         networkConfig = {
-          IPv6AcceptRA=true;
+          IPv6AcceptRA = true;
+          IPv6SendRA = true;
           DHCP = "ipv6";
           KeepConfiguration = true;
         };
