@@ -34,7 +34,6 @@
   fileSystems."/uWebServer" =
     {
       device = "krutonium@krutonium.ca:/";
-      #mountPoint = "";
       fsType = "sshfs";
       options =
         [ "allow_other"          # for non-root access
@@ -42,18 +41,15 @@
           "idmap=user"
           "_netdev"              # requires network to mount
           "x-systemd.automount"  # mount on demand
-          "uid=1000"
+          "uid=1000"             # id -a
           "gid=100"
-          # The ssh key must not be encrypted, have strict
-          # permissions (like 600) and owned by root.
+          "compression=yes"      # Compression should be fine given thehost machine
+          "max_conns=20"         # MOAR THREADS (when needed)
           "IdentityFile=/home/krutonium/.ssh/id_ed25519"
-          
           # Handle connection drops better
-          "ServerAliveInterval=15"
+          "ServerAliveInterval=2"
+          "ServerAliveCountMax=2"
           "reconnect"
-          # Uncomment this if you're having a hard time
-          # figuring why mounting is failing.
-          #"debug"
         ];
     };
 
