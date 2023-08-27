@@ -8,7 +8,20 @@
     "net.ipv6.conf.all.autoconf" = 1;
     "net.ipv6.conf.all.use_tempaddr" = 0;
   };
-  systemd.network.enable = true;
+  systemd.network = {
+    enable = true;
+    networks = {
+      "wan" = {
+        matchConfig.Name = "enp4s0";
+        networkConfig = {
+          ConfigureWithoutCarrier = true;
+          DHCPPrefixDelegation = true;
+          IPv6AcceptRA = true;
+          IPv6SendRA = false;
+        };
+      };
+    };
+  };
   services.resolved.enable = false;
   networking = {
     # We're not using NetworkManager, as it apparently kinda just dies when given access to the raw internet.
