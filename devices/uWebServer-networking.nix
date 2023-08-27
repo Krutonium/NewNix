@@ -76,7 +76,7 @@
   };
   
   services.radvd = {
-    enable = true;
+    enable = false;
     config = ''
       interface bridge {
         AdvSendAdvert on;
