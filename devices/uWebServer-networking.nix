@@ -15,10 +15,7 @@
       "wan" = {
         matchConfig.Name = "enp4s0";
         networkConfig = {
-          ConfigureWithoutCarrier = true;
           DHCPPrefixDelegation = true;
-          DHCPv6PrefixDelegation = true;
-          IPv6AcceptRA = false;
           IPv6SendRA = true;
         };
         dhcpPrefixDelegationConfig = {
