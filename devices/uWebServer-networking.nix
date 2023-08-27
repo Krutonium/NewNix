@@ -19,6 +19,9 @@
           IPv6AcceptRA = true;
           IPv6SendRA = true;
         };
+        dhcpPrefixDelegationConfig = {
+          SubnetId = "64";
+        };
       };
     };
   };
