@@ -92,10 +92,13 @@ in
       tailscaleUseExitNode = false;
     };
     steam = {
-      steam = true;
+      steam = false; #HTTP Error with Monado, Enable Later 
     };
     virtualization = {
       server = "virtd";
     };
   };
+  programs.steam.enable = true;
+  hardware.steam-hardware.enable = true;
+  # Temporary Patch
 }
