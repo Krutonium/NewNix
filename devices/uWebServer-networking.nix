@@ -32,6 +32,12 @@
           DHCPv6Client = "yes";
         };
       };
+      "bridge" = {
+        matchConfig.Name = "bridge";
+        networkConfig = {
+          IPv6SendRA = true;
+        };
+      };
     };
   };
   services.resolved.enable = false;
@@ -53,7 +59,7 @@
       internalInterfaces = [ "bridge" ];
       internalIPs = [ "10.0.0.0/24" ];
       enableIPv6 = true;
-      internalIPv6s = [ "2001:db8:1234:5678::/64" ];
+      #internalIPv6s = [ "2001:db8:1234:5678::/64" ];
     };
     interfaces = {
       "enp4s0" = {
