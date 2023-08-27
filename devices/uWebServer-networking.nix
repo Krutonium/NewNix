@@ -35,6 +35,8 @@
       "bridge" = {
         matchConfig.Name = "bridge";
         networkConfig = {
+          DHCPPrefixDelegation = true;
+          IPv6AcceptRA = false;
           IPv6SendRA = true;
         };
       };
