@@ -23,7 +23,7 @@
         };
         dhcpV6Config = {
           WithoutRA = "solicit";
-          PrefixDelegationHint = "::/56";
+          PrefixDelegationHint = "::/64";
         };
         ipv6SendRAConfig = {
           Managed = true;
