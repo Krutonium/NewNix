@@ -17,6 +17,7 @@ in
     enable = true;
     priority = 1;
   };
+  boot.tmp.useTmpfs = true;
   imports = [ ./uWebServer-hw.nix ./uWebServer-networking.nix ];
   #services.xserver.videoDrivers = [ "nvidia" ];
   hardware.opengl.enable = true;

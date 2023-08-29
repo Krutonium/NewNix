@@ -13,10 +13,15 @@ in
   #  ''
   #)];
   #boot.kernelParams = [ "drm.edid_firmware=${../firmware/Displays.bin}" ];
-     
-  boot.kernelPackages = kernel;
-  boot.loader.grub.gfxmodeEfi = "1920x1080";
-  boot.loader.grub.gfxpayloadEfi = "keep";
+
+  boot = {
+    kernelPackages = kernel;
+    tmp.useTmpfs = true;
+    loader.grub = {
+      gfxmodeEfi = "1920x1080";
+      gfxpayloadEfi = "keep";
+    };
+  };
   networking.hostName = Hostname;
   networking.firewall.allowedTCPPorts = [ 1337 ];
   imports = [ ./uGamingPC-hw.nix ];
