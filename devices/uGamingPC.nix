@@ -1,10 +1,10 @@
 { config, pkgs, ... }:
 let
-  #kernel = with pkgs; master.linuxPackages_zen;
-  #video = config.boot.kernelPackages.nvidia_x11_beta;
-  # Starfield
-  kernel = with pkgs; linuxPackages_zen;
+  kernel = with pkgs; master.linuxPackages_zen;
   video = config.boot.kernelPackages.nvidia_x11_vulkan_beta;
+  # Starfield
+  #kernel = with pkgs; linuxPackages_zen;
+  #video = config.boot.kernelPackages.nvidia_x11_vulkan_beta;
   zenpower = config.boot.kernelPackages.zenpower;
   Hostname = "uGamingPC";
 in
