@@ -1,19 +1,14 @@
 { config, pkgs, ... }:
 let
-  kernel = with pkgs; master.linuxPackages_zen;
-  video = config.boot.kernelPackages.nvidia_x11_beta;
+  #kernel = with pkgs; master.linuxPackages_zen;
+  #video = config.boot.kernelPackages.nvidia_x11_beta;
+  # Starfield
+  kernel = with pkgs; linuxPackages_zen;
+  video = config.boot.kernelPackages.nvidia_x11_vulkan_beta;
   zenpower = config.boot.kernelPackages.zenpower;
   Hostname = "uGamingPC";
 in
 {
-  #hardware.firmware = [(
-  #  pkgs.runCommandNoCC "edidFW" { } ''
-  #    mkdir -p $out/lib/firmware/edid
-  #    cp ${../firmware/Displays.bin} $out/lib/firmware/edid/Displays.bin
-  #  ''
-  #)];
-  #boot.kernelParams = [ "drm.edid_firmware=${../firmware/Displays.bin}" ];
-
   boot = {
     kernelPackages = kernel;
     tmp.useTmpfs = true;

@@ -24,6 +24,8 @@ in
     hardware = {
       opengl = {
         enable = true;
+        extraPackages = [ pkgs.master.mesa ];
+        extraPackages32 = [ pkgs.master.pkgsi686Linux.mesa ];
       };
     };
     security = {
