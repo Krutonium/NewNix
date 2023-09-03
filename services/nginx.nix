@@ -22,12 +22,16 @@ in
         enableACME = false;
         root = "/var/www/home/Win11";
       };
+      "dl.krutonium.ca" = {
+        forceSSL = true;
+        enableACME = true;
+        root = "/media2/fileHost";
+      };
       "krutonium.ca" = {
         forceSSL = true;
         enableACME = true;
         root = "/var/www/home/";
         serverAliases = [ "www.krutonium.ca" ];
-
         locations."= /.well-known/matrix/server".extraConfig =
           let
             # use 443 instead of the default 8448 port to unite
