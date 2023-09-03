@@ -40,6 +40,8 @@ in
         outgoing_interface = "enp4s0";
         outgoing_ports = [50024 50050];
         random_outgoing_ports = false;
+        cache_size = "8192";
+        cache_expiry = "128";
       };
       web = {
         enable = true;
