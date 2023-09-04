@@ -125,6 +125,7 @@ in
       };
       "gitea.krutonium.ca" = {
         # Gitea hostname
+        serverAliases = [ "krutonium.duckdns.org" ];
         enableACME = true; # Use ACME certs
         forceSSL = true; # Force SSL
         locations."/".proxyPass = "http://127.0.0.1:3001/"; # Proxy Gitea
