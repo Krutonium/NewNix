@@ -25,8 +25,8 @@ in
       opengl = {
         enable = true;
         driSupport32Bit = true;
-        extraPackages = [ pkgs.master.mesa ];
-        extraPackages32 = [ pkgs.master.pkgsi686Linux.mesa ];
+        #extraPackages = [ pkgs.master.mesa ];
+        #extraPackages32 = [ pkgs.master.pkgsi686Linux.mesa ];
       };
     };
     security = {

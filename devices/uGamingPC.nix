@@ -57,6 +57,7 @@ in
   boot.blacklistedKernelModules = [ "k10temp" ];
   environment.systemPackages = [
     video
+    pkgs.gamescope
   ];
   programs.wireshark.enable = true;
   hardware.nvidia.modesetting.enable = true;
