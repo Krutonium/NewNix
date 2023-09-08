@@ -39,7 +39,7 @@ let
     git stash save "Pre Pull"
     git pull
     git stash pop "Pre Pull"
-    sudo nixos-rebuild --flake .#(uname -n) boot &| nom
+    sudo nixos-rebuild --flake .#$(uname -n) boot &| nom
   '';
   commit = pkgs.writeShellScriptBin "commit" ''
     cd ~/NixOS
