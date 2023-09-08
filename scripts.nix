@@ -19,7 +19,7 @@ let
   zink = pkgs.writeShellScriptBin "zink" ''
     MESA_LOADER_DRIVER_OVERRIDE=zink $@
   '';
-  update = pkgs.writeShellScriptBin "update" ''
+  update = pkgs.writeShellScriptBin "nupdate" ''
     cd ~/NixOS
     git stash save "Pre Pull"
     git pull
@@ -27,21 +27,21 @@ let
     nix flake update --commit-lock-file
     git push
   '';
-  switch = pkgs.writeShellScriptBin "switch" ''
+  switch = pkgs.writeShellScriptBin "nswitch" ''
     cd ~/NixOS
     git stash save "Pre Pull"
     git pull
     git stash pop "Pre Pull"
     sudo nixos-rebuild --flake .#$(uname -n) switch
   '';
-  boot = pkgs.writeShellScriptBin "boot" ''
+  boot = pkgs.writeShellScriptBin "nboot" ''
     cd ~/NixOS
     git stash save "Pre Pull"
     git pull
     git stash pop "Pre Pull"
     sudo nixos-rebuild --flake .#$(uname -n) boot
   '';
-  commit = pkgs.writeShellScriptBin "commit" ''
+  commit = pkgs.writeShellScriptBin "ncommit" ''
     cd ~/NixOS
     git add .
     git commit

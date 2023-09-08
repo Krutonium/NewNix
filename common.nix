@@ -13,6 +13,7 @@
     ./custom-packages
     ./scripts.nix
   ];
+  nix.monitored.enable = true;
   services.printing.enable = true;
   services.printing.drivers = with pkgs; [ brlaser ];
   environment.sessionVariables.NIXPKGS_ALLOW_UNFREE = "1";

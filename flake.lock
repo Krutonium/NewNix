@@ -56,7 +56,7 @@
         "type": "github"
       }
     },
-    "nix-monitor": {
+    "nix-monitored": {
       "inputs": {
         "nix-filter": "nix-filter",
         "nixpkgs": "nixpkgs_2"
@@ -204,7 +204,7 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
-        "nix-monitor": "nix-monitor",
+        "nix-monitored": "nix-monitored",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_3",
         "nixpkgs-master": "nixpkgs-master",
