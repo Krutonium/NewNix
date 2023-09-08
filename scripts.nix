@@ -32,14 +32,14 @@ let
     git stash save "Pre Pull"
     git pull
     git stash pop "Pre Pull"
-    sudo nixos-rebuild --flake .#$(uname -n) switch &| nom
+    sudo nixos-rebuild --flake .#$(uname -n) switch
   '';
   boot = pkgs.writeShellScriptBin "boot" ''
     cd ~/NixOS
     git stash save "Pre Pull"
     git pull
     git stash pop "Pre Pull"
-    sudo nixos-rebuild --flake .#$(uname -n) boot &| nom
+    sudo nixos-rebuild --flake .#$(uname -n) boot
   '';
   commit = pkgs.writeShellScriptBin "commit" ''
     cd ~/NixOS
@@ -49,5 +49,5 @@ let
   '';
 in
 {
-  environment.systemPackages = [ sshr updateindex why-installed where-installed pkgs.jq zink update switch boot commit pkgs.nix-output-monitor ];
+  environment.systemPackages = [ sshr updateindex why-installed where-installed pkgs.jq zink update switch boot commit ];
 }

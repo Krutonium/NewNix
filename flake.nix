@@ -46,6 +46,7 @@
                 overlay-deploy-cs
                 overlay-nixpkgs-update
                 overlay-nbfc-linux
+                overlay-monitored
               ];
           }
         )
@@ -75,6 +76,14 @@
       # overlay for nixpkgs-update
       overlay-nixpkgs-update = final: prev: {
         nixpkgs-update = update.defaultPackage.x86_64-linux;
+      };
+      overlay-monitored = self: super: {
+        nixos-rebuild = super.nixos-rebuild.override {
+          nix = super.nix-monitored;
+        };
+        nix-direnv = super.nix-direnv.override {
+          nix = super.nix-monitored;
+        };
       };
     in
     {

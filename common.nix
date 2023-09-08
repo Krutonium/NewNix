@@ -43,7 +43,7 @@
       automatic = true;
       options = "--delete-older-than 7d";
     };
-    package = pkgs.nixFlakes;
+    package = pkgs.nix-monitored;
     extraOptions = ''
       experimental-features = nix-command flakes
       extra-platforms = x86_64-linux i686-linux aarch64-linux riscv64-linux
