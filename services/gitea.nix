@@ -14,6 +14,14 @@ in
           HTTP_PORT = 3001;
           DOMAIN = "gitea.krutonium.ca";
         };
+        "git.timeout" = {
+          DEFAULT = 720;
+          MIGRATE = 30000;
+          MIRROR = 72000;
+          CLONE = 30000;
+          PULL = 30000;
+          GC = 60;
+        };
         service = {
           DISABLE_REGISTRATION = true;
           COOKIE_SECURE = true;
