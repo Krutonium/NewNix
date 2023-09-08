@@ -23,7 +23,7 @@ let
     cd ~/NixOS
     git stash save "Pre Pull"
     git pull
-    git stash pop "Pre Pull"
+    git stash pop
     nix flake update --commit-lock-file
     git push
   '';
@@ -31,14 +31,14 @@ let
     cd ~/NixOS
     git stash save "Pre Pull"
     git pull
-    git stash pop "Pre Pull"
+    git stash pop
     sudo nixos-rebuild --flake .#$(uname -n) switch
   '';
   boot = pkgs.writeShellScriptBin "nboot" ''
     cd ~/NixOS
     git stash save "Pre Pull"
     git pull
-    git stash pop "Pre Pull"
+    git stash pop
     sudo nixos-rebuild --flake .#$(uname -n) boot
   '';
   commit = pkgs.writeShellScriptBin "ncommit" ''
