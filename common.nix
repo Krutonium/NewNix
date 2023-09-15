@@ -27,7 +27,7 @@
     supportedFilesystems = [ "ntfs" ]; #Add explicit NTFS support
   };
   documentation.enable = true;
- # qt.style = "adwaita-dark";
+  # qt.style = "adwaita-dark";
   hardware.enableAllFirmware = true;
   hardware.bluetooth.enable = true;
   boot.binfmt = {
@@ -78,9 +78,9 @@
     #  "2606:4700:4700::1111"
     #];
     nameservers = [
-       "10.0.0.1"
-       "1.1.1.1"
-       "8.8.8.8"
+      "10.0.0.1"
+      "1.1.1.1"
+      "8.8.8.8"
     ];
   };
 
@@ -115,15 +115,19 @@
     DefaultTimeoutStopSec=10s
   '';
   boot.kernelParams = [ "mitigations=off" ];
-  
-  nixpkgs.overlays = [(final: prev: {
-    mesa-fix = let
-      nixpkgs-fix = builtins.fetchTarball {
-        url = "https://github.com/nixos/nixpkgs/tarball/19be5ac0119740b050ddcfd8608691ebf65abf9e";
-        sha256 = "0z38lf6gq8ciq5nlw9ziryi9j9klhwzz2xims10pgcwllbn3acw7";
-      };
-    in (import nixpkgs-fix { inherit (pkgs) system; }).mesa;
-  } )];
+
+  nixpkgs.overlays = [
+    (final: prev: {
+      mesa-fix =
+        let
+          nixpkgs-fix = builtins.fetchTarball {
+            url = "https://github.com/nixos/nixpkgs/tarball/19be5ac0119740b050ddcfd8608691ebf65abf9e";
+            sha256 = "0z38lf6gq8ciq5nlw9ziryi9j9klhwzz2xims10pgcwllbn3acw7";
+          };
+        in
+        (import nixpkgs-fix { inherit (pkgs) system; }).mesa;
+    })
+  ];
   #hardware.opengl = {
   #  package = pkgs.mesa-fix.drivers;
   #  package32 = pkgs.pkgsi686Linux.mesa-fix.drivers;

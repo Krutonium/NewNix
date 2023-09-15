@@ -11,6 +11,6 @@ in
       enable = true;
       port = ports;
     };
-  networking.firewall.interfaces."bridge".allowedTCPPorts = [ ports ];
+    networking.firewall.interfaces."bridge".allowedTCPPorts = [ ports ];
   };
 }

@@ -26,12 +26,13 @@ let
       ${pkgs.steam-run}/bin/steam-run ${pkgs.jetbrains.rider}/bin/rider
     '';
   rider = pkgs.unstable.jetbrains.rider.overrideAttrs (oldAttrs: { meta.priority = 10; });
-  shipwright = pkgs.unstable.shipwright.override { oot = {
-                                                     enable = true;
-                                                     variant = "pal_gc";
-                                                     rom = OOTROM;
-                                                   };
-                                                 };
+  shipwright = pkgs.unstable.shipwright.override {
+    oot = {
+      enable = true;
+      variant = "pal_gc";
+      rom = OOTROM;
+    };
+  };
 in
 {
   #home.file.".net".source = dotnetCombined;
@@ -44,7 +45,7 @@ in
     #KDE Stuff
     pkgs.yakuake
     pkgs.tokodon
-    
+
     # Gnome Stuff
     #pkgs.gnome.gnome-tweaks
     #pkgs.gnomeExtensions.dash-to-panel

@@ -36,15 +36,16 @@
       device = "krutonium@krutonium.ca:/";
       fsType = "sshfs";
       options =
-        [ "allow_other"          # for non-root access
+        [
+          "allow_other" # for non-root access
           "default_permissions"
           "idmap=user"
-          "_netdev"              # requires network to mount
-          "x-systemd.automount"  # mount on demand
-          "uid=1000"             # id -a
+          "_netdev" # requires network to mount
+          "x-systemd.automount" # mount on demand
+          "uid=1000" # id -a
           "gid=100"
-          "compression=yes"      # Compression should be fine given thehost machine
-          "max_conns=20"         # MOAR THREADS (when needed)
+          "compression=yes" # Compression should be fine given thehost machine
+          "max_conns=20" # MOAR THREADS (when needed)
           "IdentityFile=/home/krutonium/.ssh/id_ed25519"
           # Handle connection drops better
           "ServerAliveInterval=2"

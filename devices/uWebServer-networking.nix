@@ -76,7 +76,7 @@
     };
     tempAddresses = "disabled";
   };
-  
+
   services.radvd = {
     enable = true;
     config = ''

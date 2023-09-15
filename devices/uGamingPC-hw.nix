@@ -31,37 +31,38 @@
       device = "/dev/disk/by-uuid/5c1a2a62-f86a-42a6-b980-d7b08faca798";
       fsType = "ext4";
     };
-  fileSystems."/games/500G" = 
+  fileSystems."/games/500G" =
     {
       device = "/dev/disk/by-uuid/fcac9ff4-d9d9-4d95-98e0-41c903923dbf";
       fsType = "ext4";
     };
-  fileSystems."/games/2TB" = 
+  fileSystems."/games/2TB" =
     {
       device = "/dev/disk/by-uuid/9dc02eac-67cb-46b2-9332-dfecdf50e4a2";
       fsType = "ext4";
     };
   fileSystems."/uWebServer" =
-      {
-        device = "krutonium@krutonium.ca:/";
-        fsType = "sshfs";
-        options =
-          [ "allow_other"          # for non-root access
-            "default_permissions"
-            "idmap=user"
-            "_netdev"              # requires network to mount
-            "x-systemd.automount"  # mount on demand
-            "uid=1000"             # id -a
-            "gid=100"
-            # "compression=yes"      # Compression should be fine given thehost machine
-            "max_conns=20"         # MOAR THREADS (when needed)
-            "IdentityFile=/home/krutonium/.ssh/id_ed25519"
-            # Handle connection drops better
-            "ServerAliveInterval=2"
-            "ServerAliveCountMax=2"
-            "reconnect"
-          ];
-      };
+    {
+      device = "krutonium@krutonium.ca:/";
+      fsType = "sshfs";
+      options =
+        [
+          "allow_other" # for non-root access
+          "default_permissions"
+          "idmap=user"
+          "_netdev" # requires network to mount
+          "x-systemd.automount" # mount on demand
+          "uid=1000" # id -a
+          "gid=100"
+          # "compression=yes"      # Compression should be fine given thehost machine
+          "max_conns=20" # MOAR THREADS (when needed)
+          "IdentityFile=/home/krutonium/.ssh/id_ed25519"
+          # Handle connection drops better
+          "ServerAliveInterval=2"
+          "ServerAliveCountMax=2"
+          "reconnect"
+        ];
+    };
 
   boot.zfs.extraPools = [ "Games" ];
   swapDevices = [ ];
