@@ -8,6 +8,8 @@ in
   config = mkIf (cfg.gitea == true) {
     services.gitea = {
       enable = true;
+      # Forgejo is a dropin replacement
+      package = pkgs.forgejo;
       settings = {
         server = {
           ROOT_URL = "https://gitea.krutonium.ca/";
