@@ -7,8 +7,9 @@
     home-manager.url = "github:nix-community/home-manager/release-23.05"; # Home Manager release channel
     update.url = "github:ryantm/nixpkgs-update";
     nix-monitored.url = "github:ners/nix-monitored";
+    nixd.url = "github:nix-community/nixd";
   };
-  outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-master, nixos-hardware, home-manager, update, nix-monitored }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-master, nixos-hardware, home-manager, update, nix-monitored, nixd }@inputs:
     let
       # This is a Generic Block of St00f
       system = "x86_64-linux";
@@ -36,6 +37,7 @@
                 overlay-master
                 overlay-nixpkgs-update
                 overlay-monitored
+                nixd.overlays.default
               ];
           }
         )
