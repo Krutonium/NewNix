@@ -161,7 +161,7 @@ in
     pkgs.goverlay
     pkgs.dolphin-emu-beta
     pkgs.higan
-    pkgs.unstable.heroic
+    pkgs.heroic
     pkgs.unstable.cemu
     #pkgs.unstable.citra
     pkgs.steam-run
