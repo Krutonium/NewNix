@@ -43,8 +43,8 @@ in
     pkgs.tor-browser-bundle-bin
 
     #KDE Stuff
-    pkgs.yakuake
-    pkgs.tokodon
+    #pkgs.yakuake
+    #pkgs.tokodon
 
     # Gnome Stuff
     #pkgs.gnome.gnome-tweaks
