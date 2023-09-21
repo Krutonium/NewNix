@@ -48,18 +48,18 @@ in
 
     # Gnome Stuff
     #pkgs.gnome.gnome-tweaks
-    #pkgs.gnomeExtensions.dash-to-panel
-    #pkgs.gnomeExtensions.burn-my-windows
-    #pkgs.gnomeExtensions.ddterm
-    #pkgs.whitesur-icon-theme
-    #pkgs.iconpack-obsidian
-    #pkgs.ubuntu_font_family
-    #pkgs.bibata-cursors
-    #pkgs.gnomeExtensions.appindicator
-    #pkgs.gnome.dconf-editor
-    #pkgs.gnomeExtensions.arcmenu
-    #pkgs.gnomeExtensions.no-overview
-    #pkgs.gnomeExtensions.adjust-display-brightness
+    pkgs.gnomeExtensions.dash-to-panel
+    pkgs.gnomeExtensions.burn-my-windows
+    pkgs.gnomeExtensions.ddterm
+    pkgs.whitesur-icon-theme
+    pkgs.iconpack-obsidian
+    pkgs.ubuntu_font_family
+    pkgs.bibata-cursors
+    pkgs.gnomeExtensions.appindicator
+    pkgs.gnome.dconf-editor
+    pkgs.gnomeExtensions.arcmenu
+    pkgs.gnomeExtensions.no-overview
+    pkgs.gnomeExtensions.adjust-display-brightness
 
     # Development
     openjdk8-low

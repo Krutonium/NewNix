@@ -34,7 +34,7 @@ in
       plymouth_enabled = true;
     };
     desktop = {
-      desktop = "kde";
+      desktop = "gnome";
       wayland = true;
     };
     audio = {

@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 {
   imports = [
-    #./dconf.nix
+    ./dconf.nix
     ./git.nix
     ./user-config.nix
     ./packages.nix
