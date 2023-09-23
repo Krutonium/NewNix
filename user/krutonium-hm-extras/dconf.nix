@@ -11,6 +11,7 @@ let
   iconTheme = "WhiteSur-dark";
   soundTheme = "";
   superMenuLogo = "${./supermenu.png}";
+  wallPaper = "file://${./wallpaper.png}";
 in
 {
   dconf.settings = {
@@ -192,7 +193,8 @@ in
       color-shading-type = "solid";
       picture-opacity = 100;
       picture-options = "zoom";
-      picture-uri = "file://${./wallpaper_steam.png}";
+      picture-uri = wallPaper;
+      picture-uri-dark = wallPaper;
     };
 
     "org/gnome/desktop/interface" = {
