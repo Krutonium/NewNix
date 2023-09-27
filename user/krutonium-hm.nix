@@ -7,6 +7,7 @@
     ./krutonium-hm-extras/packages.nix
     ../overlays/overlay.nix
     ./krutonium-hm-extras/terminal.nix
+    ./krutonium-hm-extras/xdg.nix
   ];
   programs.home-manager.enable = true;
 
