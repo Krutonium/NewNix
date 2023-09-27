@@ -1,5 +1,5 @@
 # Generated via dconf2nix: https://github.com/gvolpe/dconf2nix
-{ lib, ... }:
+{ lib, pkgs, ... }:
 
 with lib.hm.gvariant;
 let
@@ -14,6 +14,16 @@ let
   wallPaper = "file://${./wallpaper.png}";
 in
 {
+
+  home.packages = [
+    pkgs.gnomeExtensions.dash-to-panel
+    pkgs.gnomeExtensions.ddterm
+    pkgs.gnomeExtensions.appindicator
+    pkgs.gnomeExtensions.arcmenu
+    pkgs.gnomeExtensions.no-overview
+    pkgs.gnomeExtensions.adjust-display-brightness
+  ];
+
   dconf.settings = {
     "org/gnome/desktop/input-sources" = {
       sources = [ (mkTuple [ "xkb" "us" ]) ];
@@ -91,6 +101,7 @@ in
         "user-theme@gnome-shell-extensions.gcampax.github.com"
         "appindicatorsupport@rgcjonas.gmail.com"
         "no-overview@fthx"
+        "gTile@vibou"
         #"gnome-extension-brightness@bruno.englert.gitlab.com"
         #"burn-my-windows@schneegans.github.com"
       ];
