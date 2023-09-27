@@ -66,37 +66,37 @@ in
     enable = true;
   };
   boot.kernelModules = [ "mem_sleep_default=deep" ];
-  specialisation."bumblebee".configuration = {
-    system.nixos.tags = [ "with-bumblebee" ];
-    system.nixos.label = "bumblebee";
-    services.xserver.videoDrivers = [ "modesetting" "nvidia" ];
-    hardware.bumblebee = {
-      enable = true;
-      driver = "nvidia";
-      pmMethod = "bbswitch";
-    };
-    boot.blacklistedKernelModules = [ "nouveau" ];
-  };
-  specialisation."nVidia".configuration = {
-    boot.initrd.availableKernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
-    boot.blacklistedKernelModules = [ "nouveau" ];
-    system.nixos.tags = [ "with-nvidia" ];
-    system.nixos.label = "nVidia";
-    sys.desktop.wayland = lib.mkForce false;
-    services.xserver.videoDrivers = [ "nvidia" ];
-    hardware.opengl.enable = true;
-    environment.systemPackages = [ nvidia-offload kernel.nvidiaPackages.latest ];
-    environment.sessionVariables.NIXOS_OZONE_WL = "1";
-    hardware.nvidia = {
-      package = config.boot.kernelPackages.nvidiaPackages.latest;
-      modesetting.enable = true;
-      open = false;
-      powerManagement.enable = true;
-      prime = {
-        offload.enable = true;
-        nvidiaBusId = "PCI:1:0:0";
-        intelBusId = "PCI:0:2:0";
-      };
-    };
-  };
+  #specialisation."bumblebee".configuration = {
+  #  system.nixos.tags = [ "with-bumblebee" ];
+  #  system.nixos.label = "bumblebee";
+  #  services.xserver.videoDrivers = [ "modesetting" "nvidia" ];
+  #  hardware.bumblebee = {
+  #    enable = true;
+  #    driver = "nvidia";
+  #    pmMethod = "bbswitch";
+  #  };
+  #  boot.blacklistedKernelModules = [ "nouveau" ];
+  #};
+  #specialisation."nVidia".configuration = {
+  #  boot.initrd.availableKernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
+  #  boot.blacklistedKernelModules = [ "nouveau" ];
+  #  system.nixos.tags = [ "with-nvidia" ];
+  #  system.nixos.label = "nVidia";
+  #  sys.desktop.wayland = lib.mkForce false;
+  #  services.xserver.videoDrivers = [ "nvidia" ];
+  #  hardware.opengl.enable = true;
+  #  environment.systemPackages = [ nvidia-offload kernel.nvidiaPackages.latest ];
+  #  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  #  hardware.nvidia = {
+  #    package = config.boot.kernelPackages.nvidiaPackages.latest;
+  #    modesetting.enable = true;
+  #    open = false;
+  #    powerManagement.enable = true;
+  #    prime = {
+  #      offload.enable = true;
+  #      nvidiaBusId = "PCI:1:0:0";
+  #      intelBusId = "PCI:0:2:0";
+  #    };
+  #  };
+  #};
 }
