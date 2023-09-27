@@ -24,7 +24,7 @@ in
     pkgs.gnomeExtensions.no-overview
     pkgs.gnomeExtensions.adjust-display-brightness
     pkgs.gnomeExtensions.gtile
-
+    
     # Other Stuff
     pkgs.gnome.gnome-tweaks
   ];
