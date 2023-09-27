@@ -22,6 +22,7 @@ in
     pkgs.gnomeExtensions.arcmenu
     pkgs.gnomeExtensions.no-overview
     pkgs.gnomeExtensions.adjust-display-brightness
+    pkgs.gnomeExtensions.gTile
   ];
 
   dconf.settings = {
