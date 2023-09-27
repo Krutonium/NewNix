@@ -47,7 +47,6 @@ in
     #pkgs.tokodon
 
     # Gnome Stuff
-    pkgs.gnome.gnome-tweaks
     pkgs.whitesur-icon-theme
     pkgs.iconpack-obsidian
     pkgs.ubuntu_font_family
