@@ -5,6 +5,7 @@
     ./git.nix
     ./user-config.nix
     ./packages.nix
+    ./xdg.nix
   ];
   programs.home-manager.enable = true;
 
