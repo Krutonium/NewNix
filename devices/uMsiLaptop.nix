@@ -13,6 +13,7 @@ in
   boot.kernelPackages = kernel;
   #boot.initrd.availableKernelModules = [ "nvidia" ];
   networking.hostName = Hostname;
+  boot.kernelParams = [ "nouveau.config=NvClkMode=15" ];
   boot.loader.grub.gfxmodeEfi = "1920x1080";
   boot.loader.grub.gfxpayloadEfi = "keep";
   environment.systemPackages = [ kernel.perf ];
