@@ -1,7 +1,8 @@
 { config, pkgs, ... }:
 let
   kernel = with pkgs; master.linuxPackages_zen;
-  video = config.boot.kernelPackages.nvidia_x11_vulkan_beta;
+  #video = config.boot.kernelPackages.nvidia_x11_vulkan_beta;
+  video = config.boot.kernelPackages.nvidia_x11_production;
   # Starfield
   #kernel = with pkgs; linuxPackages_zen;
   #video = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
