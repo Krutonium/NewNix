@@ -48,6 +48,7 @@ in
     pkgs.unrar
     pkgs.ncurses
     pkgs.nixd
+    pkgs.lm_sensors
   ];
 
 }
