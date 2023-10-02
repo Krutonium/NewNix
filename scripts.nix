@@ -33,6 +33,7 @@ let
     git pull
     git stash pop
     sudo nixos-rebuild --flake .#$(uname -n) switch
+    cleanup
   '';
   boot = pkgs.writeShellScriptBin "nboot" ''
     cd ~/NixOS
@@ -47,7 +48,10 @@ let
     git commit
     git push
   '';
+  cleanup = pkgs.writeShellScriptBin "cleanup" ''
+    sudo nix-collect-garbage -d
+  '';
 in
 {
-  environment.systemPackages = [ sshr updateindex why-installed where-installed pkgs.jq zink update switch boot commit ];
+  environment.systemPackages = [ sshr updateindex why-installed where-installed pkgs.jq zink update switch boot commit cleanup ];
 }
