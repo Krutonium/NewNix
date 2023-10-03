@@ -115,6 +115,8 @@
       dhcp-host=14:EB:B6:58:A1:D4,10.0.0.7
       #Brother Printer
       dhcp-host=b0:68:e6:97:f4:37,10.0.0.8
+      #SteamDeck/Deckster
+      dhcp=host=50-5A-65-61-DB-3B,10.0.0.9
 
 
       # DNS Stuff
