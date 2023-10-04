@@ -33,7 +33,6 @@ let
     git pull
     git stash pop
     sudo nixos-rebuild --flake .#$(uname -n) switch
-    cleanup
   '';
   boot = pkgs.writeShellScriptBin "nboot" ''
     cd ~/NixOS
