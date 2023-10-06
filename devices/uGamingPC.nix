@@ -19,7 +19,8 @@ in
     };
   };
   networking.hostName = Hostname;
-  networking.firewall.allowedTCPPorts = [ 1337 ];
+  networking.firewall.allowedTCPPorts = [ 47984 47989 48010 1337 ];
+  networking.firewall.allowedUDPPorts = [ 47998 47999 48000 48010 ];
   imports = [ ./uGamingPC-hw.nix ];
   swapDevices = [
     {
