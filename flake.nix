@@ -4,7 +4,10 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable"; # NixOS unstable channel
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master"; # NixOS hardware channel
-    home-manager.url = "github:nix-community/home-manager/release-23.05"; # Home Manager release channel
+    home-manager = { 
+      url = "github:nix-community/home-manager/release-23.05"; # Home Manager release channel
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     update.url = "github:ryantm/nixpkgs-update";
     nix-monitored.url = "github:ners/nix-monitored";
     nixd.url = "github:nix-community/nixd";
