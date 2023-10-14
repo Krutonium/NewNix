@@ -51,7 +51,7 @@
 
     bridges = {
       "bridge" = {
-        interfaces = [ "enp2s0f0" "enp2s0f1" "enp2s0f2" "enp2s0f3" ];
+        interfaces = [ "enp13s0f0" "enp13s0f1" "enp13s0f2" "enp13s0f3" ];
         # All ports on the Card are part of the LAN
       };
     };
