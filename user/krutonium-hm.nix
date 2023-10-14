@@ -14,6 +14,20 @@
   # Fixes icons not reloading when switching system.
   targets.genericLinux.enable = true;
 
+  programs.ssh = {
+    enable = true;
+    extraConfig = ''
+      Host 10.0.0.7
+        User admin
+        HostkeyAlgorythms +ssh-rsa
+      Host 10.0.0.9
+        User deck
+      Host *
+        StrictHostKeyChecking no
+        UserKnownHostsFile=/dev/null
+    '';
+  };
+
   home.username = "krutonium";
   home.homeDirectory = "/home/krutonium";
   home.sessionVariables.EDITOR = "nano";
