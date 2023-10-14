@@ -19,7 +19,7 @@
     extraConfig = ''
       Host 10.0.0.7
         User admin
-        HostkeyAlgorythms +ssh-rsa
+        HostKeyAlgorithms +ssh-rsa
       Host 10.0.0.9
         User deck
       Host *
