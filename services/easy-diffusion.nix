@@ -16,7 +16,7 @@ in
           Restart = "always";
         };
         wantedBy = [ "multi-user.target" ];
-        path = [ pkgs.steam-run ];
+        path = [ pkgs.steam-run pkgs.bzip2 ];
         script = ''
           steam-run /media2/Easy-Diffusion-Linux/easy-diffusion/start.sh
         '';
