@@ -4,15 +4,19 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable"; # NixOS unstable channel
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master"; # NixOS hardware channel
-    home-manager = { 
+    home-manager = {
       url = "github:nix-community/home-manager/release-23.05"; # Home Manager release channel
       inputs.nixpkgs.follows = "nixpkgs";
     };
     update.url = "github:ryantm/nixpkgs-update";
     nix-monitored.url = "github:ners/nix-monitored";
     nixd.url = "github:nix-community/nixd";
+    fan-controller = {
+      url = "github:Krutonium/BetterFanController";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
-  outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-master, nixos-hardware, home-manager, update, nix-monitored, nixd }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-master, nixos-hardware, home-manager, update, nix-monitored, nixd, fan-controller }@inputs:
     let
       # This is a Generic Block of St00f
       system = "x86_64-linux";
@@ -41,6 +45,7 @@
                 overlay-nixpkgs-update
                 overlay-monitored
                 nixd.overlays.default
+                overlay-fanController
               ];
           }
         )
@@ -62,6 +67,10 @@
       # overlay for nixpkgs-update
       overlay-nixpkgs-update = final: prev: {
         nixpkgs-update = update.defaultPackage.x86_64-linux;
+      };
+      # Fan Controller for AMD Devices
+      overlay-fanController = self: super: {
+        BetterFanController = fan-controller.defaultPackage.x86_64-linux;
       };
       overlay-monitored = self: super: {
         nixos-rebuild = super.nixos-rebuild.override {

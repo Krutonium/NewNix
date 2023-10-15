@@ -2,7 +2,6 @@
 let
   kernel = pkgs.linuxPackages_zen;
   Hostname = "uWebServer";
-  Internet_In = "enp4s0";
 in
 {
   system.autoUpgrade.allowReboot = true;
@@ -20,7 +19,14 @@ in
   boot.tmp.useTmpfs = true;
   imports = [ ./uWebServer-hw.nix ./uWebServer-networking.nix ];
   #services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.opengl.enable = true;
+  hardware.opengl = {
+    enable = true;
+    extraPackages = [ pkgs.rocm-opencl-icd ];
+  };
+  environment.systemPackages = [
+    pkgs.BetterFanController
+  ];
+
   #hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
   sys = {
     boot = {
@@ -74,22 +80,38 @@ in
   #];
   virtualisation.docker.enable = true;
   users.users.krutonium.extraGroups = [ "docker" ];
-  systemd.services.duckdns = {
-    description = "DuckDNS dynamic DNS updater.";
-    serviceConfig.Type = "oneshot";
-    after = [ "network-online.target" "sys-subsystem-net-devices-enp4s0.device" ];
-    wantedBy = [ "multi-user.target" ];
-    path = [ pkgs.curl ];
-    script = ''
-      token=$(cat /persist/duckdns_token.txt)
-      ipv4=$(curl -s ipv4.icanhazip.com)
-      #ipv6=$(curl -s ipv6.icanhazip.com)
-      url4=$(echo https://www.duckdns.org/update?domains=krutonium\&token=$token\&ipv4=$ipv4)
-      #url6=$(echo https://www.duckdns.org/update?domains=krutonium\&token=$token\&ipv6=$ipv6)
-      curl -k -s $url4
-      #curl -k -s $url6
-    '';
-    #Disabled IPv6 here because my ISP seems to be handing out broken routes.
+  systemd.services = {
+    duckdns = {
+      description = "DuckDNS dynamic DNS updater.";
+      serviceConfig.Type = "oneshot";
+      after = [ "network-online.target" "sys-subsystem-net-devices-enp4s0.device" ];
+      wantedBy = [ "multi-user.target" ];
+      path = [ pkgs.curl ];
+      script = ''
+        token=$(cat /persist/duckdns_token.txt)
+        ipv4=$(curl -s ipv4.icanhazip.com)
+        #ipv6=$(curl -s ipv6.icanhazip.com)
+        url4=$(echo https://www.duckdns.org/update?domains=krutonium\&token=$token\&ipv4=$ipv4)
+        #url6=$(echo https://www.duckdns.org/update?domains=krutonium\&token=$token\&ipv6=$ipv6)
+        curl -k -s $url4
+        #curl -k -s $url6
+      '';
+    };
+    BetterFanController = {
+      description = "Better Fan Controller to control GPU fans";
+      serviceConfig = {
+        type = "simple";
+        WorkingDirectory = "/tmp";
+        user = "root";
+        Restart = "always";
+      };
+      wantedBy = [ "multi-user.target" ];
+      path = [ pkgs.BetterFanController ];
+      script = ''
+        BetterFanController
+      '';
+      enable = true;
+    };
   };
 
   systemd.timers.duckdns = {
@@ -98,3 +120,5 @@ in
     timerConfig.OnCalendar = [ "*:0/5" ];
   };
 }
+
+

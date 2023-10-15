@@ -36,7 +36,7 @@ let
 in
 {
   #home.file.".net".source = dotnetCombined;
-  home.file.".msbuild".source = pkgs.msbuild;  
+  home.file.".msbuild".source = pkgs.msbuild;
   home.packages = [
     # Browser
     pkgs.firefox-wayland
