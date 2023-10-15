@@ -10,9 +10,9 @@ in
       EasyDiffusion = {
         description = "Easy Diffusion!";
         serviceConfig = {
-          type = "simple";
+          Type = "simple";
           WorkingDirectory = "/media2/Easy-Diffusion-Linux/easy-diffusion";
-          user = "krutonium";
+          User = "krutonium";
           Restart = "always";
         };
         wantedBy = [ "multi-user.target" ];
