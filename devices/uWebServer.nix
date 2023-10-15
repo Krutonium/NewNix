@@ -23,9 +23,6 @@ in
     enable = true;
     extraPackages = [ pkgs.rocm-opencl-icd ];
   };
-  environment.systemPackages = [
-    pkgs.BetterFanController
-  ];
 
   #hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
   sys = {
