@@ -16,6 +16,7 @@ in
     security.acme.defaults.renewInterval = "200h";
     security.acme.defaults.email = "PFCKrutonium@gmail.com";
     security.acme.acceptTerms = true;
+    services.nginx.additionalModules = [ pkgs.nginxModules.pam ];
     services.nginx.virtualHosts = {
       "win11.krutonium.ca" = {
         forceSSL = false;
@@ -150,6 +151,16 @@ in
         locations."/".proxyPass = "http://[::1]:8123";
         locations."/".proxyWebsockets = true;
         extraConfig = "proxy_buffering off;";
+      };
+      "easy.krutonium.ca" = {
+        forceSSL = true;
+        enableACME = true;
+        locations."/".proxyPass = "http://127.0.0.1:9000";
+        #extraConfig = ''
+        #  auth_pam "Password Required";
+        #  auth_pam_service_name "nginx";
+        #'';
+        basicAuth = { guest = "guest"; };
       };
     };
   };

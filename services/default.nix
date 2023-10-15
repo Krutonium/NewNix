@@ -164,6 +164,13 @@ with builtins;
         Dashboard
       '';
     };
+    easydiffusion = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        Easy Diffusion!
+      '';
+    };
   };
   imports = [
     ./plex.nix
@@ -186,5 +193,6 @@ with builtins;
     ./home_assistant.nix
     ./nbfc.nix
     ./cockpit.nix
+    ./easy-diffusion.nix
   ];
 }

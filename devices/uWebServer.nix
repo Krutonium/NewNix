@@ -64,6 +64,7 @@ in
       tailscaleUseExitNode = false;
       homeAssistant = false;
       cockpit = true;
+      easydiffusion = true;
     };
     virtualization = {
       server = "virtd";
