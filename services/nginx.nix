@@ -162,6 +162,14 @@ in
         #'';
         basicAuth = { guest = "guest"; };
       };
+      "absit.krutonium.ca" = {
+        forceSSL = true;
+        enableACME = true;
+        locations."/".extraConfig = ''
+          add_header Content-Type image/jpeg;
+          return 200 '${./vore.jpg}';
+        '';
+      };
     };
   };
 }
