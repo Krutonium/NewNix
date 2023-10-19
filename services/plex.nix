@@ -18,6 +18,7 @@ in
         dataDir = "/persist/tautulli/";
         configFile = "/persist/tautulli/config.ini";
         openFirewall = true;
+        package = pkgs.unstable.tautulli;
       };
     };
   };
