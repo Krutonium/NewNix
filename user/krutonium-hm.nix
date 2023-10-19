@@ -17,14 +17,14 @@
   programs.ssh = {
     enable = true;
     extraConfig = ''
-    StrictHostKeyChecking no
-    UserKnownHostsFile=/dev/null
-    Host 10.0.0.7
-        User admin
-        HostKeyAlgorithms +ssh-rsa
-    Host 10.0.0.9
-        HostName 10.9
-        User deck
+      StrictHostKeyChecking no
+      UserKnownHostsFile=/dev/null
+      Host 10.0.0.7
+          User admin
+          HostKeyAlgorithms +ssh-rsa
+      Host 10.0.0.9
+          HostName 10.9
+          User deck
     '';
   };
 
