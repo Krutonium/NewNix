@@ -187,8 +187,9 @@ in
   programs.obs-studio = {
     enable = true;
     plugins = [
-      pkgs.obs-studio-plugins.obs-teleport
+      pkgs.unstable.obs-studio-plugins.obs-teleport
     ];
+    package = pkgs.unstable.obs-studio;
   };
   programs.mangohud = {
     enable = true;
