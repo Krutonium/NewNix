@@ -49,6 +49,7 @@ in
     pkgs.ncurses
     pkgs.nixd
     pkgs.lm_sensors
+    pkgs.wl-clipboard
   ];
 
 }
