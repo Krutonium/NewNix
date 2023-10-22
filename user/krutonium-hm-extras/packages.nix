@@ -96,6 +96,7 @@ in
     # Media
     pkgs.vlc
     pkgs.spotify
+    pkgs.youtube-music
 
     # Audio Filtering
     pkgs.easyeffects
