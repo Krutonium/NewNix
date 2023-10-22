@@ -63,6 +63,7 @@ in
       server = "virtd";
     };
   };
+  virtualisation.waydroid.enable = true;
   programs.steam = {
     enable = true;
   };
