@@ -22,6 +22,10 @@
         hostname = "10.9";
         user = "deck";
       };
+      "uWebServer" = {
+        hostname = "10.1";
+        user = "krutonium";
+      };
     };
   };
 
