@@ -28,6 +28,9 @@
         user = "krutonium";
       };
     };
+    extraConfig = ''
+      StrictHostKeyChecking no
+    '';
   };
 
   home.username = "krutonium";
