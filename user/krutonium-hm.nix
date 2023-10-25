@@ -16,6 +16,7 @@
 
   programs.ssh = {
     enable = true;
+    compression = true;
     matchBlocks = {
       "deck" = {
         hostname = "10.9";
