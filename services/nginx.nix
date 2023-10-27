@@ -167,6 +167,10 @@ in
         enableACME = true;
         root = "/var/www/vore";
       };
+      "tube.krutonium.ca" = {
+        forceSSL = true;
+        enableACME = true;
+      };
     };
   };
 }
