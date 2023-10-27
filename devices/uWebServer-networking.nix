@@ -97,7 +97,7 @@
       domain=krutonium.ca,10.0.0.1
       dhcp-range=10.0.0.10,10.0.0.254,5m
       dhcp-option=3,10.0.0.1
-      dhcp-option=6,1.1.1.1,8.8.8.8
+      dhcp-option=6,10.0.0.1,1.1.1.1,8.8.8.8
       dhcp-option=121,10.0.0.0/24,10.0.0.1
 
       #uWebServer is hardcoded 10.0.0.1 above
