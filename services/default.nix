@@ -171,6 +171,13 @@ with builtins;
         Easy Diffusion!
       '';
     };
+    invidious = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        Invidious!
+      '';
+    };
   };
   imports = [
     ./plex.nix
@@ -194,5 +201,6 @@ with builtins;
     ./nbfc.nix
     ./cockpit.nix
     ./easy-diffusion.nix
+    ./invidious.nix
   ];
 }
