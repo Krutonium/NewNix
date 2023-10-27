@@ -65,7 +65,7 @@ in
       homeAssistant = false;
       cockpit = true;
       easydiffusion = true;
-      invidious = true;
+      invidious = false;
     };
     virtualization = {
       server = "virtd";
