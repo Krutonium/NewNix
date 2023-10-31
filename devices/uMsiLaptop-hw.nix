@@ -28,7 +28,7 @@
 
   fileSystems."/home/krutonium/steam" =
     {
-      device = "/dev/disk/by-uuid/4d4d93e3-8b59-45b2-b29a-53759dcc9dd4";
+      device = "/dev/disk/by-uuid/0d58d74d-5b49-40cf-8254-74a6d223525b";
       fsType = "ext4";
     };
   fileSystems."/uWebServer" =
