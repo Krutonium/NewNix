@@ -66,7 +66,7 @@ in
       cockpit = true;
       easydiffusion = true;
       invidious = false;
-      syncthing = true;
+      syncthing = false;
     };
     virtualization = {
       server = "virtd";
