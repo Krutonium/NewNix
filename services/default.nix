@@ -209,5 +209,6 @@ with builtins;
     ./cockpit.nix
     ./easy-diffusion.nix
     ./invidious.nix
+    ./syncthing.nix
   ];
 }
