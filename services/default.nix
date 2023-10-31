@@ -178,6 +178,13 @@ with builtins;
         Invidious!
       '';
     };
+    syncthing = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        Syncthing!
+      '';
+    };
   };
   imports = [
     ./plex.nix

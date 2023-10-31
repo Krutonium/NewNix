@@ -55,6 +55,7 @@ in
       tailscale = false;
       tailscaleUseExitNode = false;
       nbfc = false;
+      syncthing = true;
     };
     steam = {
       steam = false;
