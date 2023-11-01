@@ -173,7 +173,7 @@ in
     #pkgs.seafile-client
 
     # Communications
-    pkgs.tdesktop
+    pkgs.unstable.tdesktop
     pkgs.element-desktop
     pkgs.fractal
     pkgs.srain
