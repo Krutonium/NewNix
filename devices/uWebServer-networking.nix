@@ -93,14 +93,14 @@
     enable = true;
     alwaysKeepRunning = true;
     extraConfig = ''
-      interface=bridge
-      domain=krutonium.ca,10.0.0.1
-      dhcp-range=10.0.0.10,10.0.0.254,5m
-      dhcp-option=3,10.0.0.1
-      dhcp-option=6,10.0.0.1,1.1.1.1,8.8.8.8
-      dhcp-option=121,10.0.0.0/24,10.0.0.1
+      interface=bridge                       #ip address
+      domain=krutonium.ca,10.0.0.1           #domain and IP for the host
+      dhcp-range=10.0.0.10,10.0.0.254,5m     #Range of DHCP IP's, and how long a lease should be
+      dhcp-option=3,10.0.0.1                 #Primary DNS
+      dhcp-option=6,10.0.0.1,1.1.1.1,8.8.8.8 #Secondary DNS
+      dhcp-option=121,10.0.0.0/24,10.0.0.1   #Static Route
 
-      #uWebServer is hardcoded 10.0.0.1 above
+      #uWebServer is hardcoded 10.0.0.1 above (It's IP is set outside of DHCP)
       #uGamingPC
       dhcp-host=18:C0:4D:04:05:E7,10.0.0.2
       #uRenderPC
@@ -120,11 +120,11 @@
 
 
       # DNS Stuff
-      listen-address=::1,127.0.0.1,10.0.0.1
-      expand-hosts
-      server=1.1.1.1
-      server=8.8.8.8
-      address=/krutonium.ca/10.0.0.1
+      listen-address=::1,127.0.0.1,10.0.0.1 #Addresses it listens on from bridge
+      expand-hosts                         
+      server=1.1.1.1                        #Primary DNS
+      server=8.8.8.8                        #Secondary DNS
+      address=/krutonium.ca/10.0.0.1        #Send traffic headed to my domain to itself if it's on LAN
     '';
   };
 }
