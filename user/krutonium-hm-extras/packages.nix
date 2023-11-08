@@ -177,7 +177,8 @@ in
     pkgs.element-desktop
     pkgs.fractal
     pkgs.srain
-    pkgs.discord
+    #pkgs.discord
+    pkgs.vesktop
     pkgs.wormhole-rs
 
     #AI Stuff I find interesting
