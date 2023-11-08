@@ -178,7 +178,7 @@ in
     pkgs.fractal
     pkgs.srain
     #pkgs.discord
-    pkgs.vesktop
+    pkgs.unstable.vesktop
     pkgs.wormhole-rs
 
     #AI Stuff I find interesting
