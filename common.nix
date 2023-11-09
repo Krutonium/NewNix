@@ -42,6 +42,7 @@
     gc = {
       automatic = true;
       options = "--delete-older-than 7d";
+      dates = "weekly";
     };
     package = pkgs.nix-monitored;
     extraOptions = ''
