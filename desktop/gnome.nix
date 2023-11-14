@@ -11,11 +11,12 @@ in
         enable = true;
         excludePackages = [ pkgs.xterm ];
         displayManager = {
-          gdm = {
-            enable = true;
-            wayland = cfg.wayland;
-            autoSuspend = cfg.autoSuspend;
-          };
+          #gdm = {
+          #  enable = true;
+          #  wayland = cfg.wayland;
+          #  autoSuspend = cfg.autoSuspend;
+          #};
+          lightdm.enable = true;
         };
         desktopManager = {
           gnome = {
