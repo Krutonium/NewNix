@@ -10,6 +10,13 @@ with builtins;
         Your desktop of choice.
       '';
     };
+    displayManager = mkOption {
+      type = types.enum [ "gdm" "lightdm" ];
+      default = "lightdm";
+      description = ''
+        The Login/Display manager you want to use
+      '';
+    };
     wayland = mkOption {
       type = types.bool;
       default = true;
@@ -32,5 +39,5 @@ with builtins;
       '';
     };
   };
-  imports = [ ./gnome.nix ./kde.nix ./pantheon.nix ./none.nix ./budgie.nix ./labwc.nix ];
+  imports = [ ./gnome.nix ./kde.nix ./pantheon.nix ./none.nix ./budgie.nix ./labwc.nix ./lightdm.nix ./gdm.nix ];
 }

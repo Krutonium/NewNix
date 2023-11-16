@@ -37,6 +37,7 @@ in
     desktop = {
       desktop = "gnome";
       wayland = true;
+      displayManager = "gdm";
     };
     audio = {
       server = "pipewire";

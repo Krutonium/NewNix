@@ -8,16 +8,6 @@ in
   config = mkIf (cfg.desktop == "gnome") {
     services = {
       xserver = {
-        enable = true;
-        excludePackages = [ pkgs.xterm ];
-        displayManager = {
-          #gdm = {
-          #  enable = true;
-          #  wayland = cfg.wayland;
-          #  autoSuspend = cfg.autoSuspend;
-          #};
-          lightdm.enable = true;
-        };
         desktopManager = {
           gnome = {
             enable = true;

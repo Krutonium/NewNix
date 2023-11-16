@@ -90,7 +90,9 @@
   };
 
   console = {
-    font = "Lat2-Terminus16";
+    earlySetup = false;
+    packages = with pkgs; [ monocraft ];
+    font = "${pkgs.monocraft}/share/fonts/truetype/8ah1prg91rd6y6qz0bc18bk045s9l3q0-Monocraft-no-ligatures.ttf";
     keyMap = "us";
   };
 

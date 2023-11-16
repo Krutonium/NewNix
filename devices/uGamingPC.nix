@@ -72,6 +72,7 @@ in
       plymouth_enabled = true;
     };
     desktop = {
+      displayManager = "lightdm";
       desktop = "gnome";
       wayland = false;
     };
