@@ -15,8 +15,11 @@
   ];
   services.printing.enable = true;
   services.printing.drivers = with pkgs; [ brlaser ];
-  environment.sessionVariables.NIXPKGS_ALLOW_UNFREE = "1";
-  environment.sessionVariables.MANGOHUD = "1";
+  environment.sessionVariables = {
+    NIXPKGS_ALLOW_UNFREE = "1";
+    MANGOHUD = "1";
+    QT_QPA_PLATFORMTHEME = "gtk3";
+  };
   boot = {
     tmp.cleanOnBoot = true;
     kernel = {
