@@ -140,7 +140,7 @@ in
     pkgs.pcem
     # Gaming
     # Steam is already installed at the system level because it has special requirements
-    pkgs.openrct2
+    pkgs.unstable.openrct2
     pkgs.mesa-demos
     pkgs.unstable.oversteer
     pkgs.appimage-run
