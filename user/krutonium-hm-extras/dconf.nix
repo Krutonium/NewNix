@@ -3,13 +3,13 @@
 
 with lib.hm.gvariant;
 let
-  userTheme = "Catppuccin-Frappe-Standard-Blue-Dark"; #Shell Theme
-  mainTheme = "Catppuccin-Frappe-Standard-Blue-Dark"; #Application Theme
+  userTheme = "Adwaita-dark"; #Shell Theme
+  mainTheme = "Adwaita-dark"; #Application Theme
   mainFont = "gg sans Normal 12";
   monoFont = "Ubuntu Mono 13";
   cursorTheme = "Bibata-Modern-Amber";
   iconTheme = "WhiteSur-dark";
-  soundTheme = "";
+  soundTheme = "freedesktop";
   superMenuLogo = "${./supermenu.png}";
   wallPaper = "file://${./wallpaper.png}";
 in
