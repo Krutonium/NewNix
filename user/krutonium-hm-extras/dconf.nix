@@ -189,7 +189,7 @@ in
     };
 
     "org/gnome/shell/extensions/user-theme" = {
-      name = userTheme;
+      #name = userTheme;
     };
 
     "org/gnome/shell/weather" = {
