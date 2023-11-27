@@ -174,8 +174,8 @@ in
 
     # Communications
     pkgs.unstable.tdesktop
-    pkgs.element-desktop
-    pkgs.fractal
+    #pkgs.element-desktop
+    pkgs.unstable.fractal
     pkgs.srain
     pkgs.discord
     #pkgs.unstable.vesktop
