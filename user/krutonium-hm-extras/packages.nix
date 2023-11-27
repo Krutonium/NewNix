@@ -175,7 +175,7 @@ in
     # Communications
     pkgs.unstable.tdesktop
     #pkgs.element-desktop
-    pkgs.unstable.fractal
+    pkgs.unstable.fractal-next
     pkgs.srain
     pkgs.discord
     #pkgs.unstable.vesktop
