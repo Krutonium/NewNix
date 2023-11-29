@@ -11,14 +11,12 @@ in
       plex = {
         enable = true;
         openFirewall = true;
-        package = pkgs.unstable.plex;
       };
       tautulli = {
         enable = true;
         dataDir = "/persist/tautulli/";
         configFile = "/persist/tautulli/config.ini";
         openFirewall = true;
-        package = pkgs.unstable.tautulli;
       };
     };
   };

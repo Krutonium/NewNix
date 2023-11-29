@@ -110,7 +110,7 @@ in
     pkgs.nmap
     pkgs.gparted
     pkgs.ffmpeg-full
-    pkgs.unstable.openrgb
+    pkgs.openrgb
     pkgs.calibre
     #pkgs.nixpkgs-review #moved to common
     pkgs.libreoffice
@@ -142,7 +142,6 @@ in
     # Steam is already installed at the system level because it has special requirements
     pkgs.unstable.openrct2
     pkgs.mesa-demos
-    pkgs.unstable.oversteer
     pkgs.appimage-run
     shipwright
 
@@ -156,8 +155,8 @@ in
     pkgs.dolphin-emu-beta
     pkgs.higan
     pkgs.heroic
-    pkgs.unstable.cemu
-    #pkgs.unstable.citra
+    pkgs.cemu
+    pkgs.citra
     pkgs.steam-run
     #pkgs.yuzu-ea
     #yuzu
@@ -173,25 +172,25 @@ in
     #pkgs.seafile-client
 
     # Communications
-    pkgs.unstable.tdesktop
+    pkgs.tdesktop
     #pkgs.element-desktop
-    pkgs.unstable.fractal-next
+    pkgs.fractal-next
     pkgs.srain
     pkgs.discord
     #pkgs.unstable.vesktop
     pkgs.wormhole-rs
 
     #AI Stuff I find interesting
-    pkgs.unstable.mods
-    pkgs.glow
+    #pkgs.unstable.mods
+    #pkgs.glow
   ];
 
   programs.obs-studio = {
     enable = true;
     plugins = [
-      pkgs.unstable.obs-studio-plugins.obs-teleport
+      pkgs.obs-studio-plugins.obs-teleport
     ];
-    package = pkgs.unstable.obs-studio;
+    package = pkgs.obs-studio;
   };
   programs.mangohud = {
     enable = true;
