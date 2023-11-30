@@ -20,10 +20,10 @@ in
     pkgs.gnomeExtensions.dash-to-panel
     pkgs.gnomeExtensions.ddterm
     pkgs.gnomeExtensions.appindicator
-    pkgs.gnomeExtensions.arcmenu
+    pkgs.master.gnomeExtensions.arcmenu
     pkgs.gnomeExtensions.no-overview
     pkgs.gnomeExtensions.adjust-display-brightness
-    pkgs.gnomeExtensions.gtile
+    pkgs.master.gnomeExtensions.gtile
 
     # Other Stuff
     pkgs.gnome.gnome-tweaks

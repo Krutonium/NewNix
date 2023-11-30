@@ -52,7 +52,7 @@ in
     pkgs.ubuntu_font_family
     pkgs.bibata-cursors
     pkgs.gnome.dconf-editor
-
+    pkgs.xwaylandvideobridge
     # Development
     openjdk8-low
     pkgs.openjdk17
