@@ -36,7 +36,7 @@ in
   services.hardware.openrgb = {
     enable = true;
     motherboard = "amd";
-    package = pkgs.unstable.openrgb;
+    package = pkgs.openrgb;
   };
   services.xserver = {
     videoDrivers = [ "nvidia" ];
@@ -96,13 +96,13 @@ in
       tailscaleUseExitNode = false;
     };
     steam = {
-      steam = false; #HTTP Error with Monado, Enable Later 
+      steam = true; #HTTP Error with Monado, Enable Later 
     };
     virtualization = {
       server = "virtd";
     };
   };
-  programs.steam.enable = true;
+  #programs.steam.enable = true;
   hardware.steam-hardware.enable = true;
   # Temporary Patch
 }
