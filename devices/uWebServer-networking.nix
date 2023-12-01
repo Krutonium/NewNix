@@ -118,6 +118,8 @@
       #SteamDeck/Deckster
       dhcp-host=50:5A:65:61:DB:3B,10.0.0.9
 
+      # Jason's PC
+      dhcp-host=d8:cb:8a:4f:75:54,10.0.0.10
 
       # DNS Stuff
       listen-address=::1,127.0.0.1,10.0.0.1 #Addresses it listens on from bridge
