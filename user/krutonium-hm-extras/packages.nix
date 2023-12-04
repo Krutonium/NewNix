@@ -21,11 +21,11 @@ let
     (oldAttrs: { meta.priority = 10; });
 
   yuzu = pkgs.yuzu-ea.overrideAttrs (oldAttrs: { meta.priority = 10; });
-  riderScript = pkgs.writeShellScriptBin "rider"
-    ''
-      ${pkgs.steam-run}/bin/steam-run ${pkgs.jetbrains.rider}/bin/rider
-    '';
-  rider = pkgs.unstable.jetbrains.rider.overrideAttrs (oldAttrs: { meta.priority = 10; });
+  #riderScript = pkgs.writeShellScriptBin "rider"
+  #  ''
+  #    ${pkgs.steam-run}/bin/steam-run ${pkgs.jetbrains.rider}/bin/rider
+  #  '';
+  #rider = pkgs.unstable.jetbrains.rider.overrideAttrs (oldAttrs: { meta.priority = 10; });
   shipwright = pkgs.unstable.shipwright.override {
     oot = {
       enable = true;
@@ -61,9 +61,11 @@ in
     pkgs.mono
     pkgs.ghc
     idea
-    ideaScript
-    rider
-    riderScript
+    ideaScript # 
+    (jetbrains.plugins.addPlugins jetbrains.rider [ "14839" "17718" "13882" ])
+    #rider
+    #riderScript
+    
     pkgs.vscode
     pkgs.gitkraken
     #dotnetCombined
@@ -184,7 +186,6 @@ in
     #pkgs.unstable.mods
     #pkgs.glow
   ];
-
   programs.obs-studio = {
     enable = true;
     plugins = [
