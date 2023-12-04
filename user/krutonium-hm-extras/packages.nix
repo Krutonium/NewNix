@@ -13,14 +13,14 @@ let
   #dotnetCombined = with pkgs.dotnetCorePackages; combinePackages [ sdk_7_0 sdk_6_0 ];
 
   # Run Idea and Rider using steam-run to fix plugins not working.
-  ideaScript = pkgs.writeShellScriptBin "idea-ultimate"
-    ''
-      ${pkgs.steam-run}/bin/steam-run ${pkgs.jetbrains.idea-ultimate}/bin/idea-ultimate
-    '';
-  idea = pkgs.unstable.jetbrains.idea-ultimate.overrideAttrs
-    (oldAttrs: { meta.priority = 10; });
+  #ideaScript = pkgs.writeShellScriptBin "idea-ultimate"
+  #  ''
+  #    ${pkgs.steam-run}/bin/steam-run ${pkgs.jetbrains.idea-ultimate}/bin/idea-ultimate
+  #  '';
+  #idea = pkgs.unstable.jetbrains.idea-ultimate.overrideAttrs
+  #  (oldAttrs: { meta.priority = 10; });
 
-  yuzu = pkgs.yuzu-ea.overrideAttrs (oldAttrs: { meta.priority = 10; });
+  #yuzu = pkgs.yuzu-ea.overrideAttrs (oldAttrs: { meta.priority = 10; });
   #riderScript = pkgs.writeShellScriptBin "rider"
   #  ''
   #    ${pkgs.steam-run}/bin/steam-run ${pkgs.jetbrains.rider}/bin/rider
@@ -60,9 +60,12 @@ in
     pkgs.hub
     pkgs.mono
     pkgs.ghc
-    idea
-    ideaScript # 
-    (jetbrains.plugins.addPlugins jetbrains.rider [ "14839" "17718" "13882" ])
+    #idea
+    #ideaScript  
+    #(pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.rider [ "14839" "17718" "13882" ])
+    (pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.rider [ "github-copilot" ])
+    (pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.idea-ultimate [ "github-copilot" ])
+    
     #rider
     #riderScript
     
