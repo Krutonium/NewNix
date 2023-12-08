@@ -70,6 +70,8 @@ in
           cd "$NEWDATA"
           sudo -u postgres $NEWBIN/initdb -D "$NEWDATA"
 
+          systemctl stop matrix-synapse
+
           systemctl stop postgresql    # old one
 
           sudo -u postgres $NEWBIN/pg_upgrade \
