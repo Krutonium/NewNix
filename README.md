@@ -1,4 +1,9 @@
-# My New NixOS Config
+# My NixOS Config
+
+## A Note for GitHub: 
+
+If you're viewing this on GitHub, this is a mirror from my personal Forgejo/Gitea instance. It should be up to date to within 6 hours of my latest changes.
+# What is this?
 
 An evolution of my previous config, this repo represents my current NixOS configuration across my machines. It is a work in progress, and I am still learning NixOS, so there are likely to be some mistakes.
 
