@@ -91,7 +91,7 @@ in
     };
 
     "org/gnome/mutter" = {
-      attach-modal-dialogs = true;
+      attach-modal-dialogs = false;
       dynamic-workspaces = false;
       edge-tiling = true;
       focus-change-on-pointer-rest = true;
