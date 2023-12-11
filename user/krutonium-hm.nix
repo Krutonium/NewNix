@@ -8,6 +8,7 @@
     ../overlays/overlay.nix
     ./krutonium-hm-extras/terminal.nix
     ./krutonium-hm-extras/xdg.nix
+    #./krutonium-hm-extras/fonts.nix Made `W I D E` fonts for some reason, not worth having enabled rn.
   ];
   programs.home-manager.enable = true;
 

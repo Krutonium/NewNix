@@ -28,6 +28,7 @@ in
 
     # Other Stuff
     pkgs.gnome.gnome-tweaks
+    pkgs.cascadia-code #Font
   ];
 
   dconf.settings = {
