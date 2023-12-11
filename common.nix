@@ -13,6 +13,11 @@
     ./custom-packages
     ./scripts.nix
   ];
+
+  environment.shellAliases = {
+    ls = "${pkgs.eza}/bin/eza --icons --git"
+  };
+  
   services.printing.enable = true;
   services.printing.drivers = with pkgs; [ brlaser ];
   environment.variables = {
