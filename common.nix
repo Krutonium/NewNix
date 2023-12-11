@@ -15,7 +15,7 @@
   ];
 
   environment.shellAliases = {
-    ls = "${pkgs.eza}/bin/eza --icons --git"
+    ls = "${pkgs.eza}/bin/eza --icons --git";
   };
   
   services.printing.enable = true;
