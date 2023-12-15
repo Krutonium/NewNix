@@ -72,6 +72,11 @@
     config = {
       allowUnfree = true;
       allowUnfreePredicate = (pkg: true);
+      permittedInsecurePackages = [
+        "electron-25.9.0"
+        # ReEvaluate @ 24.05
+        # Needed for YouTube Music
+      ];
     };
   };
   networking = {

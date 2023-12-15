@@ -11,7 +11,7 @@ let
     echo Update Complete.
   '';
   why-installed = pkgs.writeShellScriptBin "why-installed" ''
-    nix why-depends /run/current-system $(command -v $1)
+    nix-store --query --referrers $(nix-instantiate '<nixpkgs>' -A $1)
   '';
   where-installed = pkgs.writeShellScriptBin "where-installed" ''
     nix eval --json "/home/krutonium/NixOS/.#nixosConfigurations.$(hostname).options.environment.systemPackages.files" | jq -r ".[]" | xargs rg $1

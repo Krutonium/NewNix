@@ -121,6 +121,7 @@ in
       protonup-qt
       proton-caller
       protontricks
+      libssl_1_1
     ];
     services.udev.packages = [ rift_s_udev ];
     programs.steam = {
