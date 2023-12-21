@@ -47,7 +47,7 @@ in
     pkgs.nixpkgs-review
     pkgs.unrar
     pkgs.ncurses
-    pkgs.nixd
+    #pkgs.nixd
     pkgs.lm_sensors
     pkgs.wl-clipboard
   ];
