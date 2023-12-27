@@ -41,7 +41,13 @@ in
       VendorName             "NVIDIA Corporation"
       BoardName              "NVIDIA GeForce RTX 3070"
       Option                 "AllowHMD" "yes"
-      Option                 "ModeValidation" "AllowNonEdidModes"
+      Option                 "ModeValidation" "AllowNonEdidModes,NoEdidMaxPClkCheck,NoMaxPClkCheck"
+    '';
+    screenSection = ''
+      Identifier             "Screen0"
+      Device                 "Device0"
+      Monitor                "Monitor0"
+      Option                 "CustomEDID" "HDMI-0: /home/krutonium/edid-hdmi.bin"
     '';
     logFile = "/var/log/xorg.log";
     #displayManager.setupCommands = ''
