@@ -11,6 +11,7 @@ in
       plex = {
         enable = true;
         openFirewall = true;
+        package = pkgs.master.plex;
       };
       tautulli = {
         enable = true;
