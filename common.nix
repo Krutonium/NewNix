@@ -30,6 +30,7 @@
     kernel = {
       sysctl = {
         "vm.max_map_count" = 1000000;
+        "kernel.panic" = "60";
       };
     };
     supportedFilesystems = [ "ntfs" ]; #Add explicit NTFS support
