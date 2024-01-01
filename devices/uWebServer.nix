@@ -33,6 +33,7 @@ in
     desktop = {
       desktop = "none";
       wayland = false;
+      displayManager = "none";
     };
     audio = {
       server = "none";
