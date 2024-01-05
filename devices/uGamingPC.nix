@@ -20,8 +20,8 @@ in
     firewall = {
       allowedTCPPorts = [ 47984 47989 48010 1337 ];
       allowedUDPPorts = [ 47998 47999 48000 48010 ];
-      allowedTCPPortRanges = [ { from = 9943; to = 9944 } ]; #ALVR
-      allowedUDPPortRanges = [ { from = 9943; to = 9944 } ];
+      allowedTCPPortRanges = [ { from = 9943; to = 9944; } ]; #ALVR
+      allowedUDPPortRanges = [ { from = 9943; to = 9944; } ];
     };
   };
   imports = [ ./uGamingPC-hw.nix ];
