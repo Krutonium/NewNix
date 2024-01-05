@@ -44,8 +44,7 @@ in
       Option                 "ModeValidation" "AllowNonEdidModes,NoEdidMaxPClkCheck,NoMaxPClkCheck"
     '';
     screenSection = ''
-      Monitor                "Monitor0"
-      # Option                 "CustomEDID" "HDMI-0: /home/krutonium/edid-hdmi.bin"
+      Option                 "metamodes" "nvidia-auto-select +0+0 { AllowGSYNCCompatible=On }"
     '';
     logFile = "/var/log/xorg.log";
     #displayManager.setupCommands = ''
@@ -72,7 +71,7 @@ in
       plymouth_enabled = true;
     };
     desktop = {
-      displayManager = "lightdm";
+      displayManager = "gdm";
       desktop = "gnome";
       wayland = false;
     };
