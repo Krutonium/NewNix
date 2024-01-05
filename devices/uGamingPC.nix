@@ -14,9 +14,16 @@ in
       gfxpayloadEfi = "keep";
     };
   };
-  networking.hostName = Hostname;
-  networking.firewall.allowedTCPPorts = [ 47984 47989 48010 1337 ];
-  networking.firewall.allowedUDPPorts = [ 47998 47999 48000 48010 ];
+
+  networking = { 
+    hostName = Hostname;
+    firewall = {
+      allowedTCPPorts = [ 47984 47989 48010 1337 ];
+      allowedUDPPorts = [ 47998 47999 48000 48010 ];
+      allowedTCPPortRanges = [ { from = 9943; to = 9944 } ]; #ALVR
+      allowedUDPPortRanges = [ { from = 9943; to = 9944 } ];
+    };
+  };
   imports = [ ./uGamingPC-hw.nix ];
   swapDevices = [
     {
@@ -71,9 +78,9 @@ in
       plymouth_enabled = true;
     };
     desktop = {
-      displayManager = "gdm";
+      displayManager = "lightdm";
       desktop = "gnome";
-      wayland = false;
+      wayland = true;
     };
     custom = {
       ddcutil = true;
