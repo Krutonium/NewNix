@@ -21,21 +21,21 @@ in
     priority = 1;
   };
   programs.steam.enable = true;
-  jovian = {
-    steam = {
-      enable = true;
-      autoStart = true;
-      desktopSession = "gnome-session";
-      user = "krutonium";
-    };
-    decky-loader.enable = true;
-    devices = {
-      steamdeck = {
-        enable = true; #I am a SteamDeck
-        enableGyroDsuService = true;
-      };
-    };
-  };
+  #jovian = {
+  #  steam = {
+  #    enable = true;
+  #    autoStart = true;
+  #    desktopSession = "gnome";
+  #    user = "krutonium";
+  #  };
+  #  decky-loader.enable = true;
+  #  devices = {
+  #    steamdeck = {
+  #      enable = true; #I am a SteamDeck
+  #      enableGyroDsuService = true;
+  #    };
+  #  };
+  #};
   sys = {
     boot = {
       bootloader = "uefi";

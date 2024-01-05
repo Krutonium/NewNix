@@ -156,8 +156,8 @@
           common-pc-laptop
           common-cpu-amd
         ])
-        ++ [ ./devices/uSteamDeck.nix ]
-        ++ [ inputs.steamdeck.nixosModules.jovian ];
+        ++ [ ./devices/uSteamDeck.nix ];
+        #++ [ inputs.steamdeck.nixosModules.jovian ];
       };
     };
 }
