@@ -62,7 +62,7 @@
       extra-platforms = x86_64-linux i686-linux aarch64-linux riscv64-linux
     '';
     settings = {
-      system-features = [ "i686-linux" "x86_64-linux" "big-parallel" ];
+      system-features = [ "i686-linux" "x86_64-linux" "big-parallel" "kvm" ];
     };
   };
   time = {

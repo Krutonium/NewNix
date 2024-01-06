@@ -8,7 +8,7 @@ in
   networking.hostName = Hostname;
   boot.loader.grub.gfxmodeEfi = "1280x800";
   boot.loader.grub.gfxpayloadEfi = "keep";
-  imports = [ ./uSteamDeck-hw.nix ];
+  #imports = [ ./uSteamDeck-hw.nix ];
   swapDevices = [
     {
       device = "/swap";
@@ -38,7 +38,7 @@ in
   #};
   sys = {
     boot = {
-      bootloader = "uefi";
+      bootloader = "none";
       plymouth_enabled = true;
     };
     desktop = {

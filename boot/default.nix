@@ -4,7 +4,7 @@ with builtins;
 {
   options.sys.boot = {
     bootloader = mkOption {
-      type = types.enum [ "uefi" "bios" ];
+      type = types.enum [ "uefi" "bios" "none" ];
       default = "uefi";
       description = ''
         Your system's firmware.
