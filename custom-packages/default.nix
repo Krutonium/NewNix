@@ -17,11 +17,11 @@ with builtins;
         Enable ddcutil nvidia fix.
       '';
     };
-    alvr = mkOption { 
+    alvr = mkOption {
       type = types.bool;
       default = false;
       description = ''
-        Install ALVR
+        alvr
       '';
     };
   };
