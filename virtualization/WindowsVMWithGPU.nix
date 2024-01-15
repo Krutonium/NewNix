@@ -16,7 +16,7 @@ in
     # If you're on AMD, you don't need anything, it will just work.
     boot.kernelModules = [ "vfio-pci" ];
     # Add our nVidia GPU to passthrough
-    boot.kernelParams = toPassToVM_kernelcmd;
+    boot.kernelParams = [ toPassToVM_kernelcmd ];
     environment.systemPackages = [
       pkgs.looking-glass-client
     ];

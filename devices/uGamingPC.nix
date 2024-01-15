@@ -8,7 +8,7 @@ in
 {
   boot = {
     kernelPackages = kernel;
-    kernelParams = [ "amd_iommu=on" "iommu=pt" ];
+    kernelParams = [ "amd_iommu=on" "iommu=pt" "vfio-pci.ids=1002:731f,1002:ab38"];
     tmp.useTmpfs = false;
     loader.grub = {
       gfxmodeEfi = "1920x1080";
