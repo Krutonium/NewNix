@@ -10,6 +10,13 @@ with builtins;
         VM support
       '';
     };
+    Windows = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        Windows VM w/ GPU
+      '';
+    };
   };
-  imports = [ ./virtd.nix ./vbox.nix ./none.nix ];
+  imports = [ ./virtd.nix ./vbox.nix ./none.nix ./WindowsVMWithGPU.nix ];
 }

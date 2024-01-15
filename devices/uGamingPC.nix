@@ -8,6 +8,7 @@ in
 {
   boot = {
     kernelPackages = kernel;
+    kernelParams = [ "amd_iommu=on" "iommu=pt" ];
     tmp.useTmpfs = false;
     loader.grub = {
       gfxmodeEfi = "1920x1080";
