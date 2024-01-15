@@ -65,7 +65,7 @@ in
       tailscaleUseExitNode = false;
       homeAssistant = false;
       cockpit = true;
-      easydiffusion = true;
+      easydiffusion = false;
       invidious = false;
       syncthing = false;
     };
