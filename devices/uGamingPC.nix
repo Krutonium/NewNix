@@ -23,15 +23,25 @@ in
       allowedTCPPortRanges = [ { from = 9943; to = 9944; } ]; #ALVR
       allowedUDPPortRanges = [ { from = 9943; to = 9944; } ];
     };
+    bridges = {
+      "bridge" = {
+        interfaces = [ "eno1" ];
+      };
+    };
+    nat = {
+      enable = true;
+      externalInterface = "eno1";
+      internalInterfaces = [ "bridge" ];
+    };
   };
   imports = [ ./uGamingPC-hw.nix ];
-  swapDevices = [
-    {
-      device = "/swap";
-      size = 8192;
-      priority = 0;
-    }
-  ];
+  #swapDevices = [
+  #  {
+  #    device = "/swap";
+  #    size = 8192;
+  #    priority = 0;
+  #  }
+  #];
   zramSwap = {
     enable = true;
     priority = 1;
@@ -74,7 +84,7 @@ in
   sys = {
     boot = {
       bootloader = "uefi";
-      uefiPath = "/boot/efi";
+      uefiPath = "/boot";
       plymouth_enabled = true;
     };
     desktop = {

@@ -16,55 +16,36 @@
   boot.supportedFilesystems = [ "ntfs" ];
   networking.hostId = "ad53f8bc";
   fileSystems."/" =
-    {
-      device = "/dev/disk/by-uuid/e918ba08-3692-42a9-b53a-ee6d04877088";
-      fsType = "ext4";
+    { device = "UUID=11e51b0c-5b72-4944-9ae2-ee044c1828c0";
+      fsType = "bcachefs";
     };
 
-  fileSystems."/boot/efi" =
-    {
-      device = "/dev/disk/by-uuid/6E00-6801";
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/6E00-6801";
       fsType = "vfat";
     };
-  fileSystems."/games/SSD" =
-    {
-      device = "/dev/disk/by-uuid/5c1a2a62-f86a-42a6-b980-d7b08faca798";
-      fsType = "ext4";
-    };
-  fileSystems."/games/500G" =
-    {
-      device = "/dev/disk/by-uuid/fcac9ff4-d9d9-4d95-98e0-41c903923dbf";
-      fsType = "ext4";
-    };
-  fileSystems."/games/2TB" =
-    {
-      device = "/dev/disk/by-uuid/9dc02eac-67cb-46b2-9332-dfecdf50e4a2";
-      fsType = "ext4";
-    };
-  fileSystems."/uWebServer" =
-    {
-      device = "krutonium@krutonium.ca:/";
-      fsType = "sshfs";
-      options =
-        [
-          "allow_other" # for non-root access
-          "default_permissions"
-          "idmap=user"
-          "_netdev" # requires network to mount
-          "x-systemd.automount" # mount on demand
-          "uid=1000" # id -a
-          "gid=100"
-          # "compression=yes"      # Compression should be fine given thehost machine
-          "max_conns=20" # MOAR THREADS (when needed)
-          "IdentityFile=/home/krutonium/.ssh/id_ed25519"
-          # Handle connection drops better
-          "ServerAliveInterval=2"
-          "ServerAliveCountMax=2"
-          "reconnect"
-        ];
-    };
-
-  boot.zfs.extraPools = [ "Games" ];
+  #fileSystems."/uWebServer" =
+  #  {
+  #    device = "krutonium@krutonium.ca:/";
+  #    fsType = "sshfs";
+  #    options =
+  #      [
+  #        "allow_other" # for non-root access
+  #        "default_permissions"
+  #        "idmap=user"
+  #        "_netdev" # requires network to mount
+  #        "x-systemd.automount" # mount on demand
+  #        "uid=1000" # id -a
+  #        "gid=100"
+  #        # "compression=yes"      # Compression should be fine given thehost machine
+  #        "max_conns=20" # MOAR THREADS (when needed)
+  #        "IdentityFile=/home/krutonium/.ssh/id_ed25519"
+  #        # Handle connection drops better
+  #        "ServerAliveInterval=2"
+  #        "ServerAliveCountMax=2"
+  #        "reconnect"
+  #      ];
+  #  };
   swapDevices = [ ];
 
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
