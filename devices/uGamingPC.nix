@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 let
-  kernel = with pkgs; unstable.linuxPackages_zen;
+  kernel = with pkgs; unstable.linuxPackages_latest;
   video = config.boot.kernelPackages.nvidia_x11;
   zenpower = config.boot.kernelPackages.zenpower;
   Hostname = "uGamingPC";
@@ -8,7 +8,7 @@ in
 {
   boot = {
     kernelPackages = kernel;
-    tmp.useTmpfs = true;
+    tmp.useTmpfs = false;
     loader.grub = {
       gfxmodeEfi = "1920x1080";
       gfxpayloadEfi = "keep";
