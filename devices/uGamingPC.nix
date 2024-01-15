@@ -118,6 +118,7 @@ in
     };
     virtualization = {
       server = "virtd";
+      Windows = true;
     };
   };
   #programs.steam.enable = true;
