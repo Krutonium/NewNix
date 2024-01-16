@@ -15,13 +15,16 @@
   boot.extraModulePackages = [ ];
   boot.supportedFilesystems = [ "ntfs" ];
   networking.hostId = "ad53f8bc";
-  fileSystems."/" =
-    { device = "UUID=11e51b0c-5b72-4944-9ae2-ee044c1828c0";
-      fsType = "bcachefs";
+  fileSystems."/" = 
+    { device = "UUID=840ac9a3-566b-4a3d-ac6a-f963e95e0413";
+      fsType = "ext4";
     };
-
+  fileSystems."/home" =
+    { device = "UUID=6d699d8d-364b-40d6-aa55-6e66453828eb";
+      fsType = "btrfs";
+    };
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/6E00-6801";
+    { device = "/dev/disk/by-uuid/4809-BB3C";
       fsType = "vfat";
     };
   #fileSystems."/uWebServer" =
