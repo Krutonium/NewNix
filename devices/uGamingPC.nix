@@ -24,16 +24,6 @@ in
       allowedTCPPortRanges = [ { from = 9943; to = 9944; } ]; #ALVR
       allowedUDPPortRanges = [ { from = 9943; to = 9944; } ];
     };
-    bridges = {
-      "bridge" = {
-        interfaces = [ "eno1" ];
-      };
-    };
-    nat = {
-      enable = true;
-      externalInterface = "eno1";
-      internalInterfaces = [ "bridge" ];
-    };
   };
   imports = [ ./uGamingPC-hw.nix ];
   #swapDevices = [
