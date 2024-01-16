@@ -22,6 +22,7 @@
   fileSystems."/home" =
     { device = "UUID=6d699d8d-364b-40d6-aa55-6e66453828eb";
       fsType = "btrfs";
+      options = [ "compress=zstd:15" ];
     };
   fileSystems."/boot" =
     { device = "/dev/disk/by-uuid/4809-BB3C";

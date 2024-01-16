@@ -8,7 +8,7 @@ let
   toPassToVM_kernelcmd = "vfio-pci.ids=1002:731f,1002:ab38";
 in
 {
-  config = mkIf (cfg.server == "Windows") {
+  config = mkIf (cfg.server == "windows") {
     #Disable the nouveau driver if the card is nVidia. Not sure how to handle it if there is more than one card, or one is AMD.
     boot.blacklistedKernelModules = [ "amdgpu" ];
     # If you're on Intel, you need

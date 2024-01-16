@@ -8,7 +8,7 @@ in
 {
   boot = {
     kernelPackages = kernel;
-    kernelParams = [ "amd_iommu=on" "iommu=pt" ];
+    kernelParams = [ "amd_iommu=on" "iommu=pt" "vfio-pci.ids=1002:731f,1002:ab38"];
     tmp.useTmpfs = false;
     loader.grub = {
       gfxmodeEfi = "1920x1080";
@@ -29,6 +29,7 @@ in
         interfaces = [ "eno1" ];
       };
     };
+    virtualisation.spiceUSBRedirection.enable = true;
     nat = {
       enable = true;
       externalInterface = "eno1";
@@ -73,7 +74,7 @@ in
   hardware.nvidia.package = video;
   boot.initrd.availableKernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
   boot.extraModulePackages = with config.boot.kernelPackages; [ zenpower.out ];
-  boot.blacklistedKernelModules = [ "k10temp" ];
+  boot.blacklistedKernelModules = [ "k10temp" "amdgpu" ];
   environment.systemPackages = [
     video
     pkgs.gamescope
@@ -118,7 +119,7 @@ in
     };
     virtualization = {
       server = "virtd";
-      Windows = true;
+      windows = true;
     };
   };
   #programs.steam.enable = true;

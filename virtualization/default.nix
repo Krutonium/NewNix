@@ -10,7 +10,7 @@ with builtins;
         VM support
       '';
     };
-    Windows = mkOption {
+    windows = mkOption {
       type = types.bool;
       default = false;
       description = ''
