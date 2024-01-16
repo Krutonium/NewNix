@@ -15,7 +15,7 @@ in
       gfxpayloadEfi = "keep";
     };
   };
-
+  virtualisation.spiceUSBRedirection.enable = true;
   networking = { 
     hostName = Hostname;
     firewall = {
@@ -29,7 +29,6 @@ in
         interfaces = [ "eno1" ];
       };
     };
-    virtualisation.spiceUSBRedirection.enable = true;
     nat = {
       enable = true;
       externalInterface = "eno1";
