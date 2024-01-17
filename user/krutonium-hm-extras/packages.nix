@@ -143,6 +143,7 @@ in
     pkgs.lutris
     #pkgs.unstable.bottles
     pkgs.pcem
+    pkgs.looking-glass-client
     # Gaming
     # Steam is already installed at the system level because it has special requirements
     pkgs.unstable.openrct2
@@ -193,6 +194,7 @@ in
     enable = true;
     plugins = [
       pkgs.obs-studio-plugins.obs-teleport
+      pkgs.obs-studio-plugins.looking-glass-obs
     ];
     package = pkgs.obs-studio;
   };

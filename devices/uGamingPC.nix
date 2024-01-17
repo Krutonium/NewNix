@@ -16,6 +16,9 @@ in
     };
   };
   virtualisation.spiceUSBRedirection.enable = true;
+  systemd.tmpfiles.rules = [
+    "f /dev/shm/looking-glass 0660 krutonium qemu-libvirtd -"
+  ];
   networking = { 
     hostName = Hostname;
     firewall = {
