@@ -51,20 +51,20 @@
 
     bridges = {
       "bridge" = {
-        interfaces = [ "enp13s0f0" "enp13s0f1" "enp13s0f2" "enp13s0f3" ];
+        interfaces = [ "enp10s0f0" "enp10s0f1" "enp10s0f2" "enp10s0f3" ];
         # All ports on the Card are part of the LAN
       };
     };
     nat = {
       enable = true;
-      externalInterface = "enp5s0";
+      externalInterface = "enp2s0";
       internalInterfaces = [ "bridge" ];
       internalIPs = [ "10.0.0.0/24" ];
       enableIPv6 = true;
       internalIPv6s = [ "2001:db8:1234:5678::/64" ];
     };
     interfaces = {
-      "enp5s0" = {
+      "enp2s0" = {
         #We're getting the IP dynamically from the ISP.
         useDHCP = true;
       };
