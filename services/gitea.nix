@@ -10,6 +10,7 @@ in
       enable = true;
       # Forgejo is a dropin replacement
       package = pkgs.forgejo;
+      #package = pkgs.gitea;
       settings = {
         server = {
           ROOT_URL = "https://gitea.krutonium.ca/";
