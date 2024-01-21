@@ -22,6 +22,9 @@
     #    }
     #  }
     #'';
+    ".steam/steam/steam_dev.cfg".text = ''
+      @nClientDownloadEnableHTTP2PlatformLinux 0
+    '';
     ".config/neofetch/config.conf".text = ''
       print_info() {
         info title
