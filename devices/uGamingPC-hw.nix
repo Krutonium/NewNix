@@ -16,17 +16,18 @@
   boot.supportedFilesystems = [ "ntfs" ];
   networking.hostId = "ad53f8bc";
   fileSystems."/" = 
-    { device = "UUID=840ac9a3-566b-4a3d-ac6a-f963e95e0413";
-      fsType = "ext4";
-    };
-  fileSystems."/home" =
-    { device = "UUID=6d699d8d-364b-40d6-aa55-6e66453828eb";
+    { device = "UUID=702d1fb7-d110-43e3-95e5-56b98692910b";
       fsType = "btrfs";
-      options = [ "compress=zstd:15" ];
+      options = [ "compress=zstd:5" "autodefrag" "noatime" ];
+
     };
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/4809-BB3C";
+    { device = "UUID=48DA-2BEF";
       fsType = "vfat";
+    };
+  fileSystems."/windows" = 
+    { device = "UUID=6023862438DB2AD4";
+      fsType = "ntfs";
     };
   #fileSystems."/uWebServer" =
   #  {
