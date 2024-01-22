@@ -28,10 +28,6 @@
     { device = "/dev/disk/by-uuid/4809-BB3C";
       fsType = "vfat";
     };
-  fileSystems."/home/krutonium/VirtualMachines" =
-    { device = "UUID=bdf0ea1f-e5cc-4a5f-9c4a-af7b35eff3cc";
-      fsType = "ext4";
-    };
   #fileSystems."/uWebServer" =
   #  {
   #    device = "krutonium@krutonium.ca:/";
