@@ -29,6 +29,10 @@
     { device = "UUID=6023862438DB2AD4";
       fsType = "ntfs";
     };
+  fileSystems."/scratch" = 
+    { device = "UUID=1CE7761638DB2AD4";
+      fsType = "ntfs";
+    };
   #fileSystems."/uWebServer" =
   #  {
   #    device = "krutonium@krutonium.ca:/";
