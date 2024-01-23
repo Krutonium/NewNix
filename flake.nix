@@ -90,7 +90,7 @@
       ##################
       ### uWebServer ###
       ##################
-      nixosConfigurations.uWebServer = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.uWebServer = nixpkgs.lib.nixosSystem { 
         inherit system;
         modules = genericModules ++ (with nixos-hardware.nixosModules; [
           common-pc
@@ -112,7 +112,7 @@
       ##################
       ### uMsiLaptop ###
       ##################
-      nixosConfigurations.uMsiLaptop = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.uMsiLaptop = nixpkgs.lib.nixosSystem { #deploy#
         inherit system;
         modules = genericModules ++ (with nixos-hardware.nixosModules; [
           common-pc
@@ -144,20 +144,6 @@
           common-pc-laptop
           common-cpu-intel
         ]) ++ [ ./devices/uMacBookPro.nix ];
-      };
-      ##################
-      ### uSteamDeck ###
-      ##################
-      nixosConfigurations.uSteamDeck = nixpkgs.lib.nixosSystem {
-        inherit system;
-        modules = genericModules ++ (with nixos-hardware.nixosModules; [
-          common-pc
-          common-pc-ssd
-          common-pc-laptop
-          common-cpu-amd
-        ])
-        ++ [ ./devices/uSteamDeck.nix ]
-        ++ [ inputs.steamdeck.nixosModules.jovian ];
       };
     };
 }

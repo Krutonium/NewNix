@@ -1,0 +1,20 @@
+{
+  "Remotes": [
+    {
+      "Name": "uWebServer",
+      "IP": "10.1",
+      "SwitchOrBoot": "switch"
+    },
+    {
+      "Name": "uGamingPC",
+      "IP": "10.2",
+      "SwitchOrBoot": "switch"
+    },
+    {
+      "Name": "uMsiLaptop",
+      "IP": "10.4",
+      "SwitchOrBoot": "switch"
+    },
+  ],
+  "updateFlake": true
+}
