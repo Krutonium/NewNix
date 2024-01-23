@@ -50,7 +50,11 @@ let
   cleanup = pkgs.writeShellScriptBin "cleanup" ''
     sudo nix-collect-garbage -d
   '';
+  relinkrepo = pkgs.writeShellScriptBin "relinkrepo" ''
+    cd ~/NixOS
+    git remote set-url origin gitea@gitea.krutonium.ca:Krutonium/NixOS.git
+  '';
 in
 {
-  environment.systemPackages = [ sshr updateindex why-installed where-installed pkgs.jq zink update switch boot commit cleanup ];
+  environment.systemPackages = [ sshr updateindex why-installed where-installed pkgs.jq zink update switch boot commit cleanup relinkrepo ];
 }
