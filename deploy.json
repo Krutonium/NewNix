@@ -3,18 +3,34 @@
     {
       "Name": "uWebServer",
       "IP": "10.1",
-      "SwitchOrBoot": "switch"
+      "SwitchOrBoot": "boot",
+      "Deploy": true
     },
     {
       "Name": "uGamingPC",
       "IP": "10.2",
-      "SwitchOrBoot": "switch"
+      "SwitchOrBoot": "switch",
+      "Deploy": true
     },
     {
       "Name": "uMsiLaptop",
       "IP": "10.4",
-      "SwitchOrBoot": "switch"
+      "SwitchOrBoot": "switch",
+      "Deploy": true
+    },
+    {
+      "Name": "uHPLaptop",
+      "IP": "null",
+      "SwitchOrBoot": "switch",
+      "Deploy": false
+    },
+    {
+      "Name": "uMacBookPro",
+      "IP": "null",
+      "SwitchOrBoot": "switch",
+      "Deploy": false
     },
   ],
-  "updateFlake": true
+  "updateFlake": true,
+  "Username": "root"
 }
