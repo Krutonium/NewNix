@@ -193,11 +193,10 @@ in
   ];
   programs.obs-studio = {
     enable = true;
-    plugins = [
-      pkgs.obs-studio-plugins.obs-teleport
-      pkgs.obs-studio-plugins.looking-glass-obs
+    plugins = with pkgs.unstable.obs-studio-plugins; [
+      obs-teleport
     ];
-    package = pkgs.obs-studio;
+    package = pkgs.unstable.obs-studio;
   };
   programs.mangohud = {
     enable = true;
