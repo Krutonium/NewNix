@@ -4,13 +4,13 @@
       "Name": "uWebServer",
       "IP": "10.1",
       "SwitchOrBoot": "boot",
-      "Deploy": true
+      "Deploy": false
     },
     {
       "Name": "uGamingPC",
       "IP": "10.2",
       "SwitchOrBoot": "switch",
-      "Deploy": true
+      "Deploy": false
     },
     {
       "Name": "uMsiLaptop",
