@@ -17,7 +17,7 @@
   environment.shellAliases = {
     ls = "${pkgs.eza}/bin/eza --icons --git";
   };
-  
+  security.sudo.wheelNeedsPassword = false;
   services.printing.enable = true;
   services.printing.drivers = with pkgs; [ brlaser ];
   environment.variables = {
