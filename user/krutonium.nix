@@ -7,7 +7,7 @@ in
 {
   config = mkIf (cfg.krutonium == true) {
     users.users.krutonium = {
-      uid = 1000;
+      uid = 1002;
       home = "/home/krutonium";
       isNormalUser = true;
       description = "Krutonium";
