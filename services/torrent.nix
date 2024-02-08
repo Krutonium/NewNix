@@ -36,7 +36,7 @@ in
         max_active_seeding = "500";
         max_active_downloading = "500";
         max_active_limit = "500";
-        listen_interface = "enp2s0";
+        listen_interface = "WAN";
         outgoing_interface = "enp2s0";
         outgoing_ports = [ 50024 50050 ];
         random_outgoing_ports = false;
