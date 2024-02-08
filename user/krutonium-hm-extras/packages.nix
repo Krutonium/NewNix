@@ -26,7 +26,7 @@ let
   #    ${pkgs.steam-run}/bin/steam-run ${pkgs.jetbrains.rider}/bin/rider
   #  '';
   #rider = pkgs.unstable.jetbrains.rider.overrideAttrs (oldAttrs: { meta.priority = 10; });
-  shipwright = pkgs.unstable.shipwright.override {
+  shipwright = pkgs.shipwright.override {
     oot = {
       enable = true;
       variant = "pal_gc";
