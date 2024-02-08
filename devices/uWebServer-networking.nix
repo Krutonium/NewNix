@@ -8,6 +8,17 @@
     "net.ipv6.conf.all.autoconf" = 1;
     "net.ipv6.conf.all.use_tempaddr" = 0;
   };
+  #Set up network interfaces to have *actually reliable names* (WOW!)
+  services = {
+    udev.extraRules = ''
+      ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="40:8d:5c:54:89:96", NAME="WAN"
+      ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="ac:16:2d:9a:17:c0", NAME="LAN0"
+      ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="ac:16:2d:9a:17:c1", NAME="LAN1"
+      ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="ac:16:2d:9a:17:c2", NAME="LAN2"
+      ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="ac:16:2d:9a:17:c3", NAME="LAN3"
+    '';
+  };
+
   networking.firewall.allowedUDPPorts = [ 546 ]; #DHCPv6-PD
   systemd.network = {
     enable = true;
@@ -51,13 +62,13 @@
 
     bridges = {
       "bridge" = {
-        interfaces = [ "enp10s0f0" "enp10s0f1" "enp10s0f2" "enp10s0f3" ];
+        interfaces = [ "LAN0" "LAN1" "LAN2" "LAN3" ];
         # All ports on the Card are part of the LAN
       };
     };
     nat = {
       enable = true;
-      externalInterface = "enp2s0";
+      externalInterface = "WAN";
       internalInterfaces = [ "bridge" ];
       internalIPs = [ "10.0.0.0/24" ];
       enableIPv6 = true;
