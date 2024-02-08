@@ -75,7 +75,7 @@
       internalIPv6s = [ "2001:db8:1234:5678::/64" ];
     };
     interfaces = {
-      "enp2s0" = {
+      "WAN" = {
         #We're getting the IP dynamically from the ISP.
         useDHCP = true;
       };
