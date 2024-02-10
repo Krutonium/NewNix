@@ -85,7 +85,7 @@ in
     duckdns = {
       description = "DuckDNS dynamic DNS updater.";
       serviceConfig.Type = "oneshot";
-      after = [ "network-online.target" "sys-subsystem-net-devices-enp5s0.device" ];
+      after = [ "network-online.target" "sys-subsystem-net-devices-WAN.device" ];
       wantedBy = [ "multi-user.target" ];
       path = [ pkgs.curl ];
       script = ''
