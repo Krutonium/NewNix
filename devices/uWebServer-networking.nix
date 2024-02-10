@@ -63,6 +63,7 @@
     bridges = {
       "bridge" = {
         interfaces = [ "LAN0" "LAN1" "LAN2" "LAN3" ];
+        rtsp = true;
         # All ports on the Card are part of the LAN
       };
     };
@@ -83,6 +84,7 @@
         # For now we're setting this statically, but I don't think there is any reason we couldn't use DHCP here.
         ipv4.addresses = [{ address = "10.0.0.1"; prefixLength = 24; }];
         useDHCP = false;
+        macAddress = "ac:16:2d:9a:17:c5";
       };
     };
     tempAddresses = "disabled";
