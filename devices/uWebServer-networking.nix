@@ -63,7 +63,6 @@
     bridges = {
       "bridge" = {
         interfaces = [ "LAN0" "LAN1" "LAN2" "LAN3" ];
-        rtsp = true;
         # All ports on the Card are part of the LAN
       };
     };
