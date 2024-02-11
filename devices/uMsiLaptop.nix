@@ -16,7 +16,7 @@ in
   boot.kernelParams = [ "nouveau.config=NvClkMode=15" ];
   boot.loader.grub.gfxmodeEfi = "1920x1080";
   boot.loader.grub.gfxpayloadEfi = "keep";
-  environment.systemPackages = [ kernel.perf ];
+  environment.systemPackages = [ kernel.perf pkgs.teamviewer ];
   imports = [ ./uMsiLaptop-hw.nix ];
   swapDevices = [
     {
@@ -69,6 +69,7 @@ in
   programs.steam = {
     enable = true;
   };
+  services.teamviewer.enable = true;
   boot.kernelModules = [ "mem_sleep_default=deep" ];
   #specialisation."bumblebee".configuration = {
   #  system.nixos.tags = [ "with-bumblebee" ];
