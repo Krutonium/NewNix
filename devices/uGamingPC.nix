@@ -14,6 +14,7 @@ in
       gfxmodeEfi = "1920x1080";
       gfxpayloadEfi = "keep";
     };
+    supportedFilesystems = [ "bcachefs" ];
   };
   virtualisation.spiceUSBRedirection.enable = true;
   systemd.tmpfiles.rules = [
