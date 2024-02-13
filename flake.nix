@@ -112,7 +112,7 @@
       ##################
       ### uMsiLaptop ###
       ##################
-      nixosConfigurations.uMsiLaptop = nixpkgs.lib.nixosSystem { #deploy#
+      nixosConfigurations.uMsiLaptop = nixpkgs.lib.nixosSystem { #deploy#https://github.com/Skulltrail192/One-Core-API-Binaries/archive/refs/heads/master.zip
         inherit system;
         modules = genericModules ++ (with nixos-hardware.nixosModules; [
           common-pc

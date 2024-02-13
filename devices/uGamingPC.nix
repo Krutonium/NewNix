@@ -28,6 +28,8 @@ in
       allowedUDPPortRanges = [ { from = 9943; to = 9944; } ];
     };
   };
+  services.teamviewer.enable = true;
+
   imports = [ ./uGamingPC-hw.nix ];
   #swapDevices = [
   #  {
