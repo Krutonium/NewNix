@@ -16,10 +16,8 @@
   boot.supportedFilesystems = [ "ntfs" ];
   networking.hostId = "ad53f8bc";
   fileSystems."/" = 
-    { device = "UUID=702d1fb7-d110-43e3-95e5-56b98692910b";
-      fsType = "btrfs";
-      options = [ "compress=zstd:5" "autodefrag" "noatime" ];
-
+    { device = "/dev/disk/by-uuid/90083dac-4f03-49f1-bb83-e7dc14eca16a";
+      fsType = "ext4";
     };
   fileSystems."/boot" =
     { device = "UUID=48DA-2BEF";
