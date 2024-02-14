@@ -16,7 +16,7 @@ in
     };
     supportedFilesystems = [ "bcachefs" ];
   };
-  systemd.services."mount-games". = {
+  systemd.services."mount-games" = {
     serviceConfig.Type = "oneshot";
     serviceConfig.User = "root";
     path = with pkgs; [ bcachefs ];
