@@ -16,6 +16,15 @@ in
     };
     supportedFilesystems = [ "bcachefs" ];
   };
+  systemd.services."mount-games". = {
+    serviceConfig.Type = "oneshot";
+    serviceConfig.User = "root";
+    path = with pkgs; [ bcachefs ];
+    script = ''
+      mkdir /games
+      bcachefs mount UUID=3bf2876e-bdcc-45da-ac94-a5bcbf996df8 /games
+    '';
+  };
   virtualisation.spiceUSBRedirection.enable = true;
   systemd.tmpfiles.rules = [
     "f /dev/shm/looking-glass 0660 krutonium qemu-libvirtd -"
