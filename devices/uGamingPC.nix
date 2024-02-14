@@ -17,13 +17,15 @@ in
     supportedFilesystems = [ "bcachefs" ];
   };
   systemd.services."mount-games" = {
+    # This is a HACK because the default mounter just utterly dies with bcachefs.
     serviceConfig.Type = "oneshot";
     serviceConfig.User = "root";
-    path = with pkgs; [ bcachefs ];
+    path = with pkgs; [ pkgs.bcachefs-tools ];
     script = ''
       mkdir /games
       bcachefs mount UUID=3bf2876e-bdcc-45da-ac94-a5bcbf996df8 /games
     '';
+    enabled = true;
   };
   virtualisation.spiceUSBRedirection.enable = true;
   systemd.tmpfiles.rules = [
