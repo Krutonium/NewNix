@@ -19,6 +19,11 @@
     { device = "/dev/disk/by-uuid/90083dac-4f03-49f1-bb83-e7dc14eca16a";
       fsType = "ext4";
     };
+  fileSystems."/games" = 
+    { device = "UUID=3bf2876e-bdcc-45da-ac94-a5bcbf996df8";
+      fsType = "bcachefs";
+      options = [ "compression=lz4" "background_compression=zstd" ];
+    };
   fileSystems."/boot" =
     { device = "UUID=48DA-2BEF";
       fsType = "vfat";
