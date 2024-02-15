@@ -22,10 +22,12 @@ in
     serviceConfig.User = "root";
     path = with pkgs; [ pkgs.bcachefs-tools ];
     script = ''
-      mkdir /games
+      mkdir -p /games
       bcachefs mount UUID=3bf2876e-bdcc-45da-ac94-a5bcbf996df8 /games
     '';
-    enabled = true;
+    wants = "network-online.target";
+    after = "network-online.target";
+    enable = true;
   };
   virtualisation.spiceUSBRedirection.enable = true;
   systemd.tmpfiles.rules = [
