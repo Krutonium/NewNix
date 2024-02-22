@@ -86,7 +86,10 @@ in
     video
     pkgs.gamescope
   ];
-  programs.wireshark.enable = true;
+  programs = {
+    wireshark.enable = true;
+    adb.enable = true;
+  };
   hardware.nvidia.modesetting.enable = true;
   #Fix Discord and other Chromium based Bullshit
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
