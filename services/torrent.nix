@@ -37,7 +37,7 @@ in
         max_active_downloading = "500";
         max_active_limit = "500";
         listen_interface = "WAN";
-        outgoing_interface = "enp2s0";
+        outgoing_interface = "WAN";
         outgoing_ports = [ 50024 50050 ];
         random_outgoing_ports = false;
         cache_size = "8192";
