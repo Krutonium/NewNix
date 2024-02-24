@@ -10,7 +10,7 @@ let
     name = "PAL_GC.z64";
   };
   openjdk8-low = pkgs.openjdk8.overrideAttrs (oldAttrs: { meta.priority = 10; });
-  #dotnetCombined = with pkgs.dotnetCorePackages; combinePackages [ sdk_7_0 sdk_6_0 ];
+  dotnetCombined = with pkgs.dotnetCorePackages; combinePackages [ sdk_6_0 sdk_7_0 sdk_8_0 ];
 
   # Run Idea and Rider using steam-run to fix plugins not working.
   #ideaScript = pkgs.writeShellScriptBin "idea-ultimate"
@@ -63,16 +63,16 @@ in
     #idea
     #ideaScript  
     #(pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.rider [ "14839" "17718" "13882" ])
-    (pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.rider [ "github-copilot" ])
-    (pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.idea-ultimate [ "github-copilot" ])
+    (pkgs.unstable.jetbrains.plugins.addPlugins pkgs.unstable.jetbrains.rider [ "github-copilot" ])
+    (pkgs.unstable..jetbrains.plugins.addPlugins pkgs.unstable.jetbrains.idea-ultimate [ "github-copilot" ])
     
     #rider
     #riderScript
     
     pkgs.vscode
     pkgs.gitkraken
-    #dotnetCombined
-    pkgs.dotnetCorePackages.sdk_6_0
+    dotnetCombined
+    #pkgs.dotnetCorePackages.sdk_6_0
     pkgs.dotnetPackages.StyleCopMSBuild
     pkgs.notepad-next
     #pkgs.msbuild
