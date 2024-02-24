@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }:
 let
-  kernel = pkgs.linuxPackages_zen;
+  kernel = pkgs.unstable.linuxPackages_zen;
   Hostname = "uMsiLaptop";
   nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
     export __NV_PRIME_RENDER_OFFLOAD=1
@@ -20,8 +20,7 @@ in
   imports = [ ./uMsiLaptop-hw.nix ];
   swapDevices = [
     {
-      device = "/swap";
-      size = 8192;
+      device = "/dev/disk/by-partlabel/swap";
       priority = 0;
     }
   ];

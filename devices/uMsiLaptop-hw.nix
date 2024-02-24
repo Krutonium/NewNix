@@ -15,21 +15,13 @@
   boot.extraModulePackages = [ ];
   system.fsPackages = [ pkgs.sshfs ];
   fileSystems."/" =
-    {
-      device = "/dev/disk/by-uuid/a387c76d-cc06-435a-8278-f81fba61e0e4";
-      fsType = "ext4";
+    { device = "UUID=1f35e804-826b-4fe8-926e-7545b08c383f";
+      fsType = "bcachefs";
+      neededForBoot = true;
     };
-
   fileSystems."/boot" =
-    {
-      device = "/dev/disk/by-uuid/0CBA-0C11";
+    { device = "/dev/disk/by-uuid/6034-3873";
       fsType = "vfat";
-    };
-
-  fileSystems."/home/krutonium/steam" =
-    {
-      device = "/dev/disk/by-uuid/a90c7f23-545f-44e7-8335-fe8646ff7018";
-      fsType = "ext4";
     };
   fileSystems."/uWebServer" =
     {
