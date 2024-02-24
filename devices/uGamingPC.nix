@@ -20,10 +20,14 @@ in
     # This is a HACK because the default mounter just utterly dies with bcachefs.
     serviceConfig.Type = "oneshot";
     serviceConfig.User = "root";
-    path = with pkgs; [ pkgs.bcachefs-tools ];
+    path = with pkgs; [ pkgs.bcachefs-tools pkgs.util-linux ];
     script = ''
-      mkdir -p /games
-      bcachefs mount UUID=3bf2876e-bdcc-45da-ac94-a5bcbf996df8 /games
+      if mountpoint -q /games; then
+        echo "games already mounted"
+      else
+         mkdir -p /games
+         bcachefs mount UUID=3bf2876e-bdcc-45da-ac94-a5bcbf996df8 /games
+      fi
     '';
     wantedBy = [ "multi-user.target" ];
     enable = true;
