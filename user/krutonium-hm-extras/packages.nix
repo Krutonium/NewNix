@@ -10,7 +10,16 @@ let
     name = "PAL_GC.z64";
   };
   openjdk8-low = pkgs.openjdk8.overrideAttrs (oldAttrs: { meta.priority = 10; });
-  dotnetCombined = with pkgs.dotnetCorePackages; combinePackages [ sdk_6_0 sdk_7_0 sdk_8_0 ];
+  dotnetCombined = (with pkgs.dotnetCorePackages; combinePackages [ sdk_6_0 sdk_7_0 sdk_8_0 ]).overrideAttrs (fineAttrs: previousAttrs: {
+    postBuild = (previousAttrs.postBuild or '''') + ''
+         for i in $out/sdk/*
+         do
+           i=$(basename $i)
+           mkdir -p $out/metadata/workloads/''${i/-*}
+           touch $out/metadata/workloads/''${i/-*}/userlocal
+        done
+      '';
+  });
 
   # Run Idea and Rider using steam-run to fix plugins not working.
   #ideaScript = pkgs.writeShellScriptBin "idea-ultimate"
@@ -35,8 +44,12 @@ let
   };
 in
 {
+  home.sessionVariables = {
+    DOTNET_ROOT="${dotnetCombined}";
+  };
   #home.file.".net".source = dotnetCombined;
   home.file.".msbuild".source = pkgs.msbuild;
+  
   home.packages = [
     # Browser
     pkgs.firefox-wayland
@@ -65,10 +78,10 @@ in
     #(pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.rider [ "14839" "17718" "13882" ])
     (pkgs.unstable.jetbrains.plugins.addPlugins pkgs.unstable.jetbrains.rider [ "github-copilot" ])
     (pkgs.unstable.jetbrains.plugins.addPlugins pkgs.unstable.jetbrains.idea-ultimate [ "github-copilot" ])
-    
+
     #rider
     #riderScript
-    
+
     pkgs.vscode
     pkgs.gitkraken
     dotnetCombined
