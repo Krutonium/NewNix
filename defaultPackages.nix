@@ -17,7 +17,7 @@ let
   };
 in
 {
-  fonts.fonts = [ fonts pkgs.rPackages.fontawesome ];
+  fonts.packages = [ fonts pkgs.rPackages.fontawesome ];
   environment.systemPackages = [
     pkgs.xorg.xf86inputmouse
     pkgs.rPackages.fontawesome
