@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 let
   kernel = with pkgs; unstable.linuxPackages_zen;
-  video = config.boot.kernelPackages.nvidia_x11;
+  video = config.boot.kernelPackages.nvidiaPackages.beta;
   zenpower = config.boot.kernelPackages.zenpower;
   Hostname = "uGamingPC";
 in
@@ -66,23 +66,27 @@ in
   };
   services.xserver = {
     videoDrivers = [ "nvidia" ];
-    deviceSection = ''
-      Driver                 "nvidia"
-      VendorName             "NVIDIA Corporation"
-      BoardName              "NVIDIA GeForce RTX 3070"
-      Option                 "AllowHMD" "yes"
-      Option                 "ModeValidation" "AllowNonEdidModes,NoEdidMaxPClkCheck,NoMaxPClkCheck"
-    '';
-    screenSection = ''
-      Option                 "metamodes" "nvidia-auto-select +0+0 { AllowGSYNCCompatible=On }"
-    '';
-    logFile = "/var/log/xorg.log";
+    #deviceSection = ''
+    #  Driver                 "nvidia"
+    #  VendorName             "NVIDIA Corporation"
+    #  BoardName              "NVIDIA GeForce RTX 3070"
+    #  Option                 "AllowHMD" "yes"
+    #  Option                 "ModeValidation" "AllowNonEdidModes,NoEdidMaxPClkCheck,NoMaxPClkCheck"
+    #'';
+    #screenSection = ''
+    #  Option                 "metamodes" "nvidia-auto-select +0+0 { AllowGSYNCCompatible=On }"
+    #'';
+    #logFile = "/var/log/xorg.log";
     #displayManager.setupCommands = ''
     #  xrandr --output HDMI-0 --mode 1920x1080 --pos 3840x0 --rotate normal --output DP-0 --mode 1920x1080 --pos 1920x0 --rotate normal --output DP-2 --mode 1920x1080 --pos 0x0 --rotate normal
     #'';
   };
   hardware.opengl.enable = true;
-  hardware.nvidia.package = video;
+  hardware.nvidia = {
+    package = video;
+    open = false; #some day my beauty
+    nvidiaSettings = true;
+  };
   boot.initrd.availableKernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
   boot.extraModulePackages = with config.boot.kernelPackages; [ zenpower.out ];
   boot.blacklistedKernelModules = [ "k10temp" "amdgpu" ];
@@ -94,7 +98,6 @@ in
     wireshark.enable = true;
     adb.enable = true;
   };
-  hardware.nvidia.modesetting.enable = true;
   #Fix Discord and other Chromium based Bullshit
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   sys = {
@@ -104,7 +107,7 @@ in
       plymouth_enabled = true;
     };
     desktop = {
-      displayManager = "lightdm";
+      displayManager = "gdm";
       desktop = "gnome";
       wayland = true;
     };
