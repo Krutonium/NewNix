@@ -103,7 +103,6 @@ in
     # Keyboard Stuff
     pkgs.unzip
     pkgs.qmk
-    pkgs.qmk-udev-rules
     pkgs.arduino
     #pkgs.gcc11
     #pkgs.pkgsCross.avr.buildPackages.gcc

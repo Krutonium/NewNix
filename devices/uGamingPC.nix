@@ -16,6 +16,11 @@ in
     };
     supportedFilesystems = [ "bcachefs" ];
   };
+  services.udev.packages = [
+    pkgs.qmk-udev-rules
+    pkgs.logitech-udev-rules
+  ];
+  
   systemd.services."mount-games" = {
     # This is a HACK because the default mounter just utterly dies with bcachefs.
     serviceConfig.Type = "oneshot";
@@ -93,6 +98,7 @@ in
   environment.systemPackages = [
     video
     pkgs.gamescope
+    pkgs.solaar
   ];
   programs = {
     wireshark.enable = true;
