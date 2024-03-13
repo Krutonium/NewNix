@@ -20,7 +20,7 @@ in
     pkgs.qmk-udev-rules
     pkgs.logitech-udev-rules
   ];
-  
+  services.ratbagd.enable = true;
   systemd.services."mount-games" = {
     # This is a HACK because the default mounter just utterly dies with bcachefs.
     serviceConfig.Type = "oneshot";
@@ -78,9 +78,9 @@ in
     #  Option                 "AllowHMD" "yes"
     #  Option                 "ModeValidation" "AllowNonEdidModes,NoEdidMaxPClkCheck,NoMaxPClkCheck"
     #'';
-    #screenSection = ''
-    #  Option                 "metamodes" "nvidia-auto-select +0+0 { AllowGSYNCCompatible=On }"
-    #'';
+    screenSection = ''
+      Option "metamodes" "DP-4: 1920x1080_165 +1920+0 {AllowGSYNCCompatible=On}, DP-0: 1920x1080_165 +0+0 {AllowGSYNCCompatible=On}, DP-2: 1920x1080_165 +3840+0 {AllowGSYNCCompatible=On}"
+    '';
     #logFile = "/var/log/xorg.log";
     #displayManager.setupCommands = ''
     #  xrandr --output HDMI-0 --mode 1920x1080 --pos 3840x0 --rotate normal --output DP-0 --mode 1920x1080 --pos 1920x0 --rotate normal --output DP-2 --mode 1920x1080 --pos 0x0 --rotate normal
@@ -98,7 +98,7 @@ in
   environment.systemPackages = [
     video
     pkgs.gamescope
-    pkgs.solaar
+    pkgs.piper
   ];
   programs = {
     wireshark.enable = true;
