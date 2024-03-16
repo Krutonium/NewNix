@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }:
 let
-  kernel = pkgs.unstable.linuxPackages_zen;
+  kernel = pkgs.unstable.linuxPackages_latest;
   Hostname = "uMsiLaptop";
   nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
     export __NV_PRIME_RENDER_OFFLOAD=1
