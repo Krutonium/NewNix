@@ -15,12 +15,8 @@
       url = "github:Krutonium/BetterFanController";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    steamdeck = {
-      url = "github:Jovian-Experiments/Jovian-NixOS/development";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
   };
-  outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-master, nixos-hardware, home-manager, update, nix-monitored, nixd, fan-controller, steamdeck }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-master, nixos-hardware, home-manager, update, nix-monitored, nixd, fan-controller }@inputs:
     let
       # This is a Generic Block of St00f
       system = "x86_64-linux";

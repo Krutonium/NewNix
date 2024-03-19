@@ -43,8 +43,10 @@ in
     };
     users = {
       krutonium = true;
-      home-manager = true;
       root = true;
+    };
+    roles = {
+      desktop = true;
     };
     services = {
       avahi = true;
