@@ -1,8 +1,10 @@
 { config, pkgs, ... }:
 {
   imports = [
-    ./git.nix
-    ./terminal.nix
+    ./krutonium-hm-extras/git.nix
+    ./krutonium-hm-extras/terminal.nix
+    ./krutonium-hm-extras/ssh.nix
+    ./krutonium-hm-extras/packages-server.nix
   ];
   programs.home-manager.enable = true;
 

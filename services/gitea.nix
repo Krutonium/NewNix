@@ -17,7 +17,7 @@ in
           HTTP_PORT = 3001;
           DOMAIN = "gitea.krutonium.ca";
         };
-        "attachment" = { 
+        "attachment" = {
           MAX_SIZE = 1000;
         };
         "git.timeout" = {

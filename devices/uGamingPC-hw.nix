@@ -15,8 +15,9 @@
   boot.extraModulePackages = [ ];
   boot.supportedFilesystems = [ "ntfs" ];
   networking.hostId = "ad53f8bc";
-  fileSystems."/" = 
-    { device = "/dev/disk/by-uuid/90083dac-4f03-49f1-bb83-e7dc14eca16a";
+  fileSystems."/" =
+    {
+      device = "/dev/disk/by-uuid/90083dac-4f03-49f1-bb83-e7dc14eca16a";
       fsType = "ext4";
     };
   #fileSystems."/games" = 
@@ -24,15 +25,18 @@
   #    fsType = "bcachefs";
   #  };
   fileSystems."/boot" =
-    { device = "UUID=48DA-2BEF";
+    {
+      device = "UUID=48DA-2BEF";
       fsType = "vfat";
     };
-  fileSystems."/windows" = 
-    { device = "UUID=6023862438DB2AD4";
+  fileSystems."/windows" =
+    {
+      device = "UUID=6023862438DB2AD4";
       fsType = "ntfs";
     };
-  fileSystems."/scratch" = 
-    { device = "UUID=1CE7761638DB2AD4";
+  fileSystems."/scratch" =
+    {
+      device = "UUID=1CE7761638DB2AD4";
       fsType = "ntfs";
     };
   fileSystems."/uWebServer" =
@@ -50,7 +54,7 @@
           "gid=100"
           "max_conns=20" # MOAR THREADS (when needed)
           "IdentityFile=/home/krutonium/.ssh/id_ed25519"
-  #        # Handle connection drops better
+          #        # Handle connection drops better
           "ServerAliveInterval=2"
           "ServerAliveCountMax=2"
           "reconnect"

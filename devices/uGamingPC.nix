@@ -8,7 +8,7 @@ in
 {
   boot = {
     kernelPackages = kernel;
-    kernelParams = [ "amd_iommu=on" "iommu=pt" "vfio-pci.ids=1002:731f,1002:ab38"];
+    kernelParams = [ "amd_iommu=on" "iommu=pt" "vfio-pci.ids=1002:731f,1002:ab38" ];
     tmp.useTmpfs = false;
     loader.grub = {
       gfxmodeEfi = "1920x1080";
@@ -41,13 +41,13 @@ in
   systemd.tmpfiles.rules = [
     "f /dev/shm/looking-glass 0660 krutonium qemu-libvirtd -"
   ];
-  networking = { 
+  networking = {
     hostName = Hostname;
     firewall = {
       allowedTCPPorts = [ 47984 47989 48010 1337 ];
       allowedUDPPorts = [ 47998 47999 48000 48010 ];
-      allowedTCPPortRanges = [ { from = 9943; to = 9944; } ]; #ALVR
-      allowedUDPPortRanges = [ { from = 9943; to = 9944; } ];
+      allowedTCPPortRanges = [{ from = 9943; to = 9944; }]; #ALVR
+      allowedUDPPortRanges = [{ from = 9943; to = 9944; }];
     };
   };
   services.teamviewer.enable = true;
@@ -127,8 +127,10 @@ in
     };
     users = {
       krutonium = true;
-      home-manager = true;
       root = true;
+    };
+    roles = {
+      desktop = true;
     };
     services = {
       avahi = true;

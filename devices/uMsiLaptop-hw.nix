@@ -15,12 +15,14 @@
   boot.extraModulePackages = [ ];
   system.fsPackages = [ pkgs.sshfs ];
   fileSystems."/" =
-    { device = "UUID=1f35e804-826b-4fe8-926e-7545b08c383f";
+    {
+      device = "UUID=1f35e804-826b-4fe8-926e-7545b08c383f";
       fsType = "bcachefs";
       neededForBoot = true;
     };
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/6034-3873";
+    {
+      device = "/dev/disk/by-uuid/6034-3873";
       fsType = "vfat";
     };
   fileSystems."/uWebServer" =

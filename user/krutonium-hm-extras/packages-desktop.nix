@@ -12,16 +12,16 @@ let
   openjdk8-low = pkgs.openjdk8.overrideAttrs (oldAttrs: { meta.priority = 10; });
   dotnetCombined = (with pkgs.dotnetCorePackages; combinePackages [ sdk_6_0 sdk_7_0 sdk_8_0 ]).overrideAttrs (fineAttrs: previousAttrs: {
     postBuild = (previousAttrs.postBuild or '''') + ''
-         for i in $out/sdk/*
-         do
-           i=$(basename $i)
-           length=$(printf "%s" "$i" | wc -c)
-           substring=$(printf "%s" "$i" | cut -c 1-$(expr $length - 2))
-           i="$substring""00"
-           mkdir -p $out/metadata/workloads/''${i/-*}
-           touch $out/metadata/workloads/''${i/-*}/userlocal
-        done
-      '';
+       for i in $out/sdk/*
+       do
+         i=$(basename $i)
+         length=$(printf "%s" "$i" | wc -c)
+         substring=$(printf "%s" "$i" | cut -c 1-$(expr $length - 2))
+         i="$substring""00"
+         mkdir -p $out/metadata/workloads/''${i/-*}
+         touch $out/metadata/workloads/''${i/-*}/userlocal
+      done
+    '';
   });
 
   # Run Idea and Rider using steam-run to fix plugins not working.
@@ -48,11 +48,11 @@ let
 in
 {
   home.sessionVariables = {
-    DOTNET_ROOT="${dotnetCombined}";
+    DOTNET_ROOT = "${dotnetCombined}";
   };
   #home.file.".net".source = dotnetCombined;
   home.file.".msbuild".source = pkgs.msbuild;
-  
+
   home.packages = [
     # Browser
     pkgs.firefox-wayland
@@ -195,7 +195,7 @@ in
     # Communications
     pkgs.tdesktop
     #pkgs.element-desktop
-    pkgs.unstable.fractal-next
+    pkgs.fractal-next
     pkgs.srain
     pkgs.discord
     #pkgs.unstable.vesktop

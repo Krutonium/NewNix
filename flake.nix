@@ -90,7 +90,7 @@
       ##################
       ### uWebServer ###
       ##################
-      nixosConfigurations.uWebServer = nixpkgs.lib.nixosSystem { 
+      nixosConfigurations.uWebServer = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = genericModules ++ (with nixos-hardware.nixosModules; [
           common-pc
@@ -112,7 +112,8 @@
       ##################
       ### uMsiLaptop ###
       ##################
-      nixosConfigurations.uMsiLaptop = nixpkgs.lib.nixosSystem { #deploy#https://github.com/Skulltrail192/One-Core-API-Binaries/archive/refs/heads/master.zip
+      nixosConfigurations.uMsiLaptop = nixpkgs.lib.nixosSystem {
+        #deploy#https://github.com/Skulltrail192/One-Core-API-Binaries/archive/refs/heads/master.zip
         inherit system;
         modules = genericModules ++ (with nixos-hardware.nixosModules; [
           common-pc
