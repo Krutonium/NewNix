@@ -14,5 +14,6 @@ in
       group = "gameserver";
       description = "Game Server User";
     };
+    users.groups.gameserver = {};
   };
 }
