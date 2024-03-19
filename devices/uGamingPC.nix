@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 let
-  kernel = with pkgs; unstable.linuxPackages_zen;
+  kernel = with pkgs; unstable.linuxPackages_latest;
   video = config.boot.kernelPackages.nvidiaPackages.beta;
   zenpower = config.boot.kernelPackages.zenpower;
   Hostname = "uGamingPC";
