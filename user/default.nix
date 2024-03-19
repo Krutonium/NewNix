@@ -3,13 +3,6 @@ with lib;
 with builtins;
 {
   options.sys.users = {
-    home-manager = mkOption {
-      type = types.bool;
-      default = false;
-      description = ''
-        Should system be Home Manager Enabled
-      '';
-    };
     krutonium = mkOption {
       type = types.bool;
       default = false;
@@ -31,11 +24,20 @@ with builtins;
         Enable user Kea
       '';
     };
-    gameserver = mkOption {
+  };
+  options.sys.roles = {
+    server = mkOption {
       type = types.bool;
       default = false;
       description = ''
         Enable gameserver host account
+      '';
+    };
+    desktop = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        Enables Desktop Tweaks
       '';
     };
   };

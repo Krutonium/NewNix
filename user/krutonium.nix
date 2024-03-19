@@ -2,10 +2,11 @@
 with lib;
 with builtins;
 let
-  cfg = config.sys.users;
+  users = config.sys.users;
+  roles = config.sys.roles;
 in
 {
-  config = mkIf (cfg.krutonium == true) {
+  config = mkIf (users.krutonium == true) {
     users.users.krutonium = {
       uid = 1002;
       home = "/home/krutonium";
@@ -20,9 +21,11 @@ in
     programs.fish.useBabelfish = true;
     #programs.zsh.enable = true;
     home-manager.users.krutonium =
-      if (cfg.home-manager == true) then
-        import ./krutonium-hm.nix
+      if roles.desktop == true then
+        import ./krutonium-desktop.nix
+      else if roles.server == true then
+        import ./krutonium-server.nix
       else
-        import ./krutonium-hm-extras/server.nix;
+        null;
   };
 }

@@ -2,10 +2,10 @@
 with lib;
 with builtins;
 let
-  cfg = config.sys.users;
+  cfg = config.sys.roles;
 in
 {
-  config = mkIf (cfg.gameserver == true) {
+  config = mkIf (cfg.server == true) {
     users.users.gameserver = {
       uid = 500;
       isSystemUser = true;

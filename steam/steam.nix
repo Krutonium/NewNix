@@ -40,26 +40,26 @@ let
   #    fetchSubmodules = true;
   #  };
 
-    # disable all warnings (they become errors)
-   # NIX_CFLAGS_COMPILE = "-Wno-error -w";
+  # disable all warnings (they become errors)
+  # NIX_CFLAGS_COMPILE = "-Wno-error -w";
 
-    #nativeBuildInputs = with pkgs;[
-    #  cmake
-    #];
+  #nativeBuildInputs = with pkgs;[
+  #  cmake
+  #];
 
-    #buildInputs = with pkgs.unstable; [
-    #  vulkan-loader
-    #  vulkan-headers
-    #  libGLU
-    #  python39
-    #  xorg.libX11
-    #];
+  #buildInputs = with pkgs.unstable; [
+  #  vulkan-loader
+  #  vulkan-headers
+  #  libGLU
+  #  python39
+  #  xorg.libX11
+  #];
 
-    #enableParallelBuilding = true;
+  #enableParallelBuilding = true;
 
-    #installPhase = ''
-    #  cp -r . $out
-    #'';
+  #installPhase = ''
+  #  cp -r . $out
+  #'';
   #};
 
   patch-vr = pkgs.writeShellScriptBin "patch-vr" ''
@@ -72,15 +72,15 @@ let
     #/etc/monado/scripts/get-ht-models.sh
   '';
 
- # monado = (pkgs.unstable.monado.overrideAttrs (old: {
- #   src = pkgs.unstable.fetchFromGitLab {
- #     domain = "gitlab.freedesktop.org";
- #     owner = "monado";
- #     repo = "monado";
- #     rev = "9293c628d78ba595918b6b21460fc1df2fbd6f45";
- #     sha256 = "sha256-oDYyrO45TBl8sTcjk6okMJ5vpqGA08h0XJTcf7grnfo=";
- #   };
- # }));
+  # monado = (pkgs.unstable.monado.overrideAttrs (old: {
+  #   src = pkgs.unstable.fetchFromGitLab {
+  #     domain = "gitlab.freedesktop.org";
+  #     owner = "monado";
+  #     repo = "monado";
+  #     rev = "9293c628d78ba595918b6b21460fc1df2fbd6f45";
+  #     sha256 = "sha256-oDYyrO45TBl8sTcjk6okMJ5vpqGA08h0XJTcf7grnfo=";
+  #   };
+  # }));
 
   rift_s_udev = pkgs.writeTextFile {
     name = "moonlander-udev-rules";

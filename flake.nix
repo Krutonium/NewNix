@@ -15,12 +15,8 @@
       url = "github:Krutonium/BetterFanController";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    steamdeck = {
-      url = "github:Jovian-Experiments/Jovian-NixOS/development";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
   };
-  outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-master, nixos-hardware, home-manager, update, nix-monitored, nixd, fan-controller, steamdeck }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-master, nixos-hardware, home-manager, update, nix-monitored, nixd, fan-controller }@inputs:
     let
       # This is a Generic Block of St00f
       system = "x86_64-linux";
@@ -90,7 +86,7 @@
       ##################
       ### uWebServer ###
       ##################
-      nixosConfigurations.uWebServer = nixpkgs.lib.nixosSystem { 
+      nixosConfigurations.uWebServer = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = genericModules ++ (with nixos-hardware.nixosModules; [
           common-pc
@@ -112,7 +108,8 @@
       ##################
       ### uMsiLaptop ###
       ##################
-      nixosConfigurations.uMsiLaptop = nixpkgs.lib.nixosSystem { #deploy#https://github.com/Skulltrail192/One-Core-API-Binaries/archive/refs/heads/master.zip
+      nixosConfigurations.uMsiLaptop = nixpkgs.lib.nixosSystem {
+        #deploy#https://github.com/Skulltrail192/One-Core-API-Binaries/archive/refs/heads/master.zip
         inherit system;
         modules = genericModules ++ (with nixos-hardware.nixosModules; [
           common-pc

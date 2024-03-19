@@ -40,9 +40,11 @@ in
     };
     users = {
       krutonium = true;
-      home-manager = false;
       root = true;
       kea = true;
+    };
+    roles = {
+      server = true;
     };
     services = {
       plex = true;
