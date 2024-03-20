@@ -22,10 +22,9 @@ in
     pkgs.gnomeExtensions.appindicator
     pkgs.master.gnomeExtensions.arcmenu
     pkgs.gnomeExtensions.no-overview
-    pkgs.gnomeExtensions.adjust-display-brightness
     pkgs.master.gnomeExtensions.gtile
     pkgs.gnomeExtensions.circular-widgets
-    pkgs.gnomeExtensions.brightness-control-using-ddcutil
+    pkgs.gnomeExtensions.control-monitor-brightness-and-volume-with-ddcutil
 
     # Other Stuff
     pkgs.gnome.gnome-tweaks
@@ -104,14 +103,13 @@ in
     "org/gnome/shell" = {
       disabled-extensions = [ "apps-menu@gnome-shell-extensions.gcampax.github.com" ];
       enabled-extensions = [
+        "monitor-brightness-volume@ailin.nemui"
         "dash-to-panel@jderose9.github.com"
         "arcmenu@arcmenu.com"
         "user-theme@gnome-shell-extensions.gcampax.github.com"
         "appindicatorsupport@rgcjonas.gmail.com"
         "no-overview@fthx"
         "gTile@vibou"
-        #"gnome-extension-brightness@bruno.englert.gitlab.com"
-        #"burn-my-windows@schneegans.github.com"
       ];
       # favorite-apps = [ "org.gnome.Nautilus.desktop" "firefox.desktop" "element-desktop.desktop" "discord.desktop" "telegramdesktop.desktop" "org.polymc.PolyMC.desktop" "com.obsproject.Studio.desktop" "idea-ultimate.desktop" "rider.desktop" ];
       favorite-apps = [ "org.gnome.Nautilus.desktop" "firefox.desktop" ];
