@@ -51,10 +51,6 @@ in
       monospace-font-name = monoFont;
     };
 
-    "org/gnome/nautilus/preferences/" = {
-      always-use-location-entry = true;
-    };
-
     "org/gnome/desktop/peripherals/touchpad" = {
       two-finger-scrolling-enabled = true;
     };
