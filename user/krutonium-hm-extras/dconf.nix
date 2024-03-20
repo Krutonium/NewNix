@@ -25,6 +25,7 @@ in
     pkgs.gnomeExtensions.adjust-display-brightness
     pkgs.master.gnomeExtensions.gtile
     pkgs.gnomeExtensions.circular-widgets
+    pkgs.gnomeExtensions.brightness-control-using-ddcutil
 
     # Other Stuff
     pkgs.gnome.gnome-tweaks

@@ -3,6 +3,7 @@ let
   kernel = with pkgs; unstable.linuxPackages_latest;
   video = config.boot.kernelPackages.nvidiaPackages.beta;
   zenpower = config.boot.kernelPackages.zenpower;
+  ddcutil = config.boot.kernelPackages.ddcci-driver;
   Hostname = "uGamingPC";
 in
 {
@@ -93,7 +94,7 @@ in
     nvidiaSettings = true;
   };
   boot.initrd.availableKernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
-  boot.extraModulePackages = with config.boot.kernelPackages; [ zenpower.out ];
+  boot.extraModulePackages = with config.boot.kernelPackages; [ zenpower.out ddcutil.out ];
   boot.blacklistedKernelModules = [ "k10temp" "amdgpu" ];
   environment.systemPackages = [
     video

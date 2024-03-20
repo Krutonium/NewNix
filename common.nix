@@ -20,6 +20,7 @@
   security.sudo.wheelNeedsPassword = false;
   services.printing.enable = true;
   services.printing.drivers = with pkgs; [ brlaser ];
+  services.ddccontrol.enable = true;
   environment.variables = {
     NIXPKGS_ALLOW_UNFREE = "1";
     MANGOHUD = "1";
