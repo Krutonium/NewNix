@@ -3,7 +3,15 @@ let
   kernel = with pkgs; unstable.linuxPackages_latest;
   video = config.boot.kernelPackages.nvidiaPackages.beta;
   zenpower = config.boot.kernelPackages.zenpower;
-  ddcutil = config.boot.kernelPackages.ddcci-driver;
+  #ddcutil = config.boot.kernelPackages.ddcci-driver;
+  ddcutil = config.boot.kernelPackages.ddcci-driver.overrideAttrs (old: {
+    patches = [
+      (pkgs.fetchpatch {
+        url = "https://gitlab.com/Sweenu/ddcci-driver-linux/-/commit/7f851f5fb8fbcd7b3a93aaedff90b27124e17a7e.patch";
+        hash = "sha256-Y1ktYaJTd9DtT/mwDqtjt/YasW9cVm0wI43wsQhl7Bg=";
+      })
+    ];
+  });
   Hostname = "uGamingPC";
 in
 {
@@ -94,7 +102,11 @@ in
     nvidiaSettings = true;
   };
   boot.initrd.availableKernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
-  boot.extraModulePackages = with config.boot.kernelPackages; [ zenpower.out ddcutil.out ];
+  boot.extraModulePackages = with config.boot.kernelPackages;
+    [
+      zenpower.out
+      ddcutil.out
+    ];
   boot.blacklistedKernelModules = [ "k10temp" "amdgpu" ];
   environment.systemPackages = [
     video

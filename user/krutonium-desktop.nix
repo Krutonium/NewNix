@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 {
 
- # THIS IS THE DESKTOP PROFILE
+  # THIS IS THE DESKTOP PROFILE
 
   imports = [
     ./krutonium-hm-extras/dconf.nix
