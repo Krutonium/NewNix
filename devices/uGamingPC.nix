@@ -28,6 +28,7 @@ in
   services.udev.packages = [
     pkgs.qmk-udev-rules
     pkgs.logitech-udev-rules
+    pkgs.via
   ];
   services.ratbagd.enable = true;
   systemd.services."mount-games" = {
@@ -78,6 +79,7 @@ in
     motherboard = "amd";
     package = pkgs.openrgb;
   };
+  hardware.keyboard.qmk.enable = true;
   services.xserver = {
     videoDrivers = [ "nvidia" ];
     #deviceSection = ''
