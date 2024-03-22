@@ -138,7 +138,7 @@ in
       alvr = true;
     };
     audio = {
-      server = "pipewire";
+      server = "pulseaudio";
     };
     users = {
       krutonium = true;
