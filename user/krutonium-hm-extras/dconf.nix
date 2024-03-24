@@ -24,7 +24,7 @@ in
     pkgs.gnomeExtensions.no-overview
     pkgs.master.gnomeExtensions.gtile
     pkgs.gnomeExtensions.circular-widgets
-    pkgs.gnomeExtensions.control-monitor-brightness-and-volume-with-ddcutil
+    #pkgs.gnomeExtensions.control-monitor-brightness-and-volume-with-ddcutil #Seem to be crashing Gnome :(
 
     # Other Stuff
     pkgs.gnome.gnome-tweaks
@@ -103,7 +103,7 @@ in
     "org/gnome/shell" = {
       disabled-extensions = [ "apps-menu@gnome-shell-extensions.gcampax.github.com" ];
       enabled-extensions = [
-        "monitor-brightness-volume@ailin.nemui"
+        # "monitor-brightness-volume@ailin.nemui"
         "dash-to-panel@jderose9.github.com"
         "arcmenu@arcmenu.com"
         "user-theme@gnome-shell-extensions.gcampax.github.com"
