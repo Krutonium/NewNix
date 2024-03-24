@@ -1,9 +1,8 @@
 { config, pkgs, ... }:
 let
-  kernel = with pkgs; unstable.linuxPackages_latest;
+  kernel = with pkgs; unstable.linuxPackages_zen;
   video = config.boot.kernelPackages.nvidiaPackages.beta;
   zenpower = config.boot.kernelPackages.zenpower;
-  #ddcutil = config.boot.kernelPackages.ddcci-driver;
   ddcutil = config.boot.kernelPackages.ddcci-driver.overrideAttrs (old: {
     patches = [
       (pkgs.fetchpatch {
@@ -138,7 +137,7 @@ in
       alvr = true;
     };
     audio = {
-      server = "pulseaudio";
+      server = "pipewire";
     };
     users = {
       krutonium = true;
