@@ -123,7 +123,6 @@ in
 
     # Random Stuff
     pkgs.htop
-    pkgs.gimp
     pkgs.neofetch
     pkgs.catimg #for neofetch
     pkgs.nmap
