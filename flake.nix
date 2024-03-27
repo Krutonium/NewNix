@@ -15,9 +15,12 @@
       url = "github:Krutonium/BetterFanController";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nur.url = github:nix-community/NUR;
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
-  outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-master, nixos-hardware, home-manager, update, nix-monitored, nixd, fan-controller, nur }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-master, nixos-hardware, home-manager, update, nix-monitored, nixd, fan-controller, firefox-addons }@inputs:
     let
       # This is a Generic Block of St00f
       system = "x86_64-linux";
@@ -35,7 +38,6 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
         }
-        nur.nixosModules.nur
 
         # Make sure you add Overlays here
         ({ config, pkgs, ... }:
@@ -48,6 +50,7 @@
                 overlay-monitored
                 nixd.overlays.default
                 overlay-fanController
+                overlay-ff-addons
               ];
           }
         )
@@ -62,6 +65,13 @@
       };
       overlay-master = final: prev: {
         master = import nixpkgs-master {
+          inherit system;
+          config.allowUnfree = true;
+        };
+      };
+      # overlay for ff addons
+      overlay-ff-addons = final: prev: {
+        firefox-addons = import firefox-addons {
           inherit system;
           config.allowUnfree = true;
         };

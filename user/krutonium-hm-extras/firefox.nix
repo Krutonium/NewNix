@@ -4,7 +4,7 @@
     enable = true;
     package = pkgs.firefox-wayland;
     profiles."default" = {
-      extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+      extensions = with pkgs.firefox-addons; [
         bitwarden
         ublock-origin
         clearurls
