@@ -15,8 +15,9 @@
       url = "github:Krutonium/BetterFanController";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nur.url = github:nix-community/NUR;
   };
-  outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-master, nixos-hardware, home-manager, update, nix-monitored, nixd, fan-controller }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-master, nixos-hardware, home-manager, update, nix-monitored, nixd, fan-controller, nur }@inputs:
     let
       # This is a Generic Block of St00f
       system = "x86_64-linux";
@@ -34,6 +35,7 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
         }
+        nur.nixosModules.nur
 
         # Make sure you add Overlays here
         ({ config, pkgs, ... }:

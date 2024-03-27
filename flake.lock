@@ -202,11 +202,11 @@
     },
     "nixpkgs-master": {
       "locked": {
-        "lastModified": 1711519098,
-        "narHash": "sha256-jRJFO6eD+v1VlbIbQ7eN2jZIEFTMxMxmHk9adM9ye8k=",
+        "lastModified": 1711529380,
+        "narHash": "sha256-mef8ewhnxk1BniQHAqv+BPb37HqA2GKS53Q8gUptaxk=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "fd2ac5b6f33ef73d6019587eb1e7982db46eab15",
+        "rev": "e6e4a15f3ab634d609a6f803e5f8f6bb24809b5e",
         "type": "github"
       },
       "original": {
@@ -278,6 +278,21 @@
         "type": "indirect"
       }
     },
+    "nur": {
+      "locked": {
+        "lastModified": 1711528413,
+        "narHash": "sha256-KUT4InuxPkP0nRAHW95utttSMvr1nML94C5vUTVkujI=",
+        "owner": "nix-community",
+        "repo": "NUR",
+        "rev": "fe333c1ef76228778b5e69e0336fbda31db9ef19",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "NUR",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "fan-controller": "fan-controller",
@@ -288,6 +303,7 @@
         "nixpkgs": "nixpkgs_3",
         "nixpkgs-master": "nixpkgs-master",
         "nixpkgs-unstable": "nixpkgs-unstable",
+        "nur": "nur",
         "update": "update"
       }
     },
