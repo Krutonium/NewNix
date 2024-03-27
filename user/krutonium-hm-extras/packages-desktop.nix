@@ -10,6 +10,11 @@ let
     name = "PAL_GC.z64";
   };
   openjdk8-low = pkgs.openjdk8.overrideAttrs (oldAttrs: { meta.priority = 10; });
+
+  #GDK_BACKEND=x11 QT_QPA_PLATFORM=xcb obs
+
+  
+  
   dotnetCombined = (with pkgs.dotnetCorePackages; combinePackages [ sdk_6_0 sdk_7_0 sdk_8_0 ]).overrideAttrs (fineAttrs: previousAttrs: {
     postBuild = (previousAttrs.postBuild or '''') + ''
        for i in $out/sdk/*
