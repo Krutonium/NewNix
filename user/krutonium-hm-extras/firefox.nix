@@ -29,9 +29,13 @@
       settings = {
         "browser.download.lastDir" = "/home/krutonium/Downloads";
         "extensions.pocket.enabled" = false;
-        "browser.startup.homepage" = "https://nixos.org";
+        "browser.startup.homepage" = "about:newtab";
         "extensions.autoDisableScopes" = false;
         "signon.rememberSignons" = false;
+        "browser.newtabpage.activity-stream.feeds.section.topstories" = false;
+        "browser.newtabpage.activity-stream.feeds.topsites" = false;
+        "browser.sessionstore.resume_from_crash" = true;
+        "browser.sessionstore.resuming_after_os_restart" = true;
       };
     };
   };
