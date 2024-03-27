@@ -60,7 +60,7 @@ in
 
   home.packages = [
     # Browser
-    pkgs.firefox-wayland
+    #pkgs.firefox-wayland
     pkgs.tor-browser-bundle-bin
 
     #KDE Stuff

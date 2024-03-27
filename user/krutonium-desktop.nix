@@ -11,6 +11,7 @@
     ./krutonium-hm-extras/terminal.nix
     ./krutonium-hm-extras/xdg.nix
     ./krutonium-hm-extras/ssh.nix
+    ./krutonium-hm-extras/firefox.nix
   ];
   programs.home-manager.enable = true;
 
