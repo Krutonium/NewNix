@@ -33,6 +33,7 @@
         "extensions.autoDisableScopes" = false;
         "signon.rememberSignons" = false;
         "browser.newtabpage.activity-stream.feeds.section.topstories" = false;
+        "browser.newtabpage.activity-stream.feeds.section.highlights" = false;
         "browser.newtabpage.activity-stream.feeds.topsites" = false;
         "browser.sessionstore.resume_from_crash" = true;
         "browser.sessionstore.resuming_after_os_restart" = true;
