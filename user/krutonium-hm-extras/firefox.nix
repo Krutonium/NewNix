@@ -3,8 +3,8 @@
   programs.firefox = {
     enable = true;
     package = pkgs.firefox-wayland;
-    profiles."default" = {
-      extensions = with pkgs.firefox-addons; [
+    profiles."krutonium" = {
+      extensions = with pkgs.nur.repos.rycee.firefox-addons; [
         bitwarden
         ublock-origin
         clearurls

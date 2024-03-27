@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, outputs, inputs, ... }:
 {
   imports = [
     ./defaultPackages.nix
