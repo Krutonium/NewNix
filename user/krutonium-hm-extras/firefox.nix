@@ -30,6 +30,8 @@
         "browser.download.lastDir" = "/home/krutonium/Downloads";
         "extensions.pocket.enabled" = false;
         "browser.startup.homepage" = "https://nixos.org";
+        "extensions.autoDisableScopes" = false;
+        "signon.rememberSignons" = false;
       };
     };
   };
