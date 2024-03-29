@@ -25,6 +25,7 @@
     {
       device = "/dev/disk/by-uuid/a018b12f-6567-4edb-8026-be9292738b4d";
       fsType = "btrfs";
+      options = [ "compress=zstd:8" ]
     };
 
   fileSystems."/boot" =
@@ -37,97 +38,97 @@
     {
       device = "/dev/disk/by-uuid/a018b12f-6567-4edb-8026-be9292738b4d";
       fsType = "btrfs";
-      options = [ "subvol=home" ];
+      options = [ "subvol=home" "compress=zstd:8" ];
     };
 
   fileSystems."/nix" =
     {
       device = "/dev/disk/by-uuid/a018b12f-6567-4edb-8026-be9292738b4d";
       fsType = "btrfs";
-      options = [ "subvol=nix" ];
+      options = [ "subvol=nix" "compress=zstd:8" ];
     };
 
   fileSystems."/etc/nixos" =
     {
       device = "/dev/disk/by-uuid/a018b12f-6567-4edb-8026-be9292738b4d";
       fsType = "btrfs";
-      options = [ "subvol=configuration" ];
+      options = [ "subvol=configuration" "compress=zstd:8" ];
     };
 
   fileSystems."/var/lib/postgresql" =
     {
       device = "/dev/disk/by-uuid/a018b12f-6567-4edb-8026-be9292738b4d";
       fsType = "btrfs";
-      options = [ "subvol=postgres" "nodatacow" ];
+      options = [ "subvol=postgres" "nodatacow" "compress=zstd:8" ];
     };
 
   fileSystems."/var/lib/matrix-synapse" =
     {
       device = "/dev/disk/by-uuid/a018b12f-6567-4edb-8026-be9292738b4d";
       fsType = "btrfs";
-      options = [ "subvol=matrix-synapse" ];
+      options = [ "subvol=matrix-synapse" "compress=zstd:8" ];
     };
 
   fileSystems."/var/lib/gitea" =
     {
       device = "/dev/disk/by-uuid/a018b12f-6567-4edb-8026-be9292738b4d";
       fsType = "btrfs";
-      options = [ "subvol=gitea" ];
+      options = [ "subvol=gitea" "compress=zstd:8"];
     };
 
   fileSystems."/var/lib/nextcloud" =
     {
       device = "/dev/disk/by-uuid/a018b12f-6567-4edb-8026-be9292738b4d";
       fsType = "btrfs";
-      options = [ "subvol=nextcloud" ];
+      options = [ "subvol=nextcloud" "compress=zstd:8" ];
     };
 
   fileSystems."/transmission" =
     {
       device = "/dev/disk/by-uuid/a018b12f-6567-4edb-8026-be9292738b4d";
       fsType = "btrfs";
-      options = [ "subvol=transmission" "nodatacow" ];
+      options = [ "subvol=transmission" "nodatacow" "compress=zstd:8" ];
     };
 
   fileSystems."/etc/ssh" =
     {
       device = "/dev/disk/by-uuid/a018b12f-6567-4edb-8026-be9292738b4d";
       fsType = "btrfs";
-      options = [ "subvol=sshd" ];
+      options = [ "subvol=sshd" "compress=zstd:8" ];
     };
 
   fileSystems."/var/lib/acme" =
     {
       device = "/dev/disk/by-uuid/a018b12f-6567-4edb-8026-be9292738b4d";
       fsType = "btrfs";
-      options = [ "subvol=acme" ];
+      options = [ "subvol=acme" "compress=zstd:8" ];
     };
 
   fileSystems."/var/lib/plex" =
     {
       device = "/dev/disk/by-uuid/a018b12f-6567-4edb-8026-be9292738b4d";
       fsType = "btrfs";
-      options = [ "subvol=plex" ];
+      options = [ "subvol=plex" "compress=zstd:8" ];
     };
 
   fileSystems."/root" =
     {
       device = "/dev/disk/by-uuid/a018b12f-6567-4edb-8026-be9292738b4d";
       fsType = "btrfs";
-      options = [ "subvol=root" ];
+      options = [ "subvol=root" "compress=zstd:8" ];
     };
 
   fileSystems."/var/lib/transmission" =
     {
       device = "/dev/disk/by-uuid/a018b12f-6567-4edb-8026-be9292738b4d";
       fsType = "btrfs";
-      options = [ "subvol=transmission-db" ];
+      options = [ "subvol=transmission-db" "compress=zstd:8" ];
     };
   fileSystems."/var/lib/libvirt" =
     {
       device = "/dev/disk/by-uuid/a018b12f-6567-4edb-8026-be9292738b4d";
       fsType = "btrfs";
-      options = [ "subvol=libvirt" "nodatacow" ];
+      options = [ "subvol=libvirt" "nodatacow" "compress=zstd:8" ];
     };
 
 
@@ -147,57 +148,57 @@
     {
       device = "/dev/disk/by-uuid/a018b12f-6567-4edb-8026-be9292738b4d";
       fsType = "btrfs";
-      options = [ "subvol=jellyfin" ];
+      options = [ "subvol=jellyfin" "compress=zstd:8" ];
     };
 
   fileSystems."/var/www" =
     {
       device = "/dev/disk/by-uuid/a018b12f-6567-4edb-8026-be9292738b4d";
       fsType = "btrfs";
-      options = [ "subvol=www" ];
+      options = [ "subvol=www" "compress=zstd:8" ];
     };
 
   fileSystems."/var/lib/softether" =
     {
       device = "/dev/disk/by-uuid/a018b12f-6567-4edb-8026-be9292738b4d";
       fsType = "btrfs";
-      options = [ "subvol=softether" ];
+      options = [ "subvol=softether" "compress=zstd:8" ];
     };
   fileSystems."/var/lib/samba" =
     {
       device = "/dev/disk/by-uuid/a018b12f-6567-4edb-8026-be9292738b4d";
       fsType = "btrfs";
-      options = [ "subvol=samba" ];
+      options = [ "subvol=samba" "compress=zstd:8" ];
     };
   fileSystems."/srv" =
     {
       device = "/dev/disk/by-uuid/a018b12f-6567-4edb-8026-be9292738b4d";
       fsType = "btrfs";
-      options = [ "subvol=gameserver" ];
+      options = [ "subvol=gameserver" "compress=zstd:8" ];
     };
   fileSystems."/etc/headscale" =
     {
       device = "/dev/disk/by-uuid/a018b12f-6567-4edb-8026-be9292738b4d";
       fsType = "btrfs";
-      options = [ "subvol=headscale" ];
+      options = [ "subvol=headscale" "compress=zstd:8" ];
     };
   fileSystems."/var/lib/headscale" =
     {
       device = "/dev/disk/by-uuid/a018b12f-6567-4edb-8026-be9292738b4d";
       fsType = "btrfs";
-      options = [ "subvol=headscale" ];
+      options = [ "subvol=headscale" "compress=zstd:8" ];
     };
   fileSystems."/var/lib/tailscale" =
     {
       device = "/dev/disk/by-uuid/a018b12f-6567-4edb-8026-be9292738b4d";
       fsType = "btrfs";
-      options = [ "subvol=tailscale" ];
+      options = [ "subvol=tailscale" "compress=zstd:8" ];
     };
   fileSystems."/var/lib/hass" =
     {
       device = "/dev/disk/by-uuid/a018b12f-6567-4edb-8026-be9292738b4d";
       fsType = "btrfs";
-      options = [ "subvol=homeAssistant" ];
+      options = [ "subvol=homeAssistant" "compress=zstd:8" ];
     };
   #fileSystems."/tmp" =
   #  {
