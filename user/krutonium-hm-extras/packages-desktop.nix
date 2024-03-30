@@ -121,6 +121,8 @@ in
     pkgs.vlc
     pkgs.spotify
     pkgs.youtube-music
+    pkgs.plexamp
+    pkgs.plex-media-player
 
     # Audio Filtering
     pkgs.easyeffects
