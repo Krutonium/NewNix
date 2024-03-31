@@ -37,6 +37,13 @@
         "browser.newtabpage.activity-stream.feeds.topsites" = false;
         "browser.sessionstore.resume_from_crash" = true;
         "browser.sessionstore.resuming_after_os_restart" = true;
+
+        "browser.cache.memory.enable" = false;
+        "image.jxl.enabled" = true;
+        "dom.block_download_insecure" = false;
+        "browser.compactmode.show" = true;
+        "browser.uidenity" = "1";       
+        
       };
     };
   };
