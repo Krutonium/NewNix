@@ -10,6 +10,7 @@ in
     services = {
       pipewire = {
         enable = true;
+        package = pkgs.unstable.pipewire;
         wireplumber.enable = true;
         audio.enable = true;
         alsa = {
