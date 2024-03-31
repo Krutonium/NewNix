@@ -42,7 +42,7 @@
         "image.jxl.enabled" = true;
         "dom.block_download_insecure" = false;
         "browser.compactmode.show" = true;
-        "browser.uidenity" = "1";       
+        "browser.uidensity" = "1";       
         
       };
     };
