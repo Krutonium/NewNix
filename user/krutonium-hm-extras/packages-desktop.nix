@@ -13,8 +13,8 @@ let
 
   #GDK_BACKEND=x11 QT_QPA_PLATFORM=xcb obs
 
-  
-  
+
+
   dotnetCombined = (with pkgs.dotnetCorePackages; combinePackages [ sdk_6_0 sdk_7_0 sdk_8_0 ]).overrideAttrs (fineAttrs: previousAttrs: {
     postBuild = (previousAttrs.postBuild or '''') + ''
        for i in $out/sdk/*
