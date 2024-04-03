@@ -12,6 +12,7 @@
     ./virtualization
     ./custom-packages
     ./scripts.nix
+    ./builders
   ];
 
   environment.shellAliases = {
