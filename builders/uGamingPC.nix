@@ -16,7 +16,7 @@
     # replace the previous line by, e.g.
     # systems = ["x86_64-linux" "aarch64-linux"];
     maxJobs = 5;
-    speedFactor = 2;
+    speedFactor = 3;
     supportedFeatures = [
       "nixos-test"
       "benchmark"
