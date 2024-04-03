@@ -18,6 +18,11 @@ in
   boot.loader.grub.gfxpayloadEfi = "keep";
   environment.systemPackages = [ kernel.perf pkgs.teamviewer ];
   imports = [ ./uMsiLaptop-hw.nix ];
+  nix = {
+    settings = {
+      max-jobs = 0;
+    };
+  };
   swapDevices = [
     {
       device = "/dev/disk/by-partlabel/swap";
