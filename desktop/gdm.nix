@@ -16,6 +16,10 @@ in
             wayland = cfg.wayland;
             autoSuspend = cfg.autoSuspend;
           };
+          autoLogin = {
+            user = "krutonium";
+            enable = true;
+          };
         };
       };
     };

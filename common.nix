@@ -14,7 +14,12 @@
     ./scripts.nix
     ./builders
   ];
-
+  security.pam.services = {
+    gdm-autologin-keyring.text = ''
+      auth      optional      ${pkgs.gnome.gdm}/lib/security/pam_gdm.so
+      auth      optional      ${pkgs.gnome.gnome-keyring}/lib/security/pam_gnome_keyring.so
+    '';
+  };
   environment.shellAliases = {
     ls = "${pkgs.eza}/bin/eza --icons --git";
   };
