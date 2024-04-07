@@ -23,6 +23,16 @@
   environment.shellAliases = {
     ls = "${pkgs.eza}/bin/eza --icons --git";
   };
+  services.system76-scheduler = {
+    enable = true;
+    settings.processScheduler = {
+      pipewireBoost.enable = true;
+      enable = true;
+    };
+  };
+  hardware.system76.power-daemon = {
+    enable = true;
+  };
   security.sudo.wheelNeedsPassword = false;
   services.printing.enable = true;
   services.printing.drivers = with pkgs; [ brlaser ];
