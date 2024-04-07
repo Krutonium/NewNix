@@ -111,6 +111,7 @@ in
         "appindicatorsupport@rgcjonas.gmail.com"
         "no-overview@fthx"
         "gTile@vibou"
+        "s76-scheduler@mattjakeman.com"
       ];
       # favorite-apps = [ "org.gnome.Nautilus.desktop" "firefox.desktop" "element-desktop.desktop" "discord.desktop" "telegramdesktop.desktop" "org.polymc.PolyMC.desktop" "com.obsproject.Studio.desktop" "idea-ultimate.desktop" "rider.desktop" ];
       favorite-apps = [ "org.gnome.Nautilus.desktop" "firefox.desktop" ];
