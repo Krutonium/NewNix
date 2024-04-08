@@ -21,7 +21,6 @@
         localcdn
         old-reddit-redirect
         auto-tab-discard
-        bypass-paywalls-clean
         don-t-fuck-with-paste
         enhanced-github
         faststream
