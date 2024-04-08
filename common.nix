@@ -24,14 +24,14 @@
     ls = "${pkgs.eza}/bin/eza --icons --git";
   };
   services.system76-scheduler = {
-    enable = false;
+    enable = true;
     settings.processScheduler = {
-      pipewireBoost.enable = false;
-      enable = false;
+      pipewireBoost.enable = true;
+      enable = true;
     };
   };
   hardware.system76.power-daemon = {
-    enable = true;
+    enable = false;
   };
   security.sudo.wheelNeedsPassword = false;
   services.printing.enable = true;
