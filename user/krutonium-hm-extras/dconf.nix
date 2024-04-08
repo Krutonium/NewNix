@@ -24,7 +24,7 @@ in
     pkgs.gnomeExtensions.no-overview
     pkgs.master.gnomeExtensions.gtile
     pkgs.gnomeExtensions.circular-widgets
-    pkgs.gnomeExtensions.system76-scheduler
+    #pkgs.gnomeExtensions.system76-scheduler
     #pkgs.gnomeExtensions.control-monitor-brightness-and-volume-with-ddcutil #Seem to be crashing Gnome :(
 
     # Other Stuff

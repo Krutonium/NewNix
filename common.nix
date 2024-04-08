@@ -24,10 +24,10 @@
     ls = "${pkgs.eza}/bin/eza --icons --git";
   };
   services.system76-scheduler = {
-    enable = true;
+    enable = false;
     settings.processScheduler = {
-      pipewireBoost.enable = true;
-      enable = true;
+      pipewireBoost.enable = false;
+      enable = false;
     };
   };
   hardware.system76.power-daemon = {
