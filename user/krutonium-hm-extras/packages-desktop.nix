@@ -170,7 +170,7 @@ in
     pkgs.mesa-demos
     pkgs.parsec-bin
     pkgs.appimage-run
-    shipwright
+    # shipwright
 
 
     #pkgs.unstable.runescape #doesn't currently build
