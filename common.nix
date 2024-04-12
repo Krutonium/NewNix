@@ -31,7 +31,7 @@
     };
   };
   hardware.system76.power-daemon = {
-    enable = false;
+    enable = true;
   };
   security.sudo.wheelNeedsPassword = false;
   services.printing.enable = true;
