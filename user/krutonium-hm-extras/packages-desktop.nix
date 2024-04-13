@@ -68,10 +68,6 @@ in
     #pkgs.tokodon
 
     # Gnome Stuff
-    pkgs.whitesur-icon-theme
-    pkgs.iconpack-obsidian
-    pkgs.ubuntu_font_family
-    pkgs.bibata-cursors
     pkgs.gnome.dconf-editor
     pkgs.xwaylandvideobridge
     # Development

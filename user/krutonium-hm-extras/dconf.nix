@@ -27,6 +27,13 @@ in
     #pkgs.gnomeExtensions.system76-scheduler
     #pkgs.gnomeExtensions.control-monitor-brightness-and-volume-with-ddcutil #Seem to be crashing Gnome :(
 
+    # Theme Stuff
+    pkgs.bibata-cursors
+    pkgs.oreo-cursors-plus
+    pkgs.whitesur-icon-theme
+    pkgs.iconpack-obsidian
+    pkgs.ubuntu_font_family
+
     # Other Stuff
     pkgs.gnome.gnome-tweaks
     pkgs.cascadia-code #Font
