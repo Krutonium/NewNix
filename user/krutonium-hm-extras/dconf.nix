@@ -7,14 +7,13 @@ let
   mainTheme = "Adwaita-dark"; #Application Theme
   mainFont = "gg sans Normal 12";
   monoFont = "Ubuntu Mono 13";
-  cursorTheme = "Bibata-Modern-Amber";
+  cursorTheme = "Oreo_spark_lime_cursors";
   iconTheme = "WhiteSur-dark";
   soundTheme = "freedesktop";
   superMenuLogo = "${./supermenu.png}";
   wallPaper = "file://${./wallpaper.png}";
 in
 {
-
   home.packages = [
     # Extensions
     pkgs.gnomeExtensions.dash-to-panel
@@ -28,7 +27,7 @@ in
     #pkgs.gnomeExtensions.control-monitor-brightness-and-volume-with-ddcutil #Seem to be crashing Gnome :(
 
     # Theme Stuff
-    pkgs.bibata-cursors
+    #pkgs.bibata-cursors
     pkgs.oreo-cursors-plus
     pkgs.whitesur-icon-theme
     pkgs.iconpack-obsidian
