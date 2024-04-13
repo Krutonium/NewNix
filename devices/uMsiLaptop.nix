@@ -96,12 +96,12 @@ in
     system.nixos.label = "nVidia";
     # sys.desktop.wayland = lib.mkForce false;
     services.xserver.videoDrivers = [ "nvidia" ];
-    #hardware.opengl.enable = true;
+    hardware.opengl.enable = true;
     environment.sessionVariables.NIXOS_OZONE_WL = "1";
     hardware.nvidia = {
       package = video;
-      #modesetting.enable = true;
-      nvidiaSettings = false;
+      modesetting.enable = true;
+      nvidiaSettings = true;
       open = false;
       powerManagement.finegrained = true;
       prime = {
