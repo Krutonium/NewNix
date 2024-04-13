@@ -58,6 +58,7 @@
         unstable = import nixpkgs-unstable {
           inherit system;
           config.allowUnfree = true;
+          config.nvidia.acceptLicense = true;
         };
       };
       # nixpkgs-master
@@ -65,6 +66,7 @@
         master = import nixpkgs-master {
           inherit system;
           config.allowUnfree = true;
+          config.nvidia.acceptLicense = true;
         };
       };
       # overlay for nixpkgs-update

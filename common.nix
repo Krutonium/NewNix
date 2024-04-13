@@ -89,6 +89,7 @@
   nixpkgs = {
     config = {
       allowUnfree = true;
+      nvidia.acceptLicense = true;
       allowUnfreePredicate = (pkg: true);
       permittedInsecurePackages = [
         "electron-25.9.0"
