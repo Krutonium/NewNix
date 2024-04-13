@@ -7,7 +7,7 @@ let
   mainTheme = "Adwaita-dark"; #Application Theme
   mainFont = "gg sans Normal 12";
   monoFont = "Ubuntu Mono 13";
-  cursorTheme = "Oreo_spark_lime_cursors";
+  cursorTheme = "oreo_spark_lime_cursors";
   iconTheme = "WhiteSur-dark";
   soundTheme = "freedesktop";
   superMenuLogo = "${./supermenu.png}";
@@ -22,7 +22,6 @@ in
     pkgs.master.gnomeExtensions.arcmenu
     pkgs.gnomeExtensions.no-overview
     pkgs.master.gnomeExtensions.gtile
-    pkgs.gnomeExtensions.circular-widgets
     #pkgs.gnomeExtensions.system76-scheduler
     #pkgs.gnomeExtensions.control-monitor-brightness-and-volume-with-ddcutil #Seem to be crashing Gnome :(
 
@@ -107,10 +106,17 @@ in
       workspaces-only-on-primary = true;
     };
 
+    "com/github/amezin/ddterm" = {
+      ddterm-toggle-hotkey = [
+        "Page_Down"
+      ];
+      panel-icon-type = "none";
+    };
+
     "org/gnome/shell" = {
       disabled-extensions = [ "apps-menu@gnome-shell-extensions.gcampax.github.com" ];
       enabled-extensions = [
-        # "monitor-brightness-volume@ailin.nemui"
+        "ddterm@amezin.github.com"
         "dash-to-panel@jderose9.github.com"
         "arcmenu@arcmenu.com"
         "user-theme@gnome-shell-extensions.gcampax.github.com"
