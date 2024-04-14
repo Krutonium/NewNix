@@ -20,14 +20,10 @@ in
       proton-caller
       protontricks
     ];
-    services.udev.packages = [ rift_s_udev ];
     programs.steam = {
       enable = true;
       remotePlay.openFirewall = true;
       gamescopeSession = true;
-    };
-    environment.etc."monado" = {
-      source = pkgs.monado;
     };
   };
 }
