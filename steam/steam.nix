@@ -23,7 +23,7 @@ in
     programs.steam = {
       enable = true;
       remotePlay.openFirewall = true;
-      gamescopeSession = true;
+      #gamescopeSession = true;
     };
   };
 }
