@@ -8,14 +8,26 @@
       url = "github:nix-community/home-manager/release-23.11"; # Home Manager release channel
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    update.url = "github:ryantm/nixpkgs-update";
-    nix-monitored.url = "github:ners/nix-monitored";
-    nixd.url = "github:nix-community/nixd";
+    update = {
+      url = "github:ryantm/nixpkgs-update";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-monitored = {
+      url = "github:ners/nix-monitored";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nixd = {
+      url = "github:nix-community/nixd";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     fan-controller = {
       url = "github:Krutonium/BetterFanController";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nur.url = github:nix-community/NUR;
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-master, nixos-hardware, home-manager, update, nix-monitored, nixd, fan-controller, nur, ... }@inputs:
     let

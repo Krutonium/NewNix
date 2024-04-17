@@ -3,13 +3,13 @@
 
 with lib.hm.gvariant;
 let
-  userTheme = "Adwaita-dark"; #Shell Theme
-  mainTheme = "Custom-Accent-Colors"; #Application Theme
+  userTheme = "Yaru-purple-dark"; #Shell Theme
+  mainTheme = "Yaru-purple-dark"; #Application Theme
   mainFont = "gg sans Normal 12";
   monoFont = "Ubuntu Mono 13";
-  cursorTheme = "oreo_spark_lime_cursors";
-  iconTheme = "BeautyLine";
-  soundTheme = "freedesktop";
+  cursorTheme = "oreo_spark_purple_bordered_cursors";
+  iconTheme = "Yaru-purple-dark";
+  soundTheme = "Yaru";
   superMenuLogo = "${./supermenu.png}";
   wallPaper = "file://${./wallpaper.png}";
 in
@@ -31,8 +31,9 @@ in
     pkgs.oreo-cursors-plus
     #pkgs.whitesur-icon-theme
     #pkgs.iconpack-obsidian
-    pkgs.beauty-line-icon-theme
+    #pkgs.beauty-line-icon-theme
     pkgs.ubuntu_font_family
+    pkgs.yaru-theme
     # Other Stuff
     pkgs.gnome.gnome-tweaks
     pkgs.cascadia-code #Font
