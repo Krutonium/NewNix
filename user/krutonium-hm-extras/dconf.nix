@@ -4,11 +4,11 @@
 with lib.hm.gvariant;
 let
   userTheme = "Adwaita-dark"; #Shell Theme
-  mainTheme = "Adwaita-dark"; #Application Theme
+  mainTheme = "Custom-Accent-Colors"; #Application Theme
   mainFont = "gg sans Normal 12";
   monoFont = "Ubuntu Mono 13";
   cursorTheme = "oreo_spark_lime_cursors";
-  iconTheme = "WhiteSur-dark";
+  iconTheme = "BeautyLine";
   soundTheme = "freedesktop";
   superMenuLogo = "${./supermenu.png}";
   wallPaper = "file://${./wallpaper.png}";
@@ -22,16 +22,17 @@ in
     pkgs.master.gnomeExtensions.arcmenu
     pkgs.gnomeExtensions.no-overview
     pkgs.master.gnomeExtensions.gtile
+    pkgs.gnomeExtensions.custom-accent-colors
     #pkgs.gnomeExtensions.system76-scheduler
     #pkgs.gnomeExtensions.control-monitor-brightness-and-volume-with-ddcutil #Seem to be crashing Gnome :(
 
     # Theme Stuff
     #pkgs.bibata-cursors
     pkgs.oreo-cursors-plus
-    pkgs.whitesur-icon-theme
-    pkgs.iconpack-obsidian
+    #pkgs.whitesur-icon-theme
+    #pkgs.iconpack-obsidian
+    pkgs.beauty-line-icon-theme
     pkgs.ubuntu_font_family
-
     # Other Stuff
     pkgs.gnome.gnome-tweaks
     pkgs.cascadia-code #Font
@@ -124,10 +125,18 @@ in
         "no-overview@fthx"
         "gTile@vibou"
         "s76-scheduler@mattjakeman.com"
+        "custom-accent-colors@demiskp"
       ];
       # favorite-apps = [ "org.gnome.Nautilus.desktop" "firefox.desktop" "element-desktop.desktop" "discord.desktop" "telegramdesktop.desktop" "org.polymc.PolyMC.desktop" "com.obsproject.Studio.desktop" "idea-ultimate.desktop" "rider.desktop" ];
       favorite-apps = [ "org.gnome.Nautilus.desktop" "firefox.desktop" ];
       remember-mount-password = true;
+    };
+
+    "org/gnome/shell/extensions/custom-accent-colors" = {
+      accent-color = "purple";
+      theme-flatpak = true;
+      theme-gtk3 = true;
+      theme-shell = true;
     };
 
     "org/gnome/shell/extensions/arcmenu" = {
@@ -204,7 +213,7 @@ in
     };
 
     "org/gnome/shell/extensions/user-theme" = {
-      #name = userTheme;
+      name = mainTheme;
     };
 
     "org/gnome/shell/weather" = {
