@@ -134,7 +134,7 @@ in
     custom = {
       ddcutil = true;
       ddcutil_nvidiaFix = true;
-      alvr = true;
+      alvr = false;
     };
     audio = {
       server = "pipewire";
