@@ -121,6 +121,7 @@
           common-pc-ssd
           common-cpu-amd
         ]) ++ [ ./devices/uGamingPC.nix ];
+        specialArgs.channels = { inherit nixpkgs nixpkgs-unstable; };
       };
       ##################
       ### uMsiLaptop ###

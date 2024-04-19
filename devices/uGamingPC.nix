@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, channels, ... }:
 let
   kernel = with pkgs; unstable.linuxPackages_zen;
   video = config.boot.kernelPackages.nvidiaPackages.beta;
@@ -29,6 +29,7 @@ in
     pkgs.logitech-udev-rules
     pkgs.via
   ];
+  services.flatpak.enable = true;
   services.ratbagd.enable = true;
   systemd.services."mount-games" = {
     # This is a HACK because the default mounter just utterly dies with bcachefs.
@@ -61,7 +62,9 @@ in
   };
   services.teamviewer.enable = true;
 
-  imports = [ ./uGamingPC-hw.nix ];
+  imports = [ 
+    ./uGamingPC-hw.nix 
+  ];
   #swapDevices = [
   #  {
   #    device = "/swap";
@@ -113,6 +116,7 @@ in
     video
     pkgs.gamescope
     pkgs.piper
+    pkgs.unstable.alvr
   ];
   programs = {
     wireshark.enable = true;
