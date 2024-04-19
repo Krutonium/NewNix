@@ -163,6 +163,7 @@ in
     # Gaming
     # Steam is already installed at the system level because it has special requirements
     pkgs.unstable.openrct2
+    pkgs.unstable.alvr
     pkgs.mesa-demos
     pkgs.parsec-bin
     pkgs.appimage-run
