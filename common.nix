@@ -47,6 +47,7 @@
     kernel = {
       sysctl = {
         "vm.max_map_count" = 1000000;
+        "vm.dirty_bytes" = "200000000"; # 200MB Write Cache
         "kernel.panic" = "60";
       };
     };
