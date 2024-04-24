@@ -33,6 +33,9 @@
   hardware.system76.power-daemon = {
     enable = true;
   };
+  services.udev.extraRules = ''
+    ACTION=="add|change", SUBSYSTEM=="bdi", ATTR{min_ratio}="2", ATTR{max_ratio}="50"
+  '';
   security.sudo.wheelNeedsPassword = false;
   services.printing.enable = true;
   services.printing.drivers = with pkgs; [ brlaser ];
@@ -47,7 +50,7 @@
     kernel = {
       sysctl = {
         "vm.max_map_count" = 1000000;
-        "vm.dirty_bytes" = "200000000"; # 200MB Write Cache
+        "vm.dirty_ratio" = "25"; # 25% of all memory optionally as write cache
         "kernel.panic" = "60";
       };
     };
