@@ -36,6 +36,10 @@ in
               compress = false;
             }];
           }];
+          sliding-sync = {
+            enable = true;
+            createDatabase = true;
+          };
         };
       };
       postgresql = {
@@ -50,6 +54,8 @@ in
         '';
       };
     };
+    # open 8009 for Sliding Sync
+    networking.firewall.allowedTCPPorts = [ 8009 ];
     containers.temp-pg.config.services.postgresql = {
       enable = true;
       package = sql_upgrade;
