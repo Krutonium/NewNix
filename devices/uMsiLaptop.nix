@@ -69,7 +69,7 @@ in
       steam = false;
     };
     virtualization = {
-      server = "virtd";
+      server = "vbox";
     };
   };
   virtualisation.waydroid.enable = false;
