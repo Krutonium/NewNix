@@ -18,10 +18,10 @@ in
     security.acme.acceptTerms = true;
     services.nginx.additionalModules = [ pkgs.nginxModules.pam ];
     services.nginx.virtualHosts = {
-      "win11.krutonium.ca" = {
-        forceSSL = false;
-        enableACME = false;
-        root = "/var/www/home/Win11";
+      "synapse-admin.krutonium.ca" = {
+        forceSSL = true;
+        enableACME = true;
+        root = "${pkgs.synapse-admin}";
       };
       "dl.krutonium.ca" = {
         forceSSL = true;
