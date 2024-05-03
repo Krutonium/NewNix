@@ -19,9 +19,9 @@ in
     pkgs.gnomeExtensions.dash-to-panel
     pkgs.gnomeExtensions.ddterm
     pkgs.gnomeExtensions.appindicator
-    pkgs.master.gnomeExtensions.arcmenu
+    pkgs.gnomeExtensions.arcmenu
     pkgs.gnomeExtensions.no-overview
-    pkgs.master.gnomeExtensions.gtile
+    pkgs.gnomeExtensions.gtile
     pkgs.gnomeExtensions.custom-accent-colors
     #pkgs.gnomeExtensions.system76-scheduler
     #pkgs.gnomeExtensions.control-monitor-brightness-and-volume-with-ddcutil #Seem to be crashing Gnome :(
