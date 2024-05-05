@@ -106,6 +106,7 @@ in
       focus-change-on-pointer-rest = true;
       overlay-key = "Super_L";
       workspaces-only-on-primary = true;
+      experimental-feautures = [ "variable-refresh-rate" ];
     };
 
     "com/github/amezin/ddterm" = {
