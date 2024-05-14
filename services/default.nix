@@ -191,6 +191,7 @@ with builtins;
       description = ''
         NextCloud!
       '';
+    };
   };
   imports = [
     ./plex.nix
