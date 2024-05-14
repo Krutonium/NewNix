@@ -29,6 +29,9 @@ in
           dbname = "nextcloud";
           dbhost = "127.0.0.1";
         };
+        phpOptions = {
+          opcache.interned_strings_buffer = 50;
+        };
       };
     };
   };
