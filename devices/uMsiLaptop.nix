@@ -22,7 +22,7 @@ in
   imports = [ ./uMsiLaptop-hw.nix ];
   nix = {
     settings = {
-      max-jobs = 2;
+      max-jobs = 0;
     };
   };
   swapDevices = [
