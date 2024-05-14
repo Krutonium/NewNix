@@ -18,10 +18,10 @@
     {
       device = "UUID=1f35e804-826b-4fe8-926e-7545b08c383f";
       fsType = "bcachefs";
-      options = [
-        "fsck"
-        "fix_errors"
-      ];
+      #options = [
+      #  "fsck"
+      #  "fix_errors"
+      #];
       neededForBoot = true;
     };
   fileSystems."/boot" =
