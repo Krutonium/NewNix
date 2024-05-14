@@ -12,6 +12,7 @@ in
         enable = true;
         https = true;
         enableImagemagick = true;
+        configureRedis = true;
         maxUploadSize = "10240M";
         hostName = "nextcloud.krutonium.ca";
         package = pkgs.nextcloud29;
