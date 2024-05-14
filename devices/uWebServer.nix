@@ -70,6 +70,7 @@ in
       easydiffusion = false;
       invidious = false;
       syncthing = false;
+      nextcloud = true;
     };
     virtualization = {
       server = "virtd";

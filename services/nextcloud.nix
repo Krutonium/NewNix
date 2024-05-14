@@ -22,7 +22,7 @@ in
           adminuser = "root";
 
           dbuser = "nextcloud";
-          dbpassFile = pkgs.writeText "nextcloud-db-pass" "nextcloud";
+          dbpassFile = "/persist/nextcloud-db-pass";
           dbtype = "pgsql";
           dbport = "5432";
           dbname = "nextcloud";
