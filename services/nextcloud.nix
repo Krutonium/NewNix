@@ -16,6 +16,7 @@ in
         hostName = "nextcloud.krutonium.ca";
         package = pkgs.nextcloud29;
         home = "/media2/nextcloud";
+        logType = "file";
         config = {
           adminpassFile = "/persist/nextcloud-admin-pass";
           adminuser = "root";
