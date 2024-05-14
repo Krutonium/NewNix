@@ -18,6 +18,12 @@ in
         config = {
           adminpassFile = "/persist/nextcloud-admin-pass";
           adminuser = "root";
+
+          dbuser = "nextcloud";
+          dbtype = "pgsql";
+          dbport = "5432";
+          dbname = "nextcloud";
+          dbhost = "127.0.0.1";
         };
       };
     };
