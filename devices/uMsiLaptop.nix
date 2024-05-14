@@ -14,6 +14,7 @@ in
   boot.kernelPackages = kernel;
   #boot.initrd.availableKernelModules = [ "nvidia" ];
   networking.hostName = Hostname;
+  networking.firewall.interfaces."enp3s0".allowedUDPPorts = [ 67 ];
   boot.kernelParams = [ "nouveau.config=NvClkMode=15" ];
   boot.loader.grub.gfxmodeEfi = "1920x1080";
   boot.loader.grub.gfxpayloadEfi = "keep";
