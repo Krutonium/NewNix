@@ -6,6 +6,7 @@ let
 in
 {
   config = mkIf (cfg.nextcloud == true) {
+    sys.services.postgresql = true;
     services = {
       nextcloud = {
         enable = true;
@@ -20,6 +21,7 @@ in
           adminuser = "root";
 
           dbuser = "nextcloud";
+          dbpassFile = pkgs.writeText "nextcloud-db-pass" "nextcloud";
           dbtype = "pgsql";
           dbport = "5432";
           dbname = "nextcloud";

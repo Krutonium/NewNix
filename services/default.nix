@@ -192,6 +192,13 @@ with builtins;
         NextCloud!
       '';
     };
+    postgresql = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        PostgreSQL!
+      '';
+    };
   };
   imports = [
     ./plex.nix
@@ -218,5 +225,6 @@ with builtins;
     ./invidious.nix
     ./syncthing.nix
     ./nextcloud.nix
+    ./postgresql.nix
   ];
 }
