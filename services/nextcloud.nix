@@ -30,7 +30,7 @@ in
           dbhost = "127.0.0.1";
         };
         phpOptions = {
-          opcache.interned_strings_buffer = 50;
+          "opcache.interned_strings_buffer" = "50";
         };
       };
     };
