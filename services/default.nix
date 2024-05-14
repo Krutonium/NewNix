@@ -185,6 +185,12 @@ with builtins;
         Syncthing!
       '';
     };
+    nextcloud = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        NextCloud!
+      '';
   };
   imports = [
     ./plex.nix
@@ -210,5 +216,6 @@ with builtins;
     ./easy-diffusion.nix
     ./invidious.nix
     ./syncthing.nix
+    ./nextcloud.nix
   ];
 }

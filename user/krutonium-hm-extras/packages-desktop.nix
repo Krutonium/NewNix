@@ -191,7 +191,7 @@ in
     # File Sync
     pkgs.dropbox
     #pkgs.megasync
-    #pkgs.nextcloud-client
+    pkgs.nextcloud-client
     #pkgs.transmission-remote-gtk
     pkgs.deluge
     #pkgs.seafile-client
