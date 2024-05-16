@@ -96,7 +96,7 @@ in
     pkgs.notepad-next
     #pkgs.msbuild
     #pkgs.dotnet-sdk
-    #pkgs.godot-mono
+    pkgs.godot_4
     #pkgs.godot-export-templates
 
     # Wine
