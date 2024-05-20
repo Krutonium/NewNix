@@ -159,7 +159,7 @@ in
 
     # Wine/Windows Shit
     pkgs.lutris
-    #pkgs.unstable.bottles
+    pkgs.bottles
     pkgs.pcem
     pkgs.looking-glass-client
     # Gaming
