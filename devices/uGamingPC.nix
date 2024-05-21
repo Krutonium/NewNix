@@ -117,7 +117,15 @@ in
     pkgs.gamescope
     pkgs.piper
     pkgs.unstable.alvr
+    pkgs.sunshine
   ];
+  security.wrappers.sunshine = {
+        owner = "root";
+        group = "root";
+        capabilities = "cap_sys_admin+p";
+        source = "${pkgs.sunshine}/bin/sunshine";
+  };
+
   programs = {
     wireshark.enable = true;
     adb.enable = true;
@@ -141,7 +149,7 @@ in
       alvr = false;
     };
     audio = {
-      server = "pipewire";
+      server = "pulseaudio";
     };
     users = {
       krutonium = true;
