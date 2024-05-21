@@ -1,4 +1,4 @@
-{ config, pkgs, channels, ... }:
+{ config, pkgs, channels, lib, ... }:
 let
   kernel = with pkgs; unstable.linuxPackages_latest;
   #video = config.boot.kernelPackages.nvidiaPackages.latest;
