@@ -11,7 +11,7 @@ with builtins;
       '';
     };
     displayManager = mkOption {
-      type = types.enum [ "gdm" "lightdm" "none" ];
+      type = types.enum [ "gdm" "lightdm" "sddm" "none" ];
       default = "lightdm";
       description = ''
         The Login/Display manager you want to use
@@ -39,5 +39,5 @@ with builtins;
       '';
     };
   };
-  imports = [ ./gnome.nix ./kde.nix ./pantheon.nix ./none.nix ./budgie.nix ./labwc.nix ./lightdm.nix ./gdm.nix ];
+  imports = [ ./gnome.nix ./kde.nix ./pantheon.nix ./none.nix ./budgie.nix ./labwc.nix ./lightdm.nix ./gdm.nix ./sddm.nix ];
 }

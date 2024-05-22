@@ -5,10 +5,10 @@ let
   video = config.boot.kernelPackages.nvidiaPackages.mkDriver {
     version = "555.42.02";
     sha256_64bit = "sha256-k7cI3ZDlKp4mT46jMkLaIrc2YUx1lh1wj/J4SVSHWyk=";
-    sha256_aarch64 = lib.fakeSha256;
+    sha256_aarch64 = "sha256-ekx0s0LRxxTBoqOzpcBhEKIj/JnuRCSSHjtwng9qAc0=";
     openSha256 = "sha256-rtDxQjClJ+gyrCLvdZlT56YyHQ4sbaL+d5tL4L4VfkA=";
     settingsSha256 = "sha256-rtDxQjClJ+gyrCLvdZlT56YyHQ4sbaL+d5tL4L4VfkA=";
-    persistencedSha256 = lib.fakeSha256;
+    persistencedSha256 = "sha256-3ae31/egyMKpqtGEqgtikWcwMwfcqMv2K4MVFa70Bqs=";
   };
   zenpower = config.boot.kernelPackages.zenpower;
   ddcutil = config.boot.kernelPackages.ddcci-driver.overrideAttrs (old: {
@@ -22,9 +22,10 @@ let
   Hostname = "uGamingPC";
 in
 {
+  hardware.firmware = [ video.firmware ];
   boot = {
     kernelPackages = kernel;
-    kernelParams = [ "amd_iommu=on" "iommu=pt" "vfio-pci.ids=1002:731f,1002:ab38" ];
+    kernelParams = [ "amd_iommu=on" "iommu=pt" ];
     tmp.useTmpfs = false;
     loader.grub = {
       gfxmodeEfi = "1920x1080";
@@ -90,6 +91,7 @@ in
     package = pkgs.openrgb;
   };
   hardware.keyboard.qmk.enable = true;
+  
   services.xserver = {
     videoDrivers = [ "nvidia" ];
     #deviceSection = ''
@@ -147,8 +149,8 @@ in
       plymouth_enabled = true;
     };
     desktop = {
-      displayManager = "gdm";
-      desktop = "gnome";
+      displayManager = "sddm";
+      desktop = "kde";
       wayland = true;
     };
     custom = {
