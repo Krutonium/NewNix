@@ -25,7 +25,7 @@ in
   hardware.firmware = [ video.firmware ];
   boot = {
     kernelPackages = kernel;
-    kernelParams = [ "amd_iommu=on" "iommu=pt" ];
+    kernelParams = [ "amd_iommu=on" "iommu=pt" "nvidia-drm.modeset=1"];
     tmp.useTmpfs = false;
     loader.grub = {
       gfxmodeEfi = "1920x1080";
