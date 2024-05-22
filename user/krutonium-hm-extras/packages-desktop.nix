@@ -64,7 +64,7 @@ in
     #pkgs.tor-browser-bundle-bin
 
     pkgs.qpwgraph
-    
+
     #KDE Stuff
     #pkgs.yakuake
     #pkgs.tokodon

@@ -109,7 +109,7 @@
       domain=krutonium.ca,10.0.0.1           #domain and IP for the host
       dhcp-range=10.0.0.10,10.0.0.254,5m     #Range of DHCP IP's, and how long a lease should be
       dhcp-option=3,10.0.0.1                 #Primary DNS
-      dhcp-option=6,10.0.0.1,1.1.1.1,8.8.8.8 #Secondary DNS
+      # dhcp-option=6,10.0.0.1,1.1.1.1,8.8.8.8 #Secondary DNS
       dhcp-option=121,10.0.0.0/24,10.0.0.1   #Static Route
 
       #uWebServer is hardcoded 10.0.0.1 above (It's IP is set outside of DHCP)

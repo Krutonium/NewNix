@@ -71,8 +71,8 @@ in
   };
   services.teamviewer.enable = true;
 
-  imports = [ 
-    ./uGamingPC-hw.nix 
+  imports = [
+    ./uGamingPC-hw.nix
   ];
   #swapDevices = [
   #  {

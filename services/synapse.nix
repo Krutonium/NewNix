@@ -8,7 +8,7 @@ let
 in
 {
   config = mkIf (cfg.synapse == true) {
-  sys.services.postgresql = true;
+    sys.services.postgresql = true;
     services = {
       matrix-synapse = {
         enable = true;
