@@ -115,7 +115,7 @@ in
     open = false; #some day my beauty
     nvidiaSettings = true;
   };
-  boot.initrd.availableKernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
+  #boot.initrd.availableKernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
   boot.extraModulePackages = with config.boot.kernelPackages;
     [
       zenpower.out
@@ -149,8 +149,8 @@ in
       plymouth_enabled = true;
     };
     desktop = {
-      displayManager = "sddm";
-      desktop = "kde";
+      displayManager = "gdm";
+      desktop = "gnome";
       wayland = true;
     };
     custom = {
