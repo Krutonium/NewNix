@@ -2,7 +2,7 @@
 let
   fontFiles = pkgs.fetchzip {
     url = "https://gitea.krutonium.ca/Krutonium/NixOS_Files/raw/branch/master/Fonts.zip";
-    sha256 = "sha256-Rbq/fjyKempQFSipaivqP8V9R0m7jQ02h4R6skz20gQ=";
+    sha256 = "sha256-DHanWRSHKF79+f+smES52qgDFBSJOGn5MLFX12FIQOQ=";
     stripRoot = false;
   };
   fonts = pkgs.stdenv.mkDerivation {
