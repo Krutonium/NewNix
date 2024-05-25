@@ -63,9 +63,9 @@
     bluetooth.enable = true;
     usb-modeswitch.enable = true;
   };
-  boot.binfmt = {
-    emulatedSystems = [ "aarch64-linux" "riscv64-linux" ];
-  };
+  #boot.binfmt = {
+  #  emulatedSystems = [ "aarch64-linux" "riscv64-linux" ];
+  #};
 
   nix = {
     settings = {
@@ -128,12 +128,12 @@
     defaultLocale = "en_CA.UTF-8";
   };
 
-  console = {
-    earlySetup = false;
-    packages = with pkgs; [ monocraft ];
-    font = "${pkgs.monocraft}/share/fonts/truetype/8ah1prg91rd6y6qz0bc18bk045s9l3q0-Monocraft-no-ligatures.ttf";
-    keyMap = "us";
-  };
+  #console = {
+  #  earlySetup = false;
+  #  packages = with pkgs; [ monocraft ];
+  #  font = "${pkgs.monocraft}/share/fonts/truetype/8ah1prg91rd6y6qz0bc18bk045s9l3q0-Monocraft-no-ligatures.ttf";
+  #  keyMap = "us";
+  #};
 
   systemd = {
     enableEmergencyMode = false;

@@ -15,7 +15,7 @@ in
   #boot.initrd.availableKernelModules = [ "nvidia" ];
   networking.hostName = Hostname;
   networking.firewall.interfaces."enp3s0".allowedUDPPorts = [ 67 ];
-  boot.kernelParams = [ "nouveau.config=NvClkMode=15" ];
+  #boot.kernelParams = [ "nouveau.config=NvClkMode=15" ];
   boot.loader.grub.gfxmodeEfi = "1920x1080";
   boot.loader.grub.gfxpayloadEfi = "keep";
   environment.systemPackages = [ kernel.perf pkgs.teamviewer nvidia-offload ];
@@ -35,6 +35,7 @@ in
     enable = true;
     priority = 5;
     writebackDevice = "/dev/disk/by-partlabel/swap";
+    memoryPercent = 25;
   };
   sys = {
     boot = {
@@ -71,7 +72,7 @@ in
       steam = false;
     };
     virtualization = {
-      server = "vmware";
+      server = "none";
     };
   };
   virtualisation.waydroid.enable = false;

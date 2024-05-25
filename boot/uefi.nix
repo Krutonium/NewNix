@@ -18,6 +18,7 @@ in
         grub = {
           devices = [ devices ];
           efiSupport = true;
+          configurationLimit = 5;
           useOSProber = true;
           default = default;
           enable = true;
