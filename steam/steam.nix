@@ -15,6 +15,7 @@ in
           __GLX_VENDOR_LIBRARY_NAME = "nvidia";
           __VK_LAYER_NV_optimus = "NVIDIA_only";
         };
+
       }).run
       protonup-qt
       proton-caller
