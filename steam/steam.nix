@@ -9,7 +9,7 @@ in
     environment.systemPackages = with pkgs;[
       steam-run
       (steam.override {
-        extraPkgs = pkgs: [ glxinfo jre8 monado ];
+        extraPkgs = pkgs: [ glxinfo jre8 monado ] ++ config.fonts.packages;
         extraEnv = {
           __NV_PRIME_RENDER_OFFLOAD = 1;
           __GLX_VENDOR_LIBRARY_NAME = "nvidia";
