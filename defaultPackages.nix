@@ -20,7 +20,10 @@ in
   # This is a patch specifically for Steam/Unity Games
   fonts.fontDir.enable = true;
   # Link /run/current-system/sw/share/fonts to /etc/share/fonts
-  environment.pathsToLink = [ "/share/fonts" ];
+  environment.etc."steamfonts" = {
+    source = "/run/current-system/sw/share/X11/fonts/";
+    target = "/share/fonts";
+  };
 
   fonts.packages = [ fonts pkgs.rPackages.fontawesome ];
   environment.systemPackages = [
