@@ -17,6 +17,7 @@ in
     priority = 1;
   };
   boot.tmp.useTmpfs = true;
+  boot.kernelParams = [ "amdgpu.ppfeaturemask=0xffffffff" ];
   imports = [ ./uWebServer-hw.nix ./uWebServer-networking.nix ];
   #services.xserver.videoDrivers = [ "nvidia" ];
   hardware.opengl = {
