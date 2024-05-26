@@ -18,7 +18,7 @@ in
   };
   boot.tmp.useTmpfs = true;
   boot.kernelParams = [ "amdgpu.ppfeaturemask=0xffffffff" ];
-  boot.initrd.availableKernelModules = [ "amdgpu" ]
+  boot.initrd.availableKernelModules = [ "amdgpu" ];
   imports = [ ./uWebServer-hw.nix ./uWebServer-networking.nix ];
   services.xserver.videoDrivers = [ "amdgpu" ];
   hardware.opengl = {
