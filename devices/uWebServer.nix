@@ -73,6 +73,7 @@ in
       invidious = false;
       syncthing = false;
       nextcloud = true;
+      blog = true;
     };
     virtualization = {
       server = "virtd";

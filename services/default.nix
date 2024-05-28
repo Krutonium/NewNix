@@ -199,6 +199,13 @@ with builtins;
         PostgreSQL!
       '';
     };
+    blog = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        Host Blog
+      '';
+    };
   };
   imports = [
     ./plex.nix
@@ -226,5 +233,6 @@ with builtins;
     ./syncthing.nix
     ./nextcloud.nix
     ./postgresql.nix
+    ./blog.nix
   ];
 }
