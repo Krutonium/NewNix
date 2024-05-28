@@ -31,7 +31,7 @@ in
       "krutonium.ca" = {
         forceSSL = true;
         enableACME = true;
-        root = "/home/krutonium/Blog/public/";
+        root = "/var/www/home/";
         serverAliases = [ "www.krutonium.ca" ];
         locations."= /.well-known/matrix/server".extraConfig =
           let
@@ -59,6 +59,7 @@ in
         locations."/_matrix" = {
           proxyPass = "http://127.0.0.1:8008"; # without a trailing /
         };
+        locations."/".proxyPass = "http://127.0.0.1:1313"; # Hugo
       };
       "plex.krutonium.ca" = {
         forceSSL = true;
