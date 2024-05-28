@@ -13,7 +13,7 @@ let
   ''
     cd /home/krutonium/Blog/
     ln -snf ${hugoTheme} themes/PaperMod
-    hugo server -D -E -b krutonium.ca -p 1313
+    hugo server -D -E -b krutonium.ca -p 1313 --appendPort false
   '';
 in
 {
