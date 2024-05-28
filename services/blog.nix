@@ -17,6 +17,8 @@ let
 in
 {
   config = mkIf (cfg.blog == true) {
+    # Temporarily open the Firewall
+    networking.firewall.allowedTCPPorts = [ 1313 ];
     systemd.services."blog" = {
         description = "My Blog";
         wantedBy = [ "multi-user.target" ];
