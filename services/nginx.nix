@@ -59,6 +59,7 @@ in
         locations."/_matrix" = {
           proxyPass = "http://127.0.0.1:8008"; # without a trailing /
         };
+        locations."/".proxyPass = "http://127.0.0.1:1313"; # Hugo
       };
       "plex.krutonium.ca" = {
         forceSSL = true;
