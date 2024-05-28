@@ -28,7 +28,6 @@ in
             Type = "oneshot";
             ExecStart = script;
             WorkingDirectory = "/home/krutonium/Blog/";
-            Restart = "never";
             User = "krutonium";
         };
     };
