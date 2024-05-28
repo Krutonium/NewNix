@@ -24,9 +24,11 @@ in
         after = [ "network.target" ];
         path = [ pkgs.hugo ];
         serviceConfig = {
-            Type = "oneshot";
+            Type = "simple";
             ExecStart = script;
             WorkingDirectory = "/home/krutonium/Blog/";
+            Restart = "always";
+            RestartSec = "5";
             User = "krutonium";
         };
     };
