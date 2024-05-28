@@ -13,7 +13,8 @@ let
   ''
     cd /home/krutonium/Blog/
     ln -snf ${hugoTheme} themes/PaperMod
-    hugo server -D -E -b krutonium.ca -p 1313 --appendPort false
+    # hugo server -D -E -b krutonium.ca -p 1313 --appendPort=false
+    hugo
   '';
 in
 {
@@ -24,11 +25,10 @@ in
         after = [ "network.target" ];
         path = [ pkgs.hugo ];
         serviceConfig = {
-            Type = "simple";
+            Type = "oneshot";
             ExecStart = script;
             WorkingDirectory = "/home/krutonium/Blog/";
-            Restart = "always";
-            RestartSec = "5";
+            Restart = "never";
             User = "krutonium";
         };
     };
