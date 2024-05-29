@@ -17,6 +17,9 @@
       "uRenderPC" = {
         hostname = "10.3";
       };
+      "darth" = {
+        hostname = "195.35.113.15";
+      };
     };
     extraConfig = ''
       StrictHostKeyChecking no
