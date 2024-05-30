@@ -213,8 +213,8 @@ in
     enable = true;
     plugins = with pkgs.unstable.obs-studio-plugins; [
       #obs-teleport
-      obs-multi-rtmp
-      obs-vkcapture
+      #obs-multi-rtmp
+      #obs-vkcapture
     ];
     package = pkgs.unstable.obs-studio;
   };
