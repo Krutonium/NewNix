@@ -85,7 +85,28 @@ in
   #services.cron.systemCronJobs = [
   #  "0 6 * * * root systemctl reboot"
   #];
-  virtualisation.docker.enable = true;
+  virtualisation = {
+    docker = { 
+      enable = true;
+      rootless = { 
+        enable = true;
+        setSocketVariable = true;
+      };
+      daemon.settings = {
+        data-root = "/media2/docker";
+      };
+    };
+    oci-containers = {
+      backend = "docker";
+      containers."restream" = {
+        autoStart = true;
+        image = "datarhei/restreamer:vaapi-latest";
+        ports = [ "1233:8080" "1234:8181" "1935:1935" ];
+        volumes = [ "/dev/dri:/dev/dri" "/persist/restream/config:/core/config" "/persist/restream/data:/core/data"];
+        extraOptions = [ "--privileged" ];
+      };
+    };
+  };
   users.users.krutonium.extraGroups = [ "docker" ];
   systemd.services = {
     duckdns = {
