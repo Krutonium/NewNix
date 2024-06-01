@@ -79,7 +79,7 @@ in
       server = "virtd";
     };
     minecraft = {
-      rubberdragontrain = true;
+      rubberdragontrain = false;
     };
   };
   #services.cron.systemCronJobs = [
