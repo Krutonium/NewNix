@@ -181,7 +181,7 @@ in
     pkgs.higan
     pkgs.heroic
     pkgs.cemu
-    pkgs.citra
+    #pkgs.citra #GRAVESTONE: RIP
     pkgs.steam-run
     #pkgs.yuzu-ea
     #yuzu
