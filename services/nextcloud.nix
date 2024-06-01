@@ -25,9 +25,9 @@ in
           dbuser = "nextcloud";
           dbpassFile = "/persist/nextcloud-db-pass";
           dbtype = "pgsql";
-          dbport = "5432";
+          #dbport = "5432";
           dbname = "nextcloud";
-          dbhost = "127.0.0.1";
+          dbhost = "127.0.0.1:5432";
         };
         phpOptions = {
           "opcache.interned_strings_buffer" = "50";
