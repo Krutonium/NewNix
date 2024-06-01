@@ -39,7 +39,6 @@ in
     pkgs.wget
     pkgs.sshfs
     pkgs.usbutils
-    pkgs.pinentry-gnome
     pkgs.ripgrep
     pkgs.btop
     pkgs.killall
