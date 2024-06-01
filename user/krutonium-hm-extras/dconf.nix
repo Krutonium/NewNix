@@ -17,7 +17,7 @@ in
   home.packages = [
     # Extensions
     pkgs.gnomeExtensions.dash-to-panel
-    pkgs.gnomeExtensions.ddterm
+    pkgs.master.gnomeExtensions.ddterm #TODO: Undo after 298973 makes it to stable
     pkgs.gnomeExtensions.appindicator
     pkgs.gnomeExtensions.arcmenu
     pkgs.gnomeExtensions.no-overview
