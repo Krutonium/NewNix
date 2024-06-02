@@ -68,7 +68,7 @@ in
           btrfs-snap -r -c /media2/Gryphon/ daily 15
         '';
     };
-    systemd.timers.snapshotter = {
+    systemd.timers.snapshotter-daily = {
       wantedBy = [ "timers.target" ];
       partOf = [ "snapshotter-daily.service" ];
       timerConfig.OnCalendar = [ "daily" ];
