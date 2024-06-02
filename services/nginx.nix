@@ -18,6 +18,11 @@ in
     security.acme.acceptTerms = true;
     services.nginx.additionalModules = [ pkgs.nginxModules.pam ];
     services.nginx.virtualHosts = {
+      "map.krutonium.ca" = {
+        forceSSL = true;
+        enableACME = true;
+        locations."/".proxyPass = "http://127.0.0.1:8100";
+      };
       "restream.krutonium.ca" = {
         forceSSL = true;
         enableACME = true;
