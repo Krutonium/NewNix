@@ -22,13 +22,25 @@
       options = [ "defaults" "size=16G" "mode=775" ];
     };
   networking.hostId = "28c77632";
+  filesystems."/media2/Gryphon" =
+    {
+      device = "/media2/Gryphon.zfs";
+      fsType = "zfs";
+    };
+  services.zfs.autoSnapshot = {
+    enable = true;
+    daily = 4;
+    hourly = 8;
+    weekly = 1;
+    monthly = 1;
+    frequent = 4;
+  };
   fileSystems."/persist" =
     {
       device = "/dev/disk/by-uuid/a018b12f-6567-4edb-8026-be9292738b4d";
       fsType = "btrfs";
       options = [ "compress=zstd:8" ];
     };
-
   fileSystems."/boot" =
     {
       device = "/dev/disk/by-uuid/2604-D641";
