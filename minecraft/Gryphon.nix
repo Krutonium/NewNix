@@ -29,7 +29,7 @@ in
           /media2/Gryphon/server/run.sh
         '';
     };
-    systemd.services.snapshotter-hourly = {
+    systemd.services.snapshotter = {
       description = "Automatic Snapshots of Minecraft Server";
       serviceConfig = {
         type = "simple";
@@ -44,7 +44,7 @@ in
           btrfs-snap -r -c /media2/Gryphon/ hourly 72
         '';
     };
-    systemd.timers.snapshotter-hourly = {
+    systemd.timers.snapshotter = {
       wantedBy = [ "timers.target" ];
       partOf = [ "snapshotter.service" ];
       timerConfig.OnCalendar = [ "hourly" ];
