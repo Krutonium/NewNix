@@ -13,7 +13,7 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" "wl" ];
   boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
-  boot.supportedFilesystems = [ "zfs" ];
+  boot.supportedFilesystems = [ "" ];
 
   fileSystems."/" =
     {
@@ -22,23 +22,6 @@
       options = [ "defaults" "size=16G" "mode=775" ];
     };
   networking.hostId = "28c77632";
-  fileSystems."/media2/Gryphon" =
-    {
-      device = "/media2/Gryphon.zfs";
-      fsType = "zfs";
-    };
-  services.zfs.autoSnapshot = {
-    enable = true;
-    daily = 4;
-    hourly = 8;
-    weekly = 1;
-    monthly = 1;
-    frequent = 4;
-  };
-  services.zfs.autoScrub = {
-    enable = true;
-    pools = "Gryphon";
-  };
   fileSystems."/persist" =
     {
       device = "/dev/disk/by-uuid/a018b12f-6567-4edb-8026-be9292738b4d";
