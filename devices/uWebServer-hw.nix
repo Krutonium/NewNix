@@ -13,7 +13,7 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" "wl" ];
   boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
-
+  boot.supportedFilesystems = [ "zfs" ];
   fileSystems."/" =
     {
       device = "root";
