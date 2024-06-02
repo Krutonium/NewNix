@@ -41,6 +41,7 @@ in
       path = [ pkgs.btrfs-progs pkgs.btrfs-snap ];
       script =
         ''
+          # Create 1 snapshot per hour, and keep 72 of them.
           btrfs-snap -r -c /media2/Gryphon/ hourly 72
         '';
     };
@@ -48,6 +49,29 @@ in
       wantedBy = [ "timers.target" ];
       partOf = [ "snapshotter.service" ];
       timerConfig.OnCalendar = [ "hourly" ];
+    };
+
+
+    systemd.services.snapshotter-daily = {
+      description = "Automatic Snapshots of Minecraft Server";
+      serviceConfig = {
+        type = "simple";
+        WorkingDirectory = "/media2/Gryphon";
+        User = "root";
+        KillSignal = "SIGINT";
+      };
+      wantedBy = [ "multi-user.target" ];
+      path = [ pkgs.btrfs-progs pkgs.btrfs-snap ];
+      script =
+        ''
+          #Create 1 snapshot per day that is kept for 15 days.
+          btrfs-snap -r -c /media2/Gryphon/ daily 15
+        '';
+    };
+    systemd.timers.snapshotter = {
+      wantedBy = [ "timers.target" ];
+      partOf = [ "snapshotter-daily.service" ];
+      timerConfig.OnCalendar = [ "daily" ];
     };
   };
 }
