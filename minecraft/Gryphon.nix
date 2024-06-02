@@ -26,9 +26,28 @@ in
       path = [ pkgs.jre pkgs.bash pkgs.screen ];
       script =
         ''
-          #screen -DmS server 
           /media2/Gryphon/server/run.sh
         '';
+    };
+    systemd.services.snapshotter-hourly = {
+      description = "Automatic Snapshots of Minecraft Server";
+      serviceConfig = {
+        type = "simple";
+        WorkingDirectory = "/media2/Gryphon";
+        User = "root";
+        KillSignal = "SIGINT";
+      };
+      wantedBy = [ "multi-user.target" ];
+      path = [ pkgs.btrfs-progs pkgs.btrfs-snap ];
+      script =
+        ''
+          btrfs-snap -r -c /media2/Gryphon/ hourly 72
+        '';
+    };
+    systemd.timers.snapshotter-hourly = {
+      wantedBy = [ "timers.target" ];
+      partOf = [ "snapshotter.service" ];
+      timerConfig.OnCalendar = [ "hourly" ];
     };
   };
 }
