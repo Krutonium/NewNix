@@ -87,9 +87,9 @@ in
   #  "0 6 * * * root systemctl reboot"
   #];
   virtualisation = {
-    docker = { 
+    docker = {
       enable = true;
-      rootless = { 
+      rootless = {
         enable = true;
         setSocketVariable = true;
       };
@@ -103,7 +103,7 @@ in
         autoStart = true;
         image = "datarhei/restreamer:vaapi-latest";
         ports = [ "1233:8080" "1234:8181" "1935:1935" ];
-        volumes = [ "/dev/dri:/dev/dri" "/persist/restream/config:/core/config" "/persist/restream/data:/core/data"];
+        volumes = [ "/dev/dri:/dev/dri" "/persist/restream/config:/core/config" "/persist/restream/data:/core/data" ];
         extraOptions = [ "--privileged" ];
       };
     };

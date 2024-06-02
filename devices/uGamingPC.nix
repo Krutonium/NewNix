@@ -25,7 +25,7 @@ in
   hardware.firmware = [ video.firmware ];
   boot = {
     kernelPackages = kernel;
-    kernelParams = [ "amd_iommu=on" "iommu=pt" "nvidia-drm.modeset=1"];
+    kernelParams = [ "amd_iommu=on" "iommu=pt" "nvidia-drm.modeset=1" ];
     tmp.useTmpfs = false;
     loader.grub = {
       gfxmodeEfi = "1920x1080";
@@ -91,7 +91,7 @@ in
     package = pkgs.openrgb;
   };
   hardware.keyboard.qmk.enable = true;
-  
+
   services.xserver = {
     videoDrivers = [ "nvidia" ];
     #deviceSection = ''
@@ -130,10 +130,10 @@ in
     pkgs.sunshine
   ];
   security.wrappers.sunshine = {
-        owner = "root";
-        group = "root";
-        capabilities = "cap_sys_admin+p";
-        source = "${pkgs.sunshine}/bin/sunshine";
+    owner = "root";
+    group = "root";
+    capabilities = "cap_sys_admin+p";
+    source = "${pkgs.sunshine}/bin/sunshine";
   };
 
   programs = {

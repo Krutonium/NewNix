@@ -14,7 +14,7 @@
   boot.kernelModules = [ "kvm-intel" "wl" ];
   boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
   boot.supportedFilesystems = [ "zfs" ];
- 
+
   fileSystems."/" =
     {
       device = "root";
@@ -22,7 +22,7 @@
       options = [ "defaults" "size=16G" "mode=775" ];
     };
   networking.hostId = "28c77632";
-  filesystems."/media2/Gryphon" =
+  fileSystems."/media2/Gryphon" =
     {
       device = "/media2/Gryphon.zfs";
       fsType = "zfs";
