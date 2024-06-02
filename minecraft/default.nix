@@ -34,6 +34,6 @@ with builtins;
       description = "GryphonMC";
     };
   };
-  imports = [ ./stoneblock3.nix ./RubberDragonTrain.nix ];
+  imports = [ ./stoneblock3.nix ./RubberDragonTrain.nix ./Gryphon.nix ];
 
 }

@@ -10,7 +10,7 @@ in
     networking.firewall.allowedTCPPorts = [ port ];
     filesystems."/media2/Gryphon" = {
       device = "/medai2/Gryphon.btrfs";
-      options = "compress=zstd:15"
+      options = "compress=zstd:15";
     };
     systemd.services.gryphon = {
       description = "Gryphon Minecraft Server";
