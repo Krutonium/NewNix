@@ -8,7 +8,7 @@ in
 {
   config = mkIf (cfg.gryphon == true) {
     networking.firewall.allowedTCPPorts = [ port ];
-    filesystems."/media2/Gryphon" = {
+    fileSystems."/media2/Gryphon" = {
       device = "/medai2/Gryphon.btrfs";
       options = "compress=zstd:15";
     };
