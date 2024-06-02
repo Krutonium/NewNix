@@ -21,7 +21,6 @@
       fsType = "tmpfs";
       options = [ "defaults" "size=16G" "mode=775" ];
     };
-  networking.hostId = "28c77632";
   fileSystems."/persist" =
     {
       device = "/dev/disk/by-uuid/a018b12f-6567-4edb-8026-be9292738b4d";

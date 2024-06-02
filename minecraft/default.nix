@@ -28,6 +28,11 @@ with builtins;
         StoneBlock 3 Server Memory in MB
       '';
     };
+    gryphon = mkOption {
+      type = types.bool;
+      default = false;
+      description = "GryphonMC";
+    };
   };
   imports = [ ./stoneblock3.nix ./RubberDragonTrain.nix ];
 
