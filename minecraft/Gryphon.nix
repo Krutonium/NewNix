@@ -24,6 +24,11 @@ in
         Restart = "always";
         KillSignal = "SIGINT";
       };
+      prestop =
+        ''
+          password=`cat /persist/mcrcon.txt`
+          mcrcon -H ${host} -P ${rconport} -p $password -w 5 "say Shutting Down Now!" stop
+        '';
       wantedBy = [ "multi-user.target" ];
       after = [ "network.target" ];
       path = [ pkgs.jre pkgs.bash ];
