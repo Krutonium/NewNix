@@ -11,6 +11,11 @@ let
   '';
 in
 {
+  nixpkgs.overlays = [
+    (final: prev: {
+      bcachefs-tools = inputs.bcachefs-tools.packages.${pkgs.system}.bcachefs-tools;
+    })
+  ];
   boot.kernelPackages = kernel;
   #boot.initrd.availableKernelModules = [ "nvidia" ];
   networking.hostName = Hostname;

@@ -28,6 +28,7 @@
       url = "github:nix-community/NUR";
       # inputs.nixpkgs.follows = "nixpkgs"; NUR does not.
     };
+    bcachefs-tools.url = "github:koverstreet/bcachefs-tools";
   };
   outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-master, nixos-hardware, home-manager, update, nix-monitored, nixd, fan-controller, nur, ... }@inputs:
     let
