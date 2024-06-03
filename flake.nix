@@ -67,10 +67,10 @@
         )
       ];
       # Overlays
-      # nixpkgs-unstable
       bcache_overlay = final: prev: {
         bcachefs-tools = inputs.bcachefs-tools.packages.x86_64-linux.bcachefs-tools;
       };
+      # nixpkgs-unstable
       overlay-unstable = final: prev: {
         unstable = import nixpkgs-unstable {
           inherit system;
