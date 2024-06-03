@@ -61,6 +61,7 @@
                 nixd.overlays.default
                 overlay-fanController
                 nur.overlay
+                overlay-bcachefs
               ];
           }
         )
@@ -74,6 +75,11 @@
           config.nvidia.acceptLicense = true;
         };
       };
+
+      overlay-bcachefs = final: prev: {
+        bcachefs-tools = inputs.bcachefs-tools.packages.${pkgs.system}.bcachefs-tools;
+      };
+
       # nixpkgs-master
       overlay-master = final: prev: {
         master = import nixpkgs-master {
