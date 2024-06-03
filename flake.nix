@@ -28,9 +28,9 @@
       url = "github:nix-community/NUR";
       # inputs.nixpkgs.follows = "nixpkgs"; NUR does not.
     };
-    bcachefs-tools_.url = "github:koverstreet/bcachefs-tools";
+    bcachefs-tools.url = "github:koverstreet/bcachefs-tools";
   };
-  outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-master, nixos-hardware, home-manager, update, nix-monitored, nixd, fan-controller, nur, bcachefs-tools_, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-master, nixos-hardware, home-manager, update, nix-monitored, nixd, fan-controller, nur, bcachefs-tools, ... }@inputs:
     let
       # This is a Generic Block of St00f
       system = "x86_64-linux";
@@ -61,13 +61,16 @@
                 nixd.overlays.default
                 overlay-fanController
                 nur.overlay
-                overlay-bcachefs
+                bcache_overlay
               ];
           }
         )
       ];
       # Overlays
       # nixpkgs-unstable
+      bcache_overlay = final: prev: {
+        bcachefs-tools = inputs.bcachefs-tools.packages.x86_64-linux.bcachefs-tools;
+      };
       overlay-unstable = final: prev: {
         unstable = import nixpkgs-unstable {
           inherit system;
@@ -75,11 +78,6 @@
           config.nvidia.acceptLicense = true;
         };
       };
-
-      overlay-bcachefs = final: prev: {
-        bcachefs-tools = bcachefs-tools_.packages.bcachefs-tools;
-      };
-
       # nixpkgs-master
       overlay-master = final: prev: {
         master = import nixpkgs-master {
