@@ -3,7 +3,7 @@ with lib;
 with builtins;
 let
   cfg = config.sys.minecraft;
-  port = "25565";
+  port = 25565;
   location = "/media2/Gryphon";
   rconport = "25566";
   host = "127.0.0.1";
