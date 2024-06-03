@@ -156,6 +156,7 @@ in
     pkgs.trash-cli
     pkgs.nvtop
     pkgs.comma
+    pkgs.mcrcon
 
     # Wine/Windows Shit
     pkgs.lutris
