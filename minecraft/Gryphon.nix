@@ -45,11 +45,11 @@ in
       path = [ pkgs.btrfs-progs pkgs.btrfs-snap pkgs.mcrcon ];
       script =
         ''
-          mcrcon -H ${host} -P ${port} -p ${password} say "Starting Daily Backup..."
-          mcrcon -H ${host} -P ${port} -p ${password} save-all
+          mcrcon -H ${host} -P ${rconport} -p ${password} say "Starting Daily Backup..."
+          mcrcon -H ${host} -P ${rconport} -p ${password} save-all
           # Create 1 snapshot per hour, and keep 72 of them.
           btrfs-snap -r -c ${location} hourly 72
-          mcrcon -H ${host} -P ${port} -p ${password} say "Done!"
+          mcrcon -H ${host} -P ${rconport} -p ${password} say "Done!"
         '';
     };
     systemd.timers.snapshotter = {
@@ -71,11 +71,11 @@ in
       path = [ pkgs.btrfs-progs pkgs.btrfs-snap pkgs.mcrcon ];
       script =
         ''
-          mcrcon -H ${host} -P ${port} -p ${password} say "Starting Daily Backup..."
-          mcrcon -H ${host} -P ${port} -p ${password} save-all
+          mcrcon -H ${host} -P ${rconport} -p ${password} say "Starting Daily Backup..."
+          mcrcon -H ${host} -P ${rconport} -p ${password} save-all
           #Create 1 snapshot per day that is kept for 15 days.
           btrfs-snap -r -c ${location} daily 15
-          mcrcon -H ${host} -P ${port} -p ${password} say "Done!"
+          mcrcon -H ${host} -P ${rconport} -p ${password} say "Done!"
         '';
     };
     systemd.timers.snapshotter-daily = {
