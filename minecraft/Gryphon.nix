@@ -24,7 +24,7 @@ in
         Restart = "always";
         KillSignal = "SIGINT";
       };
-      prestop =
+      preStop =
         ''
           password=`cat /persist/mcrcon.txt`
           mcrcon -H ${host} -P ${rconport} -p $password -w 5 "say Shutting Down Now!" stop
