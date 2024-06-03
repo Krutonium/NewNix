@@ -3,7 +3,7 @@ with lib;
 with builtins;
 let
   cfg = config.sys.minecraft;
-  port = 25565;
+  # port = 25565;
   location = "/media2/Gryphon";
   rconport = "25566";
   host = "127.0.0.1";
@@ -11,7 +11,7 @@ let
 in
 {
   config = mkIf (cfg.gryphon == true) {
-    networking.firewall.allowedTCPPorts = [ port ];
+    networking.firewall.allowedTCPPorts = [ 25565 25566 ];
     fileSystems."${location}" = {
       device = "/media2/Gryphon.btrfs";
       options = [ "compress=zstd:15" ];
