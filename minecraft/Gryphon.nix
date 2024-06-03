@@ -4,11 +4,15 @@ with builtins;
 let
   cfg = config.sys.minecraft;
   port = 25565;
+  location = "/media2/Gryphon/";
+  rconport = 25566;
+  host = "127.0.0.1";
+  password = builtins.readFile /persist/mcrcon.txt;
 in
 {
   config = mkIf (cfg.gryphon == true) {
     networking.firewall.allowedTCPPorts = [ port ];
-    fileSystems."/media2/Gryphon" = {
+    fileSystems."${location}" = {
       device = "/media2/Gryphon.btrfs";
       options = [ "compress=zstd:15" ];
     };
@@ -16,14 +20,14 @@ in
       description = "Gryphon Minecraft Server";
       serviceConfig = {
         Type = "simple";
-        WorkingDirectory = "/media2/Gryphon/server/";
+        WorkingDirectory = "${location}/server/";
         User = "krutonium";
         Restart = "always";
         KillSignal = "SIGINT";
       };
       wantedBy = [ "multi-user.target" ];
       after = [ "network.target" ];
-      path = [ pkgs.jre pkgs.bash pkgs.screen ];
+      path = [ pkgs.jre pkgs.bash ];
       script =
         ''
           /media2/Gryphon/server/run.sh
@@ -33,16 +37,17 @@ in
       description = "Automatic Snapshots of Minecraft Server";
       serviceConfig = {
         type = "simple";
-        WorkingDirectory = "/media2/Gryphon";
+        WorkingDirectory = location;
         User = "root";
         KillSignal = "SIGINT";
       };
       wantedBy = [ "multi-user.target" ];
-      path = [ pkgs.btrfs-progs pkgs.btrfs-snap ];
+      path = [ pkgs.btrfs-progs pkgs.btrfs-snap pkgs.mcrcon ];
       script =
         ''
+          
           # Create 1 snapshot per hour, and keep 72 of them.
-          btrfs-snap -r -c /media2/Gryphon/ hourly 72
+          btrfs-snap -r -c ${location} hourly 72
         '';
     };
     systemd.timers.snapshotter = {
@@ -56,16 +61,18 @@ in
       description = "Automatic Snapshots of Minecraft Server";
       serviceConfig = {
         type = "simple";
-        WorkingDirectory = "/media2/Gryphon";
+        WorkingDirectory = location;
         User = "root";
         KillSignal = "SIGINT";
       };
       wantedBy = [ "multi-user.target" ];
-      path = [ pkgs.btrfs-progs pkgs.btrfs-snap ];
+      path = [ pkgs.btrfs-progs pkgs.btrfs-snap pkgs.mcrcon];
       script =
         ''
+          mcrcon -H ${host} -P ${port} -p ${password} say "Starting Daily Backup..." save-all
           #Create 1 snapshot per day that is kept for 15 days.
-          btrfs-snap -r -c /media2/Gryphon/ daily 15
+          btrfs-snap -r -c ${location} daily 15
+          
         '';
     };
     systemd.timers.snapshotter-daily = {
