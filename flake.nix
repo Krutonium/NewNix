@@ -28,9 +28,9 @@
       url = "github:nix-community/NUR";
       # inputs.nixpkgs.follows = "nixpkgs"; NUR does not.
     };
-    bcachefs-tools.url = "github:koverstreet/bcachefs-tools";
+    bcachefs-tools_.url = "github:koverstreet/bcachefs-tools";
   };
-  outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-master, nixos-hardware, home-manager, update, nix-monitored, nixd, fan-controller, nur, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-master, nixos-hardware, home-manager, update, nix-monitored, nixd, fan-controller, nur, bcachefs-tools_, ... }@inputs:
     let
       # This is a Generic Block of St00f
       system = "x86_64-linux";
@@ -77,7 +77,7 @@
       };
 
       overlay-bcachefs = final: prev: {
-        bcachefs-tools = inputs.bcachefs-tools.packages.${pkgs.system}.bcachefs-tools;
+        bcachefs-tools = bcachefs-tools_.packages.bcachefs-tools;
       };
 
       # nixpkgs-master
