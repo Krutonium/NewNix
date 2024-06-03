@@ -16,7 +16,7 @@
   system.fsPackages = [ pkgs.sshfs ];
   fileSystems."/" =
     {
-      device = "UUID=1f35e804-826b-4fe8-926e-7545b08c383f";
+      device = "/dev/disk/by-uuid/1f35e804-826b-4fe8-926e-7545b08c383f";
       fsType = "bcachefs";
       #options = [
       #  "fsck"

@@ -16,6 +16,7 @@ in
       bcachefs-tools = inputs.bcachefs-tools.packages.${pkgs.system}.bcachefs-tools;
     })
   ];
+  boot.initrd.systemd.enable = true;
   boot.kernelPackages = kernel;
   #boot.initrd.availableKernelModules = [ "nvidia" ];
   networking.hostName = Hostname;
