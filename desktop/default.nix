@@ -4,7 +4,7 @@ with builtins;
 {
   options.sys.desktop = {
     desktop = mkOption {
-      type = types.enum [ "gnome" "kde" "none" "pantheon" "budgie" "labwc" ];
+      type = types.enum [ "gnome" "kde" "none" "pantheon" "budgie" "labwc" "hyprland" ];
       default = "none";
       description = ''
         Your desktop of choice.
@@ -39,5 +39,5 @@ with builtins;
       '';
     };
   };
-  imports = [ ./gnome.nix ./kde.nix ./pantheon.nix ./none.nix ./budgie.nix ./labwc.nix ./lightdm.nix ./gdm.nix ./sddm.nix ];
+  imports = [ ./gnome.nix ./kde.nix ./pantheon.nix ./none.nix ./budgie.nix ./labwc.nix ./lightdm.nix ./gdm.nix ./sddm.nix ./hyprland.nix ];
 }
