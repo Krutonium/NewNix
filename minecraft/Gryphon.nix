@@ -50,7 +50,7 @@ in
       script =
         ''
           password=`cat /persist/mcrcon.txt`
-          mcrcon -H ${host} -P ${rconport} -p $password -w 1 "say Starting Hourlynco Backup..." save-all save-off
+          mcrcon -H ${host} -P ${rconport} -p $password -w 1 "say Starting Hourly Backup..." save-all save-off
           # Create 1 snapshot per hour, and keep 72 of them.
           btrfs-snap -r -c ${location} hourly 72
           mcrcon -H ${host} -P ${rconport} -p $password -w 1 save-on "say Done!"
