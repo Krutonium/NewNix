@@ -13,44 +13,23 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
-  system.fsPackages = [ pkgs.sshfs ];
+
   fileSystems."/" =
-    {
-      device = "/dev/disk/by-uuid/1f35e804-826b-4fe8-926e-7545b08c383f";
-      fsType = "bcachefs";
-      #options = [
-      #  "fsck"
-      #  "fix_errors"
-      #];
-      neededForBoot = true;
+    { device = "/dev/disk/by-uuid/eb1e0944-e59d-4e04-b52f-44b388555824";
+      fsType = "ext4";
     };
-  fileSystems."/boot" =
-    {
-      device = "/dev/disk/by-uuid/6034-3873";
+
+  fileSystems."/" =
+    { device = "/dev/disk/by-uuid/4227-7755";
       fsType = "vfat";
+      options = [ "fmask=0022" "dmask=0022" ];
     };
-  fileSystems."/uWebServer" =
-    {
-      device = "krutonium@krutonium.ca:/";
-      fsType = "sshfs";
-      options =
-        [
-          "allow_other" # for non-root access
-          "default_permissions"
-          "idmap=user"
-          "_netdev" # requires network to mount
-          "x-systemd.automount" # mount on demand
-          "uid=1000" # id -a
-          "gid=100"
-          "compression=yes" # Compression should be fine given thehost machine
-          "max_conns=20" # MOAR THREADS (when needed)
-          "IdentityFile=/home/krutonium/.ssh/id_ed25519"
-          # Handle connection drops better
-          "ServerAliveInterval=2"
-          "ServerAliveCountMax=2"
-          "reconnect"
-        ];
-    };
+
+  swapDevices =
+    [ { device = "/dev/disk/by-uuid/34d142d4-9274-4901-a938-2f8bcc8c8ed6"; }
+    ];
+
+
   swapDevices = [ ];
 
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
