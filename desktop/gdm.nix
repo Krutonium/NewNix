@@ -7,6 +7,12 @@ in
 {
   config = mkIf (cfg.displayManager == "gdm") {
     services = {
+      displayManager = {
+        autoLogin = {
+          user = "krutonium";
+          enable = true;
+        };
+      };
       xserver = {
         enable = true;
         excludePackages = [ ];
@@ -15,10 +21,6 @@ in
             enable = true;
             wayland = cfg.wayland;
             autoSuspend = cfg.autoSuspend;
-          };
-          autoLogin = {
-            user = "krutonium";
-            enable = true;
           };
         };
       };
