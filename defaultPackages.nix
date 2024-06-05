@@ -57,6 +57,7 @@ in
     #pkgs.nixd
     pkgs.lm_sensors
     pkgs.wl-clipboard
+    pkgs.kitty
   ];
 
 }

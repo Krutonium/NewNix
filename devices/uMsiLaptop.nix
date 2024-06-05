@@ -19,7 +19,12 @@ in
   #boot.kernelParams = [ "nouveau.config=NvClkMode=15" ];
   boot.loader.grub.gfxmodeEfi = "1920x1080";
   boot.loader.grub.gfxpayloadEfi = "keep";
-  environment.systemPackages = [ kernel.perf pkgs.teamviewer nvidia-offload ];
+  environment.systemPackages = [ 
+    kernel.perf 
+    pkgs.teamviewer 
+    nvidia-offload 
+    #pkgs.waybar
+  ];
   imports = [ ./uMsiLaptop-hw.nix ];
   nix = {
     settings = {
@@ -44,7 +49,7 @@ in
       plymouth_enabled = true;
     };
     desktop = {
-      desktop = "hyprland";
+      desktop = "gnome";
       wayland = true;
       displayManager = "gdm";
     };
