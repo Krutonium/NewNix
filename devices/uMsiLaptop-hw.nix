@@ -15,12 +15,12 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/eb1e0944-e59d-4e04-b52f-44b388555824";
+    { device = "/dev/disk/by-uuid/f947545a-2ee1-4fe0-b60c-d366c271cb01";
       fsType = "ext4";
     };
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/4227-7755";
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/1B37-4FC4";
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };
@@ -28,9 +28,6 @@
   swapDevices =
     [ { device = "/dev/disk/by-uuid/34d142d4-9274-4901-a938-2f8bcc8c8ed6"; }
     ];
-
-
-  swapDevices = [ ];
 
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
