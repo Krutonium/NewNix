@@ -31,12 +31,12 @@ in
       max-jobs = 0;
     };
   };
-  swapDevices = [
-    {
-      device = "/dev/disk/by-partlabel/swap";
-      priority = 1;
-    }
-  ];
+  #swapDevices = [
+  #  {
+  #    device = "/dev/disk/by-partlabel/swap";
+  #    priority = 1;
+  #  }
+  #];
   zramSwap = {
     enable = true;
     priority = 5;
