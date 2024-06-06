@@ -31,16 +31,16 @@ in
       max-jobs = 0;
     };
   };
-  #swapDevices = [
-  #  {
-  #    device = "/dev/disk/by-partlabel/swap";
-  #    priority = 1;
-  #  }
-  #];
+  swapDevices = [
+    {
+      device = "/dev/disk/by-partlabel/swap";
+      priority = 1;
+    }
+  ];
   zramSwap = {
     enable = true;
     priority = 5;
-    writebackDevice = "/dev/disk/by-uuid/34d142d4-9274-4901-a938-2f8bcc8c8ed6";
+    #writebackDevice = "/dev/disk/by-uuid/34d142d4-9274-4901-a938-2f8bcc8c8ed6";
     memoryPercent = 25;
   };
   sys = {
