@@ -116,8 +116,10 @@ in
       serviceConfig.Type = "oneshot";
       after = [ "network-online.target" "sys-subsystem-net-devices-WAN.device" ];
       wantedBy = [ "multi-user.target" ];
-      path = [ pkgs.curl ];
+      path = [ pkgs.curl pkgs.coreutils ];
       script = ''
+        sleep 10;
+        # Sleep 10 seconds to allow things to properly settle
         token=$(cat /persist/duckdns_token.txt)
         ipv4=$(curl -s ipv4.icanhazip.com)
         #ipv6=$(curl -s ipv6.icanhazip.com)
