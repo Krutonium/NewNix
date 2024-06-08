@@ -53,7 +53,7 @@ in
     systemd.timers."rebootGryphon" = {
       wantedBy = [ "timers.target" ];
       timerConfig = {
-        OnCalendar = "*-*-* 06:00:00"
+        OnCalendar = "*-*-* 06:00:00";
         Persistant = true;
       };
     };
