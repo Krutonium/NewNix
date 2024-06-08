@@ -37,6 +37,28 @@ in
           /media2/Gryphon/server/run.sh
         '';
     };
+    systemd.services.rebootGryphon = {
+      description = "Reboot Gryphon MC";
+      path = [ pkgs.mcrcon ];
+      script = ''
+          password=`cat /persist/mcrcon.txt`
+          mcrcon -H ${host} -P ${rconport} -p $password -w 5 save-all "say Daily Reboot..." stop
+      '';
+      serviceConfig = {
+        Type = "oneshot";
+        User = "root";
+      };
+      partOf = [ "rebootGryphon.service" ];
+    };
+    systemd.timers."rebootGryphon" = {
+      wantedBy = [ "timers.target" ];
+      timerConfig = {
+        OnCalendar = "*-*-* 06:00:00"
+        Persistant = true;
+      };
+    };
+      
+
     systemd.services.snapshotter = {
       description = "Automatic Snapshots of Minecraft Server";
       serviceConfig = {
@@ -46,9 +68,10 @@ in
         KillSignal = "SIGINT";
       };
       wantedBy = [ "multi-user.target" ];
-      path = [ pkgs.btrfs-progs pkgs.btrfs-snap pkgs.mcrcon ];
+      path = [ pkgs.btrfs-progs pkgs.btrfs-snap pkgs.mcrcon pkgs.coreutils ];
       script =
         ''
+          sleep 300
           password=`cat /persist/mcrcon.txt`
           mcrcon -H ${host} -P ${rconport} -p $password -w 1 "say Starting Hourly Backup..." save-all save-off
           # Create 1 snapshot per hour, and keep 72 of them.
@@ -72,9 +95,10 @@ in
         KillSignal = "SIGINT";
       };
       wantedBy = [ "multi-user.target" ];
-      path = [ pkgs.btrfs-progs pkgs.btrfs-snap pkgs.mcrcon ];
+      path = [ pkgs.btrfs-progs pkgs.btrfs-snap pkgs.mcrcon pkgs.coreutils ];
       script =
         ''
+          sleep 300
           password=`cat /persist/mcrcon.txt`
           mcrcon -H ${host} -P ${rconport} -p $password -w 1 "say Starting Daily Backup..." save-all save-off
           #Create 1 snapshot per day that is kept for 15 days.
