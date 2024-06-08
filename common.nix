@@ -151,6 +151,10 @@
     fwupd.enable = true;
   };
   programs.noisetorch.enable = true;
+  programs.gamemode = {
+    enable = true;
+    enableRenice = true;
+  };
   programs.command-not-found.enable = false;
   systemd.extraConfig = ''
     DefaultLimitNOFILE=1048576
