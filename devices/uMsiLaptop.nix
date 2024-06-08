@@ -11,7 +11,7 @@ let
   '';
 in
 {
-  boot.initrd.systemd.enable = false;
+  boot.initrd.systemd.enable = true;
   boot.kernelPackages = kernel;
   #boot.initrd.availableKernelModules = [ "nvidia" ];
   networking.hostName = Hostname;
