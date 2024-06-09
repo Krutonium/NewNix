@@ -112,7 +112,7 @@ in
   hardware.opengl.enable = true;
   hardware.nvidia = {
     package = video;
-    open = true; #some day my beauty
+    open = false; #some day my beauty
     nvidiaSettings = true;
   };
   #boot.initrd.availableKernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
