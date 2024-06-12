@@ -37,26 +37,26 @@ in
           /media2/Gryphon/server/run.sh
         '';
     };
-    systemd.services.rebootGryphon = {
-      description = "Reboot Gryphon MC";
-      path = [ pkgs.mcrcon ];
-      script = ''
-          password=`cat /persist/mcrcon.txt`
-          mcrcon -H ${host} -P ${rconport} -p $password -w 5 save-all "say Daily Reboot..." stop
-      '';
-      serviceConfig = {
-        Type = "oneshot";
-        User = "root";
-      };
-      partOf = [ "rebootGryphon.service" ];
-    };
-    systemd.timers."rebootGryphon" = {
-      wantedBy = [ "timers.target" ];
-      timerConfig = {
-        OnCalendar = "*-*-* 06:00:00";
-        Persistant = true;
-      };
-    };
+    #systemd.services.rebootGryphon = {
+    #  description = "Reboot Gryphon MC";
+    #  path = [ pkgs.mcrcon ];
+    #  script = ''
+    #      password=`cat /persist/mcrcon.txt`
+    #      mcrcon -H ${host} -P ${rconport} -p $password -w 5 save-all "say Daily Reboot..." stop
+    #  '';
+    #  serviceConfig = {
+    #    Type = "oneshot";
+    #    User = "root";
+    #  };
+    #  partOf = [ "rebootGryphon.service" ];
+    #};
+    #systemd.timers."rebootGryphon" = {
+    #  wantedBy = [ "timers.target" ];
+    #  timerConfig = {
+    #    OnCalendar = "*-*-* 06:00:00";
+    #    Persistant = true;
+    #  };
+    #};
       
 
     systemd.services.snapshotter = {
