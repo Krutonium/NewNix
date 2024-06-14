@@ -13,7 +13,7 @@ in
 {
   boot.initrd.systemd.enable = true;
   boot.kernelPackages = kernel;
-  boot.KernelModules = [ "ec_sys" ];
+  boot.kernelModules = [ "ec_sys" ];
   networking.hostName = Hostname;
   networking.firewall.interfaces."enp3s0".allowedUDPPorts = [ 67 ];
   boot.kernelParams = [ "nouveau.config=NvClkMode=15" "ec_sys.write_support=1" ];
