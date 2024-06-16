@@ -73,9 +73,9 @@ in
         ''
           sleep 300
           password=`cat /persist/mcrcon.txt`
-          mcrcon -H ${host} -P ${rconport} -p $password -w 1 "say Starting Hourly Backup..." save-all save-off
-          # Create 1 snapshot per hour, and keep 72 of them.
-          btrfs-snap -r -c ${location} hourly 72
+          mcrcon -H ${host} -P ${rconport} -p $password -w 1 "say Starting Hourly Backup..." save-off save-all
+          # Create 1 snapshot per hour, and keep 24 of them.
+          btrfs-snap -r -c ${location} hourly 24
           mcrcon -H ${host} -P ${rconport} -p $password -w 1 save-on "say Done!"
         '';
     };
@@ -98,11 +98,11 @@ in
       path = [ pkgs.btrfs-progs pkgs.btrfs-snap pkgs.mcrcon pkgs.coreutils ];
       script =
         ''
-          sleep 300
+          sleep 600
           password=`cat /persist/mcrcon.txt`
-          mcrcon -H ${host} -P ${rconport} -p $password -w 1 "say Starting Daily Backup..." save-all save-off
-          #Create 1 snapshot per day that is kept for 15 days.
-          btrfs-snap -r -c ${location} daily 15
+          mcrcon -H ${host} -P ${rconport} -p $password -w 1 "say Starting Daily Backup..." save-off save-all
+          #Create 1 snapshot per day that is kept for 7 days.
+          btrfs-snap -r -c ${location} daily 7
           mcrcon -H ${host} -P ${rconport} -p $password -w 1 "say Done!" save-on
         '';
     };
