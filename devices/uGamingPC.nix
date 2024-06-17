@@ -159,7 +159,7 @@ in
       alvr = false;
     };
     audio = {
-      server = "pulseaudio";
+      server = "pipewire";
     };
     users = {
       krutonium = true;
