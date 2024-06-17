@@ -4,7 +4,6 @@ with builtins;
 let
   cfg = config.sys.audio;
 
-  json = pkgs.formats.json { };
   pw_rnnoise_config = {
     "context.modules" = [
       {
