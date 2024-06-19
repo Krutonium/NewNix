@@ -10,7 +10,7 @@ in
       displayManager = {
         autoLogin = {
           user = "krutonium";
-          enable = true;
+          enable = false;
         };
       };
       xserver = {
