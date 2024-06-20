@@ -45,7 +45,6 @@ in
     pkgs.nix-index
     pkgs.appimage-run
     pkgs.unison
-    pkgs.p7zip
     pkgs.pciutils
     pkgs.android-tools
     pkgs.nixpkgs-fmt
@@ -57,7 +56,8 @@ in
     #pkgs.nixd
     pkgs.lm_sensors
     pkgs.wl-clipboard
-    pkgs.kitty
+    #pkgs.kitty
+    pkgs.vcp
   ];
 
 }
