@@ -5,7 +5,6 @@
     ./krutonium-hm-extras/terminal.nix
     ./krutonium-hm-extras/ssh.nix
     ./krutonium-hm-extras/packages-server.nix
-    ./krutonium-hm-extras/user-config.nix
   ];
   programs.home-manager.enable = true;
 

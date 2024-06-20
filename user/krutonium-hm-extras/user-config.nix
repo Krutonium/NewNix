@@ -128,12 +128,6 @@
         btop $argv;
       end
     '';
-    #Alias vcp as cp
-    ".config/fish/functions/cp.fish".text = ''
-      function cp --wraps=vcp --description 'alias cp=vcp'
-        vcp $argv;
-      end
-    '';
     #Alias bat as cat
     ".config/fish/functions/bat.fish".text = ''
       function cat --wraps=bat --description 'alias cat=bat'
