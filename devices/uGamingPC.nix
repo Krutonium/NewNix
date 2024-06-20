@@ -1,6 +1,6 @@
 { config, pkgs, channels, lib, ... }:
 let
-  kernel = with pkgs; unstable.linuxPackages_latest;
+  kernel = with pkgs; unstable.linuxPackages-rt_latest;
   video = config.boot.kernelPackages.nvidiaPackages.beta;
   #video = config.boot.kernelPackages.nvidiaPackages.mkDriver {
   #  version = "555.42.02";
