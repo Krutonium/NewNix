@@ -37,6 +37,14 @@ let
       }
     ];
   };
+  pw_fix_crackle = {
+    "context.properties" = {
+      default.clock.rate = 48000;
+      default.clock.quantum = 48;
+      default.clock.min-quantum = 48;
+      default.clock.max-quantum = 48;
+    };
+  };
 in
 {
   config = mkIf (cfg.server == "pipewire") {
@@ -57,7 +65,10 @@ in
         jack = {
           enable = true;
         };
-        extraConfig.pipewire."99-input-denoise" = pw_rnnoise_config;
+        extraConfig.pipewire = {
+          "99-input-denoise" = pw_rnnoise_config;
+          "98-fix-crackle" = pw_fix_crackle;
+        };
       };
     };
   };
