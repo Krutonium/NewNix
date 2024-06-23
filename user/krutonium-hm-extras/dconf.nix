@@ -3,7 +3,7 @@
 
 with lib.hm.gvariant;
 let
-  userTheme = "Yaru-purple-dark"; #Shell Theme
+  userTheme = "Adwaita"; #Shell Theme
   mainTheme = "Yaru-purple-dark"; #Application Theme
   mainFont = "gg sans Normal 12";
   monoFont = "Ubuntu Mono 13";
