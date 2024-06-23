@@ -215,7 +215,7 @@ in
     plugins = with pkgs.unstable.obs-studio-plugins; [
       #obs-teleport
       #obs-multi-rtmp
-      #obs-vkcapture
+      obs-vkcapture
     ];
     package = pkgs.unstable.obs-studio;
   };
