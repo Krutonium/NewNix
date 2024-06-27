@@ -114,6 +114,10 @@ in
           local snapshot_path=$1
           local snapshot_name=$(basename "$snapshot_path")
 
+          if btrfs subvolume list -p "$DEST_DIR" | grep -q "$snapshot_name"; then
+            echo "Snapshot $snapshot_name already exists at $DEST_DIR. Skipping..."
+            return
+          fi
 
           echo "Sending snapshot $snapshot_name to $DEST_DIR"
           btrfs send "$snapshot_path" | btrfs receive "$DEST_DIR"
