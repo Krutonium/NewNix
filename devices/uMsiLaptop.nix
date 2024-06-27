@@ -19,10 +19,10 @@ in
   boot.kernelParams = [ "nouveau.config=NvClkMode=15" "ec_sys.write_support=1" ];
   boot.loader.grub.gfxmodeEfi = "1920x1080";
   boot.loader.grub.gfxpayloadEfi = "keep";
-  environment.systemPackages = [ 
-    kernel.perf 
-    pkgs.teamviewer 
-    nvidia-offload 
+  environment.systemPackages = [
+    kernel.perf
+    pkgs.teamviewer
+    nvidia-offload
     #pkgs.waybar
   ];
   imports = [ ./uMsiLaptop-hw.nix ];

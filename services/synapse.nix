@@ -13,7 +13,7 @@ in
       matrix-sliding-sync = {
         enable = false;
         settings = {
-          SYNCV3_SERVER="http://synapse.krutonium.ca";
+          SYNCV3_SERVER = "http://synapse.krutonium.ca";
         };
         environmentFile = "SYNCV3_SECRET=4a2982e5c609ecfe245f161faeda9d8dcecc301797340fa71f054621d6aeca35";
       };
