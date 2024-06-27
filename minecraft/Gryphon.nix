@@ -102,7 +102,7 @@ in
         KillSignal = "SIGINT";
       };
       wantedBy = [ "multi-user.target" ];
-      path = [ pkgs.btrfs-progs pkgs.btrfs-snap pkgs.mcrcon pkgs.coreutils ];
+      path = [ pkgs.btrfs-progs pkgs.btrfs-snap pkgs.mcrcon pkgs.coreutils pkgs.coreutils ];
       script = ''
         # Source and destination directories
         SOURCE_DIR="${location}.snapshots"
@@ -115,7 +115,7 @@ in
           local snapshot_name=$(basename "$snapshot_path")
 
           echo "Sending snapshot $snapshot_name to $DEST_DIR"
-          sudo btrfs send "$snapshot_path" | sudo btrfs receive "$DEST_DIR"
+          btrfs send "$snapshot_path" | btrfs receive "$DEST_DIR"
 
           if [ $? -eq 0 ]; then
             echo "Snapshot $snapshot_name sent successfully."
@@ -129,11 +129,11 @@ in
           echo "Checking for obsolete snapshots in $DEST_DIR"
 
           # List snapshots in the destination directory
-          dest_snapshots=$(sudo btrfs subvolume list -p "$DEST_DIR" | grep 'path' | awk '{print $NF}')
+          dest_snapshots=$(btrfs subvolume list -p "$DEST_DIR" | grep 'path' | awk '{print $NF}')
 
           # List snapshots in the source directory
           cd "$SOURCE_DIR"
-          source_snapshots=$(sudo btrfs subvolume list -p . | grep 'path' | awk '{print $NF}')
+          source_snapshots=$(btrfs subvolume list -p . | grep 'path' | awk '{print $NF}')
 
           for dest_snapshot in $dest_snapshots; do
             dest_snapshot_name=$(basename "$dest_snapshot")
@@ -141,7 +141,7 @@ in
             # Check if the snapshot exists in the source directory
             if ! echo "$source_snapshots" | grep -q "$dest_snapshot_name"; then
               echo "Removing obsolete snapshot $dest_snapshot_name from $DEST_DIR"
-              sudo btrfs subvolume delete "$DEST_DIR/$dest_snapshot"
+              btrfs subvolume delete "$DEST_DIR/$dest_snapshot"
 
               if [ $? -eq 0 ]; then
                 echo "Snapshot $dest_snapshot_name removed successfully."
@@ -157,7 +157,7 @@ in
 
         # Get list of snapshots
         cd "$SOURCE_DIR"
-        snapshots=$(sudo btrfs subvolume list -p . | grep 'path' | awk '{print $NF}')
+        snapshots=$(btrfs subvolume list -p . | grep 'path' | awk '{print $NF}')
 
         # Iterate through snapshots and send each one
         for snapshot in $snapshots; do
