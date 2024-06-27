@@ -106,7 +106,7 @@ in
       script = ''
         # Source and destination directories
         SOURCE_DIR="${location}/.snapshot"
-        DEST_DIR="/media2/Gryphon/snapshots"
+        DEST_DIR="/media2/Gryphon/.snapshot"
 
 
         # Function to send a snapshot
