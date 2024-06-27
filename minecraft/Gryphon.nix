@@ -4,7 +4,7 @@ with builtins;
 let
   cfg = config.sys.minecraft;
   ports = [ 25565 12345 ];
-  location = "/persist/Gryphon";
+  location = "/persist/gryphon";
   rconport = "12345";
   host = "127.0.0.1";
 in
