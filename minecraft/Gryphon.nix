@@ -114,6 +114,8 @@ in
           local snapshot_path=$1
           local snapshot_name=$(basename "$snapshot_path")
 
+          echo $snapshot_path
+
           echo "Sending snapshot $snapshot_name to $DEST_DIR"
           btrfs send "$snapshot_path" | btrfs receive "$DEST_DIR"
 
