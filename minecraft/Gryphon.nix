@@ -162,9 +162,7 @@ in
 
         # Iterate through snapshots and send each one
         for snapshot in $snapshots; do
-          echo "Snapshot: $snapshot"
-          echo "Source: $SOURCE_DIR"
-          send_snapshot "$SOURCE_DIR/$snapshot"
+          send_snapshot "${location}/$snapshot"
         done
 
         echo "All snapshots have been processed."
