@@ -102,7 +102,7 @@ in
         KillSignal = "SIGINT";
       };
       wantedBy = [ "multi-user.target" ];
-      path = [ pkgs.btrfs-progs pkgs.btrfs-snap pkgs.mcrcon pkgs.coreutils pkgs.coreutils pkgs.nawk ];
+      path = [ pkgs.btrfs-progs pkgs.btrfs-snap pkgs.mcrcon pkgs.coreutils pkgs.coreutils pkgs.gawk ];
       script = ''
         # Source and destination directories
         SOURCE_DIR="${location}.snapshots"
