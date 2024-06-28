@@ -144,26 +144,26 @@
       #################
       ### uHPLaptop ###
       #################
-      nixosConfigurations.uHPLaptop = nixpkgs.lib.nixosSystem {
-        inherit system;
-        modules = genericModules ++ (with nixos-hardware.nixosModules; [
-          common-pc
-          common-pc-ssd
-          common-pc-laptop
-          common-cpu-intel
-        ]) ++ [ ./devices/uHPLaptop.nix ];
-      };
+      #nixosConfigurations.uHPLaptop = nixpkgs.lib.nixosSystem {
+      #  inherit system;
+      #  modules = genericModules ++ (with nixos-hardware.nixosModules; [
+      #    common-pc
+      #    common-pc-ssd
+      #    common-pc-laptop
+      #    common-cpu-intel
+      #  ]) ++ [ ./devices/uHPLaptop.nix ];
+      #};
       ###################
       ### uMacBookPro ###
       ###################
-      nixosConfigurations.uMacBookPro = nixpkgs.lib.nixosSystem {
-        inherit system;
-        modules = genericModules ++ (with nixos-hardware.nixosModules; [
-          common-pc
-          common-pc-ssd
-          common-pc-laptop
-          common-cpu-intel
-        ]) ++ [ ./devices/uMacBookPro.nix ];
-      };
+      #nixosConfigurations.uMacBookPro = nixpkgs.lib.nixosSystem {
+      #  inherit system;
+      #  modules = genericModules ++ (with nixos-hardware.nixosModules; [
+      #    common-pc
+      #    common-pc-ssd
+      #    common-pc-laptop
+      #    common-cpu-intel
+      #  ]) ++ [ ./devices/uMacBookPro.nix ];
+      #};
     };
 }

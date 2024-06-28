@@ -6,7 +6,7 @@ let
 in
 {
   config = mkIf (cfg.gitea == true) {
-    services.gitea = {
+    services.forgejo = {
       enable = true;
       # Forgejo is a dropin replacement
       package = pkgs.forgejo;
@@ -35,8 +35,10 @@ in
         indexer = {
           REPO_INDEXER_ENABLED = true;
         };
+        DEFAULT = {
+          APP_NAME = "Krutonium's Forgejo Service";
+        };
       };
-      appName = "Krutonium's Gitea Service";
       database = {
         type = "sqlite3";
       };

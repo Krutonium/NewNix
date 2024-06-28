@@ -115,6 +115,7 @@ in
       description = "DuckDNS dynamic DNS updater.";
       serviceConfig.Type = "oneshot";
       after = [ "network-online.target" "sys-subsystem-net-devices-WAN.device" ];
+      requires = [ "network-online.target" ];
       wantedBy = [ "multi-user.target" ];
       path = [ pkgs.curl pkgs.coreutils ];
       script = ''
