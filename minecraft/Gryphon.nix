@@ -11,10 +11,10 @@ in
 {
   config = mkIf (cfg.gryphon == true) {
     networking.firewall.allowedTCPPorts = ports;
-    fileSystems."${location}" = {
-      device = "/media2/Gryphon.btrfs";
-      options = [ "compress=zstd:15" ];
-    };
+    #fileSystems."${location}" = {
+    #  device = "/media2/Gryphon.btrfs";
+    #  options = [ "compress=zstd:15" ];
+    #};
     systemd.services.gryphon = {
       description = "Gryphon Minecraft Server";
       serviceConfig = {
@@ -102,74 +102,18 @@ in
         KillSignal = "SIGINT";
       };
       wantedBy = [ "multi-user.target" ];
-      path = [ pkgs.btrfs-progs pkgs.btrfs-snap pkgs.mcrcon pkgs.coreutils pkgs.coreutils pkgs.gawk ];
+      path = [ pkgs.mcrcon pkgs.coreutils pkgs.p7zip ];
       script = ''
-        # Source and destination directories
-        SOURCE_DIR="${location}/.snapshot"
-        DEST_DIR="/media2/Gryphon/.snapshot"
-
-
-        # Function to send a snapshot
-        send_snapshot() {
-          local snapshot_path=$1
-          local snapshot_name=$(basename "$snapshot_path")
-
-          if btrfs subvolume list -p "$DEST_DIR" | grep -q "$snapshot_name"; then
-            echo "Snapshot $snapshot_name already exists at $DEST_DIR. Skipping..."
-            return
-          fi
-
-          echo "Sending snapshot $snapshot_name to $DEST_DIR"
-          btrfs send "$snapshot_path" | btrfs receive "$DEST_DIR"
-
-          if [ $? -eq 0 ]; then
-            echo "Snapshot $snapshot_name sent successfully."
-          else
-            echo "Failed to send snapshot $snapshot_name."
-          fi
-        }
-
-        # Function to remove obsolete snapshots
-        remove_obsolete_snapshots() {
-          echo "Checking for obsolete snapshots in $DEST_DIR"
-
-          # List snapshots in the destination directory
-          dest_snapshots=$(btrfs subvolume list -p "$DEST_DIR" | grep 'path' | awk '{print $NF}')
-
-          # List snapshots in the source directory
-          cd "$SOURCE_DIR"
-          source_snapshots=$(btrfs subvolume list -p . | grep 'path' | awk '{print $NF}')
-
-          for dest_snapshot in $dest_snapshots; do
-            dest_snapshot_name=$(basename "$dest_snapshot")
-
-            # Check if the snapshot exists in the source directory
-            if ! echo "$source_snapshots" | grep -q "$dest_snapshot_name"; then
-              echo "Removing obsolete snapshot $dest_snapshot_name from $DEST_DIR"
-              btrfs subvolume delete "$DEST_DIR/$dest_snapshot"
-
-              if [ $? -eq 0 ]; then
-                echo "Snapshot $dest_snapshot_name removed successfully."
-              else
-                echo "Failed to remove snapshot $dest_snapshot_name."
-              fi
-            fi
-          done
-        }
-
-        # Remove obsolete snapshots before sending new ones
-        remove_obsolete_snapshots
-
-        # Get list of snapshots
-        cd "$SOURCE_DIR"
-        snapshots=$(btrfs subvolume list -p . | grep 'path' | awk '{print $NF}')
-
-        # Iterate through snapshots and send each one
-        for snapshot in $snapshots; do
-          send_snapshot "${location}/$snapshot"
-        done
-
-        echo "All snapshots have been processed."
+        cd ${location}/server/
+        _date = $(date +%Y-%m-%d)
+        7z a /media2/Gryphon/snapshots/$(date).7z .
+        # Check how many backups there are
+        backups=$(ls /media2/Gryphon/snapshots | wc -l)
+        # If there are more than 7 backups, delete the oldest one
+        if [ $backups -gt 7 ]; then
+          oldest=$(ls -t /media2/Gryphon/snapshots | tail -1)
+          rm /media2/Gryphon/snapshots/$oldest
+        fi
       '';
     };
   };
