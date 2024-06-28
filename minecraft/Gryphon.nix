@@ -110,8 +110,10 @@ in
         cd ${location}/.snapshot
         # Get the lastest snapshot
         snap=$(ls -t | head -1)
+        echo "Sending $snap to backup server..."
         # Compress it - Use the directory name as the file name
         nice -20 7z a -mx9 -mmf=bt2 "/media2/Gryphon/snapshots/$snap.7z" $snap
+        echo "Backup Compressed."
         mcrcon -H ${host} -P ${rconport} -p $password -w 1 "say Backup Compressed and Sent. Performance should return to normal."
 
         # --- Delete Old Backups ---
@@ -121,6 +123,7 @@ in
         # If there are more than 7 backups, delete the oldest one
         if [ $backups -gt 7 ]; then
           oldest=$(ls -t /media2/Gryphon/snapshots | tail -1)
+          echo "Deleting oldest backup: $oldest"
           rm /media2/Gryphon/snapshots/$oldest
         fi
       '';
