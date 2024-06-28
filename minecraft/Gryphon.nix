@@ -106,7 +106,7 @@ in
       script = ''
         cd ${location}/server/
         set _date = $(date +%Y-%m-%d)
-        7z a "/media2/Gryphon/snapshots/$(date).7z" .
+        7z a "/media2/Gryphon/snapshots/$(date).7z" . | tee
         # Check how many backups there are
         backups=$(ls /media2/Gryphon/snapshots | wc -l)
         # If there are more than 7 backups, delete the oldest one
