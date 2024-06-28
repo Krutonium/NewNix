@@ -34,7 +34,7 @@ in
       path = [ pkgs.jre pkgs.bash ];
       script =
         ''
-          /media2/Gryphon/server/run.sh
+          ./run.sh
         '';
     };
 
