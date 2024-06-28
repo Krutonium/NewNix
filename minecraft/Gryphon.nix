@@ -105,7 +105,7 @@ in
       path = [ pkgs.mcrcon pkgs.coreutils pkgs.p7zip ];
       script = ''
         cd ${location}/server/
-        _date = $(date +%Y-%m-%d)
+        set _date = $(date +%Y-%m-%d)
         7z a /media2/Gryphon/snapshots/$(date).7z .
         # Check how many backups there are
         backups=$(ls /media2/Gryphon/snapshots | wc -l)
