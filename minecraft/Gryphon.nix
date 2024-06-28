@@ -82,7 +82,7 @@ in
           mcrcon -H ${host} -P ${rconport} -p $password -w 1 "say Starting Daily Backup..." save-off save-all
           #Create 1 snapshot per day that is kept for 7 days.
           btrfs-snap -r -c ${location} daily 7
-          mcrcon -H ${host} -P ${rconport} -p $password -w 1 "say Done!" save-on
+          mcrcon -H ${host} -P ${rconport} -p $password -w 1 "say Done! Compressing Backup and Shuffling it over to the backup disk..." save-on
           systemctl start snapshotter-send
         '';
     };
@@ -104,9 +104,18 @@ in
       wantedBy = [ "multi-user.target" ];
       path = [ pkgs.mcrcon pkgs.coreutils pkgs.p7zip ];
       script = ''
-        cd ${location}/server/
-        set _date = $(date +%Y-%m-%d)
-        7z a "/media2/Gryphon/snapshots/$(date).7z" . | tee
+        password=`cat /persist/mcrcon.txt`
+        # --- Make Backup ---
+
+        cd ${location}/.snapshot
+        # Get the lastest snapshot
+        snap=$(ls -t | head -1)
+        # Compress it - Use the directory name as the file name
+        nice -20 7z a -mx9 -mmf=bt2 "/media2/Gryphon/snapshots/$snap.7z" $snap
+        mcrcon -H ${host} -P ${rconport} -p $password -w 1 "say Backup Compressed and Sent. Performance should return to normal."
+
+        # --- Delete Old Backups ---
+
         # Check how many backups there are
         backups=$(ls /media2/Gryphon/snapshots | wc -l)
         # If there are more than 7 backups, delete the oldest one
