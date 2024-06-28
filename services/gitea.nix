@@ -6,7 +6,7 @@ let
 in
 {
   config = mkIf (cfg.gitea == true) {
-    services.forgejo = {
+    services.gitea = {
       enable = true;
       # Forgejo is a dropin replacement
       package = pkgs.forgejo;
