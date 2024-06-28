@@ -26,6 +26,7 @@ in
   #};
 
   fonts.packages = [ fonts pkgs.rPackages.fontawesome ];
+  i18n.inputMethod.ibus.engines = with pkgs.ibus-engines; [ uniemoji ];
   environment.systemPackages = [
     pkgs.xorg.xf86inputmouse
     pkgs.rPackages.fontawesome
