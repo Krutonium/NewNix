@@ -4,7 +4,7 @@ with builtins;
 let
   cfg = config.sys.minecraft;
   ports = [ 25565 12345 ];
-  location = "/persist/gryphon";
+  location = "/persist/gryphon/";
   rconport = "12345";
   host = "127.0.0.1";
 in
@@ -54,7 +54,7 @@ in
           password=`cat /persist/mcrcon.txt`
           mcrcon -H ${host} -P ${rconport} -p $password -w 1 "say Starting Hourly Backup..." save-off save-all
           # Create 1 snapshot per hour, and keep 24 of them.
-          btrfs-snap -r -c ${location} hourly 24
+          btrfs-snap -r -c . hourly 24
           mcrcon -H ${host} -P ${rconport} -p $password -w 1 save-on "say Done!"
         '';
     };
@@ -81,7 +81,7 @@ in
           password=`cat /persist/mcrcon.txt`
           mcrcon -H ${host} -P ${rconport} -p $password -w 1 "say Starting Daily Backup..." save-off save-all
           #Create 1 snapshot per day that is kept for 7 days.
-          btrfs-snap -r -c ${location} daily 7
+          btrfs-snap -r -c . daily 7
           mcrcon -H ${host} -P ${rconport} -p $password -w 1 "say Done! Compressing Backup and Shuffling it over to the backup disk..." save-on
           systemctl start snapshotter-send
         '';
