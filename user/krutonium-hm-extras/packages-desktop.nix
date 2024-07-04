@@ -118,6 +118,7 @@ in
 
     # Media
     pkgs.vlc
+    pkgs.mpv
     pkgs.spotify
     pkgs.youtube-music
     pkgs.plexamp
