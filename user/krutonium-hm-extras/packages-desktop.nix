@@ -84,6 +84,7 @@ in
     #(pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.rider [ "14839" "17718" "13882" ])
     (pkgs.unstable.jetbrains.plugins.addPlugins pkgs.unstable.jetbrains.rider [ "github-copilot" ])
     (pkgs.unstable.jetbrains.plugins.addPlugins pkgs.unstable.jetbrains.idea-ultimate [ "github-copilot" ])
+    pkgs.unityhub
 
     #rider
     #riderScript
