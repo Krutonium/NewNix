@@ -1,9 +1,10 @@
 { config, pkgs, ... }:
 {
-  xdg.configFile."mimeapps.list".force = true;
-  xdg.dataFile."applications/mimeapps.list".force = true;
   xdg = {
     enable = true;
+    configFile."mimeapps.list".force = true;
+    dataFile."applications/mimeapps.list".force = true;
+    portal.xdgOpenUsePortal = true;
     mimeApps = {
       enable = true;
       defaultApplications = {
