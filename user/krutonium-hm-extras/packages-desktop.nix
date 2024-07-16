@@ -74,6 +74,7 @@ in
     pkgs.xwaylandvideobridge
     # Development
     openjdk8-low
+    pkgs.gh
     pkgs.openjdk17
     #pkgs.github-desktop Broken 23.05 OpenSSL_1_1 #TODO REPLACE OR FIX
     pkgs.hub
