@@ -56,7 +56,13 @@ let
     cd ~/NixOS
     git remote set-url origin gitea@gitea.krutonium.ca:Krutonium/NixOS.git
   '';
+  explain = pkgs.writeShellScriptBin "explain" ''
+    ${pkgs.gh}/bin/gh explain "$@"
+  '';
+  help = pkgs.writeShellScriptBin "help" ''
+    ${pkgs.gh}/bin/gh suggest "$@"
+  '';
 in
 {
-  environment.systemPackages = [ sshr updateindex why-installed where-installed pkgs.jq zink update switch boot commit cleanup relinkrepo ];
+  environment.systemPackages = [ sshr updateindex why-installed where-installed pkgs.jq zink update switch boot commit cleanup relinkrepo explain help ];
 }
