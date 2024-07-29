@@ -205,7 +205,7 @@ in
     #pkgs.element-desktop
     pkgs.fractal-next
     pkgs.srain
-    pkgs.discord
+    pkgs.vesktop
     #pkgs.unstable.vesktop
     pkgs.wormhole-rs
 
