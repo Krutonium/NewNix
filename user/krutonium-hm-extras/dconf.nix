@@ -23,6 +23,7 @@ in
     pkgs.gnomeExtensions.no-overview
     pkgs.gnomeExtensions.gtile
     pkgs.gnomeExtensions.custom-accent-colors
+    
     #pkgs.gnomeExtensions.system76-scheduler
     #pkgs.gnomeExtensions.control-monitor-brightness-and-volume-with-ddcutil #Seem to be crashing Gnome :(
 
@@ -75,6 +76,9 @@ in
       visual-bell = false;
       visual-bell-type = "frame-flash";
       audible-bell = false;
+      focus-new-windows = "smart";
+      auto-raise = true;
+      auto-raise-delay = 50;
     };
 
     "org/gnome/desktop/wm/preferences" = {
