@@ -57,10 +57,10 @@ let
     git remote set-url origin gitea@gitea.krutonium.ca:Krutonium/NixOS.git
   '';
   explain = pkgs.writeShellScriptBin "explain" ''
-    ${pkgs.gh}/bin/gh explain "$@"
+    ${pkgs.unstable.gh}/bin/gh explain "$@"
   '';
   help = pkgs.writeShellScriptBin "help" ''
-    ${pkgs.gh}/bin/gh suggest "$@"
+    ${pkgs.unstable.gh}/bin/gh suggest "$@"
   '';
 in
 {
