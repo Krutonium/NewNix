@@ -11,14 +11,14 @@ let
   #  persistencedSha256 = "sha256-3ae31/egyMKpqtGEqgtikWcwMwfcqMv2K4MVFa70Bqs=";
   #};
   zenpower = config.boot.kernelPackages.zenpower;
-  ddcutil = config.boot.kernelPackages.ddcci-driver.overrideAttrs (old: {
-    patches = [
-      (pkgs.fetchpatch {
-        url = "https://gitlab.com/Sweenu/ddcci-driver-linux/-/commit/7f851f5fb8fbcd7b3a93aaedff90b27124e17a7e.patch";
-        hash = "sha256-Y1ktYaJTd9DtT/mwDqtjt/YasW9cVm0wI43wsQhl7Bg=";
-      })
-    ];
-  });
+  #ddcutil = config.boot.kernelPackages.ddcci-driver.overrideAttrs (old: {
+  #  patches = [
+  #    (pkgs.fetchpatch {
+  #      url = "https://gitlab.com/Sweenu/ddcci-driver-linux/-/commit/7f851f5fb8fbcd7b3a93aaedff90b27124e17a7e.patch";
+  #      hash = "sha256-Y1ktYaJTd9DtT/mwDqtjt/YasW9cVm0wI43wsQhl7Bg=";
+  #    })
+  #  ];
+  #});
   Hostname = "uGamingPC";
 in
 {
@@ -119,7 +119,7 @@ in
   boot.extraModulePackages = with config.boot.kernelPackages;
     [
       zenpower.out
-      ddcutil.out
+      pkgs.ddcutil.out
     ];
   boot.blacklistedKernelModules = [ "k10temp" "amdgpu" ];
   environment.systemPackages = [
