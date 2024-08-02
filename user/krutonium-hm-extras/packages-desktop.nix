@@ -11,9 +11,6 @@ let
   };
   openjdk8-low = pkgs.openjdk8.overrideAttrs (oldAttrs: { meta.priority = 10; });
 
-  #GDK_BACKEND=x11 QT_QPA_PLATFORM=xcb obs
-
-
 
   dotnetCombined = (with pkgs.dotnetCorePackages; combinePackages [ sdk_6_0 sdk_7_0 sdk_8_0 ]).overrideAttrs (fineAttrs: previousAttrs: {
     postBuild = (previousAttrs.postBuild or '''') + ''
@@ -28,21 +25,6 @@ let
       done
     '';
   });
-
-  # Run Idea and Rider using steam-run to fix plugins not working.
-  #ideaScript = pkgs.writeShellScriptBin "idea-ultimate"
-  #  ''
-  #    ${pkgs.steam-run}/bin/steam-run ${pkgs.jetbrains.idea-ultimate}/bin/idea-ultimate
-  #  '';
-  #idea = pkgs.unstable.jetbrains.idea-ultimate.overrideAttrs
-  #  (oldAttrs: { meta.priority = 10; });
-
-  #yuzu = pkgs.yuzu-ea.overrideAttrs (oldAttrs: { meta.priority = 10; });
-  #riderScript = pkgs.writeShellScriptBin "rider"
-  #  ''
-  #    ${pkgs.steam-run}/bin/steam-run ${pkgs.jetbrains.rider}/bin/rider
-  #  '';
-  #rider = pkgs.unstable.jetbrains.rider.overrideAttrs (oldAttrs: { meta.priority = 10; });
   shipwright = pkgs.shipwright.override {
     oot = {
       enable = true;
@@ -55,20 +37,9 @@ in
   home.sessionVariables = {
     DOTNET_ROOT = "${dotnetCombined}";
   };
-  #home.file.".net".source = dotnetCombined;
   home.file.".msbuild".source = pkgs.msbuild;
 
   home.packages = [
-    # Browser
-    #pkgs.firefox-wayland
-    #pkgs.tor-browser-bundle-bin
-
-    pkgs.qpwgraph
-
-    #KDE Stuff
-    #pkgs.yakuake
-    #pkgs.tokodon
-
     # Gnome Stuff
     pkgs.gnome.dconf-editor
     pkgs.xwaylandvideobridge
@@ -76,13 +47,10 @@ in
     openjdk8-low
     pkgs.gh
     pkgs.openjdk17
-    #pkgs.github-desktop Broken 23.05 OpenSSL_1_1 #TODO REPLACE OR FIX
     pkgs.hub
     pkgs.mono
     pkgs.ghc
-    #idea
-    #ideaScript  
-    #(pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.rider [ "14839" "17718" "13882" ])
+
     (pkgs.unstable.jetbrains.plugins.addPlugins pkgs.unstable.jetbrains.rider [ "github-copilot" ])
     (pkgs.unstable.jetbrains.plugins.addPlugins pkgs.unstable.jetbrains.idea-ultimate [ "github-copilot" ])
     pkgs.unityhub
@@ -94,13 +62,10 @@ in
     pkgs.vscode
     pkgs.gitkraken
     dotnetCombined
-    #pkgs.dotnetCorePackages.sdk_6_0
     pkgs.dotnetPackages.StyleCopMSBuild
     pkgs.notepad-next
-    #pkgs.msbuild
-    #pkgs.dotnet-sdk
+    # I desperately want godot with C# support guys.
     pkgs.godot_4
-    #pkgs.godot-export-templates
 
     # Wine
     pkgs.wineWowPackages.full
@@ -110,13 +75,7 @@ in
     pkgs.unzip
     pkgs.qmk
     pkgs.arduino
-    #pkgs.gcc11
-    #pkgs.pkgsCross.avr.buildPackages.gcc
-    #pkgs.avrdude
-    #pkgs.gcc-arm-embedded
-    #pkgs.gnumake
     pkgs.git
-    #pkgs.python39Full
 
     # Media
     pkgs.vlc
@@ -133,13 +92,11 @@ in
     # Random Stuff
     pkgs.htop
     pkgs.neofetch
-    pkgs.catimg #for neofetch
     pkgs.nmap
     pkgs.gparted
     pkgs.ffmpeg-full
     pkgs.openrgb
     pkgs.calibre
-    #pkgs.nixpkgs-review #moved to common
     pkgs.libreoffice
     pkgs.mate.engrampa
     pkgs.fzf
@@ -152,7 +109,6 @@ in
     pkgs.oh-my-fish
     pkgs.babelfish
     pkgs.thefuck
-    #pkgs.sapling Not currently building
     pkgs.powerline-fonts
     pkgs.unzip
     pkgs.yt-dlp
@@ -173,10 +129,6 @@ in
     pkgs.mesa-demos
     pkgs.parsec-bin
     pkgs.appimage-run
-    # shipwright
-
-
-    #pkgs.unstable.runescape #doesn't currently build
     pkgs.gamescope
     pkgs.jstest-gtk
     pkgs.prismlauncher
@@ -186,33 +138,20 @@ in
     pkgs.higan
     pkgs.heroic
     pkgs.cemu
-    #pkgs.citra #GRAVESTONE: RIP
     pkgs.steam-run
-    #pkgs.yuzu-ea
-    #yuzu
     pkgs.ryujinx
     pkgs.monado
 
     # File Sync
-    pkgs.dropbox
-    #pkgs.megasync
     pkgs.nextcloud-client
-    #pkgs.transmission-remote-gtk
     pkgs.deluge
-    #pkgs.seafile-client
 
     # Communications
     pkgs.tdesktop
-    #pkgs.element-desktop
     pkgs.fractal-next
     pkgs.srain
     pkgs.vesktop
-    #pkgs.unstable.vesktop
     pkgs.wormhole-rs
-
-    #AI Stuff I find interesting
-    #pkgs.unstable.mods
-    #pkgs.glow
   ];
   programs.obs-studio = {
     enable = true;
