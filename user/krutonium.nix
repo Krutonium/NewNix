@@ -19,7 +19,6 @@ in
     };
     programs.fish.enable = true;
     programs.fish.useBabelfish = true;
-    #programs.zsh.enable = true;
     home-manager.users.krutonium =
       if roles.desktop == true then
         import ./krutonium-desktop.nix

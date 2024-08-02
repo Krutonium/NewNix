@@ -64,16 +64,11 @@
     supportedFilesystems = [ "ntfs" ]; #Add explicit NTFS support
   };
   documentation.enable = true;
-  # qt.style = "adwaita-dark";
   hardware = {
     enableAllFirmware = true;
     bluetooth.enable = true;
     usb-modeswitch.enable = true;
   };
-  #boot.binfmt = {
-  #  emulatedSystems = [ "aarch64-linux" "riscv64-linux" ];
-  #};
-
   nix = {
     settings = {
       auto-optimise-store = true;
