@@ -86,6 +86,7 @@ in
     (pkgs.unstable.jetbrains.plugins.addPlugins pkgs.unstable.jetbrains.rider [ "github-copilot" ])
     (pkgs.unstable.jetbrains.plugins.addPlugins pkgs.unstable.jetbrains.idea-ultimate [ "github-copilot" ])
     pkgs.unityhub
+    pkgs.nixd
 
     #rider
     #riderScript
