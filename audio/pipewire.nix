@@ -48,14 +48,14 @@ in
         wireplumber.enable = true;
         audio.enable = true;
         alsa = {
-          enable = true;
-          support32Bit = true;
+          enable = false;
+          support32Bit = false;
         };
         pulse = {
           enable = true;
         };
         jack = {
-          enable = true;
+          enable = false;
         };
         extraConfig.pipewire = {
           "99-input-denoise" = pw_rnnoise_config;
