@@ -55,6 +55,7 @@ in
     (pkgs.unstable.jetbrains.plugins.addPlugins pkgs.unstable.jetbrains.idea-ultimate [ "github-copilot" ])
     pkgs.unityhub
     pkgs.nixd
+    pkgs.nil
 
     #rider
     #riderScript
