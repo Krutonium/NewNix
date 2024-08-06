@@ -142,6 +142,8 @@ in
     pkgs.steam-run
     pkgs.ryujinx
     pkgs.monado
+    pkgs.unstable.openttd
+
 
     # File Sync
     pkgs.nextcloud-client
