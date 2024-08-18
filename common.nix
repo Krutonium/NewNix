@@ -21,6 +21,9 @@
     '';
   };
   xdg.portal.enable = true;
+  xdg.portal.extraPortals = [
+    pkgs.xdg-desktop-portal-gtk
+  ];
   environment.shellAliases = {
     ls = "${pkgs.eza}/bin/eza --icons --git";
   };
