@@ -150,7 +150,7 @@ in
     };
     desktop = {
       displayManager = "gdm";
-      desktop = "gnome";
+      desktop = "i3";
       wayland = true;
     };
     custom = {
