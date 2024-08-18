@@ -20,6 +20,7 @@
       auth      optional      ${pkgs.gnome.gnome-keyring}/lib/security/pam_gnome_keyring.so
     '';
   };
+  xdg.portal.enable = true;
   environment.shellAliases = {
     ls = "${pkgs.eza}/bin/eza --icons --git";
   };
