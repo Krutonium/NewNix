@@ -166,7 +166,7 @@ in
 
   programs.vscode = {
     enable = true;
-    package = pkgs.vscode.fhs;
+    package = pkgs.vscode;
   };
 
   programs.mangohud = {
@@ -174,6 +174,7 @@ in
     enableSessionWide = true;
     package = pkgs.mangohud;
   };
+
   programs.nix-index = {
     enable = true;
     enableFishIntegration = true;
