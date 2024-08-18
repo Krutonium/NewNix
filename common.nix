@@ -20,10 +20,10 @@
       auth      optional      ${pkgs.gnome.gnome-keyring}/lib/security/pam_gnome_keyring.so
     '';
   };
-  xdg.portal.enable = true;
-  xdg.portal.extraPortals = [
-    pkgs.xdg-desktop-portal-gtk
-  ];
+  #xdg.portal.enable = true;
+  #xdg.portal.extraPortals = [
+  #  pkgs.xdg-desktop-portal-gtk
+  #];
   environment.shellAliases = {
     ls = "${pkgs.eza}/bin/eza --icons --git";
   };

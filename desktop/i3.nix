@@ -6,6 +6,10 @@ let
 in
 {
   config = mkIf (cfg.desktop == "i3") {
+  xdg.portal.enable = true;
+  xdg.portal.extraPortals = [
+    pkgs.xdg-desktop-portal-gtk
+  ];
   environment.pathsToLink = [ "/libexec" ]; # links /libexec from derivations to /run/current-system/sw 
     services = {
       xserver = {
