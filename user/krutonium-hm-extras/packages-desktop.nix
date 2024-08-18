@@ -59,8 +59,6 @@ in
 
     #rider
     #riderScript
-
-    pkgs.vscode
     pkgs.gitkraken
     dotnetCombined
     pkgs.dotnetPackages.StyleCopMSBuild
@@ -165,6 +163,12 @@ in
     ];
     package = pkgs.unstable.obs-studio;
   };
+
+  programs.vscode = {
+    enable = true;
+    package = pkgs.vscode.fhs;
+  };
+
   programs.mangohud = {
     enable = true;
     enableSessionWide = true;
