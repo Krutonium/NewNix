@@ -78,6 +78,7 @@
     settings = {
       auto-optimise-store = true;
       trusted-users = [ "@wheel" ];
+      min-free = 50 * 1000 * 1000 * 1000; # 50GB
     };
     gc = {
       automatic = true;
