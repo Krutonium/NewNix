@@ -20,6 +20,7 @@
       auth      optional      ${pkgs.gnome.gnome-keyring}/lib/security/pam_gnome_keyring.so
     '';
   };
+  services.irqbalance.enable = true;
   #xdg.portal.enable = true;
   #xdg.portal.extraPortals = [
   #  pkgs.xdg-desktop-portal-gtk
