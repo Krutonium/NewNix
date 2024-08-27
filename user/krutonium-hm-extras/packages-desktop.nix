@@ -164,10 +164,10 @@ in
     package = pkgs.unstable.obs-studio;
   };
   xdg.desktopEntries = {
-    "com.obsproject.Studio" = {
-      name = "OBS Studio";
+    "OBS" = {
+      name = "OBS Studio X11";
       genericName = "Screen Recorder";
-      exec = "QT_QPA_PLATFORM=xcb obs";
+      exec = "env QT_QPA_PLATFORM=xcb obs";
       terminal = false;
       StartupNotify = "true";
       icon = "com.obsproject.Studio";
