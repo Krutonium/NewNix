@@ -178,7 +178,7 @@ in
         "Prism Launcher"
         ""
         "org.prismlauncher.PrismLauncher.desktop"
-        "OBS Studio"
+        "OBS Studio X11"
         ""
         #"com.obsproject.Studio.desktop"
         "OBS.desktop"

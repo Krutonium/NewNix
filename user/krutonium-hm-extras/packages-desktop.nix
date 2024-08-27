@@ -169,7 +169,6 @@ in
       genericName = "Screen Recorder";
       exec = "env QT_QPA_PLATFORM=xcb obs";
       terminal = false;
-      StartupNotify = "true";
       icon = "com.obsproject.Studio";
     };
   };
