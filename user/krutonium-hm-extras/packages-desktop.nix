@@ -163,7 +163,16 @@ in
     ];
     package = pkgs.unstable.obs-studio;
   };
-
+  xdg.desktopEntries = {
+    "com.obsproject.Studio" = {
+      name = "OBS Studio";
+      genericName = "Screen Recorder";
+      exec = "QT_QPA_PLATFORM=xcb obs";
+      terminal = false;
+      StartupNotify = "true";
+      icon = "com.obsproject.Studio";
+    };
+  };
   programs.vscode = {
     enable = true;
     package = pkgs.vscode;
