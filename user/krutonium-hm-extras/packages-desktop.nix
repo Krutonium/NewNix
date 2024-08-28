@@ -171,12 +171,12 @@ in
       terminal = false;
       icon = "com.obsproject.Studio";
     };
-    "Discord" = {
+    "discord" = {
       name = "Vesktop";
       genericName = "Discord";
       exec = "vesktop";
       terminal = false;
-      icon = "discord";
+      icon = "vesktop";
     };
   };
   programs.vscode = {
