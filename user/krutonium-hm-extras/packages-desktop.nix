@@ -171,6 +171,13 @@ in
       terminal = false;
       icon = "com.obsproject.Studio";
     };
+    "Discord" = {
+      name = "Vesktop";
+      genericName = "Discord";
+      exec = "vesktop";
+      terminal = false;
+      icon = "discord";
+    };
   };
   programs.vscode = {
     enable = true;
