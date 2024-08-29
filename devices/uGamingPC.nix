@@ -150,7 +150,7 @@ in
     };
     desktop = {
       displayManager = "gdm";
-      desktop = "gnome";
+      desktop = "hyprland";
       wayland = true;
     };
     custom = {
