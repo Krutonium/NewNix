@@ -12,6 +12,7 @@
     ./krutonium-hm-extras/xdg.nix
     ./krutonium-hm-extras/ssh.nix
     ./krutonium-hm-extras/firefox.nix
+    ./krutonium-hm-extras/hyprland.nix
   ];
   programs.home-manager.enable = true;
 
