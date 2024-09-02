@@ -64,6 +64,8 @@
         "vm.max_map_count" = 1000000;
         "vm.dirty_ratio" = "25"; # 25% of all memory optionally as write cache
         "kernel.panic" = "60";
+        "kernel.perf_event_paranoid" = "1";
+        "kernel.kptr_restrict" = "0";
       };
     };
     supportedFilesystems = [ "ntfs" ]; #Add explicit NTFS support
@@ -85,7 +87,7 @@
       options = "--delete-older-than 7d";
       dates = "weekly";
     };
-    package = pkgs.nix-monitored;
+    #package = pkgs.nix-monitored;
     extraOptions = ''
       experimental-features = nix-command flakes
       extra-platforms = x86_64-linux i686-linux aarch64-linux riscv64-linux

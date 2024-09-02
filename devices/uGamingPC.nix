@@ -1,7 +1,7 @@
 { config, pkgs, channels, lib, ... }:
 let
   kernel = with pkgs; unstable.linuxPackages_zen;
-  video = config.boot.kernelPackages.nvidiaPackages.stable;
+  video = config.boot.kernelPackages.nvidiaPackages.beta;
   #video = config.boot.kernelPackages.nvidiaPackages.mkDriver {
   #  version = "555.42.02";
   #  sha256_64bit = "sha256-k7cI3ZDlKp4mT46jMkLaIrc2YUx1lh1wj/J4SVSHWyk=";
@@ -25,7 +25,7 @@ in
   hardware.firmware = [ video.firmware ];
   boot = {
     kernelPackages = kernel;
-    kernelParams = [ "amd_iommu=on" ];
+    kernelParams = [ "amd_iommu=on" "nvidia_drm.fbdev=1" ];
     tmp.useTmpfs = false;
     loader.grub = {
       gfxmodeEfi = "1920x1080";
@@ -114,10 +114,10 @@ in
     package = video;
     open = false; #some day my beauty
     nvidiaSettings = true;
-    modesetting = true;
+    modesetting.enable = true;
   };
-  hardware.graphics.enable = true;
-  #boot.initrd.availableKernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
+  #hardware.graphics.enable = true;
+  boot.initrd.availableKernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
   boot.extraModulePackages = with config.boot.kernelPackages;
     [
       zenpower.out

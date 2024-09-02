@@ -6,8 +6,8 @@ let
 in
 {
   config = mkIf (cfg.torrent == true) {
-    networking.firewall.allowedTCPPortRanges = [ { from = 50023; to = 50050; } ];
-    networking.firewall.allowedUDPPortRanges = [ { from = 50023; to = 50050; } ];
+    networking.firewall.allowedTCPPortRanges = [{ from = 50023; to = 50050; }];
+    networking.firewall.allowedUDPPortRanges = [{ from = 50023; to = 50050; }];
     networking.firewall.interfaces."bridge".allowedTCPPorts = [ 8112 58846 ];
     services.deluge = {
       package = pkgs.deluge;

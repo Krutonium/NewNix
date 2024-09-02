@@ -7,17 +7,14 @@ in
 {
   config = mkIf (cfg.displayManager == "sddm") {
     services = {
-      xserver = {
-        enable = true;
-        excludePackages = [ ];
-        displayManager = {
-          sddm = {
-            enable = true;
-          };
-          autoLogin = {
-            user = "krutonium";
-            enable = true;
-          };
+      xserver.enable = true;
+      displayManager = {
+        sddm = {
+          enable = true;
+        };
+        autoLogin = {
+          user = "krutonium";
+          enable = true;
         };
       };
     };

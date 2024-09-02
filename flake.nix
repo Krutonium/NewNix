@@ -57,7 +57,7 @@
                 overlay-unstable
                 overlay-master
                 overlay-nixpkgs-update
-                overlay-monitored
+                # overlay-monitored
                 nixd.overlays.default
                 overlay-fanController
                 nur.overlay
