@@ -34,7 +34,7 @@ in
       path = [ pkgs.jre pkgs.bash ];
       script =
         ''
-          ./run.sh
+          nice 20 ./run.sh
         '';
     };
 
