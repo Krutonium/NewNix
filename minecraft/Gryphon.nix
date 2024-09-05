@@ -96,7 +96,7 @@ in
     systemd.services.snapshotter-send = {
       description = "Send snapshots to backup server";
       serviceConfig = {
-        type = "simple";
+        type = "oneshot";
         WorkingDirectory = location;
         User = "root";
         KillSignal = "SIGINT";
@@ -104,6 +104,7 @@ in
       wantedBy = [ "multi-user.target" ];
       path = [ pkgs.mcrcon pkgs.coreutils pkgs.p7zip ];
       script = ''
+        exit
         password=`cat /persist/mcrcon.txt`
         # --- Make Backup ---
 
