@@ -135,6 +135,8 @@ in
         "gTile@vibou"
         "s76-scheduler@mattjakeman.com"
         "custom-accent-colors@demiskp"
+        "compiz-windows-effect@hermes83.github.com"
+        "compiz-alike-magic-lamp-effect@hermes83.github.com"
       ];
       # favorite-apps = [ "org.gnome.Nautilus.desktop" "firefox.desktop" "element-desktop.desktop" "discord.desktop" "telegramdesktop.desktop" "org.polymc.PolyMC.desktop" "com.obsproject.Studio.desktop" "idea-ultimate.desktop" "rider.desktop" ];
       favorite-apps = [ "org.gnome.Nautilus.desktop" "firefox.desktop" ];
