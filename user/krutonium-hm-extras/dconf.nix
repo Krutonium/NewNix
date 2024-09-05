@@ -23,7 +23,10 @@ in
     pkgs.gnomeExtensions.no-overview
     pkgs.gnomeExtensions.gtile
     pkgs.gnomeExtensions.custom-accent-colors
-
+    
+    pkgs.gnomeExtensions.compiz-windows-effect
+    pkgs.gnomeExtensions.compiz-alike-magic-lamp-effect
+    
     #pkgs.gnomeExtensions.system76-scheduler
     #pkgs.gnomeExtensions.control-monitor-brightness-and-volume-with-ddcutil #Seem to be crashing Gnome :(
 
