@@ -99,22 +99,24 @@
       commonIntel = with nixos-hardware.nixosModules; [ common-cpu-intel ];
       commonAMD = with nixos-hardware.nixosModules; [ common-cpu-amd ];
       commonLaptop = with nixos-hardware.nixosModules; [ common-pc-laptop ];
-      
+      gpuAMD = with nixos-hardware.nixosModules; [ common-gpu-amd ];  
+      gpuNvidia = with nixos-hardware.nixosModules; [ common-gpu-nvidia ];
+      gpuIntel = with nixos-hardware.nixosModules; [ common-gpu-intel ];    
     in {
       ##################
       ### uWebServer ###
       ##################
-      nixosConfigurations.uWebServer = nixosConfiguration "uWebServer" (commonPCModules ++ commonIntel ++ [ ./devices/uWebServer.nix ]);
+      nixosConfigurations.uWebServer = nixosConfiguration "uWebServer" (commonPCModules ++ commonIntel ++ gpuAMD ++ gpuIntel ++ [ ./devices/uWebServer.nix ]);
 
       #################
       ### uGamingPC ###
       #################
-      nixosConfigurations.uGamingPC = nixosConfiguration "uGamingPC" (commonPCModules ++ commonAMD ++ [ ./devices/uGamingPC.nix ]);
+      nixosConfigurations.uGamingPC = nixosConfiguration "uGamingPC" (commonPCModules ++ commonAMD ++ gpuNvidia ++ [ ./devices/uGamingPC.nix ]);
 
       ##################
       ### uMsiLaptop ###
       ##################
-      nixosConfigurations.uMsiLaptop = nixosConfiguration "uMsiLaptop" (commonPCModules ++ commonLaptop ++ commonIntel ++ [ ./devices/uMsiLaptop.nix ]);
+      nixosConfigurations.uMsiLaptop = nixosConfiguration "uMsiLaptop" (commonPCModules ++ commonLaptop ++ commonIntel ++ gpuIntel ++ gpuNvidia ++ [ ./devices/uMsiLaptop.nix ]);
 
       #################
       ### Uncomment if needed ###
