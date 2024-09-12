@@ -111,8 +111,8 @@
       #################
       ### uGamingPC ###
       #################
-      nixosConfigurations.uGamingPC = nixosConfiguration "uGamingPC" (commonPCModules ++ commonAMD ++ gpuNvidia ++ [ ./devices/uGamingPC.nix ]);
-
+      nixosConfigurations.uGamingPC = nixosConfiguration "uGamingPC" (commonPCModules ++ commonAMD ++ gpuNvidia ++ [ ./devices/uGamingPC.nix ];
+     
       ##################
       ### uMsiLaptop ###
       ##################

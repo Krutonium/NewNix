@@ -1,7 +1,7 @@
 { config, pkgs, channels, lib, ... }:
 let
   kernel = with pkgs; unstable.linuxPackages_zen;
-  video = config.boot.kernelPackages.nvidiaPackages.beta;
+  #vvideo = config.boot.kernelPackages.nvidiaPackages.beta;
   #video = config.boot.kernelPackages.nvidiaPackages.mkDriver {
   #  version = "555.42.02";
   #  sha256_64bit = "sha256-k7cI3ZDlKp4mT46jMkLaIrc2YUx1lh1wj/J4SVSHWyk=";
@@ -22,10 +22,10 @@ let
   Hostname = "uGamingPC";
 in
 {
-  hardware.firmware = [ video.firmware ];
+  #hardware.firmware = [ video.firmware ];
   boot = {
     kernelPackages = kernel;
-    kernelParams = [ "amd_iommu=on" "nvidia_drm.fbdev=1" ];
+    kernelParams = [ "amd_iommu=on" ]; # "nvidia_drm.fbdev=1" ];
     tmp.useTmpfs = false;
     loader.grub = {
       gfxmodeEfi = "1920x1080";
@@ -90,6 +90,14 @@ in
     motherboard = "amd";
     package = pkgs.openrgb;
   };
+  hardware.nvidia = {
+     powerManagement = {
+       enable = true;
+     };
+     prime.offload.enable = false;
+     open = false;
+     nvidiaSettings = true;
+  };
   hardware.keyboard.qmk.enable = true;
 
   services.xserver = {
@@ -110,14 +118,14 @@ in
     #'';
   };
   hardware.opengl.enable = true;
-  hardware.nvidia = {
-    package = video;
-    open = false; #some day my beauty
-    nvidiaSettings = true;
-    modesetting.enable = true;
-  };
+#  hardware.nvidia = {
+#    package = video;
+#    open = false; #some day my beauty
+#    nvidiaSettings = true;
+#    modesetting.enable = true;
+#  };
   #hardware.graphics.enable = true;
-  boot.initrd.availableKernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
+  #boot.initrd.availableKernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
   boot.extraModulePackages = with config.boot.kernelPackages;
     [
       zenpower.out
@@ -125,7 +133,7 @@ in
     ];
   boot.blacklistedKernelModules = [ "k10temp" "amdgpu" ];
   environment.systemPackages = [
-    video
+    #video
     pkgs.gamescope
     pkgs.piper
     pkgs.unstable.alvr
