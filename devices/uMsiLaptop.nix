@@ -25,7 +25,7 @@ in
     nvidia-offload
     #pkgs.waybar
   ];
-  imports = [ ./uMsiLaptop-hw.nix ];
+  imports = [ ./uMsiLaptop-hw.nix ../builders ];
   nix = {
     settings = {
       max-jobs = 0;

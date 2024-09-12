@@ -12,7 +12,7 @@
     ./virtualization
     ./custom-packages
     ./scripts.nix
-    ./builders
+    #./builders
   ];
   security.pam.services = {
     gdm-autologin-keyring.text = ''
