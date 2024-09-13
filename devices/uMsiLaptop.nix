@@ -98,15 +98,15 @@ in
   #  };
   #  boot.blacklistedKernelModules = [ "nouveau" ];
   #};
-  specialisation."nVidia".configuration = {
+  #specialisation."nVidia".configuration = {
     boot.initrd.availableKernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
     #boot.blacklistedKernelModules = [ "nouveau" ];
-    system.nixos.tags = [ "with-nvidia" ];
-    system.nixos.label = "nVidia";
+    #system.nixos.tags = [ "with-nvidia" ];
+    #system.nixos.label = "nVidia";
     # sys.desktop.wayland = lib.mkForce false;
-    services.xserver.videoDrivers = [ "nvidia" ];
-    hardware.opengl.enable = true;
-    environment.sessionVariables.NIXOS_OZONE_WL = "1";
+    #services.xserver.videoDrivers = [ "nvidia" ];
+    #hardware.opengl.enable = true;
+    #environment.sessionVariables.NIXOS_OZONE_WL = "1";
     hardware.nvidia = {
       package = video;
       modesetting.enable = true;
@@ -117,7 +117,7 @@ in
         offload.enable = true;
         nvidiaBusId = "PCI:1:0:0";
         intelBusId = "PCI:0:2:0";
-      };
-    };
+     };
+   # };
   };
 }
