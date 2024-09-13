@@ -42,7 +42,8 @@
           environment.etc."nix/inputs/nixpkgs".source = nixpkgs.outPath;
           nix.nixPath = [ "nixpkgs=${nixpkgs.outPath}" ];
         }
-        home-manager.nixosModules.home-manager {
+        home-manager.nixosModules.home-manager
+        {
           nix.registry.nixos.flake = self;
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
@@ -99,10 +100,11 @@
       commonIntel = with nixos-hardware.nixosModules; [ common-cpu-intel ];
       commonAMD = with nixos-hardware.nixosModules; [ common-cpu-amd ];
       commonLaptop = with nixos-hardware.nixosModules; [ common-pc-laptop ];
-      gpuAMD = with nixos-hardware.nixosModules; [ common-gpu-amd ];  
+      gpuAMD = with nixos-hardware.nixosModules; [ common-gpu-amd ];
       gpuNvidia = with nixos-hardware.nixosModules; [ common-gpu-nvidia ];
-      gpuIntel = with nixos-hardware.nixosModules; [ common-gpu-intel ];    
-    in {
+      gpuIntel = with nixos-hardware.nixosModules; [ common-gpu-intel ];
+    in
+    {
       ##################
       ### uWebServer ###
       ##################
