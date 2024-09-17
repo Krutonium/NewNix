@@ -102,13 +102,12 @@ in
 
   services.xserver = {
     videoDrivers = [ "nvidia" ];
-    #deviceSection = ''
-    #  Driver                 "nvidia"
-    #  VendorName             "NVIDIA Corporation"
-    #  BoardName              "NVIDIA GeForce RTX 3070"
-    #  Option                 "AllowHMD" "yes"
-    #  Option                 "ModeValidation" "AllowNonEdidModes,NoEdidMaxPClkCheck,NoMaxPClkCheck"
-    #'';
+    deviceSection = ''
+      Driver                 "nvidia"
+      VendorName             "NVIDIA Corporation"
+      BoardName              "NVIDIA GeForce RTX 3070"
+      Option                 "Coolbits" "8"
+    '';
     screenSection = ''
       Option "metamodes" "DP-4: 1920x1080_165 +1920+0 {AllowGSYNCCompatible=On}, DP-0: 1920x1080_165 +0+0 {AllowGSYNCCompatible=On}, DP-2: 1920x1080_165 +3840+0 {AllowGSYNCCompatible=On}"
     '';
