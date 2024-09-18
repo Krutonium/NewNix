@@ -2,6 +2,6 @@
 {
   imports = [
     ./uWebServer.nix
-    ./uGamingPC.nix
+    #./uGamingPC.nix
   ];
 }
