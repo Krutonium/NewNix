@@ -6,10 +6,10 @@ let
 in
 {
   config = mkIf (cfg.gitea == true) {
-    services.gitea = {
+    services.forgejo = {
       enable = true;
       # Forgejo is a dropin replacement
-      package = pkgs.forgejo;
+      #package = pkgs.forgejo;
       #package = pkgs.gitea;
       settings = {
         server = {
@@ -41,6 +41,8 @@ in
       };
       database = {
         type = "sqlite3";
+        user = "gitea";
+        name = "gitea";
       };
     };
   };
