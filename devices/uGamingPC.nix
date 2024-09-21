@@ -91,12 +91,12 @@ in
     package = pkgs.openrgb;
   };
   hardware.nvidia = {
-     powerManagement = {
-       enable = true;
-     };
-     prime.offload.enable = false;
-     open = false;
-     nvidiaSettings = true;
+    powerManagement = {
+      enable = true;
+    };
+    prime.offload.enable = false;
+    open = false;
+    nvidiaSettings = true;
   };
   hardware.keyboard.qmk.enable = true;
 
@@ -117,12 +117,12 @@ in
     #'';
   };
   hardware.opengl.enable = true;
-#  hardware.nvidia = {
-#    package = video;
-#    open = false; #some day my beauty
-#    nvidiaSettings = true;
-#    modesetting.enable = true;
-#  };
+  #  hardware.nvidia = {
+  #    package = video;
+  #    open = false; #some day my beauty
+  #    nvidiaSettings = true;
+  #    modesetting.enable = true;
+  #  };
   #hardware.graphics.enable = true;
   #boot.initrd.availableKernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
   boot.extraModulePackages = with config.boot.kernelPackages;

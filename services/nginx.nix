@@ -141,20 +141,44 @@ in
         enableACME = true; # Use ACME certs
         forceSSL = true; # Force SSL
         locations."/".proxyPass = "http://127.0.0.1:3001/"; # Proxy Gitea
+        locations."/robots.txt" = {
+          extraConfig = ''
+            rewrite ^/(.*)  $1;
+            return 200 "User-agent: *\nDisallow: /";
+          '';
+        };
       };
       "nextcloud.krutonium.ca" = {
         forceSSL = true;
         enableACME = true;
+        locations."/robots.txt" = {
+          extraConfig = ''
+            rewrite ^/(.*)  $1;
+            return 200 "User-agent: *\nDisallow: /";
+          '';
+        };
       };
       "synapse.krutonium.ca" = {
         forceSSL = true;
         enableACME = true;
         locations."/".proxyPass = "http://127.0.0.1:8008";
+        locations."/robots.txt" = {
+          extraConfig = ''
+            rewrite ^/(.*)  $1;
+            return 200 "User-agent: *\nDisallow: /";
+          '';
+        };
       };
       "torrent.krutonium.ca" = {
         forceSSL = true;
         enableACME = true;
         locations."/".proxyPass = "http://127.0.0.1:8112";
+        locations."/robots.txt" = {
+          extraConfig = ''
+            rewrite ^/(.*)  $1;
+            return 200 "User-agent: *\nDisallow: /";
+          '';
+        };
       };
       "ha.krutonium.ca" = {
         forceSSL = true;
