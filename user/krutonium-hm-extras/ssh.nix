@@ -7,7 +7,7 @@
     matchBlocks = {
       "deck" = {
         hostname = "10.9";
-        user = "deck";
+        user = "krutonium";
       };
       "uWebServer" = {
         hostname = "10.1";
