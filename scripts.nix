@@ -54,7 +54,7 @@ let
   '';
   relinkrepo = pkgs.writeShellScriptBin "relinkrepo" ''
     cd ~/NixOS
-    git remote set-url origin gitea@gitea.krutonium.ca:Krutonium/NixOS.git
+    git remote set-url origin forgejo@gitea.krutonium.ca:Krutonium/NixOS.git
   '';
   explain = pkgs.writeShellScriptBin "explain" ''
     ${pkgs.unstable.gh}/bin/gh explain "$@"
