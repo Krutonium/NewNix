@@ -47,8 +47,11 @@
         matchConfig.Name = "bridge";
         networkConfig = {
           DHCPPrefixDelegation = true;
-          IPv6AcceptRA = false;
           IPv6SendRA = true;
+        };
+        ipv6SendRAConfig = {
+          EmitDNS = true;
+          DNS = "2001:4860:4860::8888";
         };
       };
     };
