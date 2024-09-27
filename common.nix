@@ -49,7 +49,7 @@
     ACTION=="add|change", SUBSYSTEM=="bdi", ATTR{min_ratio}="2", ATTR{max_ratio}="50"
   '';
   security.sudo.wheelNeedsPassword = false;
-  services.printing.enable = true;
+  services.printing.enable = false;
   services.printing.drivers = with pkgs; [ brlaser ];
   services.ddccontrol.enable = true;
   environment.variables = {
