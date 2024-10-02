@@ -31,6 +31,7 @@ in
       ## set a custom new dataDir
       # dataDir = "/some/data/dir";
     };
+    containers.temp-pg.config.system.stateVersion = "24.05";
     environment.systemPackages =
       let newpg = config.containers.temp-pg.config.services.postgresql;
       in [
