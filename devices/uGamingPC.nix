@@ -90,6 +90,10 @@ in
     motherboard = "amd";
     package = pkgs.openrgb;
   };
+  services.ollama = {
+    enable = true;
+    acceleration = "cuda";
+  };
   hardware.nvidia = {
     powerManagement = {
       enable = true;
