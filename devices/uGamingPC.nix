@@ -63,7 +63,7 @@ in
   networking = {
     hostName = Hostname;
     firewall = {
-      allowedTCPPorts = [ 47984 47989 48010 1337 ];
+      allowedTCPPorts = [ 47984 47989 48010 1337 11434 ]; #11434 is Ollama
       allowedUDPPorts = [ 47998 47999 48000 48010 ];
       allowedTCPPortRanges = [{ from = 9943; to = 9944; }]; #ALVR
       allowedUDPPortRanges = [{ from = 9943; to = 9944; }];
@@ -94,6 +94,8 @@ in
     enable = true;
     acceleration = "cuda";
   };
+  # Allow Ollama through Firewall
+  
   hardware.nvidia = {
     powerManagement = {
       enable = true;
