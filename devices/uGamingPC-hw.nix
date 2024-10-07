@@ -15,6 +15,12 @@
   boot.extraModulePackages = [ ];
   boot.supportedFilesystems = [ "ntfs" ];
   networking.hostId = "ad53f8bc";
+  services.btrfs.autoScrub = {
+    enable = true;
+    interval = "monthly";
+    fileSystems = [ "/games" ];
+  };
+  
   fileSystems."/" =
     {
       device = "/dev/disk/by-uuid/90083dac-4f03-49f1-bb83-e7dc14eca16a";
@@ -34,11 +40,13 @@
       device = "UUID=6023862438DB2AD4";
       fsType = "ntfs";
     };
-  fileSystems."/scratch" =
+  fileSystems."/games" =
     {
-      device = "UUID=1CE7761638DB2AD4";
-      fsType = "ntfs";
+      device = "UUID=54f1c7de-273b-44d9-9501-64b1a2f84717";
+      fsType = "btrfs";
+      options = [ "compress=zstd:15" "noatime" ];
     };
+
   fileSystems."/uWebServer" =
     {
       device = "krutonium@krutonium.ca:/";
