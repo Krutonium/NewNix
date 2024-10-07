@@ -54,7 +54,7 @@ in
       fi
     '';
     wantedBy = [ "multi-user.target" ];
-    enable = true;
+    enable = false;
   };
   virtualisation.spiceUSBRedirection.enable = true;
   systemd.tmpfiles.rules = [
