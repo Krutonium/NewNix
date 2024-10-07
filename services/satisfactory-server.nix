@@ -22,7 +22,7 @@ in
       path = [ pkgs.steam-run-native pkgs.steamcmd ];
       script = ''
         steamcmd +force_install_dir /srv/games/satisfactory +login anonymous +app_update 1690800 +quit
-        steam-run /srv/games/satisfactory/Server/FactoryServer.sh -NOSTEAM
+        steam-run /srv/games/satisfactory/FactoryServer.sh
       '';
       enable = cfg.satisfactoryServer;
     };
