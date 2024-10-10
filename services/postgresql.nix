@@ -24,6 +24,13 @@ in
           LC_COLLATE = "C"
           LC_CTYPE = "C";
         '';
+
+        settings = {
+          max_connections = 32;
+          shared_buffers = "8GB"; # about 25% of total ram
+          work_mem = "256MB"; # about total ram * 0.25 / max_conn
+          maintenance_work_mem = "512MB";
+        };
       };
     };
     containers.temp-pg.config.services.postgresql = {
