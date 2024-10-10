@@ -12,6 +12,7 @@ in
       postgresql = {
         enable = true;
         package = sql_current;
+        enableJIT = true;
         initialScript = pkgs.writeText "init.sql" ''
           CREATE ROLE "matrix-synapse" WITH LOGIN PASSWORD 'synapse';
           CREATE DATABASE "matrix-synapse" WITH OWNER "matrix-synapse"
