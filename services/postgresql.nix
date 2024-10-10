@@ -30,6 +30,7 @@ in
           shared_buffers = "8GB"; # about 25% of total ram
           work_mem = "256MB"; # about total ram * 0.25 / max_conn
           maintenance_work_mem = "512MB";
+          log_min_duration_statement = 10000; # in milliseconds
         };
       };
     };
