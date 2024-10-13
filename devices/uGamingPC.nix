@@ -38,6 +38,10 @@ in
     pkgs.logitech-udev-rules
     pkgs.via
   ];
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+    webkitgtk_4_1
+  ];
   # Disable Sleep/Hibernate System Wide
   systemd.targets.sleep.enable = false;
   systemd.targets.suspend.enable = false;
