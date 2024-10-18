@@ -36,7 +36,7 @@
     };
   };
   hardware.system76.power-daemon = {
-    enable = true;
+    enable = false;
   };
   boot.extraModulePackages = with config.boot.kernelPackages; [
     v4l2loopback
