@@ -37,6 +37,13 @@ in
         forceSSL = true;
         enableACME = true;
         root = "/media2/fileHost";
+        locations."/" = {
+          extraConfig = ''
+            autoindex on;
+            autoindex_localtime on;
+            autoindex_exact_size off;
+         '';
+        };
       };
       "krutonium.ca" = {
         forceSSL = true;
