@@ -1,7 +1,7 @@
 { config, pkgs, outputs, inputs, ... }:
 {
   imports = [
-    ./uWebServer.nix
+    #./uWebServer.nix
     #./uGamingPC.nix
   ];
 }
