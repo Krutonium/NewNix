@@ -49,6 +49,12 @@ in
             autoindex_exact_size off;
          '';
         };
+        locations."/robots.txt" = {
+          extraConfig = ''
+            rewrite ^/(.*)  $1;
+            return 200 "User-agent: *\nDisallow: /";
+          '';
+        };
       };
       "krutonium.ca" = {
         forceSSL = true;
