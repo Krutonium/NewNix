@@ -37,6 +37,11 @@ in
         forceSSL = true;
         enableACME = true;
         root = "/media2/fileHost";
+      };
+      "gryphon.krutonium.ca" = {
+        forceSSL = true;
+        enableACME = true;
+        root = "/media2/fileHost/gryphon";
         locations."/" = {
           extraConfig = ''
             autoindex on;
