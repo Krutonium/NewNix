@@ -43,6 +43,7 @@
         "browser.compactmode.show" = true;
         "browser.uidensity" = "1";
 
+        "browser.tabs.insertAfterCurrent" = true;
       };
     };
   };
