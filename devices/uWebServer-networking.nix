@@ -18,8 +18,9 @@
       ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="ac:16:2d:9a:17:c3", NAME="LAN3"
     '';
   };
-
+  networking.nftables.enable = true;
   networking.firewall.allowedUDPPorts = [ 546 ]; #DHCPv6-PD
+  #networking.firewall.trustedInterfaces = [ "bridge" ];
   systemd.network = {
     enable = true;
     networks = {
@@ -43,8 +44,8 @@
           DHCPv6Client = "yes";
         };
       };
-      "bridge" = {
-        matchConfig.Name = "bridge";
+      "br0" = {
+        matchConfig.Name = "br0";
         networkConfig = {
           DHCPPrefixDelegation = true;
           IPv6SendRA = true;
@@ -65,7 +66,7 @@
     #nameservers = [ "10.0.0.1" ]; #Configured in Common
 
     bridges = {
-      "bridge" = {
+      "br0" = {
         interfaces = [ "LAN0" "LAN1" "LAN2" "LAN3" ];
         # All ports on the Card are part of the LAN
       };
@@ -73,17 +74,17 @@
     nat = {
       enable = true;
       externalInterface = "WAN";
-      internalInterfaces = [ "bridge" ];
+      internalInterfaces = [ "br0" ];
       internalIPs = [ "10.0.0.0/24" ];
-      enableIPv6 = true;
-      internalIPv6s = [ "2001:db8:1234:5678::/64" ];
+      #enableIPv6 = true;
+      #internalIPv6s = [ "2001:db8:1234:5678::/64" ];
     };
     interfaces = {
       "WAN" = {
         #We're getting the IP dynamically from the ISP.
         useDHCP = true;
       };
-      "bridge" = {
+      "br0" = {
         # For now we're setting this statically, but I don't think there is any reason we couldn't use DHCP here.
         ipv4.addresses = [{ address = "10.0.0.1"; prefixLength = 24; }];
         useDHCP = false;
@@ -96,20 +97,20 @@
   services.radvd = {
     enable = true;
     config = ''
-      interface bridge {
+      interface br0 {
         AdvSendAdvert on;
         prefix 2001:db8:1234:5678::/64 { };
       };
     '';
   };
 
-  networking.firewall.interfaces."bridge".allowedTCPPorts = [ 53 67 ];
-  networking.firewall.interfaces."bridge".allowedUDPPorts = [ 53 67 ];
+  networking.firewall.interfaces."br0".allowedTCPPorts = [ 53 67 ];
+  networking.firewall.interfaces."br0".allowedUDPPorts = [ 53 67 ];
   services.dnsmasq = {
     enable = true;
     alwaysKeepRunning = true;
     extraConfig = ''
-      interface=bridge                       #ip address
+      interface=br0                       #ip address
       domain=krutonium.ca,10.0.0.1           #domain and IP for the host
       dhcp-range=10.0.0.10,10.0.0.254,5m     #Range of DHCP IP's, and how long a lease should be
       dhcp-option=3,10.0.0.1                 #Primary DNS
