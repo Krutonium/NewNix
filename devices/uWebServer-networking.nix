@@ -48,11 +48,12 @@
         networkConfig = {
           DHCPPrefixDelegation = true;
           IPv6SendRA = true;
+          IPv6AcceptRA = true;
         };
-        ipv6SendRAConfig = {
-          EmitDNS = true;
-          DNS = "2001:4860:4860::8888";
-        };
+        #ipv6SendRAConfig = {
+        #  EmitDNS = true;
+        #  DNS = "2001:4860:4860::8888";
+        #};
       };
     };
   };
