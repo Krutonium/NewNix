@@ -27,29 +27,29 @@
       "wan" = {
         matchConfig.PermanentMACAddress = "40:8d:5c:54:89:96";
         networkConfig = {
-          IPv6AcceptRA = true;
+          #IPv6AcceptRA = true;
           DHCP = "yes";
         };
         linkConfig = {
           RequiredForOnline = "routable";
         };
-        dhcpV6Config = {
-          WithoutRA = "solicit";
-          PrefixDelegationHint = "::/64";
-        };
-        ipv6SendRAConfig = {
-          Managed = true;
-        };
-        ipv6AcceptRAConfig = {
-          DHCPv6Client = "yes";
-        };
+        #dhcpV6Config = {
+        #  WithoutRA = "solicit";
+        #  PrefixDelegationHint = "::/64";
+        #};
+        #ipv6SendRAConfig = {
+        #  Managed = true;
+        #};
+        #ipv6AcceptRAConfig = {
+        #  DHCPv6Client = "yes";
+        #};
       };
       "br0" = {
         matchConfig.Name = "br0";
         networkConfig = {
           DHCPPrefixDelegation = true;
-          IPv6SendRA = true;
-          IPv6AcceptRA = true;
+          #IPv6SendRA = true;
+          #IPv6AcceptRA = true;
         };
         #ipv6SendRAConfig = {
         #  EmitDNS = true;
@@ -95,7 +95,7 @@
   };
 
   services.radvd = {
-    enable = true;
+    enable = false;
     config = ''
       interface br0 {
         AdvSendAdvert on;
