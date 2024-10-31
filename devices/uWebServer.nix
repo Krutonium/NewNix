@@ -54,7 +54,7 @@ in
       avahi = true;
       coredns = false;
       samba = true;
-      satisfactoryServer = true;
+      satisfactoryServer = false;
       unturnedServer = false;
       ssh = true;
       sshGuard = true;
