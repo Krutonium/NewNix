@@ -95,7 +95,7 @@ in
     pkgs.gparted
     pkgs.ffmpeg-full
     pkgs.openrgb
-    pkgs.calibre
+    # pkgs.calibre OH MY GOD YOU'RE AWFUL JESUS CHRIST
     pkgs.libreoffice
     pkgs.mate.engrampa
     pkgs.fzf
