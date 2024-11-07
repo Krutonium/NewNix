@@ -16,7 +16,7 @@ in
   boot.kernelModules = [ "ec_sys" ];
   networking.hostName = Hostname;
   networking.firewall.interfaces."enp3s0".allowedUDPPorts = [ 67 ];
-  boot.kernelParams = [ "nouveau.config=NvClkMode=15" "ec_sys.write_support=1" "iomem=relaxed" ];
+  #boot.kernelParams = [ "nouveau.config=NvClkMode=15" "ec_sys.write_support=1" "iomem=relaxed" ];
   boot.loader.grub.gfxmodeEfi = "1920x1080";
   boot.loader.grub.gfxpayloadEfi = "keep";
   environment.systemPackages = [
@@ -85,6 +85,10 @@ in
   programs.steam = {
     enable = true;
   };
+  #hardware.bumblebee = {
+  #  enable = true;
+  #  driver = "nvidia";
+  #};
   #services.teamviewer.enable = true;
   #boot.kernelModules = [ "mem_sleep_default=deep" ];
   #specialisation."bumblebee".configuration = {
@@ -108,7 +112,7 @@ in
   #hardware.opengl.enable = true;
   #environment.sessionVariables.NIXOS_OZONE_WL = "1";
   hardware.nvidia = {
-    package = video;
+    package = lib.mkForce video;
     modesetting.enable = true;
     nvidiaSettings = true;
     open = false;
