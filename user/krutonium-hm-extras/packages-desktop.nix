@@ -149,7 +149,7 @@ in
 
     # Communications
     pkgs.tdesktop
-    pkgs.master.fractal
+    pkgs.fractal
     pkgs.srain
     pkgs.vesktop
     pkgs.wormhole-rs
