@@ -116,6 +116,29 @@ in
   };
   hardware.keyboard.qmk.enable = true;
 
+  # Hardware Specific - Disable everything but USB for waking from sleep.
+  systemd.services.fix-sleep = {
+    description = "Disables most but not all wakeup events (Keeps USB)";
+    serviceConfig = {
+      Type = "simple";
+      User = "root";
+      WorkingDirectory = "/sys/class/wakeup";
+      Restart = "on-failure";
+      KillSignal = "SIGINT";
+    };
+    wantedBy = [ "multi-user.target" ];
+    path = [ pkgs.coreutils ];
+    script = ''
+      echo GP12 > /sys/class/wakeup
+      echo GP13 > /sys/class/wakeup
+      echo GP31 > /sys/class/wakeup
+      echo GPP2 > /sys/class/wakeup
+      echo PTXH > /sys/class/wakeup
+      echo GPP8 > /sys/class/wakeup
+    '';
+    enable = true;
+  };
+
   services.xserver = {
     videoDrivers = [ "nvidia" ];
     deviceSection = ''
