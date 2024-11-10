@@ -122,19 +122,19 @@ in
     serviceConfig = {
       Type = "simple";
       User = "root";
-      WorkingDirectory = "/sys/class/wakeup";
+      WorkingDirectory = "/proc/acpi";
       Restart = "on-failure";
       KillSignal = "SIGINT";
     };
     wantedBy = [ "multi-user.target" ];
     path = [ pkgs.coreutils ];
     script = ''
-      echo GP12 > /sys/class/wakeup
-      echo GP13 > /sys/class/wakeup
-      echo GP31 > /sys/class/wakeup
-      echo GPP2 > /sys/class/wakeup
-      echo PTXH > /sys/class/wakeup
-      echo GPP8 > /sys/class/wakeup
+      echo GP12 > /proc/acpi/wakeup
+      echo GP13 > /proc/acpi/wakeup
+      echo GP31 > /proc/acpi/wakeup
+      echo GPP2 > /proc/acpi/wakeup
+      echo PTXH > /proc/acpi/wakeup
+      echo GPP8 > /proc/acpi/wakeup
     '';
     enable = true;
   };
