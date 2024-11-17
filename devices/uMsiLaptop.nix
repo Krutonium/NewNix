@@ -89,7 +89,7 @@ in
   #  enable = true;
   #  driver = "nvidia";
   #};
-  #services.teamviewer.enable = true;
+  services.teamviewer.enable = true;
   #boot.kernelModules = [ "mem_sleep_default=deep" ];
   #specialisation."bumblebee".configuration = {
   #  system.nixos.tags = [ "with-bumblebee" ];
