@@ -22,9 +22,9 @@ in
   boot.initrd.availableKernelModules = [ "amdgpu" ];
   imports = [ ./uWebServer-hw.nix ./uWebServer-networking.nix ];
   services.xserver.videoDrivers = [ "amdgpu" ];
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    extraPackages = [ pkgs.rocm-opencl-icd ];
+    #extraPackages = [ pkgs.rocmPackages.rocm-opencl-icd ];
   };
 
   #hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
@@ -65,9 +65,6 @@ in
       nginx = true;
       autoDeploy = false;
       sevendaystodie = false;
-      headscale = false;
-      tailscale = false;
-      tailscaleUseExitNode = false;
       homeAssistant = false;
       cockpit = true;
       easydiffusion = false;

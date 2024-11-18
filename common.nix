@@ -16,8 +16,8 @@
   ];
   security.pam.services = {
     gdm-autologin-keyring.text = ''
-      auth      optional      ${pkgs.gnome.gdm}/lib/security/pam_gdm.so
-      auth      optional      ${pkgs.gnome.gnome-keyring}/lib/security/pam_gnome_keyring.so
+      auth      optional      ${pkgs.gdm}/lib/security/pam_gdm.so
+      auth      optional      ${pkgs.gnome-keyring}/lib/security/pam_gnome_keyring.so
     '';
   };
   services.irqbalance.enable = true;
@@ -36,7 +36,7 @@
     };
     package = pkgs.system76-scheduler;
   };
-  
+
   boot.extraModulePackages = with config.boot.kernelPackages; [
     v4l2loopback
   ];

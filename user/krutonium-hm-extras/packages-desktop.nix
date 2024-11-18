@@ -41,7 +41,7 @@ in
 
   home.packages = [
     # Gnome Stuff
-    pkgs.gnome.dconf-editor
+    pkgs.dconf-editor
     pkgs.xwaylandvideobridge
     # Development
     openjdk8-low

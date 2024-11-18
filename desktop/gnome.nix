@@ -16,8 +16,9 @@ in
       };
     };
     hardware = {
-      opengl = {
+      graphics = {
         enable = true;
+        enable32Bit = true;
       };
     };
     programs = {

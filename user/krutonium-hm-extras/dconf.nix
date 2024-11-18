@@ -39,7 +39,7 @@ in
     pkgs.ubuntu_font_family
     pkgs.yaru-theme
     # Other Stuff
-    pkgs.gnome.gnome-tweaks
+    pkgs.gnome-tweaks
     pkgs.cascadia-code #Font
   ];
 

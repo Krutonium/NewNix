@@ -112,7 +112,8 @@ in
     };
     prime.offload.enable = false;
     open = false;
-    nvidiaSettings = true;
+    nvidiaSettings = false;
+    modesetting.enable = true;
   };
   hardware.keyboard.qmk.enable = true;
 
@@ -132,15 +133,10 @@ in
     #  xrandr --output HDMI-0 --mode 1920x1080 --pos 3840x0 --rotate normal --output DP-0 --mode 1920x1080 --pos 1920x0 --rotate normal --output DP-2 --mode 1920x1080 --pos 0x0 --rotate normal
     #'';
   };
-  hardware.opengl.enable = true;
-  #  hardware.nvidia = {
-  #    package = video;
-  #    open = false; #some day my beauty
-  #    nvidiaSettings = true;
-  #    modesetting.enable = true;
-  #  };
-  #hardware.graphics.enable = true;
-  #boot.initrd.availableKernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
   boot.extraModulePackages = with config.boot.kernelPackages;
     [
       zenpower.out
@@ -197,8 +193,6 @@ in
       avahi = true;
       ssh = true;
       sshGuard = true;
-      tailscale = false;
-      tailscaleUseExitNode = false;
     };
     steam = {
       steam = true; #HTTP Error with Monado, Enable Later 

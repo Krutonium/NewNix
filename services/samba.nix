@@ -11,30 +11,28 @@ in
     services.samba = {
       enable = true;
       openFirewall = true;
-      extraConfig = ''
-        browsable = yes
-        read only = no
-      '';
-      shares = {
+      nsswins = true;
+
+      settings = {
         media = {
+          browseable = true;
+          "guest ok" = "no";
           path = "/media";
-          browsable = true;
         };
         media2 = {
+          browseable = true;
+          "guest ok" = "no";
           path = "/media2";
-          browsable = true;
-        };
-        share = {
-          path = "/home/krutonium/share";
-          browsable = true;
         };
         LinuxIsos = {
           path = "/media2/transmission";
-          browsable = true;
+          "guest ok" = "no";
+          browseable = true;
         };
         Krutonium = {
           path = "/home/krutonium";
           browseable = true;
+          "guest ok" = "no";
         };
       };
     };
