@@ -19,7 +19,7 @@ in
     pkgs.gnomeExtensions.dash-to-panel
     pkgs.master.gnomeExtensions.ddterm #TODO: Undo after 298973 makes it to stable
     pkgs.gnomeExtensions.appindicator
-    pkgs.gnomeExtensions.arcmenu
+    pkgs.master.gnomeExtensions.arcmenu
     pkgs.gnomeExtensions.no-overview
     pkgs.gnomeExtensions.gtile
     pkgs.gnomeExtensions.custom-accent-colors
