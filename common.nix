@@ -34,10 +34,9 @@
       pipewireBoost.enable = true;
       enable = true;
     };
+    package = pkgs.system76-scheduler;
   };
-  hardware.system76.power-daemon = {
-    enable = false;
-  };
+  
   boot.extraModulePackages = with config.boot.kernelPackages; [
     v4l2loopback
   ];

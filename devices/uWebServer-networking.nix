@@ -20,7 +20,7 @@
   };
   networking.nftables.enable = true;
   networking.firewall.allowedUDPPorts = [ 546 ]; #DHCPv6-PD
-  #networking.firewall.trustedInterfaces = [ "bridge" ];
+  networking.firewall.trustedInterfaces = [ "br0" ];
   systemd.network = {
     enable = true;
     networks = {
@@ -86,8 +86,8 @@
       };
       "br0" = {
         # For now we're setting this statically, but I don't think there is any reason we couldn't use DHCP here.
-        ipv4.addresses = [{ address = "10.0.0.1"; prefixLength = 24; }];
-        useDHCP = false;
+        # ipv4.addresses = [{ address = "10.0.0.1"; prefixLength = 24; }];
+        useDHCP = true;
         macAddress = "ac:16:2d:9a:17:c5";
       };
     };
@@ -109,41 +109,39 @@
   services.dnsmasq = {
     enable = true;
     alwaysKeepRunning = true;
-    extraConfig = ''
-      interface=br0                       #ip address
-      domain=krutonium.ca,10.0.0.1           #domain and IP for the host
-      dhcp-range=10.0.0.10,10.0.0.254,5m     #Range of DHCP IP's, and how long a lease should be
-      dhcp-option=3,10.0.0.1                 #Primary DNS
-      # dhcp-option=6,10.0.0.1,1.1.1.1,8.8.8.8 #Secondary DNS
-      dhcp-option=121,10.0.0.0/24,10.0.0.1   #Static Route
-
-      #uWebServer is hardcoded 10.0.0.1 above (It's IP is set outside of DHCP)
-      #uGamingPC
-      dhcp-host=18:C0:4D:04:05:E7,10.0.0.2
-      #uRenderPC
-      dhcp-host=30:9c:23:d3:06:fd,10.0.0.3
-      #uMsiLaptop
-      dhcp-host=F8:16:54:A5:A5:91,10.0.0.4
-      #uHPLaptop
-      dhcp-host=10:1F:74:0F:5A:E1,10.0.0.5
-      #uMacBookPro
-      dhcp-host=00:1B:63:95:F1:2D,10.0.0.6
-      #Archer AP
-      dhcp-host=14:EB:B6:58:A1:D4,10.0.0.7
-      #Brother Printer
-      dhcp-host=b0:68:e6:97:f4:37,10.0.0.8
-      #SteamDeck/Deckster
-      dhcp-host=50:5A:65:61:DB:3B,10.0.0.9
-
-      # Jason's PC
-      dhcp-host=d8:cb:8a:4f:75:54,10.0.0.10
-
-      # DNS Stuff
-      listen-address=::1,127.0.0.1,10.0.0.1 #Addresses it listens on from bridge
-      expand-hosts                         
-      server=1.1.1.1                        #Primary DNS
-      server=8.8.8.8                        #Secondary DNS
-      address=/krutonium.ca/10.0.0.1        #Send traffic headed to my domain to itself if it's on LAN
-    '';
+    settings = {
+      interface = "br0";
+      # Domain
+      domain = "krutonium.ca,10.0.0.1";
+      # DHCP Range, 5 Minute expire
+      dhcp-range = "10.0.0.1,10.0.0.254,5m";
+      # DHCP Options: Router Advertise at 10.0.0.1, and a static route at 10.0.0.1 for internet access
+      dhcp-option = [ "option:router,10.0.0.1" "option:classless-static-route,10.0.0.0/24,10.0.0.1" ];
+      # Statically Allocated Addresses
+      dhcp-host = [
+        # uWebServer
+        "ac:16:2d:9a:17:c5,10.0.0.1"
+        # uGamingPC / Linux
+        "18:C0:4D:04:05:E7,10.0.0.2"
+        # uWindowsPC / Gaming/Windows
+        "30:9c:23:d3:06:fd,10.0.0.3"
+        # uMsiLaptop
+        "F8:16:54:A5:A5:91,10.0.0.4"
+        # Archer Router
+        "14:EB:B6:58:A1:D4,10.0.0.7"
+        # Printer
+        "b0:68:e6:97:f4:37,10.0.0.8"
+        # SteamDeck
+        "50:5A:65:61:DB:3B,10.0.0.9"
+        # 5 and 6 intentionally missing for now.
+      ];
+      # Listens to br0
+      listen-address="::1,127.0.0.1,10.0.0.1";
+      expand-hosts = ""; #I *think* that's how that'd work?
+      # DNS Servers:
+      server = [ "1.1.1.1" "8.8.8.8" ]; # If both are down, an apocalypse is occuring.
+      # Routes traffic to my domain to my server
+      address = "/krutonium.ca/10.0.0.1";
+    };
   };
 }
