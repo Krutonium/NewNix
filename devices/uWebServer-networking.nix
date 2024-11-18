@@ -86,8 +86,8 @@
       };
       "br0" = {
         # For now we're setting this statically, but I don't think there is any reason we couldn't use DHCP here.
-        # ipv4.addresses = [{ address = "10.0.0.1"; prefixLength = 24; }];
-        useDHCP = true;
+        ipv4.addresses = [{ address = "10.0.0.1"; prefixLength = 24; }];
+        useDHCP = false;
         macAddress = "ac:16:2d:9a:17:c5";
       };
     };
@@ -137,7 +137,7 @@
       ];
       # Listens to br0
       listen-address="::1,127.0.0.1,10.0.0.1";
-      expand-hosts = ""; #I *think* that's how that'd work?
+     # expand-hosts = ""; #I *think* that's how that'd work?
       # DNS Servers:
       server = [ "1.1.1.1" "8.8.8.8" ]; # If both are down, an apocalypse is occuring.
       # Routes traffic to my domain to my server
