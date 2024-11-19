@@ -101,6 +101,7 @@ in
     pkgs.fzf
     pkgs.fsearch
     pkgs.sunshine
+    # shipwright Broken :(
 
     # Terminal
     pkgs.nixpkgs-review
