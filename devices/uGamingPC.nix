@@ -119,15 +119,15 @@ in
 
   services.xserver = {
     videoDrivers = [ "nvidia" ];
-    deviceSection = ''
-      Driver                 "nvidia"
-      VendorName             "NVIDIA Corporation"
-      BoardName              "NVIDIA GeForce RTX 3070"
-      Option                 "Coolbits" "8"
-    '';
-    screenSection = ''
-      Option "metamodes" "DP-4: 1920x1080_165 +1920+0 {AllowGSYNCCompatible=On}, DP-0: 1920x1080_165 +0+0 {AllowGSYNCCompatible=On}, DP-2: 1920x1080_165 +3840+0 {AllowGSYNCCompatible=On}"
-    '';
+    #deviceSection = ''
+    #  Driver                 "nvidia"
+    #  VendorName             "NVIDIA Corporation"
+    #  BoardName              "NVIDIA GeForce RTX 3070"
+    #  Option                 "Coolbits" "8"
+    #'';
+    #screenSection = ''
+    #  Option "metamodes" "DP-4: 1920x1080_165 +1920+0 {AllowGSYNCCompatible=On}, DP-0: 1920x1080_165 +0+0 {AllowGSYNCCompatible=On}, DP-2: 1920x1080_165 +3840+0 {AllowGSYNCCompatible=On}"
+    #'';
     #logFile = "/var/log/xorg.log";
     #displayManager.setupCommands = ''
     #  xrandr --output HDMI-0 --mode 1920x1080 --pos 3840x0 --rotate normal --output DP-0 --mode 1920x1080 --pos 1920x0 --rotate normal --output DP-2 --mode 1920x1080 --pos 0x0 --rotate normal
