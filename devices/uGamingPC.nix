@@ -1,7 +1,7 @@
 { config, pkgs, channels, lib, ... }:
 let
   kernel = with pkgs; unstable.linuxPackages_zen;
-  #vvideo = config.boot.kernelPackages.nvidiaPackages.beta;
+  video = config.boot.kernelPackages.nvidiaPackages.beta;
   #video = config.boot.kernelPackages.nvidiaPackages.mkDriver {
   #  version = "555.42.02";
   #  sha256_64bit = "sha256-k7cI3ZDlKp4mT46jMkLaIrc2YUx1lh1wj/J4SVSHWyk=";
@@ -25,7 +25,7 @@ in
   #hardware.firmware = [ video.firmware ];
   boot = {
     kernelPackages = kernel;
-    kernelParams = [ "amd_iommu=on" "nvidia_drm.modeset=1" "nvidia_drm.fbdev=1"  ]; # "nvidia_drm.fbdev=1" ];
+    kernelParams = [ "amd_iommu=on" ]; # "nvidia_drm.fbdev=1" ];
     tmp.useTmpfs = false;
     loader.grub = {
       gfxmodeEfi = "1920x1080";
@@ -110,6 +110,7 @@ in
     powerManagement = {
       enable = true;
     };
+    package = video;
     prime.offload.enable = false;
     open = false;
     nvidiaSettings = false;
