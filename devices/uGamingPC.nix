@@ -2,23 +2,7 @@
 let
   kernel = with pkgs; unstable.linuxPackages_zen;
   video = config.boot.kernelPackages.nvidiaPackages.beta;
-  #video = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-  #  version = "555.42.02";
-  #  sha256_64bit = "sha256-k7cI3ZDlKp4mT46jMkLaIrc2YUx1lh1wj/J4SVSHWyk=";
-  #  sha256_aarch64 = "sha256-ekx0s0LRxxTBoqOzpcBhEKIj/JnuRCSSHjtwng9qAc0=";
-  #  openSha256 = "sha256-rtDxQjClJ+gyrCLvdZlT56YyHQ4sbaL+d5tL4L4VfkA=";
-  #  settingsSha256 = "sha256-rtDxQjClJ+gyrCLvdZlT56YyHQ4sbaL+d5tL4L4VfkA=";
-  #  persistencedSha256 = "sha256-3ae31/egyMKpqtGEqgtikWcwMwfcqMv2K4MVFa70Bqs=";
-  #};
   zenpower = config.boot.kernelPackages.zenpower;
-  #ddcutil = config.boot.kernelPackages.ddcci-driver.overrideAttrs (old: {
-  #  patches = [
-  #    (pkgs.fetchpatch {
-  #      url = "https://gitlab.com/Sweenu/ddcci-driver-linux/-/commit/7f851f5fb8fbcd7b3a93aaedff90b27124e17a7e.patch";
-  #      hash = "sha256-Y1ktYaJTd9DtT/mwDqtjt/YasW9cVm0wI43wsQhl7Bg=";
-  #    })
-  #  ];
-  #});
   Hostname = "uGamingPC";
 in
 {
