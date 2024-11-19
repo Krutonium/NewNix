@@ -1,4 +1,4 @@
-{ config, pkgs, channels, lib, ... }:
+{ config, pkgs, ... }:
 let
   kernel = with pkgs; unstable.linuxPackages_zen;
   video = config.boot.kernelPackages.nvidiaPackages.beta;
@@ -27,8 +27,8 @@ in
     webkitgtk_4_1
   ];
   # Disable Sleep/Hibernate System Wide
-  systemd.targets.sleep.enable = false;
-  systemd.targets.suspend.enable = false;
+  systemd.targets.sleep.enable = true;
+  systemd.targets.suspend.enable = true;
   systemd.targets.hibernate.enable = false;
   systemd.targets.hybrid-sleep.enable = false;
 
