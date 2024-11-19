@@ -12,7 +12,7 @@ let
   openjdk8-low = pkgs.openjdk8.overrideAttrs (oldAttrs: { meta.priority = 10; });
 
 
-  dotnetCombined = (with pkgs.dotnetCorePackages; combinePackages [ sdk_6_0 sdk_7_0 sdk_8_0 sdk_9_0 ]).overrideAttrs (fineAttrs: previousAttrs: {
+  dotnetCombined = (with pkgs.dotnetCorePackages; combinePackages [ sdk_6_0 sdk_7_0 sdk_8_0 pkgs.unstable.dotnetCorePackages.sdk_9_0 ]).overrideAttrs (fineAttrs: previousAttrs: {
     postBuild = (previousAttrs.postBuild or '''') + ''
        for i in $out/sdk/*
        do
