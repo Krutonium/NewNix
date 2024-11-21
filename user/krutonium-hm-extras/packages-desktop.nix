@@ -51,8 +51,8 @@ in
     pkgs.mono
     pkgs.ghc
 
-    (pkgs.unstable.jetbrains.plugins.addPlugins pkgs.unstable.jetbrains.rider [ "github-copilot-intellij" ])
-    (pkgs.unstable.jetbrains.plugins.addPlugins pkgs.unstable.jetbrains.idea-ultimate [ "github-copilot-intellij" "nixidea" ])
+    (pkgs.unstable.jetbrains.plugins.addPlugins pkgs.unstable.jetbrains.rider [ "github-copilot" ])
+    (pkgs.unstable.jetbrains.plugins.addPlugins pkgs.unstable.jetbrains.idea-ultimate [ "github-copilot" "nixidea" ])
     pkgs.unityhub
     pkgs.nixd
     pkgs.nil
