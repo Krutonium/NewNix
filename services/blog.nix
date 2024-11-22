@@ -5,9 +5,9 @@ let
   cfg = config.sys.services;
 
   hugoTheme = builtins.fetchTarball {
-    name = "Hugo-Theme-PaperMod";
-    url = https://github.com/adityatelange/hugo-PaperMod/archive/f5c737f.tar.gz;
-    sha256 = "0m9vllmp5j33j2ga3cy7zqa5z2wcvh4jph4g6fhch0smqla1sp73";
+    name = "Hugo-Theme-PaperMod";                                
+    url = https://github.com/adityatelange/hugo-PaperMod/archive/3e53621.tar.gz;
+    sha256 = "00hl085y8bial70jf7xnfg995qs140y96ycgmv8a9r06hsfx1zqf";
   };
   script = pkgs.writeShellScript "blog-start"
     ''
