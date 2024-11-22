@@ -1,6 +1,5 @@
 { config, pkgs, ... }:
 let
-
   sshr = pkgs.writeShellScriptBin "sshr" ''
     ssh $@
     until !!; do sleep 5 ; done
@@ -33,7 +32,7 @@ let
     git pull
     git stash pop
     sudo nixos-rebuild --flake .#$(uname -n) switch
-    #nix profile diff-closures --profile /nix/var/nix/profiles/system
+    gc
   '';
   boot = pkgs.writeShellScriptBin "nboot" ''
     cd ~/NixOS
@@ -41,6 +40,7 @@ let
     git pull
     git stash pop
     sudo nixos-rebuild --flake .#$(uname -n) boot
+    gc
   '';
   commit = pkgs.writeShellScriptBin "ncommit" ''
     cd ~/NixOS
@@ -62,7 +62,27 @@ let
   help = pkgs.writeShellScriptBin "help" ''
     ${pkgs.unstable.gh}/bin/gh suggest "$@"
   '';
+  gc = pkgs.writeShellScriptBin "gc" ''
+    sudo nix-collect-garbage --delete-older-than 7d --log-format bar-with-logs
+    nix-collect-garbage --delete-older-than 7d --log-format bar-with-logs
+  '';
 in
 {
-  environment.systemPackages = [ sshr updateindex why-installed where-installed pkgs.jq zink update switch boot commit cleanup relinkrepo explain help ];
+  environment.systemPackages = [
+    sshr
+    updateindex
+    why-installed
+    where-installed
+    pkgs.jq
+    zink
+    update
+    switch
+    boot
+    commit
+    cleanup
+    relinkrepo
+    explain
+    help
+    gc
+  ];
 }
