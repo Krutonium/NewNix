@@ -137,7 +137,7 @@
       ];
       # Listens to br0
       listen-address="::1,127.0.0.1,10.0.0.1";
-     # expand-hosts = ""; #I *think* that's how that'd work?
+      expand-hosts = true; #I *think* that's how that'd work?
       # DNS Servers:
       server = [ "1.1.1.1" "8.8.8.8" ]; # If both are down, an apocalypse is occuring.
       # Routes traffic to my domain to my server
