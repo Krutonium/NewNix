@@ -1,11 +1,10 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, inputs, ... }:
 let
   kernel = pkgs.linuxPackages_zen;
   #kernel = config.boot.zfs.package.latestCompatibleLinuxPackages;
   Hostname = "uWebServer";
 in
 {
-  system.autoUpgrade.allowReboot = true;
   networking.firewall.allowedTCPPorts = [ 25565 25566 50056 9000 ];
   networking.firewall.allowedUDPPorts = [ 50056 67 68 10578 ];
   # 10578 is Skyrim Together
