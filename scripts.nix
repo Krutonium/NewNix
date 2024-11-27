@@ -19,6 +19,7 @@ let
     MESA_LOADER_DRIVER_OVERRIDE=zink $@
   '';
   update = pkgs.writeShellScriptBin "nupdate" ''
+    set -e
     cd ~/NixOS
     git stash save "Pre Pull" --include-untracked
     git pull
@@ -27,6 +28,7 @@ let
     git push
   '';
   switch = pkgs.writeShellScriptBin "nswitch" ''
+    set -e
     cd ~/NixOS
     git stash save "Pre Pull" --include-untracked
     git pull
@@ -35,6 +37,7 @@ let
     gc
   '';
   boot = pkgs.writeShellScriptBin "nboot" ''
+    set -e
     cd ~/NixOS
     git stash save "Pre Pull" --include-untracked
     git pull
