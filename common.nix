@@ -169,8 +169,6 @@
     DefaultLimitNOFILE=1048576
     DefaultTimeoutStopSec=10s
   '';
-  boot.kernelParams = [ "mitigations=off" ];
-
   nixpkgs.overlays = [
     (final: prev: {
       mesa-fix =

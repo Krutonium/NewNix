@@ -57,6 +57,7 @@ in
     #"nouveau.config=NvBios=${../firmware/8600M_GT.rom}"
     #"debug=VBIOS=debug"
     #"nomodeset"
+    "mitigations=off"
   ];
   powerManagement.cpuFreqGovernor = "performance";
   environment.systemPackages = [ pkgs.msr pkgs.msr-tools ];

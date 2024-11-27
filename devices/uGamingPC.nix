@@ -9,7 +9,7 @@ in
   #hardware.firmware = [ video.firmware ];
   boot = {
     kernelPackages = kernel;
-    kernelParams = [ "nvidia.NVreg_OpenRmEnableUnsupportedGpus=1" "nvidia.NVreg_EnableResizableBar=1" ];
+    kernelParams = [ "nvidia.NVreg_OpenRmEnableUnsupportedGpus=1" "nvidia.NVreg_EnableResizableBar=1" "mitigations=off" ];
     tmp.useTmpfs = false;
     loader.grub = {
       gfxmodeEfi = "1920x1080";
