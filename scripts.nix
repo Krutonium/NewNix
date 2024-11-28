@@ -18,43 +18,76 @@ let
   zink = pkgs.writeShellScriptBin "zink" ''
     MESA_LOADER_DRIVER_OVERRIDE=zink $@
   '';
-  update = pkgs.writeShellScriptBin "nupdate" ''
+  
+  # Define reusable scripts for common operations.
+  # Define common_git script
+  common_git = pkgs.writeShellScriptBin "common_git" '';
     set -e
     cd ~/NixOS
-    git stash save "Pre Pull" --include-untracked
-    git pull
-    git stash pop
-    nix flake update --commit-lock-file
-    git push
+
+    # Stash changes if necessary
+    git diff --quiet || git stash save "Pre Pull" --include-untracked
+
+    # Check if there are uncommitted changes to commit and push
+    if ! git diff --cached --quiet || ! git diff --quiet; then
+      git add .
+      git commit -m "Auto-commit before pull" || true
+      git push || true
+    fi
+
+    # Check for new changes to pull
+    if git fetch && ! git diff --quiet HEAD..origin/$(git rev-parse --abbrev-ref HEAD); then
+      git pull --rebase || true
+    fi
+
+    # Attempt to reapply stashed changes if there were any
+    git stash list | grep -q "Pre Pull" && git stash pop || true
   '';
-  switch = pkgs.writeShellScriptBin "nswitch" ''
+
+  # Define garbage_collect script
+  garbage_collect = pkgs.writeShellScriptBin "garbage_collect" '';
+    sudo nix-collect-garbage --delete-older-than 7d --log-format bar-with-logs
+    nix-collect-garbage --delete-older-than 7d --log-format bar-with-logs
+  '';
+
+  # Define nupdate script
+  update = pkgs.writeShellScriptBin "nupdate" '';
     set -e
-    cd ~/NixOS
-    git stash save "Pre Pull" --include-untracked
-    git pull
-    git stash pop
+    ${common_git}
+    # Update the flake and push changes
+    nix flake update --commit-lock-file || true
+    git push || true
+  '';
+
+  # Define nswitch script
+  switch = pkgs.writeShellScriptBin "nswitch" '';
+    set -e
+    ${common_git}
+    # Rebuild and switch configuration
     sudo nixos-rebuild --flake .#$(uname -n) switch
-    gc
+    ${garbage_collect}
   '';
-  boot = pkgs.writeShellScriptBin "nboot" ''
+
+  # Define nboot script
+  boot = pkgs.writeShellScriptBin "nboot" '';
+    set -e
+    ${common_git}
+    # Rebuild and apply boot configuration
+    sudo nixos-rebuild --flake .#$(uname -n) boot
+    ${garbage_collect}
+  '';
+
+  # Define ncommit script
+  commit = pkgs.writeShellScriptBin "ncommit" '';
     set -e
     cd ~/NixOS
-    git stash save "Pre Pull" --include-untracked
-    git pull
-    git stash pop
-    sudo nixos-rebuild --flake .#$(uname -n) boot
-    gc
-  '';
-  commit = pkgs.writeShellScriptBin "ncommit" ''
-    cd ~/NixOS
+
+    # Commit and push changes
     git add .
-    git commit
-    git push
+    git commit || true
+    git push || true
   '';
-  cleanup = pkgs.writeShellScriptBin "cleanup" ''
-    sudo nix-collect-garbage -d
-    nix-collect-garbage -d
-  '';
+
   relinkrepo = pkgs.writeShellScriptBin "relinkrepo" ''
     cd ~/NixOS
     git remote set-url origin forgejo@gitea.krutonium.ca:Krutonium/NixOS.git
@@ -65,10 +98,7 @@ let
   help = pkgs.writeShellScriptBin "help" ''
     ${pkgs.unstable.gh}/bin/gh suggest "$@"
   '';
-  gc = pkgs.writeShellScriptBin "gc" ''
-    sudo nix-collect-garbage --delete-older-than 7d --log-format bar-with-logs
-    nix-collect-garbage --delete-older-than 7d --log-format bar-with-logs
-  '';
+
 in
 {
   environment.systemPackages = [
@@ -77,15 +107,14 @@ in
     why-installed
     where-installed
     pkgs.jq
+    pkgs.git
     zink
     update
     switch
     boot
     commit
-    cleanup
     relinkrepo
     explain
     help
-    gc
   ];
 }
