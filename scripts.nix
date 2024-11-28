@@ -21,7 +21,7 @@ let
   
   # Define reusable scripts for common operations.
   # Define common_git script
-  common_git = pkgs.writeShellScriptBin "common_git" '';
+  common_git = pkgs.writeShellScriptBin "common_git" ''
     set -e
     cd ~/NixOS
 
@@ -45,13 +45,13 @@ let
   '';
 
   # Define garbage_collect script
-  garbage_collect = pkgs.writeShellScriptBin "garbage_collect" '';
+  garbage_collect = pkgs.writeShellScriptBin "garbage_collect" ''
     sudo nix-collect-garbage --delete-older-than 7d --log-format bar-with-logs
     nix-collect-garbage --delete-older-than 7d --log-format bar-with-logs
   '';
 
   # Define nupdate script
-  update = pkgs.writeShellScriptBin "nupdate" '';
+  update = pkgs.writeShellScriptBin "nupdate" ''
     set -e
     ${common_git}
     # Update the flake and push changes
@@ -60,7 +60,7 @@ let
   '';
 
   # Define nswitch script
-  switch = pkgs.writeShellScriptBin "nswitch" '';
+  switch = pkgs.writeShellScriptBin "nswitch" ''
     set -e
     ${common_git}
     # Rebuild and switch configuration
@@ -69,7 +69,7 @@ let
   '';
 
   # Define nboot script
-  boot = pkgs.writeShellScriptBin "nboot" '';
+  boot = pkgs.writeShellScriptBin "nboot" ''
     set -e
     ${common_git}
     # Rebuild and apply boot configuration
@@ -78,7 +78,7 @@ let
   '';
 
   # Define ncommit script
-  commit = pkgs.writeShellScriptBin "ncommit" '';
+  commit = pkgs.writeShellScriptBin "ncommit" ''
     set -e
     cd ~/NixOS
 
