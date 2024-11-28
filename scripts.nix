@@ -55,6 +55,7 @@ let
     set -e
     ${common_git}/bin/common_git
     # Update the flake and push changes
+    cd ~/NixOS
     nix flake update --commit-lock-file || true
     git push || true
   '';
@@ -64,6 +65,7 @@ let
     set -e
     ${common_git}/bin/common_git
     # Rebuild and switch configuration
+    cd ~/NixOS
     sudo nixos-rebuild --flake .#$(uname -n) switch
     ${garbage_collect}/bin/garbage_collect
   '';
@@ -73,6 +75,7 @@ let
     set -e
     ${common_git}/bin/common_git
     # Rebuild and apply boot configuration
+    cd ~/NixOS
     sudo nixos-rebuild --flake .#$(uname -n) boot
     ${garbage_collect}/bin/garbage_collect
   '';
@@ -81,7 +84,6 @@ let
   commit = pkgs.writeShellScriptBin "ncommit" ''
     set -e
     cd ~/NixOS
-
     # Commit and push changes
     git add .
     git commit || true
