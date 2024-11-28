@@ -12,6 +12,7 @@ let
   script = pkgs.writeShellScript "blog-start"
     ''
       cd /home/krutonium/Blog/
+      git pull
       ln -snf ${hugoTheme} themes/PaperMod
       hugo server -D -E -b krutonium.ca -p 1313 --appendPort=false -e production
     '';
