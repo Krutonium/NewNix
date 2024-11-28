@@ -53,7 +53,7 @@ let
   # Define nupdate script
   update = pkgs.writeShellScriptBin "nupdate" ''
     set -e
-    ${common_git}
+    ${common_git}/bin/common_git
     # Update the flake and push changes
     nix flake update --commit-lock-file || true
     git push || true
@@ -62,19 +62,19 @@ let
   # Define nswitch script
   switch = pkgs.writeShellScriptBin "nswitch" ''
     set -e
-    ${common_git}
+    ${common_git}/bin/common_git
     # Rebuild and switch configuration
     sudo nixos-rebuild --flake .#$(uname -n) switch
-    ${garbage_collect}
+    ${garbage_collect}/bin/garbage_collect
   '';
 
   # Define nboot script
   boot = pkgs.writeShellScriptBin "nboot" ''
     set -e
-    ${common_git}
+    ${common_git}/bin/common_git
     # Rebuild and apply boot configuration
     sudo nixos-rebuild --flake .#$(uname -n) boot
-    ${garbage_collect}
+    ${garbage_collect}/bin/garbage_collect
   '';
 
   # Define ncommit script
