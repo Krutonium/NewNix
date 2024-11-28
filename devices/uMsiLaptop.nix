@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }:
 let
-  kernel = pkgs.unstable.linuxPackages_latest;
+  kernel = pkgs.unstable.linuxPackages_zen;
   video = config.boot.kernelPackages.nvidiaPackages.beta;
   Hostname = "uMsiLaptop";
   nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
