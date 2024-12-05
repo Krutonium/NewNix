@@ -105,8 +105,8 @@
       nvidia.acceptLicense = true;
       allowUnfreePredicate = (pkg: true);
       permittedInsecurePackages = [
-        "electron-25.9.0"
-        "dotnet-sdk-wrapped-6.0.428"
+        #"electron-25.9.0"
+        #"dotnet-sdk-wrapped-6.0.428"
         # ReEvaluate @ 24.05
         # Needed for YouTube Music
       ];
