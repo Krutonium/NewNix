@@ -61,7 +61,7 @@ in
     #riderScript
     pkgs.gitkraken
     dotnetCombined
-    pkgs.dotnetPackages.StyleCopMSBuild
+    #pkgs.dotnetPackages.StyleCopMSBuild
     pkgs.notepad-next
     # I desperately want godot with C# support guys.
     pkgs.godot_4
