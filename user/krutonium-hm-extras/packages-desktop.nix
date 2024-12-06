@@ -37,7 +37,6 @@ in
   home.sessionVariables = {
     DOTNET_ROOT = "${dotnetCombined}";
   };
-  home.file.".msbuild".source = pkgs.msbuild;
 
   home.packages = [
     # Gnome Stuff
