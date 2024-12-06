@@ -90,7 +90,7 @@
     extraOptions = ''
       experimental-features = nix-command flakes
       extra-platforms = x86_64-linux i686-linux aarch64-linux riscv64-linux
-      download-buffer-size = "99999999"
+      #download-buffer-size = "99999999"
     '';
     settings = {
       system-features = [ "i686-linux" "x86_64-linux" "big-parallel" "kvm" ];
