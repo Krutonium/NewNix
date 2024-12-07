@@ -27,10 +27,11 @@ in
     webkitgtk_4_1
   ];
   # Disable Sleep/Hibernate System Wide
-  systemd.targets.sleep.enable = true;
-  systemd.targets.suspend.enable = true;
+  systemd.targets.sleep.enable = false;
+  systemd.targets.suspend.enable = false;
   systemd.targets.hibernate.enable = false;
   systemd.targets.hybrid-sleep.enable = false;
+  
 
   services.flatpak.enable = true;
   services.ratbagd.enable = true;
@@ -54,6 +55,29 @@ in
   systemd.tmpfiles.rules = [
     "f /dev/shm/looking-glass 0660 krutonium qemu-libvirtd -"
   ];
+
+  services.wivrn = {
+    enable = true;
+    openFirewall = true;
+    defaultRuntime = true;
+    autoStart = true;
+    config = {
+      enable = true;
+      json = {
+        scale = 1.0; # No Foviation
+        bitrate = 250000000 #250Mbit
+        encoders = [{
+          encoder = "vaapi";
+          codec = "h265";
+          width = 1.0;
+          height = 1.0;
+          offset_x = 0.0;
+          offset_y = 0.0;
+        }];
+      };
+    };
+  };
+
   networking = {
     hostName = Hostname;
     firewall = {
