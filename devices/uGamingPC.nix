@@ -65,7 +65,7 @@ in
       enable = true;
       json = {
         scale = 1.0; # No Foviation
-        bitrate = 250000000 #250Mbit
+        bitrate = 250000000; #250Mbit
         encoders = [{
           encoder = "vaapi";
           codec = "h265";
