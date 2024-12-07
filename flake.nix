@@ -82,7 +82,7 @@
             overlays.nixpkgsUpdate
             nixd.overlays.default
             overlays.fanController
-            nur.overlay
+            nur.overlays.default
             overlays.bcachefs
           ];
         })
