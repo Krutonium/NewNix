@@ -71,7 +71,7 @@
   };
   documentation.enable = true;
   hardware = {
-    enableAllFirmware = true;
+    enableAllFirmware = false;
     bluetooth.enable = true;
     usb-modeswitch.enable = true;
   };

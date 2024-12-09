@@ -10,6 +10,7 @@ in
       enable = true;
       domain = "video.krutonium.ca";
       nginx.enable = true;
+      settings.db.user = "invidious";
     };
   };
 }
