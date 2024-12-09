@@ -67,7 +67,7 @@ in
       homeAssistant = false;
       cockpit = true;
       easydiffusion = false;
-      invidious = false;
+      invidious = true;
       syncthing = false;
       nextcloud = true;
       blog = true;

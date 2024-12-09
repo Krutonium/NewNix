@@ -8,7 +8,7 @@ in
   config = mkIf (cfg.invidious == true) {
     services.invidious = {
       enable = true;
-      domain = "tube.krutonium.ca";
+      domain = "video.krutonium.ca";
       nginx.enable = true;
     };
   };
