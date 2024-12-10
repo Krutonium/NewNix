@@ -16,7 +16,7 @@ in
   boot.kernelModules = [ "ec_sys" ];
   networking.hostName = Hostname;
   networking.firewall.interfaces."enp3s0".allowedUDPPorts = [ 67 ];
-  #boot.kernelParams = [ "nouveau.config=NvClkMode=15" "ec_sys.write_support=1" "iomem=relaxed" ];
+  boot.kernelParams = [ "nouveau.config=NvClkMode=15" ];
   boot.kernelParams = [ "mitigations=off" ];
   boot.loader.grub.gfxmodeEfi = "1920x1080";
   boot.loader.grub.gfxpayloadEfi = "keep";
