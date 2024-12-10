@@ -87,6 +87,9 @@ let
     # Commit and push changes
     git add .
     git commit || true
+    git pull || true
+    git push || true
+    git pull || true
     git push || true
   '';
 
