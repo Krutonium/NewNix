@@ -23,7 +23,7 @@ in
   environment.systemPackages = [
     kernel.perf
     pkgs.teamviewer
-    nvidia-offload
+    #nvidia-offload
     #pkgs.waybar
   ];
   imports = [ ./uMsiLaptop-hw.nix ../builders ];
@@ -100,7 +100,7 @@ in
   #  boot.blacklistedKernelModules = [ "nouveau" ];
   #};
   #specialisation."nVidia".configuration = {
-  boot.initrd.availableKernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
+  # boot.initrd.availableKernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
   #boot.blacklistedKernelModules = [ "nouveau" ];
   #system.nixos.tags = [ "with-nvidia" ];
   #system.nixos.label = "nVidia";
@@ -108,17 +108,17 @@ in
   #services.xserver.videoDrivers = [ "nvidia" ];
   #hardware.opengl.enable = true;
   #environment.sessionVariables.NIXOS_OZONE_WL = "1";
-  hardware.nvidia = {
-    package = lib.mkForce video;
-    modesetting.enable = true;
-    nvidiaSettings = true;
-    open = false;
-    powerManagement.finegrained = true;
-    prime = {
-      offload.enable = true;
-      nvidiaBusId = "PCI:1:0:0";
-      intelBusId = "PCI:0:2:0";
-    };
-    # };
+  #hardware.nvidia = {
+  #  package = lib.mkForce video;
+  #  modesetting.enable = true;
+  #  nvidiaSettings = true;
+  #  open = false;
+  #  powerManagement.finegrained = true;
+  #  prime = {
+  #    offload.enable = true;
+  #    nvidiaBusId = "PCI:1:0:0";
+  #    intelBusId = "PCI:0:2:0";
+  #  };
+  # };
   };
 }

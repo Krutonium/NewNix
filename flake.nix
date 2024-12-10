@@ -118,7 +118,7 @@
       ##################
       ### uMsiLaptop ###
       ##################
-      nixosConfigurations.uMsiLaptop = nixosConfiguration "uMsiLaptop" (commonPCModules ++ commonLaptop ++ commonIntel ++ gpuIntel ++ gpuNvidia ++ [ ./devices/uMsiLaptop.nix ]);
+      nixosConfigurations.uMsiLaptop = nixosConfiguration "uMsiLaptop" (commonPCModules ++ commonLaptop ++ commonIntel ++ gpuIntel ++ [ ./devices/uMsiLaptop.nix ]);
 
       #################
       ### Uncomment if needed ###
