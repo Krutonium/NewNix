@@ -1,6 +1,6 @@
 { config, pkgs, lib, inputs, ... }:
 let
-  kernel = pkgs.linuxPackages_zen;
+  kernel = pkgs.linuxPackages_6_11;
   #kernel = config.boot.zfs.package.latestCompatibleLinuxPackages;
   Hostname = "uWebServer";
 in
@@ -67,7 +67,7 @@ in
       homeAssistant = false;
       cockpit = true;
       easydiffusion = false;
-      invidious = true;
+      invidious = false;
       syncthing = false;
       nextcloud = true;
       blog = true;
