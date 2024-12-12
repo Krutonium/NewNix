@@ -145,6 +145,7 @@ in
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
+    extraPackages = [ pkgs.monado-vulkan-layers ];
   };
   boot.extraModulePackages = with config.boot.kernelPackages;
     [
@@ -158,6 +159,7 @@ in
     pkgs.piper
     pkgs.unstable.alvr
     pkgs.sunshine
+    pkgs.monado-vulkan-layers
   ];
   security.wrappers.sunshine = {
     owner = "root";
