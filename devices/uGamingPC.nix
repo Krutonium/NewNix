@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 let
   kernel = with pkgs; unstable.linuxPackages_zen;
   video = config.boot.kernelPackages.nvidiaPackages.beta;
