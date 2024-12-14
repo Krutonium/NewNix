@@ -77,9 +77,10 @@ in
       };
     };
   };
-  system.activationScripts.updateWlx = ''
-    wlx-overlay-s --replace
-  '';
+  programs.envision = {
+    enable = true;
+    openFirewall = true;
+  };
   networking = {
     hostName = Hostname;
     firewall = {
@@ -126,7 +127,7 @@ in
     nvidiaSettings = false;
     modesetting.enable = true;
   };
-  nixpkgs.config.cudaSupport = lib.mkForce true;
+  #nixpkgs.config.cudaSupport = lib.mkForce true;
   hardware.keyboard.qmk.enable = true;
 
   services.xserver = {
