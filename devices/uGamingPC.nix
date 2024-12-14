@@ -67,8 +67,8 @@ in
         scale = 1.0; # No Foviation
         bitrate = 250000000; #250Mbit
         encoders = [{
-          encoder = "vaapi";
-          codec = "h265";
+          encoder = "nvenc"; #"vaapi";
+          codec = "h264";
           width = 1.0;
           height = 1.0;
           offset_x = 0.0;
@@ -77,7 +77,9 @@ in
       };
     };
   };
-
+  system.activationScripts.updateWlx = ''
+    wlx-overlay-s --replace
+  '';
   networking = {
     hostName = Hostname;
     firewall = {
@@ -124,6 +126,7 @@ in
     nvidiaSettings = false;
     modesetting.enable = true;
   };
+  nixpkgs.config.cudaSupport = lib.mkForce true;
   hardware.keyboard.qmk.enable = true;
 
   services.xserver = {
@@ -157,9 +160,10 @@ in
     #video
     pkgs.gamescope
     pkgs.piper
-    pkgs.unstable.alvr
+    #pkgs.unstable.alvr
     pkgs.sunshine
     pkgs.monado-vulkan-layers
+    pkgs.wlx-overlay-s
   ];
   security.wrappers.sunshine = {
     owner = "root";
