@@ -196,6 +196,6 @@ in
   };
   programs.atuin = {
     enableFishIntegration = true;
-    enabled = true;
+    enable = true;
   };
 }
