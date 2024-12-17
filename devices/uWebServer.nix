@@ -75,6 +75,7 @@ in
     };
     virtualization = {
       server = "virtd";
+      windows = true;  
     };
     minecraft = {
       rubberdragontrain = false;
