@@ -18,7 +18,7 @@ in
     # Add our nVidia GPU to passthrough
     boot.kernelParams = [ toPassToVM_kernelcmd ];
     environment.systemPackages = [
-      pkgs.looking-glass-client
+      #pkgs.looking-glass-client
     ];
 
     #systemd.services.windows = {
