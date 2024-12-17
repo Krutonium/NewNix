@@ -140,7 +140,7 @@ in
       script = ''
         BetterFanController
       '';
-      enable = true;
+      enable = false;
     };
   };
 
