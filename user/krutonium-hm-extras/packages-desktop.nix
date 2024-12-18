@@ -1,16 +1,11 @@
 { config, pkgs, lib, makeDestopItem, fetchurl, ... }:
 let
-  downloadedNdi = builtins.fetchurl {
-    url = https://downloads.ndi.tv/SDK/NDI_SDK_Linux/Install_NDI_SDK_v5_Linux.tar.gz;
-    sha256 = "sha256:0lsiw523sqr6ydwxnikyijayfi55q5mzvh1zi216swvj5kfbxl00";
-  };
   OOTROM = builtins.fetchurl {
     url = https://archive.org/download/ship-of-harkinian/ZELOOTD.zip/PAL%20GC.z64;
     sha256 = "sha256:1lim6has47jjhh1wgmfxpwawc5s22g245wp53gczihxa4wypk27p";
     name = "PAL_GC.z64";
   };
   openjdk8-low = pkgs.openjdk8.overrideAttrs (oldAttrs: { meta.priority = 10; });
-
 
   dotnetCombined = (with pkgs.dotnetCorePackages; combinePackages [ sdk_8_0 sdk_9_0 ]).overrideAttrs (fineAttrs: previousAttrs: {
     postBuild = (previousAttrs.postBuild or '''') + ''
@@ -39,125 +34,112 @@ in
   };
 
   home.packages = [
-    # Gnome Stuff
+    # Desktop Environment
     pkgs.dconf-editor
     pkgs.xwaylandvideobridge
-    # Development
-    openjdk8-low
-    pkgs.gh
-    pkgs.openjdk17
-    pkgs.hub
-    pkgs.mono
-    pkgs.ghc
 
-    (pkgs.unstable.jetbrains.plugins.addPlugins pkgs.unstable.jetbrains.rider [ "github-copilot" ])
-    (pkgs.unstable.jetbrains.plugins.addPlugins pkgs.unstable.jetbrains.idea-ultimate [ "github-copilot" "nixidea" ])
-    pkgs.unityhub
-    pkgs.nixd
-    pkgs.nil
-
-    #rider
-    #riderScript
-    pkgs.gitkraken
+    # Development Tools & IDEs
     dotnetCombined
-    #pkgs.dotnetPackages.StyleCopMSBuild
+    pkgs.gh
+    pkgs.ghc
+    pkgs.gitkraken
+    pkgs.godot_4-mono
+    pkgs.hub
+    (pkgs.unstable.jetbrains.plugins.addPlugins pkgs.unstable.jetbrains.idea-ultimate [ "github-copilot" "nixidea" ])
+    (pkgs.unstable.jetbrains.plugins.addPlugins pkgs.unstable.jetbrains.rider [ "github-copilot" ])
+    pkgs.mono
+    pkgs.nil
+    pkgs.nixd
     pkgs.notepad-next
-    # I desperately want godot with C# support guys.
-    pkgs.godot_4
+    openjdk8-low
+    pkgs.openjdk17
+    pkgs.unityhub
 
-    # Wine
-    pkgs.wineWowPackages.full
+    # Wine & Windows Compatibility
+    pkgs.bottles
+    pkgs.looking-glass-client
+    pkgs.lutris
     pkgs.winetricks
+    pkgs.wineWowPackages.full
 
-    # Keyboard Stuff
-    pkgs.unzip
-    pkgs.qmk
+    # Hardware & System Tools
     pkgs.arduino
     pkgs.git
+    pkgs.gparted
+    pkgs.openrgb
+    pkgs.qmk
 
-    # Media
-    pkgs.vlc
+    # Media & Entertainment
+    pkgs.ffmpeg-full
     pkgs.mpv
-    pkgs.spotify
-    pkgs.youtube-music
-    pkgs.plexamp
     pkgs.plex-media-player
+    pkgs.plexamp
+    pkgs.spotify
+    pkgs.vlc
+    pkgs.youtube-music
 
-    # Audio Filtering
+    # Audio Tools
     pkgs.easyeffects
     pkgs.gnomeExtensions.easyeffects-preset-selector
 
-    # Random Stuff
+    # System Utilities
+    pkgs.fsearch
+    pkgs.fzf
     pkgs.htop
-    pkgs.neofetch
-    pkgs.nmap
-    pkgs.gparted
-    pkgs.ffmpeg-full
-    pkgs.openrgb
-    # pkgs.calibre OH MY GOD YOU'RE AWFUL JESUS CHRIST
     pkgs.libreoffice
     pkgs.mate.engrampa
-    pkgs.fzf
-    pkgs.fsearch
+    pkgs.neofetch
+    pkgs.nmap
     pkgs.sunshine
-    # shipwright Broken :(
 
-    # Terminal
-    pkgs.nixpkgs-review
-    pkgs.fish
-    pkgs.oh-my-fish
+    # Terminal & Shell Tools
     pkgs.babelfish
-    pkgs.thefuck
+    pkgs.comma
+    pkgs.fish
+    pkgs.matrix-synapse-tools.synadm
+    pkgs.mcrcon
+    pkgs.nixpkgs-review
+    pkgs.nvtopPackages.full
+    pkgs.oh-my-fish
     pkgs.powerline-fonts
+    pkgs.thefuck
+    pkgs.trash-cli
     pkgs.unzip
     pkgs.yt-dlp
-    pkgs.matrix-synapse-tools.synadm
-    pkgs.trash-cli
-    pkgs.nvtopPackages.full
-    pkgs.comma
-    pkgs.mcrcon
 
-    # Wine/Windows Shit
-    pkgs.lutris
-    pkgs.bottles
-    pkgs.pcem
-    pkgs.looking-glass-client
     # Gaming
-    # Steam is already installed at the system level because it has special requirements
-    pkgs.unstable.openrct2
-    pkgs.mesa-demos
-    pkgs.parsec-bin
     pkgs.appimage-run
+    pkgs.cemu
+    pkgs.dolphin-emu-beta
     pkgs.gamescope
+    pkgs.goverlay
+    pkgs.heroic
+    pkgs.higan
     pkgs.jstest-gtk
+    pkgs.mesa-demos
+    pkgs.monado
+    pkgs.unstable.openrct2
+    pkgs.unstable.openttd
+    pkgs.parsec-bin
     pkgs.prismlauncher
     pkgs.protonup
-    pkgs.goverlay
-    pkgs.dolphin-emu-beta
-    pkgs.higan
-    pkgs.heroic
-    pkgs.cemu
-    pkgs.steam-run
     pkgs.ryujinx
-    pkgs.monado
-    pkgs.unstable.openttd
+    pkgs.steam-run
 
-
-    # File Sync
-    pkgs.nextcloud-client
+    # File Sync & Downloads
     pkgs.deluge
+    pkgs.nextcloud-client
 
-    # Communications
-    pkgs.tdesktop
+    # Communication
     pkgs.fractal
     pkgs.srain
+    pkgs.tdesktop
     pkgs.vesktop
     pkgs.wormhole-rs
   ];
   programs.obs-studio = {
     enable = true;
     plugins = with pkgs.master.obs-studio-plugins; [
-      #obs-teleport
       obs-multi-rtmp
       obs-vkcapture
     ];
