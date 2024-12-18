@@ -59,7 +59,7 @@
         };
         ipv6SendRAConfig = {
           EmitDNS = true;
-          DNS = "2001:4860:4860::8888"; # Google IPv6 DNS
+          DNS = "fd00::1"; # Point to local dnsmasq for IPv6 DNS using ULA address
         };
       };
     };
@@ -98,6 +98,7 @@
       };
       "br0" = {
         ipv4.addresses = [{ address = "10.0.0.1"; prefixLength = 24; }];
+        ipv6.addresses = [{ address = "fd00::1"; prefixLength = 64; }]; # Add ULA address for local IPv6
         useDHCP = false;
         macAddress = "ac:16:2d:9a:17:c5";
       };
@@ -113,6 +114,11 @@
         AdvSendAdvert on;
         # This prefix will be automatically configured from delegation
         prefix ::/64 {
+          AdvOnLink on;
+          AdvAutonomous on;
+        };
+        # Add ULA prefix for local addressing
+        prefix fd00::/64 {
           AdvOnLink on;
           AdvAutonomous on;
         };
@@ -149,11 +155,20 @@
         "b0:68:e6:97:f4:37,10.0.0.8"    # Printer
         "50:5A:65:61:DB:3B,10.0.0.9"    # SteamDeck
       ];
-      # Listen on all local addresses
-      listen-address="::1,127.0.0.1,10.0.0.1";
+      # Listen on all local addresses including IPv6
+      listen-address = "127.0.0.1,10.0.0.1,fd00::1";
+      bind-interfaces = true;
       expand-hosts = true;
-      # Upstream DNS servers
-      server = [ "1.1.1.1" "8.8.8.8" ];
+      # Enable IPv6 DNS caching
+      cache-size = 1000;
+      dns-forward-max = 150;
+      # Upstream DNS servers (IPv4 and IPv6)
+      server = [ 
+        "1.1.1.1"
+        "8.8.8.8"
+        "2606:4700:4700::1111"  # Cloudflare IPv6
+        "2001:4860:4860::8888"  # Google IPv6
+      ];
       # Local DNS overrides
       address = [ 
         "/krutonium.ca/10.0.0.1" 
