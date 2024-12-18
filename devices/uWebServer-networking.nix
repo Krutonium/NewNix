@@ -33,9 +33,8 @@
       "wan" = {
         matchConfig.PermanentMACAddress = "40:8d:5c:54:89:96";
         networkConfig = {
-          IPv6AcceptRA = true;
-          DHCP = "yes";
-          DHCPv6Client = "yes";
+          DHCP = "ipv4";
+          IPv6AcceptRA = "yes";
         };
         linkConfig = {
           RequiredForOnline = "routable";
