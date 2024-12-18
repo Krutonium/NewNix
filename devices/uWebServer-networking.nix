@@ -23,7 +23,7 @@
 
   # Enable nftables firewall
   networking.nftables.enable = true;
-  networking.firewall.allowedUDPPorts = [ 546 ]; # Allow DHCPv6 client
+  networking.firewall.allowedUDPPorts = [ 546 547 ]; # Allow DHCPv6 client and server
   networking.firewall.trustedInterfaces = [ "br0" ];
 
   # Configure systemd-networkd
@@ -35,19 +35,20 @@
         networkConfig = {
           IPv6AcceptRA = true;
           DHCP = "yes";
+          DHCPv6Client = "yes";
         };
         linkConfig = {
           RequiredForOnline = "routable";
         };
         dhcpV6Config = {
           WithoutRA = "solicit";
-          PrefixDelegationHint = "::/64";
-        };
-        ipv6SendRAConfig = {
-          Managed = true;
+          PrefixDelegationHint = "::/56"; # Request a larger prefix
+          UseDelegatedPrefix = true;
+          UseDNS = true;
         };
         ipv6AcceptRAConfig = {
           DHCPv6Client = "yes";
+          UseDNS = true;
         };
       };
       "br0" = {
@@ -112,15 +113,22 @@
     config = ''
       interface br0 {
         AdvSendAdvert on;
+        AdvManagedFlag on;
+        AdvOtherConfigFlag on;
         # This prefix will be automatically configured from delegation
         prefix ::/64 {
           AdvOnLink on;
           AdvAutonomous on;
+          AdvRouterAddr on;
         };
         # Add ULA prefix for local addressing
         prefix fd00::/64 {
           AdvOnLink on;
           AdvAutonomous on;
+          AdvRouterAddr on;
+        };
+        RDNSS fd00::1 {
+          AdvRDNSSLifetime 3600;
         };
       };
     '';
@@ -128,7 +136,7 @@
 
   # Configure firewall to allow DNS and DHCP on LAN
   networking.firewall.interfaces."br0".allowedTCPPorts = [ 53 67 ];
-  networking.firewall.interfaces."br0".allowedUDPPorts = [ 53 67 ];
+  networking.firewall.interfaces."br0".allowedUDPPorts = [ 53 67 547 ];
 
   # Configure DHCP and DNS server
   services.dnsmasq = {
