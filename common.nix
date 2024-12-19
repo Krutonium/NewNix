@@ -136,6 +136,10 @@
       allowUnfree = true;
       nvidia.acceptLicense = true;
       allowUnfreePredicate = (pkg: true);
+      allowBroken = true;
+      allowBrokenPredicate = (pkg: true);
+      allowInsecure = true;
+      allowInsecurePredicate = (pkg: true);
       permittedInsecurePackages = [
         "dotnet-sdk_6" # Needed for godot4_mono
       ];
