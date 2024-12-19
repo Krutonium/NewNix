@@ -137,7 +137,7 @@
       nvidia.acceptLicense = true;
       allowUnfreePredicate = (pkg: true);
       permittedInsecurePackages = [
-        #"dotnet-sdk-wrapped-6.0.428" # Needed for YouTube Music - ReEvaluate @ 24.05
+        "dotnet-sdk_6" # Needed for godot4_mono
       ];
     };
   };
