@@ -16,7 +16,7 @@ in
     enable = true;
     priority = 1;
   };
-  hardware.graphics.extraPackages = with pkgs; [ rocmPackages.clr.icd ];
+  hardware.graphics.extraPackages = with pkgs; [ rocmPackages.clr.icd intel-compute-runtime intel-media-sdk ];
   boot.tmp.useTmpfs = true;
   boot.kernelParams = [ "amdgpu.ppfeaturemask=0xffffffff" ];
   boot.initrd.availableKernelModules = [ "amdgpu" "vendor-reset" ];
