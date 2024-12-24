@@ -102,6 +102,7 @@ in
     pkgs.nvtopPackages.full
     pkgs.oh-my-fish
     pkgs.powerline-fonts
+    pkgs.streamlink
     pkgs.thefuck
     pkgs.trash-cli
     pkgs.unzip
