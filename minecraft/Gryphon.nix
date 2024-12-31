@@ -3,7 +3,7 @@ with lib;
 with builtins;
 let
   cfg = config.sys.minecraft;
-  ports = [ 25565 12345 ];
+  ports = [ 25565 12345 24454 ]; # 24454 is Simple Voice Chat
   location = "/persist/gryphon/";
   rconport = "12345";
   host = "127.0.0.1";
