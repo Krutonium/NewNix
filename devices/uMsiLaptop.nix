@@ -2,6 +2,7 @@
 let
   kernel = pkgs.unstable.linuxPackages_zen;
   video = config.boot.kernelPackages.nvidiaPackages.beta;
+  bbswitch = config.boot.kernelPackages.bbswitch;
   Hostname = "uMsiLaptop";
   nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
     export __NV_PRIME_RENDER_OFFLOAD=1
@@ -22,6 +23,7 @@ in
   environment.systemPackages = [
     kernel.perf
     pkgs.teamviewer
+    bbswitch
   ];
   imports = [ ./uMsiLaptop-hw.nix ../builders ];
   nix = {
@@ -79,22 +81,26 @@ in
   programs.steam = {
     enable = true;
   };
-  
-  hardware = {
-    graphics.enable = true;
-    nvidia = {
-      open = true;
-      package = video;
-    };
-    bumblebee = {
-      enable = true;
-      driver = "nvidia";
-    };
-  };
-  services.xserver.drivers = [ "nvidia" "modesetting" ];
-  
-  
-  
+
+#  hardware = {
+#    graphics.enable = true;
+#    nvidia = {
+#      open = true;
+#      package = video;
+#      prime = {
+#        #offload.enable = true;
+#        nvidiaBusId = "PCI:1:0:0";
+#        intelBusId = "PCI:0:2:0";
+#      };
+#    };
+#    bumblebee = {
+#      enable = true;
+#      driver = "nvidia";
+#    };
+#  };
+  services.xserver.videoDrivers = [ "modesetting" ];
+
+
   #hardware.bumblebee = {
   #  enable = true;
   #  driver = "nvidia";
