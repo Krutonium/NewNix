@@ -3,7 +3,7 @@ with lib;
 with builtins;
 let
   cfg = config.sys.minecraft;
-  ports = [ 25565 12345 24454 ]; # 24454 is Simple Voice Chat
+  ports = [ 25565 24454 ]; # 24454 is Simple Voice Chat
   location = "/persist/gryphon/";
   rconport = "12345";
   host = "127.0.0.1";
@@ -11,6 +11,7 @@ in
 {
   config = mkIf (cfg.gryphon == true) {
     networking.firewall.allowedTCPPorts = ports;
+    networking.firewall.interfaces."br0".allowedTCPPorts = [ 12345 ]; #Deny RCON to Internet
     #fileSystems."${location}" = {
     #  device = "/media2/Gryphon.btrfs";
     #  options = [ "compress=zstd:15" ];
