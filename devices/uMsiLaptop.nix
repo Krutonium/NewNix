@@ -16,14 +16,12 @@ in
   boot.kernelModules = [ "ec_sys" ];
   networking.hostName = Hostname;
   networking.firewall.interfaces."enp3s0".allowedUDPPorts = [ 67 ];
-  boot.kernelParams = [ "nouveau.config=NvClkMode=15" "nouveau.config=NvGspRm=1" "mitigations=off" ];
+  boot.kernelParams = [ "nouveau.config=NvClkMode=15" "mitigations=off" ];
   boot.loader.grub.gfxmodeEfi = "1920x1080";
   boot.loader.grub.gfxpayloadEfi = "keep";
   environment.systemPackages = [
     kernel.perf
     pkgs.teamviewer
-    #nvidia-offload
-    #pkgs.waybar
   ];
   imports = [ ./uMsiLaptop-hw.nix ../builders ];
   nix = {
@@ -81,6 +79,22 @@ in
   programs.steam = {
     enable = true;
   };
+  
+  hardware = {
+    graphics = true;
+    nvidia = {
+      open = true;
+      package = video;
+    };
+    bumblebee = {
+      enable = true;
+      driver = "nvidia";
+    };
+  };
+  services.xserver.drivers = [ "nvidia" "modesetting" ];
+  
+  
+  
   #hardware.bumblebee = {
   #  enable = true;
   #  driver = "nvidia";
