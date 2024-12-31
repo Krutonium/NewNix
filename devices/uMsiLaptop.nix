@@ -81,7 +81,7 @@ in
   };
   
   hardware = {
-    graphics = true;
+    graphics.enable = true;
     nvidia = {
       open = true;
       package = video;
