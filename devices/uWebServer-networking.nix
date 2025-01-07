@@ -19,6 +19,7 @@
     '';
   };
   networking.nftables.enable = true;
+  networking.nameservers = [ "1.1.1.1" ];
   networking.firewall.allowedUDPPorts = [ 546 ]; #DHCPv6-PD
   networking.firewall.trustedInterfaces = [ "br0" ];
   systemd.network = {
