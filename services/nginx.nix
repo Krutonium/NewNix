@@ -53,7 +53,7 @@ in
             '';
           };
           # Disable authentication for direct file access
-          "*.*" = {
+          locations."~^/(.+)" = {
             extraConfig = ''
               auth_basic off;
             '';
