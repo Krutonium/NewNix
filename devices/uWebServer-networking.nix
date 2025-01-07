@@ -70,7 +70,7 @@
       };
     };
   };
-  services.resolved.enable = true;
+  services.resolved.enable = false;
   networking = {
     # We're not using NetworkManager, as it apparently kinda just dies when given access to the raw internet.
     networkmanager.enable = lib.mkForce false;
