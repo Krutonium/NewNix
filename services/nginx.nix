@@ -18,11 +18,11 @@ in
     security.acme.acceptTerms = true;
     services.nginx.additionalModules = [ pkgs.nginxModules.pam ];
     services.nginx.virtualHosts = {
-      "map.krutonium.ca" = {
-        forceSSL = true;
-        enableACME = true;
-        locations."/".proxyPass = "http://127.0.0.1:8100";
-      };
+#      "map.krutonium.ca" = {
+#        forceSSL = true;
+#        enableACME = true;
+#        locations."/".proxyPass = "http://127.0.0.1:8100";
+#      };
       "restream.krutonium.ca" = {
         forceSSL = true;
         enableACME = true;
@@ -38,24 +38,23 @@ in
         enableACME = true;
         root = "/media2/fileHost";
       };
-      "gryphonfiles.krutonium.ca" = {
+      "webdav.krutonium.ca" = {
         forceSSL = true;
         enableACME = true;
         root = "/media2/fileHost/gryphon"; # Same root or a different directory for WebDAV
         locations."/" = {
-          #extraConfig = ''
-          #  dav_methods PUT DELETE MKCOL COPY MOVE;
-          #  dav_ext_methods PROPFIND OPTIONS;
-          #  create_full_put_path on;
-          #  client_max_body_size 10G; # Adjust as needed
-          #  autoindex off; # Disable directory listing for WebDAV
-          #  '';
-            #auth_basic "WebDAV Restricted Access";
-            #auth_basic_user_file /persist/httpAuth; # Use the same or a different auth file
-          #'';
+          extraConfig = ''
+            dav_methods PUT DELETE MKCOL COPY MOVE;
+            dav_ext_methods PROPFIND OPTIONS;
+            create_full_put_path on;
+            client_max_body_size 10G; # Adjust as needed
+            autoindex off; # Disable directory listing for WebDAV
+            auth_basic "WebDAV Restricted Access";
+            auth_basic_user_file /persist/httpAuth; # Use the same or a different auth file
+          '';
         };
       };
-      "webdav.krutonium.ca" = {
+      "gryphon.krutonium.ca" = {
         forceSSL = true;
         enableACME = true;
         root = "/media2/fileHost/gryphon";
@@ -227,33 +226,6 @@ in
             return 200 "User-agent: *\nDisallow: /";
           '';
         };
-      };
-      "ha.krutonium.ca" = {
-        forceSSL = true;
-        enableACME = true;
-        locations."/".proxyPass = "http://[::1]:8123";
-        locations."/".proxyWebsockets = true;
-        extraConfig = "proxy_buffering off;
-        ";
-      };
-      "easy.krutonium.ca" = {
-        forceSSL = true;
-        enableACME = true;
-        locations."/".proxyPass = "http://127.0.0.1:9000";
-        #extraConfig = ''
-        #  auth_pam "Password Required";
-        #  auth_pam_service_name "nginx";
-        #'';
-        basicAuth = { guest = "guest"; };
-      };
-      "absit.krutonium.ca" = {
-        forceSSL = true;
-        enableACME = true;
-        root = "/var/www/vore";
-      };
-      "tube.krutonium.ca" = {
-        forceSSL = true;
-        enableACME = true;
       };
     };
   };
