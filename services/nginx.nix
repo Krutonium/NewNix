@@ -45,6 +45,9 @@ in
         locations = {
           "/" = {
             extraConfig = ''
+              dav_methods PUT DELETE MKCOL;
+              create_full_put_path on;
+              client_max_body_size 10G; # Adjust max file size as needed
               autoindex on;
               autoindex_localtime on;
               autoindex_exact_size off;
