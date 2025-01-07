@@ -55,7 +55,7 @@ in
           #'';
         };
       };
-      "gryphon.krutonium.ca" = {
+      "webdav.krutonium.ca" = {
         forceSSL = true;
         enableACME = true;
         root = "/media2/fileHost/gryphon";
