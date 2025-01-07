@@ -1,5 +1,17 @@
 { config, pkgs, lib, ... }:
 {
+  systemd.services =
+    let
+      dependency = [ "dnsmasq.service" ];
+    in
+    lib.mapAttrs'
+      (name: _: lib.nameValuePair "acme-${name}" {
+        requires = dependency;
+        after = dependency;
+      })
+      config.security.acme.certs;
+
+
   boot.kernel.sysctl = {
     "net.ipv4.conf.all.forwarding" = 1;
     "net.ipv6.conf.all.forwarding" = 1;
@@ -19,7 +31,6 @@
     '';
   };
   networking.nftables.enable = true;
-  networking.nameservers = [ "1.1.1.1" ];
   networking.firewall.allowedUDPPorts = [ 546 ]; #DHCPv6-PD
   networking.firewall.trustedInterfaces = [ "br0" ];
   systemd.network = {
@@ -137,14 +148,14 @@
         # 5 and 6 intentionally missing for now.
       ];
       # Listens to br0
-      listen-address="::1,127.0.0.1,10.0.0.1";
+      listen-address = "::1,127.0.0.1,10.0.0.1";
       expand-hosts = true; #I *think* that's how that'd work?
       # DNS Servers:
       server = [ "1.1.1.1" "8.8.8.8" ]; # If both are down, an apocalypse is occuring.
       # Routes traffic to my domain to my server
-      address = [ 
-        "/krutonium.ca/10.0.0.1" 
-        "/BRWB068E697F437.local/10.0.0.8" 
+      address = [
+        "/krutonium.ca/10.0.0.1"
+        "/BRWB068E697F437.local/10.0.0.8"
       ];
     };
   };
