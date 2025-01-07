@@ -42,20 +42,28 @@ in
         forceSSL = true;
         enableACME = true;
         root = "/media2/fileHost/gryphon";
-        locations."/" = {
-          extraConfig = ''
-            autoindex on;
-            autoindex_localtime on;
-            autoindex_exact_size off;
-            auth_basic "Restricted Access";
-            auth_basic_user_file /persist/httpAuth;
-         '';
-        };
-        locations."/robots.txt" = {
-          extraConfig = ''
-            rewrite ^/(.*)  $1;
-            return 200 "User-agent: *\nDisallow: /";
-          '';
+        locations = {
+          "/" = {
+            extraConfig = ''
+              autoindex on;
+              autoindex_localtime on;
+              autoindex_exact_size off;
+              auth_basic "Restricted Access";
+              auth_basic_user_file /persist/httpAuth;
+            '';
+          };
+          # Disable authentication for direct file access
+          "^/.+" = {
+            extraConfig = ''
+              auth_basic off;
+            '';
+          };
+          "/robots.txt" = {
+            extraConfig = ''
+              rewrite ^/(.*)  $1;
+              return 200 "User-agent: *\nDisallow: /";
+            '';
+          };
         };
       };
       "krutonium.ca" = {
@@ -63,11 +71,14 @@ in
         enableACME = true;
         root = "/var/www/home/";
         serverAliases = [ "www.krutonium.ca" ];
-        locations."= /.well-known/matrix/server".extraConfig =
+        locations." = /.well-known/matrix/server ".extraConfig =
           let
             # use 443 instead of the default 8448 port to unite
             # the client-server and server-server port for simplicity
-            server = { "m.server" = "synapse.krutonium.ca:443"; };
+            server = {
+              "
+          m.server " = " synapse.krutonium.ca:443 ";
+            };
           in
           ''
             add_header Content-Type application/json;
@@ -205,7 +216,8 @@ in
         enableACME = true;
         locations."/".proxyPass = "http://[::1]:8123";
         locations."/".proxyWebsockets = true;
-        extraConfig = "proxy_buffering off;";
+        extraConfig = "proxy_buffering off;
+        ";
       };
       "easy.krutonium.ca" = {
         forceSSL = true;
@@ -229,3 +241,4 @@ in
     };
   };
 }
+
