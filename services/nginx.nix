@@ -49,9 +49,10 @@ in
             create_full_put_path on;
             client_max_body_size 10G; # Adjust as needed
             autoindex off; # Disable directory listing for WebDAV
-            auth_basic "WebDAV Restricted Access";
-            auth_basic_user_file /persist/httpAuth; # Use the same or a different auth file
-          '';
+            '';
+            #auth_basic "WebDAV Restricted Access";
+            #auth_basic_user_file /persist/httpAuth; # Use the same or a different auth file
+          #'';
         };
       };
       "gryphon.krutonium.ca" = {
