@@ -42,7 +42,7 @@ in
         "webdav.krutonium.ca" = {
           forceSSL = true;
           enableACME = true;
-          root = services.nginx.virtualHosts."gryphon.krutonium.ca".root; # Same root or a different directory for WebDAV
+          root = "/media2/fileHost/gryphon"; # Same root or a different directory for WebDAV
           locations."/" = {
             extraConfig = ''
               dav_methods PUT DELETE MKCOL COPY MOVE;
