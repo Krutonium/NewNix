@@ -45,7 +45,8 @@ in
         locations = {
           "/" = {
             extraConfig = ''
-              dav_methods PUT DELETE MKCOL;
+              dav_methods PUT DELETE MKCOL COPY MOVE;
+              dav_ext_methods PROPFIND OPTIONS;
               create_full_put_path on;
               client_max_body_size 10G; # Adjust max file size as needed
               autoindex on;
