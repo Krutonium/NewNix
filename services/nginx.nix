@@ -46,6 +46,7 @@ in
           extraConfig = ''
             dav_methods PUT DELETE MKCOL COPY MOVE;
             dav_ext_methods PROPFIND OPTIONS;
+            dav_access user:rw group:rw;
             create_full_put_path on;
             client_max_body_size 10G; # Adjust as needed
             autoindex off; # Disable directory listing for WebDAV
