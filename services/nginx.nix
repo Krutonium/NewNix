@@ -47,6 +47,8 @@ in
             autoindex on;
             autoindex_localtime on;
             autoindex_exact_size off;
+            auth_basic "Restricted Access";
+            auth_basic_user_file /persist/httpAuth;
          '';
         };
         locations."/robots.txt" = {

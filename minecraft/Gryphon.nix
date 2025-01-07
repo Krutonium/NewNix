@@ -13,11 +13,6 @@ in
   config = mkIf (cfg.gryphon == true) {
     networking.firewall.allowedTCPPorts = tcpports;
     networking.firewall.allowedUDPPorts = udpports;
-    networking.firewall.interfaces."br0".allowedTCPPorts = [ rconport ]; #Deny RCON to Internet
-    #fileSystems."${location}" = {
-    #  device = "/media2/Gryphon.btrfs";
-    #  options = [ "compress=zstd:15" ];
-    #};
     systemd.services.gryphon = {
       description = "Gryphon Minecraft Server";
       serviceConfig = {

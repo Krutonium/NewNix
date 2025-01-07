@@ -18,7 +18,7 @@ in
   };
   hardware.graphics.extraPackages = with pkgs; [ rocmPackages.clr.icd intel-compute-runtime intel-media-sdk ];
   boot.tmp.useTmpfs = true;
-  boot.kernelParams = [ "amdgpu.ppfeaturemask=0xffffffff" ];
+  boot.kernelParams = [ "amdgpu.ppfeaturemask=0xffffffff" "mitigations=off" ];
   boot.initrd.availableKernelModules = [ "amdgpu" "vendor-reset" ];
   boot.extraModulePackages = with config.boot.kernelPackages; [ vendor-reset ];
   imports = [ ./uWebServer-hw.nix ./uWebServer-networking.nix ];
