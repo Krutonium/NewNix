@@ -132,9 +132,9 @@ in
     BetterFanController = {
       description = "Better Fan Controller to control GPU fans";
       serviceConfig = {
-        type = "simple";
+        Type = "simple";
         WorkingDirectory = "/tmp";
-        user = "root";
+        User = "root";
         Restart = "always";
       };
       wantedBy = [ "multi-user.target" ];
@@ -147,9 +147,9 @@ in
     InternetRadio2Computercraft = {
       description = "Stream Internet Radio for Computercraft";
       serviceConfig = {
-        type = "simple";
+        Type = "simple";
         WorkingDirectory = "/tmp";
-        user = "krutonium";
+        User = "krutonium";
         Restart = "always";
       };
       wantedBy = [ "multi-user.target" ];
