@@ -76,7 +76,7 @@ in
     };
     virtualization = {
       server = "virtd";
-      windows = false;  
+      windows = false;
     };
     minecraft = {
       rubberdragontrain = false;
@@ -141,6 +141,21 @@ in
       path = [ pkgs.BetterFanController ];
       script = ''
         BetterFanController
+      '';
+      enable = true;
+    };
+    InternetRadio2Computercraft = {
+      description = "Stream Internet Radio for Computercraft";
+      serviceConfig = {
+        type = "simple";
+        WorkingDirectory = "/tmp";
+        user = "krutonium";
+        Restart = "always";
+      };
+      wantedBy = [ "multi-user.target" ];
+      path = [ pkgs.InternetRadio2Computercraft ];
+      script = ''
+        InternetRadio2Computercraft
       '';
       enable = true;
     };

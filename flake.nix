@@ -24,13 +24,17 @@
       url = "github:Krutonium/BetterFanController";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    R2CC = {
+      url = "github:Krutonium/InternetRadio2ComputerCraft";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nur = {
       url = "github:nix-community/NUR";
     };
     bcachefs-tools.url = "github:koverstreet/bcachefs-tools";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-master, nixos-hardware, home-manager, update, nix-monitored, nixd, fan-controller, nur, bcachefs-tools, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-master, nixos-hardware, home-manager, update, nix-monitored, nixd, fan-controller, nur, bcachefs-tools, R2CC, ... }@inputs:
     let
       system = "x86_64-linux";
 
@@ -67,6 +71,9 @@
         fanController = self: super: {
           BetterFanController = fan-controller.defaultPackage.x86_64-linux;
         };
+        InternetRadio2Computercraft = self: super: {
+          InternetRadio2Computercraft = R2CC.defaultPackage.x86_64-linux;
+        };
         monitored = self: super: {
           nixos-rebuild = super.nixos-rebuild.override { nix = self.nix-monitored; };
           nix-direnv = super.nix-direnv.override { nix = self.nix-monitored; };
@@ -82,6 +89,7 @@
             overlays.nixpkgsUpdate
             nixd.overlays.default
             overlays.fanController
+            overlays.InternetRadio2Computercraft
             nur.overlays.default
             overlays.bcachefs
           ];
