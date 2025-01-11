@@ -52,7 +52,7 @@ in
           password=`cat /persist/mcrcon.txt`
           mcrcon -H ${host} -P ${rconport} -p $password -w 1 "say Starting Hourly Backup..." save-off save-all
           # Create 1 snapshot per hour, and keep 24 of them.
-          btrfs-snap -r -c . hourly 24
+          btrfs-snap -r -c . hourly 48
           mcrcon -H ${host} -P ${rconport} -p $password -w 1 save-on "say Done!"
         '';
     };
