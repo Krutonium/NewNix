@@ -3,17 +3,15 @@ with lib;
 with builtins;
 let
   cfg = config.sys.services;
-  
-    fqdn = "synapse.${config.networking.domain}";
-    baseUrl = "https://${fqdn}";
-    clientConfig."m.homeserver".base_url = baseUrl;
-    serverConfig."m.server" = "${fqdn}:443";
-    mkWellKnown = data: ''
-      default_type application/json;
-      add_header Access-Control-Allow-Origin *;
-      return 200 '${builtins.toJSON data}';
-    '';
-  
+  fqdn = "synapse.${config.networking.domain}";
+  baseUrl = "https://${fqdn}";
+  clientConfig."m.homeserver".base_url = baseUrl;
+  serverConfig."m.server" = "${fqdn}:443";
+  mkWellKnown = data: ''
+    default_type application/json;
+    add_header Access-Control-Allow-Origin *;
+    return 200 '${builtins.toJSON data}';
+  '';
 in
 {
   config = mkIf (cfg.nginx == true) {

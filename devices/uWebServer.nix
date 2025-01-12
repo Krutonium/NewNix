@@ -7,6 +7,7 @@ in
 {
   networking.firewall.allowedTCPPorts = [ 25565 25566 50056 9000 ];
   networking.firewall.allowedUDPPorts = [ 50056 67 68 10578 ];
+  networking.domain = "krutonium.ca";
   # 10578 is Skyrim Together
   networking.hostName = Hostname;
   boot = {
