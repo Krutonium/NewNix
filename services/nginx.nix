@@ -3,6 +3,17 @@ with lib;
 with builtins;
 let
   cfg = config.sys.services;
+  
+    fqdn = "synapse.${config.networking.domain}";
+    baseUrl = "https://${fqdn}";
+    clientConfig."m.homeserver".base_url = baseUrl;
+    serverConfig."m.server" = "${fqdn}:443";
+    mkWellKnown = data: ''
+      default_type application/json;
+      add_header Access-Control-Allow-Origin *;
+      return 200 '${builtins.toJSON data}';
+    '';
+  
 in
 {
   config = mkIf (cfg.nginx == true) {
@@ -18,11 +29,11 @@ in
     security.acme.acceptTerms = true;
     services.nginx.additionalModules = [ pkgs.nginxModules.pam ];
     services.nginx.virtualHosts = {
-#      "map.krutonium.ca" = {
-#        forceSSL = true;
-#        enableACME = true;
-#        locations."/".proxyPass = "http://127.0.0.1:8100";
-#      };
+      #      "map.krutonium.ca" = {
+      #        forceSSL = true;
+      #        enableACME = true;
+      #        locations."/".proxyPass = "http://127.0.0.1:8100";
+      #      };
       "restream.krutonium.ca" = {
         forceSSL = true;
         enableACME = true;
@@ -88,35 +99,11 @@ in
         enableACME = true;
         root = "/var/www/home/";
         serverAliases = [ "www.krutonium.ca" ];
-        locations." = /.well-known/matrix/server ".extraConfig =
-          let
-            # use 443 instead of the default 8448 port to unite
-            # the client-server and server-server port for simplicity
-            server = {
-              "
-          m.server " = " synapse.krutonium.ca:443 ";
-            };
-          in
-          ''
-            add_header Content-Type application/json;
-            return 200 '${builtins.toJSON server}';
-          '';
-        locations."= /.well-known/matrix/client".extraConfig =
-          let
-            client = {
-              "m.server" = { "base_url" = "https://synapse.krutonium.ca"; };
-              "m.identity_server" = { "base_url" = "https://vector.im"; };
-            };
-            # ACAO required to allow element-web on any URL to request this json file
-          in
-          ''
-            add_header Content-Type application/json;
-            add_header Access-Control-Allow-Origin *;
-            return 200 '${builtins.toJSON client}';
-          '';
-        locations."/_matrix" = {
-          proxyPass = "http://127.0.0.1:8008"; # without a trailing /
-        };
+        locations." = /.well-known/matrix/server".extraConfig = mkWellKnown serverConfig;
+        locations."= /.well-known/matrix/client".extraConfig = mkWellKnown clientConfig;
+        locations."/_matrix".proxyPass = "http://[::1]:8008";
+        # Forward requests for e.g. SSO and password-resets.
+        locations."/_synapse/client".proxyPass = "http://[::1]:8008";
         locations."/".proxyPass = "http://127.0.0.1:1313"; # Hugo
       };
       "plex.krutonium.ca" = {
