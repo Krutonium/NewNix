@@ -38,6 +38,7 @@ in
         extraConfig = ''
           return 301 https://krutonium.ca;
         '';
+      };
       "restream.krutonium.ca" = {
         forceSSL = true;
         enableACME = true;
