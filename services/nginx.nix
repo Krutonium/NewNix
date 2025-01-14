@@ -32,6 +32,12 @@ in
       #        enableACME = true;
       #        locations."/".proxyPass = "http://127.0.0.1:8100";
       #      };
+      "_" = {
+        # This is a default catchall - Like *
+        default = true;
+        extraConfig = ''
+          return 301 https://krutonium.ca;
+        '';
       "restream.krutonium.ca" = {
         forceSSL = true;
         enableACME = true;
