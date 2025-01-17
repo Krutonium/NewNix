@@ -109,6 +109,10 @@ in
       };
     };
   };
+  services.ollama = {
+    enable = true;
+  };
+  nixpkgs.config.rocmSupport = true;
   users.users.krutonium.extraGroups = [ "docker" ];
   systemd.services = {
     duckdns = {
