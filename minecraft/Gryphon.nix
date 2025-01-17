@@ -6,7 +6,7 @@ let
   tcpports = [ 25565 ]; # 25565 is Minecraft
   udpports = [ 24454 ]; # 24454 is Simple Voice Chat
   location = "/persist/gryphon/";
-  rconport = "12345";   # RCON is LAN only.
+  rconport = "12345"; # RCON is LAN only.
   host = "127.0.0.1";
 in
 {
