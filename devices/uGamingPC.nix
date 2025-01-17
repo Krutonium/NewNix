@@ -112,7 +112,7 @@ in
     package = pkgs.openrgb;
   };
   services.ollama = {
-    enable = true;
+    enable = false;
     acceleration = "cuda";
   };
   # Allow Ollama through Firewall
