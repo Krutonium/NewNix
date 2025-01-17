@@ -127,7 +127,7 @@ in
     nvidiaSettings = false;
     modesetting.enable = true;
   };
-  #nixpkgs.config.cudaSupport = lib.mkForce true;
+  nixpkgs.config.cudaSupport = true;
   hardware.keyboard.qmk.enable = true;
 
   services.xserver = {
