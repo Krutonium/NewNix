@@ -11,6 +11,7 @@ in
       # Forgejo is a dropin replacement
       #package = pkgs.forgejo;
       #package = pkgs.gitea;
+      packages = pkgs.unstable.forgejo;
       settings = {
         server = {
           ROOT_URL = "https://gitea.krutonium.ca/";
