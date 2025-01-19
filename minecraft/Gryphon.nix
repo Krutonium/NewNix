@@ -29,7 +29,7 @@ in
         '';
       wantedBy = [ "multi-user.target" ];
       after = [ "network.target" ];
-      path = [ pkgs.jre pkgs.bash ];
+      path = [ pkgs.jdk23 pkgs.bash ];
       script =
         ''
           ./run.sh
