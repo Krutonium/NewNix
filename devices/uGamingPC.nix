@@ -163,7 +163,7 @@ in
     nvidiaSettings = false;
     modesetting.enable = true;
   };
-  nixpkgs.config.cudaSupport = true;
+  nixpkgs.config.cudaSupport = false;
   hardware.keyboard.qmk.enable = true;
 
   services.xserver = {
