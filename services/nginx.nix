@@ -30,7 +30,18 @@ in
       "map.krutonium.ca" = {
         forceSSL = true;
         enableACME = true;
-        locations."/".proxyPass = "http://127.0.0.1:8100";
+        root = "/media2/BlueMap";
+        locations."/maps" = {
+          extraConfig = ''
+            gzip_static always;
+          '';
+        };
+        locations."/maps/tiles" = {
+          extraConfig = ''
+            gzip_static always;
+            error_page 404 = @tiles_204;
+          '';
+        };
       };
       "_" = {
         # This is a default catchall - Like *
