@@ -21,7 +21,6 @@
       auth      optional      ${pkgs.gnome-keyring}/lib/security/pam_gnome_keyring.so
     '';
   };
-
   # System services configuration
   services = {
     # CPU interrupt balancing
