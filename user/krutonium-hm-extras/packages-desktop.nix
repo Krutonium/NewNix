@@ -169,7 +169,7 @@ in
 
   programs.mangohud = {
     enable = true;
-    enableSessionWide = true;
+    enableSessionWide = false;
     package = pkgs.mangohud;
   };
 
