@@ -113,7 +113,7 @@ in
   };
   services.ollama = {
     enable = false;
-    acceleration = "cuda";
+    # acceleration = "cuda";
   };
   # Allow Ollama through Firewall
 
