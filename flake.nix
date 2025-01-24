@@ -32,9 +32,14 @@
       url = "github:nix-community/NUR";
     };
     bcachefs-tools.url = "github:koverstreet/bcachefs-tools";
+    nvidia-patch = {
+      url = "github:icewind1991/nvidia-patch-nixos";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-master, nixos-hardware, home-manager, update, nix-monitored, nixd, fan-controller, nur, bcachefs-tools, R2CC, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-master, nixos-hardware, home-manager, update, 
+  nix-monitored, nixd, fan-controller, nur, bcachefs-tools, R2CC, nvidia-patch, ... }@inputs:
     let
       system = "x86_64-linux";
 
@@ -92,6 +97,7 @@
             overlays.InternetRadio2Computercraft
             nur.overlays.default
             overlays.bcachefs
+            inputs.nvidia-patch.overlays.default
           ];
         })
       ];
