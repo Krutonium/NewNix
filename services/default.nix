@@ -185,6 +185,13 @@ with builtins;
         Host Blog
       '';
     };
+    schedule-updates = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        Schedule Update on Odd Days
+      '';
+    };
   };
   imports = [
     ./plex.nix
@@ -211,5 +218,6 @@ with builtins;
     ./nextcloud.nix
     ./postgresql.nix
     ./blog.nix
+    ./update-schedule.nix
   ];
 }
