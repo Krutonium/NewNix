@@ -13,8 +13,6 @@ in
           Type = "oneshot";
           User = "root";
           ExecStart = ''
-            #!/usr/bin/env bash
-    
             # Calculate the number of days since the Unix epoch
             days_since_epoch=$(( $(date +%s) / 86400 ))
     
