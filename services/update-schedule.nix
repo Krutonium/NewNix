@@ -44,5 +44,5 @@ in
     
       # Ensure the timer is started and enabled
       systemd.services."odd-day-task".wantedBy = [ "timers.target" ];
-  }
+  };
 }
