@@ -9,12 +9,15 @@ in
       # Define the script
       systemd.services.schedule-update = {
         description = "Update the system on odd days from Unix Epoch";
+        startAt = "*-*-* 04:00:00";
+        restartIfChanged = false;
+        path = [ pkgs.sudo ];
         serviceConfig = {
           Type = "oneshot";
           User = "root";
+          RemainAfterExit = true;
           ExecStart = ''
-            # Calculate the number of days since the Unix epoch
-            days_since_epoch=$(( $(date +%s) / 86400 ))
+            days_since_epoch=$(( $(date +%s) / 86400 )) # Calculate the number of days since the Unix epoch
     
             # Check if the number of days is odd
             if (( days_since_epoch % 2 == 1 )); then
@@ -29,18 +32,5 @@ in
           '';
         };
       };
-    
-      # This will result in the updates happening at 4 AM every other day.
-      systemd.timers.schedule-update = {
-        description = "Timer for schedule-update service";
-        wants = [ "schedule-update.service" ];
-        timerConfig = {
-          OnCalendar = "*-*-* 04:00:00";
-          Persistent = true;
-        };
-      };
-    
-      # Ensure the timer is started and enabled
-      systemd.services."schedule-update".wantedBy = [ "timers.target" ];
   };
 }
