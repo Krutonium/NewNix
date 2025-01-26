@@ -143,7 +143,6 @@ in
     plugins = with pkgs.master.obs-studio-plugins; [
       obs-multi-rtmp
       obs-vkcapture
-      obs-nvfbc
     ];
     package = pkgs.master.obs-studio;
   };
