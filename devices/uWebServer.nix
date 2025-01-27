@@ -17,7 +17,7 @@ in
     enable = true;
     priority = 1000;
   };
-  swapDevices = [
+  swapDevices = {
     "ssd" = {
        device = "/persist/swap";
        priority = 2;
@@ -32,7 +32,7 @@ in
        device = "/media2/swap";
        priority = 1;
        size = 8192;
-    ];
+    };
   };
   hardware.graphics.extraPackages = with pkgs; [ rocmPackages.clr.icd intel-compute-runtime intel-media-sdk ];
   boot.tmp.useTmpfs = true;
