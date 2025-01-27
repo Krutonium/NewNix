@@ -17,23 +17,23 @@ in
     enable = true;
     priority = 1000;
   };
-  swapDevices = {
-    "ssd" = {
-       device = "/persist/swap";
-       priority = 2;
-       size = 4096;
-    };
-    "media" = {
-       device = "/media/swap";
-       priority = 1;
-       size = 8192;
-    };
-    "media2" = {
-       device = "/media2/swap";
-       priority = 1;
-       size = 8192;
-    };
-  };
+  swapDevices = [
+    {
+      device = "/persist/swap";
+      priority = 2;
+      size = 4096;
+    }
+    {
+      device = "/media/swap";
+      priority = 1;
+      size = 8192;
+    }
+    {
+      device = "/media2/swap";
+      priority = 1;
+      size = 8192;
+    }
+  ];
   hardware.graphics.extraPackages = with pkgs; [ rocmPackages.clr.icd intel-compute-runtime intel-media-sdk ];
   boot.tmp.useTmpfs = true;
   boot.kernelParams = [ "amdgpu.ppfeaturemask=0xffffffff" "mitigations=off" ];
