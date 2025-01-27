@@ -17,7 +17,7 @@ in
           Type = "oneshot";
           User = "root";
           RemainAfterExit = true;
-          ExecStart = ''
+          ExecStart = pkgs.writeShellScriptBin "update-script" ''
             systemctl stop gryphon.service
             sudo -u krutonium nupdate
             sudo -u krutonium nboot
