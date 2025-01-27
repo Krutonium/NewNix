@@ -19,11 +19,6 @@ in
   };
   swapDevices = [
     {
-      device = "/persist/swap";
-      priority = 2;
-      size = 4096;
-    }
-    {
       device = "/media/swap";
       priority = 1;
       size = 8192;
