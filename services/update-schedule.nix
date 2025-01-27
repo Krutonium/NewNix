@@ -7,7 +7,7 @@ let
     systemctl stop gryphon.service
     sudo -u krutonium nupdate
     sudo -u krutonium nboot
-    sudo systemctl reboot now
+    systemctl reboot
   '';
 in
 {
