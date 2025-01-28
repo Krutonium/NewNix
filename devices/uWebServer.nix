@@ -86,7 +86,7 @@ in
       syncthing = false;
       nextcloud = true;
       blog = true;
-      schedule-updates = true;
+      schedule-updates = false;
     };
     virtualization = {
       server = "virtd";
