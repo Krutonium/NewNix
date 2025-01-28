@@ -16,7 +16,7 @@ in
     systemd.services.schedule-update = {
       description = "Update the system on odd days from Unix Epoch";
       startAt = "*-*-* 04:00:00";
-      enable = true;
+      enable = false;
       restartIfChanged = false;
       path = [ pkgs.sudo ];
       serviceConfig = {
