@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1738218175,
-        "narHash": "sha256-jSHMvJzVK9Vx0ucgvXlTLE2onHQYVuG7j9o3ediTL34=",
+        "lastModified": 1738218472,
+        "narHash": "sha256-f2+iPx9tbLDv+ww45t4K+IWGIbmVjdOzwQrehqC9csA=",
         "owner": "Krutonium",
         "repo": "InternetRadio2ComputerCraft",
-        "rev": "2c195a6ba4f6ebc8fcc4967b955108b3982df53b",
+        "rev": "45fbc58c12e6445b5f48c77e158e04cd1443e821",
         "type": "github"
       },
       "original": {
