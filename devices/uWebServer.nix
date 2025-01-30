@@ -171,7 +171,7 @@ in
         Restart = "always";
       };
       wantedBy = [ "multi-user.target" ];
-      path = [ pkgs.InternetRadio2Computercraft pkgs.ffmpeg_7-full ];
+      path = [ pkgs.InternetRadio2Computercraft pkgs.ffmpeg_7-full pkgs.unstable.yt-dlp ];
       script = ''
         InternetRadio2Computercraft
       '';
