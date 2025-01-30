@@ -3,18 +3,19 @@ with lib;
 with builtins;
 let
   cfg = config.sys.minecraft;
-  tcpports = [ 25565 ]; # 25565 is Minecraft
+  tcpports = [ 25565 25566 ]; # 25565 is Minecraft
   udpports = [ 24454 ]; # 24454 is Simple Voice Chat
   location = "/persist/gryphon/";
-  rconport = "12345"; # RCON is LAN only.
+  rconport_atm9 = "12345"; # RCON is LAN only.
+  rconport_aof7 = "12346";
   host = "127.0.0.1";
 in
 {
   config = mkIf (cfg.gryphon == true) {
     networking.firewall.allowedTCPPorts = tcpports;
     networking.firewall.allowedUDPPorts = udpports;
-    systemd.services.gryphon = {
-      description = "Gryphon Minecraft Server";
+    systemd.services.ATM9 = {
+      description = "All the Mods 9 Server";
       serviceConfig = {
         Type = "simple";
         WorkingDirectory = "${location}/server/";
@@ -25,7 +26,7 @@ in
       preStop =
         ''
           password=`cat /persist/mcrcon.txt`
-          ${pkgs.mcrcon}/bin/mcrcon -H ${host} -P ${rconport} -p $password -w 5 "say Shutting Down Now!" stop
+          ${pkgs.mcrcon}/bin/mcrcon -H ${host} -P ${rconport_atm9} -p $password -w 5 "say Shutting Down Now!" stop
         '';
       wantedBy = [ "multi-user.target" ];
       after = [ "network.target" ];
@@ -33,6 +34,28 @@ in
       script =
         ''
           ./run.sh
+        '';
+    };
+    systemd.services.AllOfFabric7 = {
+      description = "All of Fabric 7 Server";
+      serviceConfig = {
+        Type = "simple";
+        WorkingDirectory = "${location}/AoF7/";
+        User = "krutonium";
+        Restart = "always";
+        KillSignal = "SIGINT";
+      };
+      preStop =
+        ''
+          password=`cat /persist/mcrcon.txt`
+          ${pkgs.mcrcon}/bin/mcrcon -H ${host} -P ${rconport_aof7} -p $password -w 5 "say Shutting Down Now!" stop
+        '';
+      wantedBy = [ "multi-user.target" ];
+      after = [ "network.target" ];
+      path = [ pkgs.jdk21 pkgs.bash ];
+      script =
+        ''
+          ./startserver.sh
         '';
     };
 
@@ -50,10 +73,12 @@ in
         ''
           sleep 300
           password=`cat /persist/mcrcon.txt`
-          mcrcon -H ${host} -P ${rconport} -p $password -w 1 "say Starting Hourly Backup..." save-off save-all
+          mcrcon -H ${host} -P ${rconport_atm9} -p $password -w 1 "say Starting Hourly Backup..." save-off save-all
+          mcrcon -H ${host} -P ${rconport_aof7} -p $password -w 1 "say Starting Hourly Backup..." save-off save-all
           # Create 1 snapshot per hour, and keep 24 of them.
           btrfs-snap -r -c . hourly 48
-          mcrcon -H ${host} -P ${rconport} -p $password -w 1 save-on "say Done!"
+          mcrcon -H ${host} -P ${rconport_atm9} -p $password -w 1 save-on "say Done!"
+          mcrcon -H ${host} -P ${rconport_aof7} -p $password -w 1 save-on "say Done!"
         '';
     };
 
@@ -77,10 +102,12 @@ in
         ''
           sleep 600
           password=`cat /persist/mcrcon.txt`
-          mcrcon -H ${host} -P ${rconport} -p $password -w 1 "say Starting Daily Backup..." save-off save-all
+          mcrcon -H ${host} -P ${rconport_atm9} -p $password -w 1 "say Starting Daily Backup..." save-off save-all
+          mcrcon -H ${host} -P ${rconport_aof7} -p $password -w 1 "say Starting Daily Backup..." save-off save-all
           #Create 1 snapshot per day that is kept for 7 days.
           btrfs-snap -r -c . daily 7
-          mcrcon -H ${host} -P ${rconport} -p $password -w 1 "say Done! Compressing Backup and Shuffling it over to the backup disk..." save-on
+          mcrcon -H ${host} -P ${rconport_atm9} -p $password -w 1 "say Done! Compressing Backup and Shuffling it over to the backup disk..." save-on
+          mcrcon -H ${host} -P ${rconport_atm7} -p $password -w 1 "say Done! Compressing Backup and Shuffling it over to the backup disk..." save-on
           systemctl start snapshotter-send
         '';
     };
@@ -113,7 +140,8 @@ in
         # Compress it - Use the directory name as the file name
         nice -20 7z a -mx9 -mmf=bt2 "/media2/Gryphon/snapshots/$snap.7z" $snap
         echo "Backup Compressed."
-        mcrcon -H ${host} -P ${rconport} -p $password -w 1 "say Backup Compressed and Sent. Performance should return to normal."
+        mcrcon -H ${host} -P ${rconport_atm9} -p $password -w 1 "say Backup Compressed and Sent. Performance should return to normal."
+        mcrcon -H ${host} -P ${rconport_aof7} -p $password -w 1 "say Backup Compressed and Sent. Performance should return to normal."
 
         # --- Delete Old Backups ---
 
