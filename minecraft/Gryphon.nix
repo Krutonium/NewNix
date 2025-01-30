@@ -36,7 +36,7 @@ in
           ./run.sh
         '';
     };
-    systemd.services.AllOfFabric7 = {
+    systemd.services.AOF7 = {
       description = "All of Fabric 7 Server";
       serviceConfig = {
         Type = "simple";
@@ -107,7 +107,7 @@ in
           #Create 1 snapshot per day that is kept for 7 days.
           btrfs-snap -r -c . daily 7
           mcrcon -H ${host} -P ${rconport_atm9} -p $password -w 1 "say Done! Compressing Backup and Shuffling it over to the backup disk..." save-on
-          mcrcon -H ${host} -P ${rconport_atm7} -p $password -w 1 "say Done! Compressing Backup and Shuffling it over to the backup disk..." save-on
+          mcrcon -H ${host} -P ${rconport_aof7} -p $password -w 1 "say Done! Compressing Backup and Shuffling it over to the backup disk..." save-on
           systemctl start snapshotter-send
         '';
     };
