@@ -76,7 +76,7 @@ in
           mcrcon -H ${host} -P ${rconport_atm9} -p $password -w 1 "say Starting Hourly Backup..." save-off save-all
           mcrcon -H ${host} -P ${rconport_aof7} -p $password -w 1 "say Starting Hourly Backup..." save-off save-all
           # Create 1 snapshot per hour, and keep 24 of them.
-          btrfs-snap -r -c . hourly 48
+          btrfs-snap -r -c . hourly 192
           mcrcon -H ${host} -P ${rconport_atm9} -p $password -w 1 save-on "say Done!"
           mcrcon -H ${host} -P ${rconport_aof7} -p $password -w 1 save-on "say Done!"
         '';
@@ -85,7 +85,7 @@ in
     systemd.timers.snapshotter = {
       wantedBy = [ "timers.target" ];
       partOf = [ "snapshotter.service" ];
-      timerConfig.OnCalendar = [ "hourly" ];
+      timerConfig.OnCalendar = [ "*:0/15" ]; #Every 15 minutes
     };
 
     systemd.services.snapshotter-daily = {
@@ -138,7 +138,7 @@ in
         snap=$(ls -t | head -1)
         echo "Sending $snap to backup server..."
         # Compress it - Use the directory name as the file name
-        nice -20 7z a -mx9 -mmf=bt2 "/media2/Gryphon/snapshots/$snap.7z" $snap
+        nice -20 7z a -mx9 -mmf=bt2 "/media2/fileHost/gryphon/" $snap
         echo "Backup Compressed."
         mcrcon -H ${host} -P ${rconport_atm9} -p $password -w 1 "say Backup Compressed and Sent. Performance should return to normal."
         mcrcon -H ${host} -P ${rconport_aof7} -p $password -w 1 "say Backup Compressed and Sent. Performance should return to normal."
