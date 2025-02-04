@@ -28,6 +28,7 @@ in
       after = [ "network-online.target" "sys-subsystem-net-devices-WAN.device" "network.target"];
       wants = [ "network-online.target" "sys-subsystem-net-devices-WAN.device" "update_domain.path" ];
       bindsTo = [ "sys-subsystem-net-devices-WAN.device" ];
+      path = [ pkgs.curl ];
       serviceConfig = {
         Type = "oneshot";
         ExecStart = "${check-script}";
