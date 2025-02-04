@@ -46,14 +46,5 @@ in
         Unit = "update_domain.service";
       };
     };
-
-    systemd.paths.update_domain = {
-      description = "Trigger Domain Update when WAN IP changes";
-      wantedBy = [ "multi-user.target" ];
-      pathConfig = {
-        PathExistsGlob = "/run/systemd/netif/leases/*";
-        Unit = "update_domain";
-      };
-    };
   };
 }
