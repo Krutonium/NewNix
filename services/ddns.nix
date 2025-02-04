@@ -6,7 +6,7 @@ let
   check-script = pkgs.writeShellScript "check-ip-change" ''
     STATE_FILE=/persist/ip_state
     AUTH_FILE=/persist/ddnsclient.auth
-    CURRENT_IP=$(curl -s --config "$AUTH_FILE" https://api64.ipify.org)
+    CURRENT_IP=$(curl -s https://api64.ipify.org)
 
     if [ -f "$STATE_FILE" ]; then
       PREVIOUS_IP=$(cat "$STATE_FILE")
