@@ -11,9 +11,7 @@ in
       protocol = "namecheap";
       username = "krutonium.ca";
       domains = [ "*" "@" ];
-      ipv6 = true;
-      use = "web, web=checkip.amazonaws.com";
-      passwordFile = "/persist/ddclient.auth";
+      passwordFile = "/persist/ddnsclient.auth";
     };
   };
 }

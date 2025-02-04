@@ -75,7 +75,7 @@ in
       synapse = true;
       gitea = true;
       torrent = true;
-      ddns = false;
+      ddns = true;
       nginx = true;
       autoDeploy = false;
       sevendaystodie = false;
@@ -128,25 +128,6 @@ in
   nixpkgs.config.rocmSupport = true;
   users.users.krutonium.extraGroups = [ "docker" ];
   systemd.services = {
-    duckdns = {
-      description = "DuckDNS dynamic DNS updater.";
-      serviceConfig.Type = "oneshot";
-      after = [ "network-online.target" "sys-subsystem-net-devices-WAN.device" ];
-      requires = [ "network-online.target" ];
-      wantedBy = [ "multi-user.target" ];
-      path = [ pkgs.curl pkgs.coreutils ];
-      script = ''
-        sleep 10;
-        # Sleep 10 seconds to allow things to properly settle
-        token=$(cat /persist/duckdns_token.txt)
-        ipv4=$(curl -s ipv4.icanhazip.com)
-        #ipv6=$(curl -s ipv6.icanhazip.com)
-        url4=$(echo https://www.duckdns.org/update?domains=krutonium\&token=$token\&ipv4=$ipv4)
-        #url6=$(echo https://www.duckdns.org/update?domains=krutonium\&token=$token\&ipv6=$ipv6)
-        curl -k -s $url4
-        #curl -k -s $url6
-      '';
-    };
     BetterFanController = {
       description = "Better Fan Controller to control GPU fans";
       serviceConfig = {
@@ -177,12 +158,6 @@ in
       '';
       enable = true;
     };
-  };
-
-  systemd.timers.duckdns = {
-    wantedBy = [ "timers.target" ];
-    partOf = [ "duckdns.service" ];
-    timerConfig.OnCalendar = [ "*:0/5" ];
   };
 }
 
