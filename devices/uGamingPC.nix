@@ -121,7 +121,8 @@ in
     powerManagement = {
       enable = true;
     };
-    package = pkgs.nvidia-patch.patch-nvenc video;
+    # package = pkgs.nvidia-patch.patch-nvenc video;
+    package = video;
     prime.offload.enable = false;
     open = true;
     nvidiaSettings = false;
