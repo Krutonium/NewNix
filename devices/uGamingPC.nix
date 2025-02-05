@@ -125,7 +125,7 @@ in
     package = video;
     prime.offload.enable = false;
     open = true;
-    nvidiaSettings = false;
+    nvidiaSettings = true;
     modesetting.enable = true;
   };
   nixpkgs.config.cudaSupport = false;
