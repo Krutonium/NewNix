@@ -31,7 +31,6 @@
     nur = {
       url = "github:nix-community/NUR";
     };
-    bcachefs-tools.url = "github:koverstreet/bcachefs-tools";
     nvidia-patch = {
       url = "github:icewind1991/nvidia-patch-nixos";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -39,7 +38,7 @@
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-master, nixos-hardware, home-manager, update, 
-  nix-monitored, nixd, fan-controller, nur, bcachefs-tools, R2CC, nvidia-patch, ... }@inputs:
+  nix-monitored, nixd, fan-controller, nur, R2CC, nvidia-patch, ... }@inputs:
     let
       system = "x86_64-linux";
 
@@ -61,9 +60,6 @@
 
       # Overlay Definitions
       overlays = {
-        bcachefs = final: prev: {
-          bcachefs-tools = inputs.bcachefs-tools.packages.x86_64-linux.bcachefs-tools;
-        };
         unstable = final: prev: {
           unstable = import nixpkgs-unstable { inherit system; config.allowUnfree = true; config.nvidia.acceptLicense = true; };
         };
@@ -96,7 +92,6 @@
             overlays.fanController
             overlays.InternetRadio2Computercraft
             nur.overlays.default
-            overlays.bcachefs
             inputs.nvidia-patch.overlays.default
           ];
         })
