@@ -23,8 +23,11 @@ in
     ];
     programs.steam = {
       enable = true;
+      gamescopeSession.enable = true;
+      dedicatedServer.openFirewall = true;
+      localNetworkGameTransfers.openFirewall = true;
       remotePlay.openFirewall = true;
-      #gamescopeSession = true;
+      protontricks.enable = true;
     };
   };
 }
