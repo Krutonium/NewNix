@@ -183,7 +183,7 @@
     };
     command-not-found.enable = false;
   };
-
+  environment.gnome.excludePackages = [ pkgs.gnome-software pkgs.gnome-contacts ];
   # System state version (DO NOT CHANGE)
   system.stateVersion = "23.11";
 
