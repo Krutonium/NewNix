@@ -35,10 +35,28 @@
       url = "github:icewind1991/nvidia-patch-nixos";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    lix-module = {
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.92.0.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
-
-  outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-master, nixos-hardware, home-manager, update, 
-  nix-monitored, nixd, fan-controller, nur, R2CC, nvidia-patch, ... }@inputs:
+  outputs =
+    { self
+    , nixpkgs
+    , nixpkgs-unstable
+    , nixpkgs-master
+    , nixos-hardware
+    , home-manager
+    , update
+    , nix-monitored
+    , nixd
+    , fan-controller
+    , nur
+    , R2CC
+    , nvidia-patch
+    , lix-module
+    , ...
+    }@inputs:
     let
       system = "x86_64-linux";
 
@@ -93,6 +111,7 @@
             overlays.InternetRadio2Computercraft
             nur.overlays.default
             inputs.nvidia-patch.overlays.default
+            lix-module.nixosModules.default
           ];
         })
       ];
