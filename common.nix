@@ -21,13 +21,6 @@
       auth      optional      ${pkgs.gnome-keyring}/lib/security/pam_gnome_keyring.so
     '';
   };
-  nixpkgs.overlays = [
-    (final: prev: {
-      lldb = prev.lldb.overrideAttrs {
-       dontCheckForBrokenSymlinks = true;
-      };
-    })
-  ];
   # System services configuration
   services = {
     # CPU interrupt balancing
