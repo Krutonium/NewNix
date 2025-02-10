@@ -111,7 +111,7 @@
             overlays.InternetRadio2Computercraft
             nur.overlays.default
             inputs.nvidia-patch.overlays.default
-            lix-module.nixosModules.default
+            #lix-module.nixosModules.default
           ];
         })
       ];
