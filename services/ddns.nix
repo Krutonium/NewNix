@@ -28,7 +28,7 @@ in
   config = mkIf (cfg.ddns == true) {
     systemd.services.update_domain = {
       description = "Check External IP and Trigger cURL on Change";
-      after = [ "network-online.target" "sys-subsystem-net-devices-WAN.device" "network.target"];
+      after = [ "network-online.target" "sys-subsystem-net-devices-WAN.device" "network.target" ];
       wants = [ "network-online.target" "sys-subsystem-net-devices-WAN.device" "update_domain.path" ];
       bindsTo = [ "sys-subsystem-net-devices-WAN.device" ];
       path = [ pkgs.curl ];

@@ -24,7 +24,7 @@ in
         User = "root";
         RemainAfterExit = true;
         ExecStart = "${updateScript}/bin/update-script";
-        };
       };
     };
-  }
+  };
+}
