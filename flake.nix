@@ -63,6 +63,7 @@
       # Generic Modules
       baseModules = [
         ./common.nix
+        lix-module.nixosModules.default
         {
           nix.registry.nixos.flake = self;
           environment.etc."nix/inputs/nixpkgs".source = nixpkgs.outPath;
@@ -111,7 +112,6 @@
             overlays.InternetRadio2Computercraft
             nur.overlays.default
             inputs.nvidia-patch.overlays.default
-            #lix-module.nixosModules.default
           ];
         })
       ];
