@@ -45,8 +45,8 @@ in
     pkgs.gitkraken
     pkgs.godot_4-mono
     pkgs.hub
-    (pkgs.unstable.jetbrains.plugins.addPlugins pkgs.unstable.jetbrains.idea-ultimate [ "github-copilot" "nixidea" ])
-    (pkgs.unstable.jetbrains.plugins.addPlugins pkgs.unstable.jetbrains.rider [ "github-copilot" ])
+    (pkgs.master.jetbrains.plugins.addPlugins pkgs.master.jetbrains.idea-ultimate [ "github-copilot" "nixidea" ])
+    (pkgs.master.jetbrains.plugins.addPlugins pkgs.master.jetbrains.rider [ "github-copilot" ])
     pkgs.mono
     pkgs.nil
     pkgs.nixd
