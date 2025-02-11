@@ -123,7 +123,7 @@ in
     };
     package =
       if builtins.hasAttr video.version pkgs.nvidia-patch-list.fbc
-      then pkgs.nvidia-patch.patch-nvenc (pkgs.nvidia-patch.patch-fbc pkgs.linuxPackages.nvidiaPackages.stable)
+      then pkgs.nvidia-patch.patch-nvenc (pkgs.nvidia-patch.patch-fbc video)
       else video;
 
     #package = pkgs.nvidia-patch.patch-nvenc video;
