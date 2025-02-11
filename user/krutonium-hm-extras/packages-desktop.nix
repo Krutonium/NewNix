@@ -1,7 +1,7 @@
 { config, pkgs, lib, makeDestopItem, fetchurl, ... }:
 let
   OOTROM = builtins.fetchurl {
-    url = https://archive.org/download/ship-of-harkinian/ZELOOTD.zip/PAL%20GC.z64;
+    url = "https://archive.org/download/ship-of-harkinian/ZELOOTD.zip/PAL%20GC.z64";
     sha256 = "sha256:1lim6has47jjhh1wgmfxpwawc5s22g245wp53gczihxa4wypk27p";
     name = "PAL_GC.z64";
   };
