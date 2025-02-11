@@ -2,6 +2,14 @@
 let
   kernel = with pkgs; unstable.linuxPackages_zen;
   video = config.boot.kernelPackages.nvidiaPackages.beta;
+  pkgAfterFbc =
+    if builtins.hasAttr video.version pkgs.nvidia-patch-list.fbc
+    then pkgs.nvidia-patch.patch-fbc video
+    else video;
+  finalPkg =
+    if builtins.hasAttr video.version pkgs.nvidia-patch-list.nvenc
+    then pkgs.nvidia-patch.patch-nvenc pkgAfterFbc
+    else pkgAfterFbc;
   zenpower = config.boot.kernelPackages.zenpower;
   Hostname = "uGamingPC";
 in
@@ -121,13 +129,7 @@ in
     powerManagement = {
       enable = true;
     };
-    package =
-      if builtins.hasAttr video.version pkgs.nvidia-patch-list.fbc
-      then pkgs.nvidia-patch.patch-nvenc (pkgs.nvidia-patch.patch-fbc video)
-      else video;
-
-    #package = pkgs.nvidia-patch.patch-nvenc video;
-    #package = video;
+    package = if finalPkg == video then video else finalPkg;
     prime.offload.enable = false;
     open = true;
     nvidiaSettings = true;
