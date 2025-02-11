@@ -129,7 +129,7 @@ in
     powerManagement = {
       enable = true;
     };
-    package = if finalPkg == video then video else finalPkg;
+    package = finalPkg;
     prime.offload.enable = false;
     open = true;
     nvidiaSettings = true;
