@@ -35,7 +35,7 @@ in
     webkitgtk_4_1
   ];
   # Disable Sleep/Hibernate System Wide
-  systemd.targets.sleep.enable = false;
+  systemd.targets.sleep.enable = true;
   systemd.targets.suspend.enable = false;
   systemd.targets.hibernate.enable = false;
   systemd.targets.hybrid-sleep.enable = false;
