@@ -50,7 +50,6 @@ in
     (pkgs.master.jetbrains.plugins.addPlugins pkgs.master.jetbrains.rust-rover [ "github-copilot" ])
     pkgs.rustup
     pkgs.clang
-    pkgs.llvmPackages.bintools
     pkgs.mono
     pkgs.nil
     pkgs.nixd
