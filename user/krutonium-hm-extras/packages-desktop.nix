@@ -47,6 +47,7 @@ in
     pkgs.hub
     (pkgs.master.jetbrains.plugins.addPlugins pkgs.master.jetbrains.idea-ultimate [ "github-copilot" "nixidea" ])
     (pkgs.master.jetbrains.plugins.addPlugins pkgs.master.jetbrains.rider [ "github-copilot" ])
+    (pkgs.master.jetbrains.plugins.addPlugins pkgs.master.jetbrains.rust-rover [ "github-copilot" ])
     pkgs.mono
     pkgs.nil
     pkgs.nixd
