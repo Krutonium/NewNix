@@ -121,7 +121,7 @@ in
     pkgs.mesa-demos
     pkgs.monado
     pkgs.unstable.openrct2
-    pkgs.unstable.openttd
+    #pkgs.unstable.openttd
     pkgs.parsec-bin
     pkgs.prismlauncher
     pkgs.protonup
