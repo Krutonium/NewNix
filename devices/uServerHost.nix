@@ -2,7 +2,8 @@
 # There will be minimal software on it.
 { config, pkgs, lib, inputs, ... }:
 let
-  kernel = with pkgs; linuxPackages_latest;
+  kernel = with pkgs; linuxPackages;
+  btrfsDisk = "/dev/disk/by-label/WorkDisk";
   video = config.boot.kernelPackages.nvidiaPackages.stable;
   Hostname = "uServerHost";
 in
@@ -25,13 +26,16 @@ in
   };
 
   # TODO: Enable after making partitions. This will be a swap partition. There will be one on each disk.
-  # swapDevices = [
-  #   {
-  #     device = "";
-  #     priority = 1;
-  #     size = 8192;
-  #   }
-  # ];
+   swapDevices = [
+   {
+     device = "/dev/disk/by-name/swap-root";
+     priority = 1;
+   }
+   {
+     device = "/dev/disk/by-name/swap-work";
+     priority = 1;
+   }
+  ];
 
   # Compile everything with CPU tuning
   # TODO: Enable after installing system
@@ -68,10 +72,24 @@ in
 
   #TODO: Dummy UUIDs
   fileSystems = {
+    "/boot" = {
+      device = "/dev/disk/by-label/BOOT";
+      fsType = "vfat";
+    };
     "/home" = {
-      device = "/dev/disk/by-label/home";
+      device = btrfsDisk;
       fsType = "btrfs";
-      options = "noatime,compress=zstd:15,space_cache,autodefrag,";
+      options = [ "noatime" "compress=zstd:15" "subvol=Home" ];
+    };
+    "/servers/AtM9" = {
+      device = btrfsDisk;
+      fsType = "btrfs";
+      options = [ "noatime" "compress=zstd:15" "subvol=AtM9" ];
+    };
+    "servers/AoF7" = {
+      device = btrfsDisk;
+      fsType = "btrfs";
+      options = [ "noatime" "compress=zstd:15" "subvol=AoF7" ];
     };
     "/" = {
       device = "/dev/disk/by-label/root";
