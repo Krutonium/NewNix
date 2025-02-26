@@ -28,11 +28,11 @@ in
   # TODO: Enable after making partitions. This will be a swap partition. There will be one on each disk.
    swapDevices = [
    {
-     device = "/dev/disk/by-name/swap-root";
+     device = "/dev/disk/by-label/swap-root";
      priority = 1;
    }
    {
-     device = "/dev/disk/by-name/swap-work";
+     device = "/dev/disk/by-label/swap-work";
      priority = 1;
    }
   ];
