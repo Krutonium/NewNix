@@ -12,7 +12,7 @@ with builtins;
     };
     displayManager = mkOption {
       type = types.enum [ "gdm" "lightdm" "sddm" "none" ];
-      default = "lightdm";
+      default = "none";
       description = ''
         The Login/Display manager you want to use
       '';
