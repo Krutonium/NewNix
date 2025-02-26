@@ -124,6 +124,7 @@
       };
 
       # Common Device Modules
+
       commonPCModules = with nixos-hardware.nixosModules; [ common-pc common-pc-ssd ];
       commonIntel = with nixos-hardware.nixosModules; [ common-cpu-intel ];
       commonAMD = with nixos-hardware.nixosModules; [ common-cpu-amd ];
@@ -147,6 +148,11 @@
       ### uMsiLaptop ###
       ##################
       nixosConfigurations.uMsiLaptop = nixosConfiguration "uMsiLaptop" (commonPCModules ++ commonLaptop ++ commonIntel ++ gpuIntel ++ [ ./devices/uMsiLaptop.nix ]);
+
+      ###################
+      ### uServerHost ###
+      ###################
+      nixosConfigurations.uServerHost = nixosConfiguration "uServerHost" (commonPCModules ++ commonAMD ++ gpuNvidia ++ [ ./devices/uServerHost.nix ]);
 
       #################
       ### Uncomment if needed ###
