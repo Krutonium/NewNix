@@ -17,6 +17,7 @@ in
   boot = {
     kernelPackages = kernel;
     kernelParams = [ "mitigations=off" ];
+    initrd.systemd.enable = true;
   };
 
   # We are going to use a lot of swap space
