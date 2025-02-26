@@ -102,5 +102,6 @@ in
   # At some point, I will need to figure out how to handle automatic updates.
   sys.users.krutonium = true;
   sys.roles.server = true;
+  sys.boot.plymouth_enabled = false;
   system.stateVersion = lib.mkForce "24.11";
 }
