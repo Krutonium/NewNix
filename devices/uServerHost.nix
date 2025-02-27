@@ -93,7 +93,7 @@ in
     };
   };
 
-  McServers = [
+  minecraftServers.servers = [
     { name = "AtM9"; java = pkgs.jdk21_headless; }
     { name = "AoF7"; java = pkgs.jdk21_headless; }
   ];
