@@ -18,9 +18,9 @@ let
         wantedBy = [ "multi-user.target" ];
         preStart = ''
           # Ensure correct ownership and permissions
-          mkdir -p ${serverDir}
-          chown -R minecraft:minecraft ${serverDir}
-          chmod -R 755 ${serverDir}
+          ${pkgs.coreutils}/bin/mkdir -p ${serverDir}
+          ${pkgs.coreutils}/bin/chown -R minecraft:minecraft ${serverDir}
+          ${pkgs.coreutils}/bin/chmod -R 755 ${serverDir}
         '';
         serviceConfig = {
           WorkingDirectory = serverDir;
