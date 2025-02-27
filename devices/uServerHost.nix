@@ -8,6 +8,8 @@ let
   Hostname = "uServerHost";
 in
 {
+  imports = [ ./uServerHost-mc.nix ];
+
   # We want to disable the firewall; the home firewall will be guarding for us.
   networking = {
     firewall.enable = lib.mkForce false;
@@ -27,15 +29,15 @@ in
   };
 
   # TODO: Enable after making partitions. This will be a swap partition. There will be one on each disk.
-   swapDevices = [
-   {
-     device = "/dev/disk/by-label/swap-root";
-     priority = 1;
-   }
-   {
-     device = "/dev/disk/by-label/swap-work";
-     priority = 1;
-   }
+  swapDevices = [
+    {
+      device = "/dev/disk/by-label/swap-root";
+      priority = 1;
+    }
+    {
+      device = "/dev/disk/by-label/swap-work";
+      priority = 1;
+    }
   ];
 
   nix = {
@@ -91,7 +93,10 @@ in
     };
   };
 
-
+  McServers = [
+    { name = "AtM9"; java = pkgs.jdk21_headless; }
+    { name = "AoF7"; java = pkgs.jdk21_headless; }
+  ];
   # At some point, I will need to figure out how to handle automatic updates.
   sys.users.krutonium = true;
   sys.roles.server = true;
