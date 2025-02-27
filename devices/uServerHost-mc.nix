@@ -15,8 +15,7 @@ let
       startScript = "${serverDir}/nix-start.sh";
     in
     if server.enabled then {
-      name = "minecraft-${server.name}";
-      value = {
+      "minecraft-${server.name}" = {
         description = "Minecraft Server (${server.name})";
         after = [ "network.target" "minecraft-setup.service" ]; # Ensure directories are set up first
         wantedBy = [ "multi-user.target" ];
@@ -35,12 +34,11 @@ let
     } else
       null;
 
-  serverServices = filter (x: x != null) (map mkServerService cfg.servers);
+  serverServices = lib.filter (x: x != null) (map mkServerService cfg.servers);
 
   # Define minecraft-setup service as part of serverServices
   mkSetupService = {
-    name = "minecraft-setup";
-    value = {
+    "minecraft-setup" = {
       description = "Setup Minecraft server directories and permissions";
       before = enabledServiceNames; # Ensure setup runs before all server services
       wantedBy = [ "multi-user.target" ];
@@ -93,7 +91,7 @@ in
     # Combine the setup service with the Minecraft server services
     systemd.services = lib.mkMerge [
       serverServices
-      { inherit mkSetupService; }
+      mkSetupService
     ];
   };
 }
