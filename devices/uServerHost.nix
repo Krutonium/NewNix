@@ -94,8 +94,16 @@ in
   };
 
   minecraftServers.servers = [
-    { name = "AtM9"; java = pkgs.jdk21_headless; }
-    { name = "AoF7"; java = pkgs.jdk21_headless; }
+    {
+      name = "AtM9";
+      java = pkgs.jdk21_headless;
+      enabled = false;
+    }
+    {
+      name = "AoF7";
+      java = pkgs.jdk21_headless;
+      enabled = true;
+    }
   ];
   # At some point, I will need to figure out how to handle automatic updates.
   sys.users.krutonium = true;

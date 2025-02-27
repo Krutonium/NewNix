@@ -10,12 +10,18 @@ let
       serverDir = "/servers/${server.name}";
       startScript = "${serverDir}/nix-start.sh";
     in
-    {
+    if server.enabled then {
       name = "minecraft-${server.name}";
       value = {
         description = "Minecraft Server (${server.name})";
         after = [ "network.target" ];
         wantedBy = [ "multi-user.target" ];
+        preStart = ''
+          # Ensure correct ownership and permissions
+          mkdir -p ${serverDir}
+          chown -R minecraft:minecraft ${serverDir}
+          chmod -R 755 ${serverDir}
+        '';
         serviceConfig = {
           WorkingDirectory = serverDir;
           ExecStart = "${pkgs.bash}/bin/bash ${startScript}";
@@ -28,9 +34,10 @@ let
           ];
         };
       };
-    };
+    } else
+      null;
 
-  serverServices = builtins.listToAttrs (map mkServerService cfg.servers);
+  serverServices = builtins.listToAttrs (filter (x: x != null) (map mkServerService cfg.servers));
 in
 {
   options.minecraftServers = {
@@ -45,6 +52,11 @@ in
             type = types.package;
             description = "Java package for the server.";
           };
+          enabled = mkOption {
+            type = types.bool;
+            default = true;
+            description = "Whether to enable this server.";
+          };
         };
       });
       default = [ ];
@@ -53,6 +65,16 @@ in
   };
 
   config = {
+    # Ensure the `minecraft` user and group exist
+    users.users.minecraft = {
+      isSystemUser = true;
+      group = "minecraft";
+      home = "/servers"; # Optional, but good practice
+    };
+
+    users.groups.minecraft = {};
+
+    # Define the systemd services
     systemd.services = serverServices;
   };
 }
