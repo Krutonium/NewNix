@@ -8,7 +8,7 @@ let
   mkServerService = server:
     let
       serverDir = "/servers/${server.name}";
-      startScript = "${serverDir}/nix-start.sh";
+      startScript = "${serverDir}/${server.script}";  # Use the script provided per server
     in
     if server.enabled then {
       name = "minecraft-${server.name}";
@@ -45,6 +45,10 @@ in
           name = mkOption {
             type = types.str;
             description = "Minecraft server name.";
+          };
+          script = mkOption {
+            type = types.str;
+            description = "Start Script";
           };
           java = mkOption {
             type = types.package;
