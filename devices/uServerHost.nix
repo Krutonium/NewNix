@@ -104,7 +104,7 @@ in
       name = "AoF7";
       java = pkgs.jdk21;
       script = "startserver.sh";
-      enabled = true;
+      enabled = false;
     }
   ];
   # At some point, I will need to figure out how to handle automatic updates.
