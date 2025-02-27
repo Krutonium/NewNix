@@ -1,6 +1,10 @@
-{ config, lib, pkgs, McServers, ... }:
+{ config, lib, pkgs, ... }:
+
+with lib;
 
 let
+  cfg = config.minecraftServers;
+
   mkServerService = server:
     let
       serverDir = "/servers/${server.name}";
@@ -26,8 +30,29 @@ let
       };
     };
 
-  serverServices = builtins.listToAttrs (map mkServerService McServers);
+  serverServices = builtins.listToAttrs (map mkServerService cfg.servers);
 in
 {
-  systemd.services = serverServices;
+  options.minecraftServers = {
+    servers = mkOption {
+      type = with types; listOf (submodule {
+        options = {
+          name = mkOption {
+            type = types.str;
+            description = "Minecraft server name.";
+          };
+          java = mkOption {
+            type = types.package;
+            description = "Java package for the server.";
+          };
+        };
+      });
+      default = [ ];
+      description = "List of Minecraft servers to manage.";
+    };
+  };
+
+  config = {
+    systemd.services = serverServices;
+  };
 }
