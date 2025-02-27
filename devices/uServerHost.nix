@@ -96,13 +96,13 @@ in
   minecraftServers.servers = [
     {
       name = "AtM9";
-      java = pkgs.jdk21_headless;
+      java = pkgs.jdk21;
       script = "";
       enabled = false;
     }
     {
       name = "AoF7";
-      java = pkgs.jdk21_headless;
+      java = pkgs.jdk21;
       script = "startserver.sh";
       enabled = true;
     }
