@@ -28,6 +28,7 @@ let
           Environment = [
             "JAVA_HOME=${server.java.home}"
             "PATH=${server.java}/bin:$PATH"
+            pkgs.bash
           ];
         };
       };
