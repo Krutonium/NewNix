@@ -5,20 +5,20 @@ with lib;
 let
   cfg = config.minecraftServers;
 
-  # Generate a list of enabled Minecraft services
-  enabledServers = filter (server: server.enabled) cfg.servers;
-  enabledServiceNames = map (server: "minecraft-${server.name}.service") enabledServers;
-
   mkServerService = server:
     let
       serverDir = "/servers/${server.name}";
       startScript = "${serverDir}/nix-start.sh";
     in
     if server.enabled then {
-      "minecraft-${server.name}" = {
+      name = "minecraft-${server.name}";
+      value = {
         description = "Minecraft Server (${server.name})";
-        after = [ "network.target" "minecraft-setup.service" ]; # Ensure directories are set up first
+        after = [ "network.target" ];
         wantedBy = [ "multi-user.target" ];
+        preStart = ''
+          #Actually Nah
+        '';
         serviceConfig = {
           WorkingDirectory = serverDir;
           ExecStart = "${pkgs.bash}/bin/bash ${startScript}";
@@ -34,24 +34,7 @@ let
     } else
       null;
 
-  serverServices = lib.filter (x: x != null) (map mkServerService cfg.servers);
-
-  # Define minecraft-setup service as part of serverServices
-  mkSetupService = {
-    "minecraft-setup" = {
-      description = "Setup Minecraft server directories and permissions";
-      before = enabledServiceNames; # Ensure setup runs before all server services
-      wantedBy = [ "multi-user.target" ];
-      serviceConfig = {
-        Type = "oneshot";
-        RemainAfterExit = true;
-        ExecStart = "${pkgs.bash}/bin/bash -c 'mkdir -p /servers && chown -R minecraft:minecraft /servers && chmod -R 755 /servers'";
-        User = "root";
-        Group = "root";
-      };
-    };
-  };
-
+  serverServices = builtins.listToAttrs (filter (x: x != null) (map mkServerService cfg.servers));
 in
 {
   options.minecraftServers = {
@@ -88,10 +71,7 @@ in
 
     users.groups.minecraft = {};
 
-    # Combine the setup service with the Minecraft server services
-    systemd.services = lib.mkMerge [
-      serverServices
-      mkSetupService
-    ];
+    # Define the systemd services
+    systemd.services = serverServices;
   };
 }
