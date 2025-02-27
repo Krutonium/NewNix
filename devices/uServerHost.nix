@@ -40,11 +40,11 @@ in
 
   # Compile everything with CPU tuning
   # TODO: Enable after installing system
-  #  nixpkgs.hostPlatform = {
-  #    gcc.arch = "znver1";
-  #    gcc.tune = "znver1";
-  #    system = "x86_64-linux";
-  #  };
+  nixpkgs.hostPlatform = {
+    gcc.arch = "znver1";
+    gcc.tune = "znver1";
+    system = "x86_64-linux";
+  };
 
   nix = {
     daemonCPUSchedPolicy = "idle";
