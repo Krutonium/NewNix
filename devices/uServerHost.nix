@@ -97,11 +97,13 @@ in
     {
       name = "AtM9";
       java = pkgs.jdk21_headless;
+      script = "";
       enabled = false;
     }
     {
       name = "AoF7";
       java = pkgs.jdk21_headless;
+      script = "startserver.sh";
       enabled = true;
     }
   ];
