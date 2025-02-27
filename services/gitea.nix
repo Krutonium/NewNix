@@ -12,6 +12,7 @@ in
       #package = pkgs.forgejo;
       #package = pkgs.gitea;
       package = pkgs.unstable.forgejo;
+      stateDir = "/media2/forgejo/repos";
       settings = {
         server = {
           ROOT_URL = "https://gitea.krutonium.ca/";
