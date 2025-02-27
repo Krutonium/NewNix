@@ -49,8 +49,9 @@ in
   nix = {
     daemonCPUSchedPolicy = "idle";
     settings = {
-      cores = 4;
-      max-jobs = 4;
+      cores = 16;
+      max-jobs = 16;
+      system-features = [ "gccarch-znver1" ];
     };
   };
   # Configure nvidia Driver - Closed Source version
