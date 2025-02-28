@@ -97,7 +97,7 @@ in
     {
       name = "AtM9";
       java = pkgs.jdk21;
-      script = "";
+      script = "startserver.sh";
       enabled = false;
       rconPort = 12345;
       rconPasswordFile = "/servers/rcon.password";
