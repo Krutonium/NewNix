@@ -8,9 +8,9 @@ let
   mkServerService = server:
     let
       serverDir = "/servers/${server.name}";
-      startScript = "${serverDir}/${server.script}";  # Use the script provided per server
-      rconPort = server.rconPort or 25575;  # Default to 25575 if not specified
-      rconPassword = server.rconPassword or "";  # You can define this elsewhere securely
+      startScript = "${serverDir}/${server.script}"; # Use the script provided per server
+      rconPort = server.rconPort or 25575; # Default to 25575 if not specified
+      rconPassword = server.rconPassword or ""; # You can define this elsewhere securely
     in
     if server.enabled then {
       name = "minecraft-${server.name}";
@@ -30,6 +30,8 @@ let
           Environment = [
             "JAVA_HOME=${server.java.home}"
             "PATH=${server.java}/bin:$PATH"
+          ];
+          path = [
             pkgs.bash
             pkgs.coreutils
             pkgs.mcrcon
@@ -59,7 +61,7 @@ in
           script = mkOption {
             type = types.str;
             description = "Start script for the Minecraft server (e.g., nix-start.sh).";
-            default = "nix-start.sh";  # Default script if not specified
+            default = "nix-start.sh"; # Default script if not specified
           };
           java = mkOption {
             type = types.package;
@@ -73,12 +75,12 @@ in
           rconPort = mkOption {
             type = types.int;
             description = "The RCON port for the Minecraft server.";
-            default = 25575;  # Default RCON port
+            default = 25575; # Default RCON port
           };
           rconPasswordFile = mkOption {
             type = types.str;
             description = "The RCON password for the Minecraft server.";
-            default = "";  # Leave it empty to be handled manually later
+            default = ""; # Leave it empty to be handled manually later
           };
         };
       });
@@ -95,7 +97,7 @@ in
       home = "/servers"; # Optional, but good practice
     };
 
-    users.groups.minecraft = {};
+    users.groups.minecraft = { };
 
     # Define the systemd services
     systemd.services = serverServices;
