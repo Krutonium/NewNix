@@ -33,7 +33,10 @@ let
             pkgs.bash
           ];
           # Shutdown server via RCON on service stop
-          ExecStop = "${pkgs.mcrcon}/bin/mcrcon -H 127.0.0.1 -P ${toString rconPort} -p ${rconPassword} /stop";
+          ExecStop = ''
+            password=`cat ${rconPassword}`
+            ${pkgs.mcrcon}/bin/mcrcon -H 127.0.0.1 -P ${toString rconPort} -p "$password" /stop
+          '';
         };
       };
     } else
@@ -70,7 +73,7 @@ in
             description = "The RCON port for the Minecraft server.";
             default = 25575;  # Default RCON port
           };
-          rconPassword = mkOption {
+          rconPasswordFile = mkOption {
             type = types.str;
             description = "The RCON password for the Minecraft server.";
             default = "";  # Leave it empty to be handled manually later
