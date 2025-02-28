@@ -23,7 +23,7 @@ let
         '';
         serviceConfig = {
           WorkingDirectory = serverDir;
-          ExecStart = "${pkgs.bash}/bin/bash ${startScript}";
+          ExecStart = "${startScript}";
           Restart = "always";
           User = "minecraft";
           Group = "minecraft";
