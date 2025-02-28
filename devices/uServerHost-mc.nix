@@ -23,7 +23,7 @@ let
         '';
         serviceConfig = {
           WorkingDirectory = serverDir;
-          ExecStart = "${startScript}";
+          ExecStart = "bash ${startScript}";
           Restart = "always";
           User = "minecraft";
           Group = "minecraft";
