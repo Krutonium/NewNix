@@ -32,7 +32,6 @@ let
             "PATH=${server.java}/bin:$PATH"
             pkgs.bash
           ];
-
           # Shutdown server via RCON on service stop
           ExecStop = "${pkgs.mcrcon}/bin/mcrcon -H 127.0.0.1 -P ${rconPort} -p ${rconPassword} /stop";
         };
