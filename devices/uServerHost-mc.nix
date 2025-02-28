@@ -31,6 +31,7 @@ let
             "JAVA_HOME=${server.java.home}"
             "PATH=${server.java}/bin:$PATH"
             pkgs.bash
+            pkgs.coreutils
           ];
           # Shutdown server via RCON on service stop
           ExecStop = ''
