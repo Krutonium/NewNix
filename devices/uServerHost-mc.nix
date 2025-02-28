@@ -23,7 +23,7 @@ let
         '';
         serviceConfig = {
           WorkingDirectory = serverDir;
-          ExecStart = "bash ${startScript}";
+          ExecStart = "${pkgs.bash}/bin/bash ${startScript}";
           Restart = "always";
           User = "minecraft";
           Group = "minecraft";
@@ -38,8 +38,8 @@ let
           ];
           # Shutdown server via RCON on service stop
           ExecStop = ''
-            password=`cat ${rconPassword}`
-            mcrcon -H 127.0.0.1 -P ${toString rconPort} -p "$password" /stop
+            password=(${pkgs.coreutils}/bin/cat ${rconPassword})
+            ${pkgs.mcrcon}/bin/mcrcon -H 127.0.0.1 -P ${toString rconPort} -p "$password" /stop
           '';
         };
       };
