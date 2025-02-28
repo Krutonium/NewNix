@@ -33,7 +33,7 @@ let
             pkgs.bash
           ];
           # Shutdown server via RCON on service stop
-          ExecStop = "${pkgs.mcrcon}/bin/mcrcon -H 127.0.0.1 -P ${rconPort} -p ${rconPassword} /stop";
+          ExecStop = "${pkgs.mcrcon}/bin/mcrcon -H 127.0.0.1 -P ${toString rconPort} -p ${rconPassword} /stop";
         };
       };
     } else
