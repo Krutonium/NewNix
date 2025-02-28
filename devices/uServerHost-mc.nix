@@ -31,7 +31,7 @@ let
             "JAVA_HOME=${server.java.home}"
             "PATH=${server.java}/bin:$PATH"
           ];
-          path = [
+          Path = [
             pkgs.bash
             pkgs.coreutils-full
             pkgs.mcrcon
