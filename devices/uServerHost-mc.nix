@@ -38,7 +38,7 @@ let
           ];
           # Shutdown server via RCON on service stop
           ExecStop = ''
-            password=(${pkgs.coreutils-full}/bin/cat ${rconPassword})
+            password=$(${pkgs.coreutils-full}/bin/cat ${rconPassword})
             ${pkgs.mcrcon}/bin/mcrcon -H 127.0.0.1 -P ${toString rconPort} -p "$password" /stop
           '';
         };
