@@ -99,7 +99,7 @@ in
       java = pkgs.jdk21;
       script = "";
       enabled = false;
-      rconPort = 12345;
+      rconPort = "12345";
       rconPassword = builtins.readFile "/servers/rcon.password";
     }
     {
@@ -107,7 +107,7 @@ in
       java = pkgs.jdk21;
       script = "startserver.sh";
       enabled = true;
-      rconPort = 12346;
+      rconPort = "12346";
       # Read Password from /servers/rcon.password
       rconPassword = builtins.readFile "/servers/rcon.password";
     }
