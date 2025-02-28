@@ -99,12 +99,17 @@ in
       java = pkgs.jdk21;
       script = "";
       enabled = false;
+      rconPort = 12345;
+      rconPassword = builtins.readFile "/servers/rcon.password";
     }
     {
       name = "AoF7";
       java = pkgs.jdk21;
       script = "startserver.sh";
       enabled = false;
+      rconPort = 12346;
+      # Read Password from /servers/rcon.password
+      rconPassword = builtins.readFile "/servers/rcon.password";
     }
   ];
   # At some point, I will need to figure out how to handle automatic updates.
