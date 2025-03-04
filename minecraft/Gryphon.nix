@@ -23,7 +23,7 @@ in
         Restart = "always";
         KillSignal = "SIGINT";
       };
-      ExecStop =
+      preStop =
         ''
           password=`cat /persist/mcrcon.txt`
           ${pkgs.mcrcon}/bin/mcrcon -H ${host} -P ${rconport_atm9} -p $password -w 5 "say Shutting Down Now!" stop
