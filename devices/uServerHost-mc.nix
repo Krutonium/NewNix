@@ -11,6 +11,7 @@ let
       startScript = "${serverDir}/${server.script}"; # Use the script provided per server
       rconPort = server.rconPort or 25575; # Default to 25575 if not specified
       rconPassword = server.rconPassword or ""; # You can define this elsewhere securely
+      backupScript = "${serverDir}/backup.sh"; # Define the backup script path
     in
     if server.enabled then {
       name = "minecraft-${server.name}";
@@ -46,7 +47,44 @@ let
     } else
       null;
 
+  mkBackupService = server:
+    let
+      serverDir = "/servers/${server.name}";
+      backupScript = "${serverDir}/backup.sh"; # Define the backup script path
+    in
+    if server.enabled then {
+      name = "backup-${server.name}";
+      value = {
+        description = "Backup Service for Minecraft Server (${server.name})";
+        after = [ "network.target" ];
+        wantedBy = [ "multi-user.target" ];
+        serviceConfig = {
+          WorkingDirectory = serverDir;
+          ExecStart = "${pkgs.bash}/bin/bash ${backupScript}";
+          User = "minecraft";
+          Group = "minecraft";
+        };
+      };
+    } else
+      null;
+
+  mkBackupTimer = server:
+    if server.enabled then {
+      name = "backup-${server.name}.timer";
+      value = {
+        description = "Timer for Backup Service for Minecraft Server (${server.name})";
+        wantedBy = [ "timers.target" ];
+        timerConfig = {
+          OnCalendar = "*:0/15";
+          Persistent = true;
+        };
+      };
+    } else
+      null;
+
   serverServices = builtins.listToAttrs (filter (x: x != null) (map mkServerService cfg.servers));
+  backupServices = builtins.listToAttrs (filter (x: x != null) (map mkBackupService cfg.servers));
+  backupTimers = builtins.listToAttrs (filter (x: x != null) (map mkBackupTimer cfg.servers));
 
 in
 {
@@ -60,8 +98,8 @@ in
           };
           script = mkOption {
             type = types.str;
-            description = "Start script for the Minecraft server (e.g., nix-start.sh).";
-            default = "nix-start.sh"; # Default script if not specified
+            description = "Start script for the Minecraft server (e.g., start-server.sh).";
+            default = "start-server.sh"; # Default script if not specified
           };
           java = mkOption {
             type = types.package;
@@ -99,7 +137,8 @@ in
 
     users.groups.minecraft = { };
 
-    # Define the systemd services
-    systemd.services = serverServices;
+    # Define the systemd services and timers
+    systemd.services = serverServices // backupServices;
+    systemd.timers = backupTimers;
   };
 }

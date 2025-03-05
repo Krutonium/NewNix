@@ -98,7 +98,7 @@ in
     pkgs.babelfish
     pkgs.comma
     pkgs.fish
-    pkgs.matrix-synapse-tools.synadm
+    pkgs.synadm
     pkgs.mcrcon
     pkgs.nixpkgs-review
     pkgs.nvtopPackages.full
