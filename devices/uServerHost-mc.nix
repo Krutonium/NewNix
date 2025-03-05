@@ -15,28 +15,41 @@ let
     if server.enabled then {
       name = "minecraft-${server.name}";
       value = {
-        description = "Minecraft Server (${server.name})";
-        after = [ "network.target" ];
-        wantedBy = [ "multi-user.target" ];
-        preStart = ''
-          # Custom pre-start logic (if any)
+        script = ''
+            ${startScript}
         '';
         serviceConfig = {
-          WorkingDirectory = serverDir;
-          Restart = "always";
-          User = "minecraft";
-          Group = "minecraft";
-          Environment = [
-            "JAVA_HOME=${server.java.home}"
-            "PATH=${server.java}/bin:$PATH"
-          ];
-          path = [
-            pkgs.bash
-            pkgs.coreutils-full
-            pkgs.mcrcon
-          ];
-          Script = ''${startScript}'';
+            WorkingDirectory = serverDir;
+            Restart = "always";
+            User = "minecraft";
+            Group = "minecraft";
+            Environment = [
+              "JAVA_HOME=${server.java.home}"
+              "PATH=${server.java}/bin:$PATH"
+            ];
         };
+#        description = "Minecraft Server (${server.name})";
+#        after = [ "network.target" ];
+#        wantedBy = [ "multi-user.target" ];
+#        preStart = ''
+#          # Custom pre-start logic (if any)
+#        '';
+#        serviceConfig = {
+#          WorkingDirectory = serverDir;
+#          Restart = "always";
+#          User = "minecraft";
+#          Group = "minecraft";
+#          Environment = [
+#            "JAVA_HOME=${server.java.home}"
+#            "PATH=${server.java}/bin:$PATH"
+#          ];
+#          path = [
+#            pkgs.bash
+#            pkgs.coreutils-full
+#            pkgs.mcrcon
+#          ];
+#          Script = ''${startScript}'';
+#        };
       };
     } else
       null;
