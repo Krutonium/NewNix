@@ -49,6 +49,7 @@ let
   mkBackupService = server:
     let
       serverDir = "/servers/${server.name}";
+      host = "127.0.0.1"; # Localhost for now
     in
     if server.enabled then {
       name = "backup-${server.name}";
