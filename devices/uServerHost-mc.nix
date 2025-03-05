@@ -16,6 +16,7 @@ let
       name = "minecraft-${server.name}";
       value = {
         script = ''
+            java --version
             ${startScript}
         '';
         path = [ pkgs.bash server.java ];
