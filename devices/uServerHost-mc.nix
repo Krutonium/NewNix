@@ -123,12 +123,6 @@ let
     } else
       null;
   mkDailyBackupTimer = server:
-    let
-      # Create a hash of the server name to get a number between 0-59
-      # This ensures each server gets a consistent but different time
-      nameHash = builtins.hashString "md5" server.name;
-      minute = builtins.mod (builtins.fromJSON (builtins.substring 0 2 nameHash)) 60;
-    in
     if server.enabled then {
       name = "backup-daily-${server.name}.timer";
       value = {
@@ -137,7 +131,7 @@ let
         timerConfig = {
           OnCalendar = "*-*-* 02:${toString minute}:00";
           Persistent = true;
-          RandomizedDelaySec = "5m";
+          RandomizedDelaySec = "1h";
         };
       };
     } else
