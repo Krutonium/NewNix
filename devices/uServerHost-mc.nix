@@ -66,10 +66,10 @@ let
         };
         script = ''
           password=`cat ${server.rconPasswordFile}`
-          ${pkgs.mcrcon}/bin/mcrcon -H ${host} -P ${toString rconPort} -p "$password" -w 1 "say Starting Backup..." save-off save-all
+          ${pkgs.mcrcon}/bin/mcrcon -H ${host} -P ${toString server.rconPort} -p "$password" -w 1 "say Starting Backup..." save-off save-all
           # Create snapshot
           btrfs-snap -r -c . hourly 192
-          ${pkgs.mcrcon}/bin/mcrcon -H ${host} -P ${toString rconPort} -p "$password" -w 1 save-on "say Done!"
+          ${pkgs.mcrcon}/bin/mcrcon -H ${host} -P ${toString server.rconPort} -p "$password" -w 1 save-on "say Done!"
         '';
       };
     } else
@@ -111,11 +111,11 @@ let
           mkdir -p ${backupDir}
           # Warn the players that a backup is starting
           password=`cat ${server.rconPasswordFile}`
-          ${pkgs.mcrcon}/bin/mcrcon -H ${host} -P ${toString rconPort} -p "$password" -w 1 "say Starting Daily Backup..." save-off save-all
+          ${pkgs.mcrcon}/bin/mcrcon -H ${host} -P ${toString server.rconPort} -p "$password" -w 1 "say Starting Daily Backup..." save-off save-all
           DATE=$(date +%Y-%m-%d_%H-%M-%S)
           nice -n 19 ${pkgs.p7zip}/bin/7z a -mx9 -mmf=bt2 "${backupDir}/$DATE.7z" ./*
           # Let the players know the backup is done
-          ${pkgs.mcrcon}/bin/mcrcon -H ${host} -P ${toString rconPort} -p "$password" -w 1 save-on "say Daily Backup Complete!"
+          ${pkgs.mcrcon}/bin/mcrcon -H ${host} -P ${toString server.rconPort} -p "$password" -w 1 save-on "say Daily Backup Complete!"
           find ${backupDir} -name "*.7z" -type f -mtime +7 -delete
         '';
       };
