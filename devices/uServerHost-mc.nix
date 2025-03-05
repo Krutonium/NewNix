@@ -18,6 +18,7 @@ let
         script = ''
             ${startScript}
         '';
+        path = [ pkgs.bash server.java ];
         serviceConfig = {
             WorkingDirectory = serverDir;
             Restart = "always";
@@ -28,6 +29,10 @@ let
               "PATH=${server.java}/bin:$PATH"
             ];
         };
+        wantedBy = [ "multi-user.target" ];
+        after = [ "network.target" ];
+        description = "Minecraft Server (${server.name})";
+
 #        description = "Minecraft Server (${server.name})";
 #        after = [ "network.target" ];
 #        wantedBy = [ "multi-user.target" ];
