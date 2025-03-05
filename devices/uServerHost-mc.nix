@@ -129,7 +129,7 @@ let
         description = "Daily Timer for Compressed Backup Service (${server.name})";
         wantedBy = [ "timers.target" ];
         timerConfig = {
-          OnCalendar = "*-*-* 02:${toString minute}:00";
+          OnCalendar = "*-*-* 02:00:00";
           Persistent = true;
           RandomizedDelaySec = "1h";
         };
