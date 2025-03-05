@@ -116,6 +116,11 @@ in
       rconPasswordFile = "/servers/rcon.password";
     }
   ];
+  services = {
+    udev.extraRules = ''
+      ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="30:9c:23:d3:06:fd", NAME="WAN"
+    '';
+  };
   # At some point, I will need to figure out how to handle automatic updates.
   sys.users.krutonium = true;
   sys.roles.server = true;
