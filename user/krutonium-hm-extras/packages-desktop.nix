@@ -179,8 +179,4 @@ in
     enable = true;
     enableFishIntegration = true;
   };
-  programs.atuin = {
-    enableFishIntegration = true;
-    enable = true;
-  };
 }

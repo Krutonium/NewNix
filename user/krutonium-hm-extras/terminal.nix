@@ -7,6 +7,10 @@
   home.packages = [
     pkgs.bat
   ];
+  programs.atuin = {
+    enableFishIntegration = true;
+    enable = true;
+  };
 
 
   programs.starship = {
