@@ -23,7 +23,6 @@ let
         '';
         serviceConfig = {
           WorkingDirectory = serverDir;
-          script = "${startScript}";
           Restart = "always";
           User = "minecraft";
           Group = "minecraft";
@@ -31,16 +30,12 @@ let
             "JAVA_HOME=${server.java.home}"
             "PATH=${server.java}/bin:$PATH"
           ];
-          Path = [
+          path = [
             pkgs.bash
             pkgs.coreutils-full
             pkgs.mcrcon
           ];
-          # Shutdown server via RCON on service stop
-          preStop = ''
-            password=`${pkgs.coreutils-full}/bin/cat ${rconPassword}`
-            ${pkgs.mcrcon}/bin/mcrcon -H 127.0.0.1 -P ${toString rconPort} -p $password /stop
-          '';
+          Script = ''${startScript}'';
         };
       };
     } else
