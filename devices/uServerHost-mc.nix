@@ -93,6 +93,7 @@ let
       serverDir = "/servers/${server.name}";
       backupDir = "/backups/${server.name}";
       rconPort = server.rconPort or 25575; # Default to 25575 if not specified
+      host = "127.0.0.1";
     in
     if server.enabled then {
       name = "backup-daily-${server.name}";
