@@ -11,7 +11,6 @@ let
       startScript = "${serverDir}/${server.script}"; # Use the script provided per server
       rconPort = server.rconPort or 25575; # Default to 25575 if not specified
       rconPassword = server.rconPassword or ""; # You can define this elsewhere securely
-      backupScript = "${serverDir}/backup.sh"; # Define the backup script path
     in
     if server.enabled then {
       name = "minecraft-${server.name}";
@@ -24,7 +23,7 @@ let
         '';
         serviceConfig = {
           WorkingDirectory = serverDir;
-          ExecStart = "${pkgs.bash}/bin/bash ${startScript}";
+          script = "${startScript}";
           Restart = "always";
           User = "minecraft";
           Group = "minecraft";
@@ -40,7 +39,7 @@ let
           # Shutdown server via RCON on service stop
           preStop = ''
             password=`${pkgs.coreutils-full}/bin/cat ${rconPassword}`
-            ${pkgs.mcrcon}/bin/mcrcon -H 127.0.0.1 -P ${toString rconPort} -p "$password" /stop
+            ${pkgs.mcrcon}/bin/mcrcon -H 127.0.0.1 -P ${toString rconPort} -p $password /stop
           '';
         };
       };
@@ -50,7 +49,6 @@ let
   mkBackupService = server:
     let
       serverDir = "/servers/${server.name}";
-      backupScript = "${serverDir}/backup.sh"; # Define the backup script path
     in
     if server.enabled then {
       name = "backup-${server.name}";
@@ -58,12 +56,20 @@ let
         description = "Backup Service for Minecraft Server (${server.name})";
         after = [ "network.target" ];
         wantedBy = [ "multi-user.target" ];
+        path = [ pkgs.btrfs-progs pkgs.btrfs-snap pkgs.mcrcon pkgs.coreutils ];
         serviceConfig = {
+          Type = "oneshot";
           WorkingDirectory = serverDir;
-          ExecStart = "${pkgs.bash}/bin/bash ${backupScript}";
-          User = "minecraft";
-          Group = "minecraft";
+          User = "root";
+          Group = "root";
         };
+        script = ''
+          password=`cat ${server.rconPasswordFile}`
+          ${pkgs.mcrcon}/bin/mcrcon -H ${host} -P ${toString rconPort} -p "$password" -w 1 "say Starting Backup..." save-off save-all
+          # Create snapshot
+          btrfs-snap -r -c . hourly 192
+          ${pkgs.mcrcon}/bin/mcrcon -H ${host} -P ${toString rconPort} -p "$password" -w 1 save-on "say Done!"
+        '';
       };
     } else
       null;
@@ -81,11 +87,64 @@ let
       };
     } else
       null;
-
+  mkDailyBackupService = server:
+    let
+      serverDir = "/servers/${server.name}";
+      backupDir = "/backups/${server.name}";
+      rconPort = server.rconPort or 25575; # Default to 25575 if not specified
+    in
+    if server.enabled then {
+      name = "backup-daily-${server.name}";
+      value = {
+        description = "Daily Backup Service for Minecraft Server (${server.name})";
+        after = [ "network.target" ];
+        path = [ pkgs.p7zip pkgs.mcrcon pkgs.coreutils ];
+        serviceConfig = {
+          Type = "oneshot";
+          WorkingDirectory = serverDir;
+          User = "minecraft";
+          Group = "minecraft";
+        };
+        script = ''
+          # Create a backup directory - In case it doesn't exist
+          mkdir -p ${backupDir}
+          # Warn the players that a backup is starting
+          password=`cat ${server.rconPasswordFile}`
+          ${pkgs.mcrcon}/bin/mcrcon -H ${host} -P ${toString rconPort} -p "$password" -w 1 "say Starting Daily Backup..." save-off save-all
+          DATE=$(date +%Y-%m-%d_%H-%M-%S)
+          nice -n 19 ${pkgs.p7zip}/bin/7z a -mx9 -mmf=bt2 "${backupDir}/$DATE.7z" ./*
+          # Let the players know the backup is done
+          ${pkgs.mcrcon}/bin/mcrcon -H ${host} -P ${toString rconPort} -p "$password" -w 1 save-on "say Daily Backup Complete!"
+          find ${backupDir} -name "*.7z" -type f -mtime +7 -delete
+        '';
+      };
+    } else
+      null;
+  mkDailyBackupTimer = server:
+    let
+      # Create a hash of the server name to get a number between 0-59
+      # This ensures each server gets a consistent but different time
+      nameHash = builtins.hashString "md5" server.name;
+      minute = builtins.mod (builtins.fromJSON (builtins.substring 0 2 nameHash)) 60;
+    in
+    if server.enabled then {
+      name = "backup-daily-${server.name}.timer";
+      value = {
+        description = "Daily Timer for Compressed Backup Service (${server.name})";
+        wantedBy = [ "timers.target" ];
+        timerConfig = {
+          OnCalendar = "*-*-* 02:${toString minute}:00";
+          Persistent = true;
+          RandomizedDelaySec = "5m";
+        };
+      };
+    } else
+      null;
+  dailyBackupServices = builtins.listToAttrs (filter (x: x != null) (map mkDailyBackupService cfg.servers));
+  dailyBackupTimers = builtins.listToAttrs (filter (x: x != null) (map mkDailyBackupTimer cfg.servers));
   serverServices = builtins.listToAttrs (filter (x: x != null) (map mkServerService cfg.servers));
   backupServices = builtins.listToAttrs (filter (x: x != null) (map mkBackupService cfg.servers));
   backupTimers = builtins.listToAttrs (filter (x: x != null) (map mkBackupTimer cfg.servers));
-
 in
 {
   options.minecraftServers = {
@@ -138,7 +197,7 @@ in
     users.groups.minecraft = { };
 
     # Define the systemd services and timers
-    systemd.services = serverServices // backupServices;
-    systemd.timers = backupTimers;
+    systemd.services = serverServices // backupServices // dailyBackupServices;
+    systemd.timers = backupTimers // dailyBackupTimers;
   };
 }
