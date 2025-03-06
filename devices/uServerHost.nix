@@ -16,6 +16,15 @@ in
     hostName = Hostname;
   };
 
+  services.ollama = {
+    enabled = true;
+    acceleration = "cuda";
+    openFirewall = true;
+    host = "0.0.0.0";
+  };
+  services.nextjs-ollama-llm-ui.enable = true;
+    
+
   boot = {
     kernelPackages = kernel;
     kernelParams = [ "mitigations=off" ];
