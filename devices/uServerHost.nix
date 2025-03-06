@@ -111,6 +111,11 @@ in
     };
   };
 
+  # Install Packages:
+  environment.systemPackages = [
+    pkgs.MediaServer
+  ];
+
   minecraftServers.servers = [
     {
       name = "AtM9";
