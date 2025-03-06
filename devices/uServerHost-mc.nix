@@ -98,7 +98,7 @@ let
           mkdir -p ${backupDir}
           # Warn the players that a backup is starting
           password=`cat ${server.rconPasswordFile}`
-          ${pkgs.mcrcon}/bin/mcrcon -H ${host} -P ${toString server.rconPort} -p "$password" -w 1 "say Starting Daily Backup..." save-off save-all
+          ${pkgs.mcrcon}/bin/mcrcon -H ${host} -P ${toString server.rconPort} -p "$password" -w 1 "say Starting Big Fat Daily Backup..." save-off save-all
           DATE=$(date +%Y-%m-%d)
           nice -n 19 ${pkgs.p7zip}/bin/7z a -mx9 -mmf=bt2 "${backupDir}/$DATE.7z" ./*
           # Let the players know the backup is done
