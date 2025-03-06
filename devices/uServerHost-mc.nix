@@ -52,7 +52,7 @@ let
       name = "backup-${server.name}";
       value = {
         description = "Backup Service for Minecraft Server (${server.name})";
-        after = [ "network.target" ];
+        after = [ "network.target" "minecraft-${server.name}.service" ];
         wantedBy = [ "multi-user.target" ];
         path = [ pkgs.btrfs-progs pkgs.btrfs-snap pkgs.mcrcon pkgs.coreutils ];
         startAt = "*:0/15";
