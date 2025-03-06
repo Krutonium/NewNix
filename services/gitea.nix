@@ -15,9 +15,9 @@ in
       stateDir = "/media2/forgejo/repos";
       settings = {
         server = {
-          ROOT_URL = "https://gitea.krutonium.ca/";
+          ROOT_URL = "https://git.krutonium.ca/";
           HTTP_PORT = 3001;
-          DOMAIN = "gitea.krutonium.ca";
+          DOMAIN = "git.krutonium.ca";
         };
         "attachment" = {
           MAX_SIZE = 1000;
