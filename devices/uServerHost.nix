@@ -21,6 +21,7 @@ in
     acceleration = "cuda";
     openFirewall = true;
     host = "0.0.0.0";
+    package = pkgs.unstable.ollama;
   };
   #services.nextjs-ollama-llm-ui.enable = true;
     
@@ -69,7 +70,7 @@ in
     modesetting.enable = true;
     nvidiaPersistenced = true;
   };
-
+  hardware.opengl.enabled = true;
   # Filesystems:
   # We will be using ext4 for the root filesystem
   # We will be using btrfs for the /home filesystem
