@@ -87,6 +87,11 @@ in
       fsType = "btrfs";
       options = [ "noatime" "compress=zstd:15" "subvol=AoF7" ];
     };
+    "servers/snapshots" = {
+      device = btrfsDisk;
+      fsType = "btrfs";
+      options = [ "noatime" "compress=zstd:15" "subvol=snapshots" ];
+    };
     "/backups" = {
       device = "/dev/disk/by-label/Backups";
       fsType = "ext4";
