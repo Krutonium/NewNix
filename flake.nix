@@ -24,6 +24,10 @@
       url = "github:Krutonium/BetterFanController";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    MediaServer = {
+      url = "github:Krutonium/MediaServer";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     R2CC = {
       url = "github:Krutonium/InternetRadio2ComputerCraft";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -55,6 +59,7 @@
     , R2CC
     , nvidia-patch
     , lix-module
+    , MediaServer
     , ...
     }@inputs:
     let
@@ -91,6 +96,9 @@
         fanController = self: super: {
           BetterFanController = fan-controller.defaultPackage.x86_64-linux;
         };
+        MediaServer = self: super: {
+          MediaServer = MediaServer.defaultPackage.x86_64-linux;
+        };
         InternetRadio2Computercraft = self: super: {
           InternetRadio2Computercraft = R2CC.defaultPackage.x86_64-linux;
         };
@@ -112,6 +120,7 @@
             overlays.InternetRadio2Computercraft
             nur.overlays.default
             inputs.nvidia-patch.overlays.default
+            overlays.MediaServer
           ];
         })
       ];
