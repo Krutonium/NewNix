@@ -87,7 +87,7 @@ in
       fsType = "btrfs";
       options = [ "noatime" "compress=zstd:15" "subvol=AoF7" ];
     };
-    "/backup" = {
+    "/backups" = {
       device = "/dev/disk/by-label/Backups";
       fsType = "ext4";
     };

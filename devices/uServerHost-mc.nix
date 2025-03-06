@@ -19,6 +19,11 @@ let
             java --version
             ${startScript}
         '';
+        preStop = ''
+          # Use mcron to send a shutdown message to the server
+            password=`cat ${server.rconPasswordFile}`
+            ${pkgs.mcrcon}/bin/mcrcon -H ${host} -P ${toString server.rconPort} -p "$password" -w 1 "say Shutting Down!" "say 5" "say 4" "say 3" "say 2" "say 1" stop
+        '';
         path = [ pkgs.bash server.java ];
         serviceConfig = {
             WorkingDirectory = serverDir;
@@ -33,29 +38,6 @@ let
         wantedBy = [ "multi-user.target" ];
         after = [ "network.target" ];
         description = "Minecraft Server (${server.name})";
-
-#        description = "Minecraft Server (${server.name})";
-#        after = [ "network.target" ];
-#        wantedBy = [ "multi-user.target" ];
-#        preStart = ''
-#          # Custom pre-start logic (if any)
-#        '';
-#        serviceConfig = {
-#          WorkingDirectory = serverDir;
-#          Restart = "always";
-#          User = "minecraft";
-#          Group = "minecraft";
-#          Environment = [
-#            "JAVA_HOME=${server.java.home}"
-#            "PATH=${server.java}/bin:$PATH"
-#          ];
-#          path = [
-#            pkgs.bash
-#            pkgs.coreutils-full
-#            pkgs.mcrcon
-#          ];
-#          Script = ''${startScript}'';
-#        };
       };
     } else
       null;
@@ -72,6 +54,7 @@ let
         after = [ "network.target" ];
         wantedBy = [ "multi-user.target" ];
         path = [ pkgs.btrfs-progs pkgs.btrfs-snap pkgs.mcrcon pkgs.coreutils ];
+        startAt = "*:0/15";
         serviceConfig = {
           Type = "oneshot";
           WorkingDirectory = serverDir;
@@ -89,19 +72,6 @@ let
     } else
       null;
 
-  mkBackupTimer = server:
-    if server.enabled then {
-      name = "backup-${server.name}.timer";
-      value = {
-        description = "Timer for Backup Service for Minecraft Server (${server.name})";
-        wantedBy = [ "timers.target" ];
-        timerConfig = {
-          OnCalendar = "*:0/15";
-          Persistent = true;
-        };
-      };
-    } else
-      null;
   mkDailyBackupService = server:
     let
       serverDir = "/servers/${server.name}";
@@ -115,6 +85,7 @@ let
         description = "Daily Backup Service for Minecraft Server (${server.name})";
         after = [ "network.target" ];
         path = [ pkgs.p7zip pkgs.mcrcon pkgs.coreutils ];
+        startAt = "*-*-* 02:00:00";
         serviceConfig = {
           Type = "oneshot";
           WorkingDirectory = serverDir;
@@ -127,7 +98,7 @@ let
           # Warn the players that a backup is starting
           password=`cat ${server.rconPasswordFile}`
           ${pkgs.mcrcon}/bin/mcrcon -H ${host} -P ${toString server.rconPort} -p "$password" -w 1 "say Starting Daily Backup..." save-off save-all
-          DATE=$(date +%Y-%m-%d_%H-%M-%S)
+          DATE=$(date +%Y-%m-%d)
           nice -n 19 ${pkgs.p7zip}/bin/7z a -mx9 -mmf=bt2 "${backupDir}/$DATE.7z" ./*
           # Let the players know the backup is done
           ${pkgs.mcrcon}/bin/mcrcon -H ${host} -P ${toString server.rconPort} -p "$password" -w 1 save-on "say Daily Backup Complete!"
@@ -136,25 +107,9 @@ let
       };
     } else
       null;
-  mkDailyBackupTimer = server:
-    if server.enabled then {
-      name = "backup-daily-${server.name}.timer";
-      value = {
-        description = "Daily Timer for Compressed Backup Service (${server.name})";
-        wantedBy = [ "timers.target" ];
-        timerConfig = {
-          OnCalendar = "*-*-* 02:00:00";
-          Persistent = true;
-          RandomizedDelaySec = "1h";
-        };
-      };
-    } else
-      null;
   dailyBackupServices = builtins.listToAttrs (filter (x: x != null) (map mkDailyBackupService cfg.servers));
-  dailyBackupTimers = builtins.listToAttrs (filter (x: x != null) (map mkDailyBackupTimer cfg.servers));
   serverServices = builtins.listToAttrs (filter (x: x != null) (map mkServerService cfg.servers));
   backupServices = builtins.listToAttrs (filter (x: x != null) (map mkBackupService cfg.servers));
-  backupTimers = builtins.listToAttrs (filter (x: x != null) (map mkBackupTimer cfg.servers));
 in
 {
   options.minecraftServers = {
@@ -208,6 +163,5 @@ in
 
     # Define the systemd services and timers
     systemd.services = serverServices // backupServices // dailyBackupServices;
-    systemd.timers = backupTimers // dailyBackupTimers;
   };
 }
