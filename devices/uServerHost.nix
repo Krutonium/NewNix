@@ -22,7 +22,7 @@ in
     openFirewall = true;
     host = "0.0.0.0";
   };
-  services.nextjs-ollama-llm-ui.enable = true;
+  #services.nextjs-ollama-llm-ui.enable = true;
     
 
   boot = {

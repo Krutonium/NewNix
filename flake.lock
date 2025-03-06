@@ -1,5 +1,25 @@
 {
   "nodes": {
+    "MediaServer": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1741294956,
+        "narHash": "sha256-o4x+GTW3TgABP0wJqtfYzFlMwXQ4t0hKbNBA/mFCRf4=",
+        "owner": "Krutonium",
+        "repo": "MediaServer",
+        "rev": "c04c93c5b9b7cb280edc642777975447191cdc17",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Krutonium",
+        "repo": "MediaServer",
+        "type": "github"
+      }
+    },
     "R2CC": {
       "inputs": {
         "nixpkgs": [
@@ -383,6 +403,7 @@
     },
     "root": {
       "inputs": {
+        "MediaServer": "MediaServer",
         "R2CC": "R2CC",
         "fan-controller": "fan-controller",
         "home-manager": "home-manager",
