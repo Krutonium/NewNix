@@ -11,6 +11,7 @@ let
       startScript = "${serverDir}/${server.script}"; # Use the script provided per server
       rconPort = server.rconPort or 25575; # Default to 25575 if not specified
       rconPassword = server.rconPassword or ""; # You can define this elsewhere securely
+      host = "127.0.0.1";
     in
     if server.enabled then {
       name = "minecraft-${server.name}";
