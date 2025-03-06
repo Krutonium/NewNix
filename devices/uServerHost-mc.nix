@@ -66,7 +66,7 @@ let
           password=`cat ${server.rconPasswordFile}`
           ${pkgs.mcrcon}/bin/mcrcon -H ${host} -P ${toString server.rconPort} -p "$password" -w 1 "say Starting Backup..." save-off save-all
           # Create snapshot
-          btrfs-snap -r -c . hourly 192
+          btrfs-snap -r -c -B /servers/snapshots/${server.name}/ . hourly 192
           ${pkgs.mcrcon}/bin/mcrcon -H ${host} -P ${toString server.rconPort} -p "$password" -w 1 save-on "say Done!"
         '';
       };
