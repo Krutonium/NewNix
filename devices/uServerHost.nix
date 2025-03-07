@@ -74,7 +74,7 @@ in
     modesetting.enable = true;
     nvidiaPersistenced = true;
   };
-  hardware.opengl.enable = true;
+  hardware.graphics.enable = true;
   # Filesystems:
   # We will be using ext4 for the root filesystem
   # We will be using btrfs for the /home filesystem
