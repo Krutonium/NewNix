@@ -23,7 +23,7 @@ in
     host = "0.0.0.0";
     package = pkgs.unstable.ollama;
   };
-  #services.nextjs-ollama-llm-ui.enable = true;
+  services.nextjs-ollama-llm-ui.enable = true;
     
 
   boot = {
