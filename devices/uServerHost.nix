@@ -16,15 +16,19 @@ in
     hostName = Hostname;
   };
 
-  services.ollama = {
-    enable = true;
-    acceleration = "cuda";
-    openFirewall = true;
-    host = "0.0.0.0";
-    package = pkgs.unstable.ollama;
+  services = {
+    ollama = {
+      enable = true;
+      acceleration = "cuda";
+      openFirewall = true;
+      host = "0.0.0.0";
+      package = pkgs.unstable.ollama;
+    };
+    nextjs-ollama-llm-ui = {
+      enable = true;
+      hostname = "0.0.0.0";
+    };
   };
-  services.nextjs-ollama-llm-ui.enable = true;
-    
 
   boot = {
     kernelPackages = kernel;

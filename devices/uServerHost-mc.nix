@@ -17,8 +17,8 @@ let
       name = "minecraft-${server.name}";
       value = {
         script = ''
-            java --version
-            ${startScript}
+          java --version
+          ${startScript}
         '';
         preStop = ''
           # Use mcron to send a shutdown message to the server
@@ -27,14 +27,14 @@ let
         '';
         path = [ pkgs.bash server.java ];
         serviceConfig = {
-            WorkingDirectory = serverDir;
-            Restart = "always";
-            User = "minecraft";
-            Group = "minecraft";
-            Environment = [
-              "JAVA_HOME=${server.java.home}"
-              "PATH=${server.java}/bin:$PATH"
-            ];
+          WorkingDirectory = serverDir;
+          Restart = "always";
+          User = "minecraft";
+          Group = "minecraft";
+          Environment = [
+            "JAVA_HOME=${server.java.home}"
+            "PATH=${server.java}/bin:$PATH"
+          ];
         };
         wantedBy = [ "multi-user.target" ];
         after = [ "network.target" ];
