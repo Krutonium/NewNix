@@ -63,6 +63,8 @@ let
           Group = "root";
         };
         script = ''
+          # Sleeping 5 minutes in case the server isn't up yet.
+          sleep 5m
           password=`cat ${server.rconPasswordFile}`
           ${pkgs.mcrcon}/bin/mcrcon -H ${host} -P ${toString server.rconPort} -p "$password" -w 1 "say Starting Backup..." save-off save-all
           # Create snapshot
