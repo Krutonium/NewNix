@@ -25,7 +25,7 @@ in
       package = pkgs.unstable.ollama;
     };
     nextjs-ollama-llm-ui = {
-      enable = true;
+      enable = false;
       hostname = "0.0.0.0";
     };
   };
