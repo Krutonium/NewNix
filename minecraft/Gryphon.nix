@@ -35,6 +35,7 @@ in
         ''
           ./run.sh
         '';
+      enable = false;
     };
     systemd.services.AOF7 = {
       description = "All of Fabric 7 Server";
@@ -73,11 +74,11 @@ in
         ''
           sleep 300
           password=`cat /persist/mcrcon.txt`
-          mcrcon -H ${host} -P ${rconport_atm9} -p $password -w 1 "say Starting Hourly Backup..." save-off save-all
+          # mcrcon -H ${host} -P ${rconport_atm9} -p $password -w 1 "say Starting Hourly Backup..." save-off save-all
           mcrcon -H ${host} -P ${rconport_aof7} -p $password -w 1 "say Starting Hourly Backup..." save-off save-all
           # Create 1 snapshot per hour, and keep 24 of them.
           btrfs-snap -r -c . hourly 192
-          mcrcon -H ${host} -P ${rconport_atm9} -p $password -w 1 save-on "say Done!"
+          # mcrcon -H ${host} -P ${rconport_atm9} -p $password -w 1 save-on "say Done!"
           mcrcon -H ${host} -P ${rconport_aof7} -p $password -w 1 save-on "say Done!"
         '';
     };
@@ -102,11 +103,11 @@ in
         ''
           sleep 600
           password=`cat /persist/mcrcon.txt`
-          mcrcon -H ${host} -P ${rconport_atm9} -p $password -w 1 "say Starting Daily Backup..." save-off save-all
+          # mcrcon -H ${host} -P ${rconport_atm9} -p $password -w 1 "say Starting Daily Backup..." save-off save-all
           mcrcon -H ${host} -P ${rconport_aof7} -p $password -w 1 "say Starting Daily Backup..." save-off save-all
           #Create 1 snapshot per day that is kept for 7 days.
           btrfs-snap -r -c . daily 7
-          mcrcon -H ${host} -P ${rconport_atm9} -p $password -w 1 "say Done! Compressing Backup and Shuffling it over to the backup disk..." save-on
+          # mcrcon -H ${host} -P ${rconport_atm9} -p $password -w 1 "say Done! Compressing Backup and Shuffling it over to the backup disk..." save-on
           mcrcon -H ${host} -P ${rconport_aof7} -p $password -w 1 "say Done! Compressing Backup and Shuffling it over to the backup disk..." save-on
           systemctl start snapshotter-send
         '';
@@ -140,7 +141,7 @@ in
         # Compress it - Use the directory name as the file name
         nice -20 7z a -mx9 -mmf=bt2 "/media2/fileHost/gryphon/" $snap
         echo "Backup Compressed."
-        mcrcon -H ${host} -P ${rconport_atm9} -p $password -w 1 "say Backup Compressed and Sent. Performance should return to normal."
+        # mcrcon -H ${host} -P ${rconport_atm9} -p $password -w 1 "say Backup Compressed and Sent. Performance should return to normal."
         mcrcon -H ${host} -P ${rconport_aof7} -p $password -w 1 "say Backup Compressed and Sent. Performance should return to normal."
 
         # --- Delete Old Backups ---
