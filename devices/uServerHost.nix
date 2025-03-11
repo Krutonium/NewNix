@@ -86,6 +86,11 @@ in
       device = "/dev/disk/by-label/BOOT";
       fsType = "vfat";
     };
+    "/btrfs" = {
+      device = btrfsDisk;
+      fsType = "btrfs";
+      options = [ "compress=zstd:15" ];
+    };
     "/home" = {
       device = btrfsDisk;
       fsType = "btrfs";
