@@ -93,12 +93,12 @@
         {
           sourcePort = 25565;
           proto = "tcp";
-          destination = "10.0.0.3";
+          destination = "10.0.0.3:25565";
         }
         {
           sourcePort = 25566;
           proto = "tcp";
-          destination = "10.0.0.3";
+          destination = "10.0.0.3:25566";
         }
       ];
       #enableIPv6 = true;
