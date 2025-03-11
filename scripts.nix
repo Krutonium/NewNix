@@ -73,7 +73,7 @@ let
     ${common_git}/bin/common_git
     cd ~/NixOS
     sudo nixos-rebuild --flake .#$(uname -n) switch
-    ${garbage_collect}/bin/garbage_collect
+    # ${garbage_collect}/bin/garbage_collect
   '';
 
   # Rebuild configuration for next boot
@@ -82,7 +82,7 @@ let
     ${common_git}/bin/common_git
     cd ~/NixOS
     sudo nixos-rebuild --flake .#$(uname -n) boot
-    ${garbage_collect}/bin/garbage_collect
+    # ${garbage_collect}/bin/garbage_collect
   '';
 
   # Commit and push changes to git
@@ -100,7 +100,7 @@ let
   # Update git remote URL
   relinkrepo = pkgs.writeShellScriptBin "relinkrepo" ''
     cd ~/NixOS
-    git remote set-url origin forgejo@gitea.krutonium.ca:Krutonium/NixOS.git
+    git remote set-url origin forgejo@git.krutonium.ca:Krutonium/NixOS.git
   '';
 
   # GitHub CLI explain command wrapper
@@ -131,6 +131,7 @@ in
     switch
     boot
     commit
+    garbage_collect
     relinkrepo
     explain
     help
