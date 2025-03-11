@@ -21,6 +21,9 @@
       "darth" = {
         hostname = "195.35.113.15";
       };
+      "uServerHost" = {
+        hostname = "10.0.0.3";
+      };
     };
     extraConfig = ''
       StrictHostKeyChecking no
