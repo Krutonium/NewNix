@@ -94,7 +94,7 @@ in
     };
     minecraft = {
       rubberdragontrain = false;
-      gryphon = true;
+      gryphon = false;
     };
   };
   #services.cron.systemCronJobs = [
