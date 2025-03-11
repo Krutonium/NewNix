@@ -88,6 +88,19 @@
       externalInterface = "WAN";
       internalInterfaces = [ "br0" ];
       internalIPs = [ "10.0.0.0/24" ];
+      forwardPorts =
+      [
+        {
+          sourcePort = 25565;
+          proto = "tcp";
+          destination = "10.0.0.3";
+        }
+        {
+          sourcePort = 25566;
+          proto = "tcp";
+          destination = "10.0.0.3";
+        }
+      ];
       #enableIPv6 = true;
       #internalIPv6s = [ "2001:db8:1234:5678::/64" ];
     };
