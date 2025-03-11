@@ -22,7 +22,7 @@ let
         '';
         preStop = ''
           # Use mcron to send a shutdown message to the server
-            password=`cat ${server.rconPasswordFile}`
+            password=`${pkgs.coreutils}/bin/cat ${server.rconPasswordFile}`
             ${pkgs.mcrcon}/bin/mcrcon -H ${host} -P ${toString server.rconPort} -p "$password" -w 1 "say Shutting Down!" "say 5" "say 4" "say 3" "say 2" "say 1" stop
         '';
         path = [ pkgs.bash server.java ];
@@ -37,7 +37,8 @@ let
           ];
         };
         wantedBy = [ "multi-user.target" ];
-        after = [ "network.target" ];
+        after = [ "sys-subsystem-net-devices-WAN.device" ];
+        bindsTo = [ "sys-subsystem-net-devices-WAN.device" ];
         description = "Minecraft Server (${server.name})";
       };
     } else
@@ -65,7 +66,7 @@ let
         script = ''
           # Sleeping 5 minutes in case the server isn't up yet.
           #sleep 5m
-          #password=`cat ${server.rconPasswordFile}`
+          #password=`${pkgs.coreutils}/bin/cat ${server.rconPasswordFile}`
           #${pkgs.mcrcon}/bin/mcrcon -H ${host} -P ${toString server.rconPort} -p "$password" -w 1 "say Starting Backup..." save-off save-all
           # Create snapshot
           btrfs-snap -r -c -B /servers/snapshots/${server.name}/ . hourly 192
@@ -99,7 +100,7 @@ let
           # Create a backup directory - In case it doesn't exist
           mkdir -p ${backupDir}
           # Warn the players that a backup is starting
-          password=`cat ${server.rconPasswordFile}`
+          password=`${pkgs.coreutils}/bin/cat ${server.rconPasswordFile}`
           ${pkgs.mcrcon}/bin/mcrcon -H ${host} -P ${toString server.rconPort} -p "$password" -w 1 "say Starting Big Fat Daily Backup..." save-off save-all
           DATE=$(date +%Y-%m-%d)
           nice -n 19 ${pkgs.p7zip}/bin/7z a -mx9 -mmf=bt2 "${backupDir}/$DATE.7z" ./*
