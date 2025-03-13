@@ -163,7 +163,7 @@ in
       home = "/servers"; # Optional, but good practice
     };
 
-    users.groups.minecraft = { };
+    users.groups.minecraft = { members = [ "krutonium" ]; };
 
     # Define the systemd services and timers
     systemd.services = serverServices // backupServices // dailyBackupServices;

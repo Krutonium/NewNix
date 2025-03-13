@@ -96,6 +96,11 @@ in
       fsType = "btrfs";
       options = [ "noatime" "compress=zstd:15" "subvol=Home" ];
     };
+    "/servers/starbound" = {
+      device = btrfsDisk;
+      fsType = "btrfs";
+      options = [ "noatime" "compress=zstd:15" "subvol=starbound" ];
+    };
     "/servers/AtM9" = {
       device = btrfsDisk;
       fsType = "btrfs";
