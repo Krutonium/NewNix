@@ -29,6 +29,7 @@ let
         serviceConfig = {
           WorkingDirectory = serverDir;
           Restart = "always";
+          TimeoutStopSec = "120s"
           User = "minecraft";
           Group = "minecraft";
           Environment = [
