@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }:
 let
-  kernel = with pkgs; unstable.linuxPackages_zen;
+  kernel = with pkgs; unstable.linuxPackages;
   video = config.boot.kernelPackages.nvidiaPackages.stable;
   pkgAfterFbc =
     if builtins.hasAttr video.version pkgs.nvidia-patch-list.fbc
