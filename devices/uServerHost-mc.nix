@@ -102,12 +102,15 @@ let
           mkdir -p ${backupDir}
           # Warn the players that a backup is starting
           password=`${pkgs.coreutils}/bin/cat ${server.rconPasswordFile}`
-          ${pkgs.mcrcon}/bin/mcrcon -H ${host} -P ${toString server.rconPort} -p "$password" -w 1 "say Starting Big Fat Daily Backup..." save-off save-all
+          ${pkgs.mcrcon}/bin/mcrcon -H ${host} -P ${toString server.rconPort} -p "$password" -w 60 "say Daily Reboot in 2 minutes" "say Daily Reboot in 1 Minute" "say Rebooting Now (for Backup)"
+          ${pkgs.mcrcon}/bin/mcrcon -H ${host} -P ${toString server.rconPort} -p "$password" -w 1 save-all
+          systemctl stop minecraft-${server.name}
           DATE=$(date +%Y-%m-%d)
           nice -n 19 ${pkgs.p7zip}/bin/7z a -mx9 -mmf=bt2 "${backupDir}/$DATE.7z" ./*
           # Let the players know the backup is done
           ${pkgs.mcrcon}/bin/mcrcon -H ${host} -P ${toString server.rconPort} -p "$password" -w 1 save-on "say Daily Backup Complete!"
           find ${backupDir} -name "*.7z" -type f -mtime +7 -delete
+          systemctl start minecraft-${server.name}
         '';
       };
     } else
