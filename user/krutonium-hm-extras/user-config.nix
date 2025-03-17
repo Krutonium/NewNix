@@ -74,7 +74,6 @@
       image_size="auto"
     '';
     ".config/MangoHud/MangoHud.conf".text = ''
-      fps_limit=165
       toggle_fps_limit=F1
 
       legacy_layout=false
