@@ -30,7 +30,7 @@ in
       recommendedGzipSettings = true;
       recommendedProxySettings = true;
       clientMaxBodySize = "0";
-      appendConfig = ''
+      httpConfig = ''
         limit_req_zone $binary_remote_addr zone=git:10m rate=10r/s;
       '';
       virtualHosts = {
