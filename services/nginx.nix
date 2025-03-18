@@ -30,6 +30,9 @@ in
       recommendedGzipSettings = true;
       recommendedProxySettings = true;
       clientMaxBodySize = "0";
+      extraConfig = ''
+        limit_req_zone $binary_remote_addr zone=git:10m rate=10r/s;
+      '';
       services.nginx.virtualHosts = {
         "map.krutonium.ca" = {
           forceSSL = true;
@@ -190,9 +193,9 @@ in
             proxyPass = "http://127.0.0.1:32400/";
           };
         };
-        "gitea.krutonium.ca" = {
+        "git.krutonium.ca" = {
           # Gitea hostname
-          serverAliases = [ "git.krutonium.ca" ];
+          serverAliases = [ "gitea.krutonium.ca" ];
           enableACME = true; # Use ACME certs
           forceSSL = true; # Force SSL
           locations."/".proxyPass = "http://127.0.0.1:3001/"; # Proxy Gitea
@@ -202,6 +205,9 @@ in
               return 200 "User-agent: *\nDisallow: /";
             '';
           };
+          extraConfig = ''
+            limit_req zone=git burst=5 nodelay;
+          '';
         };
         "nextcloud.krutonium.ca" = {
           forceSSL = true;
