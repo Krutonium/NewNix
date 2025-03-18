@@ -30,9 +30,9 @@ in
       recommendedGzipSettings = true;
       recommendedProxySettings = true;
       clientMaxBodySize = "0";
-      httpConfig = ''
-        limit_req_zone $binary_remote_addr zone=git:10m rate=10r/s;
-      '';
+      #httpConfig = ''
+      #  limit_req_zone $binary_remote_addr zone=git:10m rate=10r/s;
+      #'';
       virtualHosts = {
         "map.krutonium.ca" = {
           forceSSL = true;
@@ -205,9 +205,9 @@ in
               return 200 "User-agent: *\nDisallow: /";
             '';
           };
-          extraConfig = ''
-            limit_req zone=git burst=5 nodelay;
-          '';
+          #extraConfig = ''
+          #  limit_req zone=git burst=5 nodelay;
+          #'';
         };
         "nextcloud.krutonium.ca" = {
           forceSSL = true;
