@@ -94,8 +94,8 @@ let
         serviceConfig = {
           Type = "oneshot";
           WorkingDirectory = serverDir;
-          User = "minecraft";
-          Group = "minecraft";
+          User = "root";
+          Group = "root";
         };
         script = ''
           # Create a backup directory - In case it doesn't exist
