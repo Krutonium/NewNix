@@ -30,10 +30,10 @@ in
       recommendedGzipSettings = true;
       recommendedProxySettings = true;
       clientMaxBodySize = "0";
-      extraConfig = ''
+      appendConfig = ''
         limit_req_zone $binary_remote_addr zone=git:10m rate=10r/s;
       '';
-      services.nginx.virtualHosts = {
+      virtualHosts = {
         "map.krutonium.ca" = {
           forceSSL = true;
           enableACME = true;
