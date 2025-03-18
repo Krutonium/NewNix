@@ -16,219 +16,224 @@ in
 {
   config = mkIf (cfg.nginx == true) {
     networking.firewall.allowedTCPPorts = [ 80 443 ];
-    services.nginx.enable = true;
-    services.nginx.recommendedTlsSettings = true;
-    services.nginx.recommendedOptimisation = true;
-    services.nginx.recommendedGzipSettings = true;
-    services.nginx.recommendedProxySettings = true;
-    services.nginx.clientMaxBodySize = "0";
-    security.acme.defaults.renewInterval = "200h";
-    security.acme.defaults.email = "PFCKrutonium@gmail.com";
-    security.acme.acceptTerms = true;
-    services.nginx.additionalModules = [ pkgs.nginxModules.pam ];
-    services.nginx.virtualHosts = {
-      "map.krutonium.ca" = {
-        forceSSL = true;
-        enableACME = true;
-        root = "/media2/BlueMap";
-        locations."/maps" = {
-          extraConfig = ''
-            gzip_static always;
-          '';
-        };
-        locations."/maps/tiles" = {
-          extraConfig = ''
-            gzip_static always;
-            error_page 404 = @tiles_204;
-          '';
-        };
+    security.acme = {
+      defaults = {
+        renewInterval = "200h";
+        email = "PFCKrutonium@gmail.com";
       };
-      "_" = {
-        # This is a default catchall - Like *
-        default = true;
-        extraConfig = ''
-          return 301 https://krutonium.ca;
-        '';
-      };
-      "restream.krutonium.ca" = {
-        forceSSL = true;
-        enableACME = true;
-        locations."/".proxyPass = "http://127.0.0.1:1233";
-      };
-      "synapse-admin.krutonium.ca" = {
-        forceSSL = true;
-        enableACME = true;
-        root = "${pkgs.synapse-admin}";
-      };
-      "dl.krutonium.ca" = {
-        forceSSL = true;
-        enableACME = true;
-        root = "/media2/fileHost";
-      };
-      "webdav.krutonium.ca" = {
-        forceSSL = true;
-        enableACME = true;
-        root = "/media2/fileHost/gryphon"; # Same root or a different directory for WebDAV
-        locations."/" = {
-          extraConfig = ''
-            dav_methods PUT DELETE MKCOL COPY MOVE;
-            dav_ext_methods PROPFIND OPTIONS;
-            dav_access user:rw group:rw all:rw;
-            create_full_put_path on;
-            client_max_body_size 10G; # Adjust as needed
-            autoindex off; # Disable directory listing for WebDAV
-            auth_basic "WebDAV Restricted Access";
-            auth_basic_user_file /persist/httpAuth; # Use the same or a different auth file
-          '';
-        };
-      };
-      "gryphon.krutonium.ca" = {
-        forceSSL = true;
-        enableACME = true;
-        root = "/media2/fileHost/gryphon";
-        locations = {
-          "/" = {
+      acceptTerms = true;
+    };
+    services.nginx = {
+      enable = true;
+      recommendedTlsSettings = true;
+      recommendedOptimisation = true;
+      recommendedGzipSettings = true;
+      recommendedProxySettings = true;
+      clientMaxBodySize = "0";
+      services.nginx.virtualHosts = {
+        "map.krutonium.ca" = {
+          forceSSL = true;
+          enableACME = true;
+          root = "/media2/BlueMap";
+          locations."/maps" = {
             extraConfig = ''
-              autoindex on;
-              autoindex_localtime on;
-              autoindex_exact_size off;
-              auth_basic "Restricted Access";
-              auth_basic_user_file /persist/httpAuth;
+              gzip_static always;
             '';
           };
-          # Disable authentication for direct file access
-          "~^/(.+)" = {
+          locations."/maps/tiles" = {
             extraConfig = ''
-              auth_basic off;
+              gzip_static always;
+              error_page 404 = @tiles_204;
             '';
           };
-          "/robots.txt" = {
+        };
+        "_" = {
+          # This is a default catchall - Like *
+          default = true;
+          extraConfig = ''
+            return 301 https://krutonium.ca;
+          '';
+        };
+        "restream.krutonium.ca" = {
+          forceSSL = true;
+          enableACME = true;
+          locations."/".proxyPass = "http://127.0.0.1:1233";
+        };
+        "synapse-admin.krutonium.ca" = {
+          forceSSL = true;
+          enableACME = true;
+          root = "${pkgs.synapse-admin}";
+        };
+        "dl.krutonium.ca" = {
+          forceSSL = true;
+          enableACME = true;
+          root = "/media2/fileHost";
+        };
+        "webdav.krutonium.ca" = {
+          forceSSL = true;
+          enableACME = true;
+          root = "/media2/fileHost/gryphon"; # Same root or a different directory for WebDAV
+          locations."/" = {
+            extraConfig = ''
+              dav_methods PUT DELETE MKCOL COPY MOVE;
+              dav_ext_methods PROPFIND OPTIONS;
+              dav_access user:rw group:rw all:rw;
+              create_full_put_path on;
+              client_max_body_size 10G; # Adjust as needed
+              autoindex off; # Disable directory listing for WebDAV
+              auth_basic "WebDAV Restricted Access";
+              auth_basic_user_file /persist/httpAuth; # Use the same or a different auth file
+            '';
+          };
+        };
+        "gryphon.krutonium.ca" = {
+          forceSSL = true;
+          enableACME = true;
+          root = "/media2/fileHost/gryphon";
+          locations = {
+            "/" = {
+              extraConfig = ''
+                autoindex on;
+                autoindex_localtime on;
+                autoindex_exact_size off;
+                auth_basic "Restricted Access";
+                auth_basic_user_file /persist/httpAuth;
+              '';
+            };
+            # Disable authentication for direct file access
+            "~^/(.+)" = {
+              extraConfig = ''
+                auth_basic off;
+              '';
+            };
+            "/robots.txt" = {
+              extraConfig = ''
+                rewrite ^/(.*)  $1;
+                return 200 "User-agent: *\nDisallow: /";
+              '';
+            };
+          };
+        };
+        "krutonium.ca" = {
+          forceSSL = true;
+          enableACME = true;
+          root = "/var/www/home/";
+          serverAliases = [ "www.krutonium.ca" ];
+          locations." = /.well-known/matrix/server".extraConfig = mkWellKnown serverConfig;
+          locations."= /.well-known/matrix/client".extraConfig = mkWellKnown clientConfig;
+          locations."/_matrix".proxyPass = "http://[::1]:8008";
+          # Forward requests for e.g. SSO and password-resets.
+          locations."/_synapse/client".proxyPass = "http://[::1]:8008";
+          locations."/".proxyPass = "http://127.0.0.1:1313"; # Hugo
+        };
+        "plex.krutonium.ca" = {
+          forceSSL = true;
+          enableACME = true;
+          http2 = true;
+          extraConfig = ''
+            #Some players don't reopen a socket and playback stops totally instead of resuming after an extended pause
+            send_timeout 100m;
+
+            # Why this is important: https://blog.cloudflare.com/ocsp-stapling-how-cloudflare-just-made-ssl-30/
+            ssl_stapling on;
+            ssl_stapling_verify on;
+
+            ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+            ssl_prefer_server_ciphers on;
+            #Intentionally not hardened for security for player support and encryption video streams has a lot of overhead with something like AES-256-GCM-SHA384.
+            ssl_ciphers 'ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-DSS-AES128-GCM-SHA256:kEDH+AESGCM:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-ECDSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA:DHE-DSS-AES128-SHA256:DHE-RSA-AES256-SHA256:DHE-DSS-AES256-SHA:DHE-RSA-AES256-SHA:ECDHE-RSA-DES-CBC3-SHA:ECDHE-ECDSA-DES-CBC3-SHA:AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-SHA256:AES256-SHA256:AES128-SHA:AES256-SHA:AES:CAMELLIA:DES-CBC3-SHA:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!MD5:!PSK:!aECDH:!EDH-DSS-DES-CBC3-SHA:!EDH-RSA-DES-CBC3-SHA:!KRB5-DES-CBC3-SHA';
+
+            # Forward real ip and host to Plex
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+            proxy_set_header Host $server_addr;
+            proxy_set_header Referer $server_addr;
+            proxy_set_header Origin $server_addr;
+
+            # Plex has A LOT of javascript, xml and html. This helps a lot, but if it causes playback issues with devices turn it off.
+            gzip on;
+            gzip_vary on;
+            gzip_min_length 1000;
+            gzip_proxied any;
+            gzip_types text/plain text/css text/xml application/xml text/javascript application/x-javascript image/svg+xml;
+            gzip_disable "MSIE [1-6]\.";
+
+            # Nginx default client_max_body_size is 1MB, which breaks Camera Upload feature from the phones.
+            # Increasing the limit fixes the issue. Anyhow, if 4K videos are expected to be uploaded, the size might need to be increased even more
+            client_max_body_size 100M;
+
+            # Plex headers
+            proxy_set_header X-Plex-Client-Identifier $http_x_plex_client_identifier;
+            proxy_set_header X-Plex-Device $http_x_plex_device;
+            proxy_set_header X-Plex-Device-Name $http_x_plex_device_name;
+            proxy_set_header X-Plex-Platform $http_x_plex_platform;
+            proxy_set_header X-Plex-Platform-Version $http_x_plex_platform_version;
+            proxy_set_header X-Plex-Product $http_x_plex_product;
+            proxy_set_header X-Plex-Token $http_x_plex_token;
+            proxy_set_header X-Plex-Version $http_x_plex_version;
+            proxy_set_header X-Plex-Nocache $http_x_plex_nocache;
+            proxy_set_header X-Plex-Provides $http_x_plex_provides;
+            proxy_set_header X-Plex-Device-Vendor $http_x_plex_device_vendor;
+            proxy_set_header X-Plex-Model $http_x_plex_model;
+
+            # Websockets
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection "upgrade";
+
+            # Buffering off send to the client as soon as the data is received from Plex.
+            proxy_redirect off;
+            proxy_buffering off;
+          '';
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:32400/";
+          };
+        };
+        "gitea.krutonium.ca" = {
+          # Gitea hostname
+          serverAliases = [ "git.krutonium.ca" ];
+          enableACME = true; # Use ACME certs
+          forceSSL = true; # Force SSL
+          locations."/".proxyPass = "http://127.0.0.1:3001/"; # Proxy Gitea
+          locations."/robots.txt" = {
             extraConfig = ''
               rewrite ^/(.*)  $1;
               return 200 "User-agent: *\nDisallow: /";
             '';
           };
         };
-      };
-      "krutonium.ca" = {
-        forceSSL = true;
-        enableACME = true;
-        root = "/var/www/home/";
-        serverAliases = [ "www.krutonium.ca" ];
-        locations." = /.well-known/matrix/server".extraConfig = mkWellKnown serverConfig;
-        locations."= /.well-known/matrix/client".extraConfig = mkWellKnown clientConfig;
-        locations."/_matrix".proxyPass = "http://[::1]:8008";
-        # Forward requests for e.g. SSO and password-resets.
-        locations."/_synapse/client".proxyPass = "http://[::1]:8008";
-        locations."/".proxyPass = "http://127.0.0.1:1313"; # Hugo
-      };
-      "plex.krutonium.ca" = {
-        forceSSL = true;
-        enableACME = true;
-        http2 = true;
-        extraConfig = ''
-          #Some players don't reopen a socket and playback stops totally instead of resuming after an extended pause
-          send_timeout 100m;
-
-          # Why this is important: https://blog.cloudflare.com/ocsp-stapling-how-cloudflare-just-made-ssl-30/
-          ssl_stapling on;
-          ssl_stapling_verify on;
-
-          ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
-          ssl_prefer_server_ciphers on;
-          #Intentionally not hardened for security for player support and encryption video streams has a lot of overhead with something like AES-256-GCM-SHA384.
-          ssl_ciphers 'ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-DSS-AES128-GCM-SHA256:kEDH+AESGCM:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-ECDSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA:DHE-DSS-AES128-SHA256:DHE-RSA-AES256-SHA256:DHE-DSS-AES256-SHA:DHE-RSA-AES256-SHA:ECDHE-RSA-DES-CBC3-SHA:ECDHE-ECDSA-DES-CBC3-SHA:AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-SHA256:AES256-SHA256:AES128-SHA:AES256-SHA:AES:CAMELLIA:DES-CBC3-SHA:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!MD5:!PSK:!aECDH:!EDH-DSS-DES-CBC3-SHA:!EDH-RSA-DES-CBC3-SHA:!KRB5-DES-CBC3-SHA';
-
-          # Forward real ip and host to Plex
-          proxy_set_header X-Real-IP $remote_addr;
-          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-          proxy_set_header X-Forwarded-Proto $scheme;
-          proxy_set_header Host $server_addr;
-          proxy_set_header Referer $server_addr;
-          proxy_set_header Origin $server_addr;
-
-          # Plex has A LOT of javascript, xml and html. This helps a lot, but if it causes playback issues with devices turn it off.
-          gzip on;
-          gzip_vary on;
-          gzip_min_length 1000;
-          gzip_proxied any;
-          gzip_types text/plain text/css text/xml application/xml text/javascript application/x-javascript image/svg+xml;
-          gzip_disable "MSIE [1-6]\.";
-
-          # Nginx default client_max_body_size is 1MB, which breaks Camera Upload feature from the phones.
-          # Increasing the limit fixes the issue. Anyhow, if 4K videos are expected to be uploaded, the size might need to be increased even more
-          client_max_body_size 100M;
-
-          # Plex headers
-          proxy_set_header X-Plex-Client-Identifier $http_x_plex_client_identifier;
-          proxy_set_header X-Plex-Device $http_x_plex_device;
-          proxy_set_header X-Plex-Device-Name $http_x_plex_device_name;
-          proxy_set_header X-Plex-Platform $http_x_plex_platform;
-          proxy_set_header X-Plex-Platform-Version $http_x_plex_platform_version;
-          proxy_set_header X-Plex-Product $http_x_plex_product;
-          proxy_set_header X-Plex-Token $http_x_plex_token;
-          proxy_set_header X-Plex-Version $http_x_plex_version;
-          proxy_set_header X-Plex-Nocache $http_x_plex_nocache;
-          proxy_set_header X-Plex-Provides $http_x_plex_provides;
-          proxy_set_header X-Plex-Device-Vendor $http_x_plex_device_vendor;
-          proxy_set_header X-Plex-Model $http_x_plex_model;
-
-          # Websockets
-          proxy_http_version 1.1;
-          proxy_set_header Upgrade $http_upgrade;
-          proxy_set_header Connection "upgrade";
-
-          # Buffering off send to the client as soon as the data is received from Plex.
-          proxy_redirect off;
-          proxy_buffering off;
-        '';
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:32400/";
+        "nextcloud.krutonium.ca" = {
+          forceSSL = true;
+          enableACME = true;
+          locations."/robots.txt" = {
+            extraConfig = ''
+              rewrite ^/(.*)  $1;
+              return 200 "User-agent: *\nDisallow: /";
+            '';
+          };
         };
-      };
-      "gitea.krutonium.ca" = {
-        # Gitea hostname
-        serverAliases = [ "git.krutonium.ca" ];
-        enableACME = true; # Use ACME certs
-        forceSSL = true; # Force SSL
-        locations."/".proxyPass = "http://127.0.0.1:3001/"; # Proxy Gitea
-        locations."/robots.txt" = {
-          extraConfig = ''
-            rewrite ^/(.*)  $1;
-            return 200 "User-agent: *\nDisallow: /";
-          '';
+        "synapse.krutonium.ca" = {
+          forceSSL = true;
+          enableACME = true;
+          locations."/".proxyPass = "http://127.0.0.1:8008";
+          locations."/robots.txt" = {
+            extraConfig = ''
+              rewrite ^/(.*)  $1;
+              return 200 "User-agent: *\nDisallow: /";
+            '';
+          };
         };
-      };
-      "nextcloud.krutonium.ca" = {
-        forceSSL = true;
-        enableACME = true;
-        locations."/robots.txt" = {
-          extraConfig = ''
-            rewrite ^/(.*)  $1;
-            return 200 "User-agent: *\nDisallow: /";
-          '';
-        };
-      };
-      "synapse.krutonium.ca" = {
-        forceSSL = true;
-        enableACME = true;
-        locations."/".proxyPass = "http://127.0.0.1:8008";
-        locations."/robots.txt" = {
-          extraConfig = ''
-            rewrite ^/(.*)  $1;
-            return 200 "User-agent: *\nDisallow: /";
-          '';
-        };
-      };
-      "torrent.krutonium.ca" = {
-        forceSSL = true;
-        enableACME = true;
-        locations."/".proxyPass = "http://127.0.0.1:8112";
-        locations."/robots.txt" = {
-          extraConfig = ''
-            rewrite ^/(.*)  $1;
-            return 200 "User-agent: *\nDisallow: /";
-          '';
+        "torrent.krutonium.ca" = {
+          forceSSL = true;
+          enableACME = true;
+          locations."/".proxyPass = "http://127.0.0.1:8112";
+          locations."/robots.txt" = {
+            extraConfig = ''
+              rewrite ^/(.*)  $1;
+              return 200 "User-agent: *\nDisallow: /";
+            '';
+          };
         };
       };
     };
