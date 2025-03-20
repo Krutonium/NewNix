@@ -32,6 +32,9 @@ in
       clientMaxBodySize = "0";
       appendHttpConfig = ''
         limit_req_zone $binary_remote_addr zone=git_zone:10m rate=20r/s;
+        deny 47.80.0.0/13
+        deny 47.74.0.0/15
+        deny 47.76.0.0/14
       '';
       eventsConfig = ''
         worker_connections 512;
