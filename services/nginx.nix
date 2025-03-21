@@ -31,7 +31,7 @@ in
       recommendedProxySettings = true;
       clientMaxBodySize = "0";
       appendHttpConfig = ''
-        limit_req_zone $binary_remote_addr zone=git_zone:10m rate=40r/s;
+        #limit_req_zone $binary_remote_addr zone=git_zone:10m rate=40r/s;
         deny 47.80.0.0/13;
         deny 47.74.0.0/15;
         deny 47.76.0.0/14;
@@ -212,7 +212,7 @@ in
             '';
           };
           extraConfig = ''
-            limit_req zone=git_zone burst=20 nodelay;
+            #limit_req zone=git_zone burst=20 nodelay;
             proxy_set_header X-Real-IP $remote_addr;
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
             proxy_set_header X-Forwarded-Proto $scheme;
