@@ -59,6 +59,21 @@ in
     wantedBy = [ "multi-user.target" ];
     enable = false;
   };
+  systemd.services.lactd = {
+    description = "AMDGPU Control Daemon";
+    wantedBy = [ "multi-user.target" ];
+    after = [ "multi-user.target" ];
+
+    serviceConfig = {
+      ExecStart = "${pkgs.lact}/bin/lact daemon";
+      Type = "simple";
+      # Run as root since we need direct hardware access
+      User = "root";
+      Group = "root";
+      Restart = "on-failure";
+      RestartSec = "5";
+    };
+  };
   virtualisation.spiceUSBRedirection.enable = true;
   systemd.tmpfiles.rules = [
     "f /dev/shm/looking-glass 0660 krutonium qemu-libvirtd -"
@@ -173,6 +188,7 @@ in
     pkgs.sunshine
     pkgs.monado-vulkan-layers
     pkgs.wlx-overlay-s
+    pkgs.lact
   ];
   security.wrappers.sunshine = {
     owner = "root";

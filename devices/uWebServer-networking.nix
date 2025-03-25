@@ -89,23 +89,23 @@
       internalInterfaces = [ "br0" ];
       internalIPs = [ "10.0.0.0/24" ];
       forwardPorts =
-      [
-        {
-          sourcePort = 25565;
-          proto = "tcp";
-          destination = "10.0.0.3:25565";
-        }
-        {
-          sourcePort = 25566;
-          proto = "tcp";
-          destination = "10.0.0.3:25566";
-        }
-        {
-          sourcePort = 24454;
-          proto = "udp";
-          destination = "10.0.0.3:24454";
-        }
-      ];
+        [
+          {
+            sourcePort = 25565;
+            proto = "tcp";
+            destination = "10.0.0.3:25565";
+          }
+          {
+            sourcePort = 25566;
+            proto = "tcp";
+            destination = "10.0.0.3:25566";
+          }
+          {
+            sourcePort = 24454;
+            proto = "udp";
+            destination = "10.0.0.3:24454";
+          }
+        ];
       #enableIPv6 = true;
       #internalIPv6s = [ "2001:db8:1234:5678::/64" ];
     };
