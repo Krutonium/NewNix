@@ -7,16 +7,6 @@ let
     STATE_FILE=/persist/ip_state
     AUTH_FILE=/persist/ddnsclient.auth
     CURRENT_IP=$(curl -s https://ipv4.icanhazip.com/)
-
-    if [ -f "$STATE_FILE" ]; then
-      PREVIOUS_IP=$(cat "$STATE_FILE")
-      if [ "$CURRENT_IP" = "$PREVIOUS_IP" ]; then
-        echo "No Update Needed"
-        exit 0
-      fi
-    fi
-
-    echo "$CURRENT_IP" > "$STATE_FILE"
     PASSWORD=$(cat "$AUTH_FILE")
     echo Updating "@"
     curl -s "https://dynamicdns.park-your-domain.com/update?domain=krutonium.ca&password=$PASSWORD&host=@"
