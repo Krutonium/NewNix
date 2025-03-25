@@ -20,7 +20,7 @@ in
       description = "Check External IP and Trigger cURL on Change";
       after = [ "network-online.target" "sys-subsystem-net-devices-WAN.device" "network.target" ];
       wants = [ "network-online.target" "sys-subsystem-net-devices-WAN.device" "update_domain.path" ];
-      bindsTo = [ "sys-subsystem-net-devices-WAN.device" ];
+      bindsTo = [ "network-online.target" ];
       path = [ pkgs.curl ];
       serviceConfig = {
         Type = "oneshot";
@@ -35,7 +35,7 @@ in
       wantedBy = [ "timers.target" ];
       timerConfig = {
         OnBootSec = "1min";
-        OnUnitActiveSec = "5min";
+        OnUnitActiveSec = "20min";
         Unit = "update_domain.service";
       };
     };
