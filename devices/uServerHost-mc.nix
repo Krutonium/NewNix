@@ -38,7 +38,8 @@ let
           ];
         };
         wantedBy = [ "multi-user.target" ];
-        after = [ "sys-subsystem-net-devices-WAN.device" ];
+        after = [ "sys-subsystem-net-devices-WAN.device" "systemd-networkd-wait-online.service" ];
+        wants = [ "systemd-networkd-wait-online.service" ];
         bindsTo = [ "sys-subsystem-net-devices-WAN.device" ];
         description = "Minecraft Server (${server.name})";
       };
