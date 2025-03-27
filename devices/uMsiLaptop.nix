@@ -1,8 +1,7 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, ... }:
 let
   kernel = pkgs.unstable.linuxPackages_zen;
   video = config.boot.kernelPackages.nvidiaPackages.beta;
-  bbswitch = config.boot.kernelPackages.bbswitch;
   Hostname = "uMsiLaptop";
 in
 {
@@ -17,7 +16,6 @@ in
   environment.systemPackages = [
     kernel.perf
     pkgs.teamviewer
-    bbswitch
   ];
   imports = [ ./uMsiLaptop-hw.nix ../builders ];
   nix = {
@@ -78,62 +76,20 @@ in
 
   hardware = {
     graphics.enable = true;
-    nvidia = {
-      open = false;
-      package = video;
-      prime = {
-        offload = {
-          enable = true;
-          enableOffloadCmd = true;
-        };
-        nvidiaBusId = "PCI:1:0:0";
-        intelBusId = "PCI:0:2:0";
-      };
-    };
-    #    bumblebee = {
-    #      enable = true;
-    #      driver = "nvidia";
+    # Disabled due to Charger being too low wattage.
+    #    nvidia = {
+    #      open = false;
+    #      package = video;
+    #      prime = {
+    #        offload = {
+    #          enable = true;
+    #          enableOffloadCmd = true;
+    #        };
+    #        nvidiaBusId = "PCI:1:0:0";
+    #        intelBusId = "PCI:0:2:0";
+    #      };
     #    };
   };
-  services.xserver.videoDrivers = [ "modesetting" "nvidia" ];
-
-
-  #hardware.bumblebee = {
-  #  enable = true;
-  #  driver = "nvidia";
-  #};
+  services.xserver.videoDrivers = [ "modesetting" ];
   services.teamviewer.enable = true;
-  #boot.kernelModules = [ "mem_sleep_default=deep" ];
-  #specialisation."bumblebee".configuration = {
-  #  system.nixos.tags = [ "with-bumblebee" ];
-  #  system.nixos.label = "bumblebee";
-  #  services.xserver.videoDrivers = [ "modesetting" "nvidia" ];
-  #  hardware.bumblebee = {
-  #    enable = true;
-  #    driver = "nvidia";
-  #    pmMethod = "bbswitch";
-  #  };
-  #  boot.blacklistedKernelModules = [ "nouveau" ];
-  #};
-  #specialisation."nVidia".configuration = {
-  # boot.initrd.availableKernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
-  #boot.blacklistedKernelModules = [ "nouveau" ];
-  #system.nixos.tags = [ "with-nvidia" ];
-  #system.nixos.label = "nVidia";
-  # sys.desktop.wayland = lib.mkForce false;
-  #services.xserver.videoDrivers = [ "nvidia" ];
-  #hardware.opengl.enable = true;
-  #environment.sessionVariables.NIXOS_OZONE_WL = "1";
-  #hardware.nvidia = {
-  #  package = lib.mkForce video;
-  #  modesetting.enable = true;
-  #  nvidiaSettings = true;
-  #  open = false;
-  #  powerManagement.finegrained = true;
-  #  prime = {
-  #    offload.enable = true;
-  #    nvidiaBusId = "PCI:1:0:0";
-  #    intelBusId = "PCI:0:2:0";
-  #  };
-  # };
 }
