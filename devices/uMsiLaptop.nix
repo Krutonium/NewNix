@@ -82,23 +82,23 @@ in
     enable = true;
   };
 
-  #  hardware = {
-  #    graphics.enable = true;
-  #    nvidia = {
-  #      open = true;
-  #      package = video;
-  #      prime = {
-  #        #offload.enable = true;
-  #        nvidiaBusId = "PCI:1:0:0";
-  #        intelBusId = "PCI:0:2:0";
-  #      };
-  #    };
-  #    bumblebee = {
-  #      enable = true;
-  #      driver = "nvidia";
-  #    };
-  #  };
-  services.xserver.videoDrivers = [ "modesetting" ];
+  hardware = {
+    graphics.enable = true;
+    nvidia = {
+      open = false;
+      package = video;
+      prime = {
+        offload.enable = true;
+        nvidiaBusId = "PCI:1:0:0";
+        intelBusId = "PCI:0:2:0";
+      };
+    };
+    #    bumblebee = {
+    #      enable = true;
+    #      driver = "nvidia";
+    #    };
+  };
+  services.xserver.videoDrivers = [ "modesetting" "nvidia" ];
 
 
   #hardware.bumblebee = {
