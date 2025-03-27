@@ -4,12 +4,6 @@ let
   video = config.boot.kernelPackages.nvidiaPackages.beta;
   bbswitch = config.boot.kernelPackages.bbswitch;
   Hostname = "uMsiLaptop";
-  nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
-    export __NV_PRIME_RENDER_OFFLOAD=1
-    export __GLX_VENDOR_LIBRARY_NAME=nvidia
-    export __VK_LAYER_NV_optimus=NVIDIA_only
-    exec -a "$0" "$@"
-  '';
 in
 {
   boot.initrd.systemd.enable = true;
@@ -88,7 +82,10 @@ in
       open = false;
       package = video;
       prime = {
-        offload.enable = true;
+        offload = {
+          enable = true;
+          enableOffloadCmd = true;
+        };
         nvidiaBusId = "PCI:1:0:0";
         intelBusId = "PCI:0:2:0";
       };
