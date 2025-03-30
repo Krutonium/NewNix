@@ -109,7 +109,7 @@ let
           DATE=$(date +%Y-%m-%d)
           nice -n 19 ${pkgs.p7zip}/bin/7z a -mx9 -mmf=bt2 "${backupDir}/$DATE.7z" ./*
           # Let the players know the backup is done
-          ${pkgs.mcrcon}/bin/mcrcon -H ${host} -P ${toString server.rconPort} -p "$password" -w 1 save-on "say Daily Backup Complete!"
+          # ${pkgs.mcrcon}/bin/mcrcon -H ${host} -P ${toString server.rconPort} -p "$password" -w 1 save-on "say Daily Backup Complete!"
           find ${backupDir} -name "*.7z" -type f -mtime +7 -delete
           systemctl start minecraft-${server.name}
         '';
