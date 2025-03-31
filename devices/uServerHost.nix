@@ -149,6 +149,14 @@ in
       # Read Password from /servers/rcon.password
       rconPasswordFile = "/servers/rcon.password";
     }
+    {
+      name = "vanilla";
+      java = pkgs.jdk21;
+      script = "startserver.sh";
+      enabled = false;
+      rconPort = 12347;
+      rconPasswordFile = "/servers/rcon.password";
+    }
   ];
   services = {
     udev.extraRules = ''
