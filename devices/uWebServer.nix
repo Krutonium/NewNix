@@ -1,6 +1,6 @@
 { config, pkgs, lib, inputs, ... }:
 let
-  kernel = pkgs.linuxPackages_6_11;
+  kernel = pkgs.linuxPackages;
   #kernel = config.boot.zfs.package.latestCompatibleLinuxPackages;
   Hostname = "uWebServer";
 in
