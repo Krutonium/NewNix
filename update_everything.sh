@@ -17,3 +17,4 @@ retry 'ssh 10.1 "sudo nix-collect-garbage -d && nix-collect-garbage -d"'
 retry 'ssh 10.2 "sudo nix-collect-garbage -d && nix-collect-garbage -d"'
 retry 'ssh 10.3 "sudo nix-collect-garbage -d && nix-collect-garbage -d"'
 retry 'ssh 10.4 "sudo nix-collect-garbage -d && nix-collect-garbage -d"'
+sudo shutdown now
