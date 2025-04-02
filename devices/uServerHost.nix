@@ -153,7 +153,7 @@ in
       name = "vanilla";
       java = pkgs.jdk21;
       script = "startserver.sh";
-      enabled = false;
+      enabled = true;
       rconPort = 12347;
       rconPasswordFile = "/servers/rcon.password";
     }
