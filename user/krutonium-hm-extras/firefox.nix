@@ -44,6 +44,7 @@
         "browser.uidensity" = "1";
 
         "browser.tabs.insertAfterCurrent" = false; #decided I didn't like it
+        "browser.ml.chat.enabled" = false;
       };
     };
   };
