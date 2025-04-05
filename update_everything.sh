@@ -8,7 +8,7 @@ retry() {
         sleep 5
     done
 }
-retry "nix flake update"
+retry "nupdate"
 retry "sudo nixos-rebuild boot --flake .#uGamingPC --target-host 10.2"
 retry "sudo nixos-rebuild switch --flake .#uMsiLaptop --target-host 10.4"
 retry "sudo nixos-rebuild boot --flake .#uServerHost --target-host 10.3"
