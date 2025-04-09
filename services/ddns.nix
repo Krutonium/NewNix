@@ -12,6 +12,10 @@ let
     curl -s "https://dynamicdns.park-your-domain.com/update?domain=krutonium.ca&password=$PASSWORD&host=@"
     echo Updating "*"
     curl -s "https://dynamicdns.park-your-domain.com/update?domain=krutonium.ca&password=$PASSWORD&host=*"
+    echo Updating "vanilla"
+    curl -s "https://dynamicdns.park-your-domain.com/update?domain=krutonium.ca&password=$PASSWORD&host=vanilla"
+    echo Updating "aof7"
+    curl -s "https://dynamicdns.park-your-domain.com/update?domain=krutonium.ca&password=$PASSWORD&host=aof7"
   '';
 in
 {
