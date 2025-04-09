@@ -105,6 +105,11 @@
             proto = "udp";
             destination = "10.0.0.3:24454";
           }
+          {
+            sourcePort = 19132;
+            proto = "udp";
+            destination = "10.0.0.3:19132";
+          }
         ];
       #enableIPv6 = true;
       #internalIPv6s = [ "2001:db8:1234:5678::/64" ];
