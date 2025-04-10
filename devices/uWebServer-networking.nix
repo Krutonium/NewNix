@@ -106,6 +106,11 @@
             destination = "10.0.0.3:24454";
           }
           {
+            sourcePort = 24455;
+            proto = "udp";
+            destination = "10.0.0.3:24455";
+          }
+          {
             sourcePort = 19132;
             proto = "udp";
             destination = "10.0.0.3:19132";
