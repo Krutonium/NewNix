@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
 with builtins;
 let
@@ -6,8 +11,14 @@ let
 in
 {
   config = mkIf (cfg.syncthing == true) {
-    networking.firewall.allowedTCPPorts = [ 8384 22000 ];
-    networking.firewall.allowedUDPPorts = [ 22000 21027 ];
+    networking.firewall.allowedTCPPorts = [
+      8384
+      22000
+    ];
+    networking.firewall.allowedUDPPorts = [
+      22000
+      21027
+    ];
     services = {
       syncthing = {
         enable = true;

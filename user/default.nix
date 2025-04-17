@@ -1,4 +1,9 @@
-{ pkgs, config, lib, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 with lib;
 with builtins;
 {
@@ -41,5 +46,10 @@ with builtins;
       '';
     };
   };
-  imports = [ ./krutonium.nix ./root.nix ./kea.nix ./gameserver.nix ];
+  imports = [
+    ./krutonium.nix
+    ./root.nix
+    ./kea.nix
+    ./gameserver.nix
+  ];
 }

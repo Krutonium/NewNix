@@ -1,25 +1,47 @@
-{ config, pkgs, lib, makeDestopItem, fetchurl, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  makeDestopItem,
+  fetchurl,
+  ...
+}:
 let
   OOTROM = builtins.fetchurl {
     url = "https://archive.org/download/ship-of-harkinian/ZELOOTD.zip/PAL%20GC.z64";
     sha256 = "sha256:1lim6has47jjhh1wgmfxpwawc5s22g245wp53gczihxa4wypk27p";
     name = "PAL_GC.z64";
   };
-  openjdk8-low = pkgs.openjdk8.overrideAttrs (oldAttrs: { meta.priority = 10; });
-
-  dotnetCombined = (with pkgs.dotnetCorePackages; combinePackages [ sdk_6_0 sdk_8_0 sdk_9_0 ]).overrideAttrs (fineAttrs: previousAttrs: {
-    postBuild = (previousAttrs.postBuild or '''') + ''
-       for i in $out/sdk/*
-       do
-         i=$(basename $i)
-         length=$(printf "%s" "$i" | wc -c)
-         substring=$(printf "%s" "$i" | cut -c 1-$(expr $length - 2))
-         i="$substring""00"
-         mkdir -p $out/metadata/workloads/''${i/-*}
-         touch $out/metadata/workloads/''${i/-*}/userlocal
-      done
-    '';
+  openjdk8-low = pkgs.openjdk8.overrideAttrs (oldAttrs: {
+    meta.priority = 10;
   });
+
+  dotnetCombined =
+    (
+      with pkgs.dotnetCorePackages;
+      combinePackages [
+        sdk_6_0
+        sdk_8_0
+        sdk_9_0
+      ]
+    ).overrideAttrs
+      (
+        fineAttrs: previousAttrs: {
+          postBuild =
+            (previousAttrs.postBuild or '''')
+            + ''
+               for i in $out/sdk/*
+               do
+                 i=$(basename $i)
+                 length=$(printf "%s" "$i" | wc -c)
+                 substring=$(printf "%s" "$i" | cut -c 1-$(expr $length - 2))
+                 i="$substring""00"
+                 mkdir -p $out/metadata/workloads/''${i/-*}
+                 touch $out/metadata/workloads/''${i/-*}/userlocal
+              done
+            '';
+        }
+      );
   shipwright = pkgs.shipwright.override {
     oot = {
       enable = true;
@@ -45,7 +67,10 @@ in
     pkgs.gitkraken
     pkgs.godot_4-mono
     pkgs.hub
-    (pkgs.master.jetbrains.plugins.addPlugins pkgs.master.jetbrains.idea-ultimate [ "github-copilot" "nixidea" ])
+    (pkgs.master.jetbrains.plugins.addPlugins pkgs.master.jetbrains.idea-ultimate [
+      "github-copilot"
+      "nixidea"
+    ])
     (pkgs.master.jetbrains.plugins.addPlugins pkgs.master.jetbrains.rider [ "github-copilot" ])
     (pkgs.master.jetbrains.plugins.addPlugins pkgs.master.jetbrains.rust-rover [ "github-copilot" ])
 

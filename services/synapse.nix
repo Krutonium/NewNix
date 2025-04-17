@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
 with builtins;
 let
@@ -26,17 +31,27 @@ in
             "turns:staticauth.openrelay.metered.ca:443"
           ];
           turn_shared_secret = "openrelayprojectsecret";
-          listeners = [{
-            port = 8008;
-            bind_addresses = [ "127.0.0.1" "::1" ]; # only local, handled by nginx reverse-proxy
-            type = "http";
-            tls = false;
-            x_forwarded = true;
-            resources = [{
-              names = [ "client" "federation" ];
-              compress = false;
-            }];
-          }];
+          listeners = [
+            {
+              port = 8008;
+              bind_addresses = [
+                "127.0.0.1"
+                "::1"
+              ]; # only local, handled by nginx reverse-proxy
+              type = "http";
+              tls = false;
+              x_forwarded = true;
+              resources = [
+                {
+                  names = [
+                    "client"
+                    "federation"
+                  ];
+                  compress = false;
+                }
+              ];
+            }
+          ];
         };
       };
     };

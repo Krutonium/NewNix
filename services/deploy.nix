@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
 with builtins;
 let
@@ -10,7 +15,13 @@ in
       services.updateSystems = {
         serviceConfig.Type = "oneshot";
         serviceConfig.User = "krutonium";
-        path = with pkgs; [ pkgs.deploy-cs pkgs.nix pkgs.nixos-rebuild pkgs.git pkgs.openssh ];
+        path = with pkgs; [
+          pkgs.deploy-cs
+          pkgs.nix
+          pkgs.nixos-rebuild
+          pkgs.git
+          pkgs.openssh
+        ];
         script = ''
           cd /home/krutonium/NixOS/
           deploy

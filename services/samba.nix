@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
 with builtins;
 let
@@ -6,8 +11,15 @@ let
 in
 {
   config = mkIf (cfg.samba == true) {
-    networking.firewall.allowedTCPPorts = [ 139 445 2049 ];
-    networking.firewall.allowedUDPPorts = [ 137 138 ];
+    networking.firewall.allowedTCPPorts = [
+      139
+      445
+      2049
+    ];
+    networking.firewall.allowedUDPPorts = [
+      137
+      138
+    ];
     services.samba = {
       enable = true;
       openFirewall = true;

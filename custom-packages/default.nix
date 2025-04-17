@@ -1,4 +1,9 @@
-{ pkgs, config, lib, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 with lib;
 with builtins;
 {
@@ -25,5 +30,9 @@ with builtins;
       '';
     };
   };
-  imports = [ ./ddcutil.nix ./ddcutil_nvidiaFix.nix ./ALVR.nix ];
+  imports = [
+    ./ddcutil.nix
+    ./ddcutil_nvidiaFix.nix
+    ./ALVR.nix
+  ];
 }

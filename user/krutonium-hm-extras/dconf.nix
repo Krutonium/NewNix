@@ -3,8 +3,8 @@
 
 with lib.hm.gvariant;
 let
-  userTheme = "Yaru-purple-dark"; #Shell Theme
-  mainTheme = "Yaru-purple-dark"; #Application Theme
+  userTheme = "Yaru-purple-dark"; # Shell Theme
+  mainTheme = "Yaru-purple-dark"; # Application Theme
   mainFont = "gg sans Normal 12";
   monoFont = "Ubuntu Mono 13";
   cursorTheme = "oreo_spark_purple_bordered_cursors";
@@ -17,7 +17,7 @@ in
   home.packages = [
     # Extensions
     pkgs.gnomeExtensions.dash-to-panel
-    pkgs.master.gnomeExtensions.ddterm #TODO: Undo after 298973 makes it to stable
+    pkgs.master.gnomeExtensions.ddterm # TODO: Undo after 298973 makes it to stable
     pkgs.gnomeExtensions.appindicator
     pkgs.master.gnomeExtensions.arcmenu
     pkgs.gnomeExtensions.no-overview
@@ -40,12 +40,17 @@ in
     pkgs.yaru-theme
     # Other Stuff
     pkgs.gnome-tweaks
-    pkgs.cascadia-code #Font
+    pkgs.cascadia-code # Font
   ];
 
   dconf.settings = {
     "org/gnome/desktop/input-sources" = {
-      sources = [ (mkTuple [ "xkb" "us" ]) ];
+      sources = [
+        (mkTuple [
+          "xkb"
+          "us"
+        ])
+      ];
       xkb-options = [ "terminate:ctrl_alt_bksp" ];
     };
 
@@ -96,12 +101,40 @@ in
       network-total-in-bits = true;
       show-dependencies = false;
       show-whose-processes = "user";
-      window-state = mkTuple [ 700 551 ];
+      window-state = mkTuple [
+        700
+        551
+      ];
     };
 
-
     "org/gnome/gnome-system-monitor/proctree" = {
-      columns-order = [ 0 1 2 3 4 6 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 ];
+      columns-order = [
+        0
+        1
+        2
+        3
+        4
+        6
+        8
+        9
+        10
+        11
+        12
+        13
+        14
+        15
+        16
+        17
+        18
+        19
+        20
+        21
+        22
+        23
+        24
+        25
+        26
+      ];
       sort-col = 8;
       sort-order = 0;
     };
@@ -139,7 +172,10 @@ in
         "compiz-alike-magic-lamp-effect@hermes83.github.com"
       ];
       # favorite-apps = [ "org.gnome.Nautilus.desktop" "firefox.desktop" "element-desktop.desktop" "discord.desktop" "telegramdesktop.desktop" "org.polymc.PolyMC.desktop" "com.obsproject.Studio.desktop" "idea-ultimate.desktop" "rider.desktop" ];
-      favorite-apps = [ "org.gnome.Nautilus.desktop" "firefox.desktop" ];
+      favorite-apps = [
+        "org.gnome.Nautilus.desktop"
+        "firefox.desktop"
+      ];
       remember-mount-password = true;
     };
 
@@ -152,7 +188,11 @@ in
 
     "org/gnome/shell/extensions/arcmenu" = {
       arc-menu-placement = "DTP";
-      available-placement = [ false true false ];
+      available-placement = [
+        false
+        true
+        false
+      ];
       custom-hot-corner-cmd = "sh -c 'notify-send \"$(date)\"'";
       custom-menu-button-icon-size = 35;
       custom-menu-button-icon = superMenuLogo;

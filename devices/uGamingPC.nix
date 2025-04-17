@@ -1,15 +1,22 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 let
   kernel = with pkgs; unstable.linuxPackages;
   video = config.boot.kernelPackages.nvidiaPackages.beta;
   pkgAfterFbc =
-    if builtins.hasAttr video.version pkgs.nvidia-patch-list.fbc
-    then pkgs.nvidia-patch.patch-fbc video
-    else video;
+    if builtins.hasAttr video.version pkgs.nvidia-patch-list.fbc then
+      pkgs.nvidia-patch.patch-fbc video
+    else
+      video;
   finalPkg =
-    if builtins.hasAttr video.version pkgs.nvidia-patch-list.nvenc
-    then pkgs.nvidia-patch.patch-nvenc pkgAfterFbc
-    else pkgAfterFbc;
+    if builtins.hasAttr video.version pkgs.nvidia-patch-list.nvenc then
+      pkgs.nvidia-patch.patch-nvenc pkgAfterFbc
+    else
+      pkgAfterFbc;
   zenpower = config.boot.kernelPackages.zenpower;
   Hostname = "uGamingPC";
 in
@@ -17,7 +24,11 @@ in
   #hardware.firmware = [ video.firmware ];
   boot = {
     kernelPackages = kernel;
-    kernelParams = [ "nvidia.NVreg_OpenRmEnableUnsupportedGpus=1" "nvidia.NVreg_EnableResizableBar=1" "mitigations=off" ];
+    kernelParams = [
+      "nvidia.NVreg_OpenRmEnableUnsupportedGpus=1"
+      "nvidia.NVreg_EnableResizableBar=1"
+      "mitigations=off"
+    ];
     tmp.useTmpfs = false;
     loader.grub = {
       gfxmodeEfi = "1920x1080";
@@ -40,14 +51,16 @@ in
   systemd.targets.hibernate.enable = false;
   systemd.targets.hybrid-sleep.enable = false;
 
-
   services.flatpak.enable = true;
   services.ratbagd.enable = true;
   systemd.services."mount-games" = {
     # This is a HACK because the default mounter just utterly dies with bcachefs.
     serviceConfig.Type = "oneshot";
     serviceConfig.User = "root";
-    path = with pkgs; [ pkgs.bcachefs-tools pkgs.util-linux ];
+    path = with pkgs; [
+      pkgs.bcachefs-tools
+      pkgs.util-linux
+    ];
     script = ''
       if mountpoint -q /games; then
         echo "games already mounted"
@@ -88,15 +101,17 @@ in
       enable = true;
       json = {
         scale = 1.0; # No Foviation
-        bitrate = 250000000; #250Mbit
-        encoders = [{
-          encoder = "nvenc"; #"vaapi";
-          codec = "h264";
-          width = 1.0;
-          height = 1.0;
-          offset_x = 0.0;
-          offset_y = 0.0;
-        }];
+        bitrate = 250000000; # 250Mbit
+        encoders = [
+          {
+            encoder = "nvenc"; # "vaapi";
+            codec = "h264";
+            width = 1.0;
+            height = 1.0;
+            offset_x = 0.0;
+            offset_y = 0.0;
+          }
+        ];
       };
     };
   };
@@ -107,10 +122,31 @@ in
   networking = {
     hostName = Hostname;
     firewall = {
-      allowedTCPPorts = [ 47984 47989 48010 1337 11434 ]; #11434 is Ollama
-      allowedUDPPorts = [ 47998 47999 48000 48010 ];
-      allowedTCPPortRanges = [{ from = 9943; to = 9944; }]; #ALVR
-      allowedUDPPortRanges = [{ from = 9943; to = 9944; }];
+      allowedTCPPorts = [
+        47984
+        47989
+        48010
+        1337
+        11434
+      ]; # 11434 is Ollama
+      allowedUDPPorts = [
+        47998
+        47999
+        48000
+        48010
+      ];
+      allowedTCPPortRanges = [
+        {
+          from = 9943;
+          to = 9944;
+        }
+      ]; # ALVR
+      allowedUDPPortRanges = [
+        {
+          from = 9943;
+          to = 9944;
+        }
+      ];
     };
   };
   services.teamviewer.enable = true;
@@ -174,12 +210,14 @@ in
     enable32Bit = true;
     extraPackages = [ pkgs.monado-vulkan-layers ];
   };
-  boot.extraModulePackages = with config.boot.kernelPackages;
-    [
-      zenpower.out
-      pkgs.ddcutil.out
-    ];
-  boot.blacklistedKernelModules = [ "k10temp" "amdgpu" ];
+  boot.extraModulePackages = with config.boot.kernelPackages; [
+    zenpower.out
+    pkgs.ddcutil.out
+  ];
+  boot.blacklistedKernelModules = [
+    "k10temp"
+    "amdgpu"
+  ];
   environment.systemPackages = [
     #video
     pkgs.gamescope
@@ -235,7 +273,7 @@ in
       sshGuard = true;
     };
     steam = {
-      steam = true; #HTTP Error with Monado, Enable Later 
+      steam = true; # HTTP Error with Monado, Enable Later
     };
     virtualization = {
       server = "virtd";

@@ -1,10 +1,19 @@
-{ pkgs, config, lib, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 with lib;
 with builtins;
 {
   options.sys.boot = {
     bootloader = mkOption {
-      type = types.enum [ "uefi" "bios" "none" ];
+      type = types.enum [
+        "uefi"
+        "bios"
+        "none"
+      ];
       default = "uefi";
       description = ''
         Your system's firmware.
@@ -32,5 +41,9 @@ with builtins;
       '';
     };
   };
-  imports = [ ./uefi.nix ./bios.nix ./plymouth.nix ];
+  imports = [
+    ./uefi.nix
+    ./bios.nix
+    ./plymouth.nix
+  ];
 }

@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
 with builtins;
 let
@@ -7,7 +12,12 @@ in
 {
   config = mkIf (cfg.ssh == true) {
     networking.firewall.allowedTCPPorts = [ 22 ];
-    networking.firewall.allowedUDPPortRanges = [{ from = 60000; to = 61000; }];
+    networking.firewall.allowedUDPPortRanges = [
+      {
+        from = 60000;
+        to = 61000;
+      }
+    ];
     services.openssh = {
       enable = true;
       ports = [ 22 ];

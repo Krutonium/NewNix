@@ -10,7 +10,10 @@ in
   hardware.opengl.enable = true;
   hardware.enableAllFirmware = true;
   boot.kernelPackages = kernel;
-  boot.initrd.kernelModules = [ "nouveau" "msr" ];
+  boot.initrd.kernelModules = [
+    "nouveau"
+    "msr"
+  ];
   boot.kernelModules = [ "msr" ];
   boot.loader.grub.gfxmodeBios = "1680x1050";
   boot.loader.grub.gfxpayloadBios = "keep";
@@ -60,5 +63,8 @@ in
     "mitigations=off"
   ];
   powerManagement.cpuFreqGovernor = "performance";
-  environment.systemPackages = [ pkgs.msr pkgs.msr-tools ];
+  environment.systemPackages = [
+    pkgs.msr
+    pkgs.msr-tools
+  ];
 }

@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
 with builtins;
 let
@@ -19,12 +24,15 @@ in
       };
       wantedBy = [ "multi-user.target" ];
       after = [ "network.target" ];
-      path = [ pkgs.jre pkgs.bash pkgs.screen ];
-      script =
-        ''
-          # ${pkgs.screen}/screen -DmS rubber 
-          /home/krutonium/RubberDragonTrain/run.sh
-        '';
+      path = [
+        pkgs.jre
+        pkgs.bash
+        pkgs.screen
+      ];
+      script = ''
+        # ${pkgs.screen}/screen -DmS rubber 
+        /home/krutonium/RubberDragonTrain/run.sh
+      '';
     };
   };
 }

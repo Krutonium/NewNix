@@ -10,14 +10,22 @@ in
   boot.kernelModules = [ "ec_sys" ];
   networking.hostName = Hostname;
   networking.firewall.interfaces."enp3s0".allowedUDPPorts = [ 67 ];
-  boot.kernelParams = [ "nouveau.config=NvClkMode=15" "mitigations=off" "i915.enable_psr=0" "i915.enable_rc6=0" ];
+  boot.kernelParams = [
+    "nouveau.config=NvClkMode=15"
+    "mitigations=off"
+    "i915.enable_psr=0"
+    "i915.enable_rc6=0"
+  ];
   boot.loader.grub.gfxmodeEfi = "1920x1080";
   boot.loader.grub.gfxpayloadEfi = "keep";
   environment.systemPackages = [
     kernel.perf
     pkgs.teamviewer
   ];
-  imports = [ ./uMsiLaptop-hw.nix ../builders ];
+  imports = [
+    ./uMsiLaptop-hw.nix
+    ../builders
+  ];
   nix = {
     settings = {
       max-jobs = 4;

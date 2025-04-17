@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
 with builtins;
 let
@@ -11,12 +16,14 @@ in
     systemd.services.nbfc_service = {
       enable = true;
       description = "NoteBook FanControl service";
-      serviceConfig.Type = "simple"; #related upstream config: https://github.com/nbfc-linux/nbfc-linux/blob/main/etc/systemd/system/nbfc_service.service.in
-      path = [ pkgs.kmod pkgs.nbfc-linux ];
+      serviceConfig.Type = "simple"; # related upstream config: https://github.com/nbfc-linux/nbfc-linux/blob/main/etc/systemd/system/nbfc_service.service.in
+      path = [
+        pkgs.kmod
+        pkgs.nbfc-linux
+      ];
       script = "${pkgs.nbfc-linux}/${command}";
       wantedBy = [ "multi-user.target" ];
     };
     environment.systemPackages = [ pkgs.nbfc-linux ];
   };
 }
-

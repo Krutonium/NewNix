@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
 with builtins;
 let
@@ -22,8 +27,16 @@ in
   config = mkIf (cfg.ddns == true) {
     systemd.services.update_domain = {
       description = "Check External IP and Trigger cURL on Change";
-      after = [ "network-online.target" "sys-subsystem-net-devices-WAN.device" "network.target" ];
-      wants = [ "network-online.target" "sys-subsystem-net-devices-WAN.device" "update_domain.path" ];
+      after = [
+        "network-online.target"
+        "sys-subsystem-net-devices-WAN.device"
+        "network.target"
+      ];
+      wants = [
+        "network-online.target"
+        "sys-subsystem-net-devices-WAN.device"
+        "update_domain.path"
+      ];
       bindsTo = [ "network-online.target" ];
       path = [ pkgs.curl ];
       serviceConfig = {

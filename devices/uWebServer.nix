@@ -1,12 +1,29 @@
-{ config, pkgs, lib, inputs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
 let
   kernel = pkgs.linuxPackages;
   #kernel = config.boot.zfs.package.latestCompatibleLinuxPackages;
   Hostname = "uWebServer";
 in
 {
-  networking.firewall.allowedTCPPorts = [ 25565 25566 50056 9000 2468 ];
-  networking.firewall.allowedUDPPorts = [ 50056 67 68 10578 ];
+  networking.firewall.allowedTCPPorts = [
+    25565
+    25566
+    50056
+    9000
+    2468
+  ];
+  networking.firewall.allowedUDPPorts = [
+    50056
+    67
+    68
+    10578
+  ];
   networking.domain = "krutonium.ca";
   # 10578 is Skyrim Together
   networking.hostName = Hostname;
@@ -29,12 +46,25 @@ in
       size = 8192;
     }
   ];
-  hardware.graphics.extraPackages = with pkgs; [ rocmPackages.clr.icd intel-compute-runtime intel-media-sdk ];
+  hardware.graphics.extraPackages = with pkgs; [
+    rocmPackages.clr.icd
+    intel-compute-runtime
+    intel-media-sdk
+  ];
   boot.tmp.useTmpfs = true;
-  boot.kernelParams = [ "amdgpu.ppfeaturemask=0xffffffff" "mitigations=off" ];
-  boot.initrd.availableKernelModules = [ "amdgpu" "vendor-reset" ];
+  boot.kernelParams = [
+    "amdgpu.ppfeaturemask=0xffffffff"
+    "mitigations=off"
+  ];
+  boot.initrd.availableKernelModules = [
+    "amdgpu"
+    "vendor-reset"
+  ];
   boot.extraModulePackages = with config.boot.kernelPackages; [ vendor-reset ];
-  imports = [ ./uWebServer-hw.nix ./uWebServer-networking.nix ];
+  imports = [
+    ./uWebServer-hw.nix
+    ./uWebServer-networking.nix
+  ];
   services.xserver.videoDrivers = [ "amdgpu" ];
   hardware.graphics = {
     enable = true;
@@ -116,8 +146,16 @@ in
       containers."restream" = {
         autoStart = true;
         image = "datarhei/restreamer:vaapi-latest";
-        ports = [ "1233:8080" "1234:8181" "1935:1935" ];
-        volumes = [ "/dev/dri:/dev/dri" "/persist/restream/config:/core/config" "/persist/restream/data:/core/data" ];
+        ports = [
+          "1233:8080"
+          "1234:8181"
+          "1935:1935"
+        ];
+        volumes = [
+          "/dev/dri:/dev/dri"
+          "/persist/restream/config:/core/config"
+          "/persist/restream/data:/core/data"
+        ];
         extraOptions = [ "--privileged" ];
       };
     };
@@ -152,7 +190,11 @@ in
         Restart = "always";
       };
       wantedBy = [ "multi-user.target" ];
-      path = [ pkgs.InternetRadio2Computercraft pkgs.ffmpeg_7-full pkgs.unstable.yt-dlp ];
+      path = [
+        pkgs.InternetRadio2Computercraft
+        pkgs.ffmpeg_7-full
+        pkgs.unstable.yt-dlp
+      ];
       script = ''
         InternetRadio2Computercraft
       '';
@@ -160,5 +202,3 @@ in
     };
   };
 }
-
-

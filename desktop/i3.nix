@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
 with builtins;
 let
@@ -10,7 +15,7 @@ in
     xdg.portal.extraPortals = [
       pkgs.xdg-desktop-portal-gtk
     ];
-    environment.pathsToLink = [ "/libexec" ]; # links /libexec from derivations to /run/current-system/sw 
+    environment.pathsToLink = [ "/libexec" ]; # links /libexec from derivations to /run/current-system/sw
     services = {
       xserver = {
         enable = true;
@@ -20,13 +25,12 @@ in
         windowManager = {
           i3 = {
             enable = true;
-            extraPackages = with pkgs;
-              [
-                i3status
-                i3lock
-                dmenu
-                i3blocks
-              ];
+            extraPackages = with pkgs; [
+              i3status
+              i3lock
+              dmenu
+              i3blocks
+            ];
           };
         };
       };

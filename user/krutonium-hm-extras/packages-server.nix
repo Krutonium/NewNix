@@ -1,2 +1,9 @@
-{ config, pkgs, lib, makeDestopItem, fetchurl, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  makeDestopItem,
+  fetchurl,
+  ...
+}:
 { }

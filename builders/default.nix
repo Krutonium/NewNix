@@ -1,4 +1,10 @@
-{ config, pkgs, outputs, inputs, ... }:
+{
+  config,
+  pkgs,
+  outputs,
+  inputs,
+  ...
+}:
 {
   imports = [
     #./uWebServer.nix

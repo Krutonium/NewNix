@@ -1,9 +1,17 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
 with builtins;
 let
   cfg = config.sys.minecraft;
-  tcpports = [ 25565 25566 ]; # 25565 is Minecraft
+  tcpports = [
+    25565
+    25566
+  ]; # 25565 is Minecraft
   udpports = [ 24454 ]; # 24454 is Simple Voice Chat
   location = "/persist/gryphon/";
   rconport_atm9 = "12345"; # RCON is LAN only.
@@ -23,18 +31,19 @@ in
         Restart = "always";
         KillSignal = "SIGINT";
       };
-      preStop =
-        ''
-          password=`cat /persist/mcrcon.txt`
-          ${pkgs.mcrcon}/bin/mcrcon -H ${host} -P ${rconport_atm9} -p $password -w 5 "say Shutting Down Now!" stop
-        '';
+      preStop = ''
+        password=`cat /persist/mcrcon.txt`
+        ${pkgs.mcrcon}/bin/mcrcon -H ${host} -P ${rconport_atm9} -p $password -w 5 "say Shutting Down Now!" stop
+      '';
       wantedBy = [ "multi-user.target" ];
       after = [ "network.target" ];
-      path = [ pkgs.jdk21 pkgs.bash ];
-      script =
-        ''
-          ./run.sh
-        '';
+      path = [
+        pkgs.jdk21
+        pkgs.bash
+      ];
+      script = ''
+        ./run.sh
+      '';
       enable = false;
     };
     systemd.services.AOF7 = {
@@ -46,18 +55,19 @@ in
         Restart = "always";
         KillSignal = "SIGINT";
       };
-      preStop =
-        ''
-          password=`cat /persist/mcrcon.txt`
-          ${pkgs.mcrcon}/bin/mcrcon -H ${host} -P ${rconport_aof7} -p $password -w 5 "say Shutting Down Now!" stop
-        '';
+      preStop = ''
+        password=`cat /persist/mcrcon.txt`
+        ${pkgs.mcrcon}/bin/mcrcon -H ${host} -P ${rconport_aof7} -p $password -w 5 "say Shutting Down Now!" stop
+      '';
       wantedBy = [ "multi-user.target" ];
       after = [ "network.target" ];
-      path = [ pkgs.jdk21 pkgs.bash ];
-      script =
-        ''
-          ./startserver.sh
-        '';
+      path = [
+        pkgs.jdk21
+        pkgs.bash
+      ];
+      script = ''
+        ./startserver.sh
+      '';
     };
 
     systemd.services.snapshotter = {
@@ -69,24 +79,28 @@ in
         KillSignal = "SIGINT";
       };
       wantedBy = [ "multi-user.target" ];
-      path = [ pkgs.btrfs-progs pkgs.btrfs-snap pkgs.mcrcon pkgs.coreutils ];
-      script =
-        ''
-          sleep 300
-          password=`cat /persist/mcrcon.txt`
-          # mcrcon -H ${host} -P ${rconport_atm9} -p $password -w 1 "say Starting Hourly Backup..." save-off save-all
-          mcrcon -H ${host} -P ${rconport_aof7} -p $password -w 1 "say Starting Hourly Backup..." save-off save-all
-          # Create 1 snapshot per hour, and keep 24 of them.
-          btrfs-snap -r -c . hourly 192
-          # mcrcon -H ${host} -P ${rconport_atm9} -p $password -w 1 save-on "say Done!"
-          mcrcon -H ${host} -P ${rconport_aof7} -p $password -w 1 save-on "say Done!"
-        '';
+      path = [
+        pkgs.btrfs-progs
+        pkgs.btrfs-snap
+        pkgs.mcrcon
+        pkgs.coreutils
+      ];
+      script = ''
+        sleep 300
+        password=`cat /persist/mcrcon.txt`
+        # mcrcon -H ${host} -P ${rconport_atm9} -p $password -w 1 "say Starting Hourly Backup..." save-off save-all
+        mcrcon -H ${host} -P ${rconport_aof7} -p $password -w 1 "say Starting Hourly Backup..." save-off save-all
+        # Create 1 snapshot per hour, and keep 24 of them.
+        btrfs-snap -r -c . hourly 192
+        # mcrcon -H ${host} -P ${rconport_atm9} -p $password -w 1 save-on "say Done!"
+        mcrcon -H ${host} -P ${rconport_aof7} -p $password -w 1 save-on "say Done!"
+      '';
     };
 
     systemd.timers.snapshotter = {
       wantedBy = [ "timers.target" ];
       partOf = [ "snapshotter.service" ];
-      timerConfig.OnCalendar = [ "*:0/15" ]; #Every 15 minutes
+      timerConfig.OnCalendar = [ "*:0/15" ]; # Every 15 minutes
     };
 
     systemd.services.snapshotter-daily = {
@@ -98,19 +112,23 @@ in
         KillSignal = "SIGINT";
       };
       wantedBy = [ "multi-user.target" ];
-      path = [ pkgs.btrfs-progs pkgs.btrfs-snap pkgs.mcrcon pkgs.coreutils ];
-      script =
-        ''
-          sleep 600
-          password=`cat /persist/mcrcon.txt`
-          # mcrcon -H ${host} -P ${rconport_atm9} -p $password -w 1 "say Starting Daily Backup..." save-off save-all
-          mcrcon -H ${host} -P ${rconport_aof7} -p $password -w 1 "say Starting Daily Backup..." save-off save-all
-          #Create 1 snapshot per day that is kept for 7 days.
-          btrfs-snap -r -c . daily 7
-          # mcrcon -H ${host} -P ${rconport_atm9} -p $password -w 1 "say Done! Compressing Backup and Shuffling it over to the backup disk..." save-on
-          mcrcon -H ${host} -P ${rconport_aof7} -p $password -w 1 "say Done! Compressing Backup and Shuffling it over to the backup disk..." save-on
-          systemctl start snapshotter-send
-        '';
+      path = [
+        pkgs.btrfs-progs
+        pkgs.btrfs-snap
+        pkgs.mcrcon
+        pkgs.coreutils
+      ];
+      script = ''
+        sleep 600
+        password=`cat /persist/mcrcon.txt`
+        # mcrcon -H ${host} -P ${rconport_atm9} -p $password -w 1 "say Starting Daily Backup..." save-off save-all
+        mcrcon -H ${host} -P ${rconport_aof7} -p $password -w 1 "say Starting Daily Backup..." save-off save-all
+        #Create 1 snapshot per day that is kept for 7 days.
+        btrfs-snap -r -c . daily 7
+        # mcrcon -H ${host} -P ${rconport_atm9} -p $password -w 1 "say Done! Compressing Backup and Shuffling it over to the backup disk..." save-on
+        mcrcon -H ${host} -P ${rconport_aof7} -p $password -w 1 "say Done! Compressing Backup and Shuffling it over to the backup disk..." save-on
+        systemctl start snapshotter-send
+      '';
     };
     systemd.timers.snapshotter-daily = {
       wantedBy = [ "timers.target" ];
@@ -128,7 +146,11 @@ in
         KillSignal = "SIGINT";
       };
       wantedBy = [ "multi-user.target" ];
-      path = [ pkgs.mcrcon pkgs.coreutils pkgs.p7zip ];
+      path = [
+        pkgs.mcrcon
+        pkgs.coreutils
+        pkgs.p7zip
+      ];
       script = ''
         exit
         password=`cat /persist/mcrcon.txt`

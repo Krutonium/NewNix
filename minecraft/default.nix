@@ -1,4 +1,9 @@
-{ pkgs, config, lib, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 with lib;
 with builtins;
 {
@@ -34,6 +39,10 @@ with builtins;
       description = "GryphonMC";
     };
   };
-  imports = [ ./stoneblock3.nix ./RubberDragonTrain.nix ./Gryphon.nix ];
+  imports = [
+    ./stoneblock3.nix
+    ./RubberDragonTrain.nix
+    ./Gryphon.nix
+  ];
 
 }

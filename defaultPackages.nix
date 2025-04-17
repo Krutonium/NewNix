@@ -9,11 +9,10 @@ let
     name = "Additional Fonts";
     src = fontFiles;
     buildInputs = [ ];
-    buildCommand =
-      ''
-        mkdir -p $out/share/fonts
-        cp -R $src $out/share/fonts/opentype/
-      '';
+    buildCommand = ''
+      mkdir -p $out/share/fonts
+      cp -R $src $out/share/fonts/opentype/
+    '';
   };
 in
 {
@@ -25,14 +24,17 @@ in
   #  target = "/share/fonts";
   #};
 
-  fonts.packages = [ fonts pkgs.rPackages.fontawesome ];
+  fonts.packages = [
+    fonts
+    pkgs.rPackages.fontawesome
+  ];
   i18n.inputMethod.ibus.engines = with pkgs.ibus-engines; [ uniemoji ];
   environment.systemPackages = [
     pkgs.xorg.xf86inputmouse
     pkgs.rPackages.fontawesome
-    pkgs.nano #Editor
+    pkgs.nano # Editor
     pkgs.git
-    pkgs.tldr #Replace man
+    pkgs.tldr # Replace man
     pkgs.screen
     pkgs.colmena
     pkgs.tmux
@@ -49,7 +51,8 @@ in
     pkgs.p7zip
     pkgs.pciutils
     pkgs.android-tools
-    pkgs.nixpkgs-fmt
+    #pkgs.nixpkgs-fmt
+    pkgs.nixfmt-rfc-style
     pkgs.btrfs-progs
     pkgs.cifs-utils
     pkgs.nixpkgs-review

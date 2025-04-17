@@ -1,6 +1,12 @@
 # This is a machine intended to run Game Servers
 # There will be minimal software on it.
-{ config, pkgs, lib, inputs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
 let
   kernel = with pkgs; linuxPackages;
   btrfsDisk = "/dev/disk/by-label/WorkDisk";
@@ -94,32 +100,56 @@ in
     "/home" = {
       device = btrfsDisk;
       fsType = "btrfs";
-      options = [ "noatime" "compress=zstd:15" "subvol=Home" ];
+      options = [
+        "noatime"
+        "compress=zstd:15"
+        "subvol=Home"
+      ];
     };
     "/servers/starbound" = {
       device = btrfsDisk;
       fsType = "btrfs";
-      options = [ "noatime" "compress=zstd:15" "subvol=starbound" ];
+      options = [
+        "noatime"
+        "compress=zstd:15"
+        "subvol=starbound"
+      ];
     };
     "/servers/AtM9" = {
       device = btrfsDisk;
       fsType = "btrfs";
-      options = [ "noatime" "compress=zstd:15" "subvol=AtM9" ];
+      options = [
+        "noatime"
+        "compress=zstd:15"
+        "subvol=AtM9"
+      ];
     };
     "servers/AoF7" = {
       device = btrfsDisk;
       fsType = "btrfs";
-      options = [ "noatime" "compress=zstd:15" "subvol=AoF7" ];
+      options = [
+        "noatime"
+        "compress=zstd:15"
+        "subvol=AoF7"
+      ];
     };
     "servers/snapshots" = {
       device = btrfsDisk;
       fsType = "btrfs";
-      options = [ "noatime" "compress=zstd:15" "subvol=snapshots" ];
+      options = [
+        "noatime"
+        "compress=zstd:15"
+        "subvol=snapshots"
+      ];
     };
     "servers/vanilla" = {
       device = btrfsDisk;
       fsType = "btrfs";
-      options = [ "noatime" "compress=zstd:15" "subvol=vanilla" ];
+      options = [
+        "noatime"
+        "compress=zstd:15"
+        "subvol=vanilla"
+      ];
     };
     "/backups" = {
       device = "/dev/disk/by-label/Backups";

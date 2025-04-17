@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
 with builtins;
 let
@@ -6,8 +11,16 @@ let
 in
 {
   config = mkIf (cfg.satisfactoryServer == true) {
-    networking.firewall.allowedTCPPorts = [ 15777 15000 7777 ];
-    networking.firewall.allowedUDPPorts = [ 15777 15000 7777 ];
+    networking.firewall.allowedTCPPorts = [
+      15777
+      15000
+      7777
+    ];
+    networking.firewall.allowedUDPPorts = [
+      15777
+      15000
+      7777
+    ];
     systemd.services.satisfactory = {
       description = "Satisfactory Dedicated Server";
       serviceConfig = {
@@ -19,7 +32,10 @@ in
       };
       wantedBy = [ "multi-user.target" ];
       after = [ "network.target" ];
-      path = [ pkgs.steam-run-native pkgs.steamcmd ];
+      path = [
+        pkgs.steam-run-native
+        pkgs.steamcmd
+      ];
       script = ''
         steamcmd +force_install_dir /srv/games/satisfactory +login anonymous +app_update 1690800 +quit
         steam-run /srv/games/satisfactory/FactoryServer.sh

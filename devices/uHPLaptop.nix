@@ -6,7 +6,10 @@ in
 {
   boot.kernelPackages = kernel;
   networking.hostName = Hostname;
-  boot.kernelParams = [ "acpi_backlight=native" "mitigations=off" ];
+  boot.kernelParams = [
+    "acpi_backlight=native"
+    "mitigations=off"
+  ];
   imports = [ ./uHPLaptop-hw.nix ];
   swapDevices = [
     {

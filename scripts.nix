@@ -108,7 +108,7 @@ let
     ${pkgs.unstable.gh}/bin/gh explain "$@"
   '';
 
-  # GitHub CLI suggest command wrapper  
+  # GitHub CLI suggest command wrapper
   help = pkgs.writeShellScriptBin "help" ''
     ${pkgs.unstable.gh}/bin/gh suggest "$@"
   '';

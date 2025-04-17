@@ -45,22 +45,23 @@
     };
   };
   outputs =
-    { self
-    , nixpkgs
-    , nixpkgs-unstable
-    , nixpkgs-master
-    , nixos-hardware
-    , home-manager
-    , update
-    , nix-monitored
-    , nixd
-    , fan-controller
-    , nur
-    , R2CC
-    , nvidia-patch
-    , lix-module
-    , MediaServer
-    , ...
+    {
+      self,
+      nixpkgs,
+      nixpkgs-unstable,
+      nixpkgs-master,
+      nixos-hardware,
+      home-manager,
+      update,
+      nix-monitored,
+      nixd,
+      fan-controller,
+      nur,
+      R2CC,
+      nvidia-patch,
+      lix-module,
+      MediaServer,
+      ...
     }@inputs:
     let
       system = "x86_64-linux";
@@ -85,10 +86,18 @@
       # Overlay Definitions
       overlays = {
         unstable = final: prev: {
-          unstable = import nixpkgs-unstable { inherit system; config.allowUnfree = true; config.nvidia.acceptLicense = true; };
+          unstable = import nixpkgs-unstable {
+            inherit system;
+            config.allowUnfree = true;
+            config.nvidia.acceptLicense = true;
+          };
         };
         master = final: prev: {
-          master = import nixpkgs-master { inherit system; config.allowUnfree = true; config.nvidia.acceptLicense = true; };
+          master = import nixpkgs-master {
+            inherit system;
+            config.allowUnfree = true;
+            config.nvidia.acceptLicense = true;
+          };
         };
         nixpkgsUpdate = final: prev: {
           nixpkgs-update = update.defaultPackage.x86_64-linux;
@@ -110,31 +119,39 @@
       };
 
       genericModulesWithOverlays = baseModules ++ [
-        ({ config, pkgs, ... }: {
-          nixpkgs.overlays = [
-            overlays.unstable
-            overlays.master
-            overlays.nixpkgsUpdate
-            nixd.overlays.default
-            overlays.fanController
-            overlays.InternetRadio2Computercraft
-            nur.overlays.default
-            inputs.nvidia-patch.overlays.default
-            overlays.MediaServer
-          ];
-        })
+        (
+          { config, pkgs, ... }:
+          {
+            nixpkgs.overlays = [
+              overlays.unstable
+              overlays.master
+              overlays.nixpkgsUpdate
+              nixd.overlays.default
+              overlays.fanController
+              overlays.InternetRadio2Computercraft
+              nur.overlays.default
+              inputs.nvidia-patch.overlays.default
+              overlays.MediaServer
+            ];
+          }
+        )
       ];
 
       # NixOS Configuration Helper
-      nixosConfiguration = name: deviceConfig: nixpkgs.lib.nixosSystem {
-        inherit system;
-        modules = genericModulesWithOverlays ++ (with nixos-hardware.nixosModules; deviceConfig);
-        specialArgs.channels = { inherit nixpkgs nixpkgs-unstable; };
-      };
+      nixosConfiguration =
+        name: deviceConfig:
+        nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = genericModulesWithOverlays ++ (with nixos-hardware.nixosModules; deviceConfig);
+          specialArgs.channels = { inherit nixpkgs nixpkgs-unstable; };
+        };
 
       # Common Device Modules
 
-      commonPCModules = with nixos-hardware.nixosModules; [ common-pc common-pc-ssd ];
+      commonPCModules = with nixos-hardware.nixosModules; [
+        common-pc
+        common-pc-ssd
+      ];
       commonIntel = with nixos-hardware.nixosModules; [ common-cpu-intel ];
       commonAMD = with nixos-hardware.nixosModules; [ common-cpu-amd ];
       commonLaptop = with nixos-hardware.nixosModules; [ common-pc-laptop ];
@@ -146,22 +163,30 @@
       ##################
       ### uWebServer ###
       ##################
-      nixosConfigurations.uWebServer = nixosConfiguration "uWebServer" (commonPCModules ++ commonIntel ++ gpuAMD ++ gpuIntel ++ [ ./devices/uWebServer.nix ]);
+      nixosConfigurations.uWebServer = nixosConfiguration "uWebServer" (
+        commonPCModules ++ commonIntel ++ gpuAMD ++ gpuIntel ++ [ ./devices/uWebServer.nix ]
+      );
 
       #################
       ### uGamingPC ###
       #################
-      nixosConfigurations.uGamingPC = nixosConfiguration "uGamingPC" (commonPCModules ++ commonAMD ++ gpuNvidia ++ [ ./devices/uGamingPC.nix ]);
+      nixosConfigurations.uGamingPC = nixosConfiguration "uGamingPC" (
+        commonPCModules ++ commonAMD ++ gpuNvidia ++ [ ./devices/uGamingPC.nix ]
+      );
 
       ##################
       ### uMsiLaptop ###
       ##################
-      nixosConfigurations.uMsiLaptop = nixosConfiguration "uMsiLaptop" (commonPCModules ++ commonLaptop ++ commonIntel ++ gpuIntel ++ [ ./devices/uMsiLaptop.nix ]);
+      nixosConfigurations.uMsiLaptop = nixosConfiguration "uMsiLaptop" (
+        commonPCModules ++ commonLaptop ++ commonIntel ++ gpuIntel ++ [ ./devices/uMsiLaptop.nix ]
+      );
 
       ###################
       ### uServerHost ###
       ###################
-      nixosConfigurations.uServerHost = nixosConfiguration "uServerHost" (commonPCModules ++ commonAMD ++ gpuNvidia ++ [ ./devices/uServerHost.nix ]);
+      nixosConfigurations.uServerHost = nixosConfiguration "uServerHost" (
+        commonPCModules ++ commonAMD ++ gpuNvidia ++ [ ./devices/uServerHost.nix ]
+      );
 
       #################
       ### Uncomment if needed ###

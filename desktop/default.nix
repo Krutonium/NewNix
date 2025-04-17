@@ -1,17 +1,36 @@
-{ pkgs, config, lib, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 with lib;
 with builtins;
 {
   options.sys.desktop = {
     desktop = mkOption {
-      type = types.enum [ "gnome" "kde" "none" "pantheon" "budgie" "labwc" "hyprland" "i3" ];
+      type = types.enum [
+        "gnome"
+        "kde"
+        "none"
+        "pantheon"
+        "budgie"
+        "labwc"
+        "hyprland"
+        "i3"
+      ];
       default = "none";
       description = ''
         Your desktop of choice.
       '';
     };
     displayManager = mkOption {
-      type = types.enum [ "gdm" "lightdm" "sddm" "none" ];
+      type = types.enum [
+        "gdm"
+        "lightdm"
+        "sddm"
+        "none"
+      ];
       default = "none";
       description = ''
         The Login/Display manager you want to use
@@ -39,5 +58,17 @@ with builtins;
       '';
     };
   };
-  imports = [ ./gnome.nix ./kde.nix ./pantheon.nix ./none.nix ./budgie.nix ./labwc.nix ./lightdm.nix ./gdm.nix ./sddm.nix ./hyprland.nix ./i3.nix ];
+  imports = [
+    ./gnome.nix
+    ./kde.nix
+    ./pantheon.nix
+    ./none.nix
+    ./budgie.nix
+    ./labwc.nix
+    ./lightdm.nix
+    ./gdm.nix
+    ./sddm.nix
+    ./hyprland.nix
+    ./i3.nix
+  ];
 }

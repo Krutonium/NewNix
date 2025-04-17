@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
 with builtins;
 let
@@ -27,7 +32,11 @@ in
         source = config.virtualisation.libvirtd.qemu.package + "/share/qemu/edk2-x86_64-secure-code.fd";
       };
     };
-    environment.systemPackages = [ pkgs.swtpm pkgs.virt-manager pkgs.libvirt-glib ];
+    environment.systemPackages = [
+      pkgs.swtpm
+      pkgs.virt-manager
+      pkgs.libvirt-glib
+    ];
     users.users.krutonium.extraGroups = [ "libvirtd" ];
   };
 }

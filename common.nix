@@ -1,4 +1,10 @@
-{ config, pkgs, outputs, inputs, ... }:
+{
+  config,
+  pkgs,
+  outputs,
+  inputs,
+  ...
+}:
 {
   imports = [
     ./defaultPackages.nix
@@ -110,7 +116,12 @@
       auto-optimise-store = true;
       trusted-users = [ "@wheel" ];
       min-free = 50 * 1000 * 1000 * 1000; # 50GB
-      system-features = [ "i686-linux" "x86_64-linux" "big-parallel" "kvm" ];
+      system-features = [
+        "i686-linux"
+        "x86_64-linux"
+        "big-parallel"
+        "kvm"
+      ];
     };
     gc = {
       automatic = true;
@@ -183,7 +194,10 @@
     };
     command-not-found.enable = false;
   };
-  environment.gnome.excludePackages = [ pkgs.gnome-software pkgs.gnome-contacts ];
+  environment.gnome.excludePackages = [
+    pkgs.gnome-software
+    pkgs.gnome-contacts
+  ];
   # System state version (DO NOT CHANGE)
   system.stateVersion = "23.11";
 

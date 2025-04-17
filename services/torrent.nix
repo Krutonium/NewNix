@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
 with builtins;
 let
@@ -6,9 +11,22 @@ let
 in
 {
   config = mkIf (cfg.torrent == true) {
-    networking.firewall.allowedTCPPortRanges = [{ from = 50023; to = 50050; }];
-    networking.firewall.allowedUDPPortRanges = [{ from = 50023; to = 50050; }];
-    networking.firewall.interfaces."br0".allowedTCPPorts = [ 8112 58846 ];
+    networking.firewall.allowedTCPPortRanges = [
+      {
+        from = 50023;
+        to = 50050;
+      }
+    ];
+    networking.firewall.allowedUDPPortRanges = [
+      {
+        from = 50023;
+        to = 50050;
+      }
+    ];
+    networking.firewall.interfaces."br0".allowedTCPPorts = [
+      8112
+      58846
+    ];
     services.deluge = {
       package = pkgs.deluge;
       openFirewall = true;
@@ -23,7 +41,10 @@ in
         share_ratio_limit = "5000";
         dont_count_slow_torrents = true;
         pre_allocate_storage = true;
-        listen_ports = [ 50023 50023 ];
+        listen_ports = [
+          50023
+          50023
+        ];
         random_port = false;
         listen_random_port = "None";
         dht = false;
@@ -38,7 +59,10 @@ in
         max_active_limit = "1000";
         listen_interface = "WAN";
         outgoing_interface = "WAN";
-        outgoing_ports = [ 50024 50050 ];
+        outgoing_ports = [
+          50024
+          50050
+        ];
         random_outgoing_ports = false;
         cache_size = "8192";
         cache_expiry = "128";

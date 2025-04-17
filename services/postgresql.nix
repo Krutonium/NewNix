@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
 with builtins;
 let
@@ -42,8 +47,10 @@ in
     };
     containers.temp-pg.config.system.stateVersion = "24.05";
     environment.systemPackages =
-      let newpg = config.containers.temp-pg.config.services.postgresql;
-      in [
+      let
+        newpg = config.containers.temp-pg.config.services.postgresql;
+      in
+      [
         (pkgs.writeScriptBin "upgrade-pg-cluster" ''
           set -x
           export OLDDATA="${config.services.postgresql.dataDir}"

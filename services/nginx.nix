@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 with lib;
 with builtins;
 let
@@ -15,7 +20,10 @@ let
 in
 {
   config = mkIf (cfg.nginx == true) {
-    networking.firewall.allowedTCPPorts = [ 80 443 ];
+    networking.firewall.allowedTCPPorts = [
+      80
+      443
+    ];
     security.acme = {
       defaults = {
         renewInterval = "200h";
@@ -258,4 +266,3 @@ in
     };
   };
 }
-

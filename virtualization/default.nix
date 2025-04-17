@@ -1,10 +1,20 @@
-{ pkgs, config, lib, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 with lib;
 with builtins;
 {
   options.sys.virtualization = {
     server = mkOption {
-      type = types.enum [ "virtd" "vbox" "vmware" "none" ];
+      type = types.enum [
+        "virtd"
+        "vbox"
+        "vmware"
+        "none"
+      ];
       default = "none";
       description = ''
         VM support
@@ -18,5 +28,11 @@ with builtins;
       '';
     };
   };
-  imports = [ ./virtd.nix ./vbox.nix ./none.nix ./WindowsVMWithGPU.nix ./vmware.nix ];
+  imports = [
+    ./virtd.nix
+    ./vbox.nix
+    ./none.nix
+    ./WindowsVMWithGPU.nix
+    ./vmware.nix
+  ];
 }
