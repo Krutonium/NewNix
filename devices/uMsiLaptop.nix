@@ -81,7 +81,19 @@ in
   programs.steam = {
     enable = true;
   };
-
+  # This theoretically fixes the speakers being slept constantly.
+  services.pipewire.wireplumber.extraConfig = {
+    "monitor.alsa.rules" = [
+      {
+        matches = "alsa_output.pci-0000_00_1b.0.analog-stereo";
+      }
+    ];
+    actions = {
+      update-props = {
+        "session.suspend-timeout-seconds" = 0;
+      };
+    };
+  };
   hardware = {
     graphics.enable = true;
     # Disabled due to Charger being too low wattage.
