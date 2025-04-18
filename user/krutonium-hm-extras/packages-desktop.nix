@@ -67,12 +67,12 @@ in
     pkgs.gitkraken
     pkgs.godot_4-mono
     pkgs.hub
-    (pkgs.master.jetbrains.plugins.addPlugins pkgs.master.jetbrains.idea-ultimate [
+    (pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.idea-ultimate [
       "github-copilot"
       "nixidea"
     ])
-    (pkgs.master.jetbrains.plugins.addPlugins pkgs.master.jetbrains.rider [ "github-copilot" ])
-    (pkgs.master.jetbrains.plugins.addPlugins pkgs.master.jetbrains.rust-rover [ "github-copilot" ])
+    (pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.rider [ "github-copilot" ])
+    #(pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.rust-rover [ "github-copilot" ])
 
     pkgs.mono
     pkgs.nil

@@ -82,7 +82,7 @@ in
     enable = true;
   };
   # This theoretically fixes the speakers being slept constantly.
-  services.pipewire.wireplumber.extraConfig = {
+  services.pipewire.wireplumber.extraConfig."99-disable-audio-sleep" = {
     "monitor.alsa.rules" = [
       {
         matches = "alsa_output.pci-0000_00_1b.0.analog-stereo";
