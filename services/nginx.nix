@@ -207,9 +207,14 @@ in
             proxyPass = "http://127.0.0.1:32400/";
           };
         };
+        "gitea.krutonium.ca" = {
+          forceSSL = true;
+          enableACME = true;
+          locations."/" = {
+            return = "301 https://git.krutonium.ca$request_uri";
+          };
+        };
         "git.krutonium.ca" = {
-          # Gitea hostname
-          serverAliases = [ "gitea.krutonium.ca" ];
           enableACME = true; # Use ACME certs
           forceSSL = true; # Force SSL
           locations."/".proxyPass = "http://127.0.0.1:3001/"; # Proxy Gitea
