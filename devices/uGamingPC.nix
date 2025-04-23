@@ -223,10 +223,10 @@ in
     pkgs.gamescope
     pkgs.piper
     #pkgs.unstable.alvr
-    pkgs.sunshine
-    pkgs.monado-vulkan-layers
-    pkgs.wlx-overlay-s
-    pkgs.lact
+    #pkgs.sunshine
+    #pkgs.monado-vulkan-layers
+    #pkgs.wlx-overlay-s
+    #pkgs.lact
   ];
   security.wrappers.sunshine = {
     owner = "root";
