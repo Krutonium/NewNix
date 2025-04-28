@@ -81,6 +81,7 @@ in
   programs.steam = {
     enable = true;
   };
+  systemd.network.wait-online.enable = false;
   # This theoretically fixes the speakers being slept constantly.
   services.pipewire.wireplumber.extraConfig."99-disable-audio-sleep" = {
     "monitor.alsa.rules" = [
