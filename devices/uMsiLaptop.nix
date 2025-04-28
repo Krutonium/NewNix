@@ -74,12 +74,12 @@ in
       steam = false;
     };
     virtualization = {
-      server = "virtd";
+      server = "none";
     };
   };
   virtualisation.waydroid.enable = false;
   programs.steam = {
-    enable = true;
+    enable = false;
   };
   systemd.network.wait-online.enable = false;
   # This theoretically fixes the speakers being slept constantly.
