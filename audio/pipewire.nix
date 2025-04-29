@@ -8,6 +8,15 @@ with lib;
 with builtins;
 let
   cfg = config.sys.audio;
+  pw_fix_crackle = {
+    "context.properties" = {
+      "default.clock.rate" = 48000;
+      "default.clock.allowed-rates" = [ 48000 ];
+      "default.clock.quantum" = 800;
+      "default.clock.min-quantum" = 512;
+      "default.clock.max-quantum" = 1024;
+    };
+  };
 
   pw_rnnoise_config = {
     "context.modules" = [
@@ -67,6 +76,7 @@ in
         };
         extraConfig.pipewire = {
           "99-input-denoise" = pw_rnnoise_config;
+          "99-fix-crackle" = pw_fix_crackle;
         };
       };
     };
