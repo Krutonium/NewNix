@@ -160,38 +160,14 @@
       gpuIntel = with nixos-hardware.nixosModules; [ common-gpu-intel ];
     in
     {
-      ##################
-      ### uWebServer ###
-      ##################
-      nixosConfigurations.uWebServer = nixosConfiguration "uWebServer" (
-        commonPCModules ++ commonIntel ++ gpuAMD ++ gpuIntel ++ [ ./devices/uWebServer.nix ]
-      );
-
-      #################
-      ### uGamingPC ###
-      #################
-      nixosConfigurations.uGamingPC = nixosConfiguration "uGamingPC" (
-        commonPCModules ++ commonAMD ++ gpuNvidia ++ [ ./devices/uGamingPC.nix ]
-      );
-
-      ##################
-      ### uMsiLaptop ###
-      ##################
-      nixosConfigurations.uMsiLaptop = nixosConfiguration "uMsiLaptop" (
-        commonPCModules ++ commonLaptop ++ commonIntel ++ gpuIntel ++ [ ./devices/uMsiLaptop.nix ]
-      );
-
-      ###################
-      ### uServerHost ###
-      ###################
-      nixosConfigurations.uServerHost = nixosConfiguration "uServerHost" (
-        commonPCModules ++ commonAMD ++ gpuNvidia ++ [ ./devices/uServerHost.nix ]
-      );
-
-      #################
-      ### Uncomment if needed ###
-      #################
-      #nixosConfigurations.uHPLaptop = nixosConfiguration "uHPLaptop" (commonPCModules ++ commonLaptop ++ commonIntel ++ [ ./devices/uHPLaptop.nix ]);
-      #nixosConfigurations.uMacBookPro = nixosConfiguration "uMacBookPro" (commonPCModules ++ commonLaptop ++ commonIntel ++ [ ./devices/uMacBookPro.nix ]);
+      ##########################
+      ### Device Definitions ###
+      ##########################
+      nixosConfigurations = {
+        uWebServer = nixosConfiguration "uWebServer" (commonPCModules ++ commonIntel ++ gpuAMD ++ gpuIntel ++ ["./devices/uWebServer.nix"]);
+        uGamingPC = nixosConfiguration "uGamingPC" (commonPCModules ++ commonAMD ++ gpuNvidia ++ [ "./devices/uGamingPC.nix" ]);
+        uMsiLaptop = nixosConfiguration "uMsiLaptop" (commonPCModules ++ commonLaptop ++ commonIntel ++ gpuIntel ++ [ "./devices/uMsiLaptop.nix" ]);
+        uServerHost = nixosConfiguration "uServerHost" (commonPCModules ++ commonAMD ++ gpuNvidia ++ [ "./devices/uServerHost.nix" ]);
+      };
     };
 }
