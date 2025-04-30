@@ -15,7 +15,7 @@ let
 in
 {
   imports = [ ./uServerHost-mc.nix ];
-
+  boot.kernelModules = ["nct6775"];
   # We want to disable the firewall; the home firewall will be guarding for us.
   networking = {
     firewall.enable = lib.mkForce false;
