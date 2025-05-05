@@ -8,22 +8,31 @@ with lib;
 with builtins;
 let
   cfg = config.sys.audio;
-  
+
   wp_disable_powersaving = {
-    "monitor.alsa.rules" = [{
-      matches = [{
-        "node.name" = "~alsa_input.*";
-        # Matches all input devices, according to the Arch Wiki
-      }];
-      actions = {
-        update-props = {
-          "session.suspend-timeout-seconds" = 0;
-          # Disable Session Suspend
+    "monitor.alsa.rules" = [
+      {
+        matches = [
+          {
+            "node.name" = "~alsa_input.*";
+            # Matches all input devices, according to the Arch Wiki
+          }
+          {
+            "node.name" = "~alsa_output.*";
+            # And all outputs too.
+          }
+        ];
+
+        actions = {
+          update-props = {
+            "session.suspend-timeout-seconds" = 0;
+            # Disable Session Suspend
+          };
         };
-      };
-    }];
+      }
+    ];
   };
-  
+
   pw_fix_crackle = {
     "context.properties" = {
       "default.clock.rate" = 48000;
