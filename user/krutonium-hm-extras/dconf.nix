@@ -1,4 +1,3 @@
-# Generated via dconf2nix: https://github.com/gvolpe/dconf2nix
 { lib, pkgs, ... }:
 
 with lib.hm.gvariant;
@@ -146,7 +145,7 @@ in
       focus-change-on-pointer-rest = true;
       overlay-key = "Super_L";
       workspaces-only-on-primary = true;
-      experimental-feautures = [ "variable-refresh-rate" ];
+      experimental-features = [ "variable-refresh-rate" ];
     };
 
     "com/github/amezin/ddterm" = {
