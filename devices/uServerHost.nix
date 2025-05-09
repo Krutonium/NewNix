@@ -206,7 +206,7 @@ in
       java = pkgs.jdk21;
       script = "";
       enabled = false;
-      rconPOrt = 12348;
+      rconPort = 12348;
       rconPasswordFile = "/servers/rcon.password";
     }
   ];
