@@ -151,6 +151,15 @@ in
         "subvol=vanilla"
       ];
     };
+    "servers/create_chronicles" = {
+      device = btrfsDisk;
+      fsType = "btrfs";
+      options = [
+        "noatime"
+        "compress=zstd:15"
+        "subvol=create_chronicles"
+      ];
+    };
     "/backups" = {
       device = "/dev/disk/by-label/Backups";
       fsType = "ext4";
@@ -190,6 +199,14 @@ in
       script = "startserver.sh";
       enabled = true;
       rconPort = 12347;
+      rconPasswordFile = "/servers/rcon.password";
+    }
+    {
+      name = "create_chronicles";
+      java = pkgs.jdk21;
+      script = "";
+      enabled = false;
+      rconPOrt = 12348;
       rconPasswordFile = "/servers/rcon.password";
     }
   ];
