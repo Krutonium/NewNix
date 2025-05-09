@@ -19,4 +19,4 @@ retry 'ssh 10.3 "sudo nix-collect-garbage -d && nix-collect-garbage -d"'
 retry 'ssh 10.4 "sudo nix-collect-garbage -d && nix-collect-garbage -d"'
 #ssh 10.3 "sudo reboot now"
 #ssh 10.1 "sudo reboot now"
-sudo shutdown now
+#sudo shutdown now
