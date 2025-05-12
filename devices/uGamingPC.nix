@@ -95,13 +95,8 @@ in
       Type = "oneshot";
       ExecStart = "/run/wrappers/bin/nvidia-smi -i 0 -pl 300";
       RemainAfterExit = true;
+      User = "root";
     };
-  };
-  security.wrappers.nvidia-smi = {
-    source = "${video}/bin/nvidia-smi";
-    owner = "root";
-    group = "root";
-    permissions = "4755";
   };
 
   virtualisation.spiceUSBRedirection.enable = true;
