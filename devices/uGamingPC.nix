@@ -87,6 +87,23 @@ in
       RestartSec = "5";
     };
   };
+  systemd.services.set-gpu-power-limit = {
+    description = "Set NVIDIA GPU Power Limit";
+    wantedBy = [ "multi-user.target" ]; # ensures it runs at boot
+    after = [ "default.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "/run/wrappers/bin/nvidia-smi -i 0 -pl 300";
+      RemainAfterExit = true;
+    };
+  };
+  security.wrappers.nvidia-smi = {
+    source = "${video}/bin/nvidia-smi";
+    owner = "root";
+    group = "root";
+    permissions = "4755";
+  };
+
   virtualisation.spiceUSBRedirection.enable = true;
   systemd.tmpfiles.rules = [
     "f /dev/shm/looking-glass 0660 krutonium qemu-libvirtd -"
