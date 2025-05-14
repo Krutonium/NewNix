@@ -28,11 +28,10 @@
     '';
   };
   # System services configuration
-  systemd.services.irqbalance.serviceConfig.ProtectKernelTunables = "no"; #Fix for #371415
   services = {
     # CPU interrupt balancing
     irqbalance.enable = true;
-
+    irqbalance.serviceConfig.ProtectKernelTunables = "no"; #Fix for #371415
     # Process scheduler for better performance
     system76-scheduler = {
       enable = true;
