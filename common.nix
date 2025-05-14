@@ -31,7 +31,6 @@
   services = {
     # CPU interrupt balancing
     irqbalance.enable = true;
-    irqbalance.serviceConfig.ProtectKernelTunables = "no"; #Fix for #371415
     # Process scheduler for better performance
     system76-scheduler = {
       enable = true;
@@ -183,6 +182,7 @@
       DefaultLimitNOFILE=1048576
       DefaultTimeoutStopSec=10s
     '';
+    services.irqbalance.serviceConfig.ProtectKernelTunables = "no"; #Fix for #371415
   };
 
   # Program configurations
