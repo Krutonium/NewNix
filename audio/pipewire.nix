@@ -14,11 +14,11 @@ let
       {
         matches = [
           {
-            "node.name" = "alsa_input.*";
+            "node.name" = "~alsa_input.*";
             # Matches all input devices, according to the Arch Wiki
           }
           {
-            "node.name" = "alsa_output.*";
+            "node.name" = "~alsa_output.*";
             # And all outputs too.
           }
         ];
