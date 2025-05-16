@@ -31,7 +31,7 @@ in
       }).run
       protonup-qt
       proton-caller
-      protontricks
+      #protontricks
     ];
     programs.steam = {
       enable = true;
@@ -39,7 +39,7 @@ in
       dedicatedServer.openFirewall = true;
       localNetworkGameTransfers.openFirewall = true;
       remotePlay.openFirewall = true;
-      protontricks.enable = true;
+      #protontricks.enable = true;
     };
   };
 }
