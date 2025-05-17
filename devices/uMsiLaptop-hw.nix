@@ -59,7 +59,7 @@
       ];
     };
     "/var/lib/NetworkManager" = {
-      device = "/dev/disk/by-uuid/941617ae-329b-477d-9760-09268d5cfeef"
+      device = "/dev/disk/by-uuid/941617ae-329b-477d-9760-09268d5cfeef";
       fsType = "btrfs";
       options = [
         "compress=zstd:15"
