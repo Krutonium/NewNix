@@ -33,34 +33,34 @@
         "size=3G"
         "mode=775"
       ];
-      "/boot" = {
-        device = "/dev/disk/by-uuid/1B37-4FC4";
-        fsType = "vfat";
-        options = [
-          "fmask=0022"
-          "dmask=0022"
-        ];
-      };
-      "/nix" = {
-        device = "/dev/disk/by-uuid/941617ae-329b-477d-9760-09268d5cfeef";
-        fsType = "btrfs";
-        options = [
-          "compress=zstd:15"
-          "subvol=nix"
-        ];
-      };
-      "/home" = {
-        device = "/dev/disk/by-uuid/941617ae-329b-477d-9760-09268d5cfeef";
-        fsType = "btrfs";
-        options = [
-          "compress=zstd:15"
-          "subvol=home"
-        ];
-      };
-      "/storage" = {
-        device = "/dev/disk/by-uuid/3333f503-a70b-40b9-8037-8c226456bff4";
-        fsType = "ext4";
-      };
+    };
+    "/boot" = {
+      device = "/dev/disk/by-uuid/1B37-4FC4";
+      fsType = "vfat";
+      options = [
+        "fmask=0022"
+        "dmask=0022"
+      ];
+    };
+    "/nix" = {
+      device = "/dev/disk/by-uuid/941617ae-329b-477d-9760-09268d5cfeef";
+      fsType = "btrfs";
+      options = [
+        "compress=zstd:15"
+        "subvol=nix"
+      ];
+    };
+    "/home" = {
+      device = "/dev/disk/by-uuid/941617ae-329b-477d-9760-09268d5cfeef";
+      fsType = "btrfs";
+      options = [
+        "compress=zstd:15"
+        "subvol=home"
+      ];
+    };
+    "/storage" = {
+      device = "/dev/disk/by-uuid/3333f503-a70b-40b9-8037-8c226456bff4";
+      fsType = "ext4";
     };
   };
   swapDevices = [ ];
