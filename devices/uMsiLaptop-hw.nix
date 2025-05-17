@@ -26,12 +26,12 @@
   fileSystems = {
     "/" = {
       # tmpfs root
-      device = "none";
+      device = "root";
       fsType = "tmpfs";
       options = [
         "defaults"
         "size=3G"
-        "mode=775"
+        "mode=755"
       ];
     };
     "/boot" = {
