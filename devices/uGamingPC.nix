@@ -91,10 +91,10 @@ in
     description = "Set NVIDIA GPU Power Limit";
     wantedBy = [ "multi-user.target" ]; # ensures it runs at boot
     after = [ "default.target" ];
-    path = [ video ];
+    path = [ ];
     serviceConfig = {
       Type = "oneshot";
-      ExecStart = "nvidia-smi -i 0 -pl 300";
+      ExecStart = "/run/current-system/sw/bin/nvidia-smi -i 0 -pl 300";
       RemainAfterExit = true;
       User = "root";
     };
