@@ -26,23 +26,28 @@
         faststream
       ];
 
-      bookmarks = {
-        force = true;
-        settings = [
-          {
-            name = "DuckDuckGo";
-            tags = [ "Search" ];
-            keyword = "goo";
-            url = "https://duckduckgo.com/";
-          }
-          {
-            name = "YouTube";
-            tags = [ "Entertainment " ];
-            keyword = "you";
-            url = "https://youtube.com/";
-          }
-        ];
-      };
+      bookmarks = [
+        {
+          name = "Default"; # Optional folder name
+          force = true;
+
+          bookmarks = [
+            {
+              name = "DuckDuckGo";
+              tags = [ "Search" ];
+              keyword = "goo";
+              url = "https://duckduckgo.com/";
+            }
+            {
+              name = "YouTube";
+              tags = [ "Entertainment" ];
+              keyword = "you";
+              url = "https://youtube.com/";
+            }
+          ];
+        }
+      ];
+
       settings = {
         "browser.download.lastDir" = "/home/krutonium/Downloads";
         "extensions.pocket.enabled" = false;
