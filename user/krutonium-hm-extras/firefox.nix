@@ -2,7 +2,6 @@
 {
   programs.firefox = {
     enable = true;
-    package = pkgs.firefox-wayland;
     profiles."krutonium" = {
       extensions = with pkgs.nur.repos.rycee.firefox-addons; [
         bitwarden
@@ -26,27 +25,6 @@
         faststream
       ];
 
-      bookmarks = [
-        {
-          name = "Default"; # Optional folder name
-          force = true;
-
-          bookmarks = [
-            {
-              name = "DuckDuckGo";
-              tags = [ "Search" ];
-              keyword = "goo";
-              url = "https://duckduckgo.com/";
-            }
-            {
-              name = "YouTube";
-              tags = [ "Entertainment" ];
-              keyword = "you";
-              url = "https://youtube.com/";
-            }
-          ];
-        }
-      ];
 
       settings = {
         "browser.download.lastDir" = "/home/krutonium/Downloads";
