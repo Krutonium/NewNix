@@ -82,7 +82,7 @@ let
 in
 {
   config = mkIf (cfg.server == "pipewire") {
-    hardware.pulseaudio.enable = false;
+    services.pulseaudio.enable = false;
     services = {
       pipewire = {
         enable = true;
