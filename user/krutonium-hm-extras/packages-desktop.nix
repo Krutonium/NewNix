@@ -58,7 +58,7 @@ in
   home.packages = [
     # Desktop Environment
     pkgs.dconf-editor
-    pkgs.xwaylandvideobridge
+    # pkgs.xwaylandvideobridge
 
     # Development Tools & IDEs
     dotnetCombined
