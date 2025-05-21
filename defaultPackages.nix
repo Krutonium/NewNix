@@ -62,6 +62,7 @@ in
     pkgs.lm_sensors
     pkgs.wl-clipboard
     pkgs.kitty
+    pkgs.sops
   ];
 
 }

@@ -43,6 +43,10 @@
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.0.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs =
     {
@@ -61,6 +65,7 @@
       nvidia-patch,
       lix-module,
       MediaServer,
+      sops-nix,
       ...
     }@inputs:
     let
@@ -70,6 +75,7 @@
       baseModules = [
         ./common.nix
         lix-module.nixosModules.default
+        sops-nix.nixosModules.sops
         {
           nix.registry.nixos.flake = self;
           environment.etc."nix/inputs/nixpkgs".source = nixpkgs.outPath;
@@ -143,7 +149,8 @@
         nixpkgs.lib.nixosSystem {
           inherit system;
           modules = genericModulesWithOverlays ++ (with nixos-hardware.nixosModules; deviceConfig);
-          specialArgs.channels = { inherit nixpkgs nixpkgs-unstable; };
+          # specialArgs.channels = { inherit nixpkgs nixpkgs-unstable; };
+          specialArgs = { inherit inputs; };
         };
 
       # Common Device Modules

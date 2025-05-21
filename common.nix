@@ -5,6 +5,9 @@
   inputs,
   ...
 }:
+let
+ # TODO: Figure out how the fuck sops works
+in
 {
   imports = [
     ./defaultPackages.nix
@@ -18,8 +21,15 @@
     ./virtualization
     ./custom-packages
     ./scripts.nix
+    inputs.sops-nix.nixosModules.sops
     #./builders
   ];
+  sops = {
+    defaultSopsFile = ./secrets/secrets.yaml;
+    defaultSopsFormat = "yaml";
+    age.keyFile = "/home/krutonium/.config/sops/keys.txt";
+  };
+
   # PAM configuration for GNOME keyring auto-unlock
   security.pam.services = {
     gdm-autologin-keyring.text = ''
@@ -110,7 +120,9 @@
   documentation.enable = true;
 
   # Nix package manager configuration
+
   nix = {
+    # access-tokens = githubKey;
     settings = {
       auto-optimise-store = true;
       trusted-users = [ "@wheel" ];
@@ -121,6 +133,7 @@
         "big-parallel"
         "kvm"
       ];
+
     };
     gc = {
       automatic = true;
