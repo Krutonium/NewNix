@@ -49,11 +49,9 @@
     fsType = "ntfs";
   };
   fileSystems."/games" = {
-    device = "UUID=54f1c7de-273b-44d9-9501-64b1a2f84717";
-    fsType = "btrfs";
+    device = "UUID=45b5b53a-2580-44b5-854d-d2e413beda5f";
+    fsType = "bcachefs";
     options = [
-      "compress=zstd:15"
-      "noatime"
     ];
   };
 
