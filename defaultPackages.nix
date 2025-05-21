@@ -36,7 +36,7 @@ in
     pkgs.git
     pkgs.tldr # Replace man
     pkgs.screen
-    pkgs.colmena
+    #pkgs.colmena
     pkgs.tmux
     pkgs.file
     pkgs.wget
