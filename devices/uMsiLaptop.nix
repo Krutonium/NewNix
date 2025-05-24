@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 let
   kernel = pkgs.unstable.linuxPackages_zen;
-  video = config.boot.kernelPackages.nvidiaPackages.beta;
+  video = config.boot.kernelPackages.nvidiaPackages.stable;
   Hostname = "uMsiLaptop";
 in
 {
@@ -97,19 +97,19 @@ in
   };
   hardware = {
     graphics.enable = true;
-    # Disabled due to Charger being too low wattage.
-    #    nvidia = {
-    #      open = false;
-    #      package = video;
-    #      prime = {
-    #        offload = {
-    #          enable = true;
-    #          enableOffloadCmd = true;
-    #        };
-    #        nvidiaBusId = "PCI:1:0:0";
-    #        intelBusId = "PCI:0:2:0";
-    #      };
-    #    };
+    #Disabled due to Charger being too low wattage.
+    nvidia = {
+      open = false;
+      package = video;
+      prime = {
+        offload = {
+          enable = true;
+          enableOffloadCmd = true;
+        };
+        nvidiaBusId = "PCI:1:0:0";
+        intelBusId = "PCI:0:2:0";
+      };
+    };
   };
   services.xserver.videoDrivers = [ "modesetting" ];
   services.teamviewer.enable = true;
