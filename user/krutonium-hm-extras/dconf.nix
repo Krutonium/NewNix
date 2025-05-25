@@ -11,6 +11,25 @@ let
   soundTheme = "Yaru";
   superMenuLogo = "${./supermenu.png}";
   wallPaper = "file://${./wallpaper.png}";
+  marbleTheme = pkgs.stdenv.mkDerivation {
+    name = "marble-shell-theme";
+    src = ./Marble-shell-filled.tar.xz;
+
+    phases = [
+      "unpackPhase"
+      "installPhase"
+    ];
+
+    unpackPhase = ''
+      mkdir -p source
+      tar -xf ${src} -C source
+    '';
+
+    installPhase = ''
+      mkdir -p $out
+      cp -r source/* $out/
+    '';
+  };
 in
 {
   home.packages = [
@@ -23,6 +42,7 @@ in
     pkgs.gnomeExtensions.gtile
     pkgs.gnomeExtensions.custom-accent-colors
     pkgs.gnomeExtensions.user-themes
+    marbleTheme
 
     pkgs.gnomeExtensions.compiz-windows-effect
     pkgs.gnomeExtensions.compiz-alike-magic-lamp-effect
@@ -43,6 +63,7 @@ in
     pkgs.gnome-tweaks
     pkgs.cascadia-code # Font
   ];
+  home.file.".themes".source = marbleTheme;
 
   dconf.settings = {
     "org/gnome/desktop/input-sources" = {
@@ -54,7 +75,9 @@ in
       ];
       xkb-options = [ "terminate:ctrl_alt_bksp" ];
     };
-    "org/gnome/shell/extensions/user-theme/name" = userTheme;
+    "org/gnome/shell/extensions/user-theme" = {
+      name = mainTheme;
+    };
     "org/gnome/desktop/interface" = {
       clock-format = "12h";
       cursor-theme = cursorTheme;
