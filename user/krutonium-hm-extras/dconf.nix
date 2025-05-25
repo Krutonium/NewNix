@@ -54,7 +54,7 @@ in
       ];
       xkb-options = [ "terminate:ctrl_alt_bksp" ];
     };
-    "/org/gnome/shell/extensions/user-theme/name" = userTheme;
+    "org/gnome/shell/extensions/user-theme/name" = userTheme;
     "org/gnome/desktop/interface" = {
       clock-format = "12h";
       cursor-theme = cursorTheme;
