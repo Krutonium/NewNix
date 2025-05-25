@@ -2,8 +2,8 @@
 
 with lib.hm.gvariant;
 let
-  userTheme = "Yaru-purple-dark"; # Shell Theme
-  mainTheme = "Yaru-purple-dark"; # Application Theme
+  userTheme = "Marble-blue-dark"; # Shell Theme
+  mainTheme = "Marble-blue-dark"; # Application Theme
   mainFont = "gg sans Normal 12";
   monoFont = "Ubuntu Mono 13";
   cursorTheme = "oreo_spark_purple_bordered_cursors";
@@ -22,6 +22,7 @@ in
     pkgs.gnomeExtensions.no-overview
     pkgs.gnomeExtensions.gtile
     pkgs.gnomeExtensions.custom-accent-colors
+    pkgs.gnomeExtensions.user-themes
 
     pkgs.gnomeExtensions.compiz-windows-effect
     pkgs.gnomeExtensions.compiz-alike-magic-lamp-effect
@@ -53,7 +54,7 @@ in
       ];
       xkb-options = [ "terminate:ctrl_alt_bksp" ];
     };
-
+    "/org/gnome/shell/extensions/user-theme/name" = userTheme;
     "org/gnome/desktop/interface" = {
       clock-format = "12h";
       cursor-theme = cursorTheme;
