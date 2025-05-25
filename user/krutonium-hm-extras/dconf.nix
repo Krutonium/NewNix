@@ -15,14 +15,11 @@ let
     name = "marble-shell-theme";
     src = ./Marble-shell-filled.tar.xz;
 
-    phases = [
-      "unpackPhase"
-      "installPhase"
-    ];
+    phases = [ "unpackPhase" "installPhase" ];
 
     unpackPhase = ''
       mkdir -p source
-      tar -xf ${src} -C source
+      tar -xf $src -C source
     '';
 
     installPhase = ''
@@ -74,9 +71,6 @@ in
         ])
       ];
       xkb-options = [ "terminate:ctrl_alt_bksp" ];
-    };
-    "org/gnome/shell/extensions/user-theme" = {
-      name = mainTheme;
     };
     "org/gnome/desktop/interface" = {
       clock-format = "12h";
@@ -209,7 +203,6 @@ in
       theme-gtk3 = true;
       theme-shell = true;
     };
-
     "org/gnome/shell/extensions/arcmenu" = {
       arc-menu-placement = "DTP";
       available-placement = [
