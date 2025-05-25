@@ -314,11 +314,11 @@
     },
     "nixpkgs-master": {
       "locked": {
-        "lastModified": 1748039831,
-        "narHash": "sha256-F1nAKAgpZs2pZKkUaidD+pioI6h+LtOWBkyTXgM3D28=",
+        "lastModified": 1748130271,
+        "narHash": "sha256-5QTA/iLY7wTcJYxZ8C9NjUL0kmqZ5FnYTND+e5bKAyY=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "d97f7636a3322a09c79f3c19be3eed40026d08b7",
+        "rev": "8158addeaeb69921e8b474a81fafb7d97ded2850",
         "type": "github"
       },
       "original": {
@@ -330,11 +330,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1747744144,
-        "narHash": "sha256-W7lqHp0qZiENCDwUZ5EX/lNhxjMdNapFnbErcbnP11Q=",
+        "lastModified": 1748026106,
+        "narHash": "sha256-6m1Y3/4pVw1RWTsrkAK2VMYSzG4MMIj7sqUy7o8th1o=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "2795c506fe8fb7b03c36ccb51f75b6df0ab2553f",
+        "rev": "063f43f2dbdef86376cc29ad646c45c46e93234c",
         "type": "github"
       },
       "original": {
@@ -346,11 +346,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1747744144,
-        "narHash": "sha256-W7lqHp0qZiENCDwUZ5EX/lNhxjMdNapFnbErcbnP11Q=",
+        "lastModified": 1748026106,
+        "narHash": "sha256-6m1Y3/4pVw1RWTsrkAK2VMYSzG4MMIj7sqUy7o8th1o=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "2795c506fe8fb7b03c36ccb51f75b6df0ab2553f",
+        "rev": "063f43f2dbdef86376cc29ad646c45c46e93234c",
         "type": "github"
       },
       "original": {
@@ -367,11 +367,11 @@
         "treefmt-nix": "treefmt-nix_2"
       },
       "locked": {
-        "lastModified": 1748039612,
-        "narHash": "sha256-sa/m4FULgpEQ7efKtuw0wLajC+ETHjV587b5WJstfyQ=",
+        "lastModified": 1748124399,
+        "narHash": "sha256-AWYa6QSgYbd0YiOecaTyJ78XSHcLI7yljdSpBTQWB+8=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "7e192dbd92a2f670cecfcd8628667a7f13ec7bd9",
+        "rev": "d8bccb87461726979bc4fe9facbdfa0739fe24a2",
         "type": "github"
       },
       "original": {
@@ -388,11 +388,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1747811371,
-        "narHash": "sha256-pxEdCu1z3vbAku3I6rip3S76zmHcccQm8alvWQQIYG4=",
+        "lastModified": 1748076357,
+        "narHash": "sha256-+ACCq7kWoG18k7kb6HZ70zpbH3EMPPqfnUEarjUrqMc=",
         "owner": "icewind1991",
         "repo": "nvidia-patch-nixos",
-        "rev": "db1b6e969c63012c169ac8a711d593336b0504d7",
+        "rev": "ed430050f055c60d5e38b776adf557c75dbbfb99",
         "type": "github"
       },
       "original": {
