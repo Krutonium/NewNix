@@ -9,6 +9,7 @@ in
   boot.kernelPackages = kernel;
   boot.kernelModules = [ "ec_sys" ];
   networking.hostName = Hostname;
+  networking.networkmanager.wifi.powersave = false;
   networking.firewall.interfaces."enp3s0".allowedUDPPorts = [ 67 ];
   boot.kernelParams = [
     "nouveau.config=NvClkMode=15"
