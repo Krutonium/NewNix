@@ -7,7 +7,7 @@ let
   mainFont = "gg sans Normal 12";
   monoFont = "Ubuntu Mono 13";
   cursorTheme = "oreo_spark_purple_bordered_cursors";
-  iconTheme = "Yaru-purple-dark";
+  iconTheme = "BeautyLine";
   soundTheme = "Yaru";
   superMenuLogo = "${./supermenu.png}";
   wallPaper = "file://${./wallpaper.png}";
@@ -37,6 +37,7 @@ in
     #pkgs.beauty-line-icon-theme
     pkgs.ubuntu_font_family
     pkgs.yaru-theme
+    pkgs.beauty-line-icon-theme
     # Other Stuff
     pkgs.gnome-tweaks
     pkgs.cascadia-code # Font
