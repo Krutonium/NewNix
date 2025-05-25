@@ -235,7 +235,6 @@ in
     #video
     pkgs.gamescope
     pkgs.piper
-    #pkgs.unstable.alvr
     #pkgs.sunshine
     #pkgs.monado-vulkan-layers
     #pkgs.wlx-overlay-s
@@ -268,7 +267,6 @@ in
     custom = {
       ddcutil = true;
       ddcutil_nvidiaFix = true;
-      alvr = false;
     };
     audio = {
       server = "pipewire";
