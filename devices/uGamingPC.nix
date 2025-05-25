@@ -104,34 +104,6 @@ in
   systemd.tmpfiles.rules = [
     "f /dev/shm/looking-glass 0660 krutonium qemu-libvirtd -"
   ];
-
-  services.wivrn = {
-    enable = true;
-    openFirewall = true;
-    defaultRuntime = true;
-    autoStart = true;
-    config = {
-      enable = true;
-      json = {
-        scale = 1.0; # No Foviation
-        bitrate = 250000000; # 250Mbit
-        encoders = [
-          {
-            encoder = "nvenc"; # "vaapi";
-            codec = "h264";
-            width = 1.0;
-            height = 1.0;
-            offset_x = 0.0;
-            offset_y = 0.0;
-          }
-        ];
-      };
-    };
-  };
-  programs.envision = {
-    enable = true;
-    openFirewall = true;
-  };
   networking = {
     hostName = Hostname;
     firewall = {
