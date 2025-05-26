@@ -207,6 +207,8 @@ in
     #video
     pkgs.gamescope
     pkgs.piper
+    # Normally I wouldn't but I need this on this PC and not my laptop. TODO: Address in eventual re-write
+    pkgs.davinci-resolve
     #pkgs.sunshine
     #pkgs.monado-vulkan-layers
     #pkgs.wlx-overlay-s
