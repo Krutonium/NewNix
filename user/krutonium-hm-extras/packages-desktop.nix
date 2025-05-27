@@ -155,7 +155,7 @@ in
     pkgs.protonup
     pkgs.ryujinx
     pkgs.steam-run
-
+    pkgs.unstable.nexusmods-app
     # File Sync & Downloads
     pkgs.deluge
     pkgs.nextcloud-client
