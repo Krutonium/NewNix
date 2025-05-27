@@ -17,6 +17,7 @@
         "application/x-cd-image" = [ "gnome-disk-image-mounter.desktop" ];
         "application/x-rar" = [ "org.gnome.FileRoller.desktop" ];
         "application/x-ms-dos-executable" = [ "wine.desktop" ];
+        "x-scheme-handler/nxm" = [ "com.nexusmods.app.desktop" ];
 
         "text/html" = [ "firefox.desktop" ];
         "text/plain" = [ "org.gnome.TextEditor.desktop" ];
