@@ -85,7 +85,7 @@ in
     pkgs.unityhub
 
     # Wine & Windows Compatibility
-    pkgs.bottles
+    (pkgs.bottles.override { removeWarningPopup = true; } )
     pkgs.looking-glass-client
     pkgs.lutris
     pkgs.winetricks
