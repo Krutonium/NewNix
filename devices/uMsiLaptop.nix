@@ -114,4 +114,6 @@ in
   };
   services.xserver.videoDrivers = [ "modesetting" ];
   services.teamviewer.enable = true;
+  services.upower.enable = true;
+  services.tlp.enable = true;
 }

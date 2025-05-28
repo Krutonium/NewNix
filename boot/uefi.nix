@@ -45,6 +45,22 @@ in
                 #   name = "nixos-img";
                 # };
               }
+              {
+                name = "iPXE";
+                lineTop = "NetBoot";
+                lineBottom = "Permadeath, No Cheats, Version: 1.21.1";
+                imgName = "uefi";
+              }
+              {
+                name = "Memtest86+";
+                lineTop = "Memory Testing";
+                lineBottom = "Creative Mode, No Cheats, Version: 7.20";
+              }
+              {
+                name = "NixOS - All Configurations";
+                lineTop = "Older Generations";
+                lineBottom = "Creative Mode, Cheats, Various Versions";
+              }
             ];
           };
           #          theme = pkgs.fetchFromGitHub {
