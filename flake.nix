@@ -79,7 +79,7 @@
       # Generic Modules
       baseModules = [
         ./common.nix
-        lix-module.nixosModules.default
+        #lix-module.nixosModules.default
         minegrub.nixosModules.default
         sops-nix.nixosModules.sops
         {
