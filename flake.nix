@@ -4,6 +4,10 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    minegrub = {
+      url = "github:Lxtharia/minegrub-world-sel-theme";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -66,6 +70,7 @@
       lix-module,
       MediaServer,
       sops-nix,
+      minegrub,
       ...
     }@inputs:
     let
@@ -75,6 +80,7 @@
       baseModules = [
         ./common.nix
         lix-module.nixosModules.default
+        minegrub.nixosModules.default
         sops-nix.nixosModules.sops
         {
           nix.registry.nixos.flake = self;
