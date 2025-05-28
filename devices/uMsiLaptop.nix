@@ -115,5 +115,6 @@ in
   services.xserver.videoDrivers = [ "modesetting" ];
   services.teamviewer.enable = true;
   services.upower.enable = true;
+  services.power-profiles-daemon.enable = false;
   services.tlp.enable = true;
 }
