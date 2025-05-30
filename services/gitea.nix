@@ -45,6 +45,9 @@ in
         DEFAULT = {
           APP_NAME = "Krutonium's Forgejo Service";
         };
+        Federation = {
+          Enabled = true;
+        };
       };
       database = {
         type = "sqlite3";
