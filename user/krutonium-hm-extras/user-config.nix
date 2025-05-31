@@ -7,16 +7,14 @@ let
     jdk21 = pkgs.jdk21;
   };
 
-  javaLinks = lib.mapAttrs' (
-    name: pkg:
-    lib.nameValuePair "java-${name}" {
+  javaLinks = lib.mapAttrs' (name: pkg:
+    lib.nameValuePair "java/${name}" {
       source = pkg;
-      target = "java/${name}";
     }
   ) javaVersions;
 in
 {
-  home.file = javaLinks ++ {
+  home.file = javaLinks // {
     ".nanorc".text = ''
       set linenumbers
       set autoindent
