@@ -11,11 +11,6 @@
     ".steam/steam/steam_dev.cfg".text = ''
       @nClientDownloadEnableHTTP2PlatformLinux 0
     '';
-    # 		  ln -s /run/current-system/sw/bin/steamtinkerlaunch $STEAM_EXTRA_COMPAT_TOOL_PATHS/SteamTinkerLaunch/steamtinkerlaunch
-    ".steam/steam//compatibilitytools.d/SteamTinkerLaunch/steamtinkerlaunch" =
-    ''
-      ${pkgs.steamtinkerlaunch}/bin/steamtinkerlaunch
-    '';
     ".config/neofetch/config.conf".text = ''
       print_info() {
         info title
