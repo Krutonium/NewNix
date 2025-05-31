@@ -39,6 +39,7 @@ in
   };
   # System services configuration
   services = {
+    atd.enable = true;
     # CPU interrupt balancing
     irqbalance.enable = true;
     # Process scheduler for better performance
