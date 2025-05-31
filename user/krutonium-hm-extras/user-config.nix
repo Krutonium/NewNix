@@ -1,6 +1,22 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
+let
+  javaVersions = {
+    jdk8 = pkgs.jdk8;
+    jdk11 = pkgs.jdk11;
+    jdk17 = pkgs.jdk17;
+    jdk21 = pkgs.jdk21;
+  };
+
+  javaLinks = lib.mapAttrs' (
+    name: pkg:
+    lib.nameValuePair "java-${name}" {
+      source = pkg;
+      target = "java/${name}";
+    }
+  ) javaVersions;
+in
 {
-  home.file = {
+  home.file = javaLinks ++ {
     ".nanorc".text = ''
       set linenumbers
       set autoindent

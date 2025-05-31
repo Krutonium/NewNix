@@ -12,9 +12,6 @@ let
     sha256 = "sha256:1lim6has47jjhh1wgmfxpwawc5s22g245wp53gczihxa4wypk27p";
     name = "PAL_GC.z64";
   };
-  openjdk8-low = pkgs.openjdk8.overrideAttrs (oldAttrs: {
-    meta.priority = 10;
-  });
 
   dotnetCombined =
     (
@@ -75,17 +72,16 @@ in
     #(pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.rust-rover [ "github-copilot" ])
     pkgs.jetbrains.rider
     pkgs.jetbrains.idea-ultimate
-    
+
     pkgs.mono
     pkgs.nil
     pkgs.nixd
     pkgs.notepad-next
-    openjdk8-low
-    pkgs.openjdk17
+
     pkgs.unityhub
 
     # Wine & Windows Compatibility
-    (pkgs.bottles.override { removeWarningPopup = true; } )
+    (pkgs.bottles.override { removeWarningPopup = true; })
     pkgs.looking-glass-client
     pkgs.lutris
     pkgs.winetricks
