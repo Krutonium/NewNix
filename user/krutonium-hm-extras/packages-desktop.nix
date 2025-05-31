@@ -156,6 +156,8 @@ in
     pkgs.ryujinx
     pkgs.steam-run
     pkgs.unstable.nexusmods-app
+    pkgs.steamtinkerlaunch
+
     # File Sync & Downloads
     pkgs.deluge
     pkgs.nextcloud-client
