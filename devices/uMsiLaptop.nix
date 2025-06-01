@@ -100,7 +100,7 @@ in
     graphics.enable = true;
     #Disabled due to Charger being too low wattage.
     nvidia = {
-      open = false;
+      open = false; #NV110 - Not Open Supported
       package = video;
       prime = {
         offload = {
@@ -112,7 +112,7 @@ in
       };
     };
   };
-  services.xserver.videoDrivers = [ "modesetting" ];
+  services.xserver.videoDrivers = [ "modesetting" "nvidia" ];
   services.teamviewer.enable = true;
   services.upower.enable = true;
   services.power-profiles-daemon.enable = false;
