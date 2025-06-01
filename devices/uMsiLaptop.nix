@@ -72,7 +72,7 @@ in
       syncthing = false;
     };
     steam = {
-      steam = false;
+      steam = true;
     };
     virtualization = {
       server = "none";
