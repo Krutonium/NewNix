@@ -79,9 +79,6 @@ in
     };
   };
   virtualisation.waydroid.enable = false;
-  programs.steam = {
-    enable = false;
-  };
   systemd.network.wait-online.enable = false;
   # This theoretically fixes the speakers being slept constantly.
   services.pipewire.wireplumber.extraConfig."99-disable-audio-sleep" = {
