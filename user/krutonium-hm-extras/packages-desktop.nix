@@ -113,7 +113,8 @@ in
     pkgs.htop
     pkgs.libreoffice
     pkgs.mate.engrampa
-    pkgs.neofetch
+    #pkgs.neofetch
+    pkgs.fastfetch
     pkgs.nmap
     pkgs.sunshine
 

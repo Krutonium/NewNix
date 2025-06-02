@@ -6,4 +6,8 @@
   fetchurl,
   ...
 }:
-{ }
+{
+  home.packages = [
+    pkgs.fastfetch
+  ];
+}
