@@ -112,11 +112,12 @@ in
 
   # Hardware configuration
   hardware = {
-    enableAllFirmware = false;
+    enableAllFirmware = true;
+    enableAllHardware = true;
     bluetooth.enable = true;
     usb-modeswitch.enable = true;
+    steam-hardware.enable = true;
   };
-
   # Documentation
   documentation.enable = false;
 
