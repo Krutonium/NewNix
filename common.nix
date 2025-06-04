@@ -1,7 +1,7 @@
 {
   config,
   pkgs,
-  outputs,
+  lib,
   inputs,
   ...
 }:
@@ -73,12 +73,13 @@ in
   # Shell configuration
   environment = {
     shellAliases = {
-      ls = "${pkgs.eza}/bin/eza --icons --git";
+      ls = "${lib.getExe pkgs.eza} --icons --git";
+      cat = "${lib.getExe pkgs.bat}";
+      top = "${lib.getExe pkgs.btop}";
     };
     variables = {
       NIXPKGS_ALLOW_UNFREE = "1";
       MANGOHUD = "1";
-      QT_QPA_PLATFORMTHEME = "gnome";
     };
   };
 
