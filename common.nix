@@ -118,7 +118,7 @@ in
   };
 
   # Documentation
-  documentation.enable = true;
+  documentation.enable = false;
 
   # Nix package manager configuration
 
