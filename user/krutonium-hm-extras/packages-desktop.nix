@@ -135,6 +135,9 @@ in
     pkgs.yt-dlp
 
     # Gaming
+    # shipwright
+    pkgs.shipwright
+    pkgs._2ship2harkinian
     pkgs.appimage-run
     pkgs.cemu
     pkgs.dolphin-emu-beta
