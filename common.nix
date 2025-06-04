@@ -6,7 +6,7 @@
   ...
 }:
 let
- # TODO: Figure out how the fuck sops works
+  # TODO: Figure out how the fuck sops works
 in
 {
   imports = [
@@ -95,11 +95,12 @@ in
     # System maintenance and kernel parameters
     tmp.cleanOnBoot = true;
     kernel.sysctl = {
+      # Fixes some games (Hogwarts Legacy) that just spam memory allocations.
       "vm.max_map_count" = 1000000;
-      "vm.dirty_ratio" = "25"; # 25% of all memory optionally as write cache
-      "kernel.panic" = "60";
-      "kernel.perf_event_paranoid" = "1";
-      "kernel.kptr_restrict" = "0";
+      # 25% of memory can be write cache
+      "vm.dirty_ratio" = 25;
+      # Reboot 60 seconds after a kernel panic
+      "kernel.panic" = 60;
     };
     supportedFilesystems = [ "ntfs" ]; # Add explicit NTFS support
   };
@@ -197,7 +198,7 @@ in
       DefaultLimitNOFILE=1048576
       DefaultTimeoutStopSec=10s
     '';
-    services.irqbalance.serviceConfig.ProtectKernelTunables = "no"; #Fix for #371415
+    services.irqbalance.serviceConfig.ProtectKernelTunables = "no"; # Fix for #371415
   };
 
   # Program configurations
