@@ -8,7 +8,8 @@ let
     jdk24 = pkgs.jdk24;
   };
 
-  javaLinks = lib.mapAttrs' (name: pkg:
+  javaLinks = lib.mapAttrs' (
+    name: pkg:
     lib.nameValuePair "java/${name}" {
       source = pkg;
     }
