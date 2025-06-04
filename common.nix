@@ -138,12 +138,12 @@ in
     };
     gc = {
       automatic = true;
-      options = "--delete-older-than 7d";
+      options = "--delete-older-than 3d";
       dates = "weekly";
     };
     extraOptions = ''
       experimental-features = nix-command flakes
-      extra-platforms = x86_64-linux i686-linux aarch64-linux riscv64-linux
+      extra-platforms = x86_64-linux i686-linux
     '';
   };
 
