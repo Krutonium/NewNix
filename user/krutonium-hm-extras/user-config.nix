@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ pkgs, lib, ... }:
 let
   javaVersions = {
     jdk8 = pkgs.jdk8;
