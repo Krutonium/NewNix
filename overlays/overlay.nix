@@ -1,7 +1,4 @@
 {
-  config,
-  pkgs,
-  lib,
   fetchurl,
   ...
 }:
@@ -52,7 +49,7 @@
         };
       };
     })
-    (self: super: {
+    (_self: super: {
       my_ndi = super.ndi.overrideAttrs (attrs: rec {
         fullVersion = "5.5.2";
         src = fetchurl {

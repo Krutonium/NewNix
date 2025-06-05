@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 {
   # Install packages specific to this desktop:
   home.packages = with pkgs; [

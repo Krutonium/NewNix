@@ -1,9 +1,5 @@
 {
-  config,
   pkgs,
-  lib,
-  makeDestopItem,
-  fetchurl,
   ...
 }:
 let
@@ -17,7 +13,7 @@ let
       ]
     ).overrideAttrs
       (
-        fineAttrs: previousAttrs: {
+        _fineAttrs: previousAttrs: {
           postBuild =
             (previousAttrs.postBuild or '''')
             + ''

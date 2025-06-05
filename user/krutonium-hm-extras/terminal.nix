@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 {
   # Create .config/fish/config.fish with contents
   programs.fish = {

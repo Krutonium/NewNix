@@ -15,7 +15,7 @@ in
       steam-run
       (steam.override {
         extraPkgs =
-          pkgs:
+          _pkgs:
           [
             glxinfo
             jre8

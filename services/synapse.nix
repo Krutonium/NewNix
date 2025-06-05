@@ -8,8 +8,6 @@ with lib;
 with builtins;
 let
   cfg = config.sys.services;
-  sql_current = pkgs.postgresql_16;
-  sql_upgrade = pkgs.postgresql_16;
 in
 {
   config = mkIf (cfg.synapse == true) {

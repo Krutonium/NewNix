@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 let
   # Helper script to retry SSH connections
   sshr = pkgs.writeShellScriptBin "sshr" ''

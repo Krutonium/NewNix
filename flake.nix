@@ -65,13 +65,10 @@
       nixos-hardware,
       home-manager,
       update,
-      nix-monitored,
       nixd,
       fan-controller,
       nur,
       R2CC,
-      nvidia-patch,
-      lix-module,
       MediaServer,
       sops-nix,
       minegrub,
@@ -103,30 +100,30 @@
 
       # Overlay Definitions
       overlays = {
-        unstable = final: prev: {
+        unstable = _final: _prev: {
           unstable = import nixpkgs-unstable {
             inherit system;
             config.allowUnfree = true;
             config.nvidia.acceptLicense = true;
           };
         };
-        master = final: prev: {
+        master = _final: _prev: {
           master = import nixpkgs-master {
             inherit system;
             config.allowUnfree = true;
             config.nvidia.acceptLicense = true;
           };
         };
-        nixpkgsUpdate = final: prev: {
+        nixpkgsUpdate = _final: _prev: {
           nixpkgs-update = update.defaultPackage.x86_64-linux;
         };
-        fanController = self: super: {
+        fanController = _self: _super: {
           BetterFanController = fan-controller.defaultPackage.x86_64-linux;
         };
-        MediaServer = self: super: {
+        MediaServer = _self: _super: {
           MediaServer = MediaServer.defaultPackage.x86_64-linux;
         };
-        InternetRadio2Computercraft = self: super: {
+        InternetRadio2Computercraft = _self: _super: {
           InternetRadio2Computercraft = R2CC.defaultPackage.x86_64-linux;
         };
         monitored = self: super: {
@@ -138,7 +135,7 @@
 
       genericModulesWithOverlays = baseModules ++ [
         (
-          { config, pkgs, ... }:
+          { ... }:
           {
             nixpkgs.overlays = [
               overlays.unstable
@@ -157,7 +154,7 @@
 
       # NixOS Configuration Helper
       nixosConfiguration =
-        name: deviceConfig:
+        _name: deviceConfig:
         nixpkgs.lib.nixosSystem {
           inherit system;
           modules = genericModulesWithOverlays ++ (with nixos-hardware.nixosModules; deviceConfig);

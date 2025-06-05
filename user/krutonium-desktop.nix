@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ ... }:
 {
 
   # THIS IS THE DESKTOP PROFILE

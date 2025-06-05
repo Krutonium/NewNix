@@ -5,9 +5,6 @@
   inputs,
   ...
 }:
-let
-  # TODO: Figure out how the fuck sops works
-in
 {
   imports = [
     ./defaultPackages.nix
@@ -166,11 +163,11 @@ in
     config = {
       allowUnfree = true;
       nvidia.acceptLicense = true;
-      allowUnfreePredicate = pkg: true;
+      allowUnfreePredicate = _pkg: true;
       allowBroken = true;
-      allowBrokenPredicate = pkg: true;
+      allowBrokenPredicate = _pkg: true;
       allowInsecure = true;
-      allowInsecurePredicate = pkg: true;
+      allowInsecurePredicate = _pkg: true;
       permittedInsecurePackages = [
         "dotnet-sdk_6" # Needed for godot4_mono
       ];

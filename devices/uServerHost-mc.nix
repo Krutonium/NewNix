@@ -14,9 +14,7 @@ let
     server:
     let
       serverDir = "/servers/${server.name}";
-      startScript = "${serverDir}/${server.script}"; # Use the script provided per server
-      rconPort = server.rconPort or 25575; # Default to 25575 if not specified
-      rconPassword = server.rconPassword or ""; # You can define this elsewhere securely
+      startScript = "${serverDir}/${server.script}"; # Use the script provided per server # Default to 25575 if not specified # You can define this elsewhere securely
       host = "127.0.0.1";
     in
     if server.enabled then
@@ -107,8 +105,7 @@ let
     server:
     let
       serverDir = "/servers/${server.name}";
-      backupDir = "/backups/${server.name}";
-      rconPort = server.rconPort or 25575; # Default to 25575 if not specified
+      backupDir = "/backups/${server.name}"; # Default to 25575 if not specified
       host = "127.0.0.1";
     in
     if server.enabled then

@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 let
   #kernel = pkgs.linuxPackages_5_4;
   kernel = pkgs.linuxPackages_zen;
