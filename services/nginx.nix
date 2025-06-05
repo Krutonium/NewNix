@@ -117,7 +117,8 @@ in
                 auth_basic_user_file /persist/httpAuth;
               '';
             };
-            "~* \\.[a-z0-9]{2,5}$" = {
+            # Disable auth for files with an extension (e.g., .txt, .jpg, .html)
+            "~* \\.[a-zA-Z0-9]+$" = {
               extraConfig = ''
                 auth_basic off;
               '';
