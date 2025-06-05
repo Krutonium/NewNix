@@ -115,9 +115,11 @@ in
                 autoindex_exact_size off;
                 auth_basic "Restricted Access";
                 auth_basic_user_file /persist/httpAuth;
-                location ~ \.[a-zA-Z0-9]{2,5}$ {
-                  auth_basic off;
-                }
+              '';
+            };
+            "~* \\.[a-z0-9]{2,5}$" = {
+              extraConfig = ''
+                auth_basic off;
               '';
             };
             "/robots.txt" = {
