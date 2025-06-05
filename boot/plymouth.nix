@@ -13,7 +13,7 @@ in
   config = mkIf (cfg.plymouth_enabled == true) {
     environment.systemPackages = [ pkgs.plymouth ];
     boot.plymouth.enable = cfg.plymouth_enabled;
-    boot.plymouth.theme = cfg.plymouth_theme;
+    #boot.plymouth.theme = lib.mkForce cfg.plymouth_theme;
     #boot.initrd.availableKernelModules = [ "plymouthd" ];
   };
 }
