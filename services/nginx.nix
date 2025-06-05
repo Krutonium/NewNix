@@ -115,12 +115,9 @@ in
                 autoindex_exact_size off;
                 auth_basic "Restricted Access";
                 auth_basic_user_file /persist/httpAuth;
-              '';
-            };
-            # Disable authentication for direct file access
-            "~^/(.+)" = {
-              extraConfig = ''
-                auth_basic off;
+                location ~ \.[a-zA-Z0-9]{2,5}$ {
+                  auth_basic off;
+                }
               '';
             };
             "/robots.txt" = {
