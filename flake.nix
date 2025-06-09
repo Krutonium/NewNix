@@ -51,10 +51,6 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    #stylix = {
-    #  url = "github:danth/stylix";
-    #  inputs.nixpkgs.follows = "nixpkgs";
-    #};
   };
   outputs =
     {
@@ -72,7 +68,6 @@
       MediaServer,
       sops-nix,
       minegrub,
-      #stylix,
       ...
     }@inputs:
     let
@@ -84,7 +79,6 @@
         #lix-module.nixosModules.default
         minegrub.nixosModules.default
         sops-nix.nixosModules.sops
-        #stylix.nixosModules.stylix
         {
           nix.registry.nixos.flake = self;
           environment.etc."nix/inputs/nixpkgs".source = nixpkgs.outPath;
