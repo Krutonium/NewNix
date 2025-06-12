@@ -13,10 +13,10 @@ retry "sudo nixos-rebuild boot --flake .#uGamingPC --target-host uGamingPC"
 retry "sudo nixos-rebuild boot --flake .#uMsiLaptop --target-host uMsiLaptop"
 retry "sudo nixos-rebuild boot --flake .#uServerHost --target-host uServerHost"
 retry "sudo nixos-rebuild boot --flake .#uWebServer --target-host uWebServer"
-#retry 'ssh 10.1 "sudo nix-collect-garbage -d && nix-collect-garbage -d"'
-#retry 'ssh 10.2 "sudo nix-collect-garbage -d && nix-collect-garbage -d"'
-#retry 'ssh 10.3 "sudo nix-collect-garbage -d && nix-collect-garbage -d"'
-#retry 'ssh 10.4 "sudo nix-collect-garbage -d && nix-collect-garbage -d"'
+retry 'ssh uMsiLaptop "sudo nix-collect-garbage -d && nix-collect-garbage -d && sudo reboot now"'
+retry 'ssh uServerHost "sudo nix-collect-garbage -d && nix-collect-garbage -d && sudo reboot now"'
+retry 'ssh uWebServer "sudo nix-collect-garbage -d && nix-collect-garbage -d && sudo reboot now"'
+retry 'ssh uGamingPC "sudo nix-collect-garbage -d && nix-collect-garbage -d && sudo shutdown now"'
 #ssh 10.3 "sudo reboot now"
 #ssh 10.1 "sudo reboot now"
 #sudo shutdown now
