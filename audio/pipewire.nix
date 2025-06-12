@@ -100,7 +100,7 @@ in
           enable = true;
         };
         jack = {
-          enable = false;
+          enable = true;
         };
         extraConfig.pipewire = {
           "99-input-denoise" = pw_rnnoise_config;
