@@ -78,6 +78,7 @@
     variables = {
       NIXPKGS_ALLOW_UNFREE = "1";
       MANGOHUD = "1";
+      GSK_RENDERER = "gl";
     };
   };
 
