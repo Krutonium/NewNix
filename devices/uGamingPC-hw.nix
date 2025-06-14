@@ -47,10 +47,10 @@
     device = "UUID=6023862438DB2AD4";
     fsType = "ntfs";
   };
-  #fileSystems."/games" = {
-  #  device = "/dev/disk/by-uuid/45b5b53a-2580-44b5-854d-d2e413beda5f";
-  #  fsType = "bcachefs";
-  #};
+  fileSystems."/games" = {
+    device = "/dev/disk/by-uuid/27cd03fa-4828-4c4f-b802-0318dbd4e3d3";
+    fsType = "bcachefs";
+  };
 
   fileSystems."/uWebServer" = {
     device = "krutonium@krutonium.ca:/";
