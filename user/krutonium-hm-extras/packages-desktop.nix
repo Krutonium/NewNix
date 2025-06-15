@@ -92,7 +92,7 @@ in
     pkgs.unstable.openrct2
     pkgs.prismlauncher
     pkgs.steam-run
-    pkgs.unstable.nexusmods-app
+    pkgs.nexusmods-app
 
 
     # File Sync & Downloads
