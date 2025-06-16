@@ -6,7 +6,7 @@ let
   #mainTheme = "Marble-blue-dark"; # Application Theme
   mainFont = "gg sans Normal 12";
   monoFont = "Ubuntu Mono 13";
-  #cursorTheme = "oreo_spark_purple_bordered_cursors";
+  cursorTheme = "oreo_spark_purple_bordered_cursors";
   #iconTheme = "BeautyLine";
   #soundTheme = "Yaru";
   superMenuLogo = "${./supermenu.png}";
@@ -47,7 +47,7 @@ in
     #pkgs.gnomeExtensions.control-monitor-brightness-and-volume-with-ddcutil #Seem to be crashing Gnome :(
 
     # Theme Stuff
-    #pkgs.bibata-cursors
+    pkgs.bibata-cursors
     #pkgs.oreo-cursors-plus
     #pkgs.whitesur-icon-theme
     #pkgs.iconpack-obsidian

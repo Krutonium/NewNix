@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
 
   # THIS IS THE DESKTOP PROFILE
@@ -25,4 +25,11 @@
   home.sessionVariables.VISUAL = "nano";
   home.sessionVariables.OLLAMA_HOST = "10.0.0.3";
   home.stateVersion = "22.05";
+  stylix = {
+    enable = true;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
+    targets = {
+      gtk.flatpakSupport.enable = false;
+    };
+  };
 }
