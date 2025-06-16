@@ -12,5 +12,11 @@
       popups = 0.5;
       terminal = 1.0;
     };
+    iconTheme = {
+      enable = true;
+      package = pkgs.beauty-line-icon-theme;
+      light = "BeautyLine";
+      dark = "BeautyLine";
+    };
   };
 }

@@ -48,12 +48,6 @@
         package = pkgs.ubuntu_font_family;
       };
     };
-    iconTheme = {
-      enable = true;
-      package = pkgs.beauty-line-icon-theme;
-      light = "BeautyLine";
-      dark = "BeautyLine";
-    };
     opacity = {
       applications = 1.0;
       desktop = 0.7;
