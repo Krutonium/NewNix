@@ -40,10 +40,12 @@
         package = pkgs.ubuntu_font_family;
       };
       sansSerif = {
-        name = "gg sans Normal";
+        name = "Ubuntu";
+        package = pkgs.ubuntu_font_family;
       };
       serif = {
-        name = "gg sans Normal";
+        name = "Ubuntu";
+        package = pkgs.ubuntu_font_family;
       };
     };
     opacity = {
