@@ -227,7 +227,7 @@ in
     desktop = {
       displayManager = "gdm";
       desktop = "gnome";
-      wayland = false;
+      wayland = true;
     };
     custom = {
       ddcutil = true;
