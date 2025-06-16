@@ -36,7 +36,7 @@
     };
     fonts = {
       monospace = {
-        name = "Ubuntu Mono 13";
+        name = "Ubuntu Mono Regular 13";
         package = pkgs.ubuntu_font_family;
       };
       sansSerif = {
