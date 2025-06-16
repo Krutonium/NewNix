@@ -28,6 +28,11 @@
     targets = {
       grub.enable = false;
     };
+    cursor = {
+      name = "oreo_spark_purple_bordered_cursors";
+      package = pkgs.oreo-cursors-plus;
+      size = 10;
+    };
   };
 
   sops = {

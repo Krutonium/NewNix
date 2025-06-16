@@ -47,7 +47,7 @@ in
     #pkgs.gnomeExtensions.control-monitor-brightness-and-volume-with-ddcutil #Seem to be crashing Gnome :(
 
     # Theme Stuff
-    pkgs.bibata-cursors
+    #pkgs.bibata-cursors
     #pkgs.oreo-cursors-plus
     #pkgs.whitesur-icon-theme
     #pkgs.iconpack-obsidian
@@ -59,8 +59,7 @@ in
     pkgs.gnome-tweaks
     pkgs.cascadia-code # Font
   ];
-  home.file.".themes".source = marbleTheme;
-
+  #home.file.".themes".source = marbleTheme;
   dconf.settings = {
     "org/gnome/desktop/input-sources" = {
       sources = [

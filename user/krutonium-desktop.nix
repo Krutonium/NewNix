@@ -12,6 +12,7 @@
     ./krutonium-hm-extras/xdg.nix
     ./krutonium-hm-extras/ssh.nix
     ./krutonium-hm-extras/firefox.nix
+    ./krutonium-hm-extras/stylix.nix
     # ./krutonium-hm-extras/hyprland.nix
   ];
   programs.home-manager.enable = true;
@@ -25,11 +26,4 @@
   home.sessionVariables.VISUAL = "nano";
   home.sessionVariables.OLLAMA_HOST = "10.0.0.3";
   home.stateVersion = "22.05";
-  stylix = {
-    enable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
-    targets = {
-      gtk.flatpakSupport.enable = false;
-    };
-  };
 }
