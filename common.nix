@@ -24,6 +24,7 @@
 
   stylix = {
     enable = true;
+    autoEnable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/github-dark.yaml";
     targets = {
       grub.enable = false;
@@ -33,6 +34,25 @@
       package = pkgs.oreo-cursors-plus;
       size = 10;
     };
+    fonts = {
+      monospace = {
+        name = "Ubuntu Mono 13";
+        package = pkgs.ubuntu_font_family;
+      };
+      sansSerif = {
+        name = "gg sans Normal 12";
+      };
+      serif = {
+        name = "gg sans Normal 12";
+      };
+    };
+    opacity = {
+      applications = 1.0;
+      desktop = 0.7;
+      popups = 0.5;
+      terminal = 1.0;
+    };
+    polarity = "dark";
   };
 
   sops = {
