@@ -17,6 +17,7 @@ let
 in
 {
   home.file = javaLinks // {
+    ".face".source = ./profile.jpg;
     ".nanorc".text = ''
       set linenumbers
       set autoindent
