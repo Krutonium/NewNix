@@ -57,6 +57,14 @@
     polarity = "dark";
   };
 
+  systemd.tmpfiles.rules =
+    let
+      username = "krutonium";
+    in
+    [
+      "f+ /var/lib/AccountsService/users/${username}  0600 root root - [User]\\nIcon=/var/lib/AccountsService/icons/${username}\\n" # notice the "\\n" we don't want nix to insert a new line in our string, just pass it as \n to systemd
+      "L+ /var/lib/AccountsService/icons/${username}  - - - - ${./user/${username}-hm-extras/profile.png}" # you can replace the ${....} with absolute path to face icon
+    ];
   sops = {
     defaultSopsFile = ./secrets/secrets.yaml;
     defaultSopsFormat = "yaml";
