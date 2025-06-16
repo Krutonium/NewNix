@@ -23,7 +23,7 @@ let
         value = {
           script = ''
             java --version
-            ${startScript}
+            bash ${startScript}
           '';
           preStop = ''
             # Use mcron to send a shutdown message to the server
