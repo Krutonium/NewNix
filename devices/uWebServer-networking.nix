@@ -114,7 +114,7 @@
         # Create: Chronicles
           sourcePort = 25568;
           proto = "tcp";
-          destination = "10.0.0.3:25567";
+          destination = "10.0.0.3:25568";
         }
         {
           sourcePort = 24454;
