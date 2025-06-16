@@ -36,14 +36,14 @@
     };
     fonts = {
       monospace = {
-        name = "Ubuntu Mono Regular 13";
+        name = "Ubuntu Mono Regular";
         package = pkgs.ubuntu_font_family;
       };
       sansSerif = {
-        name = "gg sans Normal 12";
+        name = "gg sans Normal";
       };
       serif = {
-        name = "gg sans Normal 12";
+        name = "gg sans Normal";
       };
     };
     opacity = {
