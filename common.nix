@@ -22,6 +22,7 @@
     #./builders
   ];
 
+  # https://tinted-theming.github.io/tinted-gallery/
   stylix = {
     enable = true;
     autoEnable = true;
