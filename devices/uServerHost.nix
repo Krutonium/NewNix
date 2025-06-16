@@ -203,7 +203,7 @@ in
     {
       name = "create_chronicles";
       java = pkgs.jdk21;
-      script = "start.sh";
+      script = "run.sh";
       enabled = true;
       rconPort = 12348;
       rconPasswordFile = "/servers/rcon.password";
