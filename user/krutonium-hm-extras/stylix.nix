@@ -14,9 +14,9 @@
     };
     iconTheme = {
       enable = true;
-      package = pkgs.beauty-line-icon-theme;
-      light = "BeautyLine";
-      dark = "BeautyLine";
+      package = pkgs.numix-icon-theme-circle;
+      light = "Numix-Circle-Light";
+      dark = "Numix-Circle-Light";
     };
   };
 }
