@@ -204,7 +204,7 @@ in
       name = "create_chronicles";
       java = pkgs.jdk21;
       script = "start.sh";
-      enabled = false;
+      enabled = true;
       rconPort = 12348;
       rconPasswordFile = "/servers/rcon.password";
     }
