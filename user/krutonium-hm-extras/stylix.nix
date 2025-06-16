@@ -2,7 +2,7 @@
 {
   stylix = {
     enable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/github-dark.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/heetch.yaml";
     targets = {
       gtk.flatpakSupport.enable = false;
     };

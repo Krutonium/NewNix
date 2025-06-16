@@ -26,7 +26,7 @@
   stylix = {
     enable = true;
     autoEnable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/github-dark.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/heetch.yaml";
     targets = {
       grub.enable = false;
     };
