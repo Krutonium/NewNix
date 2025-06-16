@@ -22,6 +22,41 @@
     #./builders
   ];
 
+  stylix = {
+    enable = true;
+    autoEnable = true;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/github-dark.yaml";
+    targets = {
+      grub.enable = false;
+    };
+    cursor = {
+      name = "oreo_spark_purple_bordered_cursors";
+      package = pkgs.oreo-cursors-plus;
+      size = 10;
+    };
+    fonts = {
+      monospace = {
+        name = "Ubuntu Mono Regular";
+        package = pkgs.ubuntu_font_family;
+      };
+      sansSerif = {
+        name = "Ubuntu";
+        package = pkgs.ubuntu_font_family;
+      };
+      serif = {
+        name = "Ubuntu";
+        package = pkgs.ubuntu_font_family;
+      };
+    };
+    opacity = {
+      applications = 1.0;
+      desktop = 0.7;
+      popups = 0.5;
+      terminal = 1.0;
+    };
+    polarity = "dark";
+  };
+
   sops = {
     defaultSopsFile = ./secrets/secrets.yaml;
     defaultSopsFormat = "yaml";

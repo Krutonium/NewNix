@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
 
   # THIS IS THE DESKTOP PROFILE
@@ -12,13 +12,13 @@
     ./krutonium-hm-extras/xdg.nix
     ./krutonium-hm-extras/ssh.nix
     ./krutonium-hm-extras/firefox.nix
+    ./krutonium-hm-extras/stylix.nix
     # ./krutonium-hm-extras/hyprland.nix
   ];
   programs.home-manager.enable = true;
 
   # Fixes icons not reloading when switching system.
   targets.genericLinux.enable = true;
-
   home.username = "krutonium";
   home.homeDirectory = "/home/krutonium";
   home.sessionVariables.EDITOR = "nano";

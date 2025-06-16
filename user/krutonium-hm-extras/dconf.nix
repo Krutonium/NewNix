@@ -2,13 +2,13 @@
 
 with lib.hm.gvariant;
 let
-  userTheme = "Marble-blue-dark"; # Shell Theme
-  mainTheme = "Marble-blue-dark"; # Application Theme
+  #userTheme = "Marble-blue-dark"; # Shell Theme
+  #mainTheme = "Marble-blue-dark"; # Application Theme
   mainFont = "gg sans Normal 12";
   monoFont = "Ubuntu Mono 13";
   cursorTheme = "oreo_spark_purple_bordered_cursors";
-  iconTheme = "BeautyLine";
-  soundTheme = "Yaru";
+  #iconTheme = "BeautyLine";
+  #soundTheme = "Yaru";
   superMenuLogo = "${./supermenu.png}";
   wallPaper = "file://${./wallpaper.png}";
   marbleTheme = pkgs.stdenv.mkDerivation {
@@ -37,9 +37,8 @@ in
     pkgs.master.gnomeExtensions.arcmenu
     pkgs.gnomeExtensions.no-overview
     pkgs.gnomeExtensions.gtile
-    pkgs.gnomeExtensions.custom-accent-colors
     pkgs.gnomeExtensions.user-themes
-    marbleTheme
+    #marbleTheme
 
     pkgs.gnomeExtensions.compiz-windows-effect
     pkgs.gnomeExtensions.compiz-alike-magic-lamp-effect
@@ -49,19 +48,18 @@ in
 
     # Theme Stuff
     #pkgs.bibata-cursors
-    pkgs.oreo-cursors-plus
+    #pkgs.oreo-cursors-plus
     #pkgs.whitesur-icon-theme
     #pkgs.iconpack-obsidian
     #pkgs.beauty-line-icon-theme
-    pkgs.ubuntu_font_family
-    pkgs.yaru-theme
-    pkgs.beauty-line-icon-theme
+    #pkgs.ubuntu_font_family
+    #pkgs.yaru-theme
+    #pkgs.beauty-line-icon-theme
     # Other Stuff
     pkgs.gnome-tweaks
     pkgs.cascadia-code # Font
   ];
-  home.file.".themes".source = marbleTheme;
-
+  #home.file.".themes".source = marbleTheme;
   dconf.settings = {
     "org/gnome/desktop/input-sources" = {
       sources = [
@@ -74,15 +72,9 @@ in
     };
     "org/gnome/desktop/interface" = {
       clock-format = "12h";
-      cursor-theme = cursorTheme;
-      document-font-name = mainFont;
       font-antialiasing = "rgba";
       font-hinting = "full";
-      font-name = mainFont;
       gtk-im-module = "gtk-im-context-simple";
-      gtk-theme = userTheme;
-      icon-theme = iconTheme;
-      monospace-font-name = monoFont;
     };
 
     "org/gnome/desktop/peripherals/touchpad" = {
@@ -93,9 +85,6 @@ in
       disable-microphone = false;
     };
 
-    "org/gnome/desktop/sound" = {
-      theme-name = soundTheme;
-    };
 
     "org/gnome/desktop/wm/preferences" = {
       num-workspaces = 1;
@@ -109,7 +98,7 @@ in
 
     "org/gnome/desktop/wm/preferences" = {
       button-layout = "appmenu:minimize,maximize,close";
-      titlebar-font = mainFont;
+      #titlebar-font = mainFont;
     };
 
     "org/gnome/gnome-system-monitor" = {
@@ -185,7 +174,6 @@ in
         "no-overview@fthx"
         "gTile@vibou"
         "s76-scheduler@mattjakeman.com"
-        "custom-accent-colors@demiskp"
         "compiz-windows-effect@hermes83.github.com"
         "compiz-alike-magic-lamp-effect@hermes83.github.com"
       ];
@@ -197,12 +185,6 @@ in
       remember-mount-password = true;
     };
 
-    "org/gnome/shell/extensions/custom-accent-colors" = {
-      accent-color = "purple";
-      theme-flatpak = true;
-      theme-gtk3 = true;
-      theme-shell = true;
-    };
     "org/gnome/shell/extensions/arcmenu" = {
       arc-menu-placement = "DTP";
       available-placement = [
@@ -290,10 +272,6 @@ in
       status-icon-padding = -1;
       tray-padding = -1;
       window-preview-title-position = "TOP";
-    };
-
-    "org/gnome/shell/extensions/user-theme" = {
-      name = mainTheme;
     };
 
     "org/gnome/shell/weather" = {
