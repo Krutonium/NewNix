@@ -32,6 +32,7 @@ let
           '';
           path = [
             pkgs.bash
+            pkgs.coreutils
             server.java
           ];
           serviceConfig = {
