@@ -48,6 +48,12 @@
         name = "Ubuntu";
         package = pkgs.ubuntu_font_family;
       };
+      sizes = {
+        applications = 12;
+        terminal = 13;
+        desktop = 10;
+        popups = 10;
+      };
     };
     opacity = {
       applications = 1.0;
