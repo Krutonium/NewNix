@@ -53,6 +53,7 @@ in
 
     # Wine & Windows Compatibility
     pkgs.winetricks
+    pkgs.wineWow64Packages.full
     bottles
 
     # Hardware & System Tools
