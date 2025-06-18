@@ -28,7 +28,7 @@ let
             '';
         }
       );
-  wine = pkgs.wine64.overrideAttrs (old: {
+  wine = pkgs.wineWowPackages.stable.overrideAttrs (old: {
     patches = (old.patches or [ ]) ++ [ ./wine.patch ];
   });
 

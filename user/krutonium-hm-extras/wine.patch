@@ -8,6 +8,5 @@ index 8e6956b3e9f..261a16dc5b9 100644
  [Services]
 -HKLM,%CurrentVersion%\RunServices,"winemenubuilder",2,"%11%\winemenubuilder.exe -a -r"
 +HKLM,%CurrentVersion%\RunServices,"winemenubuilder",2,"%11%\winemenubuilder.exe -r"
- HKLM,"System\CurrentControlSet\Services\Dnscache\Parameters",,16
  HKLM,"System\CurrentControlSet\Services\Eventlog\Application",,16
  HKLM,"System\CurrentControlSet\Services\Eventlog\System","Sources",0x10000,""
