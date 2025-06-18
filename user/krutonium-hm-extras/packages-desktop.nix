@@ -1,6 +1,5 @@
-{
-  pkgs,
-  ...
+{ pkgs
+, ...
 }:
 let
   dotnetCombined =
@@ -29,6 +28,28 @@ let
             '';
         }
       );
+  wine = pkgs.wine64.overrideAttrs (old: {
+    patches = (old.patches or [ ]) ++ [
+      (pkgs.writeTextFile {
+        name = "disable-winemenubuilder.patch";
+        text = ''
+          --- a/loader/wine.inf.in    2024-02-23 16:57:31.079889523 +0100
+          +++ b/loader/wine.inf.in    2024-02-23 16:58:26.122973075 +0100
+          @@ -2493,7 +2493,7 @@
+           ErrorControl=1
+
+            [Services]
+           -HKLM,%CurrentVersion%\RunServices,"winemenubuilder",2,"%11%\winemenubuilder.exe -a -r"
+           +HKLM,%CurrentVersion%\RunServices,"winemenubuilder",2,"%11%\winemenubuilder.exe -r"
+            HKLM,"System\CurrentControlSet\Services\Eventlog\Application",,16
+            HKLM,"System\CurrentControlSet\Services\Eventlog\System","Sources",0x10000,""
+            HKLM,"System\CurrentControlSet\Services\Tcpip\Parameters","DataBasePath",,"%12%\etc"
+
+        '';
+      })
+    ];
+  });
+
   #rider = (pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.rider [ "github-copilot" ]);
   #idea = (pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.rust-rover [ "github-copilot" ]);
   bottles = (pkgs.bottles.override { removeWarningPopup = true; });
@@ -53,7 +74,7 @@ in
 
     # Wine & Windows Compatibility
     pkgs.winetricks
-    pkgs.wineWow64Packages.full
+    wine
     bottles
 
     # Hardware & System Tools
