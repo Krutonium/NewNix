@@ -31,6 +31,8 @@ in
   };
   programs.mangohud.settings = {
     "toggle_fps_limit" = "F1";
+    "fps_limit" = 165;
+    "fps_limit_method" = "early";
     "gpu_stats" = true;
     "gpu_temp" = true;
     "gpu_core_clock" = true;
@@ -43,11 +45,23 @@ in
     "cpu_load_change" = true;
     "core_load_change" = true;
     "cpu_load_value=50,90" = true;
-    "cpu_text"="CPU";
+    "cpu_text" = "CPU";
     "vram" = true;
     "ram" = true;
     "fps" = true;
-    "frame_timing"="1";
-    "toggle_hud"="F10";
+    "frame_timing" = 1;
+    "toggle_hud" = "F10";
+    "media_player" = true;
+    "permit_upload" = true;
+    "cpu_mhz" = true;
+    "gamemode" = true;
+    "show_fps_limit" = true;
+    "round_corners" = 15.0;
   };
+  xdg.configFile."MangoHud/MangoHud.conf".text = lib.mkAfter ''
+    # override only font appearance
+    font_size = 24
+    font_size_text = 14
+    font_scale = 1
+  '';
 }
