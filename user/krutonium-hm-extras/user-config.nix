@@ -49,6 +49,5 @@ in
     "fps" = true;
     "frame_timing"="1";
     "toggle_hud"="F10";
-    "media_player_name"="Spotify";
   };
 }
