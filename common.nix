@@ -1,9 +1,8 @@
-{
-  config,
-  pkgs,
-  lib,
-  inputs,
-  ...
+{ config
+, pkgs
+, lib
+, inputs
+, ...
 }:
 {
   imports = [
@@ -175,8 +174,22 @@
   # Nix package manager configuration
 
   nix = {
+    sshServe = {
+      enable = true;
+      keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBGydZMghVpYF+glHje55hN0/00i9nOEA+OP4A/eneXp krutonium@uHPLaptop - Wed, Mar 16, 2022 @ 4:03 AM" ];
+      trusted = true;
+      write = true;
+    };
     # access-tokens = githubKey;
     settings = {
+      trusted-substituters = [
+        "ssh://nix-serve@uMsiLaptop"
+        "ssh://nix-serve@uWebServer"
+        "ssh://nix-serve@uGamingPC"
+        "ssh://nix-serve@uServerHost"
+        "https://hydra.nixos.org/"
+      ];
+      require-sigs = false;
       auto-optimise-store = true;
       trusted-users = [ "@wheel" ];
       min-free = 50 * 1000 * 1000 * 1000; # 50GB
