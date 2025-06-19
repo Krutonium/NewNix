@@ -186,7 +186,12 @@
         "big-parallel"
         "kvm"
       ];
-
+    };
+    registry.unstable.to = {
+      type = "github";
+      owner = "NixOS";
+      repo = "nixpkgs";
+      ref = "nixos-unstable";
     };
     gc = {
       automatic = true;

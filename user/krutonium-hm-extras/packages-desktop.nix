@@ -97,6 +97,7 @@ in
     pkgs.prismlauncher
     pkgs.steam-run
     pkgs.nexusmods-app
+    pkgs.unstable.sgdboop
 
 
     # File Sync & Downloads
