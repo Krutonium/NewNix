@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 let
   # Helper script to retry SSH connections
   sshr = pkgs.writeShellScriptBin "sshr" ''
@@ -117,7 +117,6 @@ let
   '';
 
   transcode-vr = pkgs.writeShellScriptBin "transcode-vr" ''
-    #!/usr/bin/env bash
     set -euo pipefail
 
     SRC="$1"
@@ -131,7 +130,7 @@ let
         filename_no_ext="''${filename%.*}"
         output_file="$DST/''${filename_no_ext}.mp4"
 
-        ffmpeg -vaapi_device /dev/dri/renderD128 \
+        ${lib.getExe pkgs.ffmpeg-full} -vaapi_device /dev/dri/renderD128 \
             -i "$file" \
             -vf 'format=nv12,scale=-2:540,hwupload' \
             -c:v h264_vaapi -b:v 2M -maxrate 3M -bufsize 4M \
