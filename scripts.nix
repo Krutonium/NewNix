@@ -159,5 +159,6 @@ in
     relinkrepo
     explain
     help
+    transcode-vr
   ];
 }
