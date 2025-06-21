@@ -4,6 +4,16 @@
 , inputs
 , ...
 }:
+let
+  subs = [
+    "ssh://nix-serve@uMsiLaptop"
+    "ssh://nix-serve@uWebServer"
+    "ssh://nix-serve@uGamingPC"
+    "ssh://nix-serve@uServerHost"
+    "https://hydra.nixos.org/"
+    "https://cache.nixos.org/"
+  ];
+in
 {
   imports = [
     ./defaultPackages.nix
@@ -182,22 +192,8 @@
     };
     # access-tokens = githubKey;
     settings = {
-      substituters = [
-        "ssh://nix-serve@uMsiLaptop"
-        "ssh://nix-serve@uWebServer"
-        "ssh://nix-serve@uGamingPC"
-        "ssh://nix-serve@uServerHost"
-        "https://hydra.nixos.org/"
-        "https://cache.nixos.org/"
-      ];
-      trusted-substituters = [
-        "ssh://nix-serve@uMsiLaptop"
-        "ssh://nix-serve@uWebServer"
-        "ssh://nix-serve@uGamingPC"
-        "ssh://nix-serve@uServerHost"
-        "https://hydra.nixos.org/"
-        "https://cache.nixos.org/"
-      ];
+      substituters = subs;
+      trusted-substituters = subs;
       require-sigs = false;
       auto-optimise-store = true;
       trusted-users = [ "@wheel" ];
