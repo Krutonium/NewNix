@@ -182,6 +182,14 @@
     };
     # access-tokens = githubKey;
     settings = {
+      substituters = [
+        "ssh://nix-serve@uMsiLaptop"
+        "ssh://nix-serve@uWebServer"
+        "ssh://nix-serve@uGamingPC"
+        "ssh://nix-serve@uServerHost"
+        "https://hydra.nixos.org/"
+        "https://cache.nixos.org/"
+      ];
       trusted-substituters = [
         "ssh://nix-serve@uMsiLaptop"
         "ssh://nix-serve@uWebServer"
