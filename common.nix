@@ -10,7 +10,6 @@ let
     "ssh://nix-serve@uWebServer"
     "ssh://nix-serve@uGamingPC"
     "ssh://nix-serve@uServerHost"
-    "https://hydra.nixos.org/"
     "https://cache.nixos.org/"
   ];
 in
