@@ -6,11 +6,7 @@
 }:
 let
   subs = [
-    "ssh://nix-serve@uMsiLaptop"
-    "ssh://nix-serve@uWebServer"
-    "ssh://nix-serve@uGamingPC"
-    "ssh://nix-serve@uServerHost"
-    "https://cache.nixos.org/"
+
   ];
 in
 {
