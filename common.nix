@@ -6,7 +6,7 @@
 }:
 let
   subs = [
-
+    "https://myflake.cachix.org"
   ];
 in
 {
@@ -189,6 +189,9 @@ in
     settings = {
       substituters = subs;
       trusted-substituters = subs;
+      trusted-public-keys = [
+        "myflake.cachix.org-1:KlIcGPe6D7DUHGBw+2nycRaSlJXilMBQpbIeiL7w5eQ="
+      ];
       require-sigs = false;
       auto-optimise-store = true;
       trusted-users = [ "@wheel" ];
