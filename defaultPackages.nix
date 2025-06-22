@@ -63,6 +63,7 @@ in
     pkgs.wl-clipboard
     pkgs.kitty
     pkgs.sops
+    pkgs.cachix
   ];
 
 }
