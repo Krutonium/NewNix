@@ -179,12 +179,6 @@ in
   # Nix package manager configuration
 
   nix = {
-    sshServe = {
-      enable = true;
-      keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBGydZMghVpYF+glHje55hN0/00i9nOEA+OP4A/eneXp krutonium@uHPLaptop - Wed, Mar 16, 2022 @ 4:03 AM" ];
-      trusted = true;
-      write = true;
-    };
     # access-tokens = githubKey;
     settings = {
       substituters = subs;
