@@ -112,11 +112,11 @@ in
   ];
   programs.obs-studio = {
     enable = true;
-    plugins = with pkgs.master.obs-studio-plugins; [
+    plugins = with pkgs.obs-studio-plugins; [
       obs-multi-rtmp
       obs-vkcapture
     ];
-    package = pkgs.master.obs-studio;
+    package = pkgs.obs-studio;
   };
   xdg.desktopEntries = {
     "OBS" = {
