@@ -115,17 +115,11 @@ in
     plugins = with pkgs.obs-studio-plugins; [
       obs-multi-rtmp
       obs-vkcapture
+      obs-backgroundremoval
     ];
     package = pkgs.obs-studio;
   };
   xdg.desktopEntries = {
-    "OBS" = {
-      name = "OBS Studio X11";
-      genericName = "Screen Recorder";
-      exec = "env QT_QPA_PLATFORM=xcb obs";
-      terminal = false;
-      icon = "com.obsproject.Studio";
-    };
     "discord" = {
       name = "Vesktop";
       genericName = "Discord";
