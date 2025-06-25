@@ -195,6 +195,7 @@ in
     "k10temp"
     "amdgpu"
   ];
+  boot.kernelModules = [ "dm-cache" ];
   environment.systemPackages = [
     #video
     pkgs.gamescope
