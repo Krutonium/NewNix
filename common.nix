@@ -136,9 +136,9 @@ in
     };
   };
 
+  services.lvm.enable = true;
   # Boot configuration
   boot = {
-    lvm.enable = true;
     initrd.services.lvm.enable = true;
     # Virtual webcam support
     extraModulePackages = with config.boot.kernelPackages; [
