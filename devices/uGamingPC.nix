@@ -1,21 +1,20 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }:
 let
-  kernel = with pkgs; linuxPackages_6_14;
+  #kernel = with pkgs; linuxPackages_6_14;
+  zfsCompatibleKernelPackages = lib.filterAttrs (
+    name: kernelPackages: (builtins.match "linux_[0-9]+_[0-9]+" name) != null && (builtins.tryEval kernelPackages).success && (!kernelPackages.${config.boot.zfs.package.kernelModuleAttribute}.meta.broken)
+  ) pkgs.linuxKernel.packages;
+  kernel = lib.last (lib.sort (a: b: (lib.versionOlder a.kernel.version b.kernel.version)) (builtins.attrValues zfsCompatibleKernelPackages));
+  # Above gets the lastest ZFS compatible Kernel.
+
   video = config.boot.kernelPackages.nvidiaPackages.beta;
-  pkgAfterFbc =
-    if builtins.hasAttr video.version pkgs.nvidia-patch-list.fbc then
-      pkgs.nvidia-patch.patch-fbc video
-    else
-      video;
-  finalPkg =
-    if builtins.hasAttr video.version pkgs.nvidia-patch-list.nvenc then
-      pkgs.nvidia-patch.patch-nvenc pkgAfterFbc
-    else
-      pkgAfterFbc;
+  pkgAfterFbc = if builtins.hasAttr video.version pkgs.nvidia-patch-list.fbc then pkgs.nvidia-patch.patch-fbc video else video;
+  finalPkg = if builtins.hasAttr video.version pkgs.nvidia-patch-list.nvenc then pkgs.nvidia-patch.patch-nvenc pkgAfterFbc else pkgAfterFbc;
   zenpower = config.boot.kernelPackages.zenpower;
   Hostname = "uGamingPC";
 in
@@ -33,7 +32,7 @@ in
       gfxmodeEfi = "1920x1080";
       gfxpayloadEfi = "keep";
     };
-    supportedFilesystems = [ "bcachefs" ];
+    supportedFilesystems = [ "zfs" "ntfs" ];
   };
   services.udev.packages = [
     pkgs.qmk-udev-rules
