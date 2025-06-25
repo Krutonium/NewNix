@@ -124,15 +124,6 @@ in
     ];
     package = pkgs.obs-studio;
   };
-  xdg.desktopEntries = {
-    "discord" = {
-      name = "Vesktop";
-      genericName = "Discord";
-      exec = "vesktop";
-      terminal = false;
-      icon = "vesktop";
-    };
-  };
   programs.vscode = {
     enable = true;
     package = pkgs.vscode;
