@@ -138,6 +138,8 @@ in
 
   # Boot configuration
   boot = {
+    lvm.enable = true;
+    initrd.services.lvm.enable = true;
     # Virtual webcam support
     extraModulePackages = with config.boot.kernelPackages; [
       v4l2loopback
