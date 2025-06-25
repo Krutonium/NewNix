@@ -5,13 +5,7 @@
   ...
 }:
 let
-  #kernel = with pkgs; linuxPackages_6_14;
-  zfsCompatibleKernelPackages = lib.filterAttrs (
-    name: kernelPackages: (builtins.match "linux_[0-9]+_[0-9]+" name) != null && (builtins.tryEval kernelPackages).success && (!kernelPackages.${config.boot.zfs.package.kernelModuleAttribute}.meta.broken)
-  ) pkgs.linuxKernel.packages;
-  kernel = lib.last (lib.sort (a: b: (lib.versionOlder a.kernel.version b.kernel.version)) (builtins.attrValues zfsCompatibleKernelPackages));
-  # Above gets the lastest ZFS compatible Kernel.
-
+  kernel = with pkgs; linuxPackages_6_14;
   video = config.boot.kernelPackages.nvidiaPackages.beta;
   pkgAfterFbc = if builtins.hasAttr video.version pkgs.nvidia-patch-list.fbc then pkgs.nvidia-patch.patch-fbc video else video;
   finalPkg = if builtins.hasAttr video.version pkgs.nvidia-patch-list.nvenc then pkgs.nvidia-patch.patch-nvenc pkgAfterFbc else pkgAfterFbc;
@@ -32,7 +26,7 @@ in
       gfxmodeEfi = "1920x1080";
       gfxpayloadEfi = "keep";
     };
-    supportedFilesystems = [ "zfs" "ntfs" ];
+    supportedFilesystems = [ "ntfs" ];
   };
   services.udev.packages = [
     pkgs.qmk-udev-rules
