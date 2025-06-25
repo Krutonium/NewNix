@@ -47,9 +47,14 @@
     device = "UUID=6023862438DB2AD4";
     fsType = "ntfs";
   };
+  #  fileSystems."/games" = {
+  #    device = "/dev/disk/by-uuid/27cd03fa-4828-4c4f-b802-0318dbd4e3d3";
+  #    fsType = "bcachefs";
+  #  };
+  # https://www.schotty.com/Cheatsheets/LVM_Cheatsheet/
   fileSystems."/games" = {
-    device = "/dev/disk/by-uuid/27cd03fa-4828-4c4f-b802-0318dbd4e3d3";
-    fsType = "bcachefs";
+    device = "/dev/games/main";
+    fsType = "ext4";
   };
 
   fileSystems."/uWebServer" = {
