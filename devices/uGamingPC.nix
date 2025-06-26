@@ -11,6 +11,12 @@ let
   finalPkg = if builtins.hasAttr video.version pkgs.nvidia-patch-list.nvenc then pkgs.nvidia-patch.patch-nvenc pkgAfterFbc else pkgAfterFbc;
   zenpower = config.boot.kernelPackages.zenpower;
   Hostname = "uGamingPC";
+  kernelModules = [
+    "dm-mod"
+    "dm-cache"
+    "dm-cache-mq"
+    "dm-persistent-data"
+  ];
 in
 {
   #hardware.firmware = [ video.firmware ];
@@ -195,12 +201,9 @@ in
     "k10temp"
     "amdgpu"
   ];
-  boot.kernelModules = [
-    "dm-mod"
-    "dm-cache"
-    "dm-cache-mq"
-    "dm-persistent-data"
-  ];
+
+  boot.kernelModules = kernelModules;
+  boot.initrd.kernelModules = kernelModules;
   environment.systemPackages = [
     #video
     pkgs.gamescope

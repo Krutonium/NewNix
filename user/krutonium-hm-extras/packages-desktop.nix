@@ -1,5 +1,6 @@
-{ pkgs
-, ...
+{
+  pkgs,
+  ...
 }:
 let
   dotnetCombined =
@@ -28,6 +29,22 @@ let
             '';
         }
       );
+
+  obs-studio = pkgs.obs-studio.overrideAttrs (old: {
+    pname = "obs-studio-git";
+    version = "13.1.0";
+    src = pkgs.fetchFromGitHub {
+      owner = "obsproject";
+      repo = "obs-studio";
+      rev = "d3c5d2ce0b15bac7a502f5aef4b3b5ec72ee8e09";
+      fetchSubmodules = true;
+      sha256 = "sha256-z6BMgddmq3+IsVkt0a/FP+gShvGi1tI6qBbJlAcHgW8="; # <-- to be fixed
+    };
+    nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ [
+      pkgs.extra-cmake-modules
+    ];
+  });
+
   wine = pkgs.wineWowPackages.stable.overrideAttrs (old: {
     patches = (old.patches or [ ]) ++ [ ./wine.patch ];
   });
@@ -79,7 +96,6 @@ in
     pkgs.htop
     pkgs.fastfetch
 
-
     # Terminal & Shell Tools
     pkgs.babelfish
     pkgs.comma
@@ -104,7 +120,6 @@ in
     pkgs.nexusmods-app
     pkgs.unstable.sgdboop
 
-
     # File Sync & Downloads
     pkgs.deluge
     pkgs.nextcloud-client
@@ -122,7 +137,7 @@ in
       obs-vkcapture
       obs-backgroundremoval
     ];
-    package = pkgs.obs-studio;
+    package = obs-studio;
   };
   programs.vscode = {
     enable = true;
