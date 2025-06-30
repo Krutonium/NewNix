@@ -130,6 +130,7 @@ in
   #];
   services.rustdesk-server = {
     enable = true;
+    signal.relayHosts = [ "krutonium.ca" ];
     openFirewall = true;
   };
   virtualisation = {

@@ -201,6 +201,13 @@
       "compress=zstd:8"
     ];
   };
+  fileSystems."/var/lib/private/rustdesk" = {
+    device = "/dev/disk/by-uuid/a018b12f-6567-4edb-8026-be9292738b4d";
+    fsType = "btrfs";
+    options = [
+      "subvol=rustdesk"
+    ];
+  };
 
   fileSystems."/var/www" = {
     device = "/dev/disk/by-uuid/a018b12f-6567-4edb-8026-be9292738b4d";
