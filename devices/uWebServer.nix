@@ -128,6 +128,10 @@ in
   #services.cron.systemCronJobs = [
   #  "0 6 * * * root systemctl reboot"
   #];
+  services.rustdesk-server = {
+    enable = true;
+    openFirewall = true;
+  };
   virtualisation = {
     docker = {
       enable = true;
