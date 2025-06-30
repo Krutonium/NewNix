@@ -95,6 +95,7 @@ in
     # System Utilities
     pkgs.htop
     pkgs.fastfetch
+    pkgs.rustdesk-flutter
 
     # Terminal & Shell Tools
     pkgs.babelfish
