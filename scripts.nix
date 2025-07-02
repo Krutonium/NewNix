@@ -139,6 +139,7 @@ let
             "$output_file"
     done
   '';
+  reboot-fw = pkgs.writeShellScriptBin "reboot-fw" "sudo systemctl reboot --firmware-setup";
 in
 {
   environment.systemPackages = [
@@ -159,5 +160,6 @@ in
     explain
     help
     transcode-vr
+    reboot-fw
   ];
 }
