@@ -121,6 +121,9 @@ in
     pkgs.nexusmods-app
     pkgs.unstable.sgdboop
 
+    pkgs.dolphin-emu
+    pkgs.pcsx2
+
     # File Sync & Downloads
     pkgs.deluge
     pkgs.nextcloud-client
