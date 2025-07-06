@@ -10,12 +10,14 @@ let
   pkgAfterFbc = if builtins.hasAttr video.version pkgs.nvidia-patch-list.fbc then pkgs.nvidia-patch.patch-fbc video else video;
   finalPkg = if builtins.hasAttr video.version pkgs.nvidia-patch-list.nvenc then pkgs.nvidia-patch.patch-nvenc pkgAfterFbc else pkgAfterFbc;
   zenpower = config.boot.kernelPackages.zenpower;
+  ddcci = config.boot.kernelPackages.ddcci-driver;
   Hostname = "uGamingPC";
   kernelModules = [
     "dm-mod"
     "dm-cache"
     "dm-cache-mq"
     "dm-persistent-data"
+    "ddcci"
   ];
 in
 {
@@ -196,6 +198,7 @@ in
   boot.extraModulePackages = with config.boot.kernelPackages; [
     zenpower.out
     pkgs.ddcutil.out
+    ddcci
   ];
   boot.blacklistedKernelModules = [
     "k10temp"
