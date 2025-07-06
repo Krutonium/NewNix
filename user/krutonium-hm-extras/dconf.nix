@@ -2,31 +2,9 @@
 
 with lib.hm.gvariant;
 let
-  #userTheme = "Marble-blue-dark"; # Shell Theme
-  #mainTheme = "Marble-blue-dark"; # Application Theme
-  mainFont = "gg sans Normal 12";
-  monoFont = "Ubuntu Mono 13";
-  cursorTheme = "oreo_spark_purple_bordered_cursors";
-  #iconTheme = "BeautyLine";
-  #soundTheme = "Yaru";
   superMenuLogo = "${./supermenu.png}";
   wallPaper = "file://${./wallpaper.png}";
-  marbleTheme = pkgs.stdenv.mkDerivation {
-    name = "marble-shell-theme";
-    src = ./Marble-shell-filled.tar.xz;
 
-    phases = [ "unpackPhase" "installPhase" ];
-
-    unpackPhase = ''
-      mkdir -p source
-      tar -xf $src -C source
-    '';
-
-    installPhase = ''
-      mkdir -p $out
-      cp -r source/* $out/
-    '';
-  };
 in
 {
   home.packages = [
@@ -38,7 +16,7 @@ in
     pkgs.gnomeExtensions.no-overview
     pkgs.gnomeExtensions.gtile
     pkgs.gnomeExtensions.user-themes
-    #marbleTheme
+    pkgs.gnomeExtensions.brightness-control-using-ddcutil
 
     pkgs.gnomeExtensions.compiz-windows-effect
     pkgs.gnomeExtensions.compiz-alike-magic-lamp-effect
@@ -176,6 +154,7 @@ in
         "s76-scheduler@mattjakeman.com"
         "compiz-windows-effect@hermes83.github.com"
         "compiz-alike-magic-lamp-effect@hermes83.github.com"
+        "display-brightness-ddcutil@themightydeity.github.com"
       ];
       # favorite-apps = [ "org.gnome.Nautilus.desktop" "firefox.desktop" "element-desktop.desktop" "discord.desktop" "telegramdesktop.desktop" "org.polymc.PolyMC.desktop" "com.obsproject.Studio.desktop" "idea-ultimate.desktop" "rider.desktop" ];
       favorite-apps = [
@@ -184,7 +163,13 @@ in
       ];
       remember-mount-password = true;
     };
-
+    "org/gnome/shell/extensions/display-brightness-ddcutil" = {
+      button-location = 1;
+      only-all-slider = true;
+      position-system-menu = 3;
+      show-all-slider = true;
+      show-value-label = true;
+    };
     "org/gnome/shell/extensions/arcmenu" = {
       arc-menu-placement = "DTP";
       available-placement = [
