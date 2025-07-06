@@ -2,7 +2,7 @@
 {
   programs.firefox = {
     enable = true;
-    profiles."krutonium" = {
+    profiles.krutonium = {
       extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
         bitwarden
         ublock-origin
