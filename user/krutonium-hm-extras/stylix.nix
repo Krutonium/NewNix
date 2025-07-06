@@ -18,5 +18,6 @@
       light = "Numix-Circle-Light";
       dark = "Numix-Circle-Light";
     };
+    #targets.firefox.profileNames = [ "krutonium" ];
   };
 }
