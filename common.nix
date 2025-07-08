@@ -30,7 +30,7 @@ in
   stylix = {
     enable = true;
     autoEnable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/gigavolt.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/ia-dark.yaml";
     targets = {
       grub.enable = false;
     };
