@@ -27,6 +27,13 @@ with builtins;
         Enable user Kea
       '';
     };
+    gryphon = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        Enable user gryphon
+      '';
+    };
   };
   options.sys.roles = {
     server = mkOption {
@@ -49,5 +56,6 @@ with builtins;
     ./root.nix
     ./kea.nix
     ./gameserver.nix
+    ./gryphon.nix
   ];
 }
