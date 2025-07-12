@@ -67,7 +67,7 @@ in
     };
     polarity = "dark";
   };
-
+  programs.direnv.enable = true;
   systemd.tmpfiles.rules =
     let
       username = "krutonium";

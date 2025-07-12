@@ -123,6 +123,7 @@ in
 
     pkgs.dolphin-emu
     pkgs.pcsx2
+    pkgs.shadps4
 
     # File Sync & Downloads
     pkgs.deluge
