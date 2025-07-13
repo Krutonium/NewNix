@@ -124,6 +124,7 @@ in
     pkgs.dolphin-emu
     pkgs.pcsx2
     pkgs.shadps4
+    pkgs.cemu
 
     # File Sync & Downloads
     pkgs.deluge
