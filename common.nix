@@ -1,8 +1,9 @@
-{ config
-, pkgs
-, lib
-, inputs
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
 }:
 let
   subs = [
@@ -80,6 +81,9 @@ in
     defaultSopsFile = ./secrets/secrets.yaml;
     defaultSopsFormat = "yaml";
     age.keyFile = "/home/krutonium/.config/sops/keys.txt";
+    secrets.searx_secret = {
+      path = "/etc/secrets/searx_secret";
+    };
   };
 
   # PAM configuration for GNOME keyring auto-unlock
