@@ -80,7 +80,7 @@ in
   sops = {
     defaultSopsFile = ./secrets/secrets.yaml;
     defaultSopsFormat = "yaml";
-    age.keyFile = "/home/krutonium/.ssh/age/keys.txt";
+    age.keyFile = "/home/krutonium/.ssh/id_ed25519";
     secrets.searx_secret = {
       path = "/etc/secrets/searx_secret";
     };
