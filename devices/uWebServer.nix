@@ -115,6 +115,7 @@ in
       nextcloud = true;
       blog = true;
       schedule-updates = false;
+      searx = true;
     };
     virtualization = {
       server = "virtd";
