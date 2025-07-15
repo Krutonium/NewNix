@@ -29,7 +29,7 @@
         engines = {
           KruSearch = {
             name = "KruSearch";
-            urls = [ { template = "https://search.krutonium.ca/search?q={searchTerms}"; } ];
+            urls = [ { template = "https://search.krutonium.ca/search?q={searchTerms}&language=en"; } ];
             iconMapObj."16" = "https://search.krutonium.ca/favicon.ico";
             definedAliases = [ "@ks" ];
           };
