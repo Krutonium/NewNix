@@ -40,6 +40,7 @@ in
           autocomplete = "duckduckgo";
           ban_time_on_fail = 5;
           max_ban_time_on_fail = 120;
+          formats = [ "html" "json" "xml" ];
         };
 
         server = {
