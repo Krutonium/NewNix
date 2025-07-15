@@ -82,8 +82,11 @@ in
     defaultSopsFormat = "yaml";
     age.sshKeyPaths = [ "/home/krutonium/.ssh/id_ed25519" ];
     #age.keyFile = "/home/krutonium/.ssh/";
-    secrets.searx_secret = {
-      path = "/etc/secrets/searx_secret";
+    secrets = {
+      searx_secret = {
+        path = "/etc/secrets/searx_secret";
+      };
+      krutonium_password.path = "/etc/secrets/krutonium_password";
     };
   };
 
