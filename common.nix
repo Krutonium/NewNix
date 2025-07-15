@@ -86,7 +86,6 @@ in
       searx_secret = {
         path = "/etc/secrets/searx_secret";
       };
-      krutonium_password.path = "/etc/secrets/krutonium_password";
     };
   };
 
