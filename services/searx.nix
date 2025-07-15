@@ -32,7 +32,7 @@ in
           center_alignment = true;
           default_theme = "simple";
           theme_args.simple_style = "auto";
-          search_on_category_select = false;
+          search_on_category_select = true;
         };
         search = {
           safe_search = 1;
@@ -48,7 +48,7 @@ in
           base_url = "https://search.krutonium.ca";
           limiter = true;
           public_instance = true;
-          image_proxy = true;
+          image_proxy = false;
           method = "GET";
         };
 
