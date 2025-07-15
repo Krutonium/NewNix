@@ -1,5 +1,5 @@
 keys:
- - &primary age193nsc6nktm9kvklsdjjqq2dvrurhwzw9e2arty4svudn88wllggsurnexs
+ - &primary ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBGydZMghVpYF+glHje55hN0/00i9nOEA+OP4A/eneXp krutonium@uHPLaptop - Wed, Mar 16, 2022 @ 4:03 AM
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
     key_groups:
