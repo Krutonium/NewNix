@@ -21,7 +21,7 @@ let
     { subvol = "acme"; mountPoint = "/var/lib/acme"; }
     { subvol = "plex"; mountPoint = "/var/lib/plex"; }
     { subvol = "root"; mountPoint = "/root"; }
-    { subvol = "libvert"; mountPoint = "/var/lib/libvirt"; nodatacow = true; }
+    { subvol = "libvirt"; mountPoint = "/var/lib/libvirt"; nodatacow = true; }
     { subvol = "rustdesk"; mountPoint = "/var/lib/private/rustdesk"; }
     { subvol = "www"; mountPoint = "/var/www"; }
     { subvol = "samba"; mountPoint = "/var/lib/samba"; }
