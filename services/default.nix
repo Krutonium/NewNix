@@ -195,6 +195,13 @@ with builtins;
         Schedule Update on Odd Days
       '';
     };
+    searx = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        Search @ search.krutonium.ca
+      '';
+    };
   };
   imports = [
     ./plex.nix
@@ -222,5 +229,6 @@ with builtins;
     ./postgresql.nix
     ./blog.nix
     ./update-schedule.nix
+    ./searx.nix
   ];
 }
