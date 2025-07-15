@@ -97,6 +97,10 @@ in
           };
           "brave".disabled = false;
           "brave.images".disabled = true;
+          "brave.videos".disable = true;
+          "piped".disable = true;
+          "vimeo".disable = true;
+
           "bing".disabled = false;
 
           "wikibooks".disabled = false;
@@ -106,7 +110,10 @@ in
           "imgur".disabled = true;
           "pinterest".disabled = true;
           "wikicommons.images".disabled = false;
-          "youtube".disabled = false;
+          "youtube" = {
+            disabled = false;
+            weight = 10;
+          };
           "google news".disabled = false;
         };
       };
