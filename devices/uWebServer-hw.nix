@@ -36,7 +36,7 @@ let
         "subvol=${entry.subvol}"
         "compress=zstd:8"
       ] ++ (if entry ? nodatacow && entry.nodatacow then [ "nodatacow" ] else []);
-    };
+    } // (if entry.mountPoint == "/home" then { neededForBoot = true; } else {});
   }) btrs);
 in
 {
