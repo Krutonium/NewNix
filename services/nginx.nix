@@ -270,7 +270,7 @@ in
         "search.krutonium.ca" = {
           locations."/" = {
             proxyWebsockets = true;
-            proxyPass = "http://127.0.0.1:61613";
+            proxyPass = "http://127.0.0.1:60613";
           };
           extraConfig = ''
             proxy_set_header Host $host;
