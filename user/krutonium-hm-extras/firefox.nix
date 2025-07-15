@@ -25,7 +25,18 @@
         faststream
         twitch-auto-points
       ];
-
+      search = {
+        engines = {
+          KruSearch = {
+            name = "KruSearch";
+            urls = [ { template = "https://search.krutonium.ca/search?q={searchTerms}"; } ];
+            iconMapObj."16" = "https://search.krutonium.ca/favicon.ico";
+            definedAliases = [ "@ks" ];
+          };
+        };
+        default = "KruSearch";
+        force = true;
+      };
 
       settings = {
         "browser.download.lastDir" = "/home/krutonium/Downloads";
