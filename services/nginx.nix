@@ -268,6 +268,8 @@ in
           };
         };
         "search.krutonium.ca" = {
+          forceSSL = true;
+          enableACME = true;
           locations."/" = {
             proxyWebsockets = true;
             proxyPass = "http://127.0.0.1:60613";
