@@ -13,6 +13,7 @@
     ./krutonium-hm-extras/ssh.nix
     ./krutonium-hm-extras/firefox.nix
     ./krutonium-hm-extras/stylix.nix
+    ./krutonium-hm-extras/dynamic-shortcuts.nix
     # ./krutonium-hm-extras/hyprland.nix
   ];
   programs.home-manager.enable = true;

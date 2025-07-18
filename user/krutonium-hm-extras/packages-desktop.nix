@@ -88,7 +88,6 @@ in
     pkgs.ffmpeg-full
     pkgs.spotify
     pkgs.vlc
-    pkgs.youtube-music
 
     # Audio Tools
 
