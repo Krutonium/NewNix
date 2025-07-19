@@ -99,7 +99,7 @@
       internalIPs = [ "10.0.0.0/24" ];
       forwardPorts = [
         {
-        # Vanilla
+          # Vanilla
           sourcePort = 25565;
           proto = "tcp";
           destination = "10.0.0.3:25565";
@@ -111,7 +111,7 @@
           destination = "10.0.0.3:25566";
         }
         {
-        # Create: Chronicles
+          # Create: Chronicles
           sourcePort = 25568;
           proto = "tcp";
           destination = "10.0.0.3:25568";

@@ -63,7 +63,6 @@ in
       disable-microphone = false;
     };
 
-
     "org/gnome/desktop/wm/preferences" = {
       num-workspaces = 1;
       visual-bell = false;
@@ -185,39 +184,39 @@ in
       menu-hotkey = "Super_L";
       override-hot-corners = true;
       #pinned-app-list = [ "Firefox" "" "firefox.desktop" "Terminal" "" "org.gnome.Terminal.desktop" "ArcMenu Settings" "ArcMenu_ArcMenuIcon" "gnome-extensions prefs arcmenu@arcmenu.com" ];
-#      pinned-app-list = [
-#        "Firefox"
-#        ""
-#        "firefox.desktop"
-#        "Steam"
-#        ""
-#        "steam.desktop"
-#        "Terminal"
-#        ""
-#        "org.gnome.Terminal.desktop"
-#        "Fractal"
-#        ""
-#        "org.gnome.Fractal.desktop"
-#        "Telegram"
-#        ""
-#        "org.telegram.desktop.desktop"
-#        "Discord"
-#        ""
-#        "discord.desktop"
-#        "Prism Launcher"
-#        ""
-#        "org.prismlauncher.PrismLauncher.desktop"
-#        "OBS Studio X11"
-#        ""
-#        #"com.obsproject.Studio.desktop"
-#        "OBS.desktop"
-#        "IntelliJ IDEA"
-#        ""
-#        "idea-ultimate.desktop"
-#        "IntelliJ Rider"
-#        ""
-#        "rider.desktop"
-#      ];
+      #      pinned-app-list = [
+      #        "Firefox"
+      #        ""
+      #        "firefox.desktop"
+      #        "Steam"
+      #        ""
+      #        "steam.desktop"
+      #        "Terminal"
+      #        ""
+      #        "org.gnome.Terminal.desktop"
+      #        "Fractal"
+      #        ""
+      #        "org.gnome.Fractal.desktop"
+      #        "Telegram"
+      #        ""
+      #        "org.telegram.desktop.desktop"
+      #        "Discord"
+      #        ""
+      #        "discord.desktop"
+      #        "Prism Launcher"
+      #        ""
+      #        "org.prismlauncher.PrismLauncher.desktop"
+      #        "OBS Studio X11"
+      #        ""
+      #        #"com.obsproject.Studio.desktop"
+      #        "OBS.desktop"
+      #        "IntelliJ IDEA"
+      #        ""
+      #        "idea-ultimate.desktop"
+      #        "IntelliJ Rider"
+      #        ""
+      #        "rider.desktop"
+      #      ];
       pinned-apps = [
         "{'id': 'firefox.desktop'}"
         "{'id': 'steam.desktop'}"

@@ -5,7 +5,7 @@
   ...
 }:
 let
-btrfsDisk = "/dev/disk/by-uuid/941617ae-329b-477d-9760-09268d5cfeef";
+  btrfsDisk = "/dev/disk/by-uuid/941617ae-329b-477d-9760-09268d5cfeef";
 in
 {
   imports = [

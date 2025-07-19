@@ -180,10 +180,18 @@
       ### Device Definitions ###
       ##########################
       nixosConfigurations = {
-        uWebServer = nixosConfiguration "uWebServer" (commonPCModules ++ commonIntel ++ gpuAMD ++ gpuIntel ++ [ ./devices/uWebServer.nix ]);
-        uGamingPC = nixosConfiguration "uGamingPC" (commonPCModules ++ commonAMD ++ gpuNvidia ++ [ ./devices/uGamingPC.nix ]);
-        uMsiLaptop = nixosConfiguration "uMsiLaptop" (commonPCModules ++ commonLaptop ++ commonIntel ++ gpuIntel ++ [ ./devices/uMsiLaptop.nix ]);
-        uServerHost = nixosConfiguration "uServerHost" (commonPCModules ++ commonAMD ++ gpuNvidia ++ [ ./devices/uServerHost.nix ]);
+        uWebServer = nixosConfiguration "uWebServer" (
+          commonPCModules ++ commonIntel ++ gpuAMD ++ gpuIntel ++ [ ./devices/uWebServer.nix ]
+        );
+        uGamingPC = nixosConfiguration "uGamingPC" (
+          commonPCModules ++ commonAMD ++ gpuNvidia ++ [ ./devices/uGamingPC.nix ]
+        );
+        uMsiLaptop = nixosConfiguration "uMsiLaptop" (
+          commonPCModules ++ commonLaptop ++ commonIntel ++ gpuIntel ++ [ ./devices/uMsiLaptop.nix ]
+        );
+        uServerHost = nixosConfiguration "uServerHost" (
+          commonPCModules ++ commonAMD ++ gpuNvidia ++ [ ./devices/uServerHost.nix ]
+        );
       };
     };
 }

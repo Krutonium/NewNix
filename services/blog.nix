@@ -20,7 +20,10 @@ in
       description = "My Blog";
       wantedBy = [ "multi-user.target" ];
       after = [ "network.target" ];
-      path = [ pkgs.hugo pkgs.git ];
+      path = [
+        pkgs.hugo
+        pkgs.git
+      ];
       serviceConfig = {
         Type = "simple";
         ExecStart = script;

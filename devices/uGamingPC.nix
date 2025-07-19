@@ -7,8 +7,16 @@
 let
   kernel = with pkgs; linuxPackages_6_15;
   video = config.boot.kernelPackages.nvidiaPackages.stable;
-  pkgAfterFbc = if builtins.hasAttr video.version pkgs.nvidia-patch-list.fbc then pkgs.nvidia-patch.patch-fbc video else video;
-  finalPkg = if builtins.hasAttr video.version pkgs.nvidia-patch-list.nvenc then pkgs.nvidia-patch.patch-nvenc pkgAfterFbc else pkgAfterFbc;
+  pkgAfterFbc =
+    if builtins.hasAttr video.version pkgs.nvidia-patch-list.fbc then
+      pkgs.nvidia-patch.patch-fbc video
+    else
+      video;
+  finalPkg =
+    if builtins.hasAttr video.version pkgs.nvidia-patch-list.nvenc then
+      pkgs.nvidia-patch.patch-nvenc pkgAfterFbc
+    else
+      pkgAfterFbc;
   zenpower = config.boot.kernelPackages.zenpower;
   ddcci = config.boot.kernelPackages.ddcci-driver;
   Hostname = "uGamingPC";
