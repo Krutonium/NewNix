@@ -4,6 +4,7 @@ let
   appPkgs = [
     pkgs.calibre
     pkgs.gimp
+    pkgs.chromium
   ];
   apps = map
     (pkg:
