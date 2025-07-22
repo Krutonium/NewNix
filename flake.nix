@@ -55,6 +55,7 @@
       url = "github:nix-community/stylix/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    dynamic-shortcuts.url = "github:Ookiiboy/dynamic-shortcuts";
   };
   outputs =
     {
@@ -73,6 +74,7 @@
       sops-nix,
       minegrub,
       stylix,
+      dynamic-shortcuts,
       ...
     }@inputs:
     let

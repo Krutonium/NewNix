@@ -1,5 +1,6 @@
 {
   pkgs,
+  dynamic-shortcuts,
   ...
 }:
 let
@@ -60,6 +61,18 @@ let
 
 in
 {
+  imports = [
+    dynamic-shortcuts.modules.home-manager
+    { 
+      services.dynamic-shortcuts.enable = true;
+      services.dynamic-shortcuts.shortcuts = [
+        pkgs.calibre
+        pkgs.gimp
+        pkgs.chromium
+      ];
+    }
+  ];
+
   home.sessionVariables = {
     DOTNET_ROOT = "${dotnetCombined}";
     _MM_ROM = "${MajorasMask}";
