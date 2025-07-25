@@ -43,34 +43,26 @@
       "wan" = {
         matchConfig.PermanentMACAddress = "40:8d:5c:54:89:96";
         networkConfig = {
-          #IPv6AcceptRA = true;
           DHCP = "yes";
+          IPv6AcceptRA = true;
         };
         linkConfig = {
           RequiredForOnline = "routable";
         };
-        #dhcpV6Config = {
-        #  WithoutRA = "solicit";
-        #  PrefixDelegationHint = "::/64";
-        #};
-        #ipv6SendRAConfig = {
-        #  Managed = true;
-        #};
-        #ipv6AcceptRAConfig = {
-        #  DHCPv6Client = "yes";
-        #};
       };
       "br0" = {
         matchConfig.Name = "br0";
         networkConfig = {
           DHCPPrefixDelegation = true;
-          #IPv6SendRA = true;
-          #IPv6AcceptRA = true;
+          IPv6SendRA = true;
+          IPv6AcceptRA = false;
         };
-        #ipv6SendRAConfig = {
-        #  EmitDNS = true;
-        #  DNS = "2001:4860:4860::8888";
-        #};
+        address = [ "fd00:beef::1/64" ];
+        ipv6Prefixes = [ { ipv6PrefixConfig.Prefix = "fd00:beef::/64"; } ];
+        ipv6SendRAConfig = {
+          EmitDNS = true;
+          DNS = "fd00:beef::1";
+        };
       };
     };
   };
@@ -132,8 +124,6 @@
           destination = "10.0.0.3:19132";
         }
       ];
-      #enableIPv6 = true;
-      #internalIPv6s = [ "2001:db8:1234:5678::/64" ];
     };
     interfaces = {
       "WAN" = {
@@ -148,21 +138,12 @@
             prefixLength = 24;
           }
         ];
+        ipv6.addresses = [ { address = "fd00:beef::1"; prefixLength = 64; } ];
         useDHCP = false;
         macAddress = "ac:16:2d:9a:17:c5";
       };
     };
     tempAddresses = "disabled";
-  };
-
-  services.radvd = {
-    enable = false;
-    config = ''
-      interface br0 {
-        AdvSendAdvert on;
-        prefix 2001:db8:1234:5678::/64 { };
-      };
-    '';
   };
 
   networking.firewall.interfaces."br0".allowedTCPPorts = [
