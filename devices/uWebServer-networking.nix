@@ -66,7 +66,6 @@
         ipv6SendRAConfig = {
           EmitDNS = true;
           DNS = "fd00:beef::1";
-          Prefix = [ "fd00:beef::/64" ];
         };
       };
     };
