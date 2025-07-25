@@ -1,29 +1,31 @@
-{ config
-, lib
-, ...
+{
+  config,
+  lib,
+  ...
 }:
 {
   systemd.services =
     let
       dependency = [ "dnsmasq.service" ];
     in
-    lib.mapAttrs'
-      (
-        name: _:
-          lib.nameValuePair "acme-${name}" {
-            requires = dependency;
-            after = dependency;
-          }
-      )
-      config.security.acme.certs;
+    lib.mapAttrs' (
+      name: _:
+      lib.nameValuePair "acme-${name}" {
+        requires = dependency;
+        after = dependency;
+      }
+    ) config.security.acme.certs;
 
   boot.kernel.sysctl = {
     "net.ipv4.conf.all.forwarding" = 1;
     "net.ipv6.conf.all.forwarding" = 1;
-    "net.ipv6.conf.all.accept_ra" = 2;
-    "net.ipv6.conf.all.request_prefix" = 1;
-    "net.ipv6.conf.all.autoconf" = 1;
+
+    "net.ipv6.conf.all.accept_ra" = 0;
+    "net.ipv6.conf.all.autoconf" = 0;
     "net.ipv6.conf.all.use_tempaddr" = 0;
+
+    "net.ipv6.conf.WAN.accept_ra" = 2;
+    "net.ipv6.conf.WAN.autoconf" = 1;
   };
   #Set up network interfaces to have *actually reliable names* (WOW!)
   services = {
@@ -61,8 +63,11 @@
           IPv6SendRA = true;
           IPv6AcceptRA = false;
         };
-        address = [ "10.0.0.0/24" "fd00:beef::1/64" ];
-        ipv6Prefixes = [{ Prefix = "fd00:beef::/64"; }];
+        address = [
+          "10.0.0.0/24"
+          "fd00:beef::1/64"
+        ];
+        ipv6Prefixes = [ { Prefix = "fd00:beef::/64"; } ];
         dhcpPrefixDelegationConfig = {
           Announce = true;
           SubnetId = "auto";
@@ -146,7 +151,12 @@
             prefixLength = 24;
           }
         ];
-        ipv6.addresses = [{ address = "fd00:beef::1"; prefixLength = 64; }];
+        ipv6.addresses = [
+          {
+            address = "fd00:beef::1";
+            prefixLength = 64;
+          }
+        ];
         useDHCP = false;
         macAddress = "ac:16:2d:9a:17:c5";
       };
