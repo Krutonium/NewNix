@@ -58,7 +58,7 @@
           IPv6AcceptRA = false;
         };
         address = [ "fd00:beef::1/64" ];
-        ipv6Prefixes = [ { ipv6PrefixConfig.Prefix = "fd00:beef::/64"; } ];
+        ipv6Prefixes = [ { Prefix = "fd00:beef::/64"; } ];
         ipv6SendRAConfig = {
           EmitDNS = true;
           DNS = "fd00:beef::1";
