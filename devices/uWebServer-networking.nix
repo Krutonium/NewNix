@@ -1,20 +1,21 @@
-{
-  config,
-  lib,
-  ...
+{ config
+, lib
+, ...
 }:
 {
   systemd.services =
     let
       dependency = [ "dnsmasq.service" ];
     in
-    lib.mapAttrs' (
-      name: _:
-      lib.nameValuePair "acme-${name}" {
-        requires = dependency;
-        after = dependency;
-      }
-    ) config.security.acme.certs;
+    lib.mapAttrs'
+      (
+        name: _:
+          lib.nameValuePair "acme-${name}" {
+            requires = dependency;
+            after = dependency;
+          }
+      )
+      config.security.acme.certs;
 
   boot.kernel.sysctl = {
     "net.ipv4.conf.all.forwarding" = 1;
@@ -49,6 +50,9 @@
         linkConfig = {
           RequiredForOnline = "routable";
         };
+        dhcpV6Config = {
+          UseDelegatedPrefix = true;
+        };
       };
       "br0" = {
         matchConfig.Name = "br0";
@@ -57,11 +61,12 @@
           IPv6SendRA = true;
           IPv6AcceptRA = false;
         };
-        address = [ "fd00:beef::1/64" ];
-        ipv6Prefixes = [ { Prefix = "fd00:beef::/64"; } ];
+        address = [ "10.0.0.0/24" "fd00:beef::1/64" ];
+        ipv6Prefixes = [{ Prefix = "fd00:beef::/64"; }];
         ipv6SendRAConfig = {
           EmitDNS = true;
           DNS = "fd00:beef::1";
+          Prefix = [ "fd00:beef::/64" ];
         };
       };
     };
@@ -138,7 +143,7 @@
             prefixLength = 24;
           }
         ];
-        ipv6.addresses = [ { address = "fd00:beef::1"; prefixLength = 64; } ];
+        ipv6.addresses = [{ address = "fd00:beef::1"; prefixLength = 64; }];
         useDHCP = false;
         macAddress = "ac:16:2d:9a:17:c5";
       };
