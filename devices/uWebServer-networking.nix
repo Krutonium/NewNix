@@ -63,6 +63,10 @@
         };
         address = [ "10.0.0.0/24" "fd00:beef::1/64" ];
         ipv6Prefixes = [{ Prefix = "fd00:beef::/64"; }];
+        dhcpPrefixDelegationConfig = {
+          Announce = true;
+          SubnetId = "auto";
+        };
         ipv6SendRAConfig = {
           EmitDNS = true;
           DNS = "fd00:beef::1";
