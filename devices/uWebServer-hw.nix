@@ -127,7 +127,7 @@ in
       options = [
         "defaults"
         "size=16G"
-        "mode=775"
+        "mode=755"
       ];
     };
     "/persist" = {
