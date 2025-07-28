@@ -87,6 +87,7 @@ in
       krutonium = true;
       root = true;
       kea = true;
+      gryphon = true;
     };
     roles = {
       server = true;
