@@ -137,7 +137,10 @@ in
     pkgs.fractal
     pkgs.srain
     pkgs.tdesktop
-    pkgs.vesktop
+    (pkgs.discord.override {
+      withOpenASAR = true;
+      withVencord = true;
+    })
   ];
   programs.obs-studio = {
     enable = true;
