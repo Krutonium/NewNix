@@ -146,7 +146,7 @@ in
       obs-vkcapture
       obs-backgroundremoval
     ];
-    package = pkgs.unstable.obs-studio;
+    package = (pkgs.unstable.obs-studio.override { cudaSupport = true; });
   };
   programs.vscode = {
     enable = true;
