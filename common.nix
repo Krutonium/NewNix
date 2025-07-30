@@ -176,8 +176,8 @@ in
 
   # Hardware configuration
   hardware = {
-    enableAllFirmware = true;
-    enableAllHardware = true;
+    enableAllFirmware = false;
+    enableAllHardware = false;
     bluetooth.enable = true;
     usb-modeswitch.enable = true;
     steam-hardware.enable = true;
