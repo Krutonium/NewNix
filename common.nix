@@ -9,6 +9,14 @@ let
   subs = [
     "https://myflake.cachix.org"
   ];
+  copy = pkgs.writeShellScriptBin "copy" ''
+    mkdir -p /root/.ssh/
+    cp -rav /home/krutonium/.ssh/* /root/.ssh/
+    chmod 700 /root/.ssh
+    chmod 600 /root/.ssh/*
+    chown root /root/.ssh/ -R
+  '';
+
 in
 {
   imports = [
@@ -26,7 +34,15 @@ in
     inputs.sops-nix.nixosModules.sops
     #./builders
   ];
-
+  systemd.services.copySshKeysForRoot = {
+    description = "Copies Krutonium's SSH keys for root";
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${copy}/bin/copy";
+    };
+    enable = true;
+  };
   # https://tinted-theming.github.io/tinted-gallery/
   stylix = {
     enable = true;
