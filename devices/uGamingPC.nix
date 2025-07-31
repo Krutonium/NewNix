@@ -216,6 +216,7 @@ in
     #pkgs.monado-vulkan-layers
     #pkgs.wlx-overlay-s
     #pkgs.lact
+    pkgs.wlx-overlay-s
   ];
   programs = {
     wireshark.enable = true;
