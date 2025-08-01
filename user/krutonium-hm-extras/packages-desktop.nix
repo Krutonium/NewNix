@@ -119,6 +119,7 @@ in
     pkgs.goverlay
     pkgs.jstest-gtk
     pkgs.unstable.openrct2
+    pkgs.unstable.factorio-space-age
     pkgs.prismlauncher
     pkgs.steam-run
     pkgs.nexusmods-app
