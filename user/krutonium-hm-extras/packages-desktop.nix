@@ -55,8 +55,8 @@ let
     sha256 = "sha256:0arzwhxmxgyy6w56dgm5idlchp8zs6ia3yf02i2n0qp379dkdcgg";
   };
 
-  #rider = (pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.rider [ "github-copilot" ]);
-  #idea = (pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.rust-rover [ "github-copilot" ]);
+  rider = (pkgs.unstable.jetbrains.plugins.addPlugins pkgs.unstable.jetbrains.rider [ "github-copilot" ]);
+  idea = (pkgs.unstable.jetbrains.plugins.addPlugins pkgs.unstable.jetbrains.idea-ultimate [ "github-copilot" ]);
   bottles = (pkgs.bottles.override { removeWarningPopup = true; });
 
 in
@@ -75,10 +75,10 @@ in
     # Development Tools & IDEs
     dotnetCombined
     pkgs.godot_4-mono
-    pkgs.jetbrains.rider
-    pkgs.jetbrains.idea-ultimate
-    # idea
-    # rider
+    # pkgs.jetbrains.rider
+    # pkgs.jetbrains.idea-ultimate
+    idea
+    rider
 
     # Wine & Windows Compatibility
     pkgs.winetricks
