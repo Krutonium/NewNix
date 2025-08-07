@@ -118,26 +118,17 @@ let
 
   transcode-vr = pkgs.writeShellScriptBin "transcode-vr" ''
     set -euo pipefail
-    echo Source is the source FOLDER
-    echo Destination is the destination FOLDER
+
     SRC="$1"
     DST="$2"
-
-    mkdir -p "$DST"
-
-    shopt -s nullglob
-    for file in "$SRC"/*.{mkv,mp4,avi}; do
-        filename=$(basename "$file")
-        filename_no_ext="''${filename%.*}"
-        output_file="$DST/''${filename_no_ext}.mp4"
-
-        ${lib.getExe pkgs.ffmpeg-full} -vaapi_device /dev/dri/renderD128 \
-            -i "$file" \
-            -vf 'format=nv12,scale=-2:540,hwupload' \
-            -c:v h264_vaapi -b:v 2M -maxrate 3M -bufsize 4M \
-            -movflags +faststart -pix_fmt vaapi \
-            -c:a aac -ac 2 -b:a 1536k -threads 8 \
-            "$output_file"
+    ${lib.getExe pkgs.ffmpeg-full} \
+      -vaapi_device /dev/dri/renderD128 \
+      -i "$SRC" \
+      -vf 'format=nv12,scale=-2:540,hwupload' \
+      -c:v h264_vaapi -b:v 2M -maxrate 3M -bufsize 4M \
+      -movflags +faststart -pix_fmt vaapi \
+      -c:a aac -ac 2 -b:a 1536k -threads 8 \
+      "$DST"
     done
   '';
   reboot-fw = pkgs.writeShellScriptBin "reboot-fw" "sudo systemctl reboot --firmware-setup";
