@@ -12,6 +12,7 @@ let
       iconName = "youtube-music-desktop-app";
       # https://specifications.freedesktop.org/menu-spec/latest/category-registry.html
       category = "AudioVideo";
+      terminal = "true";
     }
     {
       pkg = pkgs.ungoogled-chromium;
@@ -31,6 +32,7 @@ let
       prettyName = appSpec.prettyName or fallbackName;
       iconName = appSpec.iconName or meta.icon or mainProgram;
       category = appSpec.category or "Utility";
+      terminal = appSpec.terminal or "false";
     in
     {
       name = "${mainProgram}.desktop";
@@ -43,7 +45,7 @@ let
           Comment=${meta.description or "Run ${prettyName}"}
           Exec=sh -c 'notify-send "Launching ${prettyName}..." & nix run nixpkgs#${mainProgram} -- %U'
           Icon=${iconName}
-          Terminal=false
+          Terminal=${terminal}
           Categories=${category};
         '';
       };
