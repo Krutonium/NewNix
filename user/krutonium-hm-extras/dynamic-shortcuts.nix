@@ -2,7 +2,7 @@
 let
   inherit (builtins) parseDrvName listToAttrs map;
   appPkgs = [
-
+    pkgs.youtube-music
   ];
   apps = map (
     pkg:
