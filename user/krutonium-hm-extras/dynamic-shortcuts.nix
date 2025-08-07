@@ -12,7 +12,6 @@ let
       iconName = "youtube-music-desktop-app";
       # https://specifications.freedesktop.org/menu-spec/latest/category-registry.html
       category = "AudioVideo";
-      terminal = "true";
     }
     {
       pkg = pkgs.ungoogled-chromium;
@@ -32,7 +31,7 @@ let
       prettyName = appSpec.prettyName or fallbackName;
       iconName = appSpec.iconName or meta.icon or mainProgram;
       category = appSpec.category or "Utility";
-      terminal = appSpec.terminal or "false";
+      terminal = appSpec.terminal or "False";
     in
     {
       name = "${mainProgram}.desktop";
