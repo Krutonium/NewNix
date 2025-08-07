@@ -121,15 +121,32 @@ let
 
     SRC="$1"
     DST="$2"
-    ${lib.getExe pkgs.ffmpeg-full} \
+
+    FFMPEG=${lib.getExe pkgs.ffmpeg-full}
+
+    if "$FFMPEG" \
       -vaapi_device /dev/dri/renderD128 \
+      -hwaccel vaapi \
+      -hwaccel_output_format vaapi \
       -i "$SRC" \
       -vf 'format=nv12,scale=-2:540,hwupload' \
       -c:v h264_vaapi -b:v 2M -maxrate 3M -bufsize 4M \
       -movflags +faststart -pix_fmt vaapi \
       -c:a aac -ac 2 -b:a 1536k -threads 8 \
-      "$DST"
-    done
+      "$DST"; then
+      echo "Hardware decoding succeeded."
+    else
+      echo "Hardware decoding failed. Falling back to software decoding..."
+
+      "$FFMPEG" \
+        -vaapi_device /dev/dri/renderD128 \
+        -i "$SRC" \
+        -vf 'format=nv12,scale=-2:540,hwupload' \
+        -c:v h264_vaapi -b:v 2M -maxrate 3M -bufsize 4M \
+        -movflags +faststart -pix_fmt vaapi \
+        -c:a aac -ac 2 -b:a 1536k -threads 8 \
+        "$DST"
+    fi
   '';
   reboot-fw = pkgs.writeShellScriptBin "reboot-fw" "sudo systemctl reboot --firmware-setup";
 in
