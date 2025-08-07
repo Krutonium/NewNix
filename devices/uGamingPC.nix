@@ -217,6 +217,7 @@ in
     #pkgs.wlx-overlay-s
     #pkgs.lact
     pkgs.wlx-overlay-s
+    pkgs.xrizer
   ];
   programs = {
     wireshark.enable = true;

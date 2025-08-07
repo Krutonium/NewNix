@@ -118,7 +118,8 @@ let
 
   transcode-vr = pkgs.writeShellScriptBin "transcode-vr" ''
     set -euo pipefail
-
+    echo Source is the source FOLDER
+    echo Destination is the destination FOLDER
     SRC="$1"
     DST="$2"
 
