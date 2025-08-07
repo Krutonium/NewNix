@@ -75,10 +75,10 @@ in
     # Development Tools & IDEs
     dotnetCombined
     pkgs.godot_4-mono
-    # pkgs.jetbrains.rider
-    # pkgs.jetbrains.idea-ultimate
-    idea
-    rider
+    pkgs.unstable.jetbrains.rider
+    pkgs.unstable.jetbrains.idea-ultimate
+    # idea
+    # rider
 
     # Wine & Windows Compatibility
     pkgs.winetricks
