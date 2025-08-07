@@ -1,32 +1,52 @@
 { pkgs, ... }:
 let
   inherit (builtins) parseDrvName listToAttrs map;
+  # List of applications with optional prettyName and iconName
   appPkgs = [
-    pkgs.youtube-music
+    {
+      # The only required field.
+      pkg = pkgs.youtube-music;
+      # Whatever you think the appropriate name is
+      prettyName = "YouTube Music";
+      # https://github.com/vinceliuice/McMojave-circle/blob/master/src/apps/scalable/youtube-music-desktop-app.svg
+      iconName = "youtube-music-desktop-app";
+      # https://specifications.freedesktop.org/menu-spec/latest/category-registry.html
+      category = "AudioVideo";
+    }
+    #{
+      #pkg = pkgs.vesktop;
+    #}
   ];
+
   apps = map (
-    pkg:
+    appSpec:
     let
+      pkg = appSpec.pkg;
       fallbackName = (parseDrvName pkg.name).name;
       meta = pkg.meta or { };
+      mainProgram = meta.mainProgram or fallbackName;
+      prettyName = appSpec.prettyName or fallbackName;
+      iconName = appSpec.iconName or meta.icon or mainProgram;
+      category = appSpec.category or "Utility";
     in
     {
-      name = "${meta.mainProgram or fallbackName}.desktop";
+      name = "${mainProgram}.desktop";
       value = {
         text = ''
           [Desktop Entry]
           Version=1.0
           Type=Application
-          Name=${fallbackName}
-          Comment=${meta.description or "Run ${fallbackName}"}
-          Exec=sh -c 'notify-send "Launching ${meta.name or fallbackName}..." & nix run nixpkgs#${fallbackName}'
-          Icon=${meta.icon or meta.mainProgram or fallbackName}
+          Name=${prettyName}
+          Comment=${meta.description or "Run ${prettyName}"}
+          Exec=sh -c 'notify-send "Launching ${prettyName}..." & nix run nixpkgs#${mainProgram}'
+          Icon=${iconName}
           Terminal=false
-          Categories=Utility;
+          Categories=${category};
         '';
       };
     }
   ) appPkgs;
+
 in
 {
   home.file = listToAttrs (
