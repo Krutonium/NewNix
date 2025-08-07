@@ -13,9 +13,12 @@ let
       # https://specifications.freedesktop.org/menu-spec/latest/category-registry.html
       category = "AudioVideo";
     }
-    #{
-      #pkg = pkgs.vesktop;
-    #}
+    {
+      pkg = pkgs.ungoogled-chromium;
+      prettyName = "UnGoogled Chromium";
+      iconName = "google-chrome";
+      category = "Network";
+    }
   ];
 
   apps = map (
@@ -38,7 +41,7 @@ let
           Type=Application
           Name=${prettyName}
           Comment=${meta.description or "Run ${prettyName}"}
-          Exec=sh -c 'notify-send "Launching ${prettyName}..." & nix run nixpkgs#${mainProgram}'
+          Exec=sh -c 'notify-send "Launching ${prettyName}..." & nix run nixpkgs#${mainProgram} -- %U'
           Icon=${iconName}
           Terminal=false
           Categories=${category};
