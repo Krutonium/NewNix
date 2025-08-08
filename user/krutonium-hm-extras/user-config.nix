@@ -66,24 +66,19 @@ in
   '';
   xdg.configFile."openvr/openvrpaths.vrpath" = {
     force = true;
-    text = ''
-      {
-        "config" :
-        [
-          "~/.local/share/Steam/config"
-        ],
-        "external_drivers" : null,
-        "jsonid" : "vrpathreg",
-        "log" :
-        [
-          "~/.local/share/Steam/logs"
-        ],
-        "runtime" :
-        [
-          "${pkgs.xrizer}/lib/xrizer"
-        ],
-        "version" : 1
-      }
-    '';
+    text = builtins.toJSON {
+      config = [
+        "${config.xdg.dataHome}/Steam/config"
+      ];
+      external_drivers = null;
+      jsonid = "vrpathreg";
+      log = [
+        "${config.xdg.dataHome}/Steam/logs"
+      ];
+      runtime = [
+        "${pkgs.xrizer}/lib/xrizer"
+      ];
+      version = 1;
+    };
   };
 }
