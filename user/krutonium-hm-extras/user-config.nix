@@ -64,23 +64,26 @@ in
     font_size_text = 14
     font_scale = 1
   '';
-  xdg.configFile."openvr/openvrpaths.vrpath".text = ''
-    {
-      "config" :
-      [
-        "~/.local/share/Steam/config"
-      ],
-      "external_drivers" : null,
-      "jsonid" : "vrpathreg",
-      "log" :
-      [
-        "~/.local/share/Steam/logs"
-      ],
-      "runtime" :
-      [
-        "${pkgs.xrizer}/lib/xrizer"
-      ],
-      "version" : 1
-    }
-  '';
+  xdg.configFile."openvr/openvrpaths.vrpath" = {
+    force = true;
+    text = ''
+      {
+        "config" :
+        [
+          "~/.local/share/Steam/config"
+        ],
+        "external_drivers" : null,
+        "jsonid" : "vrpathreg",
+        "log" :
+        [
+          "~/.local/share/Steam/logs"
+        ],
+        "runtime" :
+        [
+          "${pkgs.xrizer}/lib/xrizer"
+        ],
+        "version" : 1
+      }
+    '';
+  };
 }
