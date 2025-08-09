@@ -218,6 +218,7 @@ in
     #pkgs.lact
     pkgs.wlx-overlay-s
     pkgs.xrizer
+    pkgs.tuxclocker
   ];
   programs = {
     wireshark.enable = true;
