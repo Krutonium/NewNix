@@ -55,7 +55,10 @@
       url = "github:nix-community/stylix/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    dynamic-shortcuts.url = "github:Ookiiboy/dynamic-shortcuts";
+    nixpkgs-xr = {
+      url = "github:nix-community/nixpkgs-xr";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs =
     {
@@ -74,7 +77,7 @@
       sops-nix,
       minegrub,
       stylix,
-      dynamic-shortcuts,
+      nixpkgs-xr,
       ...
     }@inputs:
     let
@@ -86,6 +89,7 @@
         #lix-module.nixosModules.default
         minegrub.nixosModules.default
         stylix.nixosModules.stylix
+        nixpkgs-xr.nixosModules.nixpkgs-xr
         sops-nix.nixosModules.sops
         {
           nix.registry.nixos.flake = self;

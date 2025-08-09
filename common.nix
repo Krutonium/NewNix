@@ -6,9 +6,6 @@
   ...
 }:
 let
-  subs = [
-    "https://myflake.cachix.org"
-  ];
   copy = pkgs.writeShellScriptBin "copy" ''
     mkdir -p /root/.ssh/
     cp -rav /home/krutonium/.ssh/* /root/.ssh/
@@ -16,7 +13,6 @@ let
     chmod 600 /root/.ssh/*
     chown root /root/.ssh/ -R
   '';
-
 in
 {
   imports = [
@@ -210,11 +206,6 @@ in
   nix = {
     # access-tokens = githubKey;
     settings = {
-      substituters = subs;
-      trusted-substituters = subs;
-      trusted-public-keys = [
-        "myflake.cachix.org-1:KlIcGPe6D7DUHGBw+2nycRaSlJXilMBQpbIeiL7w5eQ="
-      ];
       require-sigs = false;
       auto-optimise-store = true;
       trusted-users = [ "@wheel" ];

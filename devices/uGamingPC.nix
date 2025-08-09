@@ -219,6 +219,7 @@ in
     pkgs.wlx-overlay-s
     pkgs.xrizer
     pkgs.tuxclocker
+    pkgs.wayvr-dashboard
   ];
   programs = {
     wireshark.enable = true;
