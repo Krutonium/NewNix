@@ -68,12 +68,12 @@ in
     force = true;
     text = builtins.toJSON {
       config = [
-        "${config.xdg.dataHome}/Steam/config"
+        "~/.local/share/Steam/config"
       ];
       external_drivers = null;
       jsonid = "vrpathreg";
       log = [
-        "${config.xdg.dataHome}/Steam/logs"
+        "~/.local/share/Steam/logs"
       ];
       runtime = [
         "${pkgs.xrizer}/lib/xrizer"
