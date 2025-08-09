@@ -282,8 +282,8 @@ in
       json = {
         # 1.0x foveation scaling
         scale = 1.0;
-        # 100 Mb/s
-        bitrate = 100000000;
+        # 300 Mb/s
+        bitrate = 300000000;
         encoders = [
           {
             encoder = "vaapi";

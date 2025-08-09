@@ -84,6 +84,10 @@ in
     };
     polarity = "dark";
   };
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
+  };
   programs.direnv.enable = true;
   systemd.tmpfiles.rules =
     let
