@@ -266,6 +266,7 @@ in
     };
   };
   services.wivrn = {
+    # https://github.com/WiVRn/WiVRn-APK/releases
     enable = true;
     openFirewall = true;
 
