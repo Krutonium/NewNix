@@ -98,7 +98,8 @@ in
     # System Utilities
     pkgs.htop
     pkgs.fastfetch
-    pkgs.unstable.rustdesk-flutter
+    #pkgs.unstable.rustdesk-flutter
+    pkgs.kdePackages.kleopatra
 
     # Terminal & Shell Tools
     pkgs.babelfish

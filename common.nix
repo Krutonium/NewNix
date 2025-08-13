@@ -39,6 +39,9 @@ in
     };
     enable = true;
   };
+  programs.gnupg.agent = {
+    enable = true;
+  };
   # https://tinted-theming.github.io/tinted-gallery/
   stylix = {
     enable = true;
