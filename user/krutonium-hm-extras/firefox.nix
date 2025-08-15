@@ -49,6 +49,7 @@
         "browser.newtabpage.activity-stream.feeds.topsites" = false;
         "browser.sessionstore.resume_from_crash" = true;
         "browser.sessionstore.resuming_after_os_restart" = true;
+        "browser.link.open_newwindow.restriction" = 0;
 
         "browser.cache.memory.enable" = false;
         "image.jxl.enabled" = true;
