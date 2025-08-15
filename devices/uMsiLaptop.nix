@@ -19,6 +19,7 @@ in
   ];
   boot.loader.grub.gfxmodeEfi = "1920x1080";
   boot.loader.grub.gfxpayloadEfi = "keep";
+  systemd.network.enable = true;
   environment.systemPackages = [
     kernel.perf
     pkgs.teamviewer
@@ -75,7 +76,7 @@ in
       steam = true;
     };
     virtualization = {
-      server = "virtd";
+      server = "vbox";
     };
   };
   virtualisation.waydroid.enable = false;
