@@ -11,7 +11,7 @@ let
 in
 {
   config = mkIf (cfg.plex == true) {
-    #networking.firewall.allowedTCPPorts = [ 32400 ]; Re Enable when https://github.com/NixOS/nixpkgs/issues/433765 is fixed
+    networking.firewall.allowedTCPPorts = [ 32400 ];
     services = {
       plex = {
         enable = true;
