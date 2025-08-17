@@ -142,6 +142,9 @@ in
       withOpenASAR = true;
       withVencord = true;
     })
+
+    # Hashcat
+    (pkgs.unstable.hashcat.override { cudaSupport = true; })
   ];
   programs.obs-studio = {
     enable = true;
