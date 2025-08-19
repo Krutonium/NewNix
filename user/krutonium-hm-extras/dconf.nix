@@ -4,39 +4,25 @@ with lib.hm.gvariant;
 let
   superMenuLogo = "${./supermenu.png}";
   wallPaper = "file://${./wallpaper.png}";
-
-in
-{
-  home.packages = [
-    # Extensions
+  extensions = [
     pkgs.gnomeExtensions.dash-to-panel
-    pkgs.master.gnomeExtensions.ddterm # TODO: Undo after 298973 makes it to stable
+    pkgs.master.gnomeExtensions.ddterm
     pkgs.gnomeExtensions.appindicator
     pkgs.master.gnomeExtensions.arcmenu
     pkgs.gnomeExtensions.no-overview
     pkgs.gnomeExtensions.gtile
     pkgs.gnomeExtensions.user-themes
     pkgs.gnomeExtensions.brightness-control-using-ddcutil
-
     pkgs.gnomeExtensions.compiz-windows-effect
     pkgs.gnomeExtensions.compiz-alike-magic-lamp-effect
-
-    #pkgs.gnomeExtensions.system76-scheduler
-    #pkgs.gnomeExtensions.control-monitor-brightness-and-volume-with-ddcutil #Seem to be crashing Gnome :(
-
-    # Theme Stuff
-    #pkgs.bibata-cursors
-    #pkgs.oreo-cursors-plus
-    #pkgs.whitesur-icon-theme
-    #pkgs.iconpack-obsidian
-    #pkgs.beauty-line-icon-theme
-    #pkgs.ubuntu_font_family
-    #pkgs.yaru-theme
-    #pkgs.beauty-line-icon-theme
-    # Other Stuff
+  ];
+  extensionUuids = map (ext: ext.extensionUuid) extensions;
+in
+{
+  home.packages = [
     pkgs.gnome-tweaks
     pkgs.cascadia-code # Font
-  ];
+  ] ++ extensions;
   #home.file.".themes".source = marbleTheme;
   dconf.settings = {
     "org/gnome/desktop/input-sources" = {
@@ -142,19 +128,7 @@ in
 
     "org/gnome/shell" = {
       disabled-extensions = [ "apps-menu@gnome-shell-extensions.gcampax.github.com" ];
-      enabled-extensions = [
-        "ddterm@amezin.github.com"
-        "dash-to-panel@jderose9.github.com"
-        "arcmenu@arcmenu.com"
-        "user-theme@gnome-shell-extensions.gcampax.github.com"
-        "appindicatorsupport@rgcjonas.gmail.com"
-        "no-overview@fthx"
-        "gTile@vibou"
-        "s76-scheduler@mattjakeman.com"
-        "compiz-windows-effect@hermes83.github.com"
-        "compiz-alike-magic-lamp-effect@hermes83.github.com"
-        "display-brightness-ddcutil@themightydeity.github.com"
-      ];
+      enabled-extensions = extensionUuids;
       # favorite-apps = [ "org.gnome.Nautilus.desktop" "firefox.desktop" "element-desktop.desktop" "discord.desktop" "telegramdesktop.desktop" "org.polymc.PolyMC.desktop" "com.obsproject.Studio.desktop" "idea-ultimate.desktop" "rider.desktop" ];
       favorite-apps = [
         "org.gnome.Nautilus.desktop"
