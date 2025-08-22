@@ -19,6 +19,11 @@ let
       iconName = "google-chrome";
       category = "Network";
     }
+    {
+      pkg = pkgs.calibre;
+      prettyName = "Calibre E-Book Reader";
+      category = "Education";
+    }
   ];
 
   apps = map (
