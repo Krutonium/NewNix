@@ -22,6 +22,7 @@ let
     {
       pkg = pkgs.calibre;
       prettyName = "Calibre E-Book Reader";
+      iconName = "calibre-gui";
       category = "Education";
     }
   ];
