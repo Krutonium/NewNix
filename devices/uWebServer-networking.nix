@@ -195,7 +195,7 @@
         # uWindowsPC / Gaming/Windows
         "30:9c:23:d3:06:fd,10.0.0.3"
         # uMsiLaptop
-        "F8:16:54:A5:A5:91,10.0.0.4"
+        "44:6D:57:BB:47:B0,10.0.0.4"
         # Archer Router
         "14:EB:B6:58:A1:D4,10.0.0.7"
         # Printer
