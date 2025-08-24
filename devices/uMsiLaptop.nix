@@ -5,7 +5,6 @@ let
   Hostname = "uMsiLaptop";
 in
 {
-  hardware.bluetooth.enable = lib.mkForce false;
   boot.extraModprobeConfig = ''
     options iwlwifi bt_coex_active=0
   '';
