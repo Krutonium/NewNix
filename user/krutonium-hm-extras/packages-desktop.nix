@@ -135,8 +135,10 @@ in
     pkgs.unstable.telegram-desktop
     (pkgs.discord.override {
       withOpenASAR = true;
-      #withVencord = true;
+      withVencord = true;
     })
+    #pkgs.unstable.legcord
+
 
     # Hashcat
     (pkgs.unstable.hashcat.override { cudaSupport = true; })
