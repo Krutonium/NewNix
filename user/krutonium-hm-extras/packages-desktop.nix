@@ -1,7 +1,7 @@
-{
-  pkgs,
-  dynamic-shortcuts,
-  ...
+{ pkgs
+, lib
+, osConfig
+, ...
 }:
 let
   dotnetCombined =
@@ -81,8 +81,6 @@ in
     # rider
 
     # Wine & Windows Compatibility
-    pkgs.winetricks
-    wine
     bottles
 
     # Hardware & System Tools
@@ -140,7 +138,7 @@ in
     pkgs.unstable.telegram-desktop
     (pkgs.discord.override {
       withOpenASAR = true;
-      withVencord = true;
+      #withVencord = true;
     })
 
     # Hashcat
@@ -153,7 +151,11 @@ in
       obs-vkcapture
       obs-backgroundremoval
     ];
-    package = (pkgs.unstable.obs-studio.override { cudaSupport = true; });
+    package =
+      if osConfig.networking.hostName == "uGamingPC"
+      then pkgs.unstable.obs-studio.override { cudaSupport = true; }
+      else pkgs.unstable.obs-studio;
+
   };
   programs.vscode = {
     enable = true;

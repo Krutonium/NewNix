@@ -2,8 +2,8 @@
 
 with lib.hm.gvariant;
 let
-  superMenuLogo = "${./supermenu.png}";
-  wallPaper = "file://${./wallpaper.png}";
+  superMenuLogo = "${./assets/supermenu.png}";
+  wallPaper = "file://${./assets/wallpaper.png}";
   extensions = [
     pkgs.gnomeExtensions.dash-to-panel
     pkgs.master.gnomeExtensions.ddterm
@@ -23,7 +23,6 @@ in
     pkgs.gnome-tweaks
     pkgs.cascadia-code # Font
   ] ++ extensions;
-  #home.file.".themes".source = marbleTheme;
   dconf.settings = {
     "org/gnome/desktop/input-sources" = {
       sources = [
@@ -191,17 +190,13 @@ in
       #        ""
       #        "rider.desktop"
       #      ];
-      pinned-apps = [
-        "{'id': 'firefox.desktop'}"
-        "{'id': 'steam.desktop'}"
-        "{'id': 'org.gnome.Terminal.desktop'}"
-        "{'id': 'org.gnome.Fractal.desktop'}"
-        "{'id': 'org.telegram.desktop.desktop'}"
-        "{'id': 'discord.desktop'}"
-        "{'id': 'com.obsproject.Studio.desktop'}"
-        "{'id': 'idea-ultimate.desktop'}"
-        "{'id': 'rider.desktop'}"
-      ];
+#      pinned-apps = [
+#        { "id" = "firefox.desktop"; }
+#        { "id" = "org.gnome.Nautilus.desktop"; }
+#        { "id" = "org.gnome.Terminal.desktop"; }
+#        { "id" = "gnome-extensions prefs arcmenu@arcmenu.com"; "name" = "ArcMenu Settings"; "icon" = "ArcMenu_ArcMenuIcon"; }
+#        { "id" = "io.github.benjamimgois.goverlay.desktop"; }
+#      ];
     };
     "org/gnome/shell/extensions/monitor-brightness-volume" = {
       show-volume = false;

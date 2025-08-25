@@ -1,8 +1,7 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
+{ config
+, pkgs
+, lib
+, ...
 }:
 let
   kernel = with pkgs.unstable; linuxPackages_latest;
@@ -257,13 +256,20 @@ in
       ssh = true;
       sshGuard = true;
     };
-    steam = {
-      steam = true; # HTTP Error with Monado, Enable Later
-    };
     virtualization = {
       server = "virtd";
       windows = true;
     };
+  };
+  programs.steam = {
+    enable = true;
+    dedicatedServer.openFirewall = true;
+    localNetworkGameTransfers.openFirewall = true;
+    remotePlay.openFirewall = true;
+    extraCompatPackages = with pkgs; [
+      proton-ge-bin
+      steamtinkerlaunch
+    ];
   };
   services.wivrn = {
     # https://github.com/WiVRn/WiVRn-APK/releases
@@ -300,7 +306,4 @@ in
       };
     };
   };
-  #programs.steam.enable = true;
-  hardware.steam-hardware.enable = true;
-  # Temporary Patch
 }

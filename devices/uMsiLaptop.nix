@@ -75,12 +75,19 @@ in
       nbfc = false;
       syncthing = false;
     };
-    steam = {
-      steam = true;
-    };
     virtualization = {
       server = "none";
     };
+  };
+  programs.steam = {
+    enable = true;
+    dedicatedServer.openFirewall = true;
+    localNetworkGameTransfers.openFirewall = true;
+    remotePlay.openFirewall = true;
+    extraCompatPackages = with pkgs; [
+      proton-ge-bin
+      steamtinkerlaunch
+    ];
   };
   virtualisation.waydroid.enable = false;
   systemd.network.wait-online.enable = false;

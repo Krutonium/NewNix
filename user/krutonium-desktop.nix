@@ -4,17 +4,7 @@
   # THIS IS THE DESKTOP PROFILE
 
   imports = [
-    ./krutonium-hm-extras/dconf.nix
-    ./krutonium-hm-extras/git.nix
-    ./krutonium-hm-extras/user-config.nix
-    ./krutonium-hm-extras/packages-desktop.nix
-    ./krutonium-hm-extras/terminal.nix
-    ./krutonium-hm-extras/xdg.nix
-    ./krutonium-hm-extras/ssh.nix
-    ./krutonium-hm-extras/firefox.nix
-    ./krutonium-hm-extras/stylix.nix
-    ./krutonium-hm-extras/dynamic-shortcuts.nix
-    # ./krutonium-hm-extras/hyprland.nix
+    ./krutonium-hm-extras
   ];
   programs.home-manager.enable = true;
 

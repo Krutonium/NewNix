@@ -23,7 +23,6 @@ in
     ./user
     ./services
     ./minecraft
-    ./steam
     ./virtualization
     ./custom-packages
     ./scripts.nix
@@ -94,7 +93,7 @@ in
     in
     [
       "f+ /var/lib/AccountsService/users/${username}  0600 root root - [User]\\nIcon=/var/lib/AccountsService/icons/${username}\\n"
-      "L+ /var/lib/AccountsService/icons/${username}  - - - - ${./user/${username}-hm-extras/profile.png}"
+      "L+ /var/lib/AccountsService/icons/${username}  - - - - ${./user/${username}-hm-extras/assets/profile.png}"
     ];
   sops = {
     defaultSopsFile = ./secrets/secrets.yaml;

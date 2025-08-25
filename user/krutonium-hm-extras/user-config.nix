@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, osConfig, ... }:
 let
   javaVersions = {
     jdk8 = pkgs.jdk8;
@@ -8,16 +8,18 @@ let
     jdk24 = pkgs.jdk24;
   };
 
-  javaLinks = lib.mapAttrs' (
-    name: pkg:
-    lib.nameValuePair "java/${name}" {
-      source = pkg;
-    }
-  ) javaVersions;
+  javaLinks = lib.mapAttrs'
+    (
+      name: pkg:
+        lib.nameValuePair "java/${name}" {
+          source = pkg;
+        }
+    )
+    javaVersions;
 in
 {
   home.file = javaLinks // {
-    ".face".source = ./profile.png;
+    ".face".source = ./assets/profile.png;
     ".nanorc".text = ''
       set linenumbers
       set autoindent
@@ -64,21 +66,17 @@ in
     font_size_text = 14
     font_scale = 1
   '';
-  xdg.configFile."openvr/openvrpaths.vrpath" = {
+
+  xdg.configFile."openvr/openvrpaths.vrpath" = lib.mkIf (osConfig.networking.hostName == "uGamingPC") {
     force = true;
     text = builtins.toJSON {
-      config = [
-        "~/.local/share/Steam/config"
-      ];
+      config = [ "~/.local/share/Steam/config" ];
       external_drivers = null;
       jsonid = "vrpathreg";
-      log = [
-        "~/.local/share/Steam/logs"
-      ];
-      runtime = [
-        "${pkgs.xrizer}/lib/xrizer"
-      ];
+      log = [ "~/.local/share/Steam/logs" ];
+      runtime = [ "${pkgs.xrizer}/lib/xrizer" ];
       version = 1;
     };
   };
+
 }

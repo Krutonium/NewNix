@@ -50,6 +50,8 @@
         "browser.sessionstore.resume_from_crash" = true;
         "browser.sessionstore.resuming_after_os_restart" = true;
         "browser.link.open_newwindow.restriction" = 0;
+        "browser.tabs.groups.enabled" = false;
+        "browser.tabs.groups.smart.enabled" = false;
 
         "browser.cache.memory.enable" = false;
         "image.jxl.enabled" = true;
