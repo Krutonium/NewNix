@@ -153,6 +153,7 @@ in
       ls = "${lib.getExe pkgs.eza} --icons --git";
       cat = "${lib.getExe pkgs.bat}";
       top = "${lib.getExe pkgs.btop}";
+      neofetch = "${lib.getExe pkgs.fastfetch}";
     };
     variables = {
       NIXPKGS_ALLOW_UNFREE = "1";
