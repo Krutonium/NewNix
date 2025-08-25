@@ -76,7 +76,7 @@ in
     # Printer support
     printing = {
       enable = true;
-      drivers = with pkgs; [ brlaser ];
+      drivers = [ pkgs.brlaser ];
     };
     # Monitor control support
     ddccontrol.enable = true;
