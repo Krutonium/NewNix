@@ -133,11 +133,11 @@ in
     pkgs.fractal
     pkgs.srain
     pkgs.unstable.telegram-desktop
-    (pkgs.discord.override {
-      withOpenASAR = true;
-      withVencord = true;
-    })
-    #pkgs.unstable.legcord
+#    (pkgs.discord.override {
+#      withOpenASAR = true;
+#      withVencord = true;
+#    })
+    pkgs.unstable.vesktop
 
 
     # Hashcat
