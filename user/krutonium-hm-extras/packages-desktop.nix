@@ -46,9 +46,6 @@ let
   #  ];
   #});
 
-  wine = pkgs.wineWowPackages.stable.overrideAttrs (old: {
-    patches = (old.patches or [ ]) ++ [ ./wine.patch ];
-  });
   MajorasMask = builtins.fetchurl {
     url = "https://dl.krutonium.ca/mm.us.rev1.rom.z64";
     name = "mm.us.rev1.rom.z64"; # this sets the filename in the Nix store
