@@ -29,18 +29,103 @@ in
     inputs.sops-nix.nixosModules.sops
     #./builders
   ];
-  systemd.services.copySshKeysForRoot = {
-    description = "Copies Krutonium's SSH keys for root";
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = "${copy}/bin/copy";
+
+  systemd = {
+    enableEmergencyMode = false;
+    extraConfig = ''
+      DefaultLimitNOFILE=1048576
+      DefaultTimeoutStopSec=10s
+    '';
+    network.wait-online.anyInterface = true;
+    services = {
+      systemd-udev-settle.enable = true;
+      copySshKeysForRoot = {
+        description = "Copies Krutonium's SSH keys for root";
+        wantedBy = [ "multi-user.target" ];
+        serviceConfig = {
+          Type = "oneshot";
+          ExecStart = "${copy}/bin/copy";
+        };
+        enable = true;
+      };
+      irqbalance.serviceConfig.ProtectKernelTunables = "no"; # Fix for #371415
     };
-    enable = true;
+    tmpfiles.rules =
+      let
+        username = "krutonium";
+      in
+      [
+        "f+ /var/lib/AccountsService/users/${username}  0600 root root - [User]\\nIcon=/var/lib/AccountsService/icons/${username}\\n"
+        "L+ /var/lib/AccountsService/icons/${username}  - - - - ${./user/${username}-hm-extras/assets/profile.png}"
+      ];
   };
-  programs.gnupg.agent = {
-    enable = true;
+  services = {
+    lvm.enable = true;
+    atd.enable = true;
+    # CPU interrupt balancing
+    irqbalance.enable = true;
+    # Process scheduler for better performance
+    system76-scheduler = {
+      enable = true;
+      settings.processScheduler = {
+        pipewireBoost.enable = true;
+        enable = true;
+      };
+      package = pkgs.system76-scheduler;
+    };
+    # Printer support
+    printing = {
+      enable = true;
+      drivers = with pkgs; [ brlaser ];
+    };
+    # Monitor control support
+    ddccontrol.enable = true;
+    # Firmware update daemon
+    fwupd.enable = true;
+    # udev rules for disk I/O ratios
+    udev.extraRules = ''
+      ACTION=="add|change", SUBSYSTEM=="bdi", ATTR{min_ratio}="2", ATTR{max_ratio}="50"
+    '';
   };
+
+  programs = {
+    gnupg.agent = {
+      enable = true;
+    };
+    appimage = {
+      enable = true;
+      binfmt = true;
+    };
+    direnv.enable = true;
+    noisetorch.enable = true;
+    gamemode = {
+      enable = true;
+      enableRenice = true;
+      settings = {
+        gpu = {
+          apply_gpu_optimisations = "accept-responsibility";
+          gpu_device = 0;
+          nv_powermizer_mode = 1;
+          nv_core_clock_mhz_offset = 100;
+          nv_mem_clock_mhz_offset = 100;
+        };
+        cpu = {
+          pin_cores = "yes";
+        };
+        general = {
+          desiredgov = "performance";
+          igpu_desiredgov = "powersave";
+          softrealtime = "on";
+        };
+        custom = {
+          start = "${lib.getExe' pkgs.notify "notify-send"} \"Gamemode Started\"";
+          end = "${lib.getExe' pkgs.notify "notify-send"} \"Gamemode Ended\"";
+        };
+      };
+    };
+    command-not-found.enable = false;
+  };
+
   # https://tinted-theming.github.io/tinted-gallery/
   stylix = {
     enable = true;
@@ -82,19 +167,6 @@ in
     };
     polarity = "dark";
   };
-  programs.appimage = {
-    enable = true;
-    binfmt = true;
-  };
-  programs.direnv.enable = true;
-  systemd.tmpfiles.rules =
-    let
-      username = "krutonium";
-    in
-    [
-      "f+ /var/lib/AccountsService/users/${username}  0600 root root - [User]\\nIcon=/var/lib/AccountsService/icons/${username}\\n"
-      "L+ /var/lib/AccountsService/icons/${username}  - - - - ${./user/${username}-hm-extras/assets/profile.png}"
-    ];
   sops = {
     defaultSopsFile = ./secrets/secrets.yaml;
     defaultSopsFormat = "yaml";
@@ -115,37 +187,6 @@ in
     '';
   };
   # System services configuration
-  services = {
-    atd.enable = true;
-    # CPU interrupt balancing
-    irqbalance.enable = true;
-    # Process scheduler for better performance
-    system76-scheduler = {
-      enable = true;
-      settings.processScheduler = {
-        pipewireBoost.enable = true;
-        enable = true;
-      };
-      package = pkgs.system76-scheduler;
-    };
-
-    # Printer support
-    printing = {
-      enable = true;
-      drivers = with pkgs; [ brlaser ];
-    };
-
-    # Monitor control support
-    ddccontrol.enable = true;
-
-    # Firmware update daemon
-    fwupd.enable = true;
-
-    # udev rules for disk I/O ratios
-    udev.extraRules = ''
-      ACTION=="add|change", SUBSYSTEM=="bdi", ATTR{min_ratio}="2", ATTR{max_ratio}="50"
-    '';
-  };
 
   # Shell configuration
   environment = {
@@ -157,12 +198,11 @@ in
     };
     variables = {
       NIXPKGS_ALLOW_UNFREE = "1";
-      MANGOHUD = "1";
+      # MANGOHUD = "1";
       GSK_RENDERER = "ngl";
     };
   };
 
-  services.lvm.enable = true;
   # Boot configuration
   boot = {
     initrd.services.lvm.enable = true;
@@ -277,53 +317,11 @@ in
   # Locale settings
   i18n.defaultLocale = "en_CA.UTF-8";
 
-  # Systemd configuration
-  systemd = {
-    enableEmergencyMode = false;
-    network.wait-online.anyInterface = true;
-    services.systemd-udev-settle.enable = true;
-    extraConfig = ''
-      DefaultLimitNOFILE=1048576
-      DefaultTimeoutStopSec=10s
-    '';
-    services.irqbalance.serviceConfig.ProtectKernelTunables = "no"; # Fix for #371415
-  };
-
   # Program configurations
-  programs = {
-    noisetorch.enable = true;
-    gamemode = {
-      enable = true;
-      enableRenice = true;
-      settings = {
-        gpu = {
-          apply_gpu_optimisations = "accept-responsibility";
-          gpu_device = 0;
-          nv_powermizer_mode = 1;
-          nv_core_clock_mhz_offset = 100;
-          nv_mem_clock_mhz_offset = 100;
-        };
-        cpu = {
-          pin_cores = "yes";
-        };
-        general = {
-          desiredgov = "performance";
-          igpu_desiredgov = "powersave";
-          softrealtime = "on";
-        };
-        custom = {
-          start = "${lib.getExe' pkgs.notify "notify-send"} \"Gamemode Started\"";
-          end = "${lib.getExe' pkgs.notify "notify-send"} \"Gamemode Ended\"";
-        };
-      };
-    };
-    command-not-found.enable = false;
-  };
   environment.gnome.excludePackages = [
     pkgs.gnome-software
     pkgs.gnome-contacts
   ];
   # System state version (DO NOT CHANGE)
   system.stateVersion = "23.11";
-
 }
