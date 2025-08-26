@@ -144,7 +144,7 @@ in
     (pkgs.unstable.hashcat.override { cudaSupport = true; })
   ];
   programs.obs-studio = {
-    enable = true;
+    enable = false;
     plugins = with pkgs.unstable.obs-studio-plugins; [
       obs-multi-rtmp
       obs-vkcapture
