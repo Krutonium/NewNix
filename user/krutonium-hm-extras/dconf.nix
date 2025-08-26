@@ -156,54 +156,47 @@ in
       hot-corners = "Disabled";
       menu-hotkey = "Super_L";
       override-hot-corners = true;
-      #pinned-app-list = [ "Firefox" "" "firefox.desktop" "Terminal" "" "org.gnome.Terminal.desktop" "ArcMenu Settings" "ArcMenu_ArcMenuIcon" "gnome-extensions prefs arcmenu@arcmenu.com" ];
-      #      pinned-app-list = [
-      #        "Firefox"
-      #        ""
-      #        "firefox.desktop"
-      #        "Steam"
-      #        ""
-      #        "steam.desktop"
-      #        "Terminal"
-      #        ""
-      #        "org.gnome.Terminal.desktop"
-      #        "Fractal"
-      #        ""
-      #        "org.gnome.Fractal.desktop"
-      #        "Telegram"
-      #        ""
-      #        "org.telegram.desktop.desktop"
-      #        "Discord"
-      #        ""
-      #        "discord.desktop"
-      #        "Prism Launcher"
-      #        ""
-      #        "org.prismlauncher.PrismLauncher.desktop"
-      #        "OBS Studio X11"
-      #        ""
-      #        #"com.obsproject.Studio.desktop"
-      #        "OBS.desktop"
-      #        "IntelliJ IDEA"
-      #        ""
-      #        "idea-ultimate.desktop"
-      #        "IntelliJ Rider"
-      #        ""
-      #        "rider.desktop"
-      #      ];
-#      pinned-apps = mkArray (type.tupleOf [type.dictionaryEntryOf [type.string type.string]])
-#        [
-#          (mkTuple[(mkDictionaryEntry["id" "firefox.desktop"])])
-          #(mkDictionaryEntry ["id" "org.gnome.Nautilus.desktop"])
-#          { "id" = "firefox.desktop"; }
-#          { "id" = "org.gnome.Nautilus.desktop"; }
-#          { "id" = "org.gnome.Terminal.desktop"; }
-#          { "id" = "org.gnome.Fractal.desktop"; }
-#          { "id" = "vesktop.desktop"; "name" = "Discord"; }
-#          { "id" = "org.prismlauncher.PrismLauncher.desktop"; }
-#          { "id" = "com.obsproject.Studio.desktop"; }
-#          { "id" = "idea-ultimate.desktop"; }
-#          { "id" = "rider.desktop"; }
-#        ];
+      # [
+      #   (mkDictionaryEntry [ "id" "gnome-extensions prefs arcmenu@arcmenu.com" ])
+      #   (mkDictionaryEntry [ "name" "ArcMenu Settings" ])
+      #   (mkDictionaryEntry [ "icon" "ArcMenu_ArcMenuIcon" ])
+      # ]
+      pinned-apps = [
+        [
+          (mkDictionaryEntry [ "id" "firefox.desktop" ])
+        ]
+        [
+          (mkDictionaryEntry [ "id" "org.gnome.Nautilus.desktop" ])
+        ]
+        [
+          (mkDictionaryEntry [ "id" "org.gnome.Console.desktop" ])
+          (mkDictionaryEntry ["icon" "terminal"])
+        ]
+
+        [
+          (mkDictionaryEntry [ "id" "org.gnome.Fractal.desktop" ])
+        ]
+        [
+          (mkDictionaryEntry [ "id" "vesktop.desktop" ])
+          (mkDictionaryEntry [ "icon" "dev.vencord.Vesktop" ])
+
+        ]
+        [
+          (mkDictionaryEntry [ "id" "org.prismlauncher.PrismLauncher.desktop" ])
+        ]
+        [
+          (mkDictionaryEntry [ "id" "com.obsproject.Studio.desktop" ])
+        ]
+        [
+          (mkDictionaryEntry [ "id" "idea-ultimate.desktop" ])
+          (mkDictionaryEntry [ "name" "IDEA" ])
+          (mkDictionaryEntry [ "icon" "idea" ])
+        ]
+        [
+          (mkDictionaryEntry [ "id" "rider.desktop" ])
+          (mkDictionaryEntry [ "icon" "rider" ])
+        ]
+      ];
     };
     "org/gnome/shell/extensions/monitor-brightness-volume" = {
       show-volume = false;
