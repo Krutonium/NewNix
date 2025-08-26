@@ -190,13 +190,20 @@ in
       #        ""
       #        "rider.desktop"
       #      ];
-#      pinned-apps = [
-#        { "id" = "firefox.desktop"; }
-#        { "id" = "org.gnome.Nautilus.desktop"; }
-#        { "id" = "org.gnome.Terminal.desktop"; }
-#        { "id" = "gnome-extensions prefs arcmenu@arcmenu.com"; "name" = "ArcMenu Settings"; "icon" = "ArcMenu_ArcMenuIcon"; }
-#        { "id" = "io.github.benjamimgois.goverlay.desktop"; }
-#      ];
+#      pinned-apps = mkArray (type.tupleOf [type.dictionaryEntryOf [type.string type.string]])
+#        [
+#          (mkTuple[(mkDictionaryEntry["id" "firefox.desktop"])])
+          #(mkDictionaryEntry ["id" "org.gnome.Nautilus.desktop"])
+#          { "id" = "firefox.desktop"; }
+#          { "id" = "org.gnome.Nautilus.desktop"; }
+#          { "id" = "org.gnome.Terminal.desktop"; }
+#          { "id" = "org.gnome.Fractal.desktop"; }
+#          { "id" = "vesktop.desktop"; "name" = "Discord"; }
+#          { "id" = "org.prismlauncher.PrismLauncher.desktop"; }
+#          { "id" = "com.obsproject.Studio.desktop"; }
+#          { "id" = "idea-ultimate.desktop"; }
+#          { "id" = "rider.desktop"; }
+#        ];
     };
     "org/gnome/shell/extensions/monitor-brightness-volume" = {
       show-volume = false;
