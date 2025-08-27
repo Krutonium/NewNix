@@ -61,6 +61,13 @@
 
         "browser.tabs.insertAfterCurrent" = false; # decided I didn't like it
         "browser.ml.chat.enabled" = false;
+        "browser.ml.chat.menu" = false;
+        "browser.ml.chat.page" = false;
+        "browser.ml.chat.onboard.config" = "fuck you";
+        "browser.ml.chat.shortcuts" = false;
+        "browser.ml.enable" = false;
+        "browser.ml.linkPreview.onboardingTimes" = 0;
+        
         "browser.urlbar.trimURLs" = false;
       };
     };
