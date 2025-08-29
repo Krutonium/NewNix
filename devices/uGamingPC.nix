@@ -4,8 +4,8 @@
 , ...
 }:
 let
-  kernel = with pkgs; linuxPackages;
-  video = config.boot.kernelPackages.nvidiaPackages.beta;
+  kernel = with pkgs; linuxPackages_nvidia;
+  video = config.boot.kernelPackages.nvidiaPackages.stable;
   pkgAfterFbc = if builtins.hasAttr video.version pkgs.nvidia-patch-list.fbc then pkgs.nvidia-patch.patch-fbc video else video;
   finalPkg = if builtins.hasAttr video.version pkgs.nvidia-patch-list.nvenc then pkgs.nvidia-patch.patch-nvenc pkgAfterFbc else pkgAfterFbc;
   zenpower = config.boot.kernelPackages.zenpower;
