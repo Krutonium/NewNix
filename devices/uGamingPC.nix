@@ -4,7 +4,7 @@
 , ...
 }:
 let
-  kernel = with pkgs; linuxPackages_zen;
+  kernel = with pkgs; linuxPackages;
   video = config.boot.kernelPackages.nvidiaPackages.beta;
   pkgAfterFbc = if builtins.hasAttr video.version pkgs.nvidia-patch-list.fbc then pkgs.nvidia-patch.patch-fbc video else video;
   finalPkg = if builtins.hasAttr video.version pkgs.nvidia-patch-list.nvenc then pkgs.nvidia-patch.patch-nvenc pkgAfterFbc else pkgAfterFbc;
