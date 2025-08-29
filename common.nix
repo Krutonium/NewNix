@@ -26,6 +26,7 @@ in
     ./virtualization
     ./custom-packages
     ./scripts.nix
+    ./overlays
     inputs.sops-nix.nixosModules.sops
     #./builders
   ];

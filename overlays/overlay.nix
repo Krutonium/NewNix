@@ -1,8 +1,13 @@
+# THIS FILE UNUSED
+# KEPT FOR REFERENCE
+
 {
   fetchurl,
   ...
 }:
 {
+
+  DELIBERATE ERROR
   nixpkgs.overlays = [
     (final: prev: {
       discord = final.symlinkJoin {

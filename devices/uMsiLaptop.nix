@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 let
-  kernel = pkgs.linuxPackages_zen;
+  kernel = pkgs.linuxPackages_nvidia;
   video = config.boot.kernelPackages.nvidiaPackages.stable;
   Hostname = "uMsiLaptop";
 in
@@ -112,7 +112,7 @@ in
       package = video;
       prime = {
         offload = {
-          enable = false;
+          enable = true;
           enableOffloadCmd = true;
         };
         nvidiaBusId = "PCI:1:0:0";
@@ -122,7 +122,7 @@ in
   };
   services.xserver.videoDrivers = [
     "modesetting"
-    #"nvidia"
+    "nvidia"
   ];
   services.teamviewer.enable = true;
   services.upower.enable = true;
