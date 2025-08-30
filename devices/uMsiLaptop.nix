@@ -5,6 +5,8 @@ let
   Hostname = "uMsiLaptop";
 in
 {
+  systemd.targets.sleep.enable = false;
+  systemd.targets.hybrid-sleep.enable = false;
   boot.extraModprobeConfig = ''
     options iwlwifi bt_coex_active=0
   '';
