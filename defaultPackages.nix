@@ -36,7 +36,6 @@ in
     pkgs.git
     pkgs.tldr # Replace man
     pkgs.screen
-    #pkgs.colmena
     pkgs.tmux
     pkgs.file
     pkgs.wget
@@ -51,17 +50,14 @@ in
     pkgs.p7zip
     pkgs.pciutils
     pkgs.android-tools
-    #pkgs.nixpkgs-fmt
     pkgs.nixfmt-rfc-style
     pkgs.btrfs-progs
     pkgs.cifs-utils
     pkgs.nixpkgs-review
     pkgs.unrar
     pkgs.ncurses
-    #pkgs.nixd
     pkgs.lm_sensors
     pkgs.wl-clipboard
-    pkgs.kitty
     pkgs.sops
     pkgs.cachix
   ];
