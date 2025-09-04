@@ -26,9 +26,11 @@ self: super:
         inherit src;
         hash = "sha256-rVsg1Un3AlW5flxOQm3uf6LUKF/VyxSkitJLX5BQapU=";
       };
+#     Won't build because of library conflict (rust ugh) but calculates the hash you need. ^
+      #cargoHash = "sha256-rVsg1Un3AlW5flxOQm3uf6LUKF/VyxSkitJLX5BQapU=";
 
       # Keep existing patches & cargoPatches unless you *know* they’re no longer needed
-      patches = old.patches;
+      patches = [ ./0002-fix-duplicate-reqwest.patch ];
       cargoPatches = old.cargoPatches;
     }
   );
