@@ -30,6 +30,8 @@ in
   ];
   i18n.inputMethod.ibus.engines = with pkgs.ibus-engines; [ uniemoji ];
   environment.systemPackages = [
+    pkgs.zed
+
     pkgs.xorg.xf86inputmouse
     pkgs.rPackages.fontawesome
     pkgs.nano # Editor
