@@ -38,6 +38,7 @@ in
     pkgs.logitech-udev-rules
     pkgs.via
   ];
+  programs.gamemode.enable = true;
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [
     webkitgtk_4_1
