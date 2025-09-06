@@ -196,13 +196,15 @@
         "30:9c:23:d3:06:fd,10.0.0.3"
         # uMsiLaptop
         "44:6D:57:BB:47:B0,10.0.0.4"
+        # Kobo
+        "00:90:a2:aa:cd:06,10.0.0.5"
         # Archer Router
         "14:EB:B6:58:A1:D4,10.0.0.7"
         # Printer
         "b0:68:e6:97:f4:37,10.0.0.8"
         # SteamDeck
         "50:5A:65:61:DB:3B,10.0.0.9"
-        # 5 and 6 intentionally missing for now.
+        # 6 intentionally missing for now.
       ];
       # Listens to br0
       listen-address = "::1,127.0.0.1,10.0.0.1";
