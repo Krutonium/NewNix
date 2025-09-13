@@ -70,7 +70,6 @@
         "browser.ml.chat.shortcuts.custom" = false;
         "browser.ml.chat.sidebar" = false;
         "browser.ml.chat.onboard.config" = "fuck you";
-        "browser.ml.chat.shortcuts" = false;
         "browser.ml.checkForMemory" = false;
         "browser.ml.linkPreview.shift" = false;
         "browser.ml.enable" = false;
