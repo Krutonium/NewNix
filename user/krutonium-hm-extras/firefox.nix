@@ -60,11 +60,19 @@
         "browser.uidensity" = "1";
 
         "browser.tabs.insertAfterCurrent" = false; # decided I didn't like it
+
         "browser.ml.chat.enabled" = false;
         "browser.ml.chat.menu" = false;
         "browser.ml.chat.page" = false;
+        "browser.ml.chat.page.footerBadge" = false;
+        "browser.ml.chat.page.menuBadge" = false;
+        "browser.ml.chat.shortcuts" = false;
+        "browser.ml.chat.shortcuts.custom" = false;
+        "browser.ml.chat.sidebar" = false;
         "browser.ml.chat.onboard.config" = "fuck you";
         "browser.ml.chat.shortcuts" = false;
+        "browser.ml.checkForMemory" = false;
+        "browser.ml.linkPreview.shift" = false;
         "browser.ml.enable" = false;
         "browser.ml.linkPreview.onboardingTimes" = 0;
         
