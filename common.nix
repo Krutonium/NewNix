@@ -138,7 +138,7 @@ in
     cursor = {
       name = "oreo_spark_purple_bordered_cursors";
       package = pkgs.oreo-cursors-plus;
-      size = 10;
+      size = 24;
     };
     fonts = {
       monospace = {
