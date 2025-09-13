@@ -1,4 +1,9 @@
-{ lib, pkgs, ... }:
+{
+  lib,
+  pkgs,
+  osConfig,
+  ...
+}:
 
 with lib.hm.gvariant;
 let
@@ -17,12 +22,16 @@ let
     pkgs.gnomeExtensions.compiz-alike-magic-lamp-effect
   ];
   extensionUuids = map (ext: ext.extensionUuid) extensions;
+
+  # Detect whether GNOME is enabled in the system configuration
+  isGnome = (osConfig.sys.desktop.desktop == "gnome");
 in
-{
+lib.mkIf isGnome {
   home.packages = [
     pkgs.gnome-tweaks
     pkgs.cascadia-code # Font
-  ] ++ extensions;
+  ]
+  ++ extensions;
   dconf.settings = {
     "org/gnome/desktop/input-sources" = {
       sources = [
@@ -163,38 +172,80 @@ in
       # ]
       pinned-apps = [
         [
-          (mkDictionaryEntry [ "id" "firefox.desktop" ])
+          (mkDictionaryEntry [
+            "id"
+            "firefox.desktop"
+          ])
         ]
         [
-          (mkDictionaryEntry [ "id" "org.gnome.Nautilus.desktop" ])
+          (mkDictionaryEntry [
+            "id"
+            "org.gnome.Nautilus.desktop"
+          ])
         ]
         [
-          (mkDictionaryEntry [ "id" "org.gnome.Console.desktop" ])
-          (mkDictionaryEntry ["icon" "terminal"])
+          (mkDictionaryEntry [
+            "id"
+            "org.gnome.Console.desktop"
+          ])
+          (mkDictionaryEntry [
+            "icon"
+            "terminal"
+          ])
         ]
 
         [
-          (mkDictionaryEntry [ "id" "org.gnome.Fractal.desktop" ])
+          (mkDictionaryEntry [
+            "id"
+            "org.gnome.Fractal.desktop"
+          ])
         ]
         [
-          (mkDictionaryEntry [ "id" "vesktop.desktop" ])
-          (mkDictionaryEntry [ "icon" "dev.vencord.Vesktop" ])
+          (mkDictionaryEntry [
+            "id"
+            "vesktop.desktop"
+          ])
+          (mkDictionaryEntry [
+            "icon"
+            "dev.vencord.Vesktop"
+          ])
 
         ]
         [
-          (mkDictionaryEntry [ "id" "org.prismlauncher.PrismLauncher.desktop" ])
+          (mkDictionaryEntry [
+            "id"
+            "org.prismlauncher.PrismLauncher.desktop"
+          ])
         ]
         [
-          (mkDictionaryEntry [ "id" "com.obsproject.Studio.desktop" ])
+          (mkDictionaryEntry [
+            "id"
+            "com.obsproject.Studio.desktop"
+          ])
         ]
         [
-          (mkDictionaryEntry [ "id" "idea-ultimate.desktop" ])
-          (mkDictionaryEntry [ "name" "IDEA" ])
-          (mkDictionaryEntry [ "icon" "idea" ])
+          (mkDictionaryEntry [
+            "id"
+            "idea-ultimate.desktop"
+          ])
+          (mkDictionaryEntry [
+            "name"
+            "IDEA"
+          ])
+          (mkDictionaryEntry [
+            "icon"
+            "idea"
+          ])
         ]
         [
-          (mkDictionaryEntry [ "id" "rider.desktop" ])
-          (mkDictionaryEntry [ "icon" "rider" ])
+          (mkDictionaryEntry [
+            "id"
+            "rider.desktop"
+          ])
+          (mkDictionaryEntry [
+            "icon"
+            "rider"
+          ])
         ]
       ];
     };

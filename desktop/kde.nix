@@ -15,16 +15,10 @@ in
       xserver = {
         enable = true;
         desktopManager = {
-          plasma5 = {
+          plasma6 = {
             enable = true;
           };
         };
-      };
-    };
-    hardware = {
-      opengl = {
-        enable = true;
-        driSupport32Bit = true;
       };
     };
     security = {

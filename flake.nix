@@ -59,6 +59,11 @@
       url = "github:nix-community/nixpkgs-xr";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
   };
   outputs =
     {
@@ -78,6 +83,7 @@
       minegrub,
       stylix,
       nixpkgs-xr,
+      plasma-manager,
       ...
     }@inputs:
     let
@@ -101,6 +107,7 @@
           nix.registry.nixos.flake = self;
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
+          home-manager.sharedModules = [ plasma-manager.homeModules.plasma-manager ];
         }
       ];
 
@@ -186,18 +193,10 @@
       ### Device Definitions ###
       ##########################
       nixosConfigurations = {
-        uWebServer = nixosConfiguration "uWebServer" (
-          commonPCModules ++ commonIntel ++ gpuAMD ++ gpuIntel ++ [ ./devices/uWebServer.nix ]
-        );
-        uGamingPC = nixosConfiguration "uGamingPC" (
-          commonPCModules ++ commonAMD ++ gpuNvidia ++ [ ./devices/uGamingPC.nix ]
-        );
-        uMsiLaptop = nixosConfiguration "uMsiLaptop" (
-          commonPCModules ++ commonLaptop ++ commonIntel ++ gpuIntel ++ [ ./devices/uMsiLaptop.nix ]
-        );
-        uServerHost = nixosConfiguration "uServerHost" (
-          commonPCModules ++ commonAMD ++ gpuNvidia ++ [ ./devices/uServerHost.nix ]
-        );
+        uWebServer = nixosConfiguration "uWebServer" (commonPCModules ++ commonIntel ++ gpuAMD ++ gpuIntel ++ [ ./devices/uWebServer.nix ]);
+        uGamingPC = nixosConfiguration "uGamingPC" (commonPCModules ++ commonAMD ++ gpuNvidia ++ [ ./devices/uGamingPC.nix ]);
+        uMsiLaptop = nixosConfiguration "uMsiLaptop" (commonPCModules ++ commonLaptop ++ commonIntel ++ gpuIntel ++ [ ./devices/uMsiLaptop.nix ]);
+        uServerHost = nixosConfiguration "uServerHost" (commonPCModules ++ commonAMD ++ gpuNvidia ++ [ ./devices/uServerHost.nix ]);
       };
     };
 }

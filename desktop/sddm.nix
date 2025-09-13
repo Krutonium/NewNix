@@ -15,10 +15,7 @@ in
       displayManager = {
         sddm = {
           enable = true;
-        };
-        autoLogin = {
-          user = "krutonium";
-          enable = true;
+          wayland.enable = true;
         };
       };
     };
