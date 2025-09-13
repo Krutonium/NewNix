@@ -232,8 +232,8 @@ in
       plymouth_enabled = true;
     };
     desktop = {
-      displayManager = "sddm";
-      desktop = "kde";
+      displayManager = "gdm";
+      desktop = "gnome";
       wayland = true;
     };
     custom = {
