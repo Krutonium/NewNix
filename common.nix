@@ -208,6 +208,7 @@ in
   boot = {
     initrd.services.lvm.enable = true;
     # Virtual webcam support
+    binfmt.emulatedSystems = [ "armv7l-linux" ];
     extraModulePackages = with config.boot.kernelPackages; [
       v4l2loopback
     ];
@@ -254,6 +255,7 @@ in
       auto-optimise-store = true;
       trusted-users = [ "@wheel" ];
       min-free = 50 * 1000 * 1000 * 1000; # 50GB
+      download-buffer-size = 524288000; # 500MB
       system-features = [
         "i686-linux"
         "x86_64-linux"
