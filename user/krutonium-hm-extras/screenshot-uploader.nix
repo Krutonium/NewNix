@@ -8,7 +8,7 @@ let
     remote_user="krutonium"
     remote_host="krutonium.ca"
     remote_dir="/media2/screenshots"
-    base_url="https://screenshot.krutonium.ca"
+    base_url="https://scr.krutonium.ca"
 
     file="$1"
     local_path="${watch_dir}/$(basename "$file")"
