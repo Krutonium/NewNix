@@ -10,19 +10,32 @@ let
     remote_dir="/media2/screenshots"
     base_url="https://scr.krutonium.ca"
 
-    file="$1"
+    # newest png file
+    file=""
+    for f in "$watch_dir"/*.png; do
+      [ -e "$f" ] || continue
+        if [[ -z $file || $f -nt $file ]]; then
+        file=$f
+      fi
+    done
+
+    if [[ -n $file ]]; then
+      echo "$file"
+    else
+      echo "No PNG files found" >&2
+      exit 1
+    fi
+
     local_path="$watch_dir/$(basename "$file")"
+    echo Uploading $local_path
 
     # Generate timestamped filename
     ts="$(date +%s-%N)"
     new_name="$ts.png"
-    new_path="$watch_dir/$new_name"
-
-    # Rename locally
-    mv "$local_path" "$new_path"
 
     # Upload with clean timestamped name
-    scp "$new_path" "$remote_user@$remote_host:$remote_dir/$new_name"
+    echo "Uploading $local_path to $remote_dir/$new_name"
+    scp "$local_path" "$remote_user@$remote_host:$remote_dir/$new_name"
 
     # Build public URL
     url="$base_url/$new_name"
@@ -41,7 +54,6 @@ in {
     Service = {
       Type = "oneshot";
       ExecStart = "${screenshotUploader}/bin/screenshot-uploader %f";
-      #ExecState = "${screenshotUploader}/bin/screeno %f";
     };
     Install = {
       WantedBy = [ "default.target" ];
