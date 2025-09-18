@@ -134,7 +134,7 @@ in
         "scr.krutonium.ca" = {
           forceSSL = true;
           enableACME = true;
-          root = "/media2/fileHost/screenshots";
+          root = "/media2/screenshots";
           locations = {
             "/" = {
               extraConfig = ''
