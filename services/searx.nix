@@ -58,7 +58,7 @@ in
         };
 
         outgoing = {
-          request_timeout = 5.0;
+          request_timeout = 10.0;
           max_request_timeout = 15.0;
           pool_connections = 100;
           pool_maxsize = 15;
