@@ -11,7 +11,20 @@ let
     base_url="https://scr.krutonium.ca"
 
     # newest png file
-    file="$TRIGGER_PATH"
+    file=""
+    for f in "$watch_dir"/*.png; do
+      [ -e "$f" ] || continue
+        if [[ -z $file || $f -nt $file ]]; then
+        file=$f
+      fi
+    done
+
+    if [[ -n $file ]]; then
+      echo "$file"
+    else
+      echo "No PNG files found" >&2
+      exit 1
+    fi
 
     local_path="$watch_dir/$(basename "$file")"
     echo Uploading $local_path
