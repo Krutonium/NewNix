@@ -11,21 +11,21 @@ let
     base_url="https://scr.krutonium.ca"
 
     file="$1"
-    local_path="${watch_dir}/$(basename "$file")"
+    local_path="$watch_dir/$(basename "$file")"
 
     # Generate timestamped filename
     ts="$(date +%s-%N)"
-    new_name="${ts}.png"
-    new_path="${watch_dir}/${new_name}"
+    new_name="$ts.png"
+    new_path="$watch_dir/$new_name"
 
     # Rename locally
     mv "$local_path" "$new_path"
 
     # Upload with clean timestamped name
-    scp "$new_path" "${remote_user}@${remote_host}:${remote_dir}/${new_name}"
+    scp "$new_path" "$remote_user@$remote_host:$remote_dir/$new_name"
 
     # Build public URL
-    url="${base_url}/${new_name}"
+    url="$base_url/$new_name"
 
     # Clipboard + notify
     echo -n "$url" | ${pkgs.xclip}/bin/xclip -selection clipboard
@@ -40,17 +40,19 @@ in {
     };
     Service = {
       Type = "oneshot";
-      #ExecStart = "${screenshotUploader}/bin/screenshot-uploader %f";
-      ExecState = "${lib.getExe' screenshotUploader} %f";
+      ExecStart = "${screenshotUploader}/bin/screenshot-uploader %f";
+      #ExecState = "${screenshotUploader}/bin/screeno %f";
+    };
+    Install = {
+      WantedBy = [ "default.target" ];
     };
   };
-
-  systemd.user.path.screenshot-uploader = {
+  systemd.user.paths.screenshot-uploader = {
     Unit = {
       Description = "Watch GNOME screenshots folder";
     };
     Path = {
-      PathChanged = "%h/Pictures/Screenshots";
+      PathChanged = "${config.home.homeDirectory}/Pictures/Screenshots";
     };
     Install = {
       WantedBy = [ "default.target" ];
