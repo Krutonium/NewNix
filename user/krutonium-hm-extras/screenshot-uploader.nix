@@ -30,6 +30,8 @@ let
     remote_filename="$(echo "$base_filename" | ${pkgs.gnused}/bin/sed 's/[^A-Za-z0-9._-]/_/g')"  # FIX: close the quote
     local_path="$watch_dir/$base_filename"
 
+    ${pkgs.oxipng}/bin/oxipng -omax "$local_path"
+
     # Upload with clean timestamped name
     echo "Uploading $local_path to $remote_dir"  # FIX: close the quote
     scp "$local_path" "$remote_user@$remote_host:$remote_dir/$remote_filename"
