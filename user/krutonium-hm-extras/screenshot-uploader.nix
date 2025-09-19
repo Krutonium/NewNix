@@ -26,15 +26,16 @@ let
       exit 1
     fi
 
-    local_path="$watch_dir/$(basename "$file")"
-    echo Uploading $local_path
+    base_filename="$(basename "$file")"
+    remote_filename="$(echo "$base_filename" | ${pkgs.gnused}/bin/sed 's/[^A-Za-z0-9._-]/_/g')"  # FIX: close the quote
+    local_path="$watch_dir/$base_filename"
 
     # Upload with clean timestamped name
-    echo "Uploading $local_path to $remote_dir
-    scp "$local_path" "$remote_user@$remote_host:$remote_dir/
+    echo "Uploading $local_path to $remote_dir"  # FIX: close the quote
+    scp "$local_path" "$remote_user@$remote_host:$remote_dir/$remote_filename"
 
     # Build public URL
-    url="$base_url/$(basename "$file")"
+    url="$base_url/$remote_filename"  # FIX: use remote_filename (new_name was undefined)
 
     # Clipboard + notify
     echo -n "$url" | ${pkgs.xclip}/bin/xclip -selection clipboard
