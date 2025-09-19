@@ -34,7 +34,7 @@ let
     scp "$local_path" "$remote_user@$remote_host:$remote_dir/
 
     # Build public URL
-    url="$base_url/$new_name"
+    url="$base_url/$file"
 
     # Clipboard + notify
     echo -n "$url" | ${pkgs.xclip}/bin/xclip -selection clipboard
