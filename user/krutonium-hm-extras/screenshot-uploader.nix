@@ -29,13 +29,9 @@ let
     local_path="$watch_dir/$(basename "$file")"
     echo Uploading $local_path
 
-    # Generate timestamped filename
-    ts="$(date +%s-%N)"
-    new_name="$ts.png"
-
     # Upload with clean timestamped name
-    echo "Uploading $local_path to $remote_dir/$new_name"
-    scp "$local_path" "$remote_user@$remote_host:$remote_dir/$new_name"
+    echo "Uploading $local_path to $remote_dir
+    scp "$local_path" "$remote_user@$remote_host:$remote_dir/
 
     # Build public URL
     url="$base_url/$new_name"
