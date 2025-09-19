@@ -30,8 +30,6 @@ let
     remote_filename="$(echo "$base_filename" | ${pkgs.gnused}/bin/sed 's/[^A-Za-z0-9._-]/_/g')"  # FIX: close the quote
     local_path="$watch_dir/$base_filename"
 
-    ${pkgs.oxipng}/bin/oxipng -omax "$local_path"
-
     # Upload with clean timestamped name
     echo "Uploading $local_path to $remote_dir"  # FIX: close the quote
     scp "$local_path" "$remote_user@$remote_host:$remote_dir/$remote_filename"
@@ -42,6 +40,10 @@ let
     # Clipboard + notify
     echo -n "$url" | ${pkgs.xclip}/bin/xclip -selection clipboard
     ${pkgs.libnotify}/bin/notify-send "Screenshot uploaded" "$url"
+
+    # Optimize and Replace Image - This prioritizes getting the image live for pasting the link.
+    ${pkgs.oxipng}/bin/oxipng -omax "$local_path"
+    scp "$local_path" "$remote_user@$remote_host:$remote_dir/$remote_filename"
   '';
 in {
   home.packages = [ screenshotUploader ];
