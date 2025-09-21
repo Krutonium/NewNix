@@ -222,6 +222,11 @@ in
   programs = {
     wireshark.enable = true;
     adb.enable = true;
+    tuxclocker = { 
+      enable = true;
+      useUnfree = true;
+      enabledNVIDIADevices = [ 0 ];
+    };
   };
   #Fix Discord and other Chromium based Bullshit
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
