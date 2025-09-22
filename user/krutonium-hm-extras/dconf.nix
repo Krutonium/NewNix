@@ -11,9 +11,9 @@ let
   wallPaper = "file://${./assets/wallpaper.png}";
   extensions = [
     pkgs.gnomeExtensions.dash-to-panel
-    pkgs.master.gnomeExtensions.ddterm
+    pkgs.gnomeExtensions.ddterm
     pkgs.gnomeExtensions.appindicator
-    pkgs.master.gnomeExtensions.arcmenu
+    pkgs.gnomeExtensions.arcmenu
     pkgs.gnomeExtensions.no-overview
     pkgs.gnomeExtensions.gtile
     pkgs.gnomeExtensions.user-themes
