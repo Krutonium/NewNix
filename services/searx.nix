@@ -120,26 +120,6 @@ in
             weight = 10;
           };
           "google news".disabled = false;
-          "NixOS Packages" = {
-            engine = "json_engine";
-            shortcut = "nixpkgs";
-            search_url = "https://search.nixos.org/packages?channel=unstable&query={query}&format=json";
-            url = "https://search.nixos.org/packages?query={query}";
-            categories = [
-              "packages"
-              "nixos"
-            ];
-          };
-          "NixOS Options" = {
-            engine = "json_engine";
-            shortcut = "nixopts";
-            search_url = "https://search.nixos.org/options?channel=unstable&query={query}&format=json";
-            url = "https://search.nixos.org/options?query={query}";
-            categories = [
-              "options"
-              "nixos"
-            ];
-          };
         };
       };
     };
