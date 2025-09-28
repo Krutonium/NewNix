@@ -78,7 +78,7 @@ in
       syncthing = false;
     };
     virtualization = {
-      server = "none";
+      server = "virtd";
     };
   };
   programs.steam = {
