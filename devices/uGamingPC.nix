@@ -274,6 +274,7 @@ in
       proton-ge-bin
       steamtinkerlaunch
     ];
+    protontricks.enable = true;
   };
   services.wivrn = {
     # https://github.com/WiVRn/WiVRn-APK/releases
