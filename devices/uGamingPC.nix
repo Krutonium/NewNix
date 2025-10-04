@@ -4,7 +4,7 @@
 , ...
 }:
 let
-  kernel = with pkgs; linuxPackages_nvidia;
+  kernel = pkgs.nvidiaFor pkgs.linuxPackages_zen;
   video = config.boot.kernelPackages.nvidiaPackages.stable;
   zenpower = config.boot.kernelPackages.zenpower;
   ddcci = config.boot.kernelPackages.ddcci-driver;
