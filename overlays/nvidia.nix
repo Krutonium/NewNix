@@ -1,5 +1,7 @@
 self: super: {
   # Provide a helper to apply the patched NVIDIA driver to any linuxPackages set
+
+  # To use: `kernel = pkgs.nvidiaFor pkgs.linuxPackages_the_version;`
   nvidiaFor = linuxPackages:
     linuxPackages.extend (
       selfnv: supernv:
@@ -40,9 +42,4 @@ self: super: {
         nvidia_x11 = patched;
       }
     );
-#  # Keep existing behavior by default, but now based on an overridable kernel set
-#  linuxPackages_nvidia = (self.nvidiaFor super.linuxPackages);
-#
-#  # Optional convenience: retain the zen-based set for compatibility
-#  linuxPackages_nvidia_zen = (self.nvidiaFor super.linuxPackages_zen);
 }
