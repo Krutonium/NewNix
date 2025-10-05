@@ -107,6 +107,7 @@ in
       #withMoonlight = true;
     #})
     pkgs.unstable.vesktop
+    pkgs.handbrake
 
 
     # Hashcat

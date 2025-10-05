@@ -121,32 +121,51 @@ let
 
     SRC="$1"
     DST="$2"
-
     FFMPEG=${lib.getExe pkgs.ffmpeg-full}
 
-    if "$FFMPEG" \
-      -vaapi_device /dev/dri/renderD128 \
-      -hwaccel vaapi \
-      -hwaccel_output_format vaapi \
-      -i "$SRC" \
-      -vf 'format=nv12,scale=-2:540,hwupload' \
-      -c:v h264_vaapi -b:v 1M -maxrate 2M -bufsize 4M \
-      -movflags +faststart -pix_fmt vaapi \
-      -c:a aac -ac 2 -b:a 1536k -threads 8 \
-      "$DST"; then
-      echo "Hardware decoding succeeded."
-    else
-      echo "Hardware decoding failed. Falling back to software decoding..."
+    process_file() {
+      local src_file="$1"
+      local dst_file="$2"
 
-      "$FFMPEG" \
+      mkdir -p "$(dirname "$dst_file")"
+
+      echo "Transcoding: $src_file → $dst_file"
+
+      if "$FFMPEG" \
         -vaapi_device /dev/dri/renderD128 \
-        -i "$SRC" \
+        -hwaccel vaapi \
+        -hwaccel_output_format vaapi \
+        -i "$src_file" \
         -vf 'format=nv12,scale=-2:540,hwupload' \
         -c:v h264_vaapi -b:v 1M -maxrate 2M -bufsize 4M \
         -movflags +faststart -pix_fmt vaapi \
         -c:a aac -ac 2 -b:a 1536k -threads 8 \
-        "$DST"
-    fi
+        "$dst_file"; then
+        echo "✅ Hardware encoding succeeded for $src_file"
+      else
+        echo "⚠️  Hardware encoding failed for $src_file — cleaning up and retrying with software encoding..."
+        rm -f "$dst_file"
+
+        "$FFMPEG" \
+          -i "$src_file" \
+          -vf 'scale=-2:540' \
+          -c:v libx264 -preset fast -crf 23 \
+          -movflags +faststart \
+          -c:a aac -ac 2 -b:a 192k -threads 8 \
+          "$dst_file"
+      fi
+    }
+
+  if [ -d "$SRC" ]; then
+    echo "📁 Processing directory: $SRC"
+    find "$SRC" -type f \( -iname '*.mp4' -o -iname '*.mkv' -o -iname '*.mov' -o -iname '*.avi' \) | while read -r file; do
+      rel_path=''${file#"$SRC"/}
+      out_path="$DST/''${rel_path%.*}.mp4"
+      process_file "$file" "$out_path"
+    done
+  else
+    process_file "$SRC" "$DST"
+  fi
   '';
   reboot-fw = pkgs.writeShellScriptBin "reboot-fw" "sudo systemctl reboot --firmware-setup";
 in
