@@ -8,44 +8,12 @@ let
     (
       with pkgs.dotnetCorePackages;
       combinePackages [
-        sdk_6_0
-        sdk_8_0
-        sdk_9_0
+        dotnet_8.sdk
+        dotnet_9.sdk
+        dotnet_10.sdk
+        pkgs.mono
       ]
-    ).overrideAttrs
-      (
-        _fineAttrs: previousAttrs: {
-          postBuild =
-            (previousAttrs.postBuild or '''')
-            + ''
-               for i in $out/sdk/*
-               do
-                 i=$(basename $i)
-                 length=$(printf "%s" "$i" | wc -c)
-                 substring=$(printf "%s" "$i" | cut -c 1-$(expr $length - 2))
-                 i="$substring""00"
-                 mkdir -p $out/metadata/workloads/''${i/-*}
-                 touch $out/metadata/workloads/''${i/-*}/userlocal
-              done
-            '';
-        }
-      );
-
-  #obs-studio = pkgs.obs-studio.overrideAttrs (old: {
-  #  pname = "obs-studio-git";
-  #  version = "13.1.0-custom";
-  #  src = pkgs.fetchFromGitHub {
-  #    owner = "obsproject";
-  #    repo = "obs-studio";
-  #    rev = "d3c5d2ce0b15bac7a502f5aef4b3b5ec72ee8e09";
-  #    fetchSubmodules = true;
-  #    sha256 = "sha256-z6BMgddmq3+IsVkt0a/FP+gShvGi1tI6qBbJlAcHgW8=";
-  #  };
-  #  nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ [
-  #    pkgs.extra-cmake-modules
-  #  ];
-  #});
-
+    );
   MajorasMask = builtins.fetchurl {
     url = "https://dl.krutonium.ca/mm.us.rev1.rom.z64";
     name = "mm.us.rev1.rom.z64"; # this sets the filename in the Nix store
