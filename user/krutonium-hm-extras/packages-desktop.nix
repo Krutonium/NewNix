@@ -132,7 +132,7 @@ in
     # Communication
     pkgs.fractal
     pkgs.srain
-    pkgs.unstable.telegram-desktop
+    pkgs.unstable._64gram
     #(pkgs.discord.override {
       #withOpenASAR = true;
       #withVencord = true;
