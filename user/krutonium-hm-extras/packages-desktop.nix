@@ -11,7 +11,6 @@ let
         dotnet_8.sdk
         dotnet_9.sdk
         dotnet_10.sdk
-        pkgs.mono
       ]
     );
   MajorasMask = builtins.fetchurl {
@@ -39,6 +38,7 @@ in
 
     # Development Tools & IDEs
     dotnetCombined
+    pkgs.mono
     pkgs.godot_4-mono
     pkgs.unstable.jetbrains.rider
     pkgs.unstable.jetbrains.idea-ultimate
