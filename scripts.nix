@@ -158,10 +158,11 @@ let
 
   if [ -d "$SRC" ]; then
     echo "📁 Processing directory: $SRC"
-    find "$SRC" -type f \( -iname '*.mp4' -o -iname '*.mkv' -o -iname '*.mov' -o -iname '*.avi' \) -print0 | while IFS= read -r -d ''$ file; do
-      base_name="$(basename "$file")"
+    # Process all files, safely handling special characters
+    find "$SRC" -type f -print0 | while IFS= read -r -d ''$ f; do
+      base_name="$(${pkgs.coreutils}/bin/basename "$f")"
       out_path="$DST/''${base_name%.*}.mp4"
-      process_file "$file" "$out_path"
+      process_file "$f" "$out_path"
     done
   else
     process_file "$SRC" "$DST"
