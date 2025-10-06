@@ -160,8 +160,7 @@ let
       echo "📁 Processing directory: $SRC"
       find "$SRC" -type f -print0 | while IFS= read -r -d ''' f; do
         base_name="$(${pkgs.coreutils}/bin/basename "$f")"
-        # ensure shell performs ''${base_name%.*}, not Nix
-        out_path="$DST/''${base_name%.*}.mp4"
+        out_path="$DST/"$'''{base_name%.*}".mp4"
         process_file "$f" "$out_path"
       done
     else
