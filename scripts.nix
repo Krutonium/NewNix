@@ -127,7 +127,7 @@ let
           local src_file="$1"
           local dst_file="$2"
 
-          mkdir -p "$(dirname "$dst_file")"
+          mkdir -p "$(dirname \"$dst_file\")"
 
           echo "Transcoding: $src_file → $dst_file"
 
@@ -158,21 +158,14 @@ let
 
     if [ -d "$SRC" ]; then
       echo "📁 Processing directory: $SRC"
-      find "$SRC" -type f -print0 | while IFS= read -r -d ''' file; do
-        base_name="$(basename "$file")"
-        out_name="$${base_name%.*}.mp4"
-        out_path="$DST/$out_name"
-        process_file "$file" "$out_path"
+      find "$SRC" -type f -print0 | while IFS= read -r -d ''' f; do
+        base_name="$(${pkgs.coreutils}/bin/basename "$f")"
+        # ensure shell performs ''${base_name%.*}, not Nix
+        out_path="$DST/''${base_name%.*}.mp4"
+        process_file "$f" "$out_path"
       done
-    elif [ -f "$SRC" ]; then
-      echo "🎞️ Processing file: $SRC"
-      base_name="$(basename "$SRC")"
-      out_name="''${base_name%.*}.mp4"
-      out_path="$DST/$out_name"
-      process_file "$SRC" "$out_path"
     else
-      echo "❌ Error: $SRC is not a valid file or directory"
-      exit 1
+      process_file "$SRC" "$DST"
     fi
   '';
   reboot-fw = pkgs.writeShellScriptBin "reboot-fw" "sudo systemctl reboot --firmware-setup";
