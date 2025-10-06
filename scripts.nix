@@ -117,56 +117,63 @@ let
   '';
 
   transcode-vr = pkgs.writeShellScriptBin "transcode-vr" ''
-    set -euo pipefail
+        set -euo pipefail
 
-    SRC="$1"
-    DST="$2"
-    FFMPEG=${lib.getExe pkgs.ffmpeg-full}
+        SRC="$1"
+        DST="$2"
+        FFMPEG=${lib.getExe pkgs.ffmpeg-full}
 
-    process_file() {
-      local src_file="$1"
-      local dst_file="$2"
+        process_file() {
+          local src_file="$1"
+          local dst_file="$2"
 
-      mkdir -p "$(dirname "$dst_file")"
+          mkdir -p "$(dirname "$dst_file")"
 
-      echo "Transcoding: $src_file → $dst_file"
+          echo "Transcoding: $src_file → $dst_file"
 
-      if "$FFMPEG" \
-        -vaapi_device /dev/dri/renderD128 \
-        -hwaccel vaapi \
-        -hwaccel_output_format vaapi \
-        -i "$src_file" \
-        -vf 'format=nv12,scale=-2:540,hwupload' \
-        -c:v h264_vaapi -b:v 1M -maxrate 2M -bufsize 4M \
-        -movflags +faststart -pix_fmt vaapi \
-        -c:a aac -ac 2 -b:a 1536k -threads 8 \
-        "$dst_file"; then
-        echo "✅ Hardware encoding succeeded for $src_file"
-      else
-        echo "⚠️  Hardware encoding failed for $src_file — cleaning up and retrying with software encoding..."
-        rm -f "$dst_file"
+          if "$FFMPEG" \
+            -vaapi_device /dev/dri/renderD128 \
+            -hwaccel vaapi \
+            -hwaccel_output_format vaapi \
+            -i "$src_file" \
+            -vf 'format=nv12,scale=-2:540,hwupload' \
+            -c:v h264_vaapi -b:v 1M -maxrate 2M -bufsize 4M \
+            -movflags +faststart -pix_fmt vaapi \
+            -c:a aac -ac 2 -b:a 1536k -threads 8 \
+            "$dst_file"; then
+            echo "✅ Hardware encoding succeeded for $src_file"
+          else
+            echo "⚠️  Hardware encoding failed for $src_file — cleaning up and retrying with software encoding..."
+            rm -f "$dst_file"
 
-        "$FFMPEG" \
-          -i "$src_file" \
-          -vf 'scale=-2:540' \
-          -c:v libx264 -preset fast -crf 23 \
-          -movflags +faststart \
-          -c:a aac -ac 2 -b:a 192k -threads 8 \
-          "$dst_file"
-      fi
-    }
+            "$FFMPEG" \
+              -i "$src_file" \
+              -vf 'scale=-2:540' \
+              -c:v libx264 -preset fast -crf 23 \
+              -movflags +faststart \
+              -c:a aac -ac 2 -b:a 192k -threads 8 \
+              "$dst_file"
+          fi
+        }
 
-  if [ -d "$SRC" ]; then
-    echo "📁 Processing directory: $SRC"
-    # Process all files, safely handling special characters
-    find "$SRC" -type f -print0 | while IFS= read -r -d ''$ f; do
-      base_name="$(${pkgs.coreutils}/bin/basename "$f")"
-      out_path="$DST/''${base_name%.*}.mp4"
-      process_file "$f" "$out_path"
-    done
-  else
-    process_file "$SRC" "$DST"
-  fi
+    if [ -d "$SRC" ]; then
+      echo "📁 Processing directory: $SRC"
+      find "$SRC" -type f -print0 | while IFS= read -r -d ''' file; do
+        base_name="$(basename "$file")"
+        out_name="$${base_name%.*}.mp4"
+        out_path="$DST/$out_name"
+        process_file "$file" "$out_path"
+      done
+    elif [ -f "$SRC" ]; then
+      echo "🎞️ Processing file: $SRC"
+      base_name="$(basename "$SRC")"
+      out_name="''${base_name%.*}.mp4"
+      out_path="$DST/$out_name"
+      process_file "$SRC" "$out_path"
+    else
+      echo "❌ Error: $SRC is not a valid file or directory"
+      exit 1
+    fi
   '';
   reboot-fw = pkgs.writeShellScriptBin "reboot-fw" "sudo systemctl reboot --firmware-setup";
 in
