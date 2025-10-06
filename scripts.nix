@@ -158,7 +158,7 @@ let
 
   if [ -d "$SRC" ]; then
     echo "📁 Processing directory: $SRC"
-    find "$SRC" -type f \( -iname '*.mp4' -o -iname '*.mkv' -o -iname '*.mov' -o -iname '*.avi' \) | while IFS= read -r -d file; do
+    find "$SRC" -type f \( -iname '*.mp4' -o -iname '*.mkv' -o -iname '*.mov' -o -iname '*.avi' \) -print0 | while IFS= read -r -d ''$ file; do
       base_name="$(basename "$file")"
       out_path="$DST/''${base_name%.*}.mp4"
       process_file "$file" "$out_path"
