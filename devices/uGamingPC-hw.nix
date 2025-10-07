@@ -70,10 +70,11 @@
       "gid=100"
       "max_conns=20" # MOAR THREADS (when needed)
       "IdentityFile=/home/krutonium/.ssh/id_ed25519"
-      #        # Handle connection drops better
+      # Handle connection drops better
       "ServerAliveInterval=2"
       "ServerAliveCountMax=2"
       "reconnect"
+      "nofail"
     ];
   };
   swapDevices = [ ];
