@@ -69,7 +69,7 @@
       ];
     };
     "/uServerHost" = {
-      device = "krutonium@10.3:/";
+      device = "root@10.3:/";
       fsType = "sshfs";
       options = [
         "allow_other" # for non-root access
