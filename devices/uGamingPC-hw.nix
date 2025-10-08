@@ -68,7 +68,7 @@
         "nofail"
       ];
     };
-    "/uGameServer" = {
+    "/uServerHost" = {
       device = "krutonium@10.3:/";
       fsType = "sshfs";
       options = [
