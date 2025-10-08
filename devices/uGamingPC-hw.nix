@@ -31,53 +31,64 @@
     fileSystems = [ "/games" ];
   };
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/90083dac-4f03-49f1-bb83-e7dc14eca16a";
-    fsType = "ext4";
-  };
-  #fileSystems."/games" =
-  #  { device = "UUID=3bf2876e-bdcc-45da-ac94-a5bcbf996df8";
-  #    fsType = "bcachefs";
-  #  };
-  fileSystems."/boot" = {
-    device = "UUID=48DA-2BEF";
-    fsType = "vfat";
-  };
-  fileSystems."/windows" = {
-    device = "UUID=6023862438DB2AD4";
-    fsType = "ntfs";
-  };
-  #  fileSystems."/games" = {
-  #    device = "/dev/disk/by-uuid/27cd03fa-4828-4c4f-b802-0318dbd4e3d3";
-  #    fsType = "bcachefs";
-  #  };
-  # https://www.schotty.com/Cheatsheets/LVM_Cheatsheet/
-  fileSystems."/games" = {
-    device = "/dev/games/main";
-    fsType = "ext4";
-  };
-
-  fileSystems."/uWebServer" = {
-    device = "krutonium@krutonium.ca:/";
-    fsType = "sshfs";
-    options = [
-      "allow_other" # for non-root access
-      "default_permissions"
-      "idmap=user"
-      "_netdev" # requires network to mount
-      "x-systemd.automount" # mount on demand
-      "uid=1000" # id -a
-      "gid=100"
-      "max_conns=20" # MOAR THREADS (when needed)
-      "IdentityFile=/home/krutonium/.ssh/id_ed25519"
-      # Handle connection drops better
-      "ServerAliveInterval=2"
-      "ServerAliveCountMax=2"
-      "reconnect"
-      "nofail"
-    ];
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-uuid/90083dac-4f03-49f1-bb83-e7dc14eca16a";
+      fsType = "ext4";
+    };
+    "/boot" = {
+      device = "UUID=48DA-2BEF";
+      fsType = "vfat";
+    };
+    "/windows" = {
+      device = "UUID=6023862438DB2AD4";
+      fsType = "ntfs";
+    };
+    "/games" = {
+      device = "/dev/games/main";
+      fsType = "ext4";
+    };
+    "/uWebServer" = {
+      device = "krutonium@krutonium.ca:/";
+      fsType = "sshfs";
+      options = [
+        "allow_other" # for non-root access
+        "default_permissions"
+        "idmap=user"
+        "_netdev" # requires network to mount
+        "x-systemd.automount" # mount on demand
+        "uid=1000" # id -a
+        "gid=100"
+        "max_conns=20" # MOAR THREADS (when needed)
+        "IdentityFile=/home/krutonium/.ssh/id_ed25519"
+        # Handle connection drops better
+        "ServerAliveInterval=2"
+        "ServerAliveCountMax=2"
+        "reconnect"
+        "nofail"
+      ];
+    };
+    "/uGameServer" = {
+      device = "krutonium@10.3:/";
+      fsType = "sshfs";
+      options = [
+        "allow_other" # for non-root access
+        "default_permissions"
+        "idmap=user"
+        "_netdev" # requires network to mount
+        "x-systemd.automount" # mount on demand
+        "uid=1000" # id -a
+        "gid=100"
+        "max_conns=20" # MOAR THREADS (when needed)
+        "IdentityFile=/home/krutonium/.ssh/id_ed25519"
+        # Handle connection drops better
+        "ServerAliveInterval=2"
+        "ServerAliveCountMax=2"
+        "reconnect"
+        "nofail"
+      ];
+    };
   };
   swapDevices = [ ];
-
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
