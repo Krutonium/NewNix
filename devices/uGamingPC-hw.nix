@@ -57,7 +57,7 @@
         "idmap=user"
         "_netdev" # requires network to mount
         "x-systemd.automount" # mount on demand
-        "uid=1000" # id -a
+        "uid=1002" # id -a
         "gid=100"
         "max_conns=20" # MOAR THREADS (when needed)
         "IdentityFile=/home/krutonium/.ssh/id_ed25519"
@@ -69,7 +69,7 @@
       ];
     };
     "/uServerHost" = {
-      device = "root@10.3:/";
+      device = "krutonium@10.3:/";
       fsType = "sshfs";
       options = [
         "allow_other" # for non-root access
@@ -77,7 +77,7 @@
         "idmap=user"
         "_netdev" # requires network to mount
         "x-systemd.automount" # mount on demand
-        "uid=1000" # id -a
+        "uid=1002" # id -a
         "gid=100"
         "max_conns=20" # MOAR THREADS (when needed)
         "IdentityFile=/home/krutonium/.ssh/id_ed25519"
