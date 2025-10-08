@@ -94,7 +94,7 @@ let
             #password=`${pkgs.coreutils}/bin/cat ${server.rconPasswordFile}`
             #${pkgs.mcrcon}/bin/mcrcon -H ${host} -P ${toString server.rconPort} -p "$password" -w 1 "say Starting Backup..." save-off save-all
             # Create snapshot
-            btrfs-snap -r -c -B /servers/snapshots/${server.name}/ . hourly 192
+            btrfs-snap -r -c -B /servers/snapshots/${server.name}/ . hourly 720
             #${pkgs.mcrcon}/bin/mcrcon -H ${host} -P ${toString server.rconPort} -p "$password" -w 1 save-on "say Done!"
           '';
         };
@@ -139,7 +139,7 @@ let
             nice -n 19 ${pkgs.p7zip}/bin/7z a "${backupDir}/$DATE.7z" ./*
             # Let the players know the backup is done
             # ${pkgs.mcrcon}/bin/mcrcon -H ${host} -P ${toString server.rconPort} -p "$password" -w 1 save-on "say Daily Backup Complete!"
-            find ${backupDir} -name "*.7z" -type f -mtime +7 -delete
+            find ${backupDir} -name "*.7z" -type f -mtime +30 -delete
             systemctl start minecraft-${server.name}
           '';
         };
