@@ -51,7 +51,9 @@
         "browser.sessionstore.resuming_after_os_restart" = true;
         "browser.link.open_newwindow.restriction" = 0;
         "browser.tabs.groups.enabled" = false;
+
         "browser.tabs.groups.smart.enabled" = false;
+        "browser.tabs.groups.smart.userEnabled" = false;
 
         "browser.cache.memory.enable" = false;
         "image.jxl.enabled" = true;
@@ -61,20 +63,21 @@
 
         "browser.tabs.insertAfterCurrent" = false; # decided I didn't like it
 
+        "browser.ml.enabled" = false;
         "browser.ml.chat.enabled" = false;
         "browser.ml.chat.menu" = false;
+        "browser.ml.chat.shortcuts" = false;
+        "browser.ml.chat.shortcuts.custom" = false;
+        "extensions.ml.enabled" = false;
         "browser.ml.chat.page" = false;
         "browser.ml.chat.page.footerBadge" = false;
         "browser.ml.chat.page.menuBadge" = false;
-        "browser.ml.chat.shortcuts" = false;
-        "browser.ml.chat.shortcuts.custom" = false;
+        "browser.mk.linkPreview.enable" = false;
         "browser.ml.chat.sidebar" = false;
         "browser.ml.chat.onboard.config" = "fuck you";
         "browser.ml.checkForMemory" = false;
         "browser.ml.linkPreview.shift" = false;
-        "browser.ml.enable" = false;
         "browser.ml.linkPreview.onboardingTimes" = 0;
-        
         "browser.urlbar.trimURLs" = false;
       };
     };
