@@ -82,7 +82,7 @@ in
     pkgs.appimage-run
     pkgs.goverlay
     pkgs.jstest-gtk
-    pkgs.unstable.openrct2
+    pkgs.openrct2
     pkgs.prismlauncher
     pkgs.steam-run
     pkgs.nexusmods-app
