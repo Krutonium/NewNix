@@ -224,7 +224,7 @@ in
     tuxclocker = { 
       enable = true;
       useUnfree = true;
-      enabledNVIDIADevices = [ 0 ];
+      enabledNVIDIADevices = [ 0 1 ];
     };
   };
   #Fix Discord and other Chromium based Bullshit
