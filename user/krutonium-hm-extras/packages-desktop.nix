@@ -40,8 +40,8 @@ in
     dotnetCombined
     pkgs.mono
     pkgs.godot_4-mono
-    pkgs.unstable.jetbrains.rider
-    pkgs.unstable.jetbrains.idea-ultimate
+    pkgs.jetbrains.rider
+    pkgs.jetbrains.idea-ultimate
     # idea
     # rider
 
@@ -111,19 +111,19 @@ in
 
 
     # Hashcat
-    (pkgs.unstable.hashcat.override { cudaSupport = true; })
+    (pkgs.hashcat.override { cudaSupport = true; })
   ];
   programs.obs-studio = {
     enable = true;
-    plugins = with pkgs.unstable.obs-studio-plugins; [
+    plugins = with pkgs.obs-studio-plugins; [
       obs-multi-rtmp
       obs-vkcapture
       obs-backgroundremoval
     ];
     package =
       if osConfig.networking.hostName == "uGamingPC"
-      then pkgs.unstable.obs-studio.override { cudaSupport = true; }
-      else pkgs.unstable.obs-studio;
+      then pkgs.obs-studio.override { cudaSupport = true; }
+      else pkgs.obs-studio;
 
   };
   programs.vscode = {

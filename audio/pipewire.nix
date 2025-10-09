@@ -86,7 +86,7 @@ in
     services = {
       pipewire = {
         enable = true;
-        package = pkgs.unstable.pipewire;
+        package = pkgs.pipewire;
         wireplumber = {
           enable = true;
           extraConfig."99-disable-powersave" = wp_disable_powersaving;

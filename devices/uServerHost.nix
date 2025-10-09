@@ -27,7 +27,7 @@ in
       acceleration = "cuda";
       openFirewall = true;
       host = "0.0.0.0";
-      package = pkgs.unstable.ollama-cuda.overrideAttrs (
+      package = pkgs.ollama-cuda.overrideAttrs (
         final: prev: {
           preBuild = ''
             cmake -B build \

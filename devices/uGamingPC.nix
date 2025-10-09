@@ -216,7 +216,6 @@ in
     #pkgs.lact
     pkgs.wlx-overlay-s
     pkgs.xrizer
-    pkgs.tuxclocker
     pkgs.wayvr-dashboard
   ];
   programs = {
@@ -229,7 +228,7 @@ in
     };
   };
   #Fix Discord and other Chromium based Bullshit
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  #environment.sessionVariables.NIXOS_OZONE_WL = "1";
   sys = {
     boot = {
       bootloader = "uefi";
