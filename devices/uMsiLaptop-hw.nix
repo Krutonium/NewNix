@@ -79,6 +79,46 @@ in
       device = "/dev/disk/by-uuid/3333f503-a70b-40b9-8037-8c226456bff4";
       fsType = "ext4";
     };
+    "/uWebServer" = {
+      device = "krutonium@krutonium.ca:/";
+      fsType = "sshfs";
+      options = [
+        "allow_other" # for non-root access
+        "default_permissions"
+        "idmap=user"
+        "_netdev" # requires network to mount
+        "x-systemd.automount" # mount on demand
+        "uid=1002" # id -a
+        "gid=100"
+        "max_conns=20" # MOAR THREADS (when needed)
+        "IdentityFile=/home/krutonium/.ssh/id_ed25519"
+        # Handle connection drops better
+        "ServerAliveInterval=2"
+        "ServerAliveCountMax=2"
+        "reconnect"
+        "nofail"
+      ];
+    };
+    "/uServerHost" = {
+      device = "root@10.3:/";
+      fsType = "sshfs";
+      options = [
+        "allow_other" # for non-root access
+        "default_permissions"
+        "idmap=user"
+        "_netdev" # requires network to mount
+        "x-systemd.automount" # mount on demand
+        "uid=1002" # id -a
+        "gid=100"
+        "max_conns=20" # MOAR THREADS (when needed)
+        "IdentityFile=/home/krutonium/.ssh/id_ed25519"
+        # Handle connection drops better
+        "ServerAliveInterval=2"
+        "ServerAliveCountMax=2"
+        "reconnect"
+        "nofail"
+      ];
+    };
   };
   swapDevices = [ ];
 
