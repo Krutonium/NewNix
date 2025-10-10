@@ -12,6 +12,7 @@ in
   config = mkIf (cfg.searx == true) {
     networking.firewall.allowedTCPPorts = [ 631 ];
     services.searx = {
+      package = pkgs.unstable.searxng;
       environmentFile = "/etc/secrets/searx_secret";
       enable = true;
       redisCreateLocally = true;
