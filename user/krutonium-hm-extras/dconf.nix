@@ -276,6 +276,12 @@ lib.mkIf isGnome {
       status-icon-padding = -1;
       tray-padding = -1;
       window-preview-title-position = "TOP";
+      trans-panel-opacity = 0.5;
+      trans-use-custom-opacity = true;
+      trans-use-dynamic-opacity = true;
+      trans-use-custom-gradient = true;
+      trans-gradient-bottom-color = "#dc8add";
+      trans-gradient-top-color = "#613583";
     };
 
     "org/gnome/shell/weather" = {
