@@ -121,16 +121,24 @@
           proto = "tcp";
           destination = "10.0.0.3:25568";
         }
+        # AtM10: To the Sky
+        {
+          sourcePort = 25570;
+          proto = "tcp";
+          destination = "10.0.0.3:25570";
+        }
         {
           sourcePort = 24454;
           proto = "udp";
           destination = "10.0.0.3:24454";
         }
+        # Vanilla Bedrock
         {
           sourcePort = 24455;
           proto = "udp";
           destination = "10.0.0.3:24455";
         }
+        # Vanilla Bedrock
         {
           sourcePort = 19132;
           proto = "udp";
