@@ -161,6 +161,15 @@ in
         "subvol=vanilla"
       ];
     };
+    "servers/AtM10_Sky" = {
+      device = btrfsDisk;
+      fsType = "btrfs";
+      options = [ 
+        "noatime"
+        "compress=zstd:15"
+        "subvol=AtM10_Sky"
+      ];
+    };
     "servers/create_chronicles" = {
       device = btrfsDisk;
       fsType = "btrfs";
