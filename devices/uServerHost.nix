@@ -199,7 +199,7 @@ in
       name = "AtM10_Sky";
       java = pkgs.jdk21;
       script = "startserver.sh";
-      enabled = false;
+      enabled = true;
       rconPort = 12370;
       rconPasswordFile = "/servers/rcon.password";
     }
