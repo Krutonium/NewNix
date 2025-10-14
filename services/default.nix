@@ -202,6 +202,13 @@ with builtins;
         Search @ search.krutonium.ca
       '';
     };
+    teamspeak-server = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        TeamSpeak Server
+      '';
+    };
   };
   imports = [
     ./plex.nix
@@ -230,5 +237,6 @@ with builtins;
     ./blog.nix
     ./update-schedule.nix
     ./searx.nix
+    ./teamspeak.nix
   ];
 }

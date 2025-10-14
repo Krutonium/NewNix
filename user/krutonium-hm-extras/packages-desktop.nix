@@ -108,7 +108,7 @@ in
     #})
     pkgs.unstable.vesktop
     pkgs.handbrake
-
+    pkgs.unstable.teamspeak6-client
 
     # Hashcat
     (pkgs.hashcat.override { cudaSupport = true; })
