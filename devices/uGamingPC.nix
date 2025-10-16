@@ -25,6 +25,7 @@ in
       "nvidia.NVreg_OpenRmEnableUnsupportedGpus=1"
       "nvidia.NVreg_EnableResizableBar=1"
       "mitigations=off"
+      "acpi_enforce_resources=lax"
     ];
     tmp.useTmpfs = false;
     loader.grub = {
@@ -201,6 +202,7 @@ in
   boot.blacklistedKernelModules = [
     "k10temp"
     "amdgpu"
+    "i2c-piix4"
   ];
 
   boot.kernelModules = kernelModules;
