@@ -2,7 +2,7 @@
 {
   programs.firefox = {
     enable = true;
-    package = pkgs.unstable.firefox-beta;
+    package = pkgs.firefox;
     profiles.krutonium = {
       extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
         bitwarden
