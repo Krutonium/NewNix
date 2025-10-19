@@ -51,6 +51,7 @@ lib.mkIf isGnome {
 
     "org/gnome/desktop/peripherals/touchpad" = {
       two-finger-scrolling-enabled = true;
+      disable-while-typing = false;
     };
 
     "org/gnome/desktop/privacy" = {
