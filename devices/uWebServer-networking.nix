@@ -130,7 +130,7 @@
         # AtM10: To the Sky / Simple Voice Chat
         {
           sourcePort = 24470;
-          proto = "tcp";
+          proto = "udp";
           destination = "10.0.0.3:24470";
         }
         {
