@@ -107,7 +107,7 @@ in
       #withMoonlight = true;
     #})
     pkgs.unstable.vesktop
-    pkgs.xwaylandvideobridge
+    pkgs.kdePackages.xwaylandvideobridge
     pkgs.handbrake
     pkgs.unstable.teamspeak6-client
 

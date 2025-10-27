@@ -283,6 +283,7 @@ lib.mkIf isGnome {
       trans-use-custom-gradient = true;
       trans-gradient-bottom-color = "#dc8add";
       trans-gradient-top-color = "#613583";
+      stockgs-keep-dash = true; # Fix for overview on startup
     };
 
     "org/gnome/shell/weather" = {
