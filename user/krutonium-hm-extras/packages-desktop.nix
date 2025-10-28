@@ -60,6 +60,7 @@ in
 
     # System Utilities
     pkgs.htop
+    pkgs.neohtop
     pkgs.fastfetch
     #pkgs.unstable.rustdesk-flutter
     pkgs.kdePackages.kleopatra
