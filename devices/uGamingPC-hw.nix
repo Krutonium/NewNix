@@ -40,10 +40,6 @@
       device = "UUID=48DA-2BEF";
       fsType = "vfat";
     };
-    "/windows" = {
-      device = "UUID=6023862438DB2AD4";
-      fsType = "ntfs";
-    };
     "/games" = {
       device = "/dev/games/main";
       fsType = "ext4";
