@@ -78,6 +78,7 @@ in
     "/storage" = {
       device = "/dev/disk/by-uuid/3333f503-a70b-40b9-8037-8c226456bff4";
       fsType = "ext4";
+      options = [ "defaults" "nofail" "x-gvfs-show" "x-gvfs-name=Storage" ];
     };
     "/uWebServer" = {
       device = "krutonium@krutonium.ca:/";
