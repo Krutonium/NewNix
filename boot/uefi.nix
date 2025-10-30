@@ -18,11 +18,12 @@ in
       loader = {
         efi = {
           efiSysMountPoint = cfg.uefiPath;
-          canTouchEfiVariables = true;
+          canTouchEfiVariables = false; # Let it use the default paths for compat
         };
         grub = {
           devices = [ devices ];
           efiSupport = true;
+          efiInstallAsRemovable = true;
           configurationLimit = 5;
           useOSProber = true;
           default = default;
