@@ -1,8 +1,7 @@
-{
-  config,
-  lib,
-  modulesPath,
-  ...
+{ config
+, lib
+, modulesPath
+, ...
 }:
 let
   btrfsDisk = "/dev/disk/by-uuid/941617ae-329b-477d-9760-09268d5cfeef";
@@ -78,7 +77,12 @@ in
     "/storage" = {
       device = "/dev/disk/by-uuid/3333f503-a70b-40b9-8037-8c226456bff4";
       fsType = "ext4";
-      options = [ "defaults" "nofail" "x-gvfs-show" "x-gvfs-name=Storage" ];
+      options = [
+        "defaults"
+        "nofail"
+        "x-gvfs-show"
+        "x-gvfs-name=Storage"
+      ];
     };
     "/uWebServer" = {
       device = "krutonium@krutonium.ca:/";
@@ -98,6 +102,8 @@ in
         "ServerAliveCountMax=2"
         "reconnect"
         "nofail"
+        "x-gvfs-show"
+        "x-gvfs-name=uWebServer"
       ];
     };
     "/uServerHost" = {
@@ -118,6 +124,8 @@ in
         "ServerAliveCountMax=2"
         "reconnect"
         "nofail"
+        "x-gvfs-show"
+        "x-gvfs-name=uServerHost"
       ];
     };
   };
