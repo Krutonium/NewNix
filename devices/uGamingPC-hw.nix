@@ -64,7 +64,6 @@
         "ServerAliveInterval=2"
         "ServerAliveCountMax=2"
         "reconnect"
-        "nofail"
         "x-gvfs-show"
         "x-gvfs-name=uWebServer"
       ];
@@ -86,7 +85,6 @@
         "ServerAliveInterval=2"
         "ServerAliveCountMax=2"
         "reconnect"
-        "nofail"
         "x-gvfs-show"
         "x-gvfs-name=uServerHost"
       ];
