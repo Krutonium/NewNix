@@ -164,6 +164,14 @@ in
           # Forward requests for e.g. SSO and password-resets.
           locations."/_synapse/client".proxyPass = "http://[::1]:8008";
           locations."/".proxyPass = "http://127.0.0.1:1313"; # Hugo
+          locations."/status" = {
+            extraConfig = ''
+              stub_status on;
+              access_log off;
+              allow 10.0.0.0/24;
+              deny all;
+            '';
+          };
         };
         "plex.krutonium.ca" = {
           forceSSL = true;
