@@ -150,7 +150,7 @@ in
     oci-containers = {
       backend = "docker";
       containers."restream" = {
-        autoStart = true;
+        autoStart = false;
         image = "datarhei/restreamer:vaapi-latest";
         ports = [
           "1233:8080"
