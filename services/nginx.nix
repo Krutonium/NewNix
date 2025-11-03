@@ -44,6 +44,26 @@ in
     services.nginx = {
       enable = true;
       package = pkg;
+      appendConfig = ''
+        rtmp {
+         server {
+           listen 1935;
+           chunk_size 4096;
+
+           application live {
+             live on;
+             record off;
+
+             # HLS output for browsers
+             hls on;
+             hls_path /tmp/live/hls;
+             hls_fragment 3s;
+             hls_playlist_length 60s;
+             hls_nested on;
+           }
+          }
+        }
+      '';
       recommendedTlsSettings = true;
       recommendedOptimisation = true;
       recommendedGzipSettings = true;
@@ -66,26 +86,6 @@ in
           locations."/" = {
             index = "index.html";
           };
-          extraConfig = ''
-            rtmp {
-             server {
-               listen 1935;
-               chunk_size 4096;
-
-               application live {
-                 live on;
-                 record off;
-
-                 # HLS output for browsers
-                 hls on;
-                 hls_path /tmp/live/hls;
-                 hls_fragment 3s;
-                 hls_playlist_length 60s;
-                 hls_nested on;
-               }
-              }
-            }
-          '';
           locations."/hls/" = {
             extraConfig = ''
               add_header 'Access-Control-Allow-Origin' '*';
