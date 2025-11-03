@@ -215,7 +215,7 @@ in
       name = "AoF7";
       java = pkgs.jdk21;
       script = "startserver.sh";
-      enabled = true;
+      enabled = false;
       rconPort = 12346;
       # Read Password from /servers/rcon.password
       rconPasswordFile = "/servers/rcon.password";
