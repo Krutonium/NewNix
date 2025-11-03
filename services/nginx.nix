@@ -28,6 +28,11 @@ in
     networking.firewall.allowedTCPPorts = [
       80
       443
+      1935 #RTMP
+    ];
+    systemd.tmpfiles.rules = [
+      "d /tmp/live 0755 nginx nginx"
+      "d /tmp/live/hls 0755 nginx nginx"
     ];
     security.acme = {
       defaults = {
@@ -39,6 +44,26 @@ in
     services.nginx = {
       enable = true;
       package = pkg;
+      extraConfig = ''
+        rtmp {
+         server {
+           listen 1935;
+           chunk_size 4096;
+
+           application live {
+             live on;
+             record off;
+
+             # HLS output for browsers
+             hls on;
+             hls_path /tmp/live/hls;
+             hls_fragment 3s;
+             hls_playlist_length 60s;
+             hls_nested on;
+           }
+          }
+        }
+      '';
       recommendedTlsSettings = true;
       recommendedOptimisation = true;
       recommendedGzipSettings = true;
@@ -50,21 +75,27 @@ in
         deny 47.74.0.0/15;
         deny 47.76.0.0/14;
       '';
-      rtmp = {
-        servers = {
-          live = {
-            listen = [ "1935" ]; # RTMP default port
-            application.live = {
-              live = true;
-              record = "off";
-            };
-          };
-        };
-      };
       eventsConfig = ''
         worker_connections 512;
       '';
       virtualHosts = {
+        "vrcstream.krutonium.ca" = {
+          root = "/var/www/vrcstream";
+          enableACME = true;
+          forceSSL = true;
+          locations."/" = {
+            index = "index.html";
+          };
+          locations."/hls/" = {
+            extraConfig = ''
+              add_header 'Access-Control-Allow-Origin' '*';
+              types {
+                application/vnd.apple.mpegurl m3u8;
+                video/mp2t ts;
+              }
+            '';
+          };
+        };
         "map.krutonium.ca" = {
           forceSSL = true;
           enableACME = true;
