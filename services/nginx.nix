@@ -30,10 +30,6 @@ in
       443
       1935 #RTMP
     ];
-    systemd.tmpfiles.rules = [
-      "d /tmp/live 0755 nginx nginx"
-      "d /tmp/live/hls 0755 nginx nginx"
-    ];
     systemd.services.nginx.serviceConfig = {
       ReadWritePaths = [ "/tmp/live" ];
       after = [ "systemd-tmpfiles-setup.service" ];
