@@ -1,8 +1,7 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
+{ config
+, pkgs
+, lib
+, ...
 }:
 with lib;
 with builtins;
@@ -17,6 +16,12 @@ let
     add_header Access-Control-Allow-Origin *;
     return 200 '${builtins.toJSON data}';
   '';
+  pkg = pkgs.nginx.override {
+    modules = [
+      pkgs.nginxModules.rtmp
+    ];
+  };
+
 in
 {
   config = mkIf (cfg.nginx == true) {
@@ -33,6 +38,7 @@ in
     };
     services.nginx = {
       enable = true;
+      package = pkg;
       recommendedTlsSettings = true;
       recommendedOptimisation = true;
       recommendedGzipSettings = true;
@@ -44,6 +50,17 @@ in
         deny 47.74.0.0/15;
         deny 47.76.0.0/14;
       '';
+      rtmp = {
+        servers = {
+          live = {
+            listen = [ "1935" ]; # RTMP default port
+            application.live = {
+              live = true;
+              record = "off";
+            };
+          };
+        };
+      };
       eventsConfig = ''
         worker_connections 512;
       '';
