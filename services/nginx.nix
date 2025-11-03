@@ -134,23 +134,6 @@ in
           enableACME = true;
           root = "/media2/fileHost";
         };
-        "webdav.krutonium.ca" = {
-          forceSSL = true;
-          enableACME = true;
-          root = "/media2/fileHost/gryphon"; # Same root or a different directory for WebDAV
-          locations."/" = {
-            extraConfig = ''
-              dav_methods PUT DELETE MKCOL COPY MOVE;
-              dav_ext_methods PROPFIND OPTIONS;
-              dav_access user:rw group:rw all:rw;
-              create_full_put_path on;
-              client_max_body_size 10G; # Adjust as needed
-              autoindex off; # Disable directory listing for WebDAV
-              auth_basic "WebDAV Restricted Access";
-              auth_basic_user_file /persist/httpAuth; # Use the same or a different auth file
-            '';
-          };
-        };
         "gryphon.krutonium.ca" = {
           forceSSL = true;
           enableACME = true;
