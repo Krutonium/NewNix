@@ -30,11 +30,10 @@ in
       443
       1935 #RTMP
     ];
-    systemd.services.nginx.serviceConfig = {
-      ReadWritePaths = [ "/tmp/live" ];
-      after = [ "systemd-tmpfiles-setup.service" ];
-      requires = [ "systemd-tmpfiles-setup.service" ];
-    };
+    systemd.tmpfiles.rules = [
+      "d /tmp/live 0755 nginx nginx"
+      "d /tmp/live/hls 0755 nginx nginx"
+    ];
     security.acme = {
       defaults = {
         renewInterval = "200h";
