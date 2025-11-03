@@ -80,8 +80,8 @@ in
         worker_connections 512;
       '';
       virtualHosts = {
-        "vrcstream.krutonium.ca" = {
-          root = "/var/www/vrcstream";
+        "vr.krutonium.ca" = {
+          root = "/persist/live";
           enableACME = true;
           forceSSL = true;
           locations."/" = {
