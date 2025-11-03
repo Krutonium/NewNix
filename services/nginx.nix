@@ -34,6 +34,7 @@ in
       "d /persist/live 0755 nginx nginx"
       "d /persist/live/hls 0755 nginx nginx"
     ];
+    systemd.services.nginx.serviceConfig.ReadWritePaths = [ "/persist/live/" ];
     security.acme = {
       defaults = {
         renewInterval = "200h";
