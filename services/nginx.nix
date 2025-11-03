@@ -1,7 +1,8 @@
-{ config
-, pkgs
-, lib
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  ...
 }:
 with lib;
 with builtins;
@@ -28,8 +29,69 @@ in
     networking.firewall.allowedTCPPorts = [
       80
       443
-      1935 #RTMP
+      1935 # RTMP
     ];
+    sops.secrets."stream_keys" = {
+      sopsFile = ./secrets/stream_keys.yaml;
+      key = "stream_keys";
+    };
+
+    systemd.services.rtmp-auth = {
+      description = "RTMP Auth Service for NGINX";
+      after = [ "network.target" ];
+      wantedBy = [ "multi-user.target" ];
+
+      serviceConfig = {
+        ExecStart = ''
+          ${pkgs.python3.withPackages (p: [ p.flask ])}/bin/python3 - <<'EOF'
+          from flask import Flask, request, abort
+
+          app = Flask(__name__)
+          KEY_FILE = "/run/secrets/stream_keys"
+
+          def load_keys():
+              keys = {}
+              try:
+                  with open(KEY_FILE, "r") as f:
+                      for line in f:
+                          if ":" in line:
+                              user, key = line.strip().split(":", 1)
+                              keys[user.strip()] = key.strip()
+              except FileNotFoundError:
+                  pass
+              return keys
+
+          @app.route("/auth", methods=["POST"])
+          def auth():
+              stream_name = request.args.get("name")
+              if not stream_name:
+                  abort(403)
+
+              try:
+                  username, stream_key = stream_name.split(":", 1)
+              except ValueError:
+                  abort(403)
+
+              valid_keys = load_keys()
+
+              if valid_keys.get(username) == stream_key:
+                  return "OK", 200
+              else:
+                  abort(403)
+
+          if __name__ == "__main__":
+              app.run(host="127.0.0.1", port=8081)
+          EOF
+        '';
+        Restart = "on-failure";
+        DynamicUser = true;
+        ProtectSystem = "strict";
+        ProtectHome = true;
+        NoNewPrivileges = true;
+        PrivateTmp = true;
+        ReadOnlyPaths = [ config.sops.secrets.stream_keys.path ];
+      };
+    };
     systemd.tmpfiles.rules = [
       "d /persist/live 0755 nginx nginx"
       "d /persist/live/hls 0755 nginx nginx"
@@ -61,6 +123,8 @@ in
              hls_fragment 3s;
              hls_playlist_length 60s;
              hls_nested on;
+
+             on_publish http://127.0.0.1:8081/auth;
            }
           }
         }
