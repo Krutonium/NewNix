@@ -31,8 +31,8 @@ in
       1935 #RTMP
     ];
     systemd.tmpfiles.rules = [
-      "d /tmp/live 0755 nginx nginx"
-      "d /tmp/live/hls 0755 nginx nginx"
+      "d /persist/live 0755 nginx nginx"
+      "d /persist/live/hls 0755 nginx nginx"
     ];
     security.acme = {
       defaults = {
@@ -56,7 +56,7 @@ in
 
              # HLS output for browsers
              hls on;
-             hls_path /tmp/live/hls;
+             hls_path /persist/live/hls;
              hls_fragment 3s;
              hls_playlist_length 60s;
              hls_nested on;
