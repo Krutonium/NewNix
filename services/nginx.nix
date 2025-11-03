@@ -44,6 +44,7 @@ in
     services.nginx = {
       enable = true;
       package = pkg;
+      serviceConfig.ReadWritePaths = [ "/tmp/live" ];
       appendConfig = ''
         rtmp {
          server {
