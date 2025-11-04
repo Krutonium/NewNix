@@ -57,18 +57,26 @@ in
             listen 1935;
             chunk_size 4096;
 
+            # Incoming ingest endpoint
             application live {
               live on;
               record off;
 
-              # HLS output for browsers
+              # Auth/redirect service
+              on_publish http://10.0.0.2:8081;
+            }
+
+            # Actual playback endpoint (where the redirect goes)
+            application streams {
+              live on;
+              record off;
+
+              # Enable HLS output
               hls on;
               hls_path /persist/live/hls;
+              hls_nested on;
               hls_fragment 3s;
               hls_playlist_length 60s;
-              hls_nested on;
-
-              on_publish http://10.0.0.2:8081;
             }
           }
         }
