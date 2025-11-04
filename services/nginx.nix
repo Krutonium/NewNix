@@ -53,23 +53,23 @@ in
       package = pkg;
       appendConfig = ''
         rtmp {
-         server {
-           listen 1935;
-           chunk_size 4096;
+          server {
+            listen 1935;
+            chunk_size 4096;
 
-           application live {
-             live on;
-             record off;
+            application live {
+              live on;
+              record off;
 
-             # HLS output for browsers
-             hls on;
-             hls_path /persist/live/hls;
-             hls_fragment 3s;
-             hls_playlist_length 60s;
-             hls_nested on;
+              # HLS output for browsers
+              hls on;
+              hls_path /persist/live/hls;
+              hls_fragment 3s;
+              hls_playlist_length 60s;
+              hls_nested on;
 
-             on_publish http://10.0.0.2:8081;
-           }
+              on_publish http://10.0.0.2:8081;
+            }
           }
         }
       '';
