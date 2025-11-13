@@ -39,6 +39,8 @@ in
     pkgs.logitech-udev-rules
     pkgs.via
   ];
+  programs.ydotool.enable = true;
+  programs.ydotool.group = "krutonium";
   programs.gamemode.enable = true;
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [
