@@ -24,5 +24,6 @@ in
       };
     };
     environment.systemPackages = [ pkgs.flameshot ];
+    xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 }
