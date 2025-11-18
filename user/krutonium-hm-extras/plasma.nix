@@ -19,6 +19,7 @@ lib.mkIf isKde {
   };
   home.packages = [
     pkgs.tilda
+    pkgs.kdePackages.kde-gtk-config
   ];
   # Package Config
   xdg.configFile."tilda/config_0" = {
