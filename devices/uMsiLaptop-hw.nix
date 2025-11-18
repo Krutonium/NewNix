@@ -1,7 +1,8 @@
-{ config
-, lib
-, modulesPath
-, ...
+{
+  config,
+  lib,
+  modulesPath,
+  ...
 }:
 let
   btrfsDisk = "/dev/disk/by-uuid/941617ae-329b-477d-9760-09268d5cfeef";
@@ -31,6 +32,14 @@ in
       options = [
         "defaults"
         "mode=755"
+      ];
+    };
+    "/tmp" = {
+      device = btrfsDisk;
+      fsType = "btrfs";
+      options = [
+        "compress=zstd:15"
+        "subvol=tmp"
       ];
     };
     "/boot" = {
