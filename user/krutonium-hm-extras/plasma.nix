@@ -11,8 +11,11 @@ lib.mkIf isKde {
   programs.plasma = {
     enable = true;
     shortcuts = {
+#      "services/org.flameshot.Flameshot.desktop".Capture = "Print";
+#      "services/org.kde.spectacle.desktop".RecordWindow = [ ];
     };
     configFile = {
+
     };
     dataFile = {
     };
