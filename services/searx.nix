@@ -15,10 +15,6 @@ in
       after = [ "wait-for-internet.service" ];
       requires = [ "wait-for-internet.servce" ];
     };
-    systemd.services.searx-init = {
-      after = [ "wait-for-internet.service" ];
-      requires = [ "wait-for-internet.servce" ];
-    };
     networking.firewall.allowedTCPPorts = [ 631 ];
     services.searx = {
       package = pkgs.unstable.searxng;
