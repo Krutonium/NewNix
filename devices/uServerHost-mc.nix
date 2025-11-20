@@ -50,7 +50,9 @@ let
           after = [
             "sys-subsystem-net-devices-WAN.device"
             "systemd-networkd-wait-online.service"
+            "wait-for-internet.service"
           ];
+          requires = [ "wait-for-internet.service" ];
           wants = [ "systemd-networkd-wait-online.service" ];
           bindsTo = [ "sys-subsystem-net-devices-WAN.device" ];
           description = "Minecraft Server (${server.name})";
