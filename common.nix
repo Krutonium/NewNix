@@ -61,6 +61,11 @@ in
       ];
   };
   services = {
+    wait-for-internet = {
+      enable = true;
+      pingTarget = "1.1.1.1";
+      httpTarget = "https://google.ca";
+    };
     lvm.enable = true;
     atd.enable = true;
     # CPU interrupt balancing

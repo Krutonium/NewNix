@@ -11,6 +11,10 @@ let
 in
 {
   config = mkIf (cfg.searx == true) {
+    systemd.services.searx = {
+      after = [ "wait-for-internet.service" ];
+      requires = [ "wait-for-internet.servce" ];
+    };
     networking.firewall.allowedTCPPorts = [ 631 ];
     services.searx = {
       package = pkgs.unstable.searxng;

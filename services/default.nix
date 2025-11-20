@@ -238,5 +238,6 @@ with builtins;
     ./update-schedule.nix
     ./searx.nix
     ./teamspeak.nix
+    ./wait-for-internet.nix
   ];
 }
