@@ -2,7 +2,8 @@
 {
   stylix = {
     enable = true;
-    base16Scheme = osConfig.stylix.base16Scheme;
+    #base16Scheme = osConfig.stylix.base16Scheme;
+    polarity = "dark";
     targets = {
       gtk.flatpakSupport.enable = false;
     };
@@ -18,6 +19,7 @@
       light = "Numix-Circle-Light";
       dark = "Numix-Circle-Light";
     };
+    image = ./assets/wallpaper.png;
     targets.firefox.profileNames = [ "krutonium" ];
   };
 }

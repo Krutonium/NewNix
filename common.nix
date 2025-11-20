@@ -131,7 +131,8 @@ in
   stylix = {
     enable = true;
     autoEnable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/ia-dark.yaml";
+    #base16Scheme = "${pkgs.base16-schemes}/share/themes/ia-dark.yaml";
+    image = ./user/krutonium-hm-extras/assets/wallpaper.png;
     targets = {
       grub.enable = false;
     };
