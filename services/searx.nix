@@ -13,7 +13,11 @@ in
   config = mkIf (cfg.searx == true) {
     systemd.services.searx = {
       after = [ "wait-for-internet.service" ];
-      requires = [ "wait-for-internet.servce" ];
+      requires = [ "wait-for-internet.service" ];
+    };
+    systemd.services.searx-init = {
+      after = [ "wait-for-internet.service" ];
+      requires = [ "wait-for-internet.service" ];
     };
     networking.firewall.allowedTCPPorts = [ 631 ];
     services.searx = {
