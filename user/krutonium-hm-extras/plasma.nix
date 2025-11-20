@@ -21,7 +21,7 @@ lib.mkIf isKde {
     };
   };
   home.packages = [
-    pkgs.kdePacakges.yakuake
+    pkgs.kdePackages.yakuake
     pkgs.kdePackages.kde-gtk-config
     pkgs.gsettings-desktop-schemas
     pkgs.dconf
