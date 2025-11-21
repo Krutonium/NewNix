@@ -140,6 +140,7 @@ in
     image = ./user/krutonium-hm-extras/assets/wallpaper.png;
     targets = {
       grub.enable = false;
+      gnome.enable = true;
     };
     cursor = {
       name = "oreo_spark_purple_bordered_cursors";
