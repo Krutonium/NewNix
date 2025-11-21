@@ -9,8 +9,6 @@ let
   cfg = config.services.wait-for-internet;
 
   script = pkgs.writeShellScript "wait-for-internet.sh" ''
-    #!/usr/bin/env bash
-
     set -eu
 
     ping_target="${cfg.pingTarget}"
