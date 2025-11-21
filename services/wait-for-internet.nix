@@ -20,9 +20,9 @@ let
 
     while true; do
       # Check ping reachability
-      if ping -c1 -W1 "$ping_target" > /dev/null 2>&1; then
+      if ${pkgs.iputils}/bin/ping -c1 -W1 "$ping_target" > /dev/null 2>&1; then
         # Check HTTP reachability
-        if curl -s --head "$http_target" | grep "200" > /dev/null; then
+        if ${pkgs.curl}/bin/curl -s --head "$http_target" | grep "200" > /dev/null; then
           echo "Internet connection confirmed."
           exit 0
         fi
