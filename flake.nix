@@ -66,25 +66,24 @@
     };
   };
   outputs =
-    {
-      self,
-      nixpkgs,
-      nixpkgs-unstable,
-      nixpkgs-master,
-      nixos-hardware,
-      home-manager,
-      update,
-      nixd,
-      fan-controller,
-      nur,
-      R2CC,
-      MediaServer,
-      sops-nix,
-      minegrub,
-      stylix,
-      nixpkgs-xr,
-      plasma-manager,
-      ...
+    { self
+    , nixpkgs
+    , nixpkgs-unstable
+    , nixpkgs-master
+    , nixos-hardware
+    , home-manager
+    , update
+    , nixd
+    , fan-controller
+    , nur
+    , R2CC
+    , MediaServer
+    , sops-nix
+    , minegrub
+    , stylix
+    , nixpkgs-xr
+    , plasma-manager
+    , ...
     }@inputs:
     let
       system = "x86_64-linux";
@@ -198,5 +197,21 @@
         uMsiLaptop = nixosConfiguration "uMsiLaptop" (commonPCModules ++ commonLaptop ++ commonIntel ++ gpuIntel ++ [ ./devices/uMsiLaptop.nix ]);
         uServerHost = nixosConfiguration "uServerHost" (commonPCModules ++ commonAMD ++ gpuNvidia ++ [ ./devices/uServerHost.nix ]);
       };
+      devShells.${system}.default =
+        let
+          pkgs = import nixpkgs {
+            inherit system;
+            config.allowUnfree = true;
+          };
+        in
+        pkgs.mkShell {
+          packages = [
+            pkgs.jetbrains.idea-ultimate
+          ];
+          shellHook = ''
+            echo "Launching IntelliJ IDEA for $(pwd)…"
+            idea-ultimate . 2>/dev/null &
+          '';
+        };
     };
 }
