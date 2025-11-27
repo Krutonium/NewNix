@@ -18,6 +18,9 @@
         "application/x-rar" = [ "org.gnome.FileRoller.desktop" ];
         "application/x-ms-dos-executable" = [ "wine.desktop" ];
         "x-scheme-handler/nxm" = [ "com.nexusmods.app.desktop" ];
+        "x-scheme-handler/http" = [ "firefox.desktop" ];
+        "x-scheme-handler/https" = [ "firefox.desktop" ];
+
 
         "text/html" = [ "firefox.desktop" ];
         "text/plain" = [ "org.gnome.TextEditor.desktop" ];
