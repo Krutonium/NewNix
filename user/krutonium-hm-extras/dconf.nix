@@ -134,7 +134,9 @@ lib.mkIf isGnome {
       ];
       panel-icon-type = "none";
     };
-
+    "/org/gnome/settings-daemon/plugins/housekeeping/" = {
+      donation-reminder-enabled = false;
+    };
     "org/gnome/shell" = {
       disabled-extensions = [ "apps-menu@gnome-shell-extensions.gcampax.github.com" ];
       enabled-extensions = extensionUuids;
