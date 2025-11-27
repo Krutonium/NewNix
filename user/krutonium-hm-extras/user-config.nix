@@ -5,7 +5,6 @@ let
     jdk11 = pkgs.jdk11;
     jdk17 = pkgs.jdk17;
     jdk21 = pkgs.jdk21;
-    jdk24 = pkgs.jdk24;
   };
 
   javaLinks = lib.mapAttrs'

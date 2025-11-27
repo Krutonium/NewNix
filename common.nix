@@ -33,10 +33,6 @@ in
 
   systemd = {
     enableEmergencyMode = false;
-    extraConfig = ''
-      DefaultLimitNOFILE=1048576
-      DefaultTimeoutStopSec=10s
-    '';
     network.wait-online.anyInterface = true;
     services = {
       systemd-udev-settle.enable = true;
@@ -150,15 +146,15 @@ in
     fonts = {
       monospace = {
         name = "Ubuntu Mono Regular";
-        package = pkgs.ubuntu_font_family;
+        package = pkgs.ubuntu-classic;
       };
       sansSerif = {
         name = "Ubuntu";
-        package = pkgs.ubuntu_font_family;
+        package = pkgs.ubuntu-classic;
       };
       serif = {
         name = "Ubuntu";
-        package = pkgs.ubuntu_font_family;
+        package = pkgs.ubuntu-classic;
       };
       sizes = {
         applications = 12;

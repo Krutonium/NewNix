@@ -1,7 +1,6 @@
-{
-  config,
-  lib,
-  ...
+{ config
+, lib
+, ...
 }:
 with lib;
 with builtins;
@@ -17,15 +16,11 @@ in
           enable = false;
         };
       };
-      xserver = {
-        enable = true;
-        excludePackages = [ ];
-        displayManager = {
-          gdm = {
-            enable = true;
-            wayland = cfg.wayland;
-            autoSuspend = cfg.autoSuspend;
-          };
+      displayManager = {
+        gdm = {
+          enable = true;
+          wayland = cfg.wayland;
+          autoSuspend = cfg.autoSuspend;
         };
       };
     };

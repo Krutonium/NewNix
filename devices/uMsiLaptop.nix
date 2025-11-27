@@ -26,7 +26,7 @@ in
   boot.loader.grub.gfxpayloadEfi = "keep";
   systemd.network.enable = true;
   environment.systemPackages = [
-    kernel.perf
+    pkgs.perf
     pkgs.teamviewer
   ];
   imports = [

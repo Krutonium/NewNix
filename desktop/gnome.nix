@@ -12,12 +12,10 @@ in
 {
   config = mkIf (cfg.desktop == "gnome") {
     services = {
-      xserver = {
         desktopManager = {
           gnome = {
             enable = true;
           };
-        };
       };
     };
     hardware = {

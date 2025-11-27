@@ -2,8 +2,12 @@
 {
   programs.git = {
     enable = true;
-    userName = "Krutonium";
-    userEmail = "PFCKrutonium@gmail.com";
+    settings = {
+      user = {
+        name = "Krutonium";
+        email = "PFCKrutonium@gmail.com";
+      };
+    };
     lfs.enable = true;
   };
 }
