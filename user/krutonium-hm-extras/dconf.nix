@@ -134,7 +134,7 @@ lib.mkIf isGnome {
       ];
       panel-icon-type = "none";
     };
-    "/org/gnome/settings-daemon/plugins/housekeeping/" = {
+    "org/gnome/settings-daemon/plugins/housekeeping/" = {
       donation-reminder-enabled = false;
     };
     "org/gnome/shell" = {
