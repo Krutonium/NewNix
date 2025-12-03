@@ -103,7 +103,7 @@ in
           enable = false;
         };
         extraConfig.pipewire = {
-          # "99-input-denoise" = pw_rnnoise_config;
+          "99-input-denoise" = pw_rnnoise_config;
           "99-fix-crackle" = pw_fix_crackle;
         };
       };
