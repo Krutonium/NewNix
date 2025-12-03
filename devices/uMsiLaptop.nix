@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 let
-  kernel = pkgs.nvidiaFor pkgs.linuxPackages_zen;
+  kernel = pkgs.nvidiaFor "590.44.01" pkgs.linuxPackages_zen;
   video = config.boot.kernelPackages.nvidiaPackages.stable;
   Hostname = "uMsiLaptop";
 in
