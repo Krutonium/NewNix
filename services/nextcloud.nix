@@ -20,7 +20,7 @@ in
         configureRedis = true;
         maxUploadSize = "10240M";
         hostName = "nextcloud.krutonium.ca";
-        package = pkgs.nextcloud31;
+        package = pkgs.nextcloud32;
         home = "/media2/nextcloud";
         settings.log_type = "file";
         config = {
