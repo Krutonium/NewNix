@@ -49,7 +49,7 @@ in
     bottles
 
     # Hardware & System Tools
-    pkgs.openrgb
+    #pkgs.openrgb
 
     # Media & Entertainment
     pkgs.ffmpeg-full
