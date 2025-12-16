@@ -154,7 +154,7 @@ in
   services.hardware.openrgb = {
     enable = true;
     motherboard = "amd";
-    package = pkgs.openrgb;
+    package = pkgs.openrgb-with-all-plugins;
   };
   services.ollama = {
     enable = false;
