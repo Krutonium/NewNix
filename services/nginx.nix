@@ -63,7 +63,7 @@ in
               record off;
 
               # Auth/redirect service
-              on_publish http://10.0.0.2:8081;
+              # on_publish http://10.0.0.2:8081;
             }
 
             # Actual playback endpoint (where the redirect goes)
