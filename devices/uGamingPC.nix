@@ -15,6 +15,8 @@ let
     "dm-cache-mq"
     "dm-persistent-data"
     "ddcci"
+    "i2c-dev" #RGB
+    "i2c-piix4"
   ];
 in
 {
