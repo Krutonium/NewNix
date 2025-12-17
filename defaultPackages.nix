@@ -60,6 +60,7 @@ in
     pkgs.wl-clipboard
     pkgs.sops
     pkgs.cachix
+    pkgs.nh
   ];
 
 }
