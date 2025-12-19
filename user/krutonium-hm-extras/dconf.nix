@@ -125,7 +125,7 @@ lib.mkIf isGnome {
       focus-change-on-pointer-rest = true;
       overlay-key = "Super_L";
       workspaces-only-on-primary = true;
-      experimental-features = [ "variable-refresh-rate" "dma-buf-screen-sharing" ];
+      experimental-features = [ "variable-refresh-rate" ];
     };
 
     "com/github/amezin/ddterm" = {
