@@ -42,6 +42,8 @@ in
     pkgs.godot_4-mono
     pkgs.jetbrains.rider
     pkgs.jetbrains.idea-ultimate
+    pkgs.ocl-icd
+    pkgs.clinfo
     # idea
     # rider
 

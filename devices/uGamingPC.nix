@@ -46,7 +46,7 @@ in
   programs.gamemode.enable = true;
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [
-    webkitgtk_4_1
+    ocl-icd
   ];
   # Disable Sleep/Hibernate System Wide
   systemd.targets.sleep.enable = true;
