@@ -4,7 +4,7 @@
 , ...
 }:
 let
-  kernel = pkgs.linuxPackages_zen;
+  kernel = pkgs.unstable.linuxPackages_zen;
   video = config.boot.kernelPackages.nvidiaPackages.latest;
   zenpower = config.boot.kernelPackages.zenpower;
   ddcci = config.boot.kernelPackages.ddcci-driver;
