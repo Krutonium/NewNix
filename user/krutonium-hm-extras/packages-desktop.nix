@@ -19,8 +19,12 @@ let
     sha256 = "sha256:0arzwhxmxgyy6w56dgm5idlchp8zs6ia3yf02i2n0qp379dkdcgg";
   };
 
-  rider = (pkgs.unstable.jetbrains.plugins.addPlugins pkgs.unstable.jetbrains.rider [ "github-copilot" ]);
-  idea = (pkgs.unstable.jetbrains.plugins.addPlugins pkgs.unstable.jetbrains.idea-ultimate [ "github-copilot" ]);
+  commonPlugins = [ "nix-idea" ];
+
+  #rider = pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.rider commonPlugins;
+  #idea = pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.idea commonPlugins;
+  #rider = (pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.rider ["github-copilot" "nix-idea"]);
+  #idea = (pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.idea ["github-copilot" "nix-idea"]);
   bottles = (pkgs.bottles.override { removeWarningPopup = true; });
 
 in
@@ -40,8 +44,10 @@ in
     dotnetCombined
     pkgs.mono
     pkgs.godot_4-mono
+    #idea
+    #rider
     pkgs.jetbrains.rider
-    pkgs.jetbrains.idea-ultimate
+    pkgs.jetbrains.idea
     pkgs.ocl-icd
     pkgs.clinfo
     # idea

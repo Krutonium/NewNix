@@ -4,6 +4,7 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    jetbrains-plugins.url = "github:nix-community/nix-jetbrains-plugins";
     minegrub = {
       url = "github:Lxtharia/minegrub-world-sel-theme";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -83,6 +84,7 @@
     , stylix
     , nixpkgs-xr
     , plasma-manager
+    , jetbrains-plugins
     , ...
     }@inputs:
     let
@@ -206,7 +208,7 @@
         in
         pkgs.mkShell {
           packages = [
-            pkgs.jetbrains.idea-ultimate
+            pkgs.jetbrains.idea
           ];
           shellHook = ''
             echo "Launching IntelliJ IDEA for $(pwd)…"
