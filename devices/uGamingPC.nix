@@ -4,8 +4,8 @@
 , ...
 }:
 let
-  kernel = pkgs.nvidiaFor "590.44.01" pkgs.linuxPackages_zen;
-  video = config.boot.kernelPackages.nvidiaPackages.stable;
+  kernel = pkgs.linuxPackages_zen;
+  video = config.boot.kernelPackages.nvidiaPackages.latest;
   zenpower = config.boot.kernelPackages.zenpower;
   ddcci = config.boot.kernelPackages.ddcci-driver;
   Hostname = "uGamingPC";
