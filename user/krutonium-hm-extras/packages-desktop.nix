@@ -109,7 +109,7 @@ in
     # Communication
     pkgs.fractal
     pkgs.srain
-    pkgs.unstable._64gram
+    pkgs.unstable.ayugram-desktop
     #(pkgs.discord.override {
       #withOpenASAR = true;
       #withVencord = true;
