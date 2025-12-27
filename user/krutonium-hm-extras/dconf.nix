@@ -196,7 +196,34 @@ lib.mkIf isGnome {
             "terminal"
           ])
         ]
-
+        [
+          (mkDictionaryEntry [
+            "id"
+            "steam.desktop"
+          ])
+          (mkDictionaryEntry [
+            "icon"
+            "steam"
+          ])
+          (mkDictionaryEntry [
+            "name"
+            "Steam"
+          ])
+        ]
+        [
+          (mkDictionaryEntry [
+            "id"
+            "com.ayugram.desktop.desktop"
+          ])
+          (mkDictionaryEntry [
+            "icon"
+            "telegram"
+          ])
+          (mkDictionaryEntry [
+            "name"
+            "Telegram"
+          ])
+        ]
         [
           (mkDictionaryEntry [
             "id"
@@ -229,7 +256,7 @@ lib.mkIf isGnome {
         [
           (mkDictionaryEntry [
             "id"
-            "idea-ultimate.desktop"
+            "idea.desktop"
           ])
           (mkDictionaryEntry [
             "name"

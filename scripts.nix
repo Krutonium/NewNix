@@ -168,6 +168,11 @@ let
     fi
   '';
   reboot-fw = pkgs.writeShellScriptBin "reboot-fw" "sudo systemctl reboot --firmware-setup";
+  find-desktop = pkgs.writeShellScriptBin "find-desktop" ''
+    nix run github:Krutonium/FindTheDesktop -- $@
+  '';
+
+
 in
 {
   environment.systemPackages = [
@@ -189,5 +194,6 @@ in
     help
     transcode-vr
     reboot-fw
+    find-desktop
   ];
 }
