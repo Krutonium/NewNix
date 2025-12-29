@@ -129,11 +129,7 @@ in
       obs-vkcapture
       obs-backgroundremoval
     ];
-    package =
-      if osConfig.networking.hostName == "uGamingPC"
-      then pkgs.obs-studio.override { cudaSupport = true; }
-      else pkgs.obs-studio;
-
+    package = pkgs.obs-studio;
   };
   programs.vscode = {
     enable = true;
