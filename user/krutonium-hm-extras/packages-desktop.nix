@@ -120,7 +120,7 @@ in
     pkgs.unstable.teamspeak6-client
 
     # Hashcat
-    (pkgs.hashcat.override { cudaSupport = true; })
+    pkgs.hashcat
   ];
   programs.obs-studio = {
     enable = true;
