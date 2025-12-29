@@ -285,7 +285,7 @@ in
     # https://github.com/WiVRn/WiVRn-APK/releases
     enable = true;
     openFirewall = true;
-    package = (pkgs.unstable.wivrn.override { cudaSupport = true; });
+    package = pkgs.unstable.wivrn;
     # Write information to /etc/xdg/openxr/1/active_runtime.json, VR applications
     # will automatically read this and work with WiVRn (Note: This does not currently
     # apply for games run in Valve's Proton)

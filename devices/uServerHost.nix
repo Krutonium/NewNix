@@ -20,7 +20,7 @@ in
     firewall.enable = lib.mkForce false;
     hostName = Hostname;
   };
-  # nixpkgs.config.cudaSupport = true;
+  nixpkgs.config.cudaSupport = true;
   services = {
     ollama = {
       enable = true;
