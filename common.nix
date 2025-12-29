@@ -204,6 +204,7 @@ in
       NIXPKGS_ALLOW_UNFREE = "1";
       # MANGOHUD = "1";
       GSK_RENDERER = "ngl";
+      VST_PATH = "${pkgs.zlequalizer}/lib/vst";
     };
   };
 
@@ -264,6 +265,12 @@ in
         "x86_64-linux"
         "big-parallel"
         "kvm"
+      ];
+      substituters = [
+        "https://cache.nixos-cuda.org"
+      ];
+      trusted-public-keys = [
+        "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
       ];
     };
     registry.unstable.to = {
