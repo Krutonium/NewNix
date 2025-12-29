@@ -20,7 +20,7 @@ in
     firewall.enable = lib.mkForce false;
     hostName = Hostname;
   };
-
+  # nixpkgs.config.cudaSupport = true;
   services = {
     ollama = {
       enable = true;
@@ -164,7 +164,7 @@ in
     "servers/AtM10_Sky" = {
       device = btrfsDisk;
       fsType = "btrfs";
-      options = [ 
+      options = [
         "noatime"
         "compress=zstd:15"
         "subvol=AtM10_Sky"
