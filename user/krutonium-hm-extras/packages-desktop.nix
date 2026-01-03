@@ -95,7 +95,7 @@ in
     pkgs.prismlauncher
     pkgs.steam-run
     pkgs.nexusmods-app
-    pkgs.unstable.sgdboop
+    pkgs.sgdboop
 
     pkgs.dolphin-emu
     pkgs.pcsx2
