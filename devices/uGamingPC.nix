@@ -116,6 +116,7 @@ in
         48010
         1337
         11434
+        4455 # OBS WebSocket
       ]; # 11434 is Ollama
       allowedUDPPorts = [
         47998
