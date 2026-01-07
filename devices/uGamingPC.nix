@@ -215,6 +215,7 @@ in
   environment.systemPackages = [
     #video
     pkgs.gamescope
+    pkgs.libdecor # Required for Gamescope
     pkgs.piper
     # Normally I wouldn't but I need this on this PC and not my laptop. TODO: Address in eventual re-write
     pkgs.davinci-resolve
