@@ -72,6 +72,7 @@ in
     pkgs.fastfetch
     #pkgs.unstable.rustdesk-flutter
     pkgs.kdePackages.kleopatra
+    pkgs.remmina
 
     # Terminal & Shell Tools
     pkgs.babelfish
