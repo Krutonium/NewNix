@@ -121,7 +121,10 @@ in
 
     # Hashcat
     pkgs.hashcat
+
+    pkgs.gpu-screen-recorder.gtk
   ];
+  programs.gpu-screen-recorder.enable = true;
   programs.obs-studio = {
     enable = true;
     plugins = with pkgs.obs-studio-plugins; [
