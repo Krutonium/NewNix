@@ -194,6 +194,8 @@ in
 
   # Shell configuration
   environment = {
+    localBinInPath = true;
+    homeBinInPath = true;
     shellAliases = {
       ls = "${lib.getExe pkgs.eza} --icons --git";
       cat = "${lib.getExe pkgs.bat}";
