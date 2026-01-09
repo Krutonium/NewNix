@@ -123,7 +123,7 @@ in
     # Hashcat
     pkgs.hashcat
 
-    pkgs.gpu-screen-recorder.gtk
+    pkgs.gpu-screen-recorder-gtk
   ];
   programs.obs-studio = {
     enable = true;
