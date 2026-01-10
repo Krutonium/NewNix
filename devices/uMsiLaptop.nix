@@ -106,6 +106,7 @@ in
       };
     };
   };
+  services.flatpak.enable = true;
   hardware = {
     graphics.enable = true;
     #Disabled due to Charger being too low wattage.
