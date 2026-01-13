@@ -17,7 +17,6 @@ in
   boot.kernelModules = [ "nct6775" ];
   # We want to disable the firewall; the home firewall will be guarding for us.
   networking = {
-    firewall.enable = lib.mkForce false;
     hostName = Hostname;
   };
   nixpkgs.config.cudaSupport = true;
@@ -193,7 +192,8 @@ in
   environment.systemPackages = [
     pkgs.MediaServer
   ];
-
+  networking.firewall.allowedTCPPorts = [ 22 25565 25566 25568 25570 ];
+  networking.firewall.allowedUDPPorts = [ 24470 24454 24455 19132 ];
   minecraftServers.servers = [
     {
       name = "AtM10_Sky";
