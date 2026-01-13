@@ -61,7 +61,7 @@ in
   boot.extraModulePackages = with config.boot.kernelPackages; [ vendor-reset ];
   imports = [
     ./uWebServer-hw.nix
-    ./router
+    ./uWebServer-networking.nix
   ];
   services.xserver.videoDrivers = [ "amdgpu" ];
   hardware.graphics = {
