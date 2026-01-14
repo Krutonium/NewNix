@@ -178,6 +178,15 @@ in
         "subvol=create_chronicles"
       ];
     };
+    "servers/Hytale" = {
+      device = btrfsDisk;
+      fsType = "btrfs";
+      options = [
+        "noatime"
+        "compress=zstd:15"
+        "subvol=Hytale"
+      ];
+    };
     "/backups" = {
       device = "/dev/disk/by-label/Backups";
       fsType = "ext4";
@@ -235,6 +244,14 @@ in
       enabled = true;
       rconPort = 12348;
       rconPasswordFile = "/servers/rcon.password";
+    }
+    {
+      name = "Hytale";
+      java = pkgs.jdk25;
+      script = "startserver.sh"
+      enabled = true;
+      rconPort = 0;
+      rconPasswordFile = "/dev/null";
     }
   ];
   services = {
