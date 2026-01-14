@@ -202,7 +202,7 @@ in
     pkgs.MediaServer
   ];
   networking.firewall.allowedTCPPorts = [ 22 25565 25566 25568 25570 ];
-  networking.firewall.allowedUDPPorts = [ 24470 24454 24455 19132 ];
+  networking.firewall.allowedUDPPorts = [ 24470 24454 24455 19132 5520 ];
   minecraftServers.servers = [
     {
       name = "AtM10_Sky";
@@ -248,7 +248,7 @@ in
     {
       name = "Hytale";
       java = pkgs.jdk25;
-      script = "startserver.sh"
+      script = "startserver.sh";
       enabled = true;
       rconPort = 0;
       rconPasswordFile = "/dev/null";
