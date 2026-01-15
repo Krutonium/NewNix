@@ -150,6 +150,11 @@
           proto = "udp";
           destination = "10.0.0.3:19132";
         }
+	{ # Hytale
+	  sourcePort = 5520;
+	  proto = "udp";
+          destination = "10.0.0.3:5520";
+        }
       ];
     };
     interfaces = {
