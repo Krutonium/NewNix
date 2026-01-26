@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 let
-  kernel = pkgs.nvidiaFor "580.119.02" pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-x86_64-v3;
+  kernel = pkgs.nvidiaFor "580.119.02" pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto;
   video = config.boot.kernelPackages.nvidiaPackages.stable;
   Hostname = "uMsiLaptop";
 in
@@ -30,7 +30,7 @@ in
     pkgs.teamviewer
   ];
   environment.sessionVariables = {
-    __EGL_VENDOR_LIBRARY_FILENAMES = "${config.hardware.nvidia.package}/share/glvnd/egl_vendor.d/10_nvidia.json";
+    #__EGL_VENDOR_LIBRARY_FILENAMES = "${config.hardware.nvidia.package}/share/glvnd/egl_vendor.d/10_nvidia.json";
   };
   imports = [
     ./uMsiLaptop-hw.nix
