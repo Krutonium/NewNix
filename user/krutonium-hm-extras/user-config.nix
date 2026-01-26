@@ -74,7 +74,7 @@ in
       external_drivers = null;
       jsonid = "vrpathreg";
       log = [ "~/.local/share/Steam/logs" ];
-      runtime = [ "${pkgs.xrizer}/lib/xrizer" ];
+      # runtime = [ "${pkgs.xrizer}/lib/xrizer" ];
       version = 1;
     };
   };

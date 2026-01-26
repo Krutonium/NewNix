@@ -4,7 +4,7 @@
 , ...
 }:
 let
-  kernel = pkgs.unstable.linuxPackages_zen;
+  kernel = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto;
   video = config.boot.kernelPackages.nvidiaPackages.latest;
   zenpower = config.boot.kernelPackages.zenpower;
   ddcci = config.boot.kernelPackages.ddcci-driver;
@@ -200,7 +200,7 @@ in
     extraPackages = [ pkgs.monado-vulkan-layers ];
   };
   boot.extraModulePackages = with config.boot.kernelPackages; [
-    zenpower.out
+    #zenpower.out
     pkgs.ddcutil.out
     ddcci
   ];
@@ -223,13 +223,13 @@ in
     #pkgs.wlx-overlay-s
     #pkgs.lact
     pkgs.wlx-overlay-s
-    pkgs.xrizer
+    #pkgs.xrizer
     pkgs.wayvr-dashboard
   ];
   programs = {
     wireshark.enable = true;
     adb.enable = true;
-    tuxclocker = { 
+    tuxclocker = {
       enable = true;
       useUnfree = true;
       enabledNVIDIADevices = [ 0 1 ];
