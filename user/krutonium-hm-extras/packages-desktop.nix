@@ -87,6 +87,7 @@ in
 
     # Gaming
     # shipwright
+    pkgs.protonplus
     pkgs.shipwright
     pkgs._2ship2harkinian
     pkgs.appimage-run
