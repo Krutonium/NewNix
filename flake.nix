@@ -65,6 +65,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
   };
   outputs =
     { self
@@ -85,6 +86,7 @@
     , nixpkgs-xr
     , plasma-manager
     , jetbrains-plugins
+    , nix-cachyos-kernel
     , ...
     }@inputs:
     let
@@ -152,6 +154,7 @@
           { ... }:
           {
             nixpkgs.overlays = [
+              nix-cachyos-kernel.overlays.pinned
               overlays.unstable
               overlays.master
               overlays.nixpkgsUpdate

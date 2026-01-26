@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 let
-  kernel = pkgs.nvidiaFor "580.119.02" pkgs.linuxPackages_zen;
+  kernel = pkgs.nvidiaFor "580.119.02" pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-x86_64-v3;
   video = config.boot.kernelPackages.nvidiaPackages.stable;
   Hostname = "uMsiLaptop";
 in
