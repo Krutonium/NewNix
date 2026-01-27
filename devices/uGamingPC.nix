@@ -238,7 +238,7 @@ in
   #Fix Discord and other Chromium based Bullshit
   #environment.sessionVariables.NIXOS_OZONE_WL = "1";
   environment.sessionVariables = {
-    __EGL_VENDOR_LIBRARY_FILENAMES="${config.hardware.nvidia.package}/share/glvnd/egl_vendor.d/10_nvidia.json";
+    #__EGL_VENDOR_LIBRARY_FILENAMES="${config.hardware.nvidia.package}/share/glvnd/egl_vendor.d/10_nvidia.json";
   };
   sys = {
     boot = {
