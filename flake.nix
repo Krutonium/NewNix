@@ -44,10 +44,10 @@
       url = "github:icewind1991/nvidia-patch-nixos";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    lix-module = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.0.tar.gz";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    #lix-module = {
+    #  url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.0.tar.gz";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -66,6 +66,7 @@
       inputs.home-manager.follows = "home-manager";
     };
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
+
   };
   outputs =
     { self
