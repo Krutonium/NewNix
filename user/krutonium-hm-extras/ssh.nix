@@ -10,7 +10,7 @@
       };
       "deck" = {
         hostname = "10.9";
-        user = "krutonium";
+        user = "deck";
         compression = true;
         userKnownHostsFile = "/dev/null";
       };
