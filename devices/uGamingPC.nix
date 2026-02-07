@@ -4,7 +4,8 @@
 , ...
 }:
 let
-  kernel = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto;
+  #kernel = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto;
+  kernel = pkgs.unstable.linuxPackages_zen;
   video = config.boot.kernelPackages.nvidiaPackages.latest;
   zenpower = config.boot.kernelPackages.zenpower;
   ddcci = config.boot.kernelPackages.ddcci-driver;
@@ -200,7 +201,7 @@ in
     extraPackages = [ pkgs.monado-vulkan-layers ];
   };
   boot.extraModulePackages = with config.boot.kernelPackages; [
-    #zenpower.out
+    zenpower.out
     pkgs.ddcutil.out
     ddcci
   ];
