@@ -62,6 +62,7 @@ in
       pingTarget = "1.1.1.1";
       httpTarget = "https://google.ca";
     };
+    sshguard.serviceConfig = { TimeoutStopSec = "10s"; };
     lvm.enable = true;
     atd.enable = true;
     # CPU interrupt balancing
