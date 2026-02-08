@@ -169,7 +169,7 @@ in
       popups = 0.5;
       terminal = 1.0;
     };
-    polarity = "dark";
+    polarity = "light";
   };
   sops = {
     defaultSopsFile = ./secrets/secrets.yaml;

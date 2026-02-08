@@ -3,7 +3,7 @@
   stylix = {
     enable = true;
     #base16Scheme = osConfig.stylix.base16Scheme;
-    polarity = "dark";
+    polarity = osConfig.stylix.polarity;
     targets = {
       gtk.flatpakSupport.enable = false;
     };
