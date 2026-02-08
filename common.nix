@@ -35,6 +35,7 @@ in
     enableEmergencyMode = false;
     network.wait-online.anyInterface = true;
     services = {
+      sshguard.serviceConfig = { TimeoutStopSec = "10s"; };
       systemd-udev-settle.enable = true;
       copySshKeysForRoot = {
         description = "Copies Krutonium's SSH keys for root";
@@ -62,7 +63,6 @@ in
       pingTarget = "1.1.1.1";
       httpTarget = "https://google.ca";
     };
-    sshguard.serviceConfig = { TimeoutStopSec = "10s"; };
     lvm.enable = true;
     atd.enable = true;
     # CPU interrupt balancing
