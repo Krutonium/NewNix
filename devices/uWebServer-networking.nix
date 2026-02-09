@@ -207,21 +207,21 @@
       ];
       # Statically Allocated Addresses
       dhcp-host = [
-        # uWebServer
+        # uWebServer / Linux
         "ac:16:2d:9a:17:c5,10.0.0.1"
         # uGamingPC / Linux
         "18:C0:4D:04:05:E7,10.0.0.2"
-        # uWindowsPC / Gaming/Windows
+        # uServerHost / Linux
         "30:9c:23:d3:06:fd,10.0.0.3"
-        # uMsiLaptop
+        # uMsiLaptop / Linux
         "44:6D:57:BB:47:B0,10.0.0.4"
-        # Kobo
-        "00:90:a2:aa:cd:06,10.0.0.5"
-        # Archer Router
+        # uMsiLaptop but Wired / Linux
+        "d8:cb:8a:80:26:93,10.0.0.4"
+        # Archer Router / Technically Linux
         "14:EB:B6:58:A1:D4,10.0.0.7"
-        # Printer
+        # Printer / BrotherOS?
         "b0:68:e6:97:f4:37,10.0.0.8"
-        # SteamDeck
+        # SteamDeck / SteamOS/Linux
         "50:5A:65:61:DB:3B,10.0.0.9"
         # 6 intentionally missing for now.
       ];
