@@ -33,7 +33,7 @@ in
   };
   programs.mangohud.settings = {
     "toggle_fps_limit" = "F1";
-    "fps_limit" = 165;
+    "fps_limit" = 60;
     "fps_limit_method" = "early";
     "gpu_stats" = true;
     "gpu_temp" = true;
