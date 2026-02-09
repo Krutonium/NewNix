@@ -216,7 +216,7 @@
         # uMsiLaptop / Linux
         "44:6D:57:BB:47:B0,10.0.0.4"
         # uMsiLaptop but Wired / Linux
-        "d8:cb:8a:80:26:93,10.0.0.4"
+        "d8:cb:8a:80:26:93,10.0.0.5"
         # Archer Router / Technically Linux
         "14:EB:B6:58:A1:D4,10.0.0.7"
         # Printer / BrotherOS?
