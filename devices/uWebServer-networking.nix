@@ -4,18 +4,6 @@
   ...
 }:
 {
-  systemd.services =
-    let
-      dependency = [ "dnsmasq.service" ];
-    in
-    lib.mapAttrs' (
-      name: _:
-      lib.nameValuePair "acme-${name}" {
-        requires = dependency;
-        after = dependency;
-      }
-    ) config.security.acme.certs;
-
   boot.kernel.sysctl = {
     "net.ipv4.conf.all.forwarding" = 1;
     "net.ipv6.conf.all.forwarding" = 1;
