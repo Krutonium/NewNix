@@ -54,8 +54,9 @@ let
 
   # Clean up old nix generations
   garbage_collect = pkgs.writeShellScriptBin "garbage_collect" ''
-    sudo nix-collect-garbage --delete-older-than 7d --log-format bar-with-logs
-    nix-collect-garbage --delete-older-than 7d --log-format bar-with-logs
+    # sudo nix-collect-garbage --delete-older-than 7d --log-format bar-with-logs
+    # nix-collect-garbage --delete-older-than 7d --log-format bar-with-logs
+    nh clean all
   '';
 
   # Update flake inputs
@@ -72,7 +73,8 @@ let
     set -e
     ${common_git}/bin/common_git
     cd ~/NixOS
-    sudo nixos-rebuild --flake .#$(uname -n) switch
+    # sudo nixos-rebuild --flake .#$(uname -n) switch
+    nh os switch .
     # ${garbage_collect}/bin/garbage_collect
   '';
 
@@ -81,7 +83,8 @@ let
     set -e
     ${common_git}/bin/common_git
     cd ~/NixOS
-    sudo nixos-rebuild --flake .#$(uname -n) boot
+    # sudo nixos-rebuild --flake .#$(uname -n) boot
+    nh os boot .
     # ${garbage_collect}/bin/garbage_collect
   '';
 
