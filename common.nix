@@ -176,11 +176,11 @@ in
     defaultSopsFile = ./secrets/secrets.yaml;
     defaultSopsFormat = "yaml";
     age.sshKeyPaths = [ "/home/krutonium/.ssh/id_ed25519" ];
-    #age.keyFile = "/home/krutonium/.ssh/";
     secrets = {
       searx_secret = {
         path = "/etc/secrets/searx_secret";
       };
+      github_token = { };
     };
   };
 
@@ -258,9 +258,11 @@ in
   nix = {
     # access-tokens = githubKey;
     settings = {
+      # access-tokens = "github.com=${builtins.readFile config.sops.secrets."github_token".content}";
       require-sigs = false;
       auto-optimise-store = true;
       trusted-users = [ "@wheel" ];
+      
       min-free = 50 * 1000 * 1000 * 1000; # 50GB
       download-buffer-size = 524288000; # 500MB
       system-features = [
