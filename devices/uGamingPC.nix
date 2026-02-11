@@ -56,40 +56,6 @@ in
 
   services.flatpak.enable = true;
   services.ratbagd.enable = true;
-  systemd.services."mount-games" = {
-    # This is a HACK because the default mounter just utterly dies with bcachefs.
-    serviceConfig.Type = "oneshot";
-    serviceConfig.User = "root";
-    path = with pkgs; [
-      pkgs.bcachefs-tools
-      pkgs.util-linux
-    ];
-    script = ''
-      if mountpoint -q /games; then
-        echo "games already mounted"
-      else
-         mkdir -p /games
-         bcachefs mount UUID=3bf2876e-bdcc-45da-ac94-a5bcbf996df8 /games
-      fi
-    '';
-    wantedBy = [ "multi-user.target" ];
-    enable = false;
-  };
-  systemd.services.lactd = {
-    description = "AMDGPU Control Daemon";
-    wantedBy = [ "multi-user.target" ];
-    after = [ "multi-user.target" ];
-
-    serviceConfig = {
-      ExecStart = "${pkgs.lact}/bin/lact daemon";
-      Type = "simple";
-      # Run as root since we need direct hardware access
-      User = "root";
-      Group = "root";
-      Restart = "on-failure";
-      RestartSec = "5";
-    };
-  };
 
   virtualisation.spiceUSBRedirection.enable = true;
   systemd.tmpfiles.rules = [
@@ -131,13 +97,7 @@ in
   imports = [
     ./uGamingPC-hw.nix
   ];
-  #swapDevices = [
-  #  {
-  #    device = "/swap";
-  #    size = 8192;
-  #    priority = 0;
-  #  }
-  #];
+
   zramSwap = {
     enable = true;
     priority = 1;
@@ -147,11 +107,6 @@ in
     motherboard = "amd";
     package = pkgs.openrgb-with-all-plugins;
   };
-  services.ollama = {
-    enable = false;
-    # acceleration = "cuda";
-  };
-  # Allow Ollama through Firewall
 
   hardware.nvidia = {
     powerManagement = {
@@ -217,11 +172,6 @@ in
   programs = {
     wireshark.enable = true;
     adb.enable = true;
-    tuxclocker = {
-      enable = true;
-      useUnfree = true;
-      enabledNVIDIADevices = [ 0 1 ];
-    };
   };
   #Fix Discord and other Chromium based Bullshit
   #environment.sessionVariables.NIXOS_OZONE_WL = "1";
