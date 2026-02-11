@@ -24,12 +24,6 @@
   boot.extraModulePackages = [ ];
   boot.supportedFilesystems = [ "ntfs" ];
   networking.hostId = "ad53f8bc";
-  services.btrfs.autoScrub = {
-    enable = true;
-    interval = "monthly";
-    fileSystems = [ "/games" ];
-  };
-
   fileSystems = {
     "/" = {
       device = "/dev/disk/by-uuid/90083dac-4f03-49f1-bb83-e7dc14eca16a";
