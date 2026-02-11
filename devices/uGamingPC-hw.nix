@@ -39,14 +39,6 @@
       device = "UUID=48DA-2BEF";
       fsType = "vfat";
     };
-    "/games" = {
-      device = "/dev/games/main";
-      fsType = "ext4";
-      options = [
-        "x-gvfs-show"
-        "x-gvfs-name=Games"
-      ];
-    };
     "/uWebServer" = {
       device = "krutonium@krutonium.ca:/";
       fsType = "sshfs";
