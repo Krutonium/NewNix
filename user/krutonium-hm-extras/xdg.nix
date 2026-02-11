@@ -34,6 +34,7 @@
 
         "video/mp4" = [ "vlc.desktop" ];
         "video/quicktime" = [ "vlc.desktop" ];
+        "video/webm" = [ "vlc.desktop" ];
 
         "inode/directory" = [ "org.gnome.Nautilus.desktop" ];
       };
