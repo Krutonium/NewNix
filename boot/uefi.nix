@@ -16,11 +16,13 @@ in
   config = mkIf (cfg.bootloader == "uefi") {
     boot = {
       loader = {
+        timeout = 1;
         efi = {
           efiSysMountPoint = cfg.uefiPath;
           canTouchEfiVariables = false; # Let it use the default paths for compat
         };
         grub = {
+          timeoutStyle = "hidden";
           devices = [ devices ];
           efiSupport = true;
           efiInstallAsRemovable = true;
