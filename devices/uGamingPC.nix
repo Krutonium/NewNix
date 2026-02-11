@@ -25,7 +25,6 @@ in
   boot = {
     kernelPackages = kernel;
     kernelParams = [
-      "nvidia.NVreg_OpenRmEnableUnsupportedGpus=1"
       "nvidia.NVreg_EnableResizableBar=1"
       "mitigations=off"
       "acpi_enforce_resources=lax"
@@ -89,18 +88,6 @@ in
       Group = "root";
       Restart = "on-failure";
       RestartSec = "5";
-    };
-  };
-  systemd.services.set-gpu-power-limit = {
-    description = "Set NVIDIA GPU Power Limit";
-    wantedBy = [ "multi-user.target" ]; # ensures it runs at boot
-    after = [ "default.target" ];
-    path = [ ];
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = "/run/current-system/sw/bin/nvidia-smi -i 0 -pl 300";
-      RemainAfterExit = true;
-      User = "root";
     };
   };
 
