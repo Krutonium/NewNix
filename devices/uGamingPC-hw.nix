@@ -38,7 +38,7 @@
       device = "/dev/disk/by-uuid/97ba97b1-f9c5-4ec2-8b2f-8eaaf8c20329";
       fsType = "ext4";
     };
-    "'/drives/500GHDD" = {
+    "/drives/500GHDD" = {
       device = "/dev/disk/by-uuid/3e2b804b-8521-4433-97aa-5d70560802a0";
       fsType = "ext4";
     };
