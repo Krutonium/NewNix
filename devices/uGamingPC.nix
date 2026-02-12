@@ -119,7 +119,7 @@ in
     modesetting.enable = true;
   };
   nixpkgs.config.cudaSupport = true;
-  hardware.keyboard.qmk.enable = true;
+  hardware.keyboard.qmk.enable = false;
 
   services.xserver = {
     videoDrivers = [ "nvidia" ];

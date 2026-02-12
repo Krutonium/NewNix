@@ -26,11 +26,11 @@
   networking.hostId = "ad53f8bc";
   fileSystems = {
     "/" = {
-      device = "/dev/disk/by-uuid/90083dac-4f03-49f1-bb83-e7dc14eca16a";
+      device = "/dev/disk/by-uuid/9ade4de4-cf0f-4852-8855-827d6034aa3a";
       fsType = "ext4";
     };
     "/boot" = {
-      device = "UUID=48DA-2BEF";
+      device = "UUID=67C9-9661";
       fsType = "vfat";
     };
     "/uWebServer" = {
