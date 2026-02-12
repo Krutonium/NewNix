@@ -31,6 +31,7 @@ in
         mkdir -p /run/gdm/.config
         cp /home/krutonium/.config/monitors.xml /run/gdm/.config/
         chown -R gdm:gdm /run/gdm/.config
+        chmod -R 644 /run/gdm/.config
       '';
       # Only enable if GDM is enabled
       enable = true;
