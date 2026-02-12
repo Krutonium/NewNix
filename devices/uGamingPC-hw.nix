@@ -36,15 +36,19 @@
     };
     "/drives/128GSSD" = {
       device = "/dev/disk/by-uuid/97ba97b1-f9c5-4ec2-8b2f-8eaaf8c20329";
+      fsType = "ext4";
     };
     "'/drives/500GHDD" = {
       device = "/dev/disk/by-uuid/3e2b804b-8521-4433-97aa-5d70560802a0";
+      fsType = "ext4";
     };
     "/drives/500GSSD" = {
       device = "/dev/disk/by-uuid/ebe6c0b5-2383-4c07-bc9d-184e8e669754";
+      fsType = "ext4";
     };
     "/drives/2TBHDD" = {
       device = "/dev/disk/by-uuid/cd25a73a-5694-4895-af7d-f7bf2facc081";
+      fsType = "ext4";
     };
 
     "/uWebServer" = {
