@@ -127,6 +127,10 @@ in
       };
     };
     command-not-found.enable = false;
+    fuse = {
+      enable = true;
+      userAllowOther = true;
+    };
   };
 
   # https://tinted-theming.github.io/tinted-gallery/
