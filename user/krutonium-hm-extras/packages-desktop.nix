@@ -13,12 +13,6 @@ let
         dotnet_10.sdk
       ]
     );
-  MajorasMask = builtins.fetchurl {
-    url = "https://dl.krutonium.ca/mm.us.rev1.rom.z64";
-    name = "mm.us.rev1.rom.z64"; # this sets the filename in the Nix store
-    sha256 = "sha256:0arzwhxmxgyy6w56dgm5idlchp8zs6ia3yf02i2n0qp379dkdcgg";
-  };
-
   commonPlugins = [ "nix-idea" ];
 
   #rider = pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.rider commonPlugins;
@@ -34,7 +28,6 @@ in
 
   home.sessionVariables = {
     DOTNET_ROOT = "${dotnetCombined}";
-    _MM_ROM = "${MajorasMask}";
   };
   home.packages = [
     # Desktop Environment
@@ -94,6 +87,7 @@ in
     pkgs.goverlay
     pkgs.jstest-gtk
     pkgs.openrct2
+    pkgs.unstable.zelda64recomp
     pkgs.prismlauncher
     pkgs.steam-run
     pkgs.nexusmods-app

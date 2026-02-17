@@ -1,4 +1,9 @@
-{ pkgs, lib, osConfig, ... }:
+{
+  pkgs,
+  lib,
+  osConfig,
+  ...
+}:
 let
   javaVersions = {
     jdk8 = pkgs.jdk8;
@@ -8,14 +13,20 @@ let
     jdk25 = pkgs.jdk25;
   };
 
-  javaLinks = lib.mapAttrs'
-    (
-      name: pkg:
-        lib.nameValuePair "java/${name}" {
-          source = pkg;
-        }
-    )
-    javaVersions;
+  javaLinks = lib.mapAttrs' (
+    name: pkg:
+    lib.nameValuePair "java/${name}" {
+      source = pkg;
+    }
+  ) javaVersions;
+
+  MajorasMask = builtins.fetchurl {
+    url = "https://dl.krutonium.ca/mm.us.rev1.rom.z64";
+    name = "mm.us.rev1.rom.z64"; # this sets the filename in the Nix store
+    sha256 = "sha256:0arzwhxmxgyy6w56dgm5idlchp8zs6ia3yf02i2n0qp379dkdcgg";
+  };
+
+
 in
 {
   home.file = javaLinks // {
@@ -30,7 +41,11 @@ in
     ".steam/steam/steam_dev.cfg".text = ''
       @nClientDownloadEnableHTTP2PlatformLinux 0
     '';
+    "ROMS/MajorasMask.z64" = {
+      source = MajorasMask;
+    };
   };
+
   programs.mangohud.settings = {
     "toggle_fps_limit" = "F1";
     "fps_limit" = 60;
@@ -67,16 +82,18 @@ in
     font_scale = 1
   '';
 
-  xdg.configFile."openvr/openvrpaths.vrpath" = lib.mkIf (osConfig.networking.hostName == "uGamingPC") {
-    force = true;
-    text = builtins.toJSON {
-      config = [ "~/.local/share/Steam/config" ];
-      external_drivers = null;
-      jsonid = "vrpathreg";
-      log = [ "~/.local/share/Steam/logs" ];
-      # runtime = [ "${pkgs.xrizer}/lib/xrizer" ];
-      version = 1;
-    };
-  };
+  xdg.configFile."openvr/openvrpaths.vrpath" =
+    lib.mkIf (osConfig.networking.hostName == "uGamingPC")
+      {
+        force = true;
+        text = builtins.toJSON {
+          config = [ "~/.local/share/Steam/config" ];
+          external_drivers = null;
+          jsonid = "vrpathreg";
+          log = [ "~/.local/share/Steam/logs" ];
+          # runtime = [ "${pkgs.xrizer}/lib/xrizer" ];
+          version = 1;
+        };
+      };
 
 }
