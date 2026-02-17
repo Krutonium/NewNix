@@ -87,6 +87,7 @@ in
     pkgs.goverlay
     pkgs.jstest-gtk
     pkgs.openrct2
+    pkgs.samrewritten
     pkgs.unstable.zelda64recomp
     pkgs.prismlauncher
     pkgs.steam-run
