@@ -5,8 +5,8 @@
 }:
 let
   #kernel = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto;
-  kernel = pkgs.unstable.linuxPackages_zen;
-  video = config.boot.kernelPackages.nvidiaPackages.latest;
+  #kernel = pkgs.linuxPackages_zen;
+  video = config.boot.kernelPackages.nvidiaPackages.stable;
   zenpower = config.boot.kernelPackages.zenpower;
   ddcci = config.boot.kernelPackages.ddcci-driver;
   Hostname = "uGamingPC";
