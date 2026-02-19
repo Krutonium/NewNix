@@ -4,7 +4,7 @@
 , ...
 }:
 let
-  #kernel = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto;
+  kernel = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto;
   #kernel = pkgs.linuxPackages_zen;
   video = config.boot.kernelPackages.nvidiaPackages.stable;
   zenpower = config.boot.kernelPackages.zenpower;
