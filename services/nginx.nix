@@ -141,11 +141,11 @@ in
           enableACME = true;
           locations."/".proxyPass = "http://127.0.0.1:1233";
         };
-        "cockpit.krutonium.ca" = {
-          forceSSL = true;
-          enableACME = true;
-          locations."/".proxyPass = "http://127.0.0.1:9090";
-        };
+        #"cockpit.krutonium.ca" = {
+        #  forceSSL = true;
+        #  enableACME = true;
+        #  locations."/".proxyPass = "http://127.0.0.1:9090";
+        #};
         "synapse-admin.krutonium.ca" = {
           forceSSL = true;
           enableACME = true;

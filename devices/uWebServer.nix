@@ -109,7 +109,7 @@ in
       autoDeploy = false;
       sevendaystodie = false;
       homeAssistant = false;
-      cockpit = true;
+      cockpit = false;
       easydiffusion = false;
       invidious = false;
       syncthing = false;
