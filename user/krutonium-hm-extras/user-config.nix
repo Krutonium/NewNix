@@ -38,9 +38,9 @@ in
       set softwrap
       set tabstospaces
     '';
-    ".steam/steam/steam_dev.cfg".text = ''
-      @nClientDownloadEnableHTTP2PlatformLinux 0
-    '';
+    #".steam/steam/steam_dev.cfg".text = ''
+    #  @nClientDownloadEnableHTTP2PlatformLinux 0
+    #'';
     "ROMS/MajorasMask.z64" = {
       source = MajorasMask;
     };
