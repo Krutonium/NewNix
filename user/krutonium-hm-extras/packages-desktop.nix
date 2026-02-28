@@ -36,13 +36,13 @@ in
     # Development Tools & IDEs
     dotnetCombined
     pkgs.mono
-    pkgs.godot_4-mono
+    #pkgs.godot_4-mono
     #idea
     #rider
     pkgs.jetbrains.rider
     pkgs.jetbrains.idea
-    pkgs.ocl-icd
-    pkgs.clinfo
+    #pkgs.ocl-icd
+    #pkgs.clinfo
     # idea
     # rider
 
@@ -54,18 +54,18 @@ in
 
     # Media & Entertainment
     pkgs.ffmpeg-full
-    pkgs.spotify
+    #pkgs.spotify
     pkgs.vlc
 
     # Audio Tools
 
     # System Utilities
     pkgs.htop
-    pkgs.neohtop
+    #pkgs.neohtop
     pkgs.fastfetch
     #pkgs.unstable.rustdesk-flutter
-    pkgs.kdePackages.kleopatra
-    pkgs.remmina
+    #pkgs.kdePackages.kleopatra
+    #pkgs.remmina
 
     # Terminal & Shell Tools
     pkgs.babelfish
@@ -74,7 +74,7 @@ in
     pkgs.mcrcon
     pkgs.nvtopPackages.full
     pkgs.powerline-fonts
-    pkgs.trash-cli
+    #pkgs.trash-cli
     pkgs.unzip
     pkgs.yt-dlp
 
@@ -85,27 +85,27 @@ in
     pkgs._2ship2harkinian
     pkgs.appimage-run
     pkgs.goverlay
-    pkgs.jstest-gtk
+    #pkgs.jstest-gtk
     pkgs.openrct2
-    pkgs.samrewritten
-    pkgs.unstable.zelda64recomp
+    #pkgs.samrewritten #Steam Achievement Manager
+    #pkgs.unstable.zelda64recomp
     pkgs.prismlauncher
     pkgs.steam-run
-    pkgs.nexusmods-app
     pkgs.sgdboop
 
-    pkgs.dolphin-emu
-    pkgs.pcsx2
-    pkgs.shadps4
-    pkgs.cemu
+    #pkgs.dolphin-emu
+    #pkgs.pcsx2
+    #pkgs.shadps4
+    #pkgs.cemu
 
     # File Sync & Downloads
     pkgs.deluge
     pkgs.nextcloud-client
 
     # Communication
-    pkgs.fractal
-    pkgs.srain
+    #pkgs.fractal
+    pkgs.fluffychat
+    #pkgs.srain
     pkgs.unstable.ayugram-desktop
     #(pkgs.discord.override {
       #withOpenASAR = true;
@@ -113,13 +113,13 @@ in
       #withMoonlight = true;
     #})
     pkgs.unstable.vesktop
-    pkgs.handbrake
-    pkgs.unstable.teamspeak6-client
+    #pkgs.handbrake
+    #pkgs.unstable.teamspeak6-client
 
     # Hashcat
-    pkgs.hashcat
+    #pkgs.hashcat
 
-    pkgs.gpu-screen-recorder-gtk
+    #pkgs.gpu-screen-recorder-gtk
   ];
   programs.obs-studio = {
     enable = true;
