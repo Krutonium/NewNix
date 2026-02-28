@@ -56,6 +56,7 @@ in
     pkgs.ffmpeg-full
     #pkgs.spotify
     pkgs.vlc
+    pkgs.plex-desktop
 
     # Audio Tools
 
