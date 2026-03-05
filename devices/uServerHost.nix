@@ -26,6 +26,9 @@ in
       acceleration = "cuda";
       openFirewall = true;
       host = "0.0.0.0";
+      environmentVariables = {
+      	OLLAMA_CONTEXT_LENGTH = "64000";
+      };
       package = pkgs.unstable.ollama-cuda.overrideAttrs (
         final: prev: {
           preBuild = ''
