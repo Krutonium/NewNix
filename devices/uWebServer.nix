@@ -167,7 +167,7 @@ in
     };
   };
   services.ollama = {
-    enable = true;
+    enable = false;
   };
   nixpkgs.config.rocmSupport = true;
   users.users.krutonium.extraGroups = [ "docker" ];
