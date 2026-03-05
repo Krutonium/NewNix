@@ -4,6 +4,7 @@
     ./dynamic-shortcuts.nix
     ./firefox.nix
     ./git.nix
+    ./openclaw.nix
     ./packages-desktop.nix
     ./plasma.nix
     ./screenshot-uploader.nix

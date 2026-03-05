@@ -66,7 +66,7 @@
       inputs.home-manager.follows = "home-manager";
     };
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
-
+    nix-openclaw.url = "github:openclaw/nix-openclaw";
   };
   outputs =
     { self
@@ -88,6 +88,7 @@
     , plasma-manager
     , jetbrains-plugins
     , nix-cachyos-kernel
+    , nix-openclaw
     , ...
     }@inputs:
     let
@@ -111,7 +112,10 @@
           nix.registry.nixos.flake = self;
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.sharedModules = [ plasma-manager.homeModules.plasma-manager ];
+          home-manager.sharedModules = [
+            plasma-manager.homeModules.plasma-manager
+            nix-openclaw.homeManagerModules.openclaw
+          ];
         }
       ];
 
