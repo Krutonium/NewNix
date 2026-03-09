@@ -117,7 +117,8 @@ in
       blog = true;
       schedule-updates = false;
       searx = true;
-      teamspeak-server = true;
+      teamspeak-server = false;
+      ;
     };
     virtualization = {
       server = "virtd";

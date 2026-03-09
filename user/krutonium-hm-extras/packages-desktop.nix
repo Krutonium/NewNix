@@ -114,6 +114,7 @@ in
       #withMoonlight = true;
     #})
     pkgs.unstable.vesktop
+    pkgs.teamspeak6-client
     #pkgs.handbrake
     #pkgs.unstable.teamspeak6-client
 
