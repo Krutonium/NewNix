@@ -118,7 +118,6 @@ in
       schedule-updates = false;
       searx = true;
       teamspeak-server = false;
-      ;
     };
     virtualization = {
       server = "virtd";
