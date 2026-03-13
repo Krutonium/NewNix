@@ -48,7 +48,8 @@ in
 
     # Wine & Windows Compatibility
     bottles
-
+    wineWow64Packages.waylandFull # Wine with Wayland Compat
+    
     # Hardware & System Tools
     #pkgs.openrgb
 
