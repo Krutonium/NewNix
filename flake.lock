@@ -687,6 +687,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_5": {
+      "locked": {
+        "lastModified": 1770562336,
+        "narHash": "sha256-ub1gpAONMFsT/GU2hV6ZWJjur8rJ6kKxdm9IlCT0j84=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "d6c71932130818840fc8fe9509cf50be8c64634f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nur": {
       "inputs": {
         "flake-parts": "flake-parts_3",
@@ -805,6 +821,25 @@
         "type": "github"
       }
     },
+    "prefixer": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_5"
+      },
+      "locked": {
+        "lastModified": 1772375172,
+        "narHash": "sha256-JEPkbcupBaPI4aE5pk8qRe9AffEX5si4Rjc56qSFim4=",
+        "owner": "wojtmic",
+        "repo": "prefixer",
+        "rev": "140f6a5cceafd1553ec493e79140a935b2bfe68a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "wojtmic",
+        "ref": "1.4.0",
+        "repo": "prefixer",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "MediaServer": "MediaServer",
@@ -824,6 +859,7 @@
         "nur": "nur",
         "nvidia-patch": "nvidia-patch",
         "plasma-manager": "plasma-manager",
+        "prefixer": "prefixer",
         "sops-nix": "sops-nix",
         "stylix": "stylix",
         "update": "update"

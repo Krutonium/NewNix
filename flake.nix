@@ -44,6 +44,7 @@
       url = "github:icewind1991/nvidia-patch-nixos";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    prefixer.url = "github:wojtmic/prefixer/1.4.0";
     #lix-module = {
     #  url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.0.tar.gz";
     #  inputs.nixpkgs.follows = "nixpkgs";
@@ -87,6 +88,7 @@
     , plasma-manager
     , jetbrains-plugins
     , nix-cachyos-kernel
+    , prefixer
     , ...
     }@inputs:
     let
@@ -141,6 +143,9 @@
         MediaServer = _self: _super: {
           MediaServer = MediaServer.defaultPackage.x86_64-linux;
         };
+        Prefixer = _self: _super: {
+          prefixer = prefixer.packages.x86_64-linux.default;
+        };
         InternetRadio2Computercraft = _self: _super: {
           InternetRadio2Computercraft = R2CC.defaultPackage.x86_64-linux;
         };
@@ -166,6 +171,7 @@
               nur.overlays.default
               inputs.nvidia-patch.overlays.default
               overlays.MediaServer
+              overlays.Prefixer
             ];
           }
         )
