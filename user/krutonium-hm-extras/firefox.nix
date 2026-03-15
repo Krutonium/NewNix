@@ -23,7 +23,6 @@
         auto-tab-discard
         don-t-fuck-with-paste
         enhanced-github
-        faststream
         twitch-auto-points
       ];
       search = {
