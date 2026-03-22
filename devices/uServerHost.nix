@@ -28,6 +28,7 @@ in
       host = "0.0.0.0";
       environmentVariables = {
       	# OLLAMA_CONTEXT_LENGTH = "64000";
+        OLLAMA_MODELS="/home/krutonium/.ollama/models"
       };
       package = pkgs.unstable.ollama-cuda.overrideAttrs (
         final: prev: {
