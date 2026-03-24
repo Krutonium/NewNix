@@ -31,6 +31,8 @@ in
         # OLLAMA_MODELS="/home/krutonium/.ollama/models";
       };
       home = "/home/ollama";
+      user = "ollama";
+      group = "ollama";
       package = pkgs.unstable.ollama-cuda.overrideAttrs (
         final: prev: {
           preBuild = ''
@@ -49,6 +51,9 @@ in
       hostname = "0.0.0.0";
     };
   };
+  systemd.services.ollama.serviceConfig = {
+    ProtectHome = lib.mkForce false;
+  };
 
   boot = {
     kernelPackages = kernel;
@@ -60,7 +65,7 @@ in
   zramSwap = {
     enable = true;
     priority = 5;
-    zramSwap.writebackDevice = "/dev/disk/by-label/swap-root";
+    writebackDevice = "/dev/disk/by-label/swap-root";
   };
 
   # TODO: Enable after making partitions. This will be a swap partition. There will be one on each disk.
