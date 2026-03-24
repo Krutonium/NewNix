@@ -31,13 +31,14 @@ in
   zramSwap = {
     enable = true;
     priority = 1000;
+    writebackDevice = "/media/swap";
   };
   swapDevices = [
-    {
-      device = "/media/swap";
-      priority = 1;
-      size = 8192;
-    }
+#    {
+#      device = "/media/swap";
+#      priority = 1;
+#      size = 8192;
+#    }
     {
       device = "/media2/swap";
       priority = 1;
