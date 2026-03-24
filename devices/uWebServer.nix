@@ -30,7 +30,7 @@ in
   };
   zramSwap = {
     enable = true;
-    priority = 1000;
+    priority = 5;
     writebackDevice = "/media/swap";
   };
   swapDevices = [
