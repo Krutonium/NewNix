@@ -377,6 +377,26 @@
         "type": "github"
       }
     },
+    "hytale-launcher-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1774383212,
+        "narHash": "sha256-PyF1nTQp+q5oUYk05yjZMOFvd/rT43mMN1zXyycivBw=",
+        "owner": "JPyke3",
+        "repo": "hytale-launcher-nix",
+        "rev": "f9392e30a2e74e502116eec6c7d42da7be87de0f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "JPyke3",
+        "repo": "hytale-launcher-nix",
+        "type": "github"
+      }
+    },
     "jetbrains-plugins": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -830,6 +850,7 @@
         "R2CC": "R2CC",
         "fan-controller": "fan-controller",
         "home-manager": "home-manager",
+        "hytale-launcher-nix": "hytale-launcher-nix",
         "jetbrains-plugins": "jetbrains-plugins",
         "minegrub": "minegrub",
         "nix-cachyos-kernel": "nix-cachyos-kernel",

@@ -84,6 +84,7 @@ in
     # Gaming
     # shipwright
     pkgs.protonplus
+    pkgs.hytale-launcher
     pkgs.shipwright
     pkgs._2ship2harkinian
     pkgs.appimage-run

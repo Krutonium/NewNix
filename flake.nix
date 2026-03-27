@@ -67,6 +67,10 @@
       inputs.home-manager.follows = "home-manager";
     };
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
+    hytale-launcher-nix = {
+      url = "github:JPyke3/hytale-launcher-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs =
     { self
@@ -89,6 +93,7 @@
     , jetbrains-plugins
     , nix-cachyos-kernel
     , prefixer
+    , hytale-launcher-nix
     , ...
     }@inputs:
     let
@@ -146,6 +151,9 @@
         Prefixer = _self: _super: {
           prefixer = prefixer.packages.x86_64-linux.default;
         };
+        hytaleLauncher = _self: _super: {
+          hytale-launcher = hytale-launcher-nix.packages.x86_64-linux.hytale-launcher;
+        };
         InternetRadio2Computercraft = _self: _super: {
           InternetRadio2Computercraft = R2CC.defaultPackage.x86_64-linux;
         };
@@ -172,6 +180,7 @@
               inputs.nvidia-patch.overlays.default
               overlays.MediaServer
               overlays.Prefixer
+              overlays.hytaleLauncher
             ];
           }
         )
