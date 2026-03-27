@@ -18,6 +18,10 @@ in
           };
       };
     };
+    xdg.portal = {
+      enable = true;
+      extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
+    };
     hardware = {
       graphics = {
         enable = true;
