@@ -21,6 +21,16 @@ let
   #idea = (pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.idea ["github-copilot" "nix-idea"]);
   bottles = (pkgs.bottles.override { removeWarningPopup = true; });
 
+  hytaleWrapped = pkgs.symlinkJoin {
+    name = "hytale";
+    paths = [ pkgs.hytale-launcher ];
+    nativeBuildInputs = [ pkgs.makeWrapper ];
+    postBuild = ''
+      wrapProgram $out/bin/hytale-launcher \
+        --set SDL_VIDEODRIVER x11
+    '';
+    # This fixes OBS-Gamecapture by forcing the game to run in x11 mode instead of Wayland
+  };
 in
 {
   imports = [
@@ -84,7 +94,7 @@ in
     # Gaming
     # shipwright
     pkgs.protonplus
-    pkgs.hytale-launcher
+    hytaleWrapped
     pkgs.shipwright
     pkgs._2ship2harkinian
     pkgs.appimage-run
