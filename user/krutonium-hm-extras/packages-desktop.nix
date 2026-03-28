@@ -27,7 +27,7 @@ let
     nativeBuildInputs = [ pkgs.makeWrapper ];
     postBuild = ''
       wrapProgram $out/bin/hytale-launcher \
-        --set SDL_VIDEODRIVER x11
+        --set SDL_VIDEODRIVER x11 \
     '';
     # This fixes OBS-Gamecapture by forcing the game to run in x11 mode instead of Wayland
   };
