@@ -7,7 +7,8 @@
   ...
 }:
 let
-  kernel = pkgs.nvidiaFor "580.119.02" pkgs.linuxPackages_6_12;
+  #kernel = pkgs.linuxPackages_6_12;
+  kernel = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto;
   btrfsDisk = "/dev/disk/by-label/WorkDisk";
   video = config.boot.kernelPackages.nvidiaPackages.legacy_580;
   Hostname = "uServerHost";
