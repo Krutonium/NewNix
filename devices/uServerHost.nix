@@ -9,7 +9,7 @@
 let
   kernel = pkgs.nvidiaFor "580.119.02" pkgs.linuxPackages_6_12;
   btrfsDisk = "/dev/disk/by-label/WorkDisk";
-  video = config.boot.kernelPackages.nvidiaPackages.stable;
+  video = config.boot.kernelPackages.nvidiaPackages.legacy_580;
   Hostname = "uServerHost";
 in
 {
