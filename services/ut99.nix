@@ -26,7 +26,6 @@ in
         # Equivalent to --net=host
         extraOptions = [
           "--network=host"
-          "--restart=unless-stopped"
         ];
 
         volumes = [
