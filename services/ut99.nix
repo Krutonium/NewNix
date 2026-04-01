@@ -21,7 +21,7 @@ in
       backend = "docker";
 
       containers.ut99 = {
-        image = "lacledeslan/gamesvr-ut99:latest";
+        image = "lacledeslan/gamesvr-ut99;";
 
         # Equivalent to --net=host
         extraOptions = [
