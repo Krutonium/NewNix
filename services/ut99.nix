@@ -12,6 +12,7 @@ in
 {
   config = mkIf (cfg.ut99 == true) {
     networking.firewall.allowedTCPPorts = [
+      5080
     ];
     networking.firewall.allowedUDPPorts = [
       7777

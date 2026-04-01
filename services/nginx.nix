@@ -297,6 +297,13 @@ in
             return = "301 https://git.krutonium.ca$request_uri";
           };
         };
+        "unreal.krutonium.ca" = {
+          forceSSL = true;
+          enableACME = true;
+          locations."/" = {
+            proxyPass = "http://10.0.0.3:5080";
+          };
+        };
         "git.krutonium.ca" = {
           enableACME = true; # Use ACME certs
           forceSSL = true; # Force SSL
