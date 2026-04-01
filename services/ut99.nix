@@ -29,7 +29,7 @@ in
         ];
 
         volumes = [
-          # "/var/lib/ut99:/data"
+          "/var/lib/ut99:/data"
         ];
 
         # Override the container command
