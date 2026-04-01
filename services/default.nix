@@ -209,6 +209,13 @@ with builtins;
         TeamSpeak Server
       '';
     };
+    ut99 = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        Unreal Tournament 99
+      '';
+    };
   };
   imports = [
     ./plex.nix
@@ -239,5 +246,6 @@ with builtins;
     ./searx.nix
     ./teamspeak.nix
     ./wait-for-internet.nix
+    ./ut99.nix
   ];
 }
