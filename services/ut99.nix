@@ -31,7 +31,7 @@ in
 
         volumes = [
           "/var/lib/ut99/config:/data"
-          "/var/lib/ut99/mods:/system"
+          "/var/lib/ut99/mods:/app"
         ];
 
         # Override the container command
