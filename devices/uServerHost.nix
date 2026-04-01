@@ -76,7 +76,11 @@ in
       priority = 0; #Lower Priority than the zSwap
     }
   ];
-
+  services.hermes-agent = {
+    enable = true;
+    settings.model.default = "qwen3:latest";
+    addToSystemPackages = true;
+  };
   nix = {
     daemonCPUSchedPolicy = "idle";
     settings = {

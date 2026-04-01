@@ -71,6 +71,7 @@
       url = "github:JPyke3/hytale-launcher-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hermes-agent.url = "github:NousResearch/hermes-agent";
   };
   outputs =
     { self
@@ -94,6 +95,7 @@
     , nix-cachyos-kernel
     , prefixer
     , hytale-launcher-nix
+    , hermes-agent
     , ...
     }@inputs:
     let
@@ -106,6 +108,7 @@
         minegrub.nixosModules.default
         stylix.nixosModules.stylix
         nixpkgs-xr.nixosModules.nixpkgs-xr
+        hermes-agent.nixosModules.default
         sops-nix.nixosModules.sops
         {
           nix.registry.nixos.flake = self;
