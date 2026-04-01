@@ -21,7 +21,7 @@ in
       backend = "docker";
 
       containers.ut99 = {
-        image = "lacledeslan/gamesvr-ut99;";
+        image = "lacledeslan/gamesvr-ut99";
 
         # Equivalent to --net=host
         extraOptions = [
@@ -29,7 +29,7 @@ in
         ];
 
         volumes = [
-          "/var/lib/ut99:/data"
+          # "/var/lib/ut99:/data"
         ];
 
         # Override the container command
