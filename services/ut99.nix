@@ -30,7 +30,8 @@ in
         ];
 
         volumes = [
-          "/var/lib/ut99:/data"
+          "/var/lib/ut99/config:/data"
+          "/var/lib/ut99/mods:/system"
         ];
 
         # Override the container command
