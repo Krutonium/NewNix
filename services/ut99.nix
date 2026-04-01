@@ -44,6 +44,9 @@ in
           "-nohomedir"
           "-adminconsole"
           "-http"
+          "-autobots=true"
+          "-maxbots=6"
+          "-botskill=2"
         ];
       };
     };
