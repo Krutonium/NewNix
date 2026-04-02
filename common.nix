@@ -208,7 +208,7 @@ in
       neofetch = "${lib.getExe pkgs.fastfetch}";
     };
     variables = {
-      NIXPKGS_ALLOW_UNFREE = "1";
+      NIXPKGS_ALLOW_ = "1";
       # MANGOHUD = "1";
       GSK_RENDERER = "gl";
       VST_PATH = "${pkgs.zlequalizer}/lib/vst";
@@ -287,11 +287,17 @@ in
         "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
       ];
     };
-    registry.unstable.to = {
-      type = "github";
-      owner = "NixOS";
-      repo = "nixpkgs";
-      ref = "nixos-unstable";
+    registry = {
+      unstable.to = {
+        type = "github";
+        owner = "NixOS";
+        repo = "nixpkgs";
+        ref = "nixos-unstable";
+      };
+      nixpkgs.to = {
+        type = "path";
+        path = pkgs.path;
+      };
     };
     gc = {
       automatic = true;

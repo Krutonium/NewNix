@@ -174,6 +174,20 @@ let
   find-desktop = pkgs.writeShellScriptBin "find-desktop" ''
     nix run github:Krutonium/FindTheDesktop -- $@
   '';
+  keep-newer = pkgs.writeShellScriptBin "keep-newer" ''
+    BASE="$1"
+    OURS="$2"
+    THEIRS="$3"
+
+    # Get commit timestamps
+    OURS_TIME=$(git log -1 --format=%ct -- "$OURS" 2>/dev/null || echo 0)
+    THEIRS_TIME=$(git log -1 --format=%ct -- "$THEIRS" 2>/dev/null || echo 0)
+
+    if [ "$THEIRS_TIME" -gt "$OURS_TIME" ]; then
+      cp "$THEIRS" "$OURS"
+    fi
+    exit 0
+  '';
 
 
 in
