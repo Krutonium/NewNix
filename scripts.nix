@@ -189,23 +189,23 @@ let
     exit 0
   '';
   updateKnownHosts = pkgs.writeShellScriptBin "updateKnownHosts" ''
-    ${pkgs.gnugrep}/bin/grep "^Host " ~/.ssh/config | ${pkgs.gnugrep}/bin/grep -v '\*' | ${pkgs.gawk}/bin/awk '{print $2}' | while read host; do
-      hostname=$(${pkgs.gnugrep}/bin/grep -A5 "^Host $host$" ~/.ssh/config | ${pkgs.gnugrep}/bin/grep "HostName" | ${pkgs.gawk}/bin/awk '{print $2}')
-      target="${hostname:-$host}"
-      echo "Scanning $host ($target)..."
-      keys=$(${pkgs.openssh}/bin/ssh-keyscan "$target" 2>/dev/null)
-      if [ -z "$keys" ]; then
-        echo "  -> Failed to reach $target, skipping."
-        continue
-      fi
-      ${pkgs.coreutils}/bin/touch ~/.ssh/known_hosts
-      if ${pkgs.openssh}/bin/ssh-keygen -F "$target" -f ~/.ssh/known_hosts > /dev/null 2>&1; then
-        echo "  -> Already present, skipping."
-      else
-        echo "$keys" >> ~/.ssh/known_hosts
-        echo "  -> Added."
-      fi
-    done
+${pkgs.gnugrep}/bin/grep "^Host " ~/.ssh/config | ${pkgs.gnugrep}/bin/grep -v '\*' | ${pkgs.gawk}/bin/awk '{print $2}' | while read host; do
+  hostname=$(${pkgs.gnugrep}/bin/grep -A5 "^Host $host$" ~/.ssh/config | ${pkgs.gnugrep}/bin/grep "HostName" | ${pkgs.gawk}/bin/awk '{print $2}')
+  target="''${hostname:-$host}"
+  echo "Scanning $host (''${target})..."
+  keys=$(${pkgs.openssh}/bin/ssh-keyscan "$target" 2>/dev/null)
+  if [ -z "$keys" ]; then
+    echo "  -> Failed to reach $target, skipping."
+    continue
+  fi
+  ${pkgs.coreutils}/bin/touch ~/.ssh/known_hosts
+  if ${pkgs.openssh}/bin/ssh-keygen -F "$target" -f ~/.ssh/known_hosts > /dev/null 2>&1; then
+    echo "  -> Already present, skipping."
+  else
+    echo "$keys" >> ~/.ssh/known_hosts
+    echo "  -> Added."
+  fi
+done
   '';
 
 
