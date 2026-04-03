@@ -180,16 +180,14 @@
 
       # ── Static DHCP leases ────────────────────────────────────────────────
       dhcp-host = [
-        "ac:16:2d:9a:17:c5,10.0.0.1"   # uWebServer   (this machine)
-        "18:C0:4D:04:05:E7,10.0.0.2"   # uGamingPC
-        "30:9c:23:d3:06:fd,10.0.0.3"   # uServerHost
-        "44:6D:57:BB:47:B0,10.0.0.4"   # uMsiLaptop (Wi-Fi)
-        "d8:cb:8a:80:26:93,10.0.0.5"   # uMsiLaptop (Wired)
-        # 10.0.0.6 intentionally reserved
-        "14:EB:B6:58:A1:D4,10.0.0.7"   # Archer Router
-        "b0:68:e6:97:f4:37,10.0.0.8"   # Printer
-        "50:5A:65:61:DB:3B,10.0.0.9"   # Steam Deck
-      ];
+        "ac:16:2d:9a:17:c5,uWebServer,10.0.0.1"   # uWebServer   (this machine)
+        "18:C0:4D:04:05:E7,uGamingPC,10.0.0.2"    # uGamingPC
+        "30:9c:23:d3:06:fd,uServerHost,10.0.0.3"  # uServerHost
+        "44:6D:57:BB:47:B0,uMsiLaptopW,10.0.0.4"   # uMsiLaptop (Wi-Fi)
+        "d8:cb:8a:80:26:93,uMsiLaptop,10.0.0.5"  # uMsiLaptop (Wired)
+        "14:EB:B6:58:A1:D4,Archer,10.0.0.7"       # Archer Router
+        "b0:68:e6:97:f4:37,Printer,10.0.0.8"      # Printer
+        "50:5A:65:61:DB:3B,deck,10.0.0.9"         # Steam Deck
 
       # ── Local DNS overrides ───────────────────────────────────────────────
       address = [
