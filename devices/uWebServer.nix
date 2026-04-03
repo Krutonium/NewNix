@@ -31,7 +31,7 @@ in
   zramSwap = {
     enable = true;
     priority = 5;
-    writebackDevice = "/media/swap";
+    #writebackDevice = "/media/swap";
   };
   swapDevices = [
 #    {
@@ -39,11 +39,11 @@ in
 #      priority = 1;
 #      size = 8192;
 #    }
-    {
-      device = "/media2/swap";
-      priority = 1;
-      size = 8192;
-    }
+    #{
+    #  device = "/media2/swap";
+    #  priority = 1;
+    #  size = 8192;
+    #}
   ];
   hardware.graphics.extraPackages = with pkgs; [
     rocmPackages.clr.icd
