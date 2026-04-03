@@ -163,7 +163,11 @@
 
       # ── DHCPv4 ────────────────────────────────────────────────────────────
       # Range starts at .2; .1 is the router itself.
-      dhcp-range = [ "10.0.0.2,10.0.0.254,5m" ];
+      dhcp-range = 
+	[ 
+	  "10.0.0.2,10.0.0.254,5m"
+ 	  "::1000, ::ffff,constructor:br0,64,5m"
+        ];
       dhcp-option = [
         "option:router,10.0.0.1"
         "option:classless-static-route,10.0.0.0/24,10.0.0.1"
@@ -172,7 +176,7 @@
       # ── DHCPv6 (stateful, ULA prefix) ─────────────────────────────────────
       # Clients that ignore RA (rare) can still get a ULA address via DHCPv6.
       # The ::1000–::ffff range leaves ::1–::fff for static assignments.
-      dhcp-range6 = [ "fd00:beef::1000,fd00:beef::ffff,64,5m" ];
+      # dhcp-range6 = [ "fd00:beef::1000,fd00:beef::ffff,64,5m" ];
 
       # ── Static DHCP leases ────────────────────────────────────────────────
       dhcp-host = [
