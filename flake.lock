@@ -1061,11 +1061,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1775332181,
-        "narHash": "sha256-kwHJ0C8Y/doWry4NyX7SX5slWCLZtoI6KobqKqtjGxg=",
+        "lastModified": 1775332881,
+        "narHash": "sha256-XsmDFvWdWVzzqzS8DdQkOJW58p7oVee4R39KCLeLAX0=",
         "owner": "krutonium",
         "repo": "simple-cpu-governor",
-        "rev": "4cda6c0181d44887b2e7409fb6cb1ebc543ab126",
+        "rev": "b2857d3feb122816882c8bacd2da8e2c2302cc8e",
         "type": "github"
       },
       "original": {
