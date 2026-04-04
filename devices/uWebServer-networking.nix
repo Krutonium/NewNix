@@ -1,6 +1,5 @@
-{
-  lib,
-  ...
+{ lib
+, ...
 }:
 {
   # ── Kernel forwarding & RA behaviour ────────────────────────────────────────
@@ -10,13 +9,13 @@
     "net.ipv4.conf.all.forwarding" = 1;
     "net.ipv6.conf.all.forwarding" = 1;
 
-    "net.ipv6.conf.all.accept_ra"   = 0;
-    "net.ipv6.conf.all.autoconf"    = 0;
+    "net.ipv6.conf.all.accept_ra" = 0;
+    "net.ipv6.conf.all.autoconf" = 0;
     "net.ipv6.conf.all.use_tempaddr" = 0;
 
     # WAN needs to accept the ISP's RA even though forwarding is on (hence "2").
     "net.ipv6.conf.WAN.accept_ra" = 2;
-    "net.ipv6.conf.WAN.autoconf"  = 1;
+    "net.ipv6.conf.WAN.autoconf" = 1;
   };
 
   # ── Stable interface names ───────────────────────────────────────────────────
@@ -40,15 +39,20 @@
 
     interfaces."br0" = {
       allowedTCPPorts = [
-        53  # DNS
-        67  # DHCPv4 server
+        53 # DNS
+        67 # DHCPv4 server
       ];
       allowedUDPPorts = [
-        53  # DNS
-        67  # DHCPv4 server
+        53 # DNS
+        67 # DHCPv4 server
         547 # DHCPv6 server (stateful fallback for clients that need it)
       ];
     };
+    # IPv6 Forwarding for LAN
+    extraInputRules = ''
+      ip6 daddr fd00:beef::3 tcp dport { 25565, 25566, 25568, 25570 } accept
+      ip6 daddr fd00:beef::3 udp dport { 24470, 24454, 24455, 19132, 7777, 7776, 5520 } accept
+    '';
   };
 
   # ── systemd-networkd ─────────────────────────────────────────────────────────
@@ -62,7 +66,7 @@
       "10-wan" = {
         matchConfig.PermanentMACAddress = "40:8d:5c:54:89:96";
         networkConfig = {
-          DHCP        = "yes";
+          DHCP = "yes";
           IPv6AcceptRA = true;
         };
         dhcpV6Config = {
@@ -78,8 +82,8 @@
         networkConfig = {
           # Hand out the delegated WAN /64 sub-prefix to LAN clients via RA.
           DHCPPrefixDelegation = true;
-          IPv6SendRA           = true;
-          IPv6AcceptRA         = false;
+          IPv6SendRA = true;
+          IPv6AcceptRA = false;
         };
         # Static addresses: IPv4 gateway + ULA link-local-style address for
         # internal-only IPv6 (always works even when the ISP prefix is absent).
@@ -116,10 +120,10 @@
     bridges."br0".interfaces = [ "LAN0" "LAN1" "LAN2" "LAN3" ];
 
     nat = {
-      enable            = true;
+      enable = true;
       externalInterface = "WAN";
       internalInterfaces = [ "br0" ];
-      internalIPs        = [ "10.0.0.0/24" ];
+      internalIPs = [ "10.0.0.0/24" ];
       forwardPorts = [
         # ── Minecraft: Vanilla (Java) ──────────────────────────────────────
         { sourcePort = 25565; proto = "tcp"; destination = "10.0.0.3:25565"; }
@@ -136,17 +140,17 @@
         { sourcePort = 24455; proto = "udp"; destination = "10.0.0.3:24455"; }
         { sourcePort = 19132; proto = "udp"; destination = "10.0.0.3:19132"; }
         # ── Unreal Tournament '99 ─────────────────────────────────────────
-        { sourcePort = 7777;  proto = "udp"; destination = "10.0.0.3:7777";  }
-        { sourcePort = 7776;  proto = "udp"; destination = "10.0.0.3:7776";  }
+        { sourcePort = 7777; proto = "udp"; destination = "10.0.0.3:7777"; }
+        { sourcePort = 7776; proto = "udp"; destination = "10.0.0.3:7776"; }
         # ── Hytale ────────────────────────────────────────────────────────
-        { sourcePort = 5520;  proto = "udp"; destination = "10.0.0.3:5520";  }
+        { sourcePort = 5520; proto = "udp"; destination = "10.0.0.3:5520"; }
       ];
     };
   };
 
   # ── dnsmasq (DNS + DHCPv4 + DHCPv6/RA) ──────────────────────────────────────
   services.dnsmasq = {
-    enable            = true;
+    enable = true;
     alwaysKeepRunning = true;
     settings = {
       interface = "br0";
@@ -155,7 +159,7 @@
       listen-address = "127.0.0.1,::1,10.0.0.1,fd00:beef::1";
 
       # Local domain
-      domain       = "krutonium.ca,10.0.0.0/24";
+      domain = "krutonium.ca,10.0.0.0/24";
       expand-hosts = true;
 
       # Upstream resolvers — if both are down, something very bad has happened.
@@ -163,10 +167,10 @@
 
       # ── DHCPv4 ────────────────────────────────────────────────────────────
       # Range starts at .2; .1 is the router itself.
-      dhcp-range = 
-	[ 
-	  "10.0.0.2,10.0.0.254,5m"
- 	  "::1000, ::ffff,constructor:br0,64,5m"
+      dhcp-range =
+        [
+          "10.0.0.2,10.0.0.254,5m"
+          "::1000, ::ffff,constructor:br0,64,5m"
         ];
       dhcp-option = [
         "option:router,10.0.0.1"
@@ -180,14 +184,16 @@
 
       # ── Static DHCP leases ────────────────────────────────────────────────
       dhcp-host = [
-        "ac:16:2d:9a:17:c5,uWebServer,10.0.0.1"   # uWebServer   (this machine)
-        "18:C0:4D:04:05:E7,uGamingPC,10.0.0.2"    # uGamingPC
-        "30:9c:23:d3:06:fd,uServerHost,10.0.0.3"  # uServerHost
-        "44:6D:57:BB:47:B0,uMsiLaptopW,10.0.0.4"   # uMsiLaptop (Wi-Fi)
-        "d8:cb:8a:80:26:93,uMsiLaptop,10.0.0.5"  # uMsiLaptop (Wired)
-        "14:EB:B6:58:A1:D4,Archer,10.0.0.7"       # Archer Router
-        "b0:68:e6:97:f4:37,Printer,10.0.0.8"      # Printer
-        "50:5A:65:61:DB:3B,deck,10.0.0.9"         # Steam Deck
+        "ac:16:2d:9a:17:c5,uWebServer,10.0.0.1,[fd00:beef::1]"
+        "18:C0:4D:04:05:E7,uGamingPC,10.0.0.2,[fd00:beef::2]"
+        "30:9c:23:d3:06:fd,uServerHost,10.0.0.3,[fd00:beef::3]"
+        "44:6D:57:BB:47:B0,uMsiLaptop,10.0.0.4,[fd00:beef::4]"
+        "d8:cb:8a:80:26:93,uMsiLaptopW,10.0.0.5,[fd00:beef::5]"
+        # This space intentionally blank
+        "14:EB:B6:58:A1:D4,Archer,10.0.0.7,[fd00:beef::7]"
+        "b0:68:e6:97:f4:37,Printer,10.0.0.8,[fd00:beef::8]"
+        "50:5A:65:61:DB:3B,deck,10.0.0.9,[fd00:beef::9]"
+      ];
 
       # ── Local DNS overrides ───────────────────────────────────────────────
       address = [
