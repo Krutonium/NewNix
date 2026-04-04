@@ -104,6 +104,7 @@
           EmitDNS = true;
           # Clients use the router's ULA address as their DNS resolver.
           DNS = [ "fd00:beef::1" ];
+          Managed = true;
         };
       };
 
