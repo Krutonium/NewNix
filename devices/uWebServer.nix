@@ -69,6 +69,11 @@ in
     enable = true;
     #extraPackages = [ pkgs.rocmPackages.rocm-opencl-icd ];
   };
+  services.simpleCpuGovernor = {
+    enable = true;
+    target = 80;
+    hysteresis = 10;
+  };
 
   #hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
   sys = {

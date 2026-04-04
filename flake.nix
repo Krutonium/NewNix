@@ -72,6 +72,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hermes-agent.url = "github:NousResearch/hermes-agent";
+    simple-cpu-governor = {
+      url = "github:krutonium/simple-cpu-governor";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs =
     { self
@@ -96,6 +100,7 @@
     , prefixer
     , hytale-launcher-nix
     , hermes-agent
+    , simple-cpu-governor
     , ...
     }@inputs:
     let
@@ -109,6 +114,7 @@
         stylix.nixosModules.stylix
         nixpkgs-xr.nixosModules.nixpkgs-xr
         hermes-agent.nixosModules.default
+        simple-cpu-governor.nixosModules.default
         sops-nix.nixosModules.sops
         {
           nix.registry.nixos.flake = self;
