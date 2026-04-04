@@ -42,6 +42,12 @@ in
       max-jobs = 4;
     };
   };
+  services.simpleCpuGovernor = {
+    enable = true;
+    target = 50;
+    hysteresis = 10;
+  };
+
   #swapDevices = [
   #  {
   #    device = "/dev/disk/by-uuid/34d142d4-9274-4901-a938-2f8bcc8c8ed6";
