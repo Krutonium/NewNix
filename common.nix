@@ -215,6 +215,8 @@ in
       ANTHROPIC_AUTH_TOKEN="ollama";
       ANTHROPIC_API_KEY="";
       ANTHROPIC_BASE_URL="http://10.0.0.3:11343";
+      EDITOR="nano";
+      VISUAL="nano";
     };
   };
 
