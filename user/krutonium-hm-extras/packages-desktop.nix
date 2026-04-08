@@ -120,7 +120,7 @@ in
     #pkgs.fractal
     pkgs.fluffychat
     #pkgs.srain
-    pkgs.unstable.ayugram-desktop
+    pkgs.ayugram-desktop
     #(pkgs.discord.override {
       #withOpenASAR = true;
       #withVencord = true;
