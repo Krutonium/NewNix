@@ -200,9 +200,6 @@
       address = [
         "/BRWB068E697F437.local/10.0.0.8"
       ];
-      host-record = [
-        "krutonium.ca,uWebServer.krutonium.ca,10.0.0.1,fd00:beef::1"
-      ];
     };
   };
 }
