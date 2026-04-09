@@ -33,6 +33,10 @@
         hostname = "10.0.0.3";
         compression = true;
       };
+      "uMsiLaptop" = {
+        hostname = "10.0.0.5";
+        compression = true;
+      };
     };
     extraConfig = ''
       StrictHostKeyChecking no
