@@ -8,7 +8,7 @@
 with lib.hm.gvariant;
 let
   superMenuLogo = "${./assets/supermenu.png}";
-  wallPaper = "file://${./assets/wallpaper.png}";
+  #wallPaper = "file://${./assets/wallpaper.png}";
   extensions = [
     pkgs.gnomeExtensions.dash-to-panel
     pkgs.gnomeExtensions.ddterm
@@ -332,8 +332,8 @@ lib.mkIf isGnome {
       color-shading-type = "solid";
       picture-opacity = 100;
       picture-options = "zoom";
-      picture-uri = wallPaper;
-      picture-uri-dark = wallPaper;
+      #picture-uri = wallPaper;
+      #picture-uri-dark = wallPaper;
     };
 
     "org/gnome/desktop/interface" = {
