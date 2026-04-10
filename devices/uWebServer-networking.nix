@@ -199,7 +199,12 @@
       # ── Local DNS overrides ───────────────────────────────────────────────
       address = [
         "/BRWB068E697F437.local/10.0.0.8"
-  	"/krutonium.ca/10.0.0.1"
+        "/krutonium.ca/10.0.0.1"
+        "/uWebServer.krutonium.ca/fd00:beef::1"
+        "/uGamingPC.krutonium.ca/fd00:beef::2"
+        "/uServerHost.krutonium.ca/fd00:beef::3"
+        "/uMsiLaptop.krutonium.ca/fd00:beef:4"
+        "/deck.krutonium.ca/fd00:beef:9"
       ];
     };
   };
