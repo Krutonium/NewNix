@@ -26,6 +26,8 @@ let
 in
 {
   config = mkIf (cfg.nginx == true) {
+    users.groups.anubis-access = {};
+    users.users.nginx.extraGroups = [ "anubis-access" ];
     networking.firewall.allowedTCPPorts = [
       80
       443

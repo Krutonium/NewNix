@@ -58,6 +58,7 @@ in
     services.anubis.instances = {
       forgejo = {
         enable = true;
+        group = "anubis-access";
         settings = {
           # How hard the proof-of-work challenge is (higher = harder for bots)
           DIFFICULTY = 5;
