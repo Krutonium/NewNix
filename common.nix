@@ -138,7 +138,7 @@ in
     enable = true;
     autoEnable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/ia-dark.yaml";
-    image = ./user/krutonium-hm-extras/assets/wallpaper.png;
+    image = ./user/krutonium-hm-extras/assets/wallpaper.jpg;
     targets = {
       grub.enable = false;
       gnome.enable = true;
