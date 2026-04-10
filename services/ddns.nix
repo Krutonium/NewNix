@@ -28,10 +28,11 @@ in
       enable = true;
       protocol = "cloudflare";
       zone = "krutonium.ca";
-      domains = [ "krutonium.ca" "*.krutonium.ca" ];
+      domains = [ "krutonium.ca" "*.krutonium.ca" "www.krutonium.ca" ];
       username = "token";
       passwordFile = "/persist/cloudflare_ddns";
-      use = "web, web=ipv6.icanhazip.com";
+      usev4 = "webv4, webv4=ipv4.icanhazip.com";
+      usev6 = "ifv6, ifv6=br0";
     };
 
     #    systemd.services.update_domain = {
