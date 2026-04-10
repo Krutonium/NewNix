@@ -310,12 +310,12 @@ in
           enableACME = true; # Use ACME certs
           forceSSL = true; # Force SSL
           locations."/".proxyPass = "http://unix:/run/anubis/anubis-forgejo/anubis.sock:/"; # Proxy Gitea
-          locations."/robots.txt" = {
-            extraConfig = ''
-              rewrite ^/(.*)  $1;
-              return 200 "User-agent: *\nDisallow: /";
-            '';
-          };
+          #locations."/robots.txt" = {
+          #  extraConfig = ''
+          #    rewrite ^/(.*)  $1;
+          #    return 200 "User-agent: *\nDisallow: /";
+          #  '';
+          #};
           extraConfig = ''
             #limit_req zone=git_zone burst=20 nodelay;
             proxy_set_header X-Real-IP $remote_addr;
