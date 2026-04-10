@@ -12,6 +12,7 @@ in
 {
   config = mkIf (cfg.plex == true) {
     networking.firewall.allowedTCPPorts = [ 32400 ];
+    systemd.services.plex.serviceConfig = { TimeoutStopSec = "10s"; }; # 10 second stop timeout
     services = {
       plex = {
         enable = true;
