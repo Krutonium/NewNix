@@ -55,5 +55,17 @@ in
         name = "gitea";
       };
     };
+    services.anubis.instances = {
+      forgejo = {
+        # How hard the proof-of-work challenge is (higher = harder for bots)
+        difficulty = 5;
+        # Where Anubis forwards legitimate traffic
+        target = "http://127.0.0.1:3001";
+        # The port Anubis itself listens on
+        bind = "127.0.0.1:3002";
+      };
+    };
+  };
+};
   };
 }

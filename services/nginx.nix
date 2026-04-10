@@ -307,7 +307,7 @@ in
         "git.krutonium.ca" = {
           enableACME = true; # Use ACME certs
           forceSSL = true; # Force SSL
-          locations."/".proxyPass = "http://127.0.0.1:3001/"; # Proxy Gitea
+          locations."/".proxyPass = "http://127.0.0.1:3002/"; # Proxy Gitea
           locations."/robots.txt" = {
             extraConfig = ''
               rewrite ^/(.*)  $1;
