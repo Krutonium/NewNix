@@ -76,11 +76,11 @@ with builtins;
         Nginx
       '';
     };
-    gitea = mkOption {
+    forgejo = mkOption {
       type = types.bool;
       default = false;
       description = ''
-        Gitea
+        Forgejo
       '';
     };
     torrent = mkOption {
@@ -227,7 +227,7 @@ with builtins;
     ./ssh.nix
     ./synapse.nix
     ./nginx.nix
-    ./gitea.nix
+    ./forgejo.nix
     ./torrent.nix
     ./ddns.nix
     ./deploy.nix

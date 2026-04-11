@@ -10,12 +10,9 @@ let
   cfg = config.sys.services;
 in
 {
-  config = mkIf (cfg.gitea == true) {
+  config = mkIf (cfg.forgejo == true) {
     services.forgejo = {
       enable = true;
-      # Forgejo is a dropin replacement
-      #package = pkgs.forgejo;
-      #package = pkgs.gitea;
       package = pkgs.unstable.forgejo;
       stateDir = "/media2/forgejo/repos";
       settings = {
@@ -67,8 +64,8 @@ in
           # Where to point NGINX
           BIND = "/run/anubis/anubis-forgejo/anubis.sock";
           # Where to send Statistics
-	  METRICS_BIND = "/run/anubis/anubis-forgejo/anubis-metrics.sock";
-	  SERVE_ROBOTS_TXT = true;
+          METRICS_BIND = "/run/anubis/anubis-forgejo/anubis-metrics.sock";
+          SERVE_ROBOTS_TXT = true;
         };
       };
     };

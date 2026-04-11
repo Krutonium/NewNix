@@ -108,7 +108,7 @@ in
       ssh = true;
       sshGuard = true;
       synapse = true;
-      gitea = true;
+      forgejo = true;
       torrent = true;
       ddns = true;
       nginx = true;
