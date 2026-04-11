@@ -115,7 +115,7 @@ in
       autoDeploy = false;
       sevendaystodie = false;
       homeAssistant = false;
-      cockpit = false;
+      grafana = true;
       easydiffusion = false;
       invidious = false;
       syncthing = false;

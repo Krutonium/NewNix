@@ -1,3 +1,9 @@
 #!/usr/bin/env bash
-SOPS_AGE_KEY_FILE=<(ssh-keygen -ef ~/.ssh/id_ed25519 | age-keygen -i /dev/stdin) sops -d ./secrets.yaml
+mkdir -p ~/.config/sops/age
+if [ ! -f ~/.config/sops/age/keys.txt ]; then
+  nix run nixpkgs#ssh-to-age -- \
+    -private-key \
+    -i ~/.ssh/id_ed25519 \
+    -o ~/.config/sops/age/keys.txt
+fi
 sops ./secrets.yaml

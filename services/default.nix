@@ -139,13 +139,6 @@ with builtins;
         Notebook Fan Control
       '';
     };
-    cockpit = mkOption {
-      type = types.bool;
-      default = false;
-      description = ''
-        Dashboard
-      '';
-    };
     easydiffusion = mkOption {
       type = types.bool;
       default = false;
@@ -216,6 +209,13 @@ with builtins;
         Unreal Tournament 99
       '';
     };
+    grafana = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        Grafana Dashboard
+      '';
+    };
   };
   imports = [
     ./plex.nix
@@ -235,7 +235,7 @@ with builtins;
     ./sevendaystodie.nix
     ./home_assistant.nix
     ./nbfc.nix
-    ./cockpit.nix
+    ./grafana.nix
     ./easy-diffusion.nix
     ./invidious.nix
     ./syncthing.nix

@@ -35,7 +35,9 @@ in
     enableEmergencyMode = false;
     network.wait-online.anyInterface = true;
     services = {
-      sshguard.serviceConfig = { TimeoutStopSec = "10s"; };
+      sshguard.serviceConfig = {
+        TimeoutStopSec = "10s";
+      };
       systemd-udev-settle.enable = true;
       copySshKeysForRoot = {
         description = "Copies Krutonium's SSH keys for root";
@@ -185,6 +187,14 @@ in
         path = "/etc/secrets/searx_secret";
       };
       github_token = { };
+      grafana_admin_password = {
+        owner = config.services.grafana.user;
+        restartUnits = [ "grafana.service" ];
+      };
+      grafana_secret_key = {
+        owner = config.services.grafana.user;
+        restartUnits = [ "grafana.service" ];
+      };
     };
   };
 
@@ -212,11 +222,11 @@ in
       # MANGOHUD = "1";
       GSK_RENDERER = "gl";
       VST_PATH = "${pkgs.zlequalizer}/lib/vst";
-      ANTHROPIC_AUTH_TOKEN="ollama";
-      ANTHROPIC_API_KEY="";
-      ANTHROPIC_BASE_URL="http://10.0.0.3:11343";
-      EDITOR="nano";
-      VISUAL="nano";
+      ANTHROPIC_AUTH_TOKEN = "ollama";
+      ANTHROPIC_API_KEY = "";
+      ANTHROPIC_BASE_URL = "http://10.0.0.3:11343";
+      EDITOR = "nano";
+      VISUAL = "nano";
     };
   };
 
@@ -271,7 +281,7 @@ in
       require-sigs = false;
       auto-optimise-store = true;
       trusted-users = [ "@wheel" ];
-      
+
       min-free = 50 * 1000 * 1000 * 1000; # 50GB
       download-buffer-size = 524288000; # 500MB
       system-features = [
