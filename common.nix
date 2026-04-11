@@ -182,20 +182,26 @@ in
     defaultSopsFile = ./secrets/secrets.yaml;
     defaultSopsFormat = "yaml";
     age.sshKeyPaths = [ "/home/krutonium/.ssh/id_ed25519" ];
-    secrets = {
-      searx_secret = {
-        path = "/etc/secrets/searx_secret";
-      };
-      github_token = { };
-      grafana_admin_password = {
-        owner = "grafana";
-        restartUnits = [ "grafana.service" ];
-      };
-      grafana_secret_key = {
-        owner = "grafana";
-        restartUnits = [ "grafana.service" ];
-      };
-    };
+    secrets = lib.mkMerge [
+      {
+        searx_secret = {
+          path = "/etc/secrets/searx_secret";
+        };
+        github_token = { };
+      }
+      (lib.mkIf config.sys.services.grafana {
+        grafana_admin_password = {
+          owner = "grafana";
+          group = "grafana";
+          restartUnits = [ "grafana.service" ];
+        };
+        grafana_secret_key = {
+          owner = "grafana";
+          group = "grafana";
+          restartUnits = [ "grafana.service" ];
+        };
+      })
+    ];
   };
 
   # PAM configuration for GNOME keyring auto-unlock
