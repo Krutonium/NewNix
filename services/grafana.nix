@@ -246,10 +246,11 @@ in
             };
           }
 
-          # ── Network Bandwidth – all interfaces ─────────────────────────────
+          # ── WAN TX/RX ──────────────────────────────────────────────────────
+          # Replace "wan" with your actual WAN interface name (e.g. eth0, enp3s0, ppp0)
           {
             id = 3;
-            title = "Network Bandwidth – Receive (all interfaces)";
+            title = "WAN Bandwidth";
             type = "timeseries";
             gridPos = {
               x = 0;
@@ -259,7 +260,65 @@ in
             };
             targets = [
               {
-                expr = ''rate(node_network_receive_bytes_total{device!~"lo"}[2m])'';
+                expr = ''rate(node_network_receive_bytes_total{device="WAN"}[2m])'';
+                legendFormat = "WAN RX";
+                refId = "A";
+              }
+              {
+                expr = ''rate(node_network_transmit_bytes_total{device="WAN"}[2m])'';
+                legendFormat = "WAN TX";
+                refId = "B";
+              }
+            ];
+            fieldConfig.defaults = {
+              unit = "binBps";
+              custom.lineWidth = 2;
+            };
+          }
+          # ── br0 TX/RX ──────────────────────────────────────────────────────
+          {
+            id = 4;
+            title = "br0 Bandwidth";
+            type = "timeseries";
+            gridPos = {
+              x = 12;
+              y = 8;
+              w = 12;
+              h = 8;
+            };
+            targets = [
+              {
+                expr = ''rate(node_network_receive_bytes_total{device="br0"}[2m])'';
+                legendFormat = "br0 RX";
+                refId = "A";
+              }
+              {
+                expr = ''rate(node_network_transmit_bytes_total{device="br0"}[2m])'';
+                legendFormat = "br0 TX";
+                refId = "B";
+              }
+            ];
+            fieldConfig.defaults = {
+              unit = "binBps";
+              custom.lineWidth = 2;
+            };
+          }
+          # ── br0 member ports RX/TX ─────────────────────────────────────────
+          # Replace LAN0/LAN1/LAN2/LAN3 with your actual interface names
+          # (e.g. eth1/eth2/eth3/eth4, enp1s0/enp2s0, etc.)
+          {
+            id = 5;
+            title = "LAN Ports – Receive";
+            type = "timeseries";
+            gridPos = {
+              x = 0;
+              y = 16;
+              w = 12;
+              h = 8;
+            };
+            targets = [
+              {
+                expr = ''rate(node_network_receive_bytes_total{device=~"LAN0|LAN1|LAN2|LAN3"}[2m])'';
                 legendFormat = "{{device}} RX";
                 refId = "A";
               }
@@ -269,20 +328,19 @@ in
               custom.lineWidth = 2;
             };
           }
-
           {
-            id = 4;
-            title = "Network Bandwidth – Transmit (all interfaces)";
+            id = 6;
+            title = "LAN Ports – Transmit";
             type = "timeseries";
             gridPos = {
               x = 12;
-              y = 8;
+              y = 16;
               w = 12;
               h = 8;
             };
             targets = [
               {
-                expr = ''rate(node_network_transmit_bytes_total{device!~"lo"}[2m])'';
+                expr = ''rate(node_network_transmit_bytes_total{device=~"LAN0|LAN1|LAN2|LAN3"}[2m])'';
                 legendFormat = "{{device}} TX";
                 refId = "A";
               }
@@ -292,49 +350,13 @@ in
               custom.lineWidth = 2;
             };
           }
-
-          # ── Network Errors / Drops ─────────────────────────────────────────
           {
-            id = 5;
-            title = "Network Errors & Drops (all interfaces)";
-            type = "timeseries";
-            gridPos = {
-              x = 0;
-              y = 16;
-              w = 12;
-              h = 6;
-            };
-            targets = [
-              {
-                expr = ''rate(node_network_receive_errs_total{device!~"lo"}[2m])'';
-                legendFormat = "{{device}} RX errs";
-                refId = "A";
-              }
-              {
-                expr = ''rate(node_network_transmit_errs_total{device!~"lo"}[2m])'';
-                legendFormat = "{{device}} TX errs";
-                refId = "B";
-              }
-              {
-                expr = ''rate(node_network_receive_drop_total{device!~"lo"}[2m])'';
-                legendFormat = "{{device}} RX drops";
-                refId = "C";
-              }
-            ];
-            fieldConfig.defaults = {
-              unit = "pps";
-              custom.lineWidth = 1;
-            };
-          }
-
-          # ── Load Average ───────────────────────────────────────────────────
-          {
-            id = 6;
+            id = 7;
             title = "Load Average";
             type = "timeseries";
             gridPos = {
-              x = 12;
-              y = 16;
+              x = 0;
+              y = 24;
               w = 12;
               h = 6;
             };
@@ -357,7 +379,6 @@ in
             ];
             fieldConfig.defaults.custom.lineWidth = 2;
           }
-
         ];
       };
 
@@ -376,7 +397,7 @@ in
         };
         panels = [
 
-          # Challenge requests per second
+          # Challenges issued per second
           {
             id = 1;
             title = "Challenges Issued (req/s)";
@@ -389,10 +410,8 @@ in
             };
             targets = [
               {
-                # Adjust metric name to match what your Anubis build exposes.
-                # Common names: anubis_challenges_total, anubis_challenge_requests_total
-                expr = "rate(anubis_challenges_total[2m])";
-                legendFormat = "challenges/s";
+                expr = "rate(anubis_challenges_issued[2m])";
+                legendFormat = "{{method}}";
                 refId = "A";
               }
             ];
@@ -402,10 +421,10 @@ in
             };
           }
 
-          # Passed / failed challenges
+          # Challenges validated per second
           {
             id = 2;
-            title = "Challenge Results";
+            title = "Challenges Validated (req/s)";
             type = "timeseries";
             gridPos = {
               x = 12;
@@ -415,14 +434,9 @@ in
             };
             targets = [
               {
-                expr = "rate(anubis_challenge_pass_total[2m])";
-                legendFormat = "passed/s";
+                expr = "rate(anubis_challenges_validated[2m])";
+                legendFormat = "{{method}}";
                 refId = "A";
-              }
-              {
-                expr = "rate(anubis_challenge_fail_total[2m])";
-                legendFormat = "failed/s";
-                refId = "B";
               }
             ];
             fieldConfig.defaults = {
@@ -431,10 +445,10 @@ in
             };
           }
 
-          # Active / waiting connections
+          # Policy results breakdown by action and rule
           {
             id = 3;
-            title = "Active Connections";
+            title = "Policy Results by Action (req/s)";
             type = "timeseries";
             gridPos = {
               x = 0;
@@ -444,18 +458,21 @@ in
             };
             targets = [
               {
-                expr = "anubis_active_connections";
-                legendFormat = "active";
+                expr = "rate(anubis_policy_results[2m])";
+                legendFormat = "{{action}} / {{rule}}";
                 refId = "A";
               }
             ];
-            fieldConfig.defaults.custom.lineWidth = 2;
+            fieldConfig.defaults = {
+              unit = "reqps";
+              custom.lineWidth = 2;
+            };
           }
 
-          # Upstream request latency (if exposed)
+          # Proxied requests to upstream
           {
             id = 4;
-            title = "Upstream Request Duration (p50 / p95 / p99)";
+            title = "Proxied Requests to Upstream (req/s)";
             type = "timeseries";
             gridPos = {
               x = 12;
@@ -465,54 +482,134 @@ in
             };
             targets = [
               {
-                expr = "histogram_quantile(0.50, rate(anubis_upstream_request_duration_seconds_bucket[2m]))";
+                expr = "rate(anubis_proxied_requests_total[2m])";
+                legendFormat = "{{host}}";
+                refId = "A";
+              }
+            ];
+            fieldConfig.defaults = {
+              unit = "reqps";
+              custom.lineWidth = 2;
+            };
+          }
+
+          # Challenge solve time distribution (p50/p95/p99)
+          {
+            id = 5;
+            title = "Challenge Solve Time (ms)";
+            type = "timeseries";
+            gridPos = {
+              x = 0;
+              y = 16;
+              w = 12;
+              h = 8;
+            };
+            targets = [
+              {
+                expr = "histogram_quantile(0.50, rate(anubis_time_taken_bucket[2m]))";
                 legendFormat = "p50";
                 refId = "A";
               }
               {
-                expr = "histogram_quantile(0.95, rate(anubis_upstream_request_duration_seconds_bucket[2m]))";
+                expr = "histogram_quantile(0.95, rate(anubis_time_taken_bucket[2m]))";
                 legendFormat = "p95";
                 refId = "B";
               }
               {
-                expr = "histogram_quantile(0.99, rate(anubis_upstream_request_duration_seconds_bucket[2m]))";
+                expr = "histogram_quantile(0.99, rate(anubis_time_taken_bucket[2m]))";
                 legendFormat = "p99";
                 refId = "C";
               }
             ];
             fieldConfig.defaults = {
-              unit = "s";
+              unit = "ms";
               custom.lineWidth = 2;
             };
           }
 
-          # Bot score distribution (if Anubis exposes a histogram)
+          # Honeypot page generation time
           {
-            id = 5;
-            title = "Bot Score Distribution";
+            id = 6;
+            title = "Honeypot Page Generation Time (ms, p95)";
             type = "timeseries";
             gridPos = {
-              x = 0;
+              x = 12;
               y = 16;
-              w = 24;
+              w = 12;
               h = 8;
             };
             targets = [
               {
-                expr = "rate(anubis_bot_score_bucket[2m])";
-                legendFormat = "score ≤ {{le}}";
+                expr = "histogram_quantile(0.95, rate(anubis_honeypot_pagegen_timings_bucket[2m]))";
+                legendFormat = "{{method}} p95";
                 refId = "A";
               }
             ];
             fieldConfig.defaults = {
-              unit = "short";
-              custom.lineWidth = 1;
+              unit = "ms";
+              custom.lineWidth = 2;
             };
           }
 
+          # Anubis process network traffic
+          {
+            id = 7;
+            title = "Anubis Process Network (bytes/s)";
+            type = "timeseries";
+            gridPos = {
+              x = 0;
+              y = 24;
+              w = 12;
+              h = 8;
+            };
+            targets = [
+              {
+                expr = "rate(process_network_receive_bytes_total[2m])";
+                legendFormat = "RX";
+                refId = "A";
+              }
+              {
+                expr = "rate(process_network_transmit_bytes_total[2m])";
+                legendFormat = "TX";
+                refId = "B";
+              }
+            ];
+            fieldConfig.defaults = {
+              unit = "binBps";
+              custom.lineWidth = 2;
+            };
+          }
+
+          # Go runtime memory
+          {
+            id = 8;
+            title = "Anubis Go Heap Memory";
+            type = "timeseries";
+            gridPos = {
+              x = 12;
+              y = 24;
+              w = 12;
+              h = 8;
+            };
+            targets = [
+              {
+                expr = "go_memstats_heap_alloc_bytes";
+                legendFormat = "heap in use";
+                refId = "A";
+              }
+              {
+                expr = "go_memstats_heap_sys_bytes";
+                legendFormat = "heap from OS";
+                refId = "B";
+              }
+            ];
+            fieldConfig.defaults = {
+              unit = "bytes";
+              custom.lineWidth = 2;
+            };
+          }
         ];
       };
-
     }; # end environment.etc
 
     # ──────────────────────────────────────────────────────────────────────────
