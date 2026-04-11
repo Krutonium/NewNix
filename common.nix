@@ -188,11 +188,11 @@ in
       };
       github_token = { };
       grafana_admin_password = {
-        owner = config.services.grafana.user;
+        owner = "grafana";
         restartUnits = [ "grafana.service" ];
       };
       grafana_secret_key = {
-        owner = config.services.grafana.user;
+        owner = "grafana";
         restartUnits = [ "grafana.service" ];
       };
     };
