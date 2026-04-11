@@ -364,7 +364,7 @@ in
           enableACME = true;
           locations."/" = {
             proxyWebsockets = true;
-            proxyPass = "http://127.0.0.1:60613";
+            proxyPass = "http://unix:/run/anubis/anubis-searx/anubis.sock:/"; # Proxy Searx
           };
           extraConfig = ''
             proxy_set_header Host $host;

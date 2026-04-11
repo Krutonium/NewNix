@@ -19,7 +19,6 @@ in
       after = [ "wait-for-internet.service" ];
       requires = [ "wait-for-internet.service" ];
     };
-    networking.firewall.allowedTCPPorts = [ 631 ];
     services.searx = {
       package = pkgs.unstable.searxng;
       environmentFile = "/etc/secrets/searx_secret";
@@ -61,7 +60,7 @@ in
           port = 60613;
           bind_address = "127.0.0.1";
           base_url = "https://search.krutonium.ca";
-          limiter = true;
+          limiter = false;
           public_instance = true;
           image_proxy = false;
           method = "GET";
@@ -130,6 +129,23 @@ in
             weight = 10;
           };
           "google news".disabled = false;
+        };
+      };
+    };
+    services.anubis.instances = {
+      searx = {
+        enable = true;
+        group = "anubis-access";
+        settings = {
+          # How hard the proof-of-work challenge is (higher = harder for bots)
+          DIFFICULTY = 5;
+          # Where Anubis forwards legitimate traffic
+          TARGET = "http://127.0.0.1:60613";
+          # Where to point NGINX
+          BIND = "/run/anubis/anubis-searx/anubis.sock";
+          # Where to send Statistics
+          METRICS_BIND = "/run/anubis/anubis-searx/anubis-metrics.sock";
+          SERVE_ROBOTS_TXT = true;
         };
       };
     };
