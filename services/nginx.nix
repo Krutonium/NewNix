@@ -93,6 +93,7 @@ in
         deny 47.80.0.0/13;
         deny 47.74.0.0/15;
         deny 47.76.0.0/14;
+        deny 2a03:2880::/32;
       '';
       eventsConfig = ''
         worker_connections 512;
