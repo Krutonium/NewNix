@@ -134,7 +134,7 @@ in
     };
     services.anubis.instances = {
       searx = {
-        enable = false;
+        enable = true;
         group = "anubis-access";
         botPolicy.bots = [
           {
