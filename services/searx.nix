@@ -134,7 +134,7 @@ in
     };
     services.anubis.instances = {
       searx = {
-        enable = true;
+        enable = false;
         group = "anubis-access";
         settings = {
           # How hard the proof-of-work challenge is (higher = harder for bots)
