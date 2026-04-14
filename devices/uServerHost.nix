@@ -80,6 +80,7 @@ in
     enable = true;
     settings.model.default = "qwen3:latest";
     addToSystemPackages = true;
+    environment.SHELL = "${pkgs.bash}/bin/bash";
   };
   nix = {
     daemonCPUSchedPolicy = "idle";
