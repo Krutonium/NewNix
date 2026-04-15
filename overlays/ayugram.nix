@@ -61,7 +61,7 @@ final: prev: {
       # prefetch-file`) here.  Start with a fake hash and let the build error
       # tell you the correct one if you prefer:
       #   hash = "";   # triggers a mismatch error that prints the real hash
-      hash = "sha256-TW9kfKlkTpDUiilNHqK4Hwxl9BpWlmAsldHF06o6aaE=";
+      hash = "sha256-TSrOjm5AC0vTYXoZ50dzWlO8gMK4vbuUFktu21Kqwao=";
 
       fetchSubmodules = true;
     };
