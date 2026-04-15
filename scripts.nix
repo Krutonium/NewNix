@@ -186,8 +186,8 @@ let
 
     detect_gpu() {
       local hwaccels encoders
-      hwaccels=$(ffmpeg -hide_banner -hwaccels 2>/dev/null)
-      encoders=$(ffmpeg  -hide_banner -encoders 2>/dev/null)
+      hwaccels=$(${pkgs.ffmpeg-full}/bin/ffmpeg -hide_banner -hwaccels 2>/dev/null)
+      encoders=$(${pkgs.ffmpeg-full}/bin/ffmpeg -hide_banner -encoders 2>/dev/null)
 
       if echo "$hwaccels" | grep -q "cuda" && echo "$encoders" | grep -q "h264_nvenc"; then
         echo "GPU: NVENC (CUDA)" >&2
@@ -249,7 +249,7 @@ let
     # ─── encode ─────────────────────────────────────────────────────────────────
     echo "Encoding: $VCODEC | GPU=$USE_GPU | fps=''${FPS} | bitrate=''${MBPS:-quality-based}" >&2
 
-    ffmpeg -y \
+    ${pkgs.ffmpeg-full}/bin/ffmpeg -y \
       "''${DECODE_FLAGS[@]}" \
       -i "$INPUT" \
       -vf "$FILTER" \
