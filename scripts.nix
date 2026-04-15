@@ -222,8 +222,8 @@ let
 
     # ─── quality flags ──────────────────────────────────────────────────────────
     if [[ -n "$MBPS" ]]; then
-      BPS="$(echo "$MBPS * 1000000 / 1" | bc)"
-      BUFSIZE="$(echo "$MBPS * 2000000 / 1" | bc)"
+      BPS="$(echo "$MBPS * 1000000 / 1" | ${pkgs.bc}/bin/bc)"
+      BUFSIZE="$(echo "$MBPS * 2000000 / 1" | ${pkgs.bc}/bin/bc)"
       case "$VCODEC" in
         libx264)           ENCODE_FLAGS=(-b:v "''${BPS}" -maxrate "''${BPS}" -bufsize "''${BUFSIZE}" -preset veryslow -tune animation) ;;
         h264_nvenc)        ENCODE_FLAGS=(-rc cbr -b:v "''${BPS}" -maxrate "''${BPS}" -bufsize "''${BUFSIZE}" -preset p7 -tune hq) ;;
