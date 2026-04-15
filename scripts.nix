@@ -120,55 +120,145 @@ let
   '';
 
   transcode-vr = pkgs.writeShellScriptBin "transcode-vr" ''
-        set -euo pipefail
+    set -euo pipefail
 
-        SRC="$1"
-        DST="$2"
-        FFMPEG=${lib.getExe pkgs.ffmpeg-full}
+    usage() {
+      cat >&2 <<EOF
+    Usage: transcode-vr [--gpu] [-b <mbps>] [-f <fps>] <input> <output>
 
-        process_file() {
-          local src_file="$1"
-          local dst_file="$2"
+      --gpu        Hardware-accelerated decode/encode (NVENC → VideoToolbox → VAAPI → CPU).
+      -b <mbps>    Target bitrate in Mbps for CBR mode (default: quality-based).
+      -f <fps>     Output framerate (default: 24).
+      <input>      Source video file.
+      <output>     Output .mp4 path.
 
-          mkdir -p "$(dirname \"$dst_file\")"
+    Examples:
+      transcode-vr input.mkv output.mp4
+      transcode-vr --gpu -b 8 -f 30 input.mkv output.mp4
+    EOF
+      exit 1
+    }
 
-          echo "Transcoding: $src_file → $dst_file"
+    # ─── parse args ─────────────────────────────────────────────────────────────
+    USE_GPU=0
+    MBPS=""
+    FPS="24"
+    POSITIONAL=()
 
-          if "$FFMPEG" \
-            -vaapi_device /dev/dri/renderD128 \
-            -hwaccel vaapi \
-            -hwaccel_output_format vaapi \
-            -i "$src_file" \
-            -vf 'format=nv12,scale=-2:540,hwupload' \
-            -c:v h264_vaapi -b:v 1M -maxrate 2M -bufsize 4M \
-            -movflags +faststart -pix_fmt vaapi \
-            -c:a aac -ac 2 -b:a 1536k -threads 8 \
-            "$dst_file"; then
-            echo "✅ Hardware encoding succeeded for $src_file"
-          else
-            echo "⚠️  Hardware encoding failed for $src_file — cleaning up and retrying with software encoding..."
-            rm -f "$dst_file"
+    while [[ $# -gt 0 ]]; do
+      case "$1" in
+        --gpu)     USE_GPU=1; shift ;;
+        -b)        [[ $# -ge 2 ]] || { echo "Error: -b requires a value." >&2; usage; }
+                   MBPS="$2"; shift 2 ;;
+        -f)        [[ $# -ge 2 ]] || { echo "Error: -f requires a value." >&2; usage; }
+                   FPS="$2"; shift 2 ;;
+        -h|--help) usage ;;
+        --)        shift; POSITIONAL+=("$@"); break ;;
+        -*)        echo "Error: unknown option '$1'" >&2; usage ;;
+        *)         POSITIONAL+=("$1"); shift ;;
+      esac
+    done
 
-            "$FFMPEG" \
-              -i "$src_file" \
-              -vf 'scale=-2:540' \
-              -c:v libx264 -preset fast -crf 23 \
-              -movflags +faststart \
-              -c:a aac -ac 2 -b:a 192k -threads 8 \
-              "$dst_file"
-          fi
-        }
+    # ─── input guards ───────────────────────────────────────────────────────────
+    [[ ''${#POSITIONAL[@]} -ge 1 ]] || { echo "Error: missing <input>."  >&2; usage; }
+    [[ ''${#POSITIONAL[@]} -ge 2 ]] || { echo "Error: missing <output>." >&2; usage; }
 
-    if [ -d "$SRC" ]; then
-      echo "📁 Processing directory: $SRC"
-      find "$SRC" -type f -print0 | while IFS= read -r -d ''' f; do
-        base_name="$(${pkgs.coreutils}/bin/basename "$f")"
-        out_path="$DST/"$'''{base_name%.*}".mp4"
-        process_file "$f" "$out_path"
-      done
+    INPUT="''${POSITIONAL[0]}"
+    OUTPUT="''${POSITIONAL[1]}"
+
+    [[ -e "$INPUT" ]]  || { echo "Error: file not found: '$INPUT'"             >&2; exit 1; }
+    [[ -f "$INPUT" ]]  || { echo "Error: not a regular file: '$INPUT'"         >&2; exit 1; }
+    [[ -r "$INPUT" ]]  || { echo "Error: file not readable: '$INPUT'"          >&2; exit 1; }
+
+    OUTDIR="$(dirname "$OUTPUT")"
+    [[ -d "$OUTDIR" ]] || { echo "Error: output dir does not exist: '$OUTDIR'" >&2; exit 1; }
+    [[ -w "$OUTDIR" ]] || { echo "Error: output dir not writable: '$OUTDIR'"   >&2; exit 1; }
+
+    [[ -n "$MBPS" ]] && {
+      [[ "$MBPS" =~ ^[0-9]+([.][0-9]+)?$ ]] || { echo "Error: -b must be a number (e.g. 8 or 2.5)." >&2; exit 1; }
+    }
+    [[ "$FPS" =~ ^[0-9]+([.][0-9]+)?$ ]] || { echo "Error: -f must be a number (e.g. 24 or 29.97)." >&2; exit 1; }
+
+    # ─── GPU detection ──────────────────────────────────────────────────────────
+    HWACCEL=""
+    VCODEC="libx264"
+    DECODE_FLAGS=()
+
+    detect_gpu() {
+      local hwaccels encoders
+      hwaccels=$(ffmpeg -hide_banner -hwaccels 2>/dev/null)
+      encoders=$(ffmpeg  -hide_banner -encoders 2>/dev/null)
+
+      if echo "$hwaccels" | grep -q "cuda" && echo "$encoders" | grep -q "h264_nvenc"; then
+        echo "GPU: NVENC (CUDA)" >&2
+        HWACCEL="cuda"
+        VCODEC="h264_nvenc"
+        DECODE_FLAGS=(-hwaccel cuda)
+
+      elif echo "$hwaccels" | grep -q "videotoolbox" && echo "$encoders" | grep -q "h264_videotoolbox"; then
+        echo "GPU: VideoToolbox (Apple)" >&2
+        HWACCEL="videotoolbox"
+        VCODEC="h264_videotoolbox"
+        DECODE_FLAGS=(-hwaccel videotoolbox)
+
+      elif echo "$hwaccels" | grep -q "vaapi" && echo "$encoders" | grep -q "h264_vaapi"; then
+        echo "GPU: VAAPI" >&2
+        HWACCEL="vaapi"
+        VCODEC="h264_vaapi"
+        local vaapi_dev="/dev/dri/renderD128"
+        if [[ -e "$vaapi_dev" ]]; then
+          DECODE_FLAGS=(-vaapi_device "$vaapi_dev" -hwaccel vaapi -hwaccel_output_format vaapi)
+        else
+          DECODE_FLAGS=(-hwaccel vaapi)
+        fi
+
+      else
+        echo "GPU: none found — using CPU (libx264)" >&2
+        USE_GPU=0
+      fi
+    }
+
+    [[ $USE_GPU -eq 1 ]] && detect_gpu
+
+    # ─── quality flags ──────────────────────────────────────────────────────────
+    if [[ -n "$MBPS" ]]; then
+      BPS="$(echo "$MBPS * 1000000 / 1" | bc)"
+      BUFSIZE="$(echo "$MBPS * 2000000 / 1" | bc)"
+      case "$VCODEC" in
+        libx264)           ENCODE_FLAGS=(-b:v "''${BPS}" -maxrate "''${BPS}" -bufsize "''${BUFSIZE}" -preset veryslow -tune animation) ;;
+        h264_nvenc)        ENCODE_FLAGS=(-rc cbr -b:v "''${BPS}" -maxrate "''${BPS}" -bufsize "''${BUFSIZE}" -preset p7 -tune hq) ;;
+        h264_videotoolbox) ENCODE_FLAGS=(-b:v "''${BPS}" -maxrate "''${BPS}" -bufsize "''${BUFSIZE}" -allow_sw 1) ;;
+        h264_vaapi)        ENCODE_FLAGS=(-b:v "''${BPS}" -maxrate "''${BPS}" -bufsize "''${BUFSIZE}") ;;
+      esac
     else
-      process_file "$SRC" "$DST"
+      case "$VCODEC" in
+        libx264)           ENCODE_FLAGS=(-crf 18 -preset veryslow -tune animation) ;;
+        h264_nvenc)        ENCODE_FLAGS=(-rc vbr -cq 18 -preset p7 -tune hq -b:v 0) ;;
+        h264_videotoolbox) ENCODE_FLAGS=(-q:v 65 -allow_sw 1) ;;
+        h264_vaapi)        ENCODE_FLAGS=(-global_quality 18 -compression_level 0) ;;
+      esac
     fi
+
+    # ─── filter graph ───────────────────────────────────────────────────────────
+    if [[ "$HWACCEL" == "vaapi" ]]; then
+      FILTER="fps=''${FPS},scale_vaapi=w='min(1280,iw)':h=-2"
+    else
+      FILTER="fps=''${FPS},scale=w='min(1280,iw)':h=-2"
+    fi
+
+    # ─── encode ─────────────────────────────────────────────────────────────────
+    echo "Encoding: $VCODEC | GPU=$USE_GPU | fps=''${FPS} | bitrate=''${MBPS:-quality-based}" >&2
+
+    ffmpeg -y \
+      "''${DECODE_FLAGS[@]}" \
+      -i "$INPUT" \
+      -vf "$FILTER" \
+      -c:v "$VCODEC" "''${ENCODE_FLAGS[@]}" \
+      -c:a aac -b:a 320k \
+      -movflags +faststart \
+      "$OUTPUT"
+
+    echo "Done → $OUTPUT" >&2
   '';
   reboot-fw = pkgs.writeShellScriptBin "reboot-fw" "sudo systemctl reboot --firmware-setup";
   find-desktop = pkgs.writeShellScriptBin "find-desktop" ''
@@ -188,6 +278,7 @@ let
     fi
     exit 0
   '';
+  
   updateKnownHosts = pkgs.writeShellScriptBin "updateKnownHosts" ''
     ${pkgs.gnugrep}/bin/grep "^Host " ~/.ssh/config | ${pkgs.gnugrep}/bin/grep -v '\*' | ${pkgs.gawk}/bin/awk '{print $2}' | while read host; do
       hostname=$(${pkgs.gnugrep}/bin/grep -A5 "^Host $host$" ~/.ssh/config | ${pkgs.gnugrep}/bin/grep "HostName" | ${pkgs.gawk}/bin/awk '{print $2}')
@@ -207,7 +298,6 @@ let
       fi
     done
   '';
-
 
 in
 {
