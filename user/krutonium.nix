@@ -37,12 +37,17 @@ in
     };
     programs.fish.enable = true;
     programs.fish.useBabelfish = true;
-    home-manager.users.krutonium =
-      if roles.desktop == true then
-        import ./krutonium-desktop.nix
-      else if roles.server == true then
-        import ./krutonium-server.nix
-      else
-        null;
+    home-manager.users.krutonium = {
+      imports = [ ./krutonium-hm ];
+      programs.home-manager.enable = true;
+      # Fixes icons not reloading when switching system.
+      targets.genericLinux.enable = true;
+      home.username = "krutonium";
+      home.homeDirectory = "/home/krutonium";
+      home.sessionVariables.EDITOR = "nano";
+      home.sessionVariables.VISUAL = "nano";
+      home.sessionVariables.OLLAMA_HOST = "10.0.0.3";
+      home.stateVersion = "22.05";
+    };
   };
 }

@@ -56,7 +56,7 @@ in
       in
       [
         "f+ /var/lib/AccountsService/users/${username}  0600 root root - [User]\\nIcon=/var/lib/AccountsService/icons/${username}\\n"
-        "L+ /var/lib/AccountsService/icons/${username}  - - - - ${./user/${username}-hm-extras/assets/profile.png}"
+        "L+ /var/lib/AccountsService/icons/${username}  - - - - ${./user/${username}-hm/assets/profile.png}"
       ];
   };
   services = {
@@ -140,7 +140,7 @@ in
     enable = true;
     autoEnable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/ia-dark.yaml";
-    image = ./user/krutonium-hm-extras/assets/wallpaper.jpg;
+    image = ./user/krutonium-hm/assets/wallpaper.jpg;
     targets = {
       grub.enable = false;
       gnome.enable = true;
@@ -240,7 +240,7 @@ in
   boot = {
     initrd.services.lvm.enable = true;
     # Virtual webcam support
-    binfmt.emulatedSystems = [ "armv7l-linux" ];
+    # binfmt.emulatedSystems = [ "armv7l-linux" ];
     extraModulePackages = with config.boot.kernelPackages; [
       v4l2loopback
     ];
@@ -311,10 +311,6 @@ in
         owner = "NixOS";
         repo = "nixpkgs";
         ref = "nixos-unstable";
-      };
-      nixpkgs.to = {
-        type = "path";
-        path = pkgs.path;
       };
     };
     gc = {

@@ -26,11 +26,10 @@ let
     sha256 = "sha256:0arzwhxmxgyy6w56dgm5idlchp8zs6ia3yf02i2n0qp379dkdcgg";
   };
 
-
 in
 {
   home.file = javaLinks // {
-    ".face".source = ./assets/profile.png;
+    ".face".source = ../assets/profile.png;
     ".nanorc".text = ''
       set linenumbers
       set autoindent
@@ -95,5 +94,4 @@ in
           version = 1;
         };
       };
-
 }
