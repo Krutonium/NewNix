@@ -1,18 +1,13 @@
 {
   pkgs,
-  osConfig,
-  lib,
   ...
 }:
-let
-  isKde = (osConfig.sys.desktop.desktop == "kde");
-in
-lib.mkIf isKde {
+{
   programs.plasma = {
     enable = true;
     shortcuts = {
-#      "services/org.flameshot.Flameshot.desktop".Capture = "Print";
-#      "services/org.kde.spectacle.desktop".RecordWindow = [ ];
+      #      "services/org.flameshot.Flameshot.desktop".Capture = "Print";
+      #      "services/org.kde.spectacle.desktop".RecordWindow = [ ];
     };
     configFile = {
 

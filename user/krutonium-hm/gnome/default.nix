@@ -1,4 +1,4 @@
 { lib, osConfig, ... }:
 {
-  imports = lib.optionals (osConfig.sys.desktop == "gnome") [ ./gnome.nix ];
+  imports = lib.optionals (osConfig.sys.desktop.desktop == "gnome") [ ./gnome.nix ];
 }
