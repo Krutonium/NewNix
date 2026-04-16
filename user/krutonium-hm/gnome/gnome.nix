@@ -7,7 +7,7 @@
 
 with lib.hm.gvariant;
 let
-  superMenuLogo = "${./assets/supermenu.png}";
+  superMenuLogo = "${../assets/supermenu.png}";
   #wallPaper = "file://${./assets/wallpaper.png}";
   extensions = [
     pkgs.gnomeExtensions.dash-to-panel
