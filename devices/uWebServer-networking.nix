@@ -31,6 +31,7 @@
   # ── Firewall ─────────────────────────────────────────────────────────────────
   networking.nftables.enable = true;
   networking.firewall = {
+    checkReversePath = "loose";
     # LAN bridge is fully trusted.
     trustedInterfaces = [ "br0" ];
 
