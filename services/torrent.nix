@@ -23,7 +23,7 @@ in
         to = 50050;
       }
     ];
-    networking.firewall.interfaces."br0".allowedTCPPorts = [
+    networking.firewall.interfaces."WAN".allowedTCPPorts = [
       8112
       58846
     ];
@@ -57,8 +57,8 @@ in
         max_active_seeding = "500";
         max_active_downloading = "500";
         max_active_limit = "1000";
-        listen_interface = "br0";
-        outgoing_interface = "br0";
+        listen_interface = "WAN";
+        outgoing_interface = "WAN";
         outgoing_ports = [
           50024
           50050
