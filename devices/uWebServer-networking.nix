@@ -264,6 +264,7 @@
       #  "/krutonium.ca/10.0.0.1"
       #  "/krutonium.ca/fd00:beef::1"
       #];
+      address = [ "/krutonium.ca/#" ];
       host-record = [
         "uWebServer.krutonium.ca,10.0.0.1,fd00:beef::1"
         "uGamingPC.krutonium.ca,10.0.0.2,fd00:beef::2"
