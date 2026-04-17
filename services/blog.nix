@@ -23,6 +23,7 @@ in
       path = [
         pkgs.hugo
         pkgs.git
+	pkgs.go
       ];
       serviceConfig = {
         Type = "simple";
