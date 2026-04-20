@@ -31,11 +31,19 @@ let
     '';
     # This fixes OBS-Gamecapture by forcing the game to run in x11 mode instead of Wayland
   };
-  telegramPatched = pkgs.telegram-desktop.overrideAttrs (oldAttrs: {
-    patches = oldAttrs.patches ++ [
-      ./patches/telegram/0001-Disable-Advertisements.patch
-    ];
-  });
+  telegramPatched =
+    let
+      unwrapped = pkgs.telegram-desktop.unwrapped.overrideAttrs (oldAttrs: {
+        patches = (oldAttrs.patches or [ ]) ++ [
+          ./patches/telegram/0001-Disable-advertisements.patch
+          ./patches/telegram/0002-Disable-saving-restrictions.patch
+          ./patches/telegram/0003-Option-to-disable-stories.patch
+        ];
+      });
+    in
+    pkgs.telegram-desktop.overrideAttrs (_: {
+      unwrapped = unwrapped;
+    });
 in
 {
   imports = [
