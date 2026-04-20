@@ -1,18 +1,18 @@
-{ pkgs
-, lib
-, osConfig
-, ...
+{
+  pkgs,
+  lib,
+  osConfig,
+  ...
 }:
 let
-  dotnetCombined =
-    (
-      with pkgs.dotnetCorePackages;
-      combinePackages [
-        dotnet_8.sdk
-        dotnet_9.sdk
-        dotnet_10.sdk
-      ]
-    );
+  dotnetCombined = (
+    with pkgs.dotnetCorePackages;
+    combinePackages [
+      dotnet_8.sdk
+      dotnet_9.sdk
+      dotnet_10.sdk
+    ]
+  );
   commonPlugins = [ "nix-idea" ];
 
   #rider = pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.rider commonPlugins;
@@ -31,6 +31,11 @@ let
     '';
     # This fixes OBS-Gamecapture by forcing the game to run in x11 mode instead of Wayland
   };
+  telegramPatched = pkgs.telegram-desktop.overrideAttrs (oldAttrs: {
+    patches = oldAttrs.patches ++ [
+      ./patches/telegram/0001-Disable-Advertisements.patch
+    ];
+  });
 in
 {
   imports = [
@@ -61,7 +66,7 @@ in
     bottles
     pkgs.wineWow64Packages.waylandFull # Wine with Wayland Compat
     pkgs.prefixer
-    
+
     # Hardware & System Tools
     #pkgs.openrgb
 
@@ -121,11 +126,12 @@ in
     #pkgs.fractal
     pkgs.fluffychat
     #pkgs.srain
-    pkgs.ayugram-desktop
+    #pkgs.ayugram-desktop
+    telegramPatched
     #(pkgs.discord.override {
-      #withOpenASAR = true;
-      #withVencord = true;
-      #withMoonlight = true;
+    #withOpenASAR = true;
+    #withVencord = true;
+    #withMoonlight = true;
     #})
     pkgs.unstable.vesktop
     pkgs.teamspeak6-client
