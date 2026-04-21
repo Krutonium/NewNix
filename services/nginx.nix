@@ -26,7 +26,7 @@ let
 in
 {
   config = mkIf (cfg.nginx == true) {
-    users.groups.anubis-access = {};
+    users.groups.anubis-access = { };
     users.users.nginx.extraGroups = [ "anubis-access" ];
     networking.firewall.allowedTCPPorts = [
       80
@@ -153,6 +153,11 @@ in
           forceSSL = true;
           enableACME = true;
           root = "${pkgs.synapse-admin}";
+        };
+        "cache.krutonium.ca" = {
+          forceSSL = true;
+          enableACME = true;
+          locations."/".proxyPass = "http:10.3:5000";
         };
         "dl.krutonium.ca" = {
           forceSSL = true;
@@ -367,7 +372,7 @@ in
             proxyWebsockets = true;
             proxyPass = "http://unix:/run/anubis/anubis-searx/anubis.sock:/"; # Proxy Searx
             #proxyPass = "http://127.0.0.1:60613";
-	  };
+          };
           extraConfig = ''
             proxy_set_header Host $host;
             proxy_set_header X-Real-IP $remote_addr;

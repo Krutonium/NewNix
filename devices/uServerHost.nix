@@ -271,6 +271,12 @@ in
     udev.extraRules = ''
       ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="30:9c:23:d3:06:fd", NAME="WAN"
     '';
+    nix-serve = {
+      enable = true;
+      openFirewall = true;
+      secretKeyFile = "/etc/secrets/nix_secret";
+      extraParams = "--store /home/krutonium/store";
+    };
   };
   # At some point, I will need to figure out how to handle automatic updates.
   sys.users.krutonium = true;

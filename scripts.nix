@@ -278,7 +278,7 @@ let
     fi
     exit 0
   '';
-  
+
   updateKnownHosts = pkgs.writeShellScriptBin "updateKnownHosts" ''
     ${pkgs.gnugrep}/bin/grep "^Host " ~/.ssh/config | ${pkgs.gnugrep}/bin/grep -v '\*' | ${pkgs.gawk}/bin/awk '{print $2}' | while read host; do
       hostname=$(${pkgs.gnugrep}/bin/grep -A5 "^Host $host$" ~/.ssh/config | ${pkgs.gnugrep}/bin/grep "HostName" | ${pkgs.gawk}/bin/awk '{print $2}')
@@ -297,6 +297,39 @@ let
         echo "  -> Added."
       fi
     done
+  '';
+  updateCache = pkgs.writeShellScriptBin "updateCache" ''
+    set -euo pipefail
+
+    FLAKE_DIR="/home/krutonium/NixOS-repo"               # adjust to your flake repo path
+    STORE_DIR="/home/krutonium/store"
+
+    cd "$FLAKE_DIR"
+
+    # Pull latest and update lockfile
+    git pull --rebase
+    nix flake update
+
+    # Build all default outputs into the custom store
+    nix build .# \
+      --store "$STORE_DIR" \
+      --print-out-paths | while read -r path; do
+        nix store sign \
+          --store "$STORE_DIR" \
+          --key-file "/etc/secrets/nix_secret" \
+          "$path"
+      done
+
+    # Commit and push updated lockfile if changed
+    if git diff --quiet flake.lock; then
+      echo "No lockfile changes."
+    else
+      git add flake.lock
+      git commit -m "chore: auto-update flake.lock $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+      git push
+    fi
+
+    echo "Done."
   '';
 
 in
@@ -322,5 +355,6 @@ in
     reboot-fw
     find-desktop
     updateKnownHosts
+    updateCache
   ];
 }
