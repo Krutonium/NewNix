@@ -301,7 +301,7 @@ let
 updateCache = pkgs.writeShellScriptBin "updateCache" ''
   set -euo pipefail
 
-  export PATH="${pkgs.nix}/bin:${pkgs.git}/bin:$PATH"
+  export PATH="${pkgs.nix}/bin:${pkgs.git}/bin:${pkgs.openssh}/bin:$PATH"
 
   FLAKE_DIR="/home/krutonium/NixOS-repo"
   STORE_DIR="/home/krutonium/store"
