@@ -33,14 +33,34 @@ let
   };
   telegramPatched =
     let
-      unwrapped = pkgs.telegram-desktop.unwrapped.overrideAttrs (oldAttrs: {
-        patches = (oldAttrs.patches or [ ]) ++ [
-          ./patches/telegram/0001-Disable-advertisements.patch
-          #./patches/telegram/0004-timer-clamp-timeout.patch
-          #./patches/telegram/0002-Disable-saving-restrictions.patch
-          #./patches/telegram/0003-Option-to-disable-stories.patch
-        ];
-      });
+        version = "dev-unstable";
+
+        src = prev.fetchFromGitHub {
+          owner = "telegramdesktop";
+          repo  = "tdesktop";
+
+          # ── REPLACE THIS ──────────────────────────────────────────────────────
+          # Paste the full 40-character commit SHA from the `dev` branch here.
+          rev  = "ae7ab838f450b73b30ade03a87cfdb6ff4b68bd3";
+
+          # ── REPLACE THIS ──────────────────────────────────────────────────────
+          # Paste the sri hash produced by nix-prefetch-git (or `nix store
+          # prefetch-file`) here.  Start with a fake hash and let the build error
+          # tell you the correct one if you prefer:
+          #   hash = "";   # triggers a mismatch error that prints the real hash
+          hash = "";
+
+          fetchSubmodules = true;
+        };
+
+#      unwrapped = pkgs.telegram-desktop.unwrapped.overrideAttrs (oldAttrs: {
+#        patches = (oldAttrs.patches or [ ]) ++ [
+#          ./patches/telegram/0001-Disable-advertisements.patch
+#          #./patches/telegram/0004-timer-clamp-timeout.patch
+#          #./patches/telegram/0002-Disable-saving-restrictions.patch
+#          #./patches/telegram/0003-Option-to-disable-stories.patch
+#        ];
+#      });
     in
     pkgs.telegram-desktop.overrideAttrs (_: {
       unwrapped = unwrapped;
