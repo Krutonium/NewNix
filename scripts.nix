@@ -336,7 +336,11 @@ let
     for host in uWebServer uGamingPC uMsiLaptop uServerHost; do
       echo "Building $host..."
       nix build ".#nixosConfigurations.$host.config.system.build.toplevel" \
-        --out-link "/nix/var/nix/gcroots/$host"
+        --out-link "/nix/var/nix/gcroots/$host" \
+        --print-out-paths | while read -r path; do
+          nix store sign \
+            --key-file "/etc/secrets/nix_secret" \
+            "$path"
         done
     done
     echo "Done."
