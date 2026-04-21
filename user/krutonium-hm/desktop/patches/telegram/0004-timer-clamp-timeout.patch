@@ -1,5 +1,5 @@
---- a/base/timer.cpp
-+++ b/base/timer.cpp
+--- a/Telegram/lib_base/base/timer.cpp
++++ b/Telegram/lib_base/base/timer.cpp
 @@ -99,7 +99,12 @@ void Timer::adjust() {
  void Timer::setTimeout(crl::time timeout) {
 -	Expects(timeout >= 0 && timeout <= std::numeric_limits<int>::max());
