@@ -298,39 +298,38 @@ let
       fi
     done
   '';
-  updateCache = pkgs.writeShellScriptBin "updateCache" ''
-    set -euo pipefail
+updateCache = pkgs.writeShellScriptBin "updateCache" ''
+  set -euo pipefail
 
-    FLAKE_DIR="/home/krutonium/NixOS-repo"               # adjust to your flake repo path
-    STORE_DIR="/home/krutonium/store"
+  export PATH="${pkgs.nix}/bin:${pkgs.git}/bin:$PATH"
 
-    cd "$FLAKE_DIR"
+  FLAKE_DIR="/home/krutonium/NixOS-repo"
+  STORE_DIR="/home/krutonium/store"
 
-    # Pull latest and update lockfile
-    git pull --rebase
-    nix flake update
+  cd "$FLAKE_DIR"
 
-    # Build all default outputs into the custom store
-    nix build .# \
-      --store "$STORE_DIR" \
-      --print-out-paths | while read -r path; do
-        nix store sign \
-          --store "$STORE_DIR" \
-          --key-file "/etc/secrets/nix_secret" \
-          "$path"
-      done
+  git pull --rebase
+  nix flake update
 
-    # Commit and push updated lockfile if changed
-    if git diff --quiet flake.lock; then
-      echo "No lockfile changes."
-    else
-      git add flake.lock
-      git commit -m "chore: auto-update flake.lock $(date -u +%Y-%m-%dT%H:%M:%SZ)"
-      git push
-    fi
+  nix build .# \
+    --store "$STORE_DIR" \
+    --print-out-paths | while read -r path; do
+      nix store sign \
+        --store "$STORE_DIR" \
+        --key-file "/etc/secrets/nix_secret" \
+        "$path"
+    done
 
-    echo "Done."
-  '';
+  if git diff --quiet flake.lock; then
+    echo "No lockfile changes."
+  else
+    git add flake.lock
+    git commit -m "chore: auto-update flake.lock $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+    git push
+  fi
+
+  echo "Done."
+'';
 
 in
 {
