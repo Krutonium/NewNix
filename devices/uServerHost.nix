@@ -293,7 +293,6 @@ in
       enable = true;
       openFirewall = true;
       secretKeyFile = "/etc/secrets/nix_secret";
-      extraParams = "--store /home/krutonium/store";
     };
   };
   # At some point, I will need to figure out how to handle automatic updates.

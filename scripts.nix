@@ -304,7 +304,7 @@ updateCache = pkgs.writeShellScriptBin "updateCache" ''
   export PATH="${pkgs.nix}/bin:${pkgs.git}/bin:${pkgs.openssh}/bin:$PATH"
 
   FLAKE_DIR="/home/krutonium/NixOS-repo"
-  STORE_DIR="/home/krutonium/store"
+  STORE_DIR="/nix/store"
 
   cd "$FLAKE_DIR"
 
