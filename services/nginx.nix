@@ -157,7 +157,7 @@ in
         "cache.krutonium.ca" = {
           forceSSL = true;
           enableACME = true;
-          locations."/".proxyPass = "http:10.3:5000";
+          locations."/".proxyPass = "http://10.3:5000";
         };
         "dl.krutonium.ca" = {
           forceSSL = true;
