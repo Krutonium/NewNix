@@ -304,7 +304,6 @@ let
     export PATH="${pkgs.nix}/bin:${pkgs.git}/bin:${pkgs.openssh}/bin:$PATH"
 
     FLAKE_DIR="/home/krutonium/NixOS-repo"
-    STORE_DIR="/nix/store"
     LOCK_FILE="$FLAKE_DIR/flake.lock"
     SIX_HOURS=21600
 
@@ -337,13 +336,7 @@ let
     for host in uWebServer uGamingPC uMsiLaptop uServerHost; do
       echo "Building $host..."
       nix build ".#nixosConfigurations.$host.config.system.build.toplevel" \
-        --store "$STORE_DIR" \
-        --out-link "$STORE_DIR/gcroots/$host" \
-        --print-out-paths | while read -r path; do
-          nix store sign \
-            --store "$STORE_DIR" \
-            --key-file "/etc/secrets/nix_secret" \
-            "$path"
+        --out-link "/nix/var/nix/gcroots/$host"
         done
     done
     echo "Done."
