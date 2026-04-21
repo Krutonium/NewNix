@@ -39,7 +39,7 @@ let
         owner = "telegramdesktop";
         repo = "tdesktop";
         rev = "ae7ab838f450b73b30ade03a87cfdb6ff4b68bd3";
-        hash = "";
+        hash = "sha256-nN6a/TPMGmB59HS7uYvNuLVAXjn2XbJWuAqlPft0jww=";
         fetchSubmodules = true;
       };
       unwrapped = pkgs.telegram-desktop.unwrapped.overrideAttrs (oldAttrs: {
