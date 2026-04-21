@@ -95,7 +95,7 @@ in
     }
   ];
   services.hermes-agent = {
-    enable = true;
+    enable = false;
     settings.model.default = "qwen3:latest";
     addToSystemPackages = true;
     environment.SHELL = "${pkgs.bash}/bin/bash";
