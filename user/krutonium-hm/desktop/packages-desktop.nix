@@ -35,7 +35,7 @@ let
     let
       version = "dev-unstable";
 
-      src = prev.fetchFromGitHub {
+      src = pkgs.fetchFromGitHub {
         owner = "telegramdesktop";
         repo = "tdesktop";
         rev = "ae7ab838f450b73b30ade03a87cfdb6ff4b68bd3";
