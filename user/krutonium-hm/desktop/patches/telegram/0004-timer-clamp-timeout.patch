@@ -1,11 +1,14 @@
+diff --git a/base/timer.cpp b/base/timer.cpp
+index 73211de..d46fad4 100644
 --- a/Telegram/lib_base/base/timer.cpp
 +++ b/Telegram/lib_base/base/timer.cpp
-@@ -97,8 +97,15 @@
+@@ -97,9 +97,15 @@ void Timer::adjust() {
  }
  
  void Timer::setTimeout(crl::time timeout) {
 -	Expects(timeout >= 0 && timeout <= std::numeric_limits<int>::max());
 -
+-	_timeout = static_cast<unsigned int>(timeout);
 +	const auto kMinTimeout = crl::time(0);
 +	const auto kMaxTimeout = crl::time(std::numeric_limits<int>::max());
 +	if (timeout < kMinTimeout || timeout > kMaxTimeout) {
@@ -15,5 +18,6 @@
 +			.arg(kMaxTimeout));
 +		timeout = std::clamp(timeout, kMinTimeout, kMaxTimeout);
 +	}
- 	_timeout = static_cast<unsigned int>(timeout);
  }
+ 
+ int Timer::timeout() const {
