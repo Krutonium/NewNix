@@ -218,6 +218,15 @@ in
         "subvol=Hytale"
       ];
     };
+    "/nix" = {
+      device = btrfsDisk;
+      fsType = "btrfs";
+      options = [
+	"compress=zstd:15"
+	"subvol=nix"
+      ];
+      neededForBoot = true;
+    };
     "/backups" = {
       device = "/dev/disk/by-label/Backups";
       fsType = "ext4";
