@@ -56,6 +56,24 @@ in
     ProtectHome = lib.mkForce false;
   };
 
+  systemd.services.update-cache = {
+    description = "Run updateCache command";
+    serviceConfig = {
+      Type = "oneshot";
+      User = "krutonium";
+      ExecStart = "/run/current-system/sw/bin/updateCache";
+    };
+  };
+
+  systemd.timers.update-cache = {
+    description = "Run updateCache at midnight";
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnCalendar = "daily";
+      Persistent = true;
+    };
+  };
+
   boot = {
     kernelPackages = kernel;
     kernelParams = [ "mitigations=off" ];
