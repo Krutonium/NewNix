@@ -311,14 +311,19 @@ updateCache = pkgs.writeShellScriptBin "updateCache" ''
   git pull --rebase
   nix flake update
 
-  nix build .# \
-    --store "$STORE_DIR" \
-    --print-out-paths | while read -r path; do
-      nix store sign \
-        --store "$STORE_DIR" \
-        --key-file "/etc/secrets/nix_secret" \
-        "$path"
-    done
+  # Build each nixosConfiguration toplevel
+  for host in uWebServer uGamingPC uMsiLaptop uServerHost; do
+    echo "Building $host..."
+    nix build ".#nixosConfigurations.$host.config.system.build.toplevel" \
+      --store "$STORE_DIR" \
+      --out-link "$STORE_DIR/gcroots/$host" \
+      --print-out-paths | while read -r path; do
+        nix store sign \
+          --store "$STORE_DIR" \
+          --key-file "/etc/secrets/nix_secret" \
+          "$path"
+      done
+  done
 
   if git diff --quiet flake.lock; then
     echo "No lockfile changes."
