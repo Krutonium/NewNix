@@ -1,10 +1,11 @@
 --- a/Telegram/lib_base/base/timer.cpp
 +++ b/Telegram/lib_base/base/timer.cpp
-@@ -99,7 +99,12 @@ void Timer::adjust() {
+@@ -97,8 +97,15 @@
+ }
+ 
  void Timer::setTimeout(crl::time timeout) {
 -	Expects(timeout >= 0 && timeout <= std::numeric_limits<int>::max());
 -
--	_timeout = static_cast<unsigned int>(timeout);
 +	const auto kMinTimeout = crl::time(0);
 +	const auto kMaxTimeout = crl::time(std::numeric_limits<int>::max());
 +	if (timeout < kMinTimeout || timeout > kMaxTimeout) {
@@ -14,5 +15,5 @@
 +			.arg(kMaxTimeout));
 +		timeout = std::clamp(timeout, kMinTimeout, kMaxTimeout);
 +	}
-+	_timeout = static_cast<unsigned int>(timeout);
+ 	_timeout = static_cast<unsigned int>(timeout);
  }
