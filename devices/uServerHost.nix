@@ -56,23 +56,23 @@ in
     ProtectHome = lib.mkForce false;
   };
 
-  systemd.services.update-cache = {
-    description = "Run updateCache command";
-    serviceConfig = {
-      Type = "oneshot";
-      User = "krutonium";
-      ExecStart = "/run/current-system/sw/bin/updateCache";
-    };
-  };
+  #systemd.services.update-cache = {
+  #  description = "Run updateCache command";
+  #  serviceConfig = {
+  #    Type = "oneshot";
+  #    User = "krutonium";
+  #    ExecStart = "/run/current-system/sw/bin/updateCache";
+  #  };
+  #};
 
-  systemd.timers.update-cache = {
-    description = "Run updateCache at midnight";
-    wantedBy = [ "timers.target" ];
-    timerConfig = {
-      OnCalendar = "daily";
-      Persistent = true;
-    };
-  };
+  #systemd.timers.update-cache = {
+  #  description = "Run updateCache at midnight";
+  #  wantedBy = [ "timers.target" ];
+  #  timerConfig = {
+  #    OnCalendar = "daily";
+  #    Persistent = true;
+  #  };
+  #};
 
   boot = {
     kernelPackages = kernel;
@@ -218,15 +218,15 @@ in
         "subvol=Hytale"
       ];
     };
-    "/nix" = {
-      device = btrfsDisk;
-      fsType = "btrfs";
-      options = [
-	"compress=zstd:15"
-	"subvol=nix"
-      ];
-      neededForBoot = true;
-    };
+    #"/nix" = {
+    #  device = btrfsDisk;
+    #  fsType = "btrfs";
+    #  options = [
+    #	"compress=zstd:15"
+    #	"subvol=nix"
+    #  ];
+    #  neededForBoot = true;
+    #};
     "/backups" = {
       device = "/dev/disk/by-label/Backups";
       fsType = "ext4";
@@ -298,11 +298,11 @@ in
     udev.extraRules = ''
       ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="30:9c:23:d3:06:fd", NAME="WAN"
     '';
-    nix-serve = {
-      enable = true;
-      openFirewall = true;
-      secretKeyFile = "/etc/secrets/nix_secret";
-    };
+    #nix-serve = {
+    #  enable = true;
+    #  openFirewall = true;
+    #  secretKeyFile = "/etc/secrets/nix_secret";
+    #};
   };
   # At some point, I will need to figure out how to handle automatic updates.
   sys.users.krutonium = true;
