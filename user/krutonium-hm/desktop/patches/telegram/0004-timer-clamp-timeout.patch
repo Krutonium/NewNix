@@ -1,0 +1,18 @@
+--- a/base/timer.cpp
++++ b/base/timer.cpp
+@@ -99,7 +99,12 @@ void Timer::adjust() {
+ void Timer::setTimeout(crl::time timeout) {
+-	Expects(timeout >= 0 && timeout <= std::numeric_limits<int>::max());
+-
+-	_timeout = static_cast<unsigned int>(timeout);
++	const auto kMinTimeout = crl::time(0);
++	const auto kMaxTimeout = crl::time(std::numeric_limits<int>::max());
++	if (timeout < kMinTimeout || timeout > kMaxTimeout) {
++		LOG(("Timer Warning: invalid timeout %1, clamping to [%2, %3].")
++			.arg(timeout)
++			.arg(kMinTimeout)
++			.arg(kMaxTimeout));
++		timeout = std::clamp(timeout, kMinTimeout, kMaxTimeout);
++	}
++	_timeout = static_cast<unsigned int>(timeout);
+ }

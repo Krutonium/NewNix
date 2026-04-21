@@ -36,6 +36,7 @@ let
       unwrapped = pkgs.telegram-desktop.unwrapped.overrideAttrs (oldAttrs: {
         patches = (oldAttrs.patches or [ ]) ++ [
           ./patches/telegram/0001-Disable-advertisements.patch
+          ./patches/telegram/0004-timer-clamp-timeout.patch
           #./patches/telegram/0002-Disable-saving-restrictions.patch
           #./patches/telegram/0003-Option-to-disable-stories.patch
         ];
