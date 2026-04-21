@@ -305,11 +305,25 @@ let
 
     FLAKE_DIR="/home/krutonium/NixOS-repo"
     STORE_DIR="/nix/store"
+    LOCK_FILE="$FLAKE_DIR/flake.lock"
+    SIX_HOURS=21600
 
     cd "$FLAKE_DIR"
 
     git pull --rebase
-    nix flake update
+    # Check if flake.lock was modified in the last 6 hours
+    if [ -f "$LOCK_FILE" ]; then
+      LAST_MODIFIED=$(stat -c %Y "$LOCK_FILE")
+      NOW=$(date +%s)
+      AGE=$(( NOW - LAST_MODIFIED ))
+      if [ "$AGE" -lt "$SIX_HOURS" ]; then
+        echo "flake.lock was updated $AGE seconds ago, skipping nix flake update."
+      else
+        nix flake update
+      fi
+    else
+      nix flake update
+    fi
 
     if git diff --quiet flake.lock; then
       echo "No lockfile changes."
