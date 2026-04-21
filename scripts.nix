@@ -298,43 +298,42 @@ let
       fi
     done
   '';
-updateCache = pkgs.writeShellScriptBin "updateCache" ''
-  set -euo pipefail
+  updateCache = pkgs.writeShellScriptBin "updateCache" ''
+    set -euo pipefail
 
-  export PATH="${pkgs.nix}/bin:${pkgs.git}/bin:${pkgs.openssh}/bin:$PATH"
+    export PATH="${pkgs.nix}/bin:${pkgs.git}/bin:${pkgs.openssh}/bin:$PATH"
 
-  FLAKE_DIR="/home/krutonium/NixOS-repo"
-  STORE_DIR="/nix/store"
+    FLAKE_DIR="/home/krutonium/NixOS-repo"
+    STORE_DIR="/nix/store"
 
-  cd "$FLAKE_DIR"
+    cd "$FLAKE_DIR"
 
-  git pull --rebase
-  nix flake update
+    git pull --rebase
+    nix flake update
 
-  # Build each nixosConfiguration toplevel
-  for host in uWebServer uGamingPC uMsiLaptop uServerHost; do
-    echo "Building $host..."
-    nix build ".#nixosConfigurations.$host.config.system.build.toplevel" \
-      --store "$STORE_DIR" \
-      --out-link "$STORE_DIR/gcroots/$host" \
-      --print-out-paths | while read -r path; do
-        nix store sign \
-          --store "$STORE_DIR" \
-          --key-file "/etc/secrets/nix_secret" \
-          "$path"
-      done
-  done
+    if git diff --quiet flake.lock; then
+      echo "No lockfile changes."
+    else
+      git add flake.lock
+      git commit -m "chore: auto-update flake.lock $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+      git push
+    fi
 
-  if git diff --quiet flake.lock; then
-    echo "No lockfile changes."
-  else
-    git add flake.lock
-    git commit -m "chore: auto-update flake.lock $(date -u +%Y-%m-%dT%H:%M:%SZ)"
-    git push
-  fi
-
-  echo "Done."
-'';
+    # Build each nixosConfiguration toplevel
+    for host in uWebServer uGamingPC uMsiLaptop uServerHost; do
+      echo "Building $host..."
+      nix build ".#nixosConfigurations.$host.config.system.build.toplevel" \
+        --store "$STORE_DIR" \
+        --out-link "$STORE_DIR/gcroots/$host" \
+        --print-out-paths | while read -r path; do
+          nix store sign \
+            --store "$STORE_DIR" \
+            --key-file "/etc/secrets/nix_secret" \
+            "$path"
+        done
+    done
+    echo "Done."
+  '';
 
 in
 {
