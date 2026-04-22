@@ -1,5 +1,5 @@
 diff --git a/Telegram/SourceFiles/data/components/sponsored_messages.cpp b/Telegram/SourceFiles/data/components/sponsored_messages.cpp
-index 4e68421fff..dfeaf79c91 100644
+index 4e68421fff..6431b8c5af 100644
 --- a/Telegram/SourceFiles/data/components/sponsored_messages.cpp
 +++ b/Telegram/SourceFiles/data/components/sponsored_messages.cpp
 @@ -239,62 +239,19 @@ void SponsoredMessages::inject(
@@ -67,10 +67,11 @@ index 4e68421fff..dfeaf79c91 100644
  }
  
  void SponsoredMessages::requestForVideo(
-@@ -435,19 +392,7 @@ void SponsoredMessages::parseForVideo(
+@@ -434,20 +391,8 @@ void SponsoredMessages::parseForVideo(
+ 	});
  }
  
- SponsoredForVideo SponsoredMessages::prepareForVideo(
+-SponsoredForVideo SponsoredMessages::prepareForVideo(
 -		not_null<PeerData*> peer) {
 -	const auto i = _dataForVideo.find(peer);
 -	if (i == end(_dataForVideo) || i->second.entries.empty()) {
@@ -84,7 +85,8 @@ index 4e68421fff..dfeaf79c91 100644
 -		.betweenDelay = i->second.betweenDelay,
 -		.state = i->second.state,
 -	};
-+        return {};
++SponsoredForVideo SponsoredMessages::prepareForVideo(not_null<PeerData*> peer) {
++    return {};
  }
  
  FullMsgId SponsoredMessages::fillTopBar(
