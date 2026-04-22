@@ -46,6 +46,8 @@ let
         inherit version src;
         patches = (oldAttrs.patches or [ ]) ++ [
           ./patches/telegram/0001-Disable-advertisements.patch
+          ./patches/telegram/0002-Disable-advertisements.patch
+          ./patches/telegram/0003-Disable-advertisements.patch
         ];
       });
     in

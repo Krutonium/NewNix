@@ -1,0 +1,14 @@
+diff --git a/Telegram/SourceFiles/data/components/promo_suggestions.cpp b/Telegram/SourceFiles/data/components/promo_suggestions.cpp
+index 15d468c155..03ffdba02e 100644
+--- a/Telegram/SourceFiles/data/components/promo_suggestions.cpp
++++ b/Telegram/SourceFiles/data/components/promo_suggestions.cpp
+@@ -125,6 +125,9 @@ void PromoSuggestions::refreshTopPromotion() {
+ 					|= _dismissedSuggestions.emplace(qs(suggestion)).second;
+ 			}
+ 
++			setTopPromoted(nullptr, QString(), QString());
++			return;
++
+ 			if (const auto peer = data.vpeer()) {
+ 				const auto peerId = peerFromMTP(*peer);
+ 				const auto history = _session->data().history(peerId);
