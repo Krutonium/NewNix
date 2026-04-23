@@ -80,7 +80,9 @@ in
     font_size_text = 14
     font_scale = 1
   '';
-
+  xdg.configFile."nix/nix.conf".text = ''
+    !include /run/secrets/rendered/nix-access-tokens.conf
+  '';
   xdg.configFile."openvr/openvrpaths.vrpath" =
     lib.mkIf (osConfig.networking.hostName == "uGamingPC")
       {
