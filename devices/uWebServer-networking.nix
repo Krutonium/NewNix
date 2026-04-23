@@ -220,8 +220,8 @@
       listen-address = "127.0.0.1,::1,10.0.0.1,fd00:beef::1";
 
       # Local domain
-      domain = "krutonium.ca,10.0.0.0/24";
-      expand-hosts = true;
+      # domain = "krutonium.ca,10.0.0.0/24";
+      # expand-hosts = true;
 
       # Upstream resolvers — if both are down, something very bad has happened.
       server = [
@@ -259,11 +259,11 @@
       ];
 
       # ── Local DNS overrides ───────────────────────────────────────────────
-      #address = [
-      #  "/BRWB068E697F437.local/10.0.0.8"
-      #  "/krutonium.ca/10.0.0.1"
-      #  "/krutonium.ca/fd00:beef::1"
-      #];
+      address = [
+        "/BRWB068E697F437.local/10.0.0.8"
+        "/krutonium.ca/10.0.0.1"
+        "/krutonium.ca/fd00:beef::1"
+      ];
       host-record = [
         "uWebServer.krutonium.ca,10.0.0.1,fd00:beef::1"
         "uGamingPC.krutonium.ca,10.0.0.2,fd00:beef::2"
