@@ -65,6 +65,7 @@ in
       pingTarget = "1.1.1.1";
       httpTarget = "https://google.ca";
     };
+    resolved.enable = false;
     lvm.enable = true;
     atd.enable = true;
     # CPU interrupt balancing
