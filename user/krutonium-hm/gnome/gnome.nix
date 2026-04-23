@@ -173,6 +173,8 @@ lib.mkIf isGnome {
       #   (mkDictionaryEntry [ "name" "ArcMenu Settings" ])
       #   (mkDictionaryEntry [ "icon" "ArcMenu_ArcMenuIcon" ])
       # ]
+
+      # nix run github:Krutonium/FindTheDesktop -- telegram
       pinned-apps = [
         [
           (mkDictionaryEntry [
