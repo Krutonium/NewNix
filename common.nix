@@ -70,7 +70,6 @@ in
       openFirewall = true;
       secretKeyFile = "/etc/secrets/nix_secret";
     };
-    resolved.enable = false;
     lvm.enable = true;
     atd.enable = true;
     # CPU interrupt balancing
