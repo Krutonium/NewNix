@@ -82,7 +82,7 @@ in
 
     # Wine & Windows Compatibility
     bottles
-    pkgs.wineWow64Packages.waylandFull # Wine with Wayland Compat
+    pkgs.unstable.wineWow64Packages.waylandFull # Wine with Wayland Compat
     pkgs.prefixer
 
     # Hardware & System Tools
