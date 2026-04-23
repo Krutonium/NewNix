@@ -12,6 +12,7 @@ let
 in
 {
   config = mkIf (users.krutonium == true) {
+    users.groups.krutonium = {};
     users.users.krutonium = {
       uid = 1002;
       home = "/home/krutonium";
