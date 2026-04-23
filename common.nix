@@ -304,12 +304,12 @@ in
       substituters = [
         "https://cache.nixos-cuda.org"
         "https://attic.xuyh0120.win/lantian"
-        "http://cache.krutonium.ca"
+        #"http://cache.krutonium.ca"
       ];
       trusted-public-keys = [
         "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
         "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
-        #"cache.krutonium.ca:bOYu3ZAbNGhhbbgFYLVy4HLApS9bVVzH2rMoGK3jl4Q="
+        "cache.krutonium.ca:bOYu3ZAbNGhhbbgFYLVy4HLApS9bVVzH2rMoGK3jl4Q="
       ];
     };
     registry = {
