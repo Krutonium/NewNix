@@ -213,7 +213,7 @@ lib.mkIf isGnome {
         [
           (mkDictionaryEntry [
             "id"
-            "com.ayugram.desktop.desktop"
+            "org.telegram.desktop.desktop"
           ])
           (mkDictionaryEntry [
             "icon"
@@ -227,7 +227,7 @@ lib.mkIf isGnome {
         [
           (mkDictionaryEntry [
             "id"
-            "org.gnome.Fractal.desktop"
+            "Fluffychat.desktop"
           ])
         ]
         [
