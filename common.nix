@@ -192,12 +192,13 @@ in
         searx_secret = {
           path = "/etc/secrets/searx_secret";
         };
-        github_token = { };
+        github_token = {
+          owner = "krutonium";
+        };
         nix_serve_secret = {
           path = "/etc/secrets/nix_secret";
         };
       }
-
       (lib.mkIf config.sys.services.grafana {
         grafana_admin_password = {
           owner = "grafana";
@@ -211,6 +212,14 @@ in
         };
       })
     ];
+    templates."nix-access-tokens.conf" = {
+      content = ''
+        access-tokens = github.com=${config.sops.placeholder."github_token"}
+      '';
+      # The nix daemon runs as root, so this needs to be root-readable
+      owner = "root";
+      mode = "0400";
+    };
   };
 
   # PAM configuration for GNOME keyring auto-unlock
@@ -335,6 +344,7 @@ in
     extraOptions = ''
       experimental-features = nix-command flakes
       extra-platforms = x86_64-linux i686-linux
+      !include ${config.sops.templates."nix-access-tokens.conf".path}
     '';
   };
 
