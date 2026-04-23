@@ -65,6 +65,11 @@ in
       pingTarget = "1.1.1.1";
       httpTarget = "https://google.ca";
     };
+    nix-serve = {
+      enable = true;
+      openFirewall = true;
+      secretKeyFile = "/etc/secrets/nix_secret";
+    };
     resolved.enable = false;
     lvm.enable = true;
     atd.enable = true;
@@ -304,7 +309,10 @@ in
       substituters = [
         "https://cache.nixos-cuda.org"
         "https://attic.xuyh0120.win/lantian"
-        #"http://cache.krutonium.ca"
+        "http://10.1:5000"
+        "http://10.2:5000"
+        "http://10.3:5000"
+        "http://10.5:5000"
       ];
       trusted-public-keys = [
         "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
