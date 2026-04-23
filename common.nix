@@ -218,7 +218,8 @@ in
       '';
       # The nix daemon runs as root, so this needs to be root-readable
       owner = "root";
-      mode = "0400";
+      group = "krutonium";
+      mode = "0440";
     };
   };
 
