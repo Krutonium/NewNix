@@ -41,9 +41,9 @@ in
             exit 0
           fi
 
-          mkdir -p /var/lib/gdm/.config
-          install -o gdm -g gdm -m 644 "$SRC" "$DEST"
-          echo "Copied monitors.xml to GDM config."
+          install -m 644 "$SRC" /etc/xdg/monitors.xml
+          echo "Copied monitors.xml to /etc/xdg/monitors.xml"
+
         '';
       };
     };
