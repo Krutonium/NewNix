@@ -25,6 +25,12 @@ let
       iconName = "calibre-gui";
       category = "Education";
     }
+    {
+      pkgs = pkgs.dolphin-emu;
+      prettyName = "Dolphin";
+      iconName = "dolphin-emu";
+      category = "Game";
+    }
   ];
 
   apps = map (
