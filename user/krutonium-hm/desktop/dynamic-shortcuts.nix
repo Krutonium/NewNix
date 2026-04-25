@@ -26,7 +26,7 @@ let
       category = "Education";
     }
     {
-      pkgs = pkgs.dolphin-emu;
+      pkg = pkgs.dolphin-emu;
       prettyName = "Dolphin";
       iconName = "dolphin-emu";
       category = "Game";
