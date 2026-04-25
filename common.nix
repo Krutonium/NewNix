@@ -257,7 +257,10 @@ in
 
   # Boot configuration
   boot = {
-    initrd.services.lvm.enable = true;
+    initrd = { 
+      services.lvm.enable = true;
+      systemd.enable = true;
+    };
     # Virtual webcam support
     # binfmt.emulatedSystems = [ "armv7l-linux" ];
     extraModulePackages = with config.boot.kernelPackages; [
