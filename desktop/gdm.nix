@@ -41,6 +41,7 @@ in
             exit 0
           fi
 
+          mkdir -p /etc/xdg
           install -m 644 "$SRC" /etc/xdg/monitors.xml
           echo "Copied monitors.xml to /etc/xdg/monitors.xml"
 
