@@ -18,6 +18,10 @@ let
     "ddcci"
     "i2c-dev" #RGB
     "i2c-piix4"
+    "nvidia"
+    "nvidia_modeset"
+    "nvidia_drm"
+    "nvidia_uvm"
   ];
 in
 {
@@ -28,6 +32,13 @@ in
       "nvidia.NVreg_EnableResizableBar=1"
       "mitigations=off"
       "acpi_enforce_resources=lax"
+      "quiet"
+      "splash"
+      "loglevel=3"
+      "rd.systemd.show_status=false"
+      "rd.udev.log_level=3"
+      "udev.log_priority=3"
+      "nvidia_drm.fbdev=1"
     ];
     tmp.useTmpfs = false;
     loader.grub = {
