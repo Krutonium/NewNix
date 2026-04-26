@@ -18,15 +18,12 @@ let
     "ddcci"
     "i2c-dev" #RGB
     "i2c-piix4"
-    "nvidia"
-    "nvidia_modeset"
-    "nvidia_drm"
-    "nvidia_uvm"
   ];
 in
 {
   #hardware.firmware = [ video.firmware ];
   boot = {
+    initrd.kernelModules = [ "nvidia" "nvidia_modeset" "nvidia_drm" "nvidia_uvm" ];
     kernelPackages = kernel;
     kernelParams = [
       "nvidia.NVreg_EnableResizableBar=1"
