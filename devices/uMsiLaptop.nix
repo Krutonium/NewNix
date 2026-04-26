@@ -62,7 +62,7 @@ in
   };
   sys = {
     boot = {
-      bootloader = "uefi";
+      bootloader = "systemd";
       plymouth_enabled = true;
     };
     desktop = {
