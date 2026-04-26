@@ -12,10 +12,10 @@ in
 {
   config = mkIf (cfg.desktop == "gnome") {
     services = {
-        desktopManager = {
-          gnome = {
-            enable = true;
-          };
+      desktopManager = {
+        gnome = {
+          enable = true;
+        };
       };
     };
     xdg.portal = {
