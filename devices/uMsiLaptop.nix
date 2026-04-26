@@ -23,6 +23,11 @@ in
     "mitigations=off"
     "i915.enable_psr=0"
     "i915.enable_rc6=0"
+    "quiet"
+    "loglevel=3" # Only KERN_ERR and above
+    "rd.systemd.show_status=false"
+    "rd.udev.log_level=3"
+    "udev.log_priority=3"
     "splash"
   ];
   systemd.services."getty@tty1".enable = lib.mkDefault false;
