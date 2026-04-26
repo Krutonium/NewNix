@@ -181,7 +181,7 @@ in
   };
   sys = {
     boot = {
-      bootloader = "uefi";
+      bootloader = "systemd";
       uefiPath = "/boot";
       plymouth_enabled = true;
     };
