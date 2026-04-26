@@ -49,7 +49,7 @@ in
       home.sessionVariables.EDITOR = "nano";
       home.sessionVariables.VISUAL = "nano";
       home.sessionVariables.OLLAMA_HOST = "10.0.0.3";
-      home.stateVersion = "22.05";
+      home.stateVersion = "25.11";
     };
   };
 }
