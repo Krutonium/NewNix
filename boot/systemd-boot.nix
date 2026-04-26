@@ -17,7 +17,7 @@ in
     boot.loader = {
       efi = {
         efiSysMountPoint = cfg.uefiPath;
-        canTouchEfiVariables = false; # Let it use the default paths for compat
+        canTouchEfiVariables = true; # Let it use the default paths for compat
       };
       systemd-boot = {
         enable = true;
