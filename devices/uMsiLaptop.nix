@@ -12,7 +12,7 @@ in
     options iwlwifi bt_coex_active=0
   '';
   boot.initrd.systemd.enable = true;
-  boot.initrd.kernelModules = "i915";
+  boot.initrd.kernelModules = [ "i915" ];
   boot.kernelPackages = kernel;
   boot.kernelModules = [ "ec_sys" ];
   networking.hostName = Hostname;
@@ -21,15 +21,13 @@ in
   boot.kernelParams = [
     "nouveau.config=NvClkMode=15"
     "mitigations=off"
-    "i915.enable_psr=0"
-    "i915.enable_rc6=0"
-    "quiet"
     "loglevel=3" # Only KERN_ERR and above
     "rd.systemd.show_status=false"
     "rd.udev.log_level=3"
     "udev.log_priority=3"
-    "splash"
     "vt.global_cursor_default=0"
+    "quiet"
+    "splash"
   ];
   systemd.services."getty@tty1".enable = lib.mkDefault false;
   systemd.services."autovt@tty1".enable = lib.mkDefault false;
