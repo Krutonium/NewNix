@@ -10,6 +10,7 @@ with builtins;
       type = types.enum [
         "uefi"
         "bios"
+        "systemd"
         "none"
       ];
       default = "uefi";
@@ -43,5 +44,6 @@ with builtins;
     ./uefi.nix
     ./bios.nix
     ./plymouth.nix
+    ./systemd-boot.nix
   ];
 }
