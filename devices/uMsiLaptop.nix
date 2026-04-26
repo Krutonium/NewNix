@@ -12,6 +12,7 @@ in
     options iwlwifi bt_coex_active=0
   '';
   boot.initrd.systemd.enable = true;
+  boot.initrd.kernelModules = "i915";
   boot.kernelPackages = kernel;
   boot.kernelModules = [ "ec_sys" ];
   networking.hostName = Hostname;
@@ -22,7 +23,10 @@ in
     "mitigations=off"
     "i915.enable_psr=0"
     "i915.enable_rc6=0"
+    "splash"
   ];
+  systemd.services."getty@tty1".enable = lib.mkDefault false;
+  systemd.services."autovt@tty1".enable = lib.mkDefault false;
   boot.loader.grub.gfxmodeEfi = "1920x1080";
   boot.loader.grub.gfxpayloadEfi = "keep";
   systemd.network.enable = true;
