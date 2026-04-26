@@ -29,6 +29,7 @@ in
     "rd.udev.log_level=3"
     "udev.log_priority=3"
     "splash"
+    "vt.global_cursor_default=0"
   ];
   systemd.services."getty@tty1".enable = lib.mkDefault false;
   systemd.services."autovt@tty1".enable = lib.mkDefault false;
