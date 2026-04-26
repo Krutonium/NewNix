@@ -34,7 +34,7 @@ in
         Type = "oneshot";
         ExecStart = pkgs.writeShellScript "sync-monitors-to-gdm" ''
           SRC=/home/krutonium/.config/monitors.xml
-          DEST=/var/lib/gdm/.config/monitors.xml
+          DEST=/etc/xdg/monitors.xml
 
           if [ ! -f "$SRC" ]; then
             echo "No monitors.xml found for krutonium, skipping."
@@ -42,8 +42,8 @@ in
           fi
 
           mkdir -p /etc/xdg
-          install -m 644 "$SRC" /etc/xdg/monitors.xml
-          echo "Copied monitors.xml to /etc/xdg/monitors.xml"
+          install -m 644 "$SRC" "$DEST"
+          echo "Copied monitors.xml to $DEST"
 
         '';
       };
