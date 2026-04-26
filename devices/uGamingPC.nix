@@ -11,6 +11,10 @@ let
   ddcci = config.boot.kernelPackages.ddcci-driver;
   Hostname = "uGamingPC";
   kernelModules = [
+    "nvidia"
+    "nvidia_modeset"
+    "nvidia_drm"
+    "nvidia_uvm"
     "dm-mod"
     "dm-cache"
     "dm-cache-mq"
@@ -22,8 +26,12 @@ let
 in
 {
   #hardware.firmware = [ video.firmware ];
+  # This is required to make plymouth appear with nVidia Drivers
+  boot.initrd.systemd.services.plymouth-start = {
+    after = [ "systemd-modules-load.service" ];
+    requires = [ "systemd-modules-load.service" ];
+  };
   boot = {
-    initrd.kernelModules = [ "nvidia" "nvidia_modeset" "nvidia_drm" "nvidia_uvm" ];
     kernelPackages = kernel;
     kernelParams = [
       "nvidia.NVreg_EnableResizableBar=1"
@@ -31,10 +39,6 @@ in
       "acpi_enforce_resources=lax"
       "quiet"
       "splash"
-      "loglevel=3"
-      "rd.systemd.show_status=false"
-      "rd.udev.log_level=3"
-      "udev.log_priority=3"
       "nvidia_drm.fbdev=1"
     ];
     tmp.useTmpfs = false;
