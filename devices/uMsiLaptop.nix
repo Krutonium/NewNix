@@ -26,6 +26,8 @@ in
     "rd.udev.log_level=3"
     "udev.log_priority=3"
     "vt.global_cursor_default=0"
+    "i915.enable_psr=0"
+    "i915.enable_rc6=0"
     "quiet"
     "splash"
   ];
