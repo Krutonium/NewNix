@@ -331,6 +331,7 @@ in
         "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
         "cache.krutonium.ca:bOYu3ZAbNGhhbbgFYLVy4HLApS9bVVzH2rMoGK3jl4Q="
       ];
+      fallback = true;
     };
     registry = {
       unstable.to = {

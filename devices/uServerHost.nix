@@ -218,7 +218,7 @@ in
   environment.systemPackages = [
     # pkgs.MediaServer
   ];
-  networking.firewall.allowedTCPPorts = [ 22 25565 25566 25568 25570 ];
+  networking.firewall.allowedTCPPorts = [ 22 25565 25566 25568 25570 1242 ]; #1242 is archisteamfarm
   networking.firewall.allowedUDPPorts = [ 24470 24454 24455 19132 5520 ];
   minecraftServers.servers = [
     {
@@ -276,6 +276,15 @@ in
       ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="30:9c:23:d3:06:fd", NAME="WAN"
     '';
   };
+
+  # Remove Later
+  services.archisteamfarm = {
+    enable = true;
+    web-ui = {
+      enable = true;
+    };
+  };
+
   # At some point, I will need to figure out how to handle automatic updates.
   sys.users.krutonium = true;
   sys.roles.server = true;
