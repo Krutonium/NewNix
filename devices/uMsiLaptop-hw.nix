@@ -81,7 +81,7 @@ in
         "compress=zstd:15"
         "subvol=ssh"
       ];
-
+      neededForBoot = true;
     };
     "/storage" = {
       device = "/dev/disk/by-uuid/3333f503-a70b-40b9-8037-8c226456bff4";

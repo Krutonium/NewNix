@@ -11,10 +11,6 @@ in
   boot.extraModprobeConfig = ''
     options iwlwifi bt_coex_active=0
   '';
-  systemd.services.sops-install-secrets = {
-    after = [ "etc-ssh.mount" ];
-    requires = [ "etc-ssh.mount" ];
-  };
   boot.initrd.systemd.enable = true;
   boot.initrd.kernelModules = [ "i915" ];
   boot.kernelPackages = kernel;
