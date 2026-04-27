@@ -186,7 +186,7 @@ in
   sops = {
     defaultSopsFile = ./secrets/secrets.yaml;
     defaultSopsFormat = "yaml";
-    age.sshKeyPaths = [ "/home/krutonium/.ssh/id_ed25519" ];
+    age.sshKeyPaths = [ "/home/krutonium/.ssh/id_ed25519" "/etc/ssh/ssh_host_ed25519_key" ];
     secrets = lib.mkMerge [
       {
         searx_secret = {
