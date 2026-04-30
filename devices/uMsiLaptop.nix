@@ -6,6 +6,13 @@ let
   Hostname = "uMsiLaptop";
 in
 {
+  # EXPERIMENT
+  systemd.services."NetworkManager-wait-online".wantedBy = lib.mkForce []; # No longer blocks boot
+  systemd.user.services.home-manager-krutonium = {
+    wantedBy = lib.mkForce [ "default.target" ];
+  }; # More backgroundy
+  services.system76-scheduler.enable = lib.mkForce false;
+  services.wait-for-internet.enable = lib.mkForce false;
   systemd.targets.sleep.enable = false;
   systemd.targets.hybrid-sleep.enable = false;
   boot.extraModprobeConfig = ''
@@ -98,7 +105,7 @@ in
       syncthing = false;
     };
     virtualization = {
-      server = "virtd";
+      server = "none";
     };
   };
   programs.steam = {
