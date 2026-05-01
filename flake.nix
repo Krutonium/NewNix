@@ -21,10 +21,10 @@
       url = "github:ners/nix-monitored";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixd = {
-      url = "github:nix-community/nixd";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    #nixd = {
+    #  url = "github:nix-community/nixd";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
     fan-controller = {
       url = "github:Krutonium/BetterFanController";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -85,7 +85,7 @@
     , nixos-hardware
     , home-manager
     , update
-    , nixd
+    # , nixd
     , fan-controller
     , nur
     , R2CC
@@ -182,7 +182,7 @@
               overlays.unstable
               overlays.master
               overlays.nixpkgsUpdate
-              nixd.overlays.default
+              #nixd.overlays.default
               overlays.fanController
               overlays.InternetRadio2Computercraft
               nur.overlays.default

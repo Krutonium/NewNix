@@ -74,7 +74,7 @@ in
     #rider
     pkgs.jetbrains.rider
     pkgs.jetbrains.idea
-    pkgs.nixd
+    #pkgs.nixd
     #pkgs.ocl-icd
     #pkgs.clinfo
     # idea

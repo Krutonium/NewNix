@@ -69,6 +69,7 @@ in
       enable = true;
       openFirewall = true;
       secretKeyFile = "/etc/secrets/nix_secret";
+      package = pkgs.nix-serve-ng;
     };
     lvm.enable = true;
     atd.enable = true;
