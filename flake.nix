@@ -78,30 +78,31 @@
     };
   };
   outputs =
-    { self
-    , nixpkgs
-    , nixpkgs-unstable
-    , nixpkgs-master
-    , nixos-hardware
-    , home-manager
-    , update
-    # , nixd
-    , fan-controller
-    , nur
-    , R2CC
-    , MediaServer
-    , sops-nix
-    , minegrub
-    , stylix
-    , nixpkgs-xr
-    , plasma-manager
-    , jetbrains-plugins
-    , nix-cachyos-kernel
-    , prefixer
-    , hytale-launcher-nix
-    , hermes-agent
-    , simple-cpu-governor
-    , ...
+    {
+      self,
+      nixpkgs,
+      nixpkgs-unstable,
+      nixpkgs-master,
+      nixos-hardware,
+      home-manager,
+      update,
+      # , nixd
+      fan-controller,
+      nur,
+      R2CC,
+      MediaServer,
+      sops-nix,
+      minegrub,
+      stylix,
+      nixpkgs-xr,
+      plasma-manager,
+      jetbrains-plugins,
+      nix-cachyos-kernel,
+      prefixer,
+      hytale-launcher-nix,
+      hermes-agent,
+      simple-cpu-governor,
+      ...
     }@inputs:
     let
       system = "x86_64-linux";
@@ -164,7 +165,7 @@
           hytale-launcher = hytale-launcher-nix.packages.x86_64-linux.hytale-launcher;
         };
         InternetRadio2Computercraft = _self: _super: {
-          InternetRadio2Computercraft = R2CC.defaultPackage.x86_64-linux;
+          InternetRadio2Computercraft = R2CC.packages.${_super.system}.default;
         };
         monitored = self: super: {
           nixos-rebuild = super.nixos-rebuild.override { nix = self.nix-monitored; };
@@ -223,10 +224,18 @@
       ### Device Definitions ###
       ##########################
       nixosConfigurations = {
-        uWebServer = nixosConfiguration "uWebServer" (commonPCModules ++ commonIntel ++ gpuAMD ++ gpuIntel ++ [ ./devices/uWebServer.nix ]);
-        uGamingPC = nixosConfiguration "uGamingPC" (commonPCModules ++ commonAMD ++ gpuNvidia ++ [ ./devices/uGamingPC.nix ]);
-        uMsiLaptop = nixosConfiguration "uMsiLaptop" (commonPCModules ++ commonLaptop ++ commonIntel ++ gpuIntel ++ [ ./devices/uMsiLaptop.nix ]);
-        uServerHost = nixosConfiguration "uServerHost" (commonPCModules ++ commonAMD ++ gpuNvidia ++ [ ./devices/uServerHost.nix ]);
+        uWebServer = nixosConfiguration "uWebServer" (
+          commonPCModules ++ commonIntel ++ gpuAMD ++ gpuIntel ++ [ ./devices/uWebServer.nix ]
+        );
+        uGamingPC = nixosConfiguration "uGamingPC" (
+          commonPCModules ++ commonAMD ++ gpuNvidia ++ [ ./devices/uGamingPC.nix ]
+        );
+        uMsiLaptop = nixosConfiguration "uMsiLaptop" (
+          commonPCModules ++ commonLaptop ++ commonIntel ++ gpuIntel ++ [ ./devices/uMsiLaptop.nix ]
+        );
+        uServerHost = nixosConfiguration "uServerHost" (
+          commonPCModules ++ commonAMD ++ gpuNvidia ++ [ ./devices/uServerHost.nix ]
+        );
       };
       devShells.${system}.default =
         let
