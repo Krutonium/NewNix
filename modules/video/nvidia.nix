@@ -10,11 +10,9 @@
             enable = true;
           };
           package = config.boot.kernelPackages.nvidiaPackages.stable;
-          prime.offload.enable = false;
           open = true;
           nvidiaSettings = true;
           modesetting.enable = true;
-          enabled = true;
         };
       };
       nixpkgs.config.cudaSupport = true;

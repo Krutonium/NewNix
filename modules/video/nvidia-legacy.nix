@@ -13,7 +13,6 @@
           open = false;
           nvidiaSettings = true;
           modesetting.enable = true;
-          enabled = true;
         };
       };
       nixpkgs.config.cudaSupport = true;
