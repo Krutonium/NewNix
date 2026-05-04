@@ -118,6 +118,7 @@
         enable = true;
         alwaysKeepRunning = true;
         settings = {
+          dhcp-leasefile = "/persist/dnsmasq.leases";
           interface = "br0";
           listen-address = "127.0.0.1,::1,10.0.0.1,fd00:beef::1";
           server = [ "1.1.1.1" "8.8.8.8" ];
