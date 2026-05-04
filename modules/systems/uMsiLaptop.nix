@@ -5,7 +5,7 @@
       avahi
       boot
       common
-      nvidia-legacy
+      #nvidia-legacy
       gnome
       uMsiLaptopModule
       stylix
@@ -20,7 +20,12 @@
     ];
   };
   flake.nixosModules.uMsiLaptopModule =
-    { pkgs, lib, ... }:
+    {
+      pkgs,
+      lib,
+      config,
+      ...
+    }:
     let
       modProbeConfig = "options iwlwifi bt_corex_active=0";
       kernelModulesInitrd = [
@@ -85,10 +90,6 @@
         writebackDevice = "/dev/disk/by-uuid/34d142d4-9274-4901-a938-2f8bcc8c8ed6";
         memoryPercent = 50;
       };
-      hardware = {
-        cpu.intel.updateMicrocode = true;
-        graphics.enable = true;
-      };
       services = {
         xserver.videoDrivers = [
           "modesetting"
@@ -96,14 +97,20 @@
         ];
       };
 
-      hardware.nvidia = {
-        prime = {
-          offload = {
-            enable = true;
-            enableOffloadCmd = true;
+      hardware = {
+        cpu.intel.updateMicrocode = true;
+        graphics.enable = true;
+        nvidia = {
+          open = false; # NV110 - Not Open Supported
+          package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
+          prime = {
+            offload = {
+              enable = true;
+              enableOffloadCmd = true;
+            };
+            nvidiaBusId = "PCI:1:0:0";
+            intelBusId = "PCI:0:2:0";
           };
-          nvidiaBusId = "PCI:1:0:0";
-          intelBusId = "PCI:0:2:0";
         };
       };
 
