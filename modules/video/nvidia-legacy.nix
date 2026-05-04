@@ -7,12 +7,11 @@
         graphics.enable = true;
         nvidia = {
           powerManagement = {
-            enable = true;
+            enable = false;
           };
           package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
           open = false;
-          nvidiaSettings = true;
-          modesetting.enable = true;
+          nvidiaSettings = false;
         };
       };
       nixpkgs.config.cudaSupport = true;
