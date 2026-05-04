@@ -59,7 +59,10 @@
         kernelPackages = kernel;
         kernelParams = kernelParams;
       };
-      networking.hostName = "uMsiLaptop";
+      networking = {
+        hostName = "uMsiLaptop";
+        hostId = "185e48db";
+      };
       systemd = {
         services = {
           "getty@tty1".enable = lib.mkDefault false;

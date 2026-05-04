@@ -71,6 +71,7 @@
 
       networking = {
         hostName = "uWebServer";
+        hostId = "10e93c0a";
         firewall = {
           allowedTCPPorts = [ 25565 25566 50056 9000 2468 ];
           allowedUDPPorts = [ 50056 67 68 ];

@@ -75,7 +75,7 @@
         kernelPackages = kernel;
       };
 
-      networking.hostId = "ad53f8bc";
+      networking.hostId = "2f68fbd774";
       fileSystems = {
         "/" = {
           device = "/dev/disk/by-uuid/9ade4de4-cf0f-4852-8855-827d6034aa3a";

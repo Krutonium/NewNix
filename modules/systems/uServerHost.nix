@@ -26,7 +26,11 @@
     {
       hardware.cpu.amd.updateMicrocode = true;
       boot.kernelModules = [ "nct6775 " ]; # SuperIO/Temp Sensors.
-      networking.hostName = Hostname;
+      networking = {
+        hostName = Hostname;
+        hostId = "e8501831";
+      };
+
       boot = {
         kernelPackages = kernel;
         kernelParams = [ "mitigations=off" ];
@@ -63,7 +67,7 @@
           rconPort = 12347;
           rconPasswordFile = "/servers/rcon.password";
           port = 25565;
-          extraUDPPorts = [ 19132 ]; #Bedrock
+          extraUDPPorts = [ 19132 ]; # Bedrock
         }
         {
           name = "create_chronicles";
