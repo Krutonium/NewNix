@@ -77,7 +77,7 @@
         kernelPackages = kernel;
       };
 
-      networking.hostId = "2f68fbd774";
+
       fileSystems = {
         "/" = {
           device = "/dev/disk/by-uuid/9ade4de4-cf0f-4852-8855-827d6034aa3a";
@@ -173,6 +173,7 @@
       };
       networking = {
         hostName = "uGamingPC";
+        hostId = "2f68fbd7";
       };
       zramSwap = {
         enable = true;
