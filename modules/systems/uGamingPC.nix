@@ -62,15 +62,14 @@
         pkgs.logitech-udev-rules
         pkgs.via
       ];
-      kernel = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto;
-
+      kernel = pkgs.unstable.linuxPackages_zen;
     in
     {
       # Hardware
       boot = {
         tmp.useTmpfs = false;
         initrd.availableKernelModules = initrdAvailable;
-        initrd.kernelModules = initrdRequired;
+        #initrd.kernelModules = initrdRequired;
         kernelModules = kernelModules;
         kernelParams = kernelParams;
         extraModulePackages = kernelModulePackages;
@@ -148,12 +147,13 @@
       };
 
       hardware = {
+        graphics.enable = true;
         cpu.amd.updateMicrocode = true;
         nvidia = {
           powerManagement = {
             enable = true;
           };
-          package = config.boot.kernelPackages.nvidiaPackages.stable;
+          package = kernel.nvidiaPackages.stable;
           prime.offload.enable = false;
           open = true;
           nvidiaSettings = true;
@@ -165,6 +165,7 @@
       };
       services = {
         udev.packages = udevPackages;
+        xserver.videoDrivers = [ "nvidia" ];
         hardware.openrgb = {
           enable = true;
           motherboard = "amd";

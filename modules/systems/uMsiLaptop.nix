@@ -93,25 +93,25 @@
       services = {
         xserver.videoDrivers = [
           "modesetting"
-          #"nvidia"
+          "nvidia"
         ];
       };
 
       hardware = {
         cpu.intel.updateMicrocode = true;
         graphics.enable = true;
-        #nvidia = {
-        #  open = false; # NV110 - Not Open Supported
-        #  package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
-        #  prime = {
-        #    offload = {
-        #      enable = true;
-        #      enableOffloadCmd = true;
-        #    };
-        #    nvidiaBusId = "PCI:1:0:0";
-        #    intelBusId = "PCI:0:2:0";
-        #  };
-        #};
+        nvidia = {
+          open = false; # NV110 - Not Open Supported
+          package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
+          prime = {
+            offload = {
+              enable = true;
+              enableOffloadCmd = true;
+            };
+            nvidiaBusId = "PCI:1:0:0";
+            intelBusId = "PCI:0:2:0";
+          };
+        };
       };
 
       fileSystems = {
