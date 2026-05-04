@@ -18,6 +18,9 @@
       boot
       common
       krutonium
+      kea
+      gryphon
+      root
       sops
       matrix
       InternetRadio2Computercraft

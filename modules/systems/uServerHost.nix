@@ -13,6 +13,7 @@
       minecraftServers
       ut99
       nix-serve
+      root
     ];
   };
 

@@ -16,6 +16,7 @@
       ssh
       nix-serve
       gamemode
+      root
     ];
   };
   flake.nixosModules.uMsiLaptopModule =
