@@ -5,7 +5,7 @@
       avahi
       boot
       common
-      nvidia
+      #nvidia
       gnome
       uGamingPCModule
       stylix
@@ -70,6 +70,7 @@
       boot = {
         tmp.useTmpfs = false;
         initrd.availableKernelModules = initrdAvailable;
+        initrd.kernelModules = initrdRequired;
         kernelModules = kernelModules;
         kernelParams = kernelParams;
         extraModulePackages = kernelModulePackages;
@@ -146,7 +147,19 @@
         };
       };
 
-      hardware.cpu.amd.updateMicrocode = true;
+      hardware = {
+        cpu.amd.updateMicrocode = true;
+        nvidia = {
+          powerManagement = {
+            enable = true;
+          };
+          package = config.boot.kernelPackages.nvidiaPackages.stable;
+          prime.offload.enable = false;
+          open = true;
+          nvidiaSettings = true;
+          modesetting.enable = true;
+        };
+      };
       programs = {
         gamemode.enable = true;
       };
