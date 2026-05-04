@@ -198,7 +198,7 @@
             "--expose-wayland"
             "-e"
             "--steam"
-            "--adaptive-sync"
+            #"--adaptive-sync"
             "--prefer-vk-device"
             "10de:2488"
           ];
