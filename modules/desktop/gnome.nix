@@ -50,6 +50,7 @@
           pkgs.gnome-contacts
           pkgs.gnome-tour
           pkgs.gnome-user-docs
+          pkgs.epiphany
         ];
       };
       options.sys.desktop.desktop = true;
