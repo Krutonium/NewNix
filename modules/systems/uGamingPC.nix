@@ -76,7 +76,6 @@
         kernelPackages = kernel;
       };
 
-
       fileSystems = {
         "/" = {
           device = "/dev/disk/by-uuid/9ade4de4-cf0f-4852-8855-827d6034aa3a";
@@ -180,6 +179,35 @@
         enable = true;
         priority = 1;
       };
+      programs.gamescope = {
+        enable = true;
+        capSysNice = true;
+      };
 
+      programs.steam = {
+        enable = true;
+        gamescopeSession = {
+          enable = true;
+          args = [
+            "--output-width"
+            "5760"
+            "--output-height"
+            "1080"
+            "-r"
+            "165"
+            "--expose-wayland"
+            "-e"
+            "--steam"
+            "--adaptive-sync"
+            "--prefer-vk-device"
+            "10de:2488"
+          ];
+          env = {
+            WLR_RENDERER = "vulkan";
+            ENABLE_GAMESCOPE_WSI = "1";
+            SDL_VIDEODRIVER = "x11";
+          };
+        };
+      };
     };
 }

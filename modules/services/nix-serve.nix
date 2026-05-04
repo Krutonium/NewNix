@@ -14,5 +14,8 @@
         secretKeyFile = config.sops.secrets.nix_serve_secret.path;
         package = pkgs.nix-serve-ng;
       };
+      systemd.services.nix-gc = {
+        serviceConfig.ExecStartPost = "${pkgs.systemd}/bin/systemctl restart nix-serve.service";
+      };
     };
 }
