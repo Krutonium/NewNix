@@ -1,0 +1,64 @@
+{ ... }:
+{
+  flake.nixosModules.forgejo =
+    { pkgs, ... }:
+    {
+      services.forgejo = {
+        enable = true;
+        package = pkgs.unstable.forgejo;
+        stateDir = "/media2/forgejo/repos";
+        settings = {
+          server = {
+            ROOT_URL = "https://git.krutonium.ca/";
+            HTTP_PORT = 3001;
+            DOMAIN = "git.krutonium.ca";
+          };
+          "attachment" = {
+            MAX_SIZE = 1000;
+          };
+          "git.timeout" = {
+            DEFAULT = 720;
+            MIGRATE = 30000;
+            MIRROR = 72000;
+            CLONE = 30000;
+            PULL = 30000;
+            GC = 60;
+          };
+          service = {
+            DISABLE_REGISTRATION = true;
+          };
+          indexer = {
+            REPO_INDEXER_ENABLED = true;
+          };
+          DEFAULT = {
+            APP_NAME = "Krutonium's Forgejo";
+          };
+          Federation = {
+            Enabled = true;
+          };
+        };
+        database = {
+          type = "sqlite3";
+          user = "gitea";
+          name = "gitea";
+        };
+      };
+      services.anubis.instances = {
+        forgejo = {
+          enable = true;
+          group = "anubis-access";
+          settings = {
+            # How hard the proof-of-work challenge is (higher = harder for bots)
+            DIFFICULTY = 5;
+            # Where Anubis forwards legitimate traffic
+            TARGET = "http://127.0.0.1:3001";
+            # Where to point NGINX
+            BIND = "/run/anubis/anubis-forgejo/anubis.sock";
+            # Where to send Statistics
+            METRICS_BIND = "/run/anubis/anubis-forgejo/anubis-metrics.sock";
+            SERVE_ROBOTS_TXT = true;
+          };
+        };
+      };
+    };
+}
