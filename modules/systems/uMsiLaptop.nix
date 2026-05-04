@@ -5,7 +5,6 @@
       avahi
       boot
       common
-      #nvidia-legacy
       gnome
       uMsiLaptopModule
       stylix
@@ -90,30 +89,31 @@
         writebackDevice = "/dev/disk/by-uuid/34d142d4-9274-4901-a938-2f8bcc8c8ed6";
         memoryPercent = 50;
       };
-      services = {
-        xserver.videoDrivers = [
-          #"nvidia"
-          "modesetting"
-        ];
-      };
+      hardware.graphics.enable = true;
 
-      hardware = {
-        cpu.intel.updateMicrocode = true;
-        graphics.enable = true;
-        #nvidia = {
-        #  modesetting.enable = true;
-        #  open = false; # NV110 - Not Open Supported
-        #  package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
-        #  prime = {
-        #    offload = {
-        #      enable = true;
-        #      enableOffloadCmd = true;
-        #    };
-        #    nvidiaBusId = "PCI:1:0:0";
-        #    intelBusId = "PCI:0:2:0";
-        #  };
-        #};
-      };
+      # NVIDIA driver configuration
+      #hardware.nvidia = {
+      #  modesetting.enable = true;
+      #  powerManagement.enable = true; # Runtime power management (suspend/resume)
+      #  powerManagement.finegrained = true; # Turn GPU off when not in use (requires modesetting)
+      #  open = false; # 950M requires proprietary driver
+      #  nvidiaSettings = true;
+      #  package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
+      #  prime = {
+      #    offload = {
+      #      enable = true;
+      #      enableOffloadCmd = true; # Provides `nvidia-offload` helper command
+      #    };
+
+          # Get these values from: sudo lshw -c display
+          # or: cat /sys/bus/pci/devices/*/class | grep -l 0x030
+      #    intelBusId = "PCI:0:2:0"; # Adjust to match your hardware
+      #    nvidiaBusId = "PCI:1:0:0"; # Adjust to match your hardware
+      #  };
+      #};
+
+      # Load nvidia driver for Xorg and Wayland
+      services.xserver.videoDrivers = [ "modesetting" ];
 
       fileSystems = {
         "/" = {
