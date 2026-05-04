@@ -5,7 +5,7 @@
       avahi
       boot
       common
-      #nvidia-legacy
+      nvidia-legacy
       gnome
       uMsiLaptopModule
       stylix
@@ -37,7 +37,7 @@
       ];
       kernel = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto;
       kernelParams = [
-        "nouveau.config=NvClkMode=15" #Not using Nouveau ATM. Maybe someday?
+        "nouveau.config=NvClkMode=15" # Not using Nouveau ATM. Maybe someday?
         "mitigations=off"
         "loglevel=3" # Only KERN_ERR and above
         "rd.systemd.show_status=false"
@@ -89,6 +89,17 @@
         xserver.videoDrivers = [
           "modesetting"
         ];
+      };
+
+      hardware.nvidia = {
+        prime = {
+          offload = {
+            enable = true;
+            enableOffloadCmd = true;
+          };
+          nvidiaBusId = "PCI:1:0:0";
+          intelBusId = "PCI:0:2:0";
+        };
       };
 
       fileSystems = {
