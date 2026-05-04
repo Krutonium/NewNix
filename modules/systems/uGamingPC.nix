@@ -179,35 +179,5 @@
         enable = true;
         priority = 1;
       };
-      programs.gamescope = {
-        enable = true;
-        capSysNice = true;
-      };
-
-      programs.steam = {
-        enable = true;
-        gamescopeSession = {
-          enable = true;
-          args = [
-            "--output-width"
-            "5760"
-            "--output-height"
-            "1080"
-            "-r"
-            "165"
-            "--expose-wayland"
-            "-e"
-            "--steam"
-            #"--adaptive-sync"
-            "--prefer-vk-device"
-            "10de:2488"
-          ];
-          env = {
-            WLR_RENDERER = "vulkan";
-            ENABLE_GAMESCOPE_WSI = "1";
-            SDL_VIDEODRIVER = "x11";
-          };
-        };
-      };
     };
 }
