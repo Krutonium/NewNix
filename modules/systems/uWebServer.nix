@@ -31,7 +31,7 @@
   flake.nixosModules.uWebServerModule =
     { pkgs, config, lib, modulesPath, ... }:
     let
-      kernel = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto;
+      kernel = pkgs.linuxPackages;
       btrs = [
         { subvol = "home";           mountPoint = "/home"; }
         { subvol = "nix";            mountPoint = "/nix"; }
@@ -95,7 +95,6 @@
           "usbhid"
           "sd_mod"
           "amdgpu"
-          "vendor-reset"
         ];
         initrd.kernelModules = [ ];
         kernelModules = [ "kvm-intel" "wl" ];
@@ -139,8 +138,8 @@
           enable = true;
           extraPackages = with pkgs; [
             rocmPackages.clr.icd
-            #intel-compute-runtime
-            #intel-media-sdk
+            intel-compute-runtime
+            intel-media-sdk
           ];
         };
       };
