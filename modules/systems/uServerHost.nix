@@ -39,6 +39,9 @@
         priority = 1;
         writebackDevice = "/dev/disk/by-label/swap-root";
       };
+      systemd.suppressedSystemUnits = [
+        "dev-disk-by\\x2dlabel-swap\\x2droot.swap"
+      ];
       nix = {
         daemonCPUSchedPolicy = "idle";
         settings = {
