@@ -16,6 +16,7 @@
       nix-serve
       gamemode
       root
+      zswap
     ];
   };
   flake.nixosModules.uMsiLaptopModule =
@@ -83,12 +84,13 @@
           max-jobs = 4;
         };
       };
-      zramSwap = {
-        enable = true;
-        priority = 1;
-        writebackDevice = "/dev/disk/by-uuid/34d142d4-9274-4901-a938-2f8bcc8c8ed6";
-        memoryPercent = 50;
-      };
+      swapDevices = [
+        {
+          device = "/home/swap";
+          priority = 1;
+          discardPolicy = "both";
+        }
+      ];
       hardware.graphics.enable = true;
 
       # NVIDIA driver configuration
@@ -105,8 +107,8 @@
       #      enableOffloadCmd = true; # Provides `nvidia-offload` helper command
       #    };
 
-          # Get these values from: sudo lshw -c display
-          # or: cat /sys/bus/pci/devices/*/class | grep -l 0x030
+      # Get these values from: sudo lshw -c display
+      # or: cat /sys/bus/pci/devices/*/class | grep -l 0x030
       #    intelBusId = "PCI:0:2:0"; # Adjust to match your hardware
       #    nvidiaBusId = "PCI:1:0:0"; # Adjust to match your hardware
       #  };

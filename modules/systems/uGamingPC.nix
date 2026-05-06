@@ -18,6 +18,7 @@
       v4l2loopback
       gamemode
       root
+      zswap
     ];
   };
 
@@ -75,7 +76,14 @@
         extraModulePackages = kernelModulePackages;
         kernelPackages = kernel;
       };
-
+      swapDevices = [
+        {
+          device = "/swap";
+          priority = 1;
+          size = 8192;
+          discardPolicy = "both";
+        }
+      ];
       fileSystems = {
         "/" = {
           device = "/dev/disk/by-uuid/9ade4de4-cf0f-4852-8855-827d6034aa3a";
@@ -174,10 +182,6 @@
       networking = {
         hostName = "uGamingPC";
         hostId = "2f68fbd7";
-      };
-      zramSwap = {
-        enable = true;
-        priority = 1;
       };
     };
 }

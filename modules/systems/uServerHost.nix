@@ -13,6 +13,7 @@
       ut99
       nix-serve
       root
+      zswap
     ];
   };
 
@@ -34,12 +35,6 @@
         kernelPackages = kernel;
         kernelParams = [
           "mitigations=off"
-          "systemd.swap=0" #fuck off systemd
-          # REPLACE WITH `boot.zswap` once 26.05 drops
-          "zswap.enabled=1"
-          "zswap.compressor=zstd"
-          "zswap.max_pool_percent=30"
-          "zswap.shrinker_enabled=1"
         ];
       };
 
