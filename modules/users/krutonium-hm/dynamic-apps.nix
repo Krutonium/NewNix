@@ -16,6 +16,7 @@
           prettyName = "YouTube Music";
           iconName = "youtube-music-desktop-app";
           category = "AudioVideo";
+          startupWMClass = "com.github.th_ch.youtube_music";
         }
         {
           pkg = pkgs.ungoogled-chromium;
