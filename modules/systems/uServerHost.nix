@@ -37,7 +37,7 @@
       zramSwap = {
         enable = true;
         priority = 1;
-        #writebackDevice = "/dev/disk/by-label/swap-root";
+        writebackDevice = "/dev/disk/by-id/0x5707c181001f5bdb-part3";
       };
 
       nix = {
