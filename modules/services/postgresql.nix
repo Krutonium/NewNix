@@ -14,7 +14,7 @@
       sql_upgrade = pkgs.postgresql_18_jit;
     in
     {
-      key = "krutonium/nixosModules/postgresql"; #allow merges from multiple imports
+      key = "krutonium/nixosModules/postgresql"; # allow merges from multiple imports
       services = {
         postgresql = {
           enable = true;
@@ -52,24 +52,43 @@
         in
         [
           (pkgs.writeScriptBin "upgrade-pg-cluster" ''
+            set -euo pipefail
             set -x
+
             export OLDDATA="${config.services.postgresql.dataDir}"
             export NEWDATA="${newpg.dataDir}"
             export OLDBIN="${config.services.postgresql.package}/bin"
             export NEWBIN="${newpg.package}/bin"
 
+            # Detect checksum state
+            CHECKSUM_VERSION=$($OLDBIN/pg_controldata "$OLDDATA" | grep "Data page checksum version" | awk '{print $NF}')
+
+            if [ "$CHECKSUM_VERSION" = "0" ]; then
+              INITDB_FLAGS="--no-data-checksums"
+            else
+              INITDB_FLAGS="--data-checksums"
+            fi
+
+            # Clean target dir completely (your current script doesn't)
+            rm -rf "$NEWDATA"
             install -d -m 0700 -o postgres -g postgres "$NEWDATA"
-            cd "$NEWDATA"
-            sudo -u postgres $NEWBIN/initdb -D "$NEWDATA"
 
-            systemctl stop matrix-synapse
-            systemctl stop nextcloud
+            # Initialize new cluster with matching checksum state
+            sudo -u postgres $NEWBIN/initdb $INITDB_FLAGS -D "$NEWDATA"
 
+            # Stop dependent services first
+            systemctl stop matrix-synapse || true
+            systemctl stop nextcloud || true
+
+            # Stop postgres
             systemctl stop postgresql
 
+            # Run upgrade
             sudo -u postgres $NEWBIN/pg_upgrade \
-              --old-datadir "$OLDDATA" --new-datadir "$NEWDATA" \
-              --old-bindir $OLDBIN --new-bindir $NEWBIN \
+              --old-datadir "$OLDDATA" \
+              --new-datadir "$NEWDATA" \
+              --old-bindir "$OLDBIN" \
+              --new-bindir "$NEWBIN" \
               "$@"
           '')
         ];
