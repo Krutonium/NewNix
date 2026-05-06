@@ -34,13 +34,13 @@
         kernelPackages = kernel;
         kernelParams = [
           "mitigations=off"
-          "systemd.swap=0"
+          "systemd.swap=0" #fuck off systemd
+          # REPLACE WITH `boot.zswap` once 26.05 drops
+          "zswap.enabled=1"
+          "zswap.compressor=zstd"
+          "zswap.max_pool_percent=30"
+          "zswap.shrinker_enabled=1"
         ];
-      };
-      zramSwap = {
-        enable = true;
-        priority = 1;
-        writebackDevice = "/dev/disk/by-id/0x5707c181001f5bdb-part3";
       };
 
       nix = {
@@ -105,7 +105,18 @@
           extraUDPPorts = [ 5520 ];
         }
       ];
-
+      swapDevices = [
+        {
+          device = "/dev/disk/by-partuuid/c7fd54ef-b439-4b34-adf1-13e9392c7f3f";
+          priority = 1;
+          discardPolicy = "both";
+        }
+        {
+          device = "/dev/disk/by-partuuid/54e1603d-4c12-41c8-934b-06c81e4f8499";
+          priority = 1;
+          discardPolicy = "both";
+        }
+      ];
       fileSystems = {
         "/boot" = {
           device = "/dev/disk/by-label/BOOT";
