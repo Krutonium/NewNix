@@ -99,7 +99,7 @@
         ];
         initrd.kernelModules = [ ];
         kernelModules = [ "kvm-intel" "wl" ];
-        extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
+        #extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
         supportedFilesystems = [ "" ];
       };
 
