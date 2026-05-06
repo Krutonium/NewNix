@@ -29,6 +29,7 @@
       networking = {
         hostName = Hostname;
         hostId = "e8501831";
+        networkmanager.enable = true;
       };
 
       boot = {
