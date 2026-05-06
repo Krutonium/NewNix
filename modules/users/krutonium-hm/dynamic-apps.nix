@@ -5,8 +5,8 @@
     # https://github.com/vinceliuice/McMojave-circle/blob/master/src/apps/scalable/youtube-music-desktop-app.svg
     # Use that to find icon names
     # https://specifications.freedesktop.org/menu-spec/latest/category-registry.html
-    # Valid Categories: `xprop | grep WM_CLASS` and click on the window
-    # WMClass:
+    # Valid Categories^
+    # Alt + F2, `lg` select Windows and find the window class for WMCLass to fix icons.
     { pkgs, ... }:
     let
       inherit (builtins) parseDrvName listToAttrs map;
