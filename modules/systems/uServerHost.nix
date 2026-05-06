@@ -6,7 +6,6 @@
       avahi
       boot
       common
-      nvidia-legacy
       krutonium
       sops
       ssh
@@ -25,8 +24,7 @@
       Hostname = "uServerHost";
     in
     {
-      hardware.cpu.amd.updateMicrocode = true;
-      boot.kernelModules = [ "nct6775 " ]; # SuperIO/Temp Sensors.
+      boot.kernelModules = [ "nct6775" ]; # SuperIO/Temp Sensors.
       networking = {
         hostName = Hostname;
         hostId = "e8501831";
@@ -49,7 +47,21 @@
           system-features = [ "gccarch-znver1" ];
         };
       };
-
+      hardware = {
+        graphics.enable = true;
+        cpu.amd.updateMicrocode = true;
+        nvidia = {
+          powerManagement = {
+            enable = true;
+          };
+          package = kernel.nvidiaPackages.legacy_580;
+          prime.offload.enable = false;
+          open = false;
+          nvidiaSettings = false;
+          modesetting.enable = true;
+          nvidiaPersistenced = true;
+        };
+      };
       minecraftServers.servers = [
         {
           name = "AtM10_Sky";
