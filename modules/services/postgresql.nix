@@ -10,7 +10,7 @@
     with lib;
     with builtins;
     let
-      sql_current = pkgs.postgresql_16;
+      sql_current = pkgs.postgresql_18_jit;
       sql_upgrade = pkgs.postgresql_18_jit;
     in
     {
