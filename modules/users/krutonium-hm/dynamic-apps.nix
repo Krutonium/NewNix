@@ -5,7 +5,8 @@
     # https://github.com/vinceliuice/McMojave-circle/blob/master/src/apps/scalable/youtube-music-desktop-app.svg
     # Use that to find icon names
     # https://specifications.freedesktop.org/menu-spec/latest/category-registry.html
-    # Valid Categories
+    # Valid Categories: `xprop | grep WM_CLASS` and click on the window
+    # WMClass:
     { pkgs, ... }:
     let
       inherit (builtins) parseDrvName listToAttrs map;
@@ -21,12 +22,15 @@
           prettyName = "UnGoogled Chromium";
           iconName = "google-chrome";
           category = "Network";
+          startupWMClass = "chromium-browser";
         }
         {
           pkg = pkgs.calibre;
           prettyName = "Calibre E-Book Reader";
           iconName = "calibre-gui";
           category = "Education";
+          startupWMClass = "calibre-gui";
+
         }
         {
           pkg = pkgs.dolphin-emu;
@@ -39,6 +43,7 @@
           prettyName = "Plex";
           iconName = "plex";
           category = "AudioVideo";
+          startupWMClass = "Plex";
         }
       ];
 
@@ -53,6 +58,7 @@
           iconName = appSpec.iconName or meta.icon or mainProgram;
           category = appSpec.category or "Utility";
           terminal = appSpec.terminal or "False";
+          StartupWMClass = appSpec.startupWMClass or "";
         in
         {
           name = "${mainProgram}.desktop";
@@ -67,6 +73,7 @@
               Icon=${iconName}
               Terminal=${terminal}
               Categories=${category};
+              StartupWMClass=${StartupWMClass}
             '';
           };
         }
