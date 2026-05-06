@@ -54,6 +54,7 @@
         programs.home-manager.enable = true;
         imports = with self.homeModules; [
           firefox
+          dynamic-apps
           gnome-dconf
           git
           ssh
