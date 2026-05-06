@@ -5,7 +5,6 @@
       avahi
       boot
       common
-      #nvidia
       gnome
       uGamingPCModule
       stylix
