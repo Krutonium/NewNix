@@ -82,6 +82,7 @@
 
             # Stop postgres
             systemctl stop postgresql
+            cd "$NEWDATA"
 
             # Run upgrade
             sudo -u postgres $NEWBIN/pg_upgrade \
