@@ -10,8 +10,8 @@
           trusted-users = [ "@wheel" ];
           min-free = 50 * 1000 * 1000 * 1000;
           download-buffer-size = 524288000;
-          connect-timeout = 1;
-          download-attempts = 1;
+          connect-timeout = 2;
+          download-attempts = 3;
           system-features = [
             "i686-linux"
             "x86_64-linux"
