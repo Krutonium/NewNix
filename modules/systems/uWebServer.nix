@@ -139,8 +139,8 @@
           enable = true;
           extraPackages = with pkgs; [
             rocmPackages.clr.icd
-            intel-compute-runtime
-            intel-media-sdk
+            #intel-compute-runtime
+            #intel-media-sdk
           ];
         };
       };
