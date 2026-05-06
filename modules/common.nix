@@ -23,6 +23,7 @@
         inputs.self.overlays.unstable
         inputs.self.overlays.InternetRadio2Computercraft
         inputs.millennium.overlays.default
+        inputs.self.overlays.intel-media-sdk
       ];
       home-manager = {
         extraSpecialArgs = { inherit inputs; };
