@@ -9,12 +9,12 @@
       };
 
       systemd.services.searx = {
-        after = [ "wait-for-internet.service" ];
-        requires = [ "wait-for-internet.service" ];
+        after = [ "network-online.target" ];
+        requires = [ "network-online.target" ];
       };
       systemd.services.searx-init = {
-        after = [ "wait-for-internet.service" ];
-        requires = [ "wait-for-internet.service" ];
+        after = [ "network-online.target" ];
+        requires = [ "network-online.target" ];
       };
 
       services.searx = {
