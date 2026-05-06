@@ -1,4 +1,4 @@
-{ ... }:
+\{ ... }:
 {
   flake.nixosModules.minecraftServers =
     { config, lib, pkgs, ... }:
@@ -38,10 +38,6 @@
                 ];
               };
               wantedBy = [ "multi-user.target" ];
-              after = [
-                "sys-subsystem-net-devices-WAN.device"
-              ];
-              bindsTo = [ "sys-subsystem-net-devices-WAN.device" ];
               description = "Minecraft Server (${server.name})";
             };
           }
