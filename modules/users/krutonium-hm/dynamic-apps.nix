@@ -63,7 +63,7 @@
               Type=Application
               Name=${prettyName}
               Comment=${meta.description or "Run ${prettyName}"}
-              Exec=sh -c 'notify-send "Launching ${prettyName}..." & NIXPKGS_ALLOW_UNFREE=1 nix run --impure nixpkgs#${mainProgram} -- %U'
+              Exec=sh -c 'notify-send "Launching ${prettyName}..." & NIXPKGS_ALLOW_UNFREE=1 nix run nixpkgs#${mainProgram} --impure -- %U'
               Icon=${iconName}
               Terminal=${terminal}
               Categories=${category};
