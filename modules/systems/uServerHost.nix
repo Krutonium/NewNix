@@ -32,7 +32,10 @@
 
       boot = {
         kernelPackages = kernel;
-        kernelParams = [ "mitigations=off" ];
+        kernelParams = [
+          "mitigations=off"
+          "systemd.swap=0"
+        ];
       };
       zramSwap = {
         enable = true;
