@@ -120,6 +120,7 @@
             "compress=zstd:15"
             "subvol=Home"
           ];
+          neededForBoot = true;
         };
         "/servers/starbound" = {
           device = btrfsDisk;
