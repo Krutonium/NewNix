@@ -28,8 +28,15 @@
         trustedInterfaces = [ "br0" ];
         allowedUDPPorts = [ 546 ];
         interfaces."br0" = {
-          allowedTCPPorts = [ 53 67 ];
-          allowedUDPPorts = [ 53 67 547 ];
+          allowedTCPPorts = [
+            53
+            67
+          ];
+          allowedUDPPorts = [
+            53
+            67
+            547
+          ];
         };
         # extraInputRules for Minecraft IPv6 are now injected by minecraftPortForwards module
       };
@@ -88,7 +95,12 @@
         networkmanager.enable = lib.mkForce false;
         tempAddresses = "disabled";
 
-        bridges."br0".interfaces = [ "LAN0" "LAN1" "LAN2" "LAN3" ];
+        bridges."br0".interfaces = [
+          "LAN0"
+          "LAN1"
+          "LAN2"
+          "LAN3"
+        ];
 
         nat = {
           enable = true;
@@ -96,13 +108,25 @@
           internalInterfaces = [ "br0" ];
           internalIPs = [ "10.0.0.0/24" ];
           # forwardPorts for Minecraft are now injected by minecraftPortForwards module
-	  forwardPorts = [
+          forwardPorts = [
             # UT99
-            { sourcePort = 7777;  proto = "udp"; destination = "10.0.0.3:7777";  }
-            { sourcePort = 7776;  proto = "udp"; destination = "10.0.0.3:7776";  }
-            { sourcePort = 5520;  proto = "udp"; destination = "10.0.0.3:5520";  }
+            {
+              sourcePort = 7777;
+              proto = "udp";
+              destination = "10.0.0.3:7777";
+            }
+            {
+              sourcePort = 7776;
+              proto = "udp";
+              destination = "10.0.0.3:7776";
+            }
+            {
+              sourcePort = 5520;
+              proto = "udp";
+              destination = "10.0.0.3:5520";
+            }
           ];
-	};
+        };
       };
 
       services.dnsmasq = {
@@ -112,7 +136,10 @@
           dhcp-leasefile = "/persist/dnsmasq.leases";
           interface = "br0";
           listen-address = "127.0.0.1,::1,10.0.0.1,fd00:beef::1";
-          server = [ "1.1.1.1" "8.8.8.8" ];
+          server = [
+            "1.1.1.1"
+            "8.8.8.8"
+          ];
           dhcp-range = [
             "10.0.0.2,10.0.0.254,5m"
             "::1000, ::ffff,constructor:br0,64,5m"
