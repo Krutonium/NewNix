@@ -113,7 +113,7 @@
       };
 
       # Load nvidia driver for Xorg and Wayland
-      services.xserver.videoDrivers = [ "modesetting" ];
+      services.xserver.videoDrivers = [ "modesetting" "nvidia" ];
 
       fileSystems = {
         "/" = {
