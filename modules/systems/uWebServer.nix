@@ -25,6 +25,8 @@
       matrix
       InternetRadio2Computercraft
       nix-serve
+      minecraftPortForwards
+      minecraftServerData
     ];
   };
 

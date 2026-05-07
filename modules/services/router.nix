@@ -31,10 +31,7 @@
           allowedTCPPorts = [ 53 67 ];
           allowedUDPPorts = [ 53 67 547 ];
         };
-        extraInputRules = ''
-          ip6 daddr fd00:beef::3 tcp dport { 25565, 25566, 25568, 25570 } accept
-          ip6 daddr fd00:beef::3 udp dport { 24470, 24454, 24455, 19132, 7777, 7776, 5520 } accept
-        '';
+        # extraInputRules for Minecraft IPv6 are now injected by minecraftPortForwards module
       };
 
       systemd.network = {
@@ -98,20 +95,14 @@
           externalInterface = "WAN";
           internalInterfaces = [ "br0" ];
           internalIPs = [ "10.0.0.0/24" ];
-          forwardPorts = [
-            { sourcePort = 25565; proto = "tcp"; destination = "10.0.0.3:25565"; }
-            { sourcePort = 25566; proto = "tcp"; destination = "10.0.0.3:25566"; }
-            { sourcePort = 25568; proto = "tcp"; destination = "10.0.0.3:25568"; }
-            { sourcePort = 25570; proto = "tcp"; destination = "10.0.0.3:25570"; }
-            { sourcePort = 24470; proto = "udp"; destination = "10.0.0.3:24470"; }
-            { sourcePort = 24454; proto = "udp"; destination = "10.0.0.3:24454"; }
-            { sourcePort = 24455; proto = "udp"; destination = "10.0.0.3:24455"; }
-            { sourcePort = 19132; proto = "udp"; destination = "10.0.0.3:19132"; }
+          # forwardPorts for Minecraft are now injected by minecraftPortForwards module
+	  forwardPorts = [
+            # UT99
             { sourcePort = 7777;  proto = "udp"; destination = "10.0.0.3:7777";  }
             { sourcePort = 7776;  proto = "udp"; destination = "10.0.0.3:7776";  }
             { sourcePort = 5520;  proto = "udp"; destination = "10.0.0.3:5520";  }
           ];
-        };
+	};
       };
 
       services.dnsmasq = {
