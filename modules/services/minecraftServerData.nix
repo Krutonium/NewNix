@@ -1,4 +1,3 @@
-# minecraftServerData.nix
 { ... }:
 {
   flake.nixosModules.minecraftServerData =
