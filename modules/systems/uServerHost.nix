@@ -71,6 +71,7 @@
           rconPort = 12370;
           rconPasswordFile = "/servers/rcon.password";
           port = 25570;
+          extraUDPPorts = [ 24454 ];
         }
         {
           name = "vanilla";
