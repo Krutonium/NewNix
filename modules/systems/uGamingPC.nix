@@ -32,17 +32,13 @@
         "sd_mod"
       ];
       initrdRequired = [
-        #        "nvidia"
-        #        "nvidia_modeset"
-        #        "nvidia_drm"
-        #        "nvidia_uvm"
+        "nvidia"
+        "nvidia_modeset"
+        "nvidia_drm"
+        "nvidia_uvm"
       ];
       kernelModules = [
         "kvm-amd"
-        #        "nvidia"
-        #        "nvidia_modeset"
-        #        "nvidia_drm"
-        #        "nvidia_uvm"
         "i2c-dev" # RGB
         "i2c-piix4"
       ];
@@ -52,6 +48,7 @@
       kernelModulesBlacklist = [ ];
       kernelParams = [
         "nvidia.NVreg_EnableResizableBar=1"
+        "nvidia-drm.modeset=1"
         "mitigations=off"
         "acpi_enforce_resources=lax"
         "quiet"
@@ -65,11 +62,8 @@
       kernel = pkgs.unstable.linuxPackages_zen;
     in
     {
-      imports = with inputs.nixos-hardware.nixosModules; [
-        common-pc
-        common-pc-ssd
-        common-gpu-nvidia-ampere
-        common-cpu-amd
+      imports = [
+
       ];
       # Hardware
       boot = {
@@ -157,13 +151,13 @@
           ];
         };
       };
-
+      services.xserver.videoDrivers = [ "nvidia" ];
       hardware = {
         graphics.enable = true;
         cpu.amd.updateMicrocode = true;
         nvidia = {
-          package = kernel.nvidiaPackages.latest;
-          nvidiaSettings = true;
+          package = config.boot.kernelPackages.nvidiaPackages.latest;
+          open = true;
           modesetting.enable = true;
         };
       };

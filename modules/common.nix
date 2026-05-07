@@ -83,9 +83,13 @@
           neofetch = "${lib.getExe pkgs.fastfetch}";
         };
         variables = {
-          GSK_RENDERER = "gl";
           EDITOR = "nano";
           VISUAL = "nano";
+          __EGL_VENDOR_LIBRARY_DIRS = "/run/opengl-driver/share/glvnd/egl_vendor.d";
+        };
+        sessionVariables = {
+#          GBM_BACKEND = "nvidia-drm";
+#          __GLX_VENDOR_LIBRARY_NAME = "nvidia";
         };
       };
       security = {

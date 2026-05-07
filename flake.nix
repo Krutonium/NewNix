@@ -25,7 +25,6 @@
       url = "github:Krutonium/InternetRadio2Computercraft";
     };
     millennium.url = "github:SteamClientHomebrew/Millennium?dir=packages/nix";
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
