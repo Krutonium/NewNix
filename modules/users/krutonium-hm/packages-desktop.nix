@@ -94,6 +94,7 @@
           # Commuications
           pkgs.fluffychat
           telegramPatched
+          pkgs.signal-desktop
           pkgs.vesktop
         ];
 
