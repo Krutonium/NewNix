@@ -32,17 +32,17 @@
         "sd_mod"
       ];
       initrdRequired = [
-#        "nvidia"
-#        "nvidia_modeset"
-#        "nvidia_drm"
-#        "nvidia_uvm"
+        #        "nvidia"
+        #        "nvidia_modeset"
+        #        "nvidia_drm"
+        #        "nvidia_uvm"
       ];
       kernelModules = [
         "kvm-amd"
-#        "nvidia"
-#        "nvidia_modeset"
-#        "nvidia_drm"
-#        "nvidia_uvm"
+        #        "nvidia"
+        #        "nvidia_modeset"
+        #        "nvidia_drm"
+        #        "nvidia_uvm"
         "i2c-dev" # RGB
         "i2c-piix4"
       ];
@@ -65,6 +65,12 @@
       kernel = pkgs.unstable.linuxPackages_zen;
     in
     {
+      imports = with inputs.nixos-hardware.nixosModules; [
+        common-pc
+        common-pc-ssd
+        common-gpu-nvidia-ampere
+        common-cpu-amd
+      ];
       # Hardware
       boot = {
         tmp.useTmpfs = false;
@@ -156,12 +162,7 @@
         graphics.enable = true;
         cpu.amd.updateMicrocode = true;
         nvidia = {
-          powerManagement = {
-            enable = true;
-          };
-          package = kernel.nvidiaPackages.stable;
-          prime.offload.enable = false;
-          open = true;
+          package = kernel.nvidiaPackages.latest;
           nvidiaSettings = true;
           modesetting.enable = true;
         };
@@ -171,7 +172,6 @@
       };
       services = {
         udev.packages = udevPackages;
-        xserver.videoDrivers = [ "nvidia" ];
         hardware.openrgb = {
           enable = true;
           motherboard = "amd";
