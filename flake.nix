@@ -25,6 +25,10 @@
       url = "github:Krutonium/InternetRadio2Computercraft";
     };
     millennium.url = "github:SteamClientHomebrew/Millennium?dir=packages/nix";
+    hytale-launcher-nix = {
+      url = "github:JPyke3/hytale-launcher-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);

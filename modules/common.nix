@@ -24,6 +24,7 @@
         inputs.self.overlays.InternetRadio2Computercraft
         inputs.millennium.overlays.default
         inputs.self.overlays.intel-media-sdk
+        inputs.self.overlays.hytale-launcher
       ];
       home-manager = {
         extraSpecialArgs = { inherit inputs; };
