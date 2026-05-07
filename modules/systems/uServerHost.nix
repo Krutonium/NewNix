@@ -80,7 +80,7 @@
           rconPort = 12347;
           rconPasswordFile = "/servers/rcon.password";
           port = 25565;
-          extraUDPPorts = [ 19132 ]; # Bedrock
+          extraUDPPorts = [ 19132 24455 ]; # Bedrock & Voice Chat
         }
         {
           name = "create_chronicles";
