@@ -41,7 +41,8 @@
         "sr_mod"
         "rtsx_pci_sdmmc"
       ];
-      kernel = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto;
+      #kernel = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto;
+      kernel = pkgs.linuxPackages_zen;
       kernelParams = [
         "nouveau.config=NvClkMode=15" # Not using Nouveau ATM. Maybe someday?
         "mitigations=off"
@@ -94,25 +95,22 @@
       hardware.graphics.enable = true;
 
       # NVIDIA driver configuration
-      #hardware.nvidia = {
-      #  modesetting.enable = true;
-      #  powerManagement.enable = true; # Runtime power management (suspend/resume)
-      #  powerManagement.finegrained = true; # Turn GPU off when not in use (requires modesetting)
-      #  open = false; # 950M requires proprietary driver
-      #  nvidiaSettings = true;
-      #  package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
-      #  prime = {
-      #    offload = {
-      #      enable = true;
-      #      enableOffloadCmd = true; # Provides `nvidia-offload` helper command
-      #    };
-
-      # Get these values from: sudo lshw -c display
-      # or: cat /sys/bus/pci/devices/*/class | grep -l 0x030
-      #    intelBusId = "PCI:0:2:0"; # Adjust to match your hardware
-      #    nvidiaBusId = "PCI:1:0:0"; # Adjust to match your hardware
-      #  };
-      #};
+      hardware.nvidia = {
+        modesetting.enable = true;
+        powerManagement.enable = true; # Runtime power management (suspend/resume)
+        powerManagement.finegrained = true; # Turn GPU off when not in use (requires modesetting)
+        open = false; # 950M requires proprietary driver
+        nvidiaSettings = true;
+        package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
+        prime = {
+          offload = {
+            enable = true;
+            enableOffloadCmd = true; # Provides `nvidia-offload` helper command
+          };
+          intelBusId = "PCI:0:2:0"; # Adjust to match your hardware
+          nvidiaBusId = "PCI:1:0:0"; # Adjust to match your hardware
+        };
+      };
 
       # Load nvidia driver for Xorg and Wayland
       services.xserver.videoDrivers = [ "modesetting" ];

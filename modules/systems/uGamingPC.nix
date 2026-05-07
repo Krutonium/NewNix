@@ -59,7 +59,7 @@
         pkgs.logitech-udev-rules
         pkgs.via
       ];
-      kernel = pkgs.unstable.linuxPackages_zen;
+      kernel = pkgs.linuxPackages_zen;
     in
     {
       imports = [
@@ -69,7 +69,7 @@
       boot = {
         tmp.useTmpfs = false;
         initrd.availableKernelModules = initrdAvailable;
-        #initrd.kernelModules = initrdRequired;
+        initrd.kernelModules = initrdRequired;
         kernelModules = kernelModules;
         kernelParams = kernelParams;
         extraModulePackages = kernelModulePackages;
@@ -156,7 +156,7 @@
         graphics.enable = true;
         cpu.amd.updateMicrocode = true;
         nvidia = {
-          package = config.boot.kernelPackages.nvidiaPackages.latest;
+          package = config.boot.kernelPackages.nvidiaPackages.stable;
           open = true;
           modesetting.enable = true;
         };

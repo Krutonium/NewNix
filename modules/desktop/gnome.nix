@@ -9,7 +9,7 @@
           displayManager.gdm = {
             enable = true;
             wayland = true;
-            autoSuspend = true;
+            autoSuspend = false;
           };
           gnome = {
             core-developer-tools.enable = false;
