@@ -20,7 +20,7 @@
   flake.nixosModules.uServerHostModule =
     { pkgs, config, ... }:
     let
-      kernel = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto;
+      kernel = pkgs.linuxPackages_latest;
       btrfsDisk = "/dev/disk/by-label/WorkDisk";
       Hostname = "uServerHost";
     in
