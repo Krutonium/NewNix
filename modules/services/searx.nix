@@ -1,7 +1,12 @@
 { ... }:
 {
   flake.nixosModules.searx =
-    { config, pkgs, lib, ... }:
+    {
+      config,
+      pkgs,
+      lib,
+      ...
+    }:
     {
       sops.secrets.searx_secret = {
         owner = "searx";
@@ -16,7 +21,23 @@
         after = [ "network-online.target" ];
         requires = [ "network-online.target" ];
       };
-
+      services.nginx.virtualHosts = {
+        "search.${config.networking.domain}" = {
+          forceSSL = true;
+          enableACME = true;
+          locations."/" = {
+            proxyWebsockets = true;
+            proxyPass = "http://unix:/run/anubis/anubis-searx/anubis.sock:/"; # Proxy Searx
+            #proxyPass = "http://127.0.0.1:60613";
+          };
+          extraConfig = ''
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+          '';
+        };
+      };
       services.searx = {
         package = pkgs.unstable.searxng;
         environmentFile = config.sops.secrets.searx_secret.path;
@@ -47,12 +68,16 @@
             autocomplete = "duckduckgo";
             ban_time_on_fail = 5;
             max_ban_time_on_fail = 120;
-            formats = [ "html" "json" "xml" ];
+            formats = [
+              "html"
+              "json"
+              "xml"
+            ];
           };
           server = {
             port = 60613;
             bind_address = "127.0.0.1";
-            base_url = "https://search.krutonium.ca";
+            base_url = "https://search.${config.networking.domain}";
             limiter = false;
             public_instance = true;
             image_proxy = false;
@@ -86,9 +111,15 @@
             "Tracker URL remover"
           ];
           engines = lib.mapAttrsToList (name: value: { inherit name; } // value) {
-            "duckduckgo" = { disabled = false; weight = 4; };
+            "duckduckgo" = {
+              disabled = false;
+              weight = 4;
+            };
             "duckduckgo images".disabled = false;
-            "ddg definitions" = { disabled = false; weight = 2; };
+            "ddg definitions" = {
+              disabled = false;
+              weight = 2;
+            };
             "brave".disabled = false;
             "brave.images".disabled = true;
             "brave.videos".disable = true;
@@ -101,7 +132,10 @@
             "imgur".disabled = true;
             "pinterest".disabled = true;
             "wikicommons.images".disabled = false;
-            "youtube" = { disabled = false; weight = 10; };
+            "youtube" = {
+              disabled = false;
+              weight = 10;
+            };
             "google news".disabled = false;
           };
         };

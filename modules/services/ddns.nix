@@ -1,16 +1,16 @@
 { ... }:
 {
   flake.nixosModules.ddns =
-    { ... }:
+    { config, ... }:
     {
       services.ddclient = {
         enable = true;
         protocol = "cloudflare";
-        zone = "krutonium.ca";
+        zone = config.networking.domain;
         domains = [
-          "krutonium.ca"
-          "*.krutonium.ca"
-          "www.krutonium.ca"
+          "${config.networking.domain}"
+          "*.${config.networking.domain}"
+          "www.${config.networking.domain}"
         ];
         username = "token";
         passwordFile = "/persist/cloudflare_ddns";

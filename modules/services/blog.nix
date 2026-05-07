@@ -1,14 +1,12 @@
 { ... }:
 {
   flake.nixosModules.blog =
-    { lib, pkgs, ... }:
-    with lib;
-    with builtins;
+    { config, pkgs, ... }:
     let
       script = pkgs.writeShellScript "blog-start" ''
         cd /home/krutonium/Blog/
         git pull
-        hugo server -D -E -b krutonium.ca -p 1313 --appendPort=false -e production
+        hugo server -D -E -b ${config.networking.domain} -p 1313 --appendPort=false -e production
       '';
     in
     {
@@ -36,6 +34,11 @@
         timerConfig = {
           OnCalendar = "hourly";
           Persistent = true;
+        };
+      };
+      services.nginx.virtualHosts = {
+        "krutonium.ca" = {
+          locations."/".proxyPass = "http://127.0.0.1:1313"; # Hugo
         };
       };
     };

@@ -1,19 +1,31 @@
 { self, ... }:
 {
   flake.nixosModules.nextcloud =
-    { pkgs, ... }:
+    { pkgs, config, ... }:
     {
       imports = [
         self.nixosModules.postgresql
       ];
       services = {
+        nginx.virtualHosts = {
+          "nextcloud.${config.networking.domain}" = {
+            forceSSL = true;
+            enableACME = true;
+            locations."/robots.txt" = {
+              extraConfig = ''
+                rewrite ^/(.*)  $1;
+                return 200 "User-agent: *\nDisallow: /";
+              '';
+            };
+          };
+        };
         nextcloud = {
           enable = true;
           https = true;
           enableImagemagick = true;
           configureRedis = true;
           maxUploadSize = "10240M";
-          hostName = "nextcloud.krutonium.ca";
+          hostName = "nextcloud.${config.networking.domain}";
           package = pkgs.nextcloud32;
           home = "/media2/nextcloud";
           settings.log_type = "file";

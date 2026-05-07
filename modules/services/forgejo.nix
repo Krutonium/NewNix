@@ -1,7 +1,7 @@
 { ... }:
 {
   flake.nixosModules.forgejo =
-    { pkgs, ... }:
+    { pkgs, config, ... }:
     {
       services.forgejo = {
         enable = true;
@@ -9,9 +9,9 @@
         stateDir = "/media2/forgejo/repos";
         settings = {
           server = {
-            ROOT_URL = "https://git.krutonium.ca/";
+            ROOT_URL = "https://git.${config.networking.domain}/";
             HTTP_PORT = 3001;
-            DOMAIN = "git.krutonium.ca";
+            DOMAIN = "git.${config.networking.domain}";
           };
           "attachment" = {
             MAX_SIZE = 1000;
@@ -58,6 +58,29 @@
             METRICS_BIND = "/run/anubis/anubis-forgejo/anubis-metrics.sock";
             SERVE_ROBOTS_TXT = true;
           };
+        };
+      };
+      services.nginx.virtualHosts = {
+        "gitea.${config.networking.domain}" = {
+          forceSSL = true;
+          enableACME = true;
+          locations."/" = {
+            return = "301 https://git.${config.networking.domain}$request_uri";
+          };
+        };
+        "git.${config.networking.domain}" = {
+          enableACME = true; # Use ACME certs
+          forceSSL = true; # Force SSL
+          locations."/".proxyPass = "http://unix:/run/anubis/anubis-forgejo/anubis.sock:/"; # Proxy Gitea
+          extraConfig = ''
+            #limit_req zone=git_zone burst=20 nodelay;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+            proxy_set_header Host $server_addr;
+            proxy_set_header Referer $server_addr;
+            proxy_set_header Origin $server_addr;
+          '';
         };
       };
     };

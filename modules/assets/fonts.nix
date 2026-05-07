@@ -4,7 +4,7 @@
     { pkgs, ... }:
     let
       fontFiles = pkgs.fetchzip {
-        url = "https://gitea.krutonium.ca/Krutonium/NixOS_Files/raw/branch/master/Fonts.zip";
+        url = "https://git.krutonium.ca/Krutonium/NixOS_Files/raw/branch/master/Fonts.zip";
         sha256 = "sha256-DHanWRSHKF79+f+smES52qgDFBSJOGn5MLFX12FIQOQ=";
         stripRoot = false;
       };

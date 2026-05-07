@@ -1,4 +1,4 @@
-{ inputs, self, config, lib, modulesPath, ... }:
+{ inputs, self, ... }:
 {
   flake.nixosConfigurations.uWebServer = inputs.nixpkgs.lib.nixosSystem {
     modules = with self.nixosModules; [
@@ -27,11 +27,12 @@
       nix-serve
       minecraftPortForwards
       minecraftServerData
+      fileHosting
     ];
   };
 
   flake.nixosModules.uWebServerModule =
-    { pkgs, config, lib, modulesPath, ... }:
+    { pkgs, lib, modulesPath, ... }:
     let
       kernel = pkgs.linuxPackages;
       btrs = [

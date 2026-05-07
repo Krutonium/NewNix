@@ -1,7 +1,7 @@
 { ... }:
 {
   flake.nixosModules.router =
-    { lib, ... }:
+    { lib, config, ... }:
     {
       networking.domain = "krutonium.ca";
       boot.kernel.sysctl = {
@@ -160,15 +160,15 @@
           ];
           address = [
             "/BRWB068E697F437.local/10.0.0.8"
-            "/krutonium.ca/10.0.0.1"
-            "/krutonium.ca/fd00:beef::1"
+            "/${config.networking.domain}/10.0.0.1"
+            "/${config.networking.domain}/fd00:beef::1"
           ];
           host-record = [
-            "uWebServer.krutonium.ca,10.0.0.1,fd00:beef::1"
-            "uGamingPC.krutonium.ca,10.0.0.2,fd00:beef::2"
-            "uServerHost.krutonium.ca,10.0.0.3,fd00:beef::3"
-            "uMsiLaptop.krutonium.ca,10.0.0.4,fd00:beef::4"
-            "Archer.krutonium.ca,10.0.0.7,fd00:beef::7"
+            "uWebServer.${config.networking.domain},10.0.0.1,fd00:beef::1"
+            "uGamingPC.${config.networking.domain},10.0.0.2,fd00:beef::2"
+            "uServerHost.${config.networking.domain},10.0.0.3,fd00:beef::3"
+            "uMsiLaptop.${config.networking.domain},10.0.0.4,fd00:beef::4"
+            "Archer.${config.networking.domain},10.0.0.7,fd00:beef::7"
           ];
         };
       };
