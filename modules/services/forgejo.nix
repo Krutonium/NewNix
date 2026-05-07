@@ -47,6 +47,17 @@
         forgejo = {
           enable = true;
           group = "anubis-access";
+          botPolicy.bots = [
+            {
+              name = "generic-browser";
+              user_agent_regex = "Mozilla|Opera";
+              action = "CHALLENGE";
+              challenge = {
+                difficulty = 5;
+                algorithm = "metarefresh";
+              };
+            }
+          ];
           settings = {
             # How hard the proof-of-work challenge is (higher = harder for bots)
             DIFFICULTY = 5;
