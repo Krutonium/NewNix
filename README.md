@@ -16,4 +16,4 @@ If you're viewing this on GitHub, please be aware that this is a MIRROR from my 
 
 My previous configuration can be found [here](https://git.krutonium.ca/Krutonium/NixOS/src/branch/legacy).
 
-A guide to exploring my configuration can be found [here](./modules/guide.md).
+A guide to exploring my configuration can be found [here](./modules/readme.md).
