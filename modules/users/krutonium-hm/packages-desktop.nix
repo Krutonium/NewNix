@@ -68,7 +68,7 @@
           pkgs.shipwright
           pkgs._2ship2harkinian
           pkgs.appimage-run
-          pkgs.openrct2
+          pkgs.unstable.openrct2
           pkgs.prismlauncher
           pkgs.steam-run
           pkgs.sgdboop
