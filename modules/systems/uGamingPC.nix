@@ -32,17 +32,17 @@
         "sd_mod"
       ];
       initrdRequired = [
-        "nvidia"
-        "nvidia_modeset"
-        "nvidia_drm"
-        "nvidia_uvm"
+#        "nvidia"
+#        "nvidia_modeset"
+#        "nvidia_drm"
+#        "nvidia_uvm"
       ];
       kernelModules = [
         "kvm-amd"
-        "nvidia"
-        "nvidia_modeset"
-        "nvidia_drm"
-        "nvidia_uvm"
+#        "nvidia"
+#        "nvidia_modeset"
+#        "nvidia_drm"
+#        "nvidia_uvm"
         "i2c-dev" # RGB
         "i2c-piix4"
       ];
