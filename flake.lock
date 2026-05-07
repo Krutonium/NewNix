@@ -352,6 +352,26 @@
         "type": "github"
       }
     },
+    "hytale-launcher-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1777394001,
+        "narHash": "sha256-FNHydw2We/qvxBJ2cMNc/eGcxSZkvOXZn2WYGiH6WfE=",
+        "owner": "JPyke3",
+        "repo": "hytale-launcher-nix",
+        "rev": "822e54c97348a6fbc28dfac563e5bbe9fe1783b8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "JPyke3",
+        "repo": "hytale-launcher-nix",
+        "type": "github"
+      }
+    },
     "import-tree": {
       "locked": {
         "lastModified": 1773693634,
@@ -757,6 +777,7 @@
         "InternetRadio2Computercraft": "InternetRadio2Computercraft",
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
+        "hytale-launcher-nix": "hytale-launcher-nix",
         "import-tree": "import-tree",
         "millennium": "millennium",
         "nix-cachyos-kernel": "nix-cachyos-kernel",
