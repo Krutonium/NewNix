@@ -25,7 +25,7 @@
       url = "github:Krutonium/InternetRadio2Computercraft";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    millennium.url = {
+    millennium = {
       url = "github:SteamClientHomebrew/Millennium?dir=packages/nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
