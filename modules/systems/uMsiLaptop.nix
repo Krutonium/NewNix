@@ -17,6 +17,7 @@
       gamemode
       root
       zswap
+      simpleCpuGovernor
     ];
   };
   flake.nixosModules.uMsiLaptopModule =

@@ -28,6 +28,7 @@
       minecraftPortForwards
       minecraftServerData
       fileHosting
+      simpleCpuGovernor
     ];
   };
 
