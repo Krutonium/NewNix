@@ -17,6 +17,7 @@
         self.nixosModules.scripts
         self.nixosModules.default-packages
         self.nixosModules.fonts
+        inputs.simple-cpu-governor.nixosModules.default
       ];
       nixpkgs.overlays = [
         inputs.nix-cachyos-kernel.overlays.pinned

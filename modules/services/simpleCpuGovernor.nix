@@ -1,7 +1,7 @@
 { ... }:
 {
   flake.nixosModules.simpleCpuGovernor =
-    {  ... }:
+    { ... }:
     {
       services.simpleCpuGovernor = {
         enable = true;
