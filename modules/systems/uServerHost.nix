@@ -60,6 +60,7 @@
           nvidiaPersistenced = true;
         };
       };
+      nixpkgs.config.cudaSupport = true;
 
       swapDevices = [
         { device = "/dev/disk/by-partuuid/c7fd54ef-b439-4b34-adf1-13e9392c7f3f"; priority = 1; discardPolicy = "both"; }

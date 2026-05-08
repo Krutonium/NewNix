@@ -161,6 +161,7 @@
           modesetting.enable = true;
         };
       };
+      nixpkgs.config.cudaSupport = true;
       programs = {
         gamemode.enable = true;
       };

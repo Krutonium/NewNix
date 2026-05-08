@@ -112,6 +112,7 @@
           nvidiaBusId = "PCI:1:0:0"; # Adjust to match your hardware
         };
       };
+      nixpkgs.config.cudaSupport = true;
 
       # Load nvidia driver for Xorg and Wayland
       services.xserver.videoDrivers = [ "modesetting" "nvidia" ];
