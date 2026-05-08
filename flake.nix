@@ -21,7 +21,7 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    InternetRadio2Computercraft.url = {
+    InternetRadio2Computercraft = {
       url = "github:Krutonium/InternetRadio2Computercraft";
       inputs.nixpkgs.follows = "nixpkgs";
     };
