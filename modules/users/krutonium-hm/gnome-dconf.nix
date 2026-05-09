@@ -230,6 +230,12 @@
               ]
               [
                 (mkDictionaryEntry [
+                "id"
+                "signal.desktop"
+                ])
+              ]
+              [
+                (mkDictionaryEntry [
                   "id"
                   "Fluffychat.desktop"
                 ])
