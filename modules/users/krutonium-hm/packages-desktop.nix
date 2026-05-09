@@ -54,7 +54,7 @@
     {
       config = lib.mkIf (osConfig.services.displayManager.gdm.enable == true) {
         home.sessionVariables = {
-          DOTNET_ROOT = "${dotnet}";
+          DOTNET_ROOT = "${dotnet}/share/dotnet";
         };
         home.packages = [
           # Developemnt

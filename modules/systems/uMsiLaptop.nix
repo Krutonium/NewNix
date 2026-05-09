@@ -114,7 +114,7 @@
       };
       nixpkgs.config.cudaSupport = true;
       services.simpleCpuGovernor = {
-        target = 40;
+        target = lib.mkForce 40;
       };
 
       # Load nvidia driver for Xorg and Wayland
