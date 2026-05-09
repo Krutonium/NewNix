@@ -113,9 +113,15 @@
         };
       };
       nixpkgs.config.cudaSupport = true;
+      services.simpleCpuGovernor = {
+        target = 40;
+      };
 
       # Load nvidia driver for Xorg and Wayland
-      services.xserver.videoDrivers = [ "modesetting" "nvidia" ];
+      services.xserver.videoDrivers = [
+        "modesetting"
+        "nvidia"
+      ];
 
       fileSystems = {
         "/" = {
