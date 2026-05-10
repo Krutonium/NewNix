@@ -72,6 +72,7 @@
           pkgs.prismlauncher
           pkgs.steam-run
           pkgs.sgdboop
+          pkgs.dusk
 
           # Media
           pkgs.ffmpeg-full

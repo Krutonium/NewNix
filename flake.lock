@@ -171,6 +171,24 @@
         "type": "github"
       }
     },
+    "dusk": {
+      "inputs": {
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1778381854,
+        "narHash": "sha256-vp+y7TMuKPo/wvGSpBSzxDzCCglTvoImM4rEDJnMqCA=",
+        "owner": "TwilitRealm",
+        "repo": "dusk",
+        "rev": "0c23bd433248f634f2f2a6424b590b0e6eb67c5c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "TwilitRealm",
+        "repo": "dusk",
+        "type": "github"
+      }
+    },
     "firefox-gnome-theme": {
       "flake": false,
       "locked": {
@@ -604,7 +622,7 @@
         "cachyos-kernel-patches": "cachyos-kernel-patches",
         "flake-compat": "flake-compat",
         "flake-parts": "flake-parts_2",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs_2"
       },
       "locked": {
         "lastModified": 1778094799,
@@ -623,16 +641,16 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1778060440,
-        "narHash": "sha256-5uwxUCXwDNzqIA5TWMIG9gSk1nZf+z//Wae4PLuwydw=",
-        "owner": "NixOS",
+        "lastModified": 1777954456,
+        "narHash": "sha256-hGdgeU2Nk87RAuZyYjyDjFL6LK7dAZN5RE9+hrDTkDU=",
+        "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "39d9e4fcf3976da8dd0d523723747ee11a3d6f7a",
+        "rev": "549bd84d6279f9852cae6225e372cc67fb91a4c1",
         "type": "github"
       },
       "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable-small",
+        "owner": "nixos",
+        "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -684,6 +702,22 @@
       }
     },
     "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1778060440,
+        "narHash": "sha256-5uwxUCXwDNzqIA5TWMIG9gSk1nZf+z//Wae4PLuwydw=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "39d9e4fcf3976da8dd0d523723747ee11a3d6f7a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable-small",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
       "locked": {
         "lastModified": 1778003029,
         "narHash": "sha256-q/nkKLDtHIyLjZpKhWk3cSK5IYsFqtMd6UtXF3ddjgA=",
@@ -765,13 +799,14 @@
     "root": {
       "inputs": {
         "InternetRadio2Computercraft": "InternetRadio2Computercraft",
+        "dusk": "dusk",
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
         "hytale-launcher-nix": "hytale-launcher-nix",
         "import-tree": "import-tree",
         "millennium": "millennium",
         "nix-cachyos-kernel": "nix-cachyos-kernel",
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": "nixpkgs_3",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nur": "nur",
         "simple-cpu-governor": "simple-cpu-governor",

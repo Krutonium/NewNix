@@ -37,6 +37,10 @@
       url = "github:krutonium/simple-cpu-governor";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    dusk = {
+      url = "github:TwilitRealm/dusk";
+      #inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
