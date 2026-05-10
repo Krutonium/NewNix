@@ -72,7 +72,7 @@
           pkgs.prismlauncher
           pkgs.steam-run
           pkgs.sgdboop
-          #pkgs.dusk #Once Flake is Updated
+          pkgs.dusk
 
           # Media
           pkgs.ffmpeg-full
