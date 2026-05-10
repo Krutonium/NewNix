@@ -5,7 +5,7 @@
     {
       programs.steam = {
         enable = true;
-        package = pkgs.millennium-steam;
+        #package = pkgs.millennium-steam;
         dedicatedServer.openFirewall = true;
         localNetworkGameTransfers.openFirewall = true;
         remotePlay.openFirewall = true;
