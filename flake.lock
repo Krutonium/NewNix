@@ -176,11 +176,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1778395894,
-        "narHash": "sha256-KMXxj7pwSBy+6l7b56zZI24s5GlIK3PKZmeUi3G3NdQ=",
+        "lastModified": 1778432130,
+        "narHash": "sha256-RWixM3slc96Nhnv24QF1HrYrbYbZArOddX3c8vE7Y2M=",
         "owner": "TwilitRealm",
         "repo": "dusk",
-        "rev": "97d032f8b5cab89c1b0efe60dfe634c08ea5431e",
+        "rev": "c948bffd3217ea57e4e47a24de7c7ae589c448b8",
         "type": "github"
       },
       "original": {
@@ -359,11 +359,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1777851538,
-        "narHash": "sha256-Gp8qwTEYNoy2yvmErVGlvLOQvrtEECCAKbonW7VJef8=",
+        "lastModified": 1778401693,
+        "narHash": "sha256-OVHdCqXXUF5UdGkH+FF2ZL06OLZjj2kvP2dIUmzVWoo=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "cc09c0f9b7eaa95c2d9827338a5eb03d32505ca5",
+        "rev": "389b83002efc26f1145e89a6a8e6edc5a6435948",
         "type": "github"
       },
       "original": {
@@ -633,11 +633,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1778400298,
-        "narHash": "sha256-EbzaBJOXoL8x+ej2Nb4ecLhzeaukeDqENgKncRf5GJY=",
+        "lastModified": 1778433014,
+        "narHash": "sha256-ME0zrkF2fcQs63Rfu6gBNFauVdmlDp3xJsE2ckbI3RA=",
         "owner": "nix-community",
         "repo": "nur",
-        "rev": "c2033872e1c755245118f72f9e6ea2f8530593ae",
+        "rev": "b6e13caa534063a4d8d4e2ce7119ae00e543f636",
         "type": "github"
       },
       "original": {
