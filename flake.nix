@@ -38,7 +38,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     dusk = {
-      url = "github:TwilitRealm/dusk";
+      url = "github:Krutonium/dusk/flake-desktop-icon";
       #inputs.nixpkgs.follows = "nixpkgs";
     };
   };
