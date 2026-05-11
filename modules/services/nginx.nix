@@ -12,7 +12,7 @@
       systemd.services.nginx.serviceConfig.ReadWritePaths = [ "/persist/live/" ];
       security.acme = {
         defaults = {
-          renewInterval = "200h";
+          renewInterval = "daily";
           email = "PFCKrutonium@gmail.com";
         };
         acceptTerms = true;
