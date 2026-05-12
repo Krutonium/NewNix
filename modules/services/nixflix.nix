@@ -87,21 +87,21 @@
           enable = true;
           config = {
             apiKey._secret = config.sops.secrets.sonarr_apikey.path;
-            hostConfig.password = config.sops.secrets.sonarr_password.path;
+            hostConfig.password._secret = config.sops.secrets.sonarr_password.path;
           };
         };
         radarr = {
           enable = true;
           config = {
             apiKey._secret = config.sops.secrets.radarr_apikey.path;
-            hostConfig.password = config.sops.secrets.radarr_password.path;
+            hostConfig.password._secret = config.sops.secrets.radarr_password.path;
           };
         };
         prowlarr = {
           enable = true;
           config = {
             apiKey._secret = config.sops.secrets.prowlarr_apikey.path;
-            hostConfig.password = config.sops.secrets.prowlarr_password.path;
+            hostConfig.password._secret = config.sops.secrets.prowlarr_password.path;
           };
         };
       };
