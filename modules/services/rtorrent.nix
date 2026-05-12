@@ -25,7 +25,6 @@
         flood = {
           enable = true;
           port = web-port;
-          extraArgs = [ "--rtsocket=${config.services.rtorrent.rpcSocket}" ];
         };
         nginx.virtualHosts = {
           "flood.${config.networking.domain}" = {
