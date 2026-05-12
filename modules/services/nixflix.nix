@@ -5,32 +5,32 @@
     {
       imports = [ inputs.nixflix.nixosModules.default ];
       sops.secrets = {
-        sonaar_apikey = {
+        sonarr_apikey = {
           owner = "sonarr";
           group = "sonarr";
           mode = "0400";
         };
-        sonaar_password = {
+        sonarr_password = {
           owner = "sonarr";
           group = "sonarr";
           mode = "0400";
         };
-        radaar_apikey = {
+        radarr_apikey = {
           owner = "radaar";
           group = "radarr";
           mode = "0400";
         };
-        radaar_password = {
+        radarr_password = {
           owner = "radaar";
           group = "radaar";
           mode = "0400";
         };
-        prowlaar_apikey = {
+        prowlarr_apikey = {
           owner = "prowlarr";
           group = "prowlarr";
           mode = "0400";
         };
-        prowlaar_password = {
+        prowlarr_password = {
           owner = "prowlarr";
           group = "prowlarr";
           mode = "0400";
@@ -42,25 +42,25 @@
         stateDir = "/media2/.nixflix_state";
         nginx.enable = true;
         postgres.enable = true;
-        sonaar = {
+        sonarr = {
           enable = true;
           config = {
-            apiKey = config.sops.secrets.sonaar_apikey.path;
-            hostConfig.password = config.sops.secrets.sonaar_password.path;
+            apiKey = config.sops.secrets.sonarr_apikey.path;
+            hostConfig.password = config.sops.secrets.sonarr_password.path;
           };
         };
-        radaar = {
+        radarr = {
           enable = true;
           config = {
-            apiKey = config.sops.secrets.radaar_apikey.path;
-            hostConfig.password = config.sops.secrets.radaar_password.path;
+            apiKey = config.sops.secrets.radarr_apikey.path;
+            hostConfig.password = config.sops.secrets.radarr_password.path;
           };
         };
         prowlarr = {
           enable = true;
           config = {
-            apiKey = config.sops.secrets.prowlaar_apikey.path;
-            hostConfig.password = config.sops.secrets.prowlaar_password.path;
+            apiKey = config.sops.secrets.prowlarr_apikey.path;
+            hostConfig.password = config.sops.secrets.prowlarr_password.path;
           };
         };
       };
