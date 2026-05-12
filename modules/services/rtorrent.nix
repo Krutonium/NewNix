@@ -12,7 +12,8 @@
           enable = true;
           openFirewall = true;
           port = peerPort;
-        };
+
+        };  #/run/rtorrent/rpc.sock
         flood = {
           enable = true;
           port = web-port;
