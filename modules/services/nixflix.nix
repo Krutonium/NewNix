@@ -52,15 +52,15 @@
         radaar = {
           enable = true;
           config = {
-            apiKey = config.sops.secrets.radaar_apiKey.path;
-            hostConfig.password = config.sops.secrets.raraar_password.path;
+            apiKey = config.sops.secrets.radaar_apikey.path;
+            hostConfig.password = config.sops.secrets.radaar_password.path;
           };
         };
         prowlarr = {
           enable = true;
           config = {
-            apiKey = config.sops.secrets.prowlarr_apiKey.path;
-            hostConfig.password = config.sops.secrets.prowlarr_password.path;
+            apiKey = config.sops.secrets.prowlaar_apikey.path;
+            hostConfig.password = config.sops.secrets.prowlaar_password.path;
           };
         };
       };
