@@ -4,7 +4,7 @@
     { config, pkgs, ... }:
     let
       peerPort = 51412;
-      web-port = 8112;
+      web-port = "8112";
     in
     {
       services = {
