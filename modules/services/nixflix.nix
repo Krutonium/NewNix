@@ -77,6 +77,7 @@
         enable = true;
         mediaDir = "/media2/";
         stateDir = "/media2/.nixflix_state";
+        mediaUsers = [ "krutonium" ];
         nginx = {
           enable = true;
           addHostsEntries = false;
@@ -85,21 +86,21 @@
         sonarr = {
           enable = true;
           config = {
-            apiKey = config.sops.secrets.sonarr_apikey.path;
+            apiKey._secret = config.sops.secrets.sonarr_apikey.path;
             hostConfig.password = config.sops.secrets.sonarr_password.path;
           };
         };
         radarr = {
           enable = true;
           config = {
-            apiKey = config.sops.secrets.radarr_apikey.path;
+            apiKey._secret = config.sops.secrets.radarr_apikey.path;
             hostConfig.password = config.sops.secrets.radarr_password.path;
           };
         };
         prowlarr = {
           enable = true;
           config = {
-            apiKey = config.sops.secrets.prowlarr_apikey.path;
+            apiKey._secret = config.sops.secrets.prowlarr_apikey.path;
             hostConfig.password = config.sops.secrets.prowlarr_password.path;
           };
         };
