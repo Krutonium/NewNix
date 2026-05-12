@@ -12,6 +12,14 @@
           enable = true;
           openFirewall = true;
           port = peerPort;
+          dataPermissions = "0755";
+          dataDir = "/media2/downloads/";
+          configText = ''
+            dht.mode.set = disable
+            protocol.pex.set = no
+            protocol.lpd.set = no
+            trackers.use_udp.set = no
+          '';
         }; # /run/rtorrent/rpc.sock
         flood = {
           enable = true;

@@ -77,7 +77,7 @@
           # Media
           pkgs.ffmpeg-full
           pkgs.vlc
-          pkgs.deluge
+          #pkgs.deluge
           pkgs.nextcloud-client
 
           # Utilities
