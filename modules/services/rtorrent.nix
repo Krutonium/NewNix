@@ -54,5 +54,9 @@
           DynamicUser = lib.mkForce false;
         };
       };
+      users.users.flood = {
+        isSystemUser = true;
+        group = "rtorrent";
+      };
     };
 }
