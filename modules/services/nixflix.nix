@@ -36,7 +36,7 @@
           mode = "0400";
         };
       };
-      nginx = {
+      services.nginx = {
         virtualHosts = {
           "sonarr.${config.networking.domain}" = {
             forceSSL = true;
