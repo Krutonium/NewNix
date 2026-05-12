@@ -19,7 +19,6 @@
             protocol.pex.set = no
             trackers.use_udp.set = no
             protocol.encryption.set = allow_incoming,try_outgoing,enable_retry
-            scgi_port = unix:/run/rtorrent/rpc.sock
           '';
 
         }; # /run/rtorrent/rpc.sock
