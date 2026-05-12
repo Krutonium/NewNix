@@ -17,7 +17,6 @@
           configText = ''
             dht.mode.set = disable
             protocol.pex.set = no
-            protocol.lpd.set = no
             trackers.use_udp.set = no
           '';
 
