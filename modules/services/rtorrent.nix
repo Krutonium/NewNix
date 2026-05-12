@@ -20,6 +20,7 @@
             protocol.lpd.set = no
             trackers.use_udp.set = no
           '';
+
         }; # /run/rtorrent/rpc.sock
         flood = {
           enable = true;
@@ -45,7 +46,10 @@
 
       systemd.services = {
         rtorrent.serviceConfig.LimitNOFILE = 16384;
-        flood.serviceConfig.SupplementaryGroups = [ config.services.rtorrent.group ];
+        flood.serviceConfig = {
+          SupplementaryGroups = [ config.services.rtorrent.group ];
+          DynamicUser = false;
+        };
       };
     };
 }
