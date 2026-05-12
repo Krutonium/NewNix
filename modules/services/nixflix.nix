@@ -40,7 +40,45 @@
         enable = true;
         mediaDir = "/media2/";
         stateDir = "/media2/.nixflix_state";
-        nginx.enable = true;
+        nginx = {
+          enable = true;
+          addHostsEntries = false;
+          virtualHosts = {
+            "sonarr.${config.networking.domain}" = {
+              forceSSL = true;
+              enableACME = true;
+              locations."/".proxyPass = "http://127.0.0.1:8989";
+              locations."/robots.txt" = {
+                extraConfig = ''
+                  rewrite ^/(.*)  $1;
+                  return 200 "User-agent: *\nDisallow: /";
+                '';
+              };
+            };
+            "radarr.${config.networking.domain}" = {
+              forceSSL = true;
+              enableACME = true;
+              locations."/".proxyPass = "http://127.0.0.1:7878";
+              locations."/robots.txt" = {
+                extraConfig = ''
+                  rewrite ^/(.*)  $1;
+                  return 200 "User-agent: *\nDisallow: /";
+                '';
+              };
+            };
+            "prowlarr.${config.networking.domain}" = {
+              forceSSL = true;
+              enableACME = true;
+              locations."/".proxyPass = "http://127.0.0.1:9696";
+              locations."/robots.txt" = {
+                extraConfig = ''
+                  rewrite ^/(.*)  $1;
+                  return 200 "User-agent: *\nDisallow: /";
+                '';
+              };
+            };
+          };
+        };
         postgres.enable = true;
         sonarr = {
           enable = true;
