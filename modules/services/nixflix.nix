@@ -3,7 +3,7 @@
   flake.nixosModules.nixflix =
     { config, ... }:
     {
-      imports = [ inputs.nixosModules.default ];
+      imports = [ inputs.nixflix.nixosModules.default ];
       sops.secrets = {
         sonaar_apikey = {
           owner = "sonarr";
