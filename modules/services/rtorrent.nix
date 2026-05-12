@@ -1,7 +1,7 @@
 { ... }:
 {
   flake.nixosModules.rtorrent =
-    { config, pkgs, ... }:
+    { config, lib, ... }:
     let
       peerPort = 51412;
       web-port = 8112;
@@ -47,7 +47,7 @@
         rtorrent.serviceConfig.LimitNOFILE = 16384;
         flood.serviceConfig = {
           SupplementaryGroups = [ config.services.rtorrent.group ];
-          DynamicUser = false;
+          DynamicUser = lib.mkForce false;
         };
       };
     };
