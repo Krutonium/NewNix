@@ -41,6 +41,10 @@
       url = "github:Krutonium/dusk/flake-desktop-icon";
       #inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixflix = {
+      url = "github:kiriwalawren/nixflix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);

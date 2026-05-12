@@ -7,7 +7,8 @@
       avahi
       blog
       ddns
-      deluge
+      #deluge
+      nixflix
       forgejo
       nextcloud
       nginx
