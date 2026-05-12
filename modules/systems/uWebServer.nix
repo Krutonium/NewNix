@@ -58,6 +58,7 @@
         { subvol = "www";            mountPoint = "/var/www"; }
         { subvol = "samba";          mountPoint = "/var/lib/samba"; }
         { subvol = "rtorrent";       mountPoint = "/var/lib/rtorrent";}
+        { subvol = "flood";          mountPoint = "/var/lib/flood";}
       ];
       btrfsUUID = "/dev/disk/by-uuid/a018b12f-6567-4edb-8026-be9292738b4d";
       btrfsFileSystems = builtins.listToAttrs (

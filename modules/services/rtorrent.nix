@@ -12,8 +12,7 @@
           enable = true;
           openFirewall = true;
           port = peerPort;
-
-        };  #/run/rtorrent/rpc.sock
+        }; # /run/rtorrent/rpc.sock
         flood = {
           enable = true;
           port = web-port;
@@ -28,6 +27,8 @@
               extraConfig = ''
                 rewrite ^/(.*)  $1;
                 return 200 "User-agent: *\nDisallow: /";
+                auth_basic "Restricted Access";
+                auth_basic_user_file /persist/httpAuth;
               '';
             };
           };
