@@ -36,43 +36,25 @@
             trackers.numwant.set = 80
           '';
         }; # /run/rtorrent/rpc.sock
-        flood = {
+        services.rutorrent = {
           enable = true;
-          port = web-port;
-          extraArgs = [
-            "--allowedpath"
-            "/media2/rTorrent"
-            "--allowedpath"
-            "/run/rtorrent"
-          ];
-        };
-        nginx.virtualHosts = {
-          "flood.${config.networking.domain}" = {
-            forceSSL = true;
-            enableACME = true;
-            locations."/".proxyPass = "http://127.0.0.1:${toString web-port}";
-            basicAuthFile = config.sops.secrets.basicAuth.path;
-            locations."/robots.txt" = {
-              extraConfig = ''
-                rewrite ^/(.*)  $1;
-                return 200 "User-agent: *\nDisallow: /";
-              '';
-            };
-          };
+          hostName = "rutorrent.krutonium.ca";
+          rpcSocket = config.services.rtorrent.rpcSocket;
+          nginx.enable = true;
         };
       };
 
       systemd.services = {
         rtorrent.serviceConfig.LimitNOFILE = 16384;
-        flood.serviceConfig = {
+        rutorrent.serviceConfig = {
           SupplementaryGroups = [ config.services.rtorrent.group ];
-          User = "flood";
+          User = "rutorrent";
           Group = "rtorrent";
           DynamicUser = lib.mkForce false;
         };
       };
 
-      users.users.flood = {
+      users.users.rutorrent = {
         isSystemUser = true;
         group = "rtorrent";
         extraGroups = [ "rtorrent" ];
