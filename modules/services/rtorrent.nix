@@ -24,7 +24,7 @@
           downloadDir = "/media2/rTorrent/downloads/";
           configText = ''
             protocol.encryption.set = allow_incoming,try_outgoing,enable_retry
-            throttle.max_uploads.set = 0
+            throttle.max_uploads.set = 100
             throttle.max_uploads.global.set = 1000
             throttle.min_peers.normal.set = 1000
             throttle.max_peers.normal.set = 1000
