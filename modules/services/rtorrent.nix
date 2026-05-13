@@ -39,6 +39,7 @@
         };
         autobrr = {
           enable = true;
+          secretFile = config.sops.secrets.autobrr.path;
           settings = {
             checkForUpdates = false;
             host = "10.0.0.1";
