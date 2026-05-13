@@ -12,6 +12,10 @@
         group = "nginx";
         mode = "0440";
       };
+      networking.firewall.extraForwardRules = ''
+        ip6tables -A FORWARD -d fd00:beef::1 -p tcp --dport ${toString peerPort} -j ACCEPT
+        ip6tables -A FORWARD -d fd00:beef::1 -p udp --dport ${toString peerPort} -j ACCEPT
+      '';
       services = {
         rtorrent = {
           enable = true;
