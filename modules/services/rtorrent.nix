@@ -12,10 +12,6 @@
         group = "nginx";
         mode = "0440";
       };
-      networking.firewall.extraForwardRules = ''
-        ip6tables -A FORWARD -d fd00:beef::1 -p tcp --dport ${toString peerPort} -j ACCEPT
-        ip6tables -A FORWARD -d fd00:beef::1 -p udp --dport ${toString peerPort} -j ACCEPT
-      '';
       services = {
         rtorrent = {
           enable = true;
@@ -32,6 +28,7 @@
             throttle.max_uploads.global.set = 1000
             throttle.min_peers.normal.set = 1000
             throttle.max_peers.normal.set = 1000
+            network.bind_address.set = 0.0.0.0
           '';
         }; # /run/rtorrent/rpc.sock
         rutorrent = {
