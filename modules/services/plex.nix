@@ -9,6 +9,7 @@
         openFirewall = true;
         package = pkgs.plex;
       };
+      users.users.krutonium.extraGroups = [ "plex" ];
       services.nginx.virtualHosts = {
         "plex.${config.networking.domain}" = {
           forceSSL = true;
