@@ -40,9 +40,8 @@
           enable = true;
           port = web-port;
           extraArgs = [
-            "--rtorrent"
-            "--rtsocket"
-            "127.0.0.1:5000"
+            "--allowedpath"
+            "/var/lib/rtorrent"
           ];
         };
         nginx.virtualHosts = {
