@@ -17,6 +17,8 @@
           enable = true;
           openFirewall = true;
           port = peerPort;
+          user = "rtorrent";
+          group = "rtorrent";
           dataPermissions = "0755";
           dataDir = "/media2/rTorrent/data";
           downloadDir = "/media2/rTorrent/downloads/";
@@ -25,7 +27,6 @@
             protocol.pex.set = no
             trackers.use_udp.set = no
             protocol.encryption.set = allow_incoming,try_outgoing,enable_retry
-            network.scgi.open_port = 127.0.0.1:5000
             throttle.max_uploads.set = 0
             throttle.max_uploads.global.set = 250
             throttle.min_peers.normal.set = 20
@@ -69,6 +70,7 @@
           DynamicUser = lib.mkForce false;
         };
       };
+
       users.users.flood = {
         isSystemUser = true;
         group = "rtorrent";
