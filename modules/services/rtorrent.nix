@@ -13,9 +13,7 @@
         mode = "0440";
       };
       sops.secrets.autobrr_secret = {
-        owner = "autobrr";
-        group = "autobrr";
-        mode = "0440";
+        mode = "0770";
       };
       services = {
         rtorrent = {
