@@ -7,7 +7,7 @@
       services.plex = {
         enable = true;
         openFirewall = true;
-        package = pkgs.plex;
+        package = pkgs.unstable.plex;
       };
       users.users.krutonium.extraGroups = [ "plex" ];
       users.users.plex.extraGroups = [ "rtorrent" ];
