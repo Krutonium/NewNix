@@ -42,6 +42,8 @@
           extraArgs = [
             "--allowedpath"
             "/media2/rTorrent"
+            "--allowedpath"
+            "/run/rtorrent"
           ];
         };
         nginx.virtualHosts = {
