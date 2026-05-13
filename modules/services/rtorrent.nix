@@ -41,7 +41,7 @@
           port = web-port;
           extraArgs = [
             "--allowedpath"
-            "/var/lib/rtorrent"
+            "/media2/rTorrent"
           ];
         };
         nginx.virtualHosts = {
