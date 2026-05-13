@@ -23,17 +23,11 @@
           dataDir = "/media2/rTorrent/data";
           downloadDir = "/media2/rTorrent/downloads/";
           configText = ''
-            dht.mode.set = disable
-            protocol.pex.set = no
-            trackers.use_udp.set = no
             protocol.encryption.set = allow_incoming,try_outgoing,enable_retry
             throttle.max_uploads.set = 0
-            throttle.max_uploads.global.set = 250
-            throttle.min_peers.normal.set = 20
-            throttle.max_peers.normal.set = 60
-            throttle.min_peers.seed.set = 30
-            throttle.max_peers.seed.set = 80
-            trackers.numwant.set = 80
+            throttle.max_uploads.global.set = 1000
+            throttle.min_peers.normal.set = 1000
+            throttle.max_peers.normal.set = 1000
           '';
         }; # /run/rtorrent/rpc.sock
         rutorrent = {
