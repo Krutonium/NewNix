@@ -44,7 +44,7 @@
         };
       };
       services.nginx.virtualHosts.${config.services.rutorrent.hostName} = {
-        basicAuthFile = config.sops.secrets.htpasswd.path;
+        basicAuthFile = config.sops.secrets.basicAuth.path;
       };
       systemd.tmpfiles.rules = [
         "d /media2/rTorrent/downloads 0775 rtorrent rtorrent -"
