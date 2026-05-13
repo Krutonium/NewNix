@@ -171,22 +171,21 @@
         "type": "github"
       }
     },
-    "dusk": {
+    "dusklight": {
       "inputs": {
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1778437263,
-        "narHash": "sha256-KMtToAPxg8LtP/oBo9H7pwGi9jK3XD4N36n3Ew+DCVI=",
-        "owner": "Krutonium",
-        "repo": "dusk",
-        "rev": "d6cbc9b6d519d667f441d5b23713baae3856a262",
+        "lastModified": 1778645453,
+        "narHash": "sha256-gnONd4NRP1of9kLRwv6vJEYSerWN0+x1vsPFafrEEa8=",
+        "owner": "TwilitRealm",
+        "repo": "dusklight",
+        "rev": "5fdc3c7a54a1130aa2384c792c44dc6a3c6e2946",
         "type": "github"
       },
       "original": {
-        "owner": "Krutonium",
-        "ref": "flake-desktop-icon",
-        "repo": "dusk",
+        "owner": "TwilitRealm",
+        "repo": "dusklight",
         "type": "github"
       }
     },
@@ -731,7 +730,7 @@
     "root": {
       "inputs": {
         "InternetRadio2Computercraft": "InternetRadio2Computercraft",
-        "dusk": "dusk",
+        "dusklight": "dusklight",
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
         "hytale-launcher-nix": "hytale-launcher-nix",

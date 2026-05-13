@@ -26,7 +26,7 @@
         inputs.millennium.overlays.default
         inputs.self.overlays.intel-media-sdk
         inputs.self.overlays.hytale-launcher
-        inputs.self.overlays.dusk
+        inputs.self.overlays.dusklight
       ];
       home-manager = {
         extraSpecialArgs = { inherit inputs; };

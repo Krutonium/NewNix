@@ -37,8 +37,8 @@
       url = "github:krutonium/simple-cpu-governor";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    dusk = {
-      url = "github:Krutonium/dusk/flake-desktop-icon";
+    dusklight = {
+      url = "github:TwilitRealm/dusklight";
       #inputs.nixpkgs.follows = "nixpkgs";
     };
     nixflix = {
