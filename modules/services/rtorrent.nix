@@ -73,6 +73,7 @@
       users.users.flood = {
         isSystemUser = true;
         group = "rtorrent";
+        extraGroups = [ "rtorrent" ];
       };
       systemd.tmpfiles.rules = [
         "d /media2/rTorrent/downloads 0775 rtorrent rtorrent -"
