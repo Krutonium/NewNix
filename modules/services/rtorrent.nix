@@ -35,7 +35,6 @@
             throttle.max_peers.seed.set = 80
             trackers.numwant.set = 80
           '';
-
         }; # /run/rtorrent/rpc.sock
         flood = {
           enable = true;
@@ -75,5 +74,9 @@
         isSystemUser = true;
         group = "rtorrent";
       };
+      systemd.tmpfiles.rules = [
+        "d /media2/rTorrent/downloads 0775 rtorrent rtorrent -"
+        "d /media2/rTorrent/data      0775 rtorrent rtorrent -"
+      ];
     };
 }
