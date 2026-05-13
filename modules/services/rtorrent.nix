@@ -44,21 +44,6 @@
         };
       };
 
-      systemd.services = {
-        rtorrent.serviceConfig.LimitNOFILE = 16384;
-        rutorrent.serviceConfig = {
-          SupplementaryGroups = [ config.services.rtorrent.group ];
-          User = "rutorrent";
-          Group = "rtorrent";
-          DynamicUser = lib.mkForce false;
-        };
-      };
-
-      users.users.rutorrent = {
-        isSystemUser = true;
-        group = "rtorrent";
-        extraGroups = [ "rtorrent" ];
-      };
       systemd.tmpfiles.rules = [
         "d /media2/rTorrent/downloads 0775 rtorrent rtorrent -"
         "d /media2/rTorrent/data      0775 rtorrent rtorrent -"
