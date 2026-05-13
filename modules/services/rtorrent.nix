@@ -37,6 +37,14 @@
           rpcSocket = config.services.rtorrent.rpcSocket;
           nginx.enable = true;
         };
+        autobrr = {
+          enable = true;
+          settings = {
+            checkForUpdates = false;
+            host = "10.0.0.1";
+            port = "7474";
+          };
+        };
       };
       services.nginx.virtualHosts.${config.services.rutorrent.hostName} = {
         basicAuthFile = config.sops.secrets.basicAuth.path;
