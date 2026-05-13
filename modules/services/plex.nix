@@ -10,6 +10,7 @@
         package = pkgs.plex;
       };
       users.users.krutonium.extraGroups = [ "plex" ];
+      users.users.plex.extraGroups = [ "rtorrent" ];
       services.nginx.virtualHosts = {
         "plex.${config.networking.domain}" = {
           forceSSL = true;
