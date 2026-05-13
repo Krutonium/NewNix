@@ -36,7 +36,7 @@
             trackers.numwant.set = 80
           '';
         }; # /run/rtorrent/rpc.sock
-        services.rutorrent = {
+        rutorrent = {
           enable = true;
           hostName = "rutorrent.krutonium.ca";
           rpcSocket = config.services.rtorrent.rpcSocket;
