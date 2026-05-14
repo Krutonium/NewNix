@@ -5,6 +5,7 @@
     let
       peerPort = 51412;
       web-port = 8112;
+      apiPort = 1234;
     in
     {
       sops.secrets.basicAuth = {
@@ -53,9 +54,33 @@
       services.nginx.virtualHosts.${config.services.rutorrent.hostName} = {
         basicAuthFile = config.sops.secrets.basicAuth.path;
       };
-      systemd.services.rtorrent = {
-        after = [ "media2.mount" ];
-        requires = [ "media2.mount" ];
+      systemd.services = {
+        rtorrent = {
+          after = [ "media2.mount" ];
+          requires = [ "media2.mount" ];
+        };
+        rtorrent-scgi-bridge = {
+          description = "rTorrent SCGI Unix socket to TCP bridge (socat)";
+          after = [ "rtorrent.service" ];
+          requires = [ "rtorrent.service" ];
+
+          serviceConfig = {
+            ExecStart = ''
+              ${pkgs.socat}/bin/socat \
+                TCP-LISTEN:${toString apiPort},bind=127.0.0.1,reuseaddr,fork \
+                UNIX-CONNECT:${config.services.rtorrent.rpcSocket}
+            '';
+
+            Restart = "always";
+            RestartSec = 2;
+
+            # basic hardening (optional but safe)
+            NoNewPrivileges = true;
+            PrivateTmp = true;
+          };
+
+          wantedBy = [ "multi-user.target" ];
+        };
       };
       users.users.krutonium.extraGroups = [ "rtorrent" ];
       systemd.tmpfiles.rules = [
