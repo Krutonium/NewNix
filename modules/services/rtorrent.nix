@@ -1,7 +1,7 @@
 { ... }:
 {
   flake.nixosModules.rtorrent =
-    { config, lib, ... }:
+    { config, lib, pkgs, ... }:
     let
       peerPort = 51412;
       web-port = 8112;
