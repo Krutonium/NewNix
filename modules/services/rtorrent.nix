@@ -53,10 +53,15 @@
       services.nginx.virtualHosts.${config.services.rutorrent.hostName} = {
         basicAuthFile = config.sops.secrets.basicAuth.path;
       };
+      systemd.services.rtorrent = {
+        after = [ "media2.mount" ];
+        requires = [ "media2.mount" ];
+      };
       users.users.krutonium.extraGroups = [ "rtorrent" ];
       systemd.tmpfiles.rules = [
         "d /media2/rTorrent/downloads 0775 rtorrent rtorrent -"
         "d /media2/rTorrent/data      0775 rtorrent rtorrent -"
+        "Z /media2/rTorrent/data      0775 rtorrent rtorrent -"
       ];
     };
 }
