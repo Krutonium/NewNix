@@ -86,6 +86,7 @@
           max-jobs = 4;
         };
       };
+      virtualisation.vmware.host.enable = true;
       swapDevices = [
         {
           device = "/home/swap";
