@@ -38,8 +38,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     dusklight = {
-      url = "github:TwilitRealm/dusklight";
-      #inputs.nixpkgs.follows = "nixpkgs";
+      url = "git+https://github.com/Krutonium/dusk?ref=no-aurora-submodule&submodules=1";
     };
     nixflix = {
       url = "github:kiriwalawren/nixflix";

@@ -86,10 +86,6 @@
           max-jobs = 4;
         };
       };
-      virtualisation.virtualbox.host.enable = true;
-      users.extraGroups.vboxusers.members = [ "krutonium" ];
-      # Non-free Extension Pack
-      virtualisation.virtualbox.host.enableExtensionPack = true;
       swapDevices = [
         {
           device = "/home/swap";
