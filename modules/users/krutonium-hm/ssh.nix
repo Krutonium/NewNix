@@ -24,10 +24,6 @@
             hostname = "10.2";
             compression = true;
           };
-          "uRenderPC" = {
-            hostname = "10.3";
-            compression = true;
-          };
           "darth" = {
             hostname = "195.35.113.15";
             compression = true;

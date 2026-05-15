@@ -39,7 +39,6 @@
         publicKey = cfg.publicKey;
       }) hosts;
 
-
       sops.secrets = lib.optionalAttrs (thisCfg != null) {
         ${thisCfg.sopsSecret} = {
           path = "/etc/ssh/ssh_host_ed25519_key";
@@ -48,23 +47,9 @@
           mode = "0600";
         };
       };
-
       services.openssh.hostKeys = lib.optionals (thisCfg != null) [{
         path = "/etc/ssh/ssh_host_ed25519_key";
         type = "ed25519";
-      }];
-
-      home-manager.sharedModules = [{
-        programs.ssh = {
-          knownHosts = lib.mapAttrs (name: cfg: {
-            hostNames = [ name ];
-            publicKey = cfg.publicKey;
-          }) hosts;
-
-          matchBlocks = lib.mapAttrs (alias: cfg: {
-            hostname = cfg.address;
-          }) allAliases;
-        };
       }];
     };
 }
