@@ -127,11 +127,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1778827830,
-        "narHash": "sha256-3gQnhv8iJkS4o6ih8720C7U6sEi+gzW+iB9XcxjnX7I=",
+        "lastModified": 1778880361,
+        "narHash": "sha256-Jj63WkuyTG1MzBAHFDg7BYhqqzYv8ax/7al9rBg6g5c=",
         "ref": "refs/pull/1237/merge",
-        "rev": "9b0a20037d3b973769ad691993ff4b30cba50e79",
-        "revCount": 4084,
+        "rev": "3d3eddb18a58074d80b8253514c5da846d40e09e",
+        "revCount": 4085,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/twilitrealm/dusklight"
@@ -568,11 +568,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1778870675,
-        "narHash": "sha256-SX5maeSsVW9vuIMCTFwVA9Dw7ntTP6yNG4e0JgeYGmE=",
+        "lastModified": 1778889088,
+        "narHash": "sha256-SqMSE77uuyz9XMI2x9BRiM7WRIxx0lPkirxMOZur6j4=",
         "owner": "nix-community",
         "repo": "nur",
-        "rev": "92263e11f194e564552809ff89a5e09e80749639",
+        "rev": "d866fa49df4f4c9d19553018c7edb0c2d2952a77",
         "type": "github"
       },
       "original": {
