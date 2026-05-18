@@ -146,6 +146,18 @@
               };
               "ui_font_size" = 16.0;
               "buffer_font_size" = 17.333333333333332;
+              "features" = {
+                "edit_prediction_provider" = "none";
+              };
+
+              "assistant" = {
+                "enabled" = false;
+              };
+
+              "agent" = {
+                "enabled" = false;
+              };
+
             };
             userKeymaps = {
               "context" = "Editor";
