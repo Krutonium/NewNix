@@ -154,6 +154,12 @@
               "buffer_font_family" = "Ubuntu Mono Regular";
               "ui_font_family" = "Ubuntu";
             };
+            userKeymaps = {
+              "context" = "Editor";
+              "bindings" = {
+                "ctrl-k ctrl-f" = "editor::Format";
+              };
+            };
           };
         };
       };
