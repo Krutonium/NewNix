@@ -383,22 +383,21 @@
       "inputs": {
         "luajit-src": "luajit-src",
         "millennium-src": "millennium-src",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
+        "nixpkgs": "nixpkgs"
       },
       "locked": {
         "dir": "packages/nix",
-        "lastModified": 1778870989,
-        "narHash": "sha256-0GHc0BjLwPIqJxlD8SrG2baM1nXdIt/yc8UbQvyh/Go=",
+        "lastModified": 1778891358,
+        "narHash": "sha256-zT39YrGwNCAwbVvn2ikkEofXcvYRlI/T5W+IOIGpZb0=",
         "owner": "SteamClientHomebrew",
         "repo": "Millennium",
-        "rev": "b59659da33ee5094cdbff6adb0b71c25bbb335ed",
+        "rev": "6db3637adf6f608d19bdfd4583c4cfe2b4a48ac7",
         "type": "github"
       },
       "original": {
         "dir": "packages/nix",
         "owner": "SteamClientHomebrew",
+        "ref": "next",
         "repo": "Millennium",
         "type": "github"
       }
@@ -442,7 +441,7 @@
         "cachyos-kernel-patches": "cachyos-kernel-patches",
         "flake-compat": "flake-compat",
         "flake-parts": "flake-parts_2",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs_2"
       },
       "locked": {
         "lastModified": 1778956518,
@@ -484,16 +483,16 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1778930970,
-        "narHash": "sha256-FqqcYr0c5in/HRL5bkRWykAGp/Q10Vj/zUiSr1P8URE=",
-        "owner": "NixOS",
+        "lastModified": 1770115704,
+        "narHash": "sha256-KHFT9UWOF2yRPlAnSXQJh6uVcgNcWlFqqiAZ7OVlHNc=",
+        "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "5a51fe22e18a6ce886b3cffa4c255378c151323c",
+        "rev": "e6eae2ee2110f3d31110d5c222cd395303343b08",
         "type": "github"
       },
       "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable-small",
+        "owner": "nixos",
+        "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -545,6 +544,22 @@
       }
     },
     "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1778930970,
+        "narHash": "sha256-FqqcYr0c5in/HRL5bkRWykAGp/Q10Vj/zUiSr1P8URE=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "5a51fe22e18a6ce886b3cffa4c255378c151323c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable-small",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
       "locked": {
         "lastModified": 1778737229,
         "narHash": "sha256-6xWoytx8jFW4PF1GjRm/i/53trbpKGfz6zjzQGBr4cI=",
@@ -617,7 +632,7 @@
         "millennium": "millennium",
         "nix-cachyos-kernel": "nix-cachyos-kernel",
         "nixflix": "nixflix",
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": "nixpkgs_3",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nur": "nur",
         "simple-cpu-governor": "simple-cpu-governor",
