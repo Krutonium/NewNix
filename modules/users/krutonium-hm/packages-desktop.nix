@@ -120,7 +120,36 @@
           zed-editor = {
             enable = true;
             package = pkgs.unstable.zed-editor;
-            extensions = [ "nix" "toml" "csharp" ];
+            extensions = [
+              "nix"
+              "toml"
+              "csharp"
+            ];
+            userSettings = {
+              "languages" = {
+                "Nix" = {
+                  "soft_wrap" = "editor_width";
+                  "tab_size" = 2;
+                  "language_servers" = [
+                    "${pkgs.nixd}/bin/nixd"
+                  ];
+                };
+              };
+              "base_keymap" = "VSCode";
+              "session" = {
+                "trust_all_worktrees" = true;
+              };
+              "icon_theme" = {
+                "mode" = "dark";
+                "light" = "Zed (Default)";
+                "dark" = "Zed (Default)";
+              };
+              "ui_font_size" = 16.0;
+              "buffer_font_size" = 17.333333333333332;
+              "buffer_font_family" = "Ubuntu Mono Regular";
+              "ui_font_family" = "Ubuntu";
+              "theme" = "Base16 iA Dark";
+            };
           };
         };
       };
