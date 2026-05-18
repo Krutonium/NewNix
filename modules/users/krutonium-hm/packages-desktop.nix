@@ -120,14 +120,7 @@
           zed-editor = {
             enable = true;
             package = pkgs.unstable.zed-editor;
-            extensions = [ "nix" "toml" "csharp" ]
-            lsp = {
-              nix = {
-                binary = {
-                  path_lookup = true;
-                };
-              };
-            };
+            extensions = [ "nix" "toml" "csharp" ];
           };
         };
       };
