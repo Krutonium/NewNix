@@ -71,6 +71,8 @@
         hostName = "uMsiLaptop";
         hostId = "185e48db";
       };
+      # Don't bother with the partial Vulkan Support on the iGPU
+      environment.variables.VK_LOADER_DRIVERS_SELECT = "nvidia_*";
       systemd = {
         services = {
           "getty@tty1".enable = lib.mkDefault false;
