@@ -133,6 +133,11 @@
                   "language_servers" = [
                     "${pkgs.nixd}/bin/nixd"
                   ];
+                  "formatter" = {
+                    "external" = {
+                      "command" = "nixfmt";
+                    };
+                  };
                 };
               };
               "base_keymap" = "VSCode";
@@ -148,7 +153,6 @@
               "buffer_font_size" = 17.333333333333332;
               "buffer_font_family" = "Ubuntu Mono Regular";
               "ui_font_family" = "Ubuntu";
-              "theme" = "Base16 iA Dark";
             };
           };
         };
