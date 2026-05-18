@@ -59,9 +59,9 @@
         home.packages = [
           # Developemnt
           dotnet
-          pkgs.jetbrains.rider
-          pkgs.jetbrains.idea
-
+          #pkgs.jetbrains.rider
+          #pkgs.jetbrains.idea
+          unstable.zed-editor
           # Games
           bottles
           hytaleWrapped
