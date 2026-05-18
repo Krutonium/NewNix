@@ -144,15 +144,8 @@
               "session" = {
                 "trust_all_worktrees" = true;
               };
-              "icon_theme" = {
-                "mode" = "dark";
-                "light" = "Zed (Default)";
-                "dark" = "Zed (Default)";
-              };
               "ui_font_size" = 16.0;
               "buffer_font_size" = 17.333333333333332;
-              "buffer_font_family" = "Ubuntu Mono Regular";
-              "ui_font_family" = "Ubuntu";
             };
             userKeymaps = {
               "context" = "Editor";
