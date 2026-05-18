@@ -149,15 +149,12 @@
               "features" = {
                 "edit_prediction_provider" = "none";
               };
-
               "assistant" = {
                 "enabled" = false;
               };
-
               "agent" = {
                 "enabled" = false;
               };
-
             };
             userKeymaps = {
               "context" = "Editor";
