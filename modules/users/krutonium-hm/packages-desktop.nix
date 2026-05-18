@@ -61,7 +61,7 @@
           dotnet
           #pkgs.jetbrains.rider
           #pkgs.jetbrains.idea
-          unstable.zed-editor
+
           # Games
           bottles
           hytaleWrapped
@@ -116,6 +116,18 @@
           nix-index = {
             enable = true;
             enableFishIntegration = true;
+          };
+          zed-editor = {
+            enable = true;
+            package = pkgs.unstable.zed-editor;
+            extensions = [ "nix" "toml" "csharp" ]
+            lsp = {
+              nix = {
+                binary = {
+                  path_lookup = true;
+                };
+              };
+            };
           };
         };
       };
