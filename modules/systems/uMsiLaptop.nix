@@ -103,6 +103,10 @@
               "big-parallel"
               "kvm"
             ];
+            systems = [
+              "x86_64-linux"
+              "i686-linux"
+            ];
           }
           {
             hostName = "uServerHost";
@@ -116,6 +120,10 @@
               "benchmark"
               "big-parallel"
               "kvm"
+            ];
+            systems = [
+              "x86_64-linux"
+              "i686-linux"
             ];
           }
         ];
