@@ -84,8 +84,36 @@
         network.enable = true;
       };
       nix = {
+        distributedBuilds = true;
         settings = {
-          max-jobs = 4;
+          max-jobs = 0;
+          builders-use-substitutes = true;
+        };
+        buildMachines = {
+          hostName = "uWebServer";
+          system = "x86_64-linux";
+          protocol = "ssh";
+          maxJobs = 8;
+          speedFactor = 5;
+          supportedFeatures = [
+            "nixos-test"
+            "benchmark"
+            "big-parallel"
+            "kvm"
+          ];
+        };
+        buildMachines = {
+          hostName = "uServerHost";
+          system = "x86_64-linux";
+          protocol = "ssh";
+          maxJobs = 16;
+          speedFactor = 10;
+          supportedFeatures = [
+            "nixos-test"
+            "benchmark"
+            "big-parallel"
+            "kvm"
+          ];
         };
       };
       swapDevices = [
