@@ -52,6 +52,7 @@
           };
         };
         programs.home-manager.enable = true;
+        targets.genericLinux.enable = true;
         imports = with self.homeModules; [
           firefox
           dynamic-apps
