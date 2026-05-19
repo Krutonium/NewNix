@@ -89,32 +89,36 @@
           max-jobs = 0;
           builders-use-substitutes = true;
         };
-        buildMachines = {
-          hostName = "uWebServer";
-          system = "x86_64-linux";
-          protocol = "ssh";
-          maxJobs = 8;
-          speedFactor = 5;
-          supportedFeatures = [
-            "nixos-test"
-            "benchmark"
-            "big-parallel"
-            "kvm"
-          ];
-        };
-        buildMachines = {
-          hostName = "uServerHost";
-          system = "x86_64-linux";
-          protocol = "ssh";
-          maxJobs = 16;
-          speedFactor = 10;
-          supportedFeatures = [
-            "nixos-test"
-            "benchmark"
-            "big-parallel"
-            "kvm"
-          ];
-        };
+        buildMachines = [
+          {
+            hostName = "uWebServer";
+            system = "x86_64-linux";
+            protocol = "ssh";
+            sshUser = "krutonium"; # optional if same username
+            maxJobs = 8;
+            speedFactor = 5;
+            supportedFeatures = [
+              "nixos-test"
+              "benchmark"
+              "big-parallel"
+              "kvm"
+            ];
+          }
+          {
+            hostName = "uServerHost";
+            system = "x86_64-linux";
+            protocol = "ssh";
+            sshUser = "krutonium"; # optional if same username
+            maxJobs = 16;
+            speedFactor = 10;
+            supportedFeatures = [
+              "nixos-test"
+              "benchmark"
+              "big-parallel"
+              "kvm"
+            ];
+          }
+        ];
       };
       swapDevices = [
         {
