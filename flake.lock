@@ -91,11 +91,11 @@
     "cachyos-kernel": {
       "flake": false,
       "locked": {
-        "lastModified": 1778851262,
-        "narHash": "sha256-lEtNQQdQkC1bWIxBr9po1cW6aD+UzAMxUbe6k3hH1tA=",
+        "lastModified": 1779034201,
+        "narHash": "sha256-KINz+P9ds2XV+jIhPKbWtpXD27K/vZT0FN87GkMBDKM=",
         "owner": "CachyOS",
         "repo": "linux-cachyos",
-        "rev": "e625438b981d774a22e2ba431a2d93e1737462ff",
+        "rev": "791fb8ea6d3cf7c85e596678c25c56fa140591be",
         "type": "github"
       },
       "original": {
@@ -127,11 +127,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1779054037,
-        "narHash": "sha256-mUrc49q3aHm9bQMJQxxaKs5PBMg+nDlecXPvP4dC1kQ=",
+        "lastModified": 1779071170,
+        "narHash": "sha256-xZrmCrCQkUBHuaZMbf3n9v8pYnXJWDatwWydQ3V0iGc=",
         "ref": "main",
-        "rev": "0c28d45d1379db73462eddcdaeb5d472ed7d83f2",
-        "revCount": 4110,
+        "rev": "c516b91476cbdcfde16fe0b57d7bfc6fcb37fab6",
+        "revCount": 6490,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/TwilitRealm/dusklight"
@@ -444,11 +444,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1778956518,
-        "narHash": "sha256-bbZMrzJtCqksaUBmAWSqmme/7PHEedPRAI3VmOSuP4A=",
+        "lastModified": 1779043214,
+        "narHash": "sha256-//+01ZthfM8AHz4vGEIvMpEOG6jh5nt3XGR0h3alJwk=",
         "owner": "xddxdd",
         "repo": "nix-cachyos-kernel",
-        "rev": "ae5bc7641fb4178e4d9582ea49cab201f60f7869",
+        "rev": "35ce1ffcf034260e4213442ae4e0b5820f529331",
         "type": "github"
       },
       "original": {
@@ -468,11 +468,11 @@
         "vpn-confinement": "vpn-confinement"
       },
       "locked": {
-        "lastModified": 1778999678,
-        "narHash": "sha256-39k23eSEYtf7/8TMgr2Z0SA6CxXtXLEw8FhdsZMl1vE=",
+        "lastModified": 1779119519,
+        "narHash": "sha256-TadImfUJZHq8dD/sfmQ6p7ktUSu+zb3AcIqk0aqmAcU=",
         "owner": "kiriwalawren",
         "repo": "nixflix",
-        "rev": "17738063b822d002194dc3c213f119600d2d6fb8",
+        "rev": "7b241f4b361c103ed85788648c457257544d643a",
         "type": "github"
       },
       "original": {
@@ -583,11 +583,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1779053507,
-        "narHash": "sha256-N146hG8hCM4dX/EkW4gBpq/nYP19xrkRGSzqT0fkAHk=",
+        "lastModified": 1779143358,
+        "narHash": "sha256-MkhVNEDAD9tWgNWsgJ/8mh6UWs0+l26KR0ncsyaGsfA=",
         "owner": "nix-community",
         "repo": "nur",
-        "rev": "f47a70eea0f828bd687d7309fa88e8cf5b25f45f",
+        "rev": "f4291458a36dbb433aaa8e1b24831df883400e5f",
         "type": "github"
       },
       "original": {
