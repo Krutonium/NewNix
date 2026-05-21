@@ -91,6 +91,8 @@
           pkgs.unzip
           pkgs.yt-dlp
           pkgs.atuin
+          pkgs.unstable.ollama
+          pkgs.opencode
 
           # Commuications
           pkgs.fluffychat
