@@ -15,6 +15,7 @@
       nix-serve
       root
       zswap
+      ollama_host
     ];
   };
 

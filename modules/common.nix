@@ -90,6 +90,7 @@
           EDITOR = "nano";
           VISUAL = "nano";
           __EGL_VENDOR_LIBRARY_DIRS = "/run/opengl-driver/share/glvnd/egl_vendor.d";
+          OLLAMA_HOST = "http://10.3:11434";
         };
         sessionVariables = {
 #          GBM_BACKEND = "nvidia-drm";
