@@ -56,7 +56,7 @@
           package = kernel.nvidiaPackages.legacy_580;
           prime.offload.enable = false;
           open = false;
-          nvidiaSettings = false;
+          nvidiaSettings = true;
           modesetting.enable = true;
           nvidiaPersistenced = true;
         };
