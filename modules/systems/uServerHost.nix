@@ -53,7 +53,8 @@
         cpu.amd.updateMicrocode = true;
         nvidia = {
           powerManagement.enable = true;
-          package = kernel.nvidiaPackages.legacy_580;
+          #package = kernel.nvidiaPackages.legacy_580;
+          package = kernel.nvidiaPackages.stable;
           prime.offload.enable = false;
           open = false;
           nvidiaSettings = true;
