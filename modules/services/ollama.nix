@@ -19,5 +19,6 @@
           port = 3440;
         };
       };
+      networking.firewall.allowedTCPPorts = [ 3440 ];
     };
 }
