@@ -13,7 +13,6 @@
       sops
       pipewire
       ssh
-      nix-serve
       v4l2loopback
       gamemode
       root

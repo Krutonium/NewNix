@@ -13,7 +13,6 @@
       sops
       pipewire
       ssh
-      nix-serve
       gamemode
       root
       zswap

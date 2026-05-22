@@ -7,9 +7,7 @@
       avahi
       blog
       ddns
-      #deluge
       rtorrent
-      #nixflix
       forgejo
       nextcloud
       nginx
@@ -26,7 +24,6 @@
       sops
       matrix
       InternetRadio2Computercraft
-      nix-serve
       minecraftPortForwards
       minecraftServerData
       fileHosting

@@ -12,7 +12,6 @@
       minecraftServers
       minecraftServerData
       ut99
-      nix-serve
       root
       zswap
       ollama_host
