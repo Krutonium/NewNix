@@ -14,12 +14,13 @@
       sops.secrets.atticsecret = {
         owner = user;
       };
+      networking.firewall.allowedTCPPorts = [ 8080 ];
       services.atticd = {
         enable = true;
         environmentFile = config.sops.secrets.atticsecret.path;
         user = user;
         settings = {
-          listen = "127.0.0.1:8080";
+          listen = "0.0.0.0:8080";
           allowed-hosts = [
             "cache.krutonium.ca"
             "10.0.0.3"
