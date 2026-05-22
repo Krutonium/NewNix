@@ -84,6 +84,7 @@
         "/servers/Hytale"            = { device = btrfsDisk; fsType = "btrfs";  options = [ "noatime" "compress=zstd:15" "subvol=Hytale" ]; };
         "/backups"                   = { device = "/dev/disk/by-label/Backups"; fsType = "ext4"; };
         "/"                          = { device = "/dev/disk/by-label/root";    fsType = "ext4"; };
+        "/attic"                     = { device = btrfsDisk; fsType = "btrfs";  options = [ "noatime" "compress=zstd:15" "subvol=attic"]; };
       };
     };
 }
