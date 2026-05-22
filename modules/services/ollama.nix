@@ -11,6 +11,7 @@
           host = "0.0.0.0";
           port = 11434;
           openFirewall = true;
+          acceleration = "cuda";
         };
         nextjs-ollama-llm-ui = {
           enable = true;
