@@ -10,7 +10,7 @@
         isSystemUser = true;
         group = "atticd";
       };
-      users.groups.atticd = {};
+      users.groups.atticd = { };
       sops.secrets.atticsecret = {
         owner = user;
       };
@@ -28,6 +28,9 @@
           storage = {
             type = "local";
             path = "/attic";
+          };
+          signing = {
+            keypair = config.sops.secrets.nix_serve_secret.path;
           };
           chunking = {
             nar-size-threshold = 65536;
