@@ -29,9 +29,6 @@
             type = "local";
             path = "/attic";
           };
-          signing = {
-            keypair = config.sops.secrets.nix_serve_secret.path;
-          };
           chunking = {
             nar-size-threshold = 65536;
             min-size = 16384;
