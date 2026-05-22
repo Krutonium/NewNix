@@ -5,7 +5,7 @@
     {
       services.atticd = {
         enable = true;
-        credentialsFile = config.sops.secrets."attic/credentials".path;
+        credentialsFile = config.sops.secrets."attic-secret".path;
         settings = {
           listen = "127.0.0.1:8080";
           allowed-hosts = [ "cache.krutonium.ca" "10.0.0.3" ];
