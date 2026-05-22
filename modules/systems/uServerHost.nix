@@ -47,10 +47,11 @@
           system-features = [ "gccarch-znver1" ];
         };
       };
-
+      services.xserver.videoDrivers = [ "nvidia" ];
       hardware = {
         graphics.enable = true;
         cpu.amd.updateMicrocode = true;
+
         nvidia = {
           powerManagement.enable = true;
           #package = kernel.nvidiaPackages.legacy_580;
