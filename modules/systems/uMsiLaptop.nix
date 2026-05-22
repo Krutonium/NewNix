@@ -206,6 +206,7 @@
             "compress=zstd:15"
             "subvol=home"
           ];
+          neededForBoot = true;
         };
         "/etc/NetworkManager" = {
           device = btrfsDisk;
