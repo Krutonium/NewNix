@@ -16,6 +16,7 @@
       root
       zswap
       ollama_host
+      attic
     ];
   };
 

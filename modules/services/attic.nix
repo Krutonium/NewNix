@@ -8,7 +8,7 @@
         credentialsFile = config.sops.secrets."attic/credentials".path;
         settings = {
           listen = "127.0.0.1:8080";
-          allowed-hosts = [ "cache.krutonium.ca" ];
+          allowed-hosts = [ "cache.krutonium.ca" "10.0.0.3" ];
           api-endpoint = "https://cache.krutonium.ca/";
           storage = {
             type = "local";
