@@ -12,7 +12,7 @@
         };
         wallpaper = lib.mkOption {
           type = lib.types.path;
-          default = ./wallpaper.jpg;
+          default = ./wallpaper.png;
         };
         profile = lib.mkOption {
           type = lib.types.path;
