@@ -34,6 +34,19 @@
         eventsConfig = ''
           worker_connections 512;
         '';
+        # This has to go here because nginx is on uWebServer while Attic is on uServerHost
+        virtualHosts."cache.krutonium.ca" = {
+          enableACME = true;
+          forceSSL = true;
+          locations."/" = {
+            proxyPass = "http://10.0.0.3:8080";
+            extraConfig = ''
+              client_max_body_size 0;  # NARs can be large
+              proxy_read_timeout 600;  # chunked uploads take time
+              proxy_request_buffering off;
+            '';
+          };
+        };
       };
     };
 }
