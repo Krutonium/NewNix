@@ -1,5 +1,7 @@
 # Welcome to Version 3 of my NixOS configuration!
 
+[![Build NixOS Configurations](https://github.com/Krutonium/NewNix/actions/workflows/build.yml/badge.svg)](https://github.com/Krutonium/NewNix/actions/workflows/build.yml)
+
 In this iteration, I've re-written my NixOS configuration in a more modular way.
 This time, I am using flake-parts, instead of my previous approach of using honestly quite brittle `options` - which required a LOT of boilerplate.
 

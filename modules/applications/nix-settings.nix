@@ -21,11 +21,9 @@
           substituters = [
             "https://cache.nixos-cuda.org"
             "https://attic.xuyh0120.win/lantian"
-            "http://10.1:5000"
-            "http://10.2:5000"
-            "http://10.3:5000"
-            "http://10.5:5000"
+            "https://cache.krutonium.ca/KruCache"
           ];
+          trusted-substituters = [ "https://cache.krutonium.ca/KruCache" ];
           trusted-public-keys = [
             "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
             "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
