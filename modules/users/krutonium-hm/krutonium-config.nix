@@ -29,6 +29,13 @@
         sha256 = "sha256:0arzwhxmxgyy6w56dgm5idlchp8zs6ia3yf02i2n0qp379dkdcgg";
       };
 
+      atticConfig = ''
+      default-server = "KruCache"
+
+      [servers.KruCache]
+      endpoint = "https://cache.krutonium.ca/"
+      token-file = ${osConfig.sops.secrets.attic_everything_token.path};
+      '';
     in
     {
       home.file = javaLinks // {
@@ -77,6 +84,7 @@
         "show_fps_limit" = true;
         "round_corners" = 15.0;
       };
+      xdg.configFile."attic/config.toml".text = atticConfig;
       xdg.configFile."MangoHud/MangoHud.conf".text = lib.mkAfter ''
         # override only font appearance
         font_size = 24
