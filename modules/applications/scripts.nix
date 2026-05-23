@@ -97,6 +97,12 @@
         ${common_git}/bin/common_git
         cd ~/NixOS
         nh os boot .
+        # Attic auth
+        export ATTIC_TOKEN="$(${pkgs.coreutils}/bin/cat ${config.sops.secrets.attic_everything_token.path})"
+        export ATTIC_SERVER="https://cache.krutonium.ca/"
+        echo "Pushing current system closure to KruCache..."
+        ${pkgs.attic-client}/bin/attic push KruCache /nix/var/nix/profiles/system
+        echo "Done."
       '';
 
       commit = pkgs.writeShellScriptBin "ncommit" ''
