@@ -153,7 +153,7 @@
           nvidiaBusId = "PCI:1:0:0"; # Adjust to match your hardware
         };
       };
-      nixpkgs.config.cudaSupport = true;
+      nixpkgs.config.cudaSupport = false;
       services.simpleCpuGovernor = {
         target = lib.mkForce 40;
       };
@@ -166,63 +166,19 @@
 
       fileSystems = {
         "/" = {
-          # tmpfs root
-          device = "root";
-          fsType = "tmpfs";
+          device = "/dev/disk/by-label/root";
+          fsType = "ext4";
           options = [
-            "defaults"
-            "mode=755"
-          ];
-        };
-        "/tmp" = {
-          device = btrfsDisk;
-          fsType = "btrfs";
-          options = [
-            "compress=zstd:15"
-            "subvol=tmp"
+
           ];
         };
         "/boot" = {
-          device = "/dev/disk/by-uuid/1B37-4FC4";
+          device = "/dev/disk/by-label/BOOT";
           fsType = "vfat";
           options = [
             "fmask=0022"
             "dmask=0022"
           ];
-        };
-        "/nix" = {
-          device = btrfsDisk;
-          fsType = "btrfs";
-          options = [
-            "compress=zstd:15"
-            "subvol=nix"
-          ];
-        };
-        "/home" = {
-          device = btrfsDisk;
-          fsType = "btrfs";
-          options = [
-            "compress=zstd:15"
-            "subvol=home"
-          ];
-          neededForBoot = true;
-        };
-        "/etc/NetworkManager" = {
-          device = btrfsDisk;
-          fsType = "btrfs";
-          options = [
-            "compress=zstd:15"
-            "subvol=networkmanager"
-          ];
-        };
-        "/etc/ssh" = {
-          device = btrfsDisk;
-          fsType = "btrfs";
-          options = [
-            "compress=zstd:15"
-            "subvol=ssh"
-          ];
-          neededForBoot = true;
         };
         "/storage" = {
           device = "/dev/disk/by-uuid/3333f503-a70b-40b9-8037-8c226456bff4";
