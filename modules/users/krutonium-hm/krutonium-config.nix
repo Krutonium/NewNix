@@ -34,7 +34,7 @@
 
       [servers.KruCache]
       endpoint = "https://cache.krutonium.ca/"
-      token-file = ${osConfig.sops.secrets.attic_everything_token.path};
+      token-file = "${osConfig.sops.secrets.attic_everything_token.path}";
       '';
     in
     {

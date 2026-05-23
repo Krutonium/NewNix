@@ -9,7 +9,7 @@
 #   -j, --jobs N             Max parallel nix builds (default: $(nproc))
 #   -s, --system SYSTEM      Override system (default: current system)
 #   -d, --dry-run            Show what would be pushed without actually pushing
-#   -k, --keep-going         Continue on build failures instead of aborting
+#   -k, --keep-going         Continue on build/push failures instead of aborting
 #   -f, --filter REGEX       Only push outputs whose attr path matches REGEX
 #   --no-build               Skip building; only push already-realised store paths
 #   --include-checks         Also build checks.* outputs (skipped by default)
@@ -66,21 +66,14 @@ done
 # ── Collect installable attribute paths ─────────────────────────────────────
 info "Enumerating flake outputs for ${BOLD}${FLAKE_REF}${RESET} (system: ${SYSTEM})…"
 
-# nix flake show --json gives us the full output tree
 SHOW_JSON="$(nix flake show --json --all-systems "$FLAKE_REF" 2>/dev/null)" \
   || die "Failed to run 'nix flake show'. Is '$FLAKE_REF' a valid flake?"
 
-# Top-level output types we care about; map each to its system sub-key if applicable
-# Outputs that are per-system: packages, devShells, checks, apps, legacyPackages
-# Outputs that are not per-system: nixosConfigurations, homeConfigurations, overlays, …
-# We handle both shapes.
-
 ATTRS=()
 
-# Helper: given a JSON path prefix and a jq filter, extract leaf attr paths
 collect_system_outputs() {
-  local prefix="$1"   # e.g. "packages"
-  local json_path="$2" # jq path to object keyed by system
+  local prefix="$1"
+  local json_path="$2"
   while IFS= read -r attr; do
     [[ -n "$attr" ]] || continue
     ATTRS+=("${FLAKE_REF}#${attr}")
@@ -92,24 +85,10 @@ collect_system_outputs() {
   )
 }
 
-collect_flat_outputs() {
-  local prefix="$1"
-  local json_path="$2"
-  while IFS= read -r attr; do
-    [[ -n "$attr" ]] || continue
-    ATTRS+=("${FLAKE_REF}#${attr}")
-  done < <(
-    echo "$SHOW_JSON" \
-    | jq -r --arg pfx "$prefix" \
-        "${json_path} | keys[]? | \"\(\$pfx).\" + ." \
-      2>/dev/null || true
-  )
-}
-
 # packages.<system>.*
-collect_system_outputs "packages"        ".packages"
+collect_system_outputs "packages"       ".packages"
 # devShells.<system>.*
-collect_system_outputs "devShells"       ".devShells"
+collect_system_outputs "devShells"      ".devShells"
 # checks.<system>.* (opt-in)
 $INCLUDE_CHECKS && collect_system_outputs "checks" ".checks"
 # nixosConfigurations.*.config.system.build.toplevel
@@ -117,15 +96,13 @@ while IFS= read -r host; do
   [[ -n "$host" ]] || continue
   ATTRS+=("${FLAKE_REF}#nixosConfigurations.${host}.config.system.build.toplevel")
 done < <(echo "$SHOW_JSON" | jq -r '.nixosConfigurations // {} | keys[]?' 2>/dev/null || true)
-
 # homeConfigurations.*.activationPackage
 while IFS= read -r name; do
   [[ -n "$name" ]] || continue
   ATTRS+=("${FLAKE_REF}#homeConfigurations.${name}.activationPackage")
 done < <(echo "$SHOW_JSON" | jq -r '.homeConfigurations // {} | keys[]?' 2>/dev/null || true)
-
-# legacyPackages.<system>.* — shallow only (too large to recurse safely)
-collect_system_outputs "legacyPackages"  ".legacyPackages"
+# legacyPackages.<system>.* — shallow only
+collect_system_outputs "legacyPackages" ".legacyPackages"
 
 # Apply --filter
 if [[ -n "$FILTER" ]]; then
@@ -145,73 +122,84 @@ info "Found ${BOLD}${#ATTRS[@]}${RESET} output(s) to process."
 printf '  %s\n' "${ATTRS[@]}"
 echo
 
-# ── Build ────────────────────────────────────────────────────────────────────
-STORE_PATHS=()
+# ── Scratch dir for result symlinks ──────────────────────────────────────────
+RESULTS_BASE="$(mktemp -d -t attic-push.XXXXXX)"
+cleanup() { rm -rf "$RESULTS_BASE"; }
+trap cleanup EXIT
+
+# ── Build → push → clean, one attr at a time ─────────────────────────────────
+PUSHED=0
 FAILED_ATTRS=()
 KEEP_GOING_FLAG=()
 $KEEP_GOING && KEEP_GOING_FLAG=(--keep-going)
 
-if $NO_BUILD; then
-  info "--no-build set; resolving store paths without building…"
-  for attr in "${ATTRS[@]}"; do
-    path="$(nix path-info --impure "$attr" 2>/dev/null || true)"
-    if [[ -n "$path" ]]; then
-      STORE_PATHS+=($path)
-    else
-      warn "Not realised (skipping): $attr"
+info "Building and pushing ${#ATTRS[@]} output(s) with ${JOBS} job(s)…"
+echo
+
+for attr in "${ATTRS[@]}"; do
+  # Filesystem-safe slug derived from the attr path
+  slug="${attr#*#}"
+  slug="${slug//[^a-zA-Z0-9_.-]/-}"
+
+  result_dir="${RESULTS_BASE}/${slug}"
+  mkdir -p "$result_dir"
+
+  echo -e "  ${BOLD}→${RESET} $attr"
+
+  if $DRY_RUN; then
+    info "  [DRY RUN] Would build and push: $attr"
+    rm -rf "$result_dir"
+    continue
+  fi
+
+  # ── Build ──────────────────────────────────────────────────────────────────
+  if $NO_BUILD; then
+    mapfile -t paths < <(nix path-info --impure "$attr" 2>/dev/null || true)
+    if [[ ${#paths[@]} -eq 0 ]]; then
+      warn "  Not realised (skipping): $attr"
       FAILED_ATTRS+=("$attr")
-    fi
-  done
-else
-  info "Building ${#ATTRS[@]} output(s) with ${JOBS} job(s)…"
-  for attr in "${ATTRS[@]}"; do
-    echo -e "  ${BOLD}→${RESET} $attr"
-    if $DRY_RUN; then
-      STORE_PATHS+=("(dry-run: $attr)")
+      rm -rf "$result_dir"
+      $KEEP_GOING || die "Aborting. Use --keep-going to continue."
       continue
     fi
-    # nix build returns the store path via --print-out-paths
-    if paths="$(nix build "${KEEP_GOING_FLAG[@]}" --no-link --print-out-paths \
-                          --max-jobs "$JOBS" --impure "$attr" 2>&1)"; then
-      while IFS= read -r p; do
-        [[ -n "$p" ]] && STORE_PATHS+=("$p")
-      done <<< "$paths"
-      ok "$attr"
-    else
-      err "Build failed: $attr"
+    idx=0
+    for p in "${paths[@]}"; do
+      ln -sf "$p" "${result_dir}/result-${idx}"
+      (( idx++ )) || true
+    done
+  else
+    if ! nix build "${KEEP_GOING_FLAG[@]}" \
+            --out-link "${result_dir}/result" \
+            --max-jobs "$JOBS" --impure "$attr" 2>&1; then
+      err "  Build failed: $attr"
       FAILED_ATTRS+=("$attr")
+      rm -rf "$result_dir"
       $KEEP_GOING || die "Aborting due to build failure. Use --keep-going to continue."
+      continue
     fi
-  done
-fi
+  fi
 
-echo
-info "Successfully built ${BOLD}${#STORE_PATHS[@]}${RESET} path(s)."
-[[ ${#FAILED_ATTRS[@]} -gt 0 ]] && warn "${#FAILED_ATTRS[@]} attr(s) failed: ${FAILED_ATTRS[*]}"
+  # ── Push result symlink (attic follows it into the store) ─────────────────
+  if attic push --ignore-upstream-cache-filter "$CACHE" "${result_dir}/result"; then
+    ok "  Pushed: $attr"
+    (( PUSHED++ )) || true
+  else
+    err "  Push failed: $attr"
+    FAILED_ATTRS+=("$attr")
+    $KEEP_GOING || die "Aborting due to push failure. Use --keep-going to continue."
+  fi
 
-[[ ${#STORE_PATHS[@]} -eq 0 ]] && { warn "Nothing to push."; exit 0; }
-
-# ── Push to Attic ────────────────────────────────────────────────────────────
-echo
-if $DRY_RUN; then
-  info "[DRY RUN] Would push the following paths to cache '${CACHE}':"
-  printf '  %s\n' "${STORE_PATHS[@]}"
-else
-  info "Pushing ${BOLD}${#STORE_PATHS[@]}${RESET} path(s) to Attic cache '${BOLD}${CACHE}${RESET}'…"
-  # Feed paths via xargs in batches of 256 to avoid ARG_MAX limits
-  printf '%s\n' "${STORE_PATHS[@]}" \
-    | xargs -d '\n' -P1 -n 256 \
-        attic push --ignore-upstream-cache-filter "$CACHE"
-  ok "All paths pushed successfully!"
-fi
+  # Clean up immediately to free disk space before the next build
+  rm -rf "$result_dir"
+  echo
+done
 
 # ── Summary ──────────────────────────────────────────────────────────────────
-echo
 echo -e "${BOLD}═══ Summary ═══${RESET}"
 echo -e "  Flake:    ${FLAKE_REF}"
 echo -e "  Cache:    ${CACHE}"
 echo -e "  System:   ${SYSTEM}"
-echo -e "  Pushed:   ${#STORE_PATHS[@]}"
+echo -e "  Pushed:   ${PUSHED}"
 [[ ${#FAILED_ATTRS[@]} -gt 0 ]] \
   && echo -e "  ${RED}Failed:   ${#FAILED_ATTRS[@]}${RESET}" \
   || echo -e "  Failed:   0"
