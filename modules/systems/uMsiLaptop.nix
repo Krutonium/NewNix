@@ -153,7 +153,7 @@
           nvidiaBusId = "PCI:1:0:0"; # Adjust to match your hardware
         };
       };
-      nixpkgs.config.cudaSupport = false;
+      nixpkgs.config.cudaSupport = true;
       services.simpleCpuGovernor = {
         target = lib.mkForce 40;
       };
