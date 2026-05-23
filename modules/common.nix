@@ -33,6 +33,7 @@
         extraSpecialArgs = { inherit inputs; };
         useGlobalPkgs = true;
       };
+      environment.systemPackages = [ pkgs.attic-client ];
       nixpkgs = {
         config = {
           allowUnfree = true;
@@ -93,8 +94,8 @@
           OLLAMA_HOST = "http://10.3:11434";
         };
         sessionVariables = {
-#          GBM_BACKEND = "nvidia-drm";
-#          __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+          #          GBM_BACKEND = "nvidia-drm";
+          #          __GLX_VENDOR_LIBRARY_NAME = "nvidia";
         };
       };
       security = {
