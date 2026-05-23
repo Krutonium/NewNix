@@ -168,9 +168,6 @@
         "/" = {
           device = "/dev/disk/by-label/root";
           fsType = "ext4";
-          options = [
-
-          ];
         };
         "/boot" = {
           device = "/dev/disk/by-label/BOOT";
