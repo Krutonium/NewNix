@@ -129,7 +129,7 @@
       };
       swapDevices = [
         {
-          device = "/home/swap";
+          device = "/dev/disk/by-label/swap";
           priority = 1;
           discardPolicy = "both";
         }

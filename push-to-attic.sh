@@ -198,8 +198,10 @@ if $DRY_RUN; then
   printf '  %s\n' "${STORE_PATHS[@]}"
 else
   info "Pushing ${BOLD}${#STORE_PATHS[@]}${RESET} path(s) to Attic cache '${BOLD}${CACHE}${RESET}'…"
-  # attic push accepts multiple store paths; also pushes all references (closure)
-  attic push --ignore-upstream-cache-filter "$CACHE" "${STORE_PATHS[@]}"
+  # Feed paths via xargs in batches of 256 to avoid ARG_MAX limits
+  printf '%s\n' "${STORE_PATHS[@]}" \
+    | xargs -d '\n' -P1 -n 256 \
+        attic push --ignore-upstream-cache-filter "$CACHE"
   ok "All paths pushed successfully!"
 fi
 
