@@ -1,8 +1,11 @@
-{ ... }:
+{ self, ... }:
 {
   flake.nixosModules.forgejo =
     { pkgs, config, ... }:
     {
+      imports = [
+        self.nixosModules.anubis
+      ];
       services.forgejo = {
         enable = true;
         package = pkgs.unstable.forgejo;

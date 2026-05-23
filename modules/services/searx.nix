@@ -1,4 +1,4 @@
-{ ... }:
+{ self, ... }:
 {
   flake.nixosModules.searx =
     {
@@ -8,6 +8,9 @@
       ...
     }:
     {
+      imports = [
+        self.nixosModules.anubis
+      ];
       sops.secrets.searx_secret = {
         owner = "searx";
         restartUnits = [ "searx.service" ];
