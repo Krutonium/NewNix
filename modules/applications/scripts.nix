@@ -1,7 +1,7 @@
 { ... }:
 {
   flake.nixosModules.scripts =
-    { pkgs, ... }:
+    { pkgs, config, ... }:
     let
       sshr = pkgs.writeShellScriptBin "sshr" ''
         ssh $@
@@ -61,11 +61,85 @@
         git push || true
       '';
 
+      #      switch = pkgs.writeShellScriptBin "nswitch" ''
+      #        set -e
+      #        ${common_git}/bin/common_git
+      #        cd ~/NixOS
+      #        nh os switch .
+      #      '';
       switch = pkgs.writeShellScriptBin "nswitch" ''
-        set -e
+        set -euo pipefail
+
+        export HOME="''${HOME:-/root}"
+
+        # Load attic token from sops
+        export ATTIC_SERVER="https://cache.krutonium.ca/"
+        export ATTIC_TOKEN="$(${pkgs.coreutils}/bin/cat ${config.sops.secrets.attic_everything_token.path})"
+
+        ATTIC_CACHE="''${ATTIC_CACHE:-nixos}"
+
+        TMPDIR="$(${pkgs.coreutils}/bin/mktemp -d)"
+        trap 'rm -rf "$TMPDIR"' EXIT
+
+        BUILD_LOG="$TMPDIR/build.log"
+        DRV_LIST="$TMPDIR/drvs.txt"
+        OUT_PATHS="$TMPDIR/paths.txt"
+
+        # Keep your original behavior
         ${common_git}/bin/common_git
+
         cd ~/NixOS
-        nh os switch .
+
+        echo "Switching system..."
+
+        # Capture nix build events while preserving console output
+        if ! env NIX_BUILD_LOG_FORMAT=internal-json \
+          ${pkgs.nh}/bin/nh os switch . \
+          2> >(${pkgs.coreutils}/bin/tee "$BUILD_LOG" >&2); then
+          echo "Switch failed."
+          exit 1
+        fi
+
+        echo "Finding locally built derivations..."
+
+        ${pkgs.jq}/bin/jq -r '
+          select(.action? == "build")
+          | .drvPath
+        ' "$BUILD_LOG" \
+          | ${pkgs.coreutils}/bin/sort -u \
+          > "$DRV_LIST"
+
+        if [[ ! -s "$DRV_LIST" ]]; then
+          echo "No locally built derivations found."
+          exit 0
+        fi
+
+        echo "Resolving output paths..."
+
+        while read -r drv; do
+          ${pkgs.nix}/bin/nix derivation show "$drv" \
+            | ${pkgs.jq}/bin/jq -r '
+                to_entries[]
+                | .value.outputs[]
+                | .path
+              '
+        done < "$DRV_LIST" \
+          | ${pkgs.coreutils}/bin/sort -u \
+          > "$OUT_PATHS"
+
+        COUNT="$(${pkgs.coreutils}/bin/wc -l < "$OUT_PATHS")"
+
+        if [[ "$COUNT" -eq 0 ]]; then
+          echo "No locally built outputs found."
+          exit 0
+        fi
+
+        echo "Pushing $COUNT locally built paths to Attic..."
+
+        ${pkgs.attic-client}/bin/attic push "$ATTIC_CACHE" \
+          --stdin < "$OUT_PATHS"
+
+        echo "Done."
       '';
 
       boot = pkgs.writeShellScriptBin "nboot" ''
