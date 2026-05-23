@@ -18,7 +18,6 @@
         pkgs.gnomeExtensions.arcmenu
         pkgs.gnomeExtensions.no-overview
         pkgs.gnomeExtensions.gtile
-        pkgs.gnomeExtensions.user-themes
         pkgs.gnomeExtensions.brightness-control-using-ddcutil
         pkgs.gnomeExtensions.compiz-windows-effect
         pkgs.gnomeExtensions.compiz-alike-magic-lamp-effect

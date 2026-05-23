@@ -85,7 +85,7 @@
       nix = {
         distributedBuilds = true;
         settings = {
-          max-jobs = 0;
+          max-jobs = 1;
           builders-use-substitutes = true;
         };
         buildMachines = [
