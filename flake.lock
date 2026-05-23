@@ -127,11 +127,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1779347599,
-        "narHash": "sha256-M2O6B4VS6SUxJ9dzqqCwOk8AwFNEcCysZBaZ03D1ipk=",
+        "lastModified": 1779542544,
+        "narHash": "sha256-xxrmiLZg0/RDjT3/D83F8bXOfhfB+OxPFykmh/XbBhE=",
         "ref": "main",
-        "rev": "ba6ef0d250b3a93f9f58083223fabd9f4fbe7c6f",
-        "revCount": 6506,
+        "rev": "1711251cf5e8e74ea920b4b5fa2f3c2bcb5a5208",
+        "revCount": 6511,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/TwilitRealm/dusklight"
@@ -529,11 +529,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1779357205,
-        "narHash": "sha256-cCO8aTqss5x9Ky8GWkpY0Hy5fyTZEbtifSUV8QjSzic=",
+        "lastModified": 1779508470,
+        "narHash": "sha256-Ap9KJX+5xHIn3bPIpfNgT6MEXdAECECwo4/rmlQD74M=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "f83fc3c307e74bc5fd5adb7eb6b8b13ffd2a36e1",
+        "rev": "29916453413845e54a65b8a1cf996842300cd299",
         "type": "github"
       },
       "original": {
@@ -583,11 +583,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1779493406,
-        "narHash": "sha256-70dCjL6KdsNG+hPHqUsrTF/gQtnucRMo2B/oGvf8aOw=",
+        "lastModified": 1779565654,
+        "narHash": "sha256-yf2/RMk2xF+p1IENFo2fb0cw6NO6e1hF1lvFrX+apyE=",
         "owner": "nix-community",
         "repo": "nur",
-        "rev": "e27d8a76f2167da18bd37ab38f463c13daf2bc21",
+        "rev": "686d85f95ee094d69ebbbc645a57799b2d811a51",
         "type": "github"
       },
       "original": {
