@@ -10,7 +10,6 @@
     with lib.hm.gvariant;
     let
       superMenuLogo = "${osConfig.assets.superMenuLogo}";
-      #wallPaper = osConfig.my.assets.wallpaper;
       extensions = with pkgs.gnomeExtensions; [
         dash-to-panel
         ddterm
@@ -21,8 +20,6 @@
         brightness-control-using-ddcutil
         compiz-windows-effect
         compiz-alike-magic-lamp-effect
-        grand-theft-focus
-        #pkgs.gnome-shell-extension-hanabi
       ];
       extensionUuids = map (ext: ext.extensionUuid) extensions;
     in
