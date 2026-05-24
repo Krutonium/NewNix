@@ -22,7 +22,7 @@
         compiz-windows-effect
         compiz-alike-magic-lamp-effect
         grand-theft-focus
-        pkgs.gnome-shell-extension-hanabi
+        #pkgs.gnome-shell-extension-hanabi
       ];
       extensionUuids = map (ext: ext.extensionUuid) extensions;
     in

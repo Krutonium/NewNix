@@ -21,11 +21,17 @@
       ];
 
       postPatch = ''
-        substituteInPlace build-aux/meson-postinstall.sh \
-          --replace-fail 'glib-compile-schemas' 'true'
-          chmod +x build-aux/meson-postinstall.sh
+        substituteInPlace src/meson.build \
+          --replace-fail "meson.add_install_script(meson.project_source_root() / 'build-aux' / 'meson-postinstall.sh')" ""
       '';
 
+      postInstall = ''
+        local ext="$out/share/gnome-shell/extensions/hanabi-extension@jeffshee.github.io"
+        mkdir -p "$ext/schemas"
+        cp $out/share/glib-2.0/schemas/*.gschema.xml "$ext/schemas/"
+        glib-compile-schemas "$ext/schemas/"
+      '';
+      
       passthru = {
         extensionUuid = "hanabi-extension@jeffshee.github.io";
       };
