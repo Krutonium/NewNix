@@ -9,7 +9,7 @@
         owner = "jeffshee";
         repo = "gnome-ext-hanabi";
         rev = "854f3a93665e9d09edb3f944a8bce8d368a2e17f";
-        hash = final.lib.fakeHash;
+        hash = "sha256-+BrCMh6hDGNDVsReNoPzG3kNpnstjj0Cwdo/r2QIEkQ=";
       };
 
       nativeBuildInputs = with final; [
@@ -23,6 +23,7 @@
       postPatch = ''
         substituteInPlace build-aux/meson-postinstall.sh \
           --replace-fail 'glib-compile-schemas' 'true'
+          chmod +x build-aux/meson-postinstall.sh
       '';
 
       passthru = {
