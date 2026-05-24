@@ -11,17 +11,17 @@
     let
       superMenuLogo = "${osConfig.assets.superMenuLogo}";
       #wallPaper = osConfig.my.assets.wallpaper;
-      extensions = [
-        pkgs.gnomeExtensions.dash-to-panel
-        pkgs.gnomeExtensions.ddterm
-        pkgs.gnomeExtensions.appindicator
-        pkgs.gnomeExtensions.arcmenu
-        pkgs.gnomeExtensions.no-overview
-        pkgs.gnomeExtensions.gtile
-        pkgs.gnomeExtensions.brightness-control-using-ddcutil
-        pkgs.gnomeExtensions.compiz-windows-effect
-        pkgs.gnomeExtensions.compiz-alike-magic-lamp-effect
-        pkgs.gnomeExtensions.grand-theft-focus
+      extensions = with pkgs.gnomeExtensions; [
+        dash-to-panel
+        ddterm
+        appindicator
+        arcmenu
+        no-overview
+        gtile
+        brightness-control-using-ddcutil
+        compiz-windows-effect
+        compiz-alike-magic-lamp-effect
+        grand-theft-focus
       ];
       extensionUuids = map (ext: ext.extensionUuid) extensions;
     in
