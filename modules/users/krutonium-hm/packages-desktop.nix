@@ -82,7 +82,7 @@
 
           # Utilities
           pkgs.btop-cuda
-          pkgs.neofetch
+          pkgs.hyfetch
 
           # Shell
           pkgs.nvtopPackages.full
