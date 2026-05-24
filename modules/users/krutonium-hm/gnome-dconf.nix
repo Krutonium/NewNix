@@ -21,9 +21,9 @@
         pkgs.gnomeExtensions.brightness-control-using-ddcutil
         pkgs.gnomeExtensions.compiz-windows-effect
         pkgs.gnomeExtensions.compiz-alike-magic-lamp-effect
+        pkgs.gnomeExtensions.grand-theft-focus
       ];
       extensionUuids = map (ext: ext.extensionUuid) extensions;
-
     in
     {
       config = lib.mkIf (osConfig.services.displayManager.gdm.enable == true) {
