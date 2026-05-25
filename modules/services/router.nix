@@ -137,8 +137,8 @@
           interface = "br0";
           listen-address = "127.0.0.1,::1,10.0.0.1,fd00:beef::1";
           server = [
-            "1.1.1.1"
-            "8.8.8.8"
+            "127.0.0.1#5335"
+            "::1#5335"
           ];
           dhcp-range = [
             "10.0.0.2,10.0.0.254,5m"
@@ -170,6 +170,42 @@
             "uMsiLaptop.${config.networking.domain},10.0.0.4,fd00:beef::4"
             "Archer.${config.networking.domain},10.0.0.7,fd00:beef::7"
           ];
+        };
+      };
+
+      # Adblocking DNS
+      services.blocky = {
+        enable = true;
+        settings = {
+          ports.dns = 5335; # Listen on non-standard port; dnsmasq owns 53
+
+          upstreams.groups.default = [
+            "https://one.one.one.one/dns-query" # Cloudflare DoH
+            "https://dns.google/dns-query" # Google DoH fallback
+          ];
+
+          bootstrapDns = {
+            upstream = "https://one.one.one.one/dns-query";
+            ips = [
+              "1.1.1.1"
+              "1.0.0.1"
+            ];
+          };
+
+          blocking = {
+            denylists = {
+              ads = [ "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts" ];
+            };
+            clientGroupsBlock = {
+              default = [ "ads" ];
+            };
+          };
+
+          caching = {
+            minTime = "5m";
+            maxTime = "30m";
+            prefetching = true;
+          };
         };
       };
     };
