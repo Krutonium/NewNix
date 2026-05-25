@@ -20,7 +20,7 @@
           popups = 0.5;
           terminal = 1.0;
         };
-        iconTheme = {
+        icons = {
           enable = true;
           package = pkgs.numix-icon-theme-circle;
           light = "Numix-Circle-Light";
