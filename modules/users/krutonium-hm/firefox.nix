@@ -5,6 +5,7 @@
       pkgs,
       inputs,
       osConfig,
+      config,
       lib,
       ...
     }:
@@ -59,6 +60,7 @@
           enable = true;
           package = pkgs.firefox;
           policies.ExtensionSettings = forceEnabled extensions;
+          configPath = "${config.xdg.configHome}/mozilla/firefox";
           profiles.krutonium = {
             extensions.packages = extensions;
             search = {

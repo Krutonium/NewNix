@@ -14,7 +14,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     stylix = {
-      url = "github:nix-community/stylix/release-25.11"; #26.05 not available
+      url = "github:nix-community/stylix/master"; #26.05 not available
       inputs.nixpkgs.follows = "nixpkgs";
     };
     sops-nix = {
