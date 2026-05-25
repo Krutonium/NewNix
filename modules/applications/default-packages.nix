@@ -5,7 +5,6 @@
     {
       i18n.inputMethod.ibus.engines = with pkgs.ibus-engines; [ uniemoji ];
       environment.systemPackages = with pkgs; [
-        xorg.xf86inputmouse
         rPackages.fontawesome
         nano
         git
@@ -25,7 +24,7 @@
         p7zip
         pciutils
         android-tools
-        nixfmt-rfc-style
+        nixfmt
         btrfs-progs
         cifs-utils
         nixpkgs-review

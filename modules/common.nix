@@ -27,7 +27,7 @@
         inputs.millennium.overlays.default
         inputs.self.overlays.intel-media-sdk
         inputs.self.overlays.hytale-launcher
-        inputs.self.overlays.dusklight
+        #inputs.self.overlays.dusklight
         inputs.self.overlays.hanabi
       ];
       home-manager = {
