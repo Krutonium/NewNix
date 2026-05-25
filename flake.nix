@@ -36,14 +36,6 @@
       url = "github:krutonium/simple-cpu-governor";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    dusklight = {
-      url = "git+https://github.com/TwilitRealm/dusklight?ref=main&submodules=1";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
-    nixflix = {
-      url = "github:kiriwalawren/nixflix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
