@@ -27,6 +27,7 @@
         '';
         # This fixes OBS-Gamecapture by forcing the game to run in x11 mode instead of Wayland
       };
+
       telegramPatched =
         let
           version = "dev-unstable";
@@ -50,6 +51,7 @@
         pkgs.telegram-desktop.overrideAttrs (_: {
           unwrapped = unwrapped;
         });
+
     in
     {
       config = lib.mkIf (osConfig.services.displayManager.gdm.enable == true) {
@@ -119,52 +121,6 @@
             enable = true;
             enableFishIntegration = true;
           };
-          #zed-editor = {
-          #  enable = true;
-          #  package = pkgs.unstable.zed-editor;
-          #  extensions = [
-          #    "nix"
-          #    "toml"
-          #    "csharp"
-          #  ];
-          #  userSettings = {
-          #    "languages" = {
-          #      "Nix" = {
-          #        "soft_wrap" = "editor_width";
-          #        "tab_size" = 2;
-          #        "language_servers" = [
-          #          "${pkgs.nixd}/bin/nixd"
-          #        ];
-          #        "formatter" = {
-          #          "external" = {
-          #            "command" = "nixfmt";
-          #          };
-          #        };
-          #      };
-          #    };
-          #    "base_keymap" = "VSCode";
-          #    "session" = {
-          #      "trust_all_worktrees" = true;
-          #    };
-          #    "ui_font_size" = 16.0;
-          #    "buffer_font_size" = 17.333333333333332;
-          #    "features" = {
-          #      "edit_prediction_provider" = "none";
-          #    };
-          #    "assistant" = {
-          #      "enabled" = false;
-          #    };
-          #    "agent" = {
-          #      "enabled" = false;
-          #    };
-          #  };
-          #  userKeymaps = {
-          #    "context" = "Editor";
-          #    "bindings" = {
-          #      "ctrl-k ctrl-f" = "editor::Format";
-          #    };
-          #  };
-          #};
         };
       };
     };
