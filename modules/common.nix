@@ -33,7 +33,10 @@
         extraSpecialArgs = { inherit inputs; };
         useGlobalPkgs = true;
       };
-      environment.systemPackages = [ pkgs.attic-client ];
+      environment.systemPackages = [ 
+        pkgs.attic-client
+        pkgs.hwdata
+      ];
       nixpkgs = {
         config = {
           allowUnfree = true;
@@ -46,6 +49,9 @@
           permittedInsecurePackages = [
           ];
         };
+      };
+      systemd.user.services.pipewire = {
+        after = [ "dbus.service" "dbus-broker.service" ];
       };
       virtualisation.vmVariant = {
         virtualisation = {

@@ -52,6 +52,10 @@
         "context.modules" = [
           {
             "name" = "libpipewire-module-filter-chain";
+            "flags" = [
+              "ifexists"
+              "nofail"
+            ];
             "args" = {
               "node.description" = "Noise Canceling source";
               "media.name" = "Noise Canceling source";
@@ -90,6 +94,7 @@
       services.pipewire = {
         enable = true;
         package = pkgs.pipewire;
+        extraLadspaPackages = [ pkgs.rnnoise-plugin ];
         wireplumber = {
           enable = true;
           extraConfig."99-disable-powersave" = wp_disable_powersaving;

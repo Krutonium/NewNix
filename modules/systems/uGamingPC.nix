@@ -31,10 +31,10 @@
         "sd_mod"
       ];
       initrdRequired = [
-        "nvidia"
-        "nvidia_modeset"
-        "nvidia_drm"
-        "nvidia_uvm"
+        #"nvidia"
+        #"nvidia_modeset"
+        #"nvidia_drm"
+        #"nvidia_uvm"
       ];
       kernelModules = [
         "kvm-amd"
@@ -42,12 +42,13 @@
         "i2c-piix4"
       ];
       kernelModulePackages = with config.boot.kernelPackages; [
-        zenpower.out
+        #zenpower.out
       ];
       kernelModulesBlacklist = [ ];
       kernelParams = [
         "nvidia.NVreg_EnableResizableBar=1"
         "nvidia-drm.modeset=1"
+        "nvidia-drm.fbdev=1"
         "mitigations=off"
         "acpi_enforce_resources=lax"
         "quiet"
@@ -58,7 +59,7 @@
         pkgs.logitech-udev-rules
         pkgs.via
       ];
-      kernel = pkgs.linuxPackages_zen;
+      kernel = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto;
     in
     {
       imports = [

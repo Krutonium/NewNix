@@ -22,7 +22,7 @@
           enable = true;
           enable32Bit = true;
         };
-        security.rtkit.enable = true;
+        #security.rtkit.enable = true;
         systemd.services.sync-monitors-to-gdm = {
           description = "Copy Krutonium's GNOME monitor layout to GDM";
           wantedBy = [ "gdm.service" ];
