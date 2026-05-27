@@ -143,7 +143,7 @@
         powerManagement.finegrained = true; # Turn GPU off when not in use (requires modesetting)
         open = false; # 950M requires proprietary driver
         nvidiaSettings = true;
-        package = config.boot.kernelPackages.nvidiaPackages.stable;
+        package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
         prime = {
           offload = {
             enable = true;

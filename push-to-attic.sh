@@ -180,7 +180,7 @@ for attr in "${ATTRS[@]}"; do
   fi
 
   # ── Push result symlink (attic follows it into the store) ─────────────────
-  if attic push --ignore-upstream-cache-filter "$CACHE" "${result_dir}/result"; then
+  if attic push "$CACHE" "${result_dir}/result"; then
     ok "  Pushed: $attr"
     (( PUSHED++ )) || true
   else
