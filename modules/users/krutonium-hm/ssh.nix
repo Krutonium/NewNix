@@ -6,40 +6,31 @@
       programs.ssh = {
         enable = true;
         enableDefaultConfig = false;
-        matchBlocks = {
+        settings = {
           "*" = {
-            user = "krutonium";
-            compression = true;
+            Compression = true;
+            User = "krutonium";
           };
-          "deck" = {
-            hostname = "10.9";
-            user = "deck";
-            compression = true;
+          "Host deck" = {
+            HostName = "10.9";
+            User = "deck";
           };
           "uWebServer" = {
-            hostname = "10.1";
-            compression = true;
+            HostName = "10.1";
           };
           "uGamingPC" = {
-            hostname = "10.2";
-            compression = true;
-          };
-          "darth" = {
-            hostname = "195.35.113.15";
-            compression = true;
+            HostName = "10.2";
           };
           "uServerHost" = {
-            hostname = "10.0.0.3";
-            compression = true;
+            HostName = "10.3";
           };
           "uMsiLaptop" = {
             hostname = "10.0.0.5";
-            compression = true;
+          };
+          "darth" = {
+            HostName = "195.35.113.15";
           };
         };
-        extraConfig = ''
-          StrictHostKeyChecking no
-        '';
       };
     };
 }
