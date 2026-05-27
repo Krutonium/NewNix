@@ -8,17 +8,17 @@
       ...
     }:
     {
-      imports = [
+      imports = with self.nixosModules; [
         inputs.home-manager.nixosModules.home-manager
         inputs.stylix.nixosModules.stylix
         inputs.sops-nix.nixosModules.sops
-        self.nixosModules.assets
-        self.nixosModules.nix-settings
-        self.nixosModules.scripts
-        self.nixosModules.default-packages
-        self.nixosModules.fonts
-        self.nixosModules.hostKeys
         inputs.simple-cpu-governor.nixosModules.default
+        assets
+        nix-settings
+        scripts
+        default-packages
+        fonts
+        hostKeys
       ];
       nixpkgs.overlays = with inputs.self.overlays; [
         inputs.nix-cachyos-kernel.overlays.pinned
