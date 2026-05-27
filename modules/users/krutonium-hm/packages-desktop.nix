@@ -65,7 +65,7 @@
           pkgs.jetbrains.idea
 
           # Games
-          #bottles
+          bottles
           hytaleWrapped
           pkgs.shipwright
           pkgs._2ship2harkinian
