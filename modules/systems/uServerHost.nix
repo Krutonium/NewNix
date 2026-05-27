@@ -54,8 +54,7 @@
 
         nvidia = {
           powerManagement.enable = true;
-          #package = kernel.nvidiaPackages.legacy_580;
-          package = kernel.nvidiaPackages.stable;
+          package = kernel.nvidiaPackages.legacy_580;
           prime.offload.enable = false;
           open = false;
           nvidiaSettings = true;
