@@ -164,6 +164,7 @@
             custom-menu-button-icon-size = 35;
             custom-menu-button-icon = superMenuLogo;
             menu-button-icon = "Custom_Icon";
+            multi-monitor = true;
             hot-corners = "Disabled";
             menu-hotkey = "Super_L";
             override-hot-corners = true;
