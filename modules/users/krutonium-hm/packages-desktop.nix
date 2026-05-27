@@ -61,8 +61,8 @@
         home.packages = [
           # Developemnt
           dotnet
-          #pkgs.jetbrains.rider
-          #pkgs.jetbrains.idea
+          pkgs.jetbrains.rider
+          pkgs.jetbrains.idea
 
           # Games
           #bottles
@@ -100,7 +100,7 @@
           pkgs.fluffychat
           telegramPatched
           pkgs.signal-desktop
-          pkgs.vesktop
+          pkgs.discord-canary
         ];
 
         programs = {

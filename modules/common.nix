@@ -27,7 +27,7 @@
         inputs.millennium.overlays.default
         inputs.self.overlays.intel-media-sdk
         inputs.self.overlays.hytale-launcher
-        inputs.self.overlays.hanabi
+        inputs.self.overlays.discord-canary-vulkan-patch
       ];
       home-manager = {
         extraSpecialArgs = { inherit inputs; };

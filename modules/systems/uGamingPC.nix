@@ -157,7 +157,7 @@
         cpu.amd.updateMicrocode = true;
         nvidia = {
           package = config.boot.kernelPackages.nvidiaPackages.stable;
-          open = true;
+          open = false;
           modesetting.enable = true;
         };
       };
