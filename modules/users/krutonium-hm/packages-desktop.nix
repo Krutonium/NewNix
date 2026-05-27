@@ -100,7 +100,7 @@
           pkgs.fluffychat
           telegramPatched
           pkgs.signal-desktop
-          pkgs.discord-canary
+          pkgs.vesktop
         ];
 
         programs = {

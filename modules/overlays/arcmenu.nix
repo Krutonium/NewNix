@@ -1,8 +1,8 @@
-{ nixpkgs-arcmenu, ... }:
+{ self, inputs, ... }:
 {
   flake.overlays.arcmenu = final: prev: {
     gnomeExtensions = prev.gnomeExtensions // {
-      arcmenu = (import nixpkgs-arcmenu {
+      arcmenu = (import inputs.nixpkgs-arcmenu {
         inherit (prev) system config;
       }).gnomeExtensions.arcmenu;
     };
