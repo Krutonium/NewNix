@@ -36,6 +36,12 @@
       url = "github:krutonium/simple-cpu-governor";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Temporary/Provisional Extensions to be removed later
+    nixpkgs-arcmenu = {
+      url = "github:sgsunder/nixpkgs/arcmenu-69";
+      flake = false;
+    };
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);

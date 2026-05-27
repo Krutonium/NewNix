@@ -20,14 +20,15 @@
         self.nixosModules.hostKeys
         inputs.simple-cpu-governor.nixosModules.default
       ];
-      nixpkgs.overlays = [
+      nixpkgs.overlays = with inputs.self.overlays; [
         inputs.nix-cachyos-kernel.overlays.pinned
-        inputs.self.overlays.unstable
-        inputs.self.overlays.InternetRadio2Computercraft
         inputs.millennium.overlays.default
-        inputs.self.overlays.intel-media-sdk
-        inputs.self.overlays.hytale-launcher
-        inputs.self.overlays.discord-canary-vulkan-patch
+        unstable
+        InternetRadio2Computercraft
+        intel-media-sdk
+        hytale-launcher
+        discord-canary-vulkan-patch
+        arcmenu
       ];
       home-manager = {
         extraSpecialArgs = { inherit inputs; };

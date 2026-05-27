@@ -433,6 +433,23 @@
         "type": "github"
       }
     },
+    "nixpkgs-arcmenu": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1779586006,
+        "narHash": "sha256-PtjIJQkF3fmWQm/cRu4HP3XFGm4ITukMs2U+h4LwKQU=",
+        "owner": "sgsunder",
+        "repo": "nixpkgs",
+        "rev": "1691c04ab7d1f84a30b4277e4f48782d7188079b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "sgsunder",
+        "ref": "arcmenu-69",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-lib": {
       "locked": {
         "lastModified": 1777168982,
@@ -567,6 +584,7 @@
         "millennium": "millennium",
         "nix-cachyos-kernel": "nix-cachyos-kernel",
         "nixpkgs": "nixpkgs_3",
+        "nixpkgs-arcmenu": "nixpkgs-arcmenu",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nur": "nur",
         "simple-cpu-governor": "simple-cpu-governor",
