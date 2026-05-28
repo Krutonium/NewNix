@@ -47,9 +47,8 @@
               proxy_read_timeout 600;  # chunked uploads take time
               proxy_request_buffering off;
               proxy_buffering off;
-              proxy_read_timeout 600s;
-              proxy_send_timeout 600s;
-              proxy_connect_timeout 30s;
+              proxy_send_timeout 600;
+              proxy_connect_timeout 30;
               proxy_http_version 1.1;
               proxy_set_header Connection "";
               proxy_force_ranges on;
