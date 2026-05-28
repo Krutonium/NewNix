@@ -94,6 +94,7 @@
           cat = "${lib.getExe pkgs.bat}";
           top = "${lib.getExe pkgs.btop}";
           neofetch = "${lib.getExe pkgs.hyfetch}";
+          please = "eval ${lib.getExe pkgs.sudo} \$history[1]";
         };
         variables = {
           EDITOR = "nano";
