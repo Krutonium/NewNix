@@ -49,11 +49,11 @@
           enable_registration = false;
           max_upload_size = "10M";
           turn_uris = [
-            "turn:staticauth.openrelay.metered.ca:80"
-            "turn:staticauth.openrelay.metered.ca:443"
-            "turn:staticauth.openrelay.metered.ca:80?transport=tcp"
-            "turn:staticauth.openrelay.metered.ca:443?transport=tcp"
-            "turns:staticauth.openrelay.metered.ca:443"
+            "stun:stun.l.google.com:19302"
+            "stun:stun1.l.google.com:19302"
+            "stun:stun2.l.google.com:19302"
+            "stun:stun3.l.google.com:19302"
+            "stun:stun4.l.google.com:19302"
           ];
           listeners = [
             {
