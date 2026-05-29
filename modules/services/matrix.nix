@@ -48,15 +48,9 @@
           server_name = config.networking.domain;
           enable_registration = false;
           max_upload_size = "10M";
-          turn_uris = [
-            "turn:turn01.hubl.in?transport=udp"
-            "turn:turn02.hubl.in?transport=tcp"
-            "stun:stun.l.google.com:19302"
-            "stun:stun1.l.google.com:19302"
-            "stun:stun2.l.google.com:19302"
-            "stun:stun3.l.google.com:19302"
-            "stun:stun4.l.google.com:19302"
-          ];
+          turn_uris = [ "turn:192.158.29.39:3478?transport=udp" ];
+          turn_username = "28224511:1379330808";
+          turn_password = "JZEOEt2V3Qb0y27GRntt2u2PAYA=";
           listeners = [
             {
               port = 8008;
