@@ -1,7 +1,12 @@
 { ... }:
 {
   flake.nixosModules.rtorrent =
-    { config, lib, pkgs, ... }:
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
     let
       peerPort = 51412;
       web-port = 8112;
@@ -82,6 +87,8 @@
           wantedBy = [ "multi-user.target" ];
         };
       };
+      users.users.rtorrent.uid = 990;
+      users.groups.rtorrent.gid = 990;
       users.users.krutonium.extraGroups = [ "rtorrent" ];
       systemd.tmpfiles.rules = [
         "d /media2/rTorrent/downloads 0775 rtorrent rtorrent -"

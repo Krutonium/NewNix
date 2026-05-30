@@ -10,6 +10,8 @@
         package = pkgs.unstable.plex;
       };
       users.users.krutonium.extraGroups = [ "plex" ];
+      users.users.plex.uid = 193;
+      users.groups.plex.gid = 193;
       users.users.plex.extraGroups = [ "rtorrent" ];
       services.nginx.virtualHosts = {
         "plex.${config.networking.domain}" = {
