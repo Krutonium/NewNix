@@ -28,6 +28,7 @@
       minecraftServerData
       fileHosting
       simpleCpuGovernor
+      satisfactory
     ];
   };
 

@@ -48,6 +48,10 @@
           system-features = [ "gccarch-znver1" ];
         };
       };
+      services.satisfactory = {
+        enable = true;
+        dataDir = "/servers/satisfactory";
+      };
       services.xserver.videoDrivers = [ "nvidia" ];
       hardware = {
         graphics.enable = true;
