@@ -30,6 +30,7 @@
         discord-canary-vulkan-patch
         arcmenu
         openldap
+        millennium-next
       ];
       home-manager = {
         extraSpecialArgs = { inherit inputs; };
