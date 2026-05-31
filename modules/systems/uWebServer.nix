@@ -93,6 +93,8 @@
           enable = true;
           destAddr = "10.0.0.3";
         };
+        port = 7778;
+        reliablePort = 8888;
       };
 
       boot = {

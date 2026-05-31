@@ -52,6 +52,8 @@
         enable = true;
         dataDir = "/servers/satisfactory";
         address = "10.0.0.3";
+        port = 7778;
+        reliablePort = 8888;
       };
       services.xserver.videoDrivers = [ "nvidia" ];
       hardware = {

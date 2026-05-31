@@ -69,6 +69,18 @@
           default = "";
           description = "Extra arguments passed to steamcmd";
         };
+
+        port = lib.mkOption {
+          type = lib.types.port;
+          default = 7777;
+          description = "Game port (-Port). Default is 7777; change if it conflicts.";
+        };
+
+        reliablePort = lib.mkOption {
+          type = lib.types.port;
+          default = 8888;
+          description = "Reliable port (-ReliablePort / -ExternalReliablePort).";
+        };
       };
 
       config = lib.mkIf cfg.enable {
@@ -86,19 +98,14 @@
               destination = "${cfg.portForward.destAddr}:${toString port}";
             })
             [
-              7777
-              8888
+              cfg.port
+              cfg.reliablePort
             ]
-          ++
-            map
-              (port: {
-                proto = "udp";
-                sourcePort = port;
-                destination = "${cfg.portForward.destAddr}:${toString port}";
-              })
-              [
-                7777
-              ]
+          ++ map (port: {
+            proto = "udp";
+            sourcePort = port;
+            destination = "${cfg.portForward.destAddr}:${toString port}";
+          }) [ cfg.port ]
           ++ map (port: {
             proto = "udp";
             sourcePort = port;
@@ -110,12 +117,10 @@
         nixpkgs.config.allowUnfree = true;
 
         networking.firewall = {
-          allowedUDPPorts = [
-            7777
-          ];
+          allowedUDPPorts = [ cfg.port ];
           allowedTCPPorts = [
-            7777
-            8888
+            cfg.port
+            cfg.reliablePort
           ];
         };
 
@@ -154,7 +159,11 @@
 
           script = ''
             ${serverDir}/Engine/Binaries/Linux/FactoryServer-Linux-Shipping \
-              FactoryGame -multihome=${cfg.address}
+              FactoryGame \
+              -multihome=${cfg.address} \
+              -Port=${toString cfg.port} \
+              -ReliablePort=${toString cfg.reliablePort} \
+              -ExternalReliablePort=${toString cfg.reliablePort}
           '';
 
           serviceConfig = {
