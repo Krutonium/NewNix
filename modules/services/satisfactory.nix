@@ -86,8 +86,8 @@
               destination = "${cfg.portForward.destAddr}:${toString port}";
             })
             [
-              27015
-              27036
+              7777
+              8888
             ]
           ++
             map
@@ -98,9 +98,6 @@
               })
               [
                 7777
-                15000
-                15777
-                27015
               ]
           ++ map (port: {
             proto = "udp";
@@ -114,20 +111,11 @@
 
         networking.firewall = {
           allowedUDPPorts = [
-            15777
-            15000
             7777
-            27015
-          ];
-          allowedUDPPortRanges = [
-            {
-              from = 27031;
-              to = 27036;
-            }
           ];
           allowedTCPPorts = [
-            27015
-            27036
+            7777
+            8888
           ];
         };
 
