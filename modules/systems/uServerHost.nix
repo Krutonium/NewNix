@@ -16,6 +16,7 @@
       zswap
       ollama_host
       attic
+      satisfactory
     ];
   };
 
@@ -81,6 +82,7 @@
         "/servers/AtM10_Sky"         = { device = btrfsDisk; fsType = "btrfs";  options = [ "noatime" "compress=zstd:15" "subvol=AtM10_Sky" ]; };
         "/servers/create_chronicles" = { device = btrfsDisk; fsType = "btrfs";  options = [ "noatime" "compress=zstd:15" "subvol=create_chronicles" ]; };
         "/servers/Hytale"            = { device = btrfsDisk; fsType = "btrfs";  options = [ "noatime" "compress=zstd:15" "subvol=Hytale" ]; };
+        "/servers/satisfactory"      = { device = btrfsDisk; fsType = "btrfs";  options = [ "noatime" "compress=zstd:15" "subvol=satisfactory" ]; };
         "/backups"                   = { device = "/dev/disk/by-label/Backups"; fsType = "ext4"; };
         "/"                          = { device = "/dev/disk/by-label/root";    fsType = "ext4"; };
         "/attic"                     = { device = btrfsDisk; fsType = "btrfs";  options = [ "noatime" "compress=zstd:15" "subvol=attic"]; };

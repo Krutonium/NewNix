@@ -86,6 +86,13 @@
           allowedUDPPorts = [ 50056 67 68 ];
         };
       };
+      services.satisfactory = {
+        enable = false;  # server runs on uServerHost, not here
+        portForward = {
+          enable = true;
+          destAddr = "10.0.0.3";
+        };
+      };
 
       boot = {
         kernelPackages = kernel;
