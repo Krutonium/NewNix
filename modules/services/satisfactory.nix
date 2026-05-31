@@ -146,7 +146,7 @@
 
             ${pkgs.patchelf}/bin/patchelf \
               --set-interpreter ${pkgs.glibc}/lib/ld-linux-x86-64.so.2 \
-              ${serverDir}/Engine/Binaries/Linux/UnrealServer-Linux-Shipping
+              ${serverDir}/Engine/Binaries/Linux/FactoryServer-Linux-Shipping
 
             ln -sfv ${cfg.dataDir}/.steam/steam/linux64 ${cfg.dataDir}/.steam/sdk64
 
@@ -165,7 +165,7 @@
           '';
 
           script = ''
-            ${serverDir}/Engine/Binaries/Linux/UnrealServer-Linux-Shipping \
+            ${serverDir}/Engine/Binaries/Linux/FactoryServer-Linux-Shipping \
               FactoryGame -multihome=${cfg.address}
           '';
 
