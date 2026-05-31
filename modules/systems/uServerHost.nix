@@ -51,6 +51,7 @@
       services.satisfactory = {
         enable = true;
         dataDir = "/servers/satisfactory";
+        address = "10.0.0.3";
       };
       services.xserver.videoDrivers = [ "nvidia" ];
       hardware = {
