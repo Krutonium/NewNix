@@ -30,8 +30,8 @@
           enableACME = true;
           locations."/" = {
             proxyWebsockets = true;
-            proxyPass = "http://unix:/run/anubis/anubis-searx/anubis.sock:/"; # Proxy Searx
-            #proxyPass = "http://127.0.0.1:60613";
+            #proxyPass = "http://unix:/run/anubis/anubis-searx/anubis.sock:/"; # Proxy Searx
+            proxyPass = "http://127.0.0.1:60613";
           };
           extraConfig = ''
             proxy_set_header Host $host;
@@ -81,7 +81,7 @@
             port = 60613;
             bind_address = "127.0.0.1";
             base_url = "https://search.${config.networking.domain}";
-            limiter = false;
+            limiter = true;
             public_instance = true;
             image_proxy = false;
             method = "GET";
@@ -145,7 +145,7 @@
       };
 
       services.anubis.instances.searx = {
-        enable = true;
+        enable = false;
         group = "anubis-access";
         botPolicy.bots = [
           {
