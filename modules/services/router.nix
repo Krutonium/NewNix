@@ -171,7 +171,10 @@
             "uServerHost.${config.networking.domain},10.0.0.3,fd00:beef::3"
             "uMsiLaptop.${config.networking.domain},10.0.0.4,fd00:beef::4"
             "Archer.${config.networking.domain},10.0.0.7,fd00:beef::7"
-          ];
+          ] ++ (map
+            (vhost: "${vhost},10.0.0.1,fd00:beef::1")
+            (builtins.attrNames config.services.nginx.virtualHosts)
+          );
         };
       };
 
