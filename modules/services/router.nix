@@ -133,6 +133,7 @@
         enable = true;
         alwaysKeepRunning = true;
         settings = {
+          local = [ "/krutonium.ca/" ];
           dhcp-leasefile = "/persist/dnsmasq.leases";
           interface = "br0";
           listen-address = "127.0.0.1,::1,10.0.0.1,fd00:beef::1";
