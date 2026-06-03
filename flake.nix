@@ -16,6 +16,7 @@
     stylix = {
       url = "github:nix-community/stylix/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nur.follows = "nur";
     };
     sops-nix = {
       url = "github:Mic92/sops-nix";
