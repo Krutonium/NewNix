@@ -34,7 +34,7 @@
     };
     millennium = {
       url = "github:SteamClientHomebrew/Millennium/next?dir=packages/nix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # Can't Follow nixpkgs or it breaks Bun
     };
     hytale-launcher-nix = {
       url = "github:JPyke3/hytale-launcher-nix";
