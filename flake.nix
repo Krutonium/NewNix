@@ -4,7 +4,11 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";
-    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
+    nix-cachyos-kernel = { 
+      url = "github:xddxdd/nix-cachyos-kernel/release";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -12,11 +16,13 @@
     nur = {
       url = "github:nix-community/nur";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
     };
     stylix = {
       url = "github:nix-community/stylix/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.nur.follows = "nur";
+      inputs.flake-parts.follows = "flake-parts";
     };
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -28,6 +34,7 @@
     };
     millennium = {
       url = "github:SteamClientHomebrew/Millennium/next?dir=packages/nix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     hytale-launcher-nix = {
       url = "github:JPyke3/hytale-launcher-nix";
