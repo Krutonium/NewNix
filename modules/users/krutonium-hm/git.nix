@@ -10,6 +10,12 @@
             name = "Krutonium";
             email = "PFCKrutonium@gmail.com";
           };
+          init = {
+            defaultBranch = "main";
+          };
+          pull = {
+            rebase = true;
+          };
         };
         lfs.enable = true;
       };
