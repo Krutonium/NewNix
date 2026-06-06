@@ -7,17 +7,17 @@
         type = lib.types.listOf lib.types.attrs;
         readOnly = true;
         default = [
-          {
-            name = "AtM10_Sky";
-            javaVersion = "jdk21";
-            script = "run.sh";
-            enabled = true;
-            rconPort = 12370;
-            rconPasswordFile = "/servers/rcon.password";
-            port = 25570;
-            extraTCPPorts = [];
-            extraUDPPorts = [ 24454 ];
-          }
+          #{
+          #  name = "AtM10_Sky";
+          #  javaVersion = "jdk21";
+          #  script = "run.sh";
+          #  enabled = true;
+          #  rconPort = 12370;
+          #  rconPasswordFile = "/servers/rcon.password";
+          #  port = 25570;
+          #  extraTCPPorts = [];
+          #  extraUDPPorts = [ 24454 ];
+          #}
           {
             name = "vanilla";
             javaVersion = "jdk21";
