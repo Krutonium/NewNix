@@ -302,11 +302,11 @@
       },
       "locked": {
         "dir": "packages/nix",
-        "lastModified": 1780522717,
-        "narHash": "sha256-znyb+I8V+//dY+SUG5aHnWNUFG/Nb3wWuW5lnfc8Z0k=",
+        "lastModified": 1780615872,
+        "narHash": "sha256-el3a1baslO1yWQJAPN0a1IPEbVg4AgB/sx1sRbsSBSk=",
         "owner": "SteamClientHomebrew",
         "repo": "Millennium",
-        "rev": "e9ab2c55bc8d65c3edaee544bb3414ea1b440432",
+        "rev": "3957498390dd820a5a9b70bc3cff6e450e8be1da",
         "type": "github"
       },
       "original": {
@@ -451,11 +451,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1780553706,
-        "narHash": "sha256-vSvwkoJ8im3L7jRmxrpJo1ro0H4gnsqKmkUxlxl74Zs=",
+        "lastModified": 1780711662,
+        "narHash": "sha256-hfmsRcUthIpzlRAr8aXsS6mmZFpHpV0PRBUee0VFQVs=",
         "owner": "nix-community",
         "repo": "nur",
-        "rev": "62305526cfc0a8ba5ca2a1769f0fd6185a9c7446",
+        "rev": "488609fdfa866eef7d84601b8a6d905539b5d624",
         "type": "github"
       },
       "original": {
@@ -547,11 +547,11 @@
         "tinted-zed": "tinted-zed"
       },
       "locked": {
-        "lastModified": 1780494751,
-        "narHash": "sha256-aR5oirEal1m0EuBDvIitn/IprzKHjTUllpEHmCrjK9A=",
+        "lastModified": 1780702455,
+        "narHash": "sha256-+srjPGNy67nKytYwdlepycL51IG6S34sS4MKRZXK8G0=",
         "owner": "nix-community",
         "repo": "stylix",
-        "rev": "e9a07f88c331d3c0a7e8ef3f996793cb19b49b30",
+        "rev": "54fa19702f4f2c7f6a981a92850678933588af9a",
         "type": "github"
       },
       "original": {
