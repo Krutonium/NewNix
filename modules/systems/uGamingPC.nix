@@ -75,6 +75,8 @@
         extraModulePackages = kernelModulePackages;
         kernelPackages = kernel;
       };
+      virtualisation.libvirtd.enable = true;
+      programs.virt-manager.enable = true;
       swapDevices = [
         {
           device = "/swap";
