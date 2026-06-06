@@ -16,7 +16,7 @@
           dotnet_10.sdk
         ]
       );
-      bottles = (pkgs.bottles.override { removeWarningPopup = true; });
+      bottles = (pkgs.unstable.bottles.override { removeWarningPopup = true; });
       hytaleWrapped = pkgs.symlinkJoin {
         name = "hytale";
         paths = [ pkgs.hytale-launcher ];
