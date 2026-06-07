@@ -206,3 +206,4 @@ echo -e "  Pushed:   ${PUSHED}"
 echo
 
 [[ ${#FAILED_ATTRS[@]} -gt 0 ]] && exit 1 || exit 0
+nix-collect-garbage
