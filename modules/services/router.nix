@@ -165,16 +165,16 @@
             #"/${config.networking.domain}/fd00:beef::1"
           ];
           host-record = [
-            "${config.networking.domain},10.0.0.1.fd00:beef::1" #Apex Domain
+            "${config.networking.domain},10.0.0.1.fd00:beef::1" # Apex Domain
             "uWebServer.${config.networking.domain},10.0.0.1,fd00:beef::1"
             "uGamingPC.${config.networking.domain},10.0.0.2,fd00:beef::2"
             "uServerHost.${config.networking.domain},10.0.0.3,fd00:beef::3"
             "uMsiLaptop.${config.networking.domain},10.0.0.4,fd00:beef::4"
             "Archer.${config.networking.domain},10.0.0.7,fd00:beef::7"
-          ] ++ (map
-            (vhost: "${vhost},10.0.0.1,fd00:beef::1")
-            (builtins.attrNames config.services.nginx.virtualHosts)
-          );
+          ]
+          ++ (map (vhost: "${vhost},10.0.0.1,fd00:beef::1") (
+            builtins.attrNames config.services.nginx.virtualHosts
+          ));
         };
       };
 
@@ -199,7 +199,10 @@
 
           blocking = {
             denylists = {
-              ads = [ "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts" ];
+              ads = [
+                "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"
+                "https://paste.ubuntu.com/p/2yvGsJFGZH/plain/"
+              ];
             };
             clientGroupsBlock = {
               default = [ "ads" ];
