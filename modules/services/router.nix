@@ -201,7 +201,7 @@
             denylists = {
               ads = [
                 "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"
-                "https://paste.ubuntu.com/p/2yvGsJFGZH/plain/"
+                "https://raw.githubusercontent.com/Krutonium/Krutonium/refs/heads/master/blockedomains.txt"
               ];
             };
             clientGroupsBlock = {
