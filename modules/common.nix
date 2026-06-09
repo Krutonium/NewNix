@@ -24,6 +24,7 @@
         inputs.nix-cachyos-kernel.overlays.pinned
         inputs.millennium.overlays.default
         unstable
+        master
         InternetRadio2Computercraft
         intel-media-sdk
         hytale-launcher
