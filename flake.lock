@@ -228,11 +228,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1780883961,
-        "narHash": "sha256-WU6SUrESuPiEXEUvX4D51AgWrXRJty+sLJBwBaDBGqE=",
+        "lastModified": 1781063120,
+        "narHash": "sha256-1UIF/mDJluwJQjmmcZ2j1L2+mjYsefe82QCLj0TYSOg=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "4eb4fec41674d5b059aa2eedf0f98453890546fa",
+        "rev": "baa46aeb6d02e0ba13de67cd35e3d57aedfacf01",
         "type": "github"
       },
       "original": {
@@ -380,11 +380,11 @@
     "nixpkgs-arcmenu": {
       "flake": false,
       "locked": {
-        "lastModified": 1779586006,
-        "narHash": "sha256-PtjIJQkF3fmWQm/cRu4HP3XFGm4ITukMs2U+h4LwKQU=",
+        "lastModified": 1781060041,
+        "narHash": "sha256-3BaEJg2ju/8AeyiJLaWoZDRu36wDKSZ4FGuLQKl5Hg8=",
         "owner": "sgsunder",
         "repo": "nixpkgs",
-        "rev": "1691c04ab7d1f84a30b4277e4f48782d7188079b",
+        "rev": "cb090b1ccf5d7856f8c5c73cb9c8806edb433c18",
         "type": "github"
       },
       "original": {
@@ -406,6 +406,22 @@
       "original": {
         "owner": "nix-community",
         "repo": "nixpkgs.lib",
+        "type": "github"
+      }
+    },
+    "nixpkgs-master": {
+      "locked": {
+        "lastModified": 1781078044,
+        "narHash": "sha256-nOidqnxOieE0fleOZ90FU8696/wjk7EKx9zKYAZlbk0=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "0889725a8f4ce6cd3a3e8c304b1140200c456761",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "master",
+        "repo": "nixpkgs",
         "type": "github"
       }
     },
@@ -451,11 +467,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1780990079,
-        "narHash": "sha256-r4szdHt7TyTagmHTI7g3l/4NKmZijOZ2oyevvRx2wPA=",
+        "lastModified": 1781077927,
+        "narHash": "sha256-/ZTYJleYszDCnoNyZfE9IwMvJb6JViJD9TPiZsezM48=",
         "owner": "nix-community",
         "repo": "nur",
-        "rev": "1c22b665d0508fa31ebeba80e50fd7b673dd123a",
+        "rev": "1034684e6b3925dea5daa75a6d550bf9e6e2e68a",
         "type": "github"
       },
       "original": {
@@ -475,6 +491,7 @@
         "nix-cachyos-kernel": "nix-cachyos-kernel",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-arcmenu": "nixpkgs-arcmenu",
+        "nixpkgs-master": "nixpkgs-master",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nur": "nur",
         "simple-cpu-governor": "simple-cpu-governor",
