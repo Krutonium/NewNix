@@ -160,14 +160,13 @@
               true
               false
             ];
-            custom-hot-corner-cmd = "sh -c 'notify-send \"$(date)\"'";
-            custom-menu-button-icon-size = 35;
-            custom-menu-button-icon = superMenuLogo;
-            menu-button-icon = "Custom_Icon";
+            menu-button-icon-size = 35;
+            menu-button-icon = superMenuLogo;
             multi-monitor = true;
             hot-corners = "Disabled";
             menu-hotkey = "Super_L";
             override-hot-corners = true;
+            hide-overview-on-startup = true;
             # [
             #   (mkDictionaryEntry [ "id" "gnome-extensions prefs arcmenu@arcmenu.com" ])
             #   (mkDictionaryEntry [ "name" "ArcMenu Settings" ])
