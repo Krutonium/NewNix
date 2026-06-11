@@ -30,7 +30,7 @@
         hytale-launcher
         discord-canary-vulkan-patch
         arcmenu
-        openldap
+        #openldap
       ];
       home-manager = {
         extraSpecialArgs = { inherit inputs; };
