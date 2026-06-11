@@ -18,16 +18,22 @@
         };
         initrd.systemd = {
           enable = true;
-          services.plymouth-start = {
-            after = [ "systemd-modules-load.service" ];
-            requires = [ "systemd-modules-load.service" ];
-          };
+          #services.plymouth-start = {
+          #  after = [ "systemd-modules-load.service" ];
+          #  requires = [ "systemd-modules-load.service" ];
+          #};
         };
       };
       environment.systemPackages = [ pkgs.plymouth ];
       boot.plymouth = {
         enable = true;
-        theme = lib.mkForce "bgrt";
+        #theme = lib.mkForce "bgrt";
+        theme = lib.mkForce "pixels";
+        themePackages = [
+          (pkgs.adi1090x-plymouth-themes.override {
+            selected_themes = [ "pixels" ];
+          })
+        ];
       };
     };
 }
