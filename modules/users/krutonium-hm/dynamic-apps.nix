@@ -46,6 +46,12 @@
           category = "AudioVideo";
           startupWMClass = "Plex";
         }
+        {
+          pkg = pkgs.plezy;
+          prettyName = "Plezy";
+          iconName = "plezy";
+          category = "AudioVideo";
+        }
       ];
 
       apps = map (
