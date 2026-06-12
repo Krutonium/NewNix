@@ -100,7 +100,7 @@
           "LAN1"
           "LAN2"
           "LAN3"
-          "zt0"
+          "ztqtizxwpw"
         ];
 
         nat = {
