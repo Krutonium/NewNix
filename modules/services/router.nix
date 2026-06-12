@@ -260,5 +260,32 @@
           group openvpn
         '';
       };
+      sops.secrets = {
+        "openvpn_ca_crt" = {
+          sopsFile = ../secrets/openvpn.yaml;
+          path = "/run/secrets/openvpn/ca.crt";
+          owner = "openvpn";
+          group = "openvpn";
+        };
+        "openvpn_server_crt" = {
+          sopsFile = ../secrets/openvpn.yaml;
+          path = "/run/secrets/openvpn/server.crt";
+          owner = "openvpn";
+          group = "openvpn";
+        };
+        "openvpn_server_key" = {
+          sopsFile = ../secrets/openvpn.yaml;
+          path = "/run/secrets/openvpn/server.key";
+          owner = "openvpn";
+          group = "openvpn";
+          mode = "0400";
+        };
+        "openvpn_dh_pem" = {
+          sopsFile = ../secrets/openvpn.yaml;
+          path = "/run/secrets/openvpn/dh.pem";
+          owner = "openvpn";
+          group = "openvpn";
+        };
+      };
     };
 }
