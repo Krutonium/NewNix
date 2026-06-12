@@ -11,9 +11,5 @@
         matchConfig.OriginalName = "ztqtizxwpw";
         linkConfig.Name = "zt0";
       };
-      systemd.network.networks."40-zt0" = {
-        matchConfig.Name = "zt0";
-        networkConfig.DHCP = "ipv4";
-      };
     };
 }
