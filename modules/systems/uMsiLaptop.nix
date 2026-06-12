@@ -17,6 +17,7 @@
       root
       zswap
       simpleCpuGovernor
+      zerotier
     ];
   };
   flake.nixosModules.uMsiLaptopModule =

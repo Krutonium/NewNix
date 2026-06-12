@@ -26,7 +26,7 @@
       networking.firewall = {
         checkReversePath = "loose";
         trustedInterfaces = [ "br0" ];
-        allowedUDPPorts = [ 546 ];
+        allowedUDPPorts = [ 546 9993 ];
         interfaces."br0" = {
           allowedTCPPorts = [
             53

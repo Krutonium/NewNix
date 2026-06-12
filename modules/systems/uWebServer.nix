@@ -29,6 +29,7 @@
       fileHosting
       simpleCpuGovernor
       satisfactory
+      zerotier
     ];
   };
 
@@ -56,6 +57,7 @@
         { subvol = "www";            mountPoint = "/var/www"; }
         { subvol = "samba";          mountPoint = "/var/lib/samba"; }
         { subvol = "rtorrent";       mountPoint = "/var/lib/rtorrent";}
+        { subvol = "zerotier";       mountPoint = "/var/lib/zerotier-one";}
         { subvol = "autobrr";        mountPoint = "/var/lib/private/autobrr";}
 
       ];
