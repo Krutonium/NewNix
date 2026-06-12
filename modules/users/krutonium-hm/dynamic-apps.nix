@@ -49,7 +49,7 @@
         {
           pkg = pkgs.plezy;
           prettyName = "Plezy";
-          iconName = "plezy";
+          iconName = "plex";
           category = "AudioVideo";
         }
       ];
