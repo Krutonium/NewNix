@@ -103,7 +103,7 @@
           "LAN1"
           "LAN2"
           "LAN3"
-          "VPN"
+          #"VPN"
         ];
 
         nat = {
@@ -220,72 +220,72 @@
           };
         };
       };
-      systemd.network.netdevs."40-VPN" = {
-        netdevConfig = {
-          Name = "VPN";
-          Kind = "tap";
-        };
-        tapConfig = {
-          User = "openvpn";
-          Group = "openvpn";
-        };
-      };
-      services.openvpn.servers.lan = {
-        config = ''
-          dev VPN
-          dev-type tap
-          persist-tun
-          port 1194
-          proto udp
-
-          ca /run/secrets/openvpn/ca.crt
-          cert /run/secrets/openvpn/server.crt
-          key /run/secrets/openvpn/server.key
-          dh /run/secrets/openvpn/dh.pem
-
-          server-bridge 10.0.0.1 255.255.255.0 10.0.0.200 10.0.0.250
-
-          keepalive 10 60
-          persist-key
-          topology subnet
-
-          push "dhcp-option DNS 10.0.0.1"
-          push "route 10.0.0.0 255.255.255.0"
-
-          cipher AES-256-GCM
-          auth SHA256
-          tls-version-min 1.2
-
-          user openvpn
-          group openvpn
-        '';
-      };
-      sops.secrets = {
-        "openvpn_ca_crt" = {
-          sopsFile = ../secrets/openvpn.yaml;
-          path = "/run/secrets/openvpn/ca.crt";
-          owner = "openvpn";
-          group = "openvpn";
-        };
-        "openvpn_server_crt" = {
-          sopsFile = ../secrets/openvpn.yaml;
-          path = "/run/secrets/openvpn/server.crt";
-          owner = "openvpn";
-          group = "openvpn";
-        };
-        "openvpn_server_key" = {
-          sopsFile = ../secrets/openvpn.yaml;
-          path = "/run/secrets/openvpn/server.key";
-          owner = "openvpn";
-          group = "openvpn";
-          mode = "0400";
-        };
-        "openvpn_dh_pem" = {
-          sopsFile = ../secrets/openvpn.yaml;
-          path = "/run/secrets/openvpn/dh.pem";
-          owner = "openvpn";
-          group = "openvpn";
-        };
+#      systemd.network.netdevs."40-VPN" = {
+#        netdevConfig = {
+#          Name = "VPN";
+#          Kind = "tap";
+#        };
+#        tapConfig = {
+#          User = "openvpn";
+#          Group = "openvpn";
+#        };
+#      };
+#      services.openvpn.servers.lan = {
+#        config = ''
+#          dev VPN
+#          dev-type tap
+#          persist-tun
+#          port 1194
+#          proto udp
+#
+#          ca /run/secrets/openvpn/ca.crt
+#          cert /run/secrets/openvpn/server.crt
+#          key /run/secrets/openvpn/server.key
+#          dh /run/secrets/openvpn/dh.pem
+#
+#          server-bridge 10.0.0.1 255.255.255.0 10.0.0.200 10.0.0.250
+#
+#          keepalive 10 60
+#          persist-key
+#          topology subnet
+#
+#          push "dhcp-option DNS 10.0.0.1"
+#          push "route 10.0.0.0 255.255.255.0"
+#
+#          cipher AES-256-GCM
+#          auth SHA256
+#          tls-version-min 1.2
+#
+#          user openvpn
+#          group openvpn
+#        '';
+#      };
+#      sops.secrets = {
+#        "openvpn_ca_crt" = {
+#          sopsFile = ../secrets/openvpn.yaml;
+#          path = "/run/secrets/openvpn/ca.crt";
+#          owner = "openvpn";
+#          group = "openvpn";
+#        };
+#        "openvpn_server_crt" = {
+#          sopsFile = ../secrets/openvpn.yaml;
+#          path = "/run/secrets/openvpn/server.crt";
+#          owner = "openvpn";
+#          group = "openvpn";
+#        };
+#        "openvpn_server_key" = {
+#          sopsFile = ../secrets/openvpn.yaml;
+#          path = "/run/secrets/openvpn/server.key";
+#          owner = "openvpn";
+#          group = "openvpn";
+#          mode = "0400";
+#        };
+#        "openvpn_dh_pem" = {
+#          sopsFile = ../secrets/openvpn.yaml;
+#          path = "/run/secrets/openvpn/dh.pem";
+#          owner = "openvpn";
+#          group = "openvpn";
+#        };
       };
     };
 }
