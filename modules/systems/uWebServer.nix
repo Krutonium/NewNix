@@ -29,7 +29,6 @@
       fileHosting
       simpleCpuGovernor
       satisfactory
-      zerotier
     ];
   };
 

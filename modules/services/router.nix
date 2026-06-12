@@ -26,7 +26,10 @@
       networking.firewall = {
         checkReversePath = "loose";
         trustedInterfaces = [ "br0" ];
-        allowedUDPPorts = [ 546 9993 ];
+        allowedUDPPorts = [
+          546
+          9993
+        ];
         interfaces."br0" = {
           allowedTCPPorts = [
             53
@@ -100,7 +103,7 @@
           "LAN1"
           "LAN2"
           "LAN3"
-          "zt0"
+          "VPN"
         ];
 
         nat = {
@@ -216,6 +219,46 @@
             prefetching = true;
           };
         };
+      };
+      systemd.network.netdevs."40-VPN" = {
+        netdevConfig = {
+          Name = "VPN";
+          Kind = "tap";
+        };
+        tapConfig = {
+          User = "openvpn";
+          Group = "openvpn";
+        };
+      };
+      services.openvpn.servers.lan = {
+        config = ''
+          dev VPN
+          dev-type tap
+          persist-tun
+          port 1194
+          proto udp
+
+          ca /run/secrets/openvpn/ca.crt
+          cert /run/secrets/openvpn/server.crt
+          key /run/secrets/openvpn/server.key
+          dh /run/secrets/openvpn/dh.pem
+
+          server-bridge 10.0.0.1 255.255.255.0 10.0.0.200 10.0.0.250
+
+          keepalive 10 60
+          persist-key
+          topology subnet
+
+          push "dhcp-option DNS 10.0.0.1"
+          push "route 10.0.0.0 255.255.255.0"
+
+          cipher AES-256-GCM
+          auth SHA256
+          tls-version-min 1.2
+
+          user openvpn
+          group openvpn
+        '';
       };
     };
 }
