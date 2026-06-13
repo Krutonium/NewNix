@@ -64,9 +64,23 @@
           profiles.krutonium = {
             extensions.packages = extensions;
             userChrome = ''
+              /* Hide the "Firefox View" button by default */
               #firefox-view-button {
                 display: none !important;
               }
+              /* Hide the All Tabs Dropdown */
+              #alltabs-button {
+                display: none !important;
+              }
+              /* Compact the tab bar height */
+              :root {
+                --tab-min-height: 28px !important;
+              }
+              /* Hide the bookmarks toolbar star/heart icon in the URL bar - I don't use Bookmarks */
+              #star-button-box {
+                display: none !important;
+              }
+
             '';
             search = {
               engines = {
