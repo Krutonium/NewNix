@@ -80,6 +80,10 @@
               #star-button-box {
                 display: none !important;
               }
+              /* Set Font to Ubuntu */
+              * {
+                  font-family: "Ubuntu";
+              }
 
             '';
             search = {
@@ -121,7 +125,7 @@
               "browser.uidensity" = "1";
 
               "browser.tabs.insertAfterCurrent" = false; # decided I didn't like it
-
+              "full-screen-api.warning.timeout" = 0; # Hide Fullscreen Warning
               "browser.ml.enabled" = false;
               "browser.ml.chat.enabled" = false;
               "browser.ml.chat.menu" = false;
