@@ -63,6 +63,11 @@
           configPath = "${config.xdg.configHome}/mozilla/firefox";
           profiles.krutonium = {
             extensions.packages = extensions;
+            userChrome = ''
+              #firefox-view-button {
+                display: none !important;
+              }
+            '';
             search = {
               engines = {
                 KruSearch = {
@@ -119,6 +124,8 @@
               "browser.ml.linkPreview.shift" = false;
               "browser.ml.linkPreview.onboardingTimes" = 0;
               "browser.urlbar.trimURLs" = false;
+              "browser.toolbars.bookmarks.visibility" = "never";
+              "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
             };
           };
         };
