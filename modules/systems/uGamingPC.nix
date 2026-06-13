@@ -51,6 +51,7 @@
         "nvidia-drm.fbdev=1"
         "mitigations=off"
         "acpi_enforce_resources=lax"
+        "drm_kms_helper.poll=0" # Fix Monitors Turning themselves back on constantly
         "quiet"
         "splash"
       ];
