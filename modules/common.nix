@@ -32,8 +32,6 @@
         arcmenu
         #openldap
       ];
-      # Mass Rebuilds; The lot of ya!
-      #nixpkgs.hostPlatform.gcc.arch = "x86-64-v3";
       home-manager = {
         extraSpecialArgs = { inherit inputs; };
         useGlobalPkgs = true;
@@ -126,7 +124,10 @@
         timeZone = "America/Toronto";
       };
       documentation.enable = false;
-      nixpkgs.hostPlatform = "x86_64-linux";
+      nixpkgs.hostPlatform = {
+        system = "x86_64-linux";
+        gcc.arch = "x86-64-v3";
+      };
       system.stateVersion = "25.11";
     };
 }
