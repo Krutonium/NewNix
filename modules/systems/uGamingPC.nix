@@ -60,7 +60,8 @@
         pkgs.logitech-udev-rules
         pkgs.via
       ];
-      kernel = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto;
+      #kernel = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto;
+      kernel = pkgs.linuxPackages_zen;
     in
     {
       imports = [
