@@ -86,46 +86,7 @@
         distributedBuilds = true;
         settings = {
           max-jobs = 1;
-          builders-use-substitutes = true;
         };
-        buildMachines = [
-          {
-            hostName = "uWebServer";
-            system = "x86_64-linux";
-            protocol = "ssh";
-            sshUser = "krutonium"; # optional if same username
-            maxJobs = 8;
-            speedFactor = 5;
-            supportedFeatures = [
-              "nixos-test"
-              "benchmark"
-              "big-parallel"
-              "kvm"
-            ];
-            systems = [
-              "x86_64-linux"
-              "i686-linux"
-            ];
-          }
-          {
-            hostName = "uServerHost";
-            system = "x86_64-linux";
-            protocol = "ssh";
-            sshUser = "krutonium"; # optional if same username
-            maxJobs = 16;
-            speedFactor = 10;
-            supportedFeatures = [
-              "nixos-test"
-              "benchmark"
-              "big-parallel"
-              "kvm"
-            ];
-            systems = [
-              "x86_64-linux"
-              "i686-linux"
-            ];
-          }
-        ];
       };
       swapDevices = [
         {

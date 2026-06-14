@@ -1,7 +1,7 @@
 { ... }:
 {
   flake.nixosModules.nix-settings =
-    { config, ... }:
+    { config, lib, ... }:
     {
       nix = {
         settings = {
@@ -10,6 +10,7 @@
           trusted-users = [ "@wheel" ];
           min-free = 50 * 1000 * 1000 * 1000;
           download-buffer-size = 524288000;
+          builders-use-substitutes = true;
           connect-timeout = 2;
           download-attempts = 3;
           system-features = [
@@ -46,6 +47,45 @@
           extra-platforms = x86_64-linux i686-linux
           !include ${config.sops.templates."nix-access-tokens.conf".path}
         '';
+        distributedBuilds = lib.mkDefault false;
+        buildMachines = [
+          {
+            hostName = "uWebServer";
+            system = "x86_64-linux";
+            protocol = "ssh";
+            sshUser = "krutonium"; # optional if same username
+            maxJobs = 8;
+            speedFactor = 5;
+            supportedFeatures = [
+              "nixos-test"
+              "benchmark"
+              "big-parallel"
+              "kvm"
+            ];
+            systems = [
+              "x86_64-linux"
+              "i686-linux"
+            ];
+          }
+          {
+            hostName = "uServerHost";
+            system = "x86_64-linux";
+            protocol = "ssh";
+            sshUser = "krutonium"; # optional if same username
+            maxJobs = 16;
+            speedFactor = 10;
+            supportedFeatures = [
+              "nixos-test"
+              "benchmark"
+              "big-parallel"
+              "kvm"
+            ];
+            systems = [
+              "x86_64-linux"
+              "i686-linux"
+            ];
+          }
+        ];
       };
     };
 }

@@ -164,6 +164,9 @@
           modesetting.enable = true;
         };
       };
+      nix = {
+        distributedBuilds = true;
+      };
       nixpkgs.config.cudaSupport = true;
       programs = {
         gamemode.enable = true;
