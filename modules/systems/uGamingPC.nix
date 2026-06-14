@@ -165,7 +165,7 @@
         };
       };
       nix = {
-        distributedBuilds = true;
+        distributedBuilds = false;
       };
       nixpkgs.config.cudaSupport = true;
       programs = {
