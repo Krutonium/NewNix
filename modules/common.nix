@@ -126,7 +126,7 @@
       documentation.enable = false;
       nixpkgs.hostPlatform = {
         system = "x86_64-linux";
-        gcc.arch = "x86-64-v3";
+        #gcc.arch = "x86-64-v3";
       };
       system.stateVersion = "25.11";
     };

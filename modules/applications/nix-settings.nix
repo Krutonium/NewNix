@@ -18,6 +18,7 @@
             "x86_64-linux"
             "big-parallel"
             "kvm"
+            "gccarch-x86-64-v3"
           ];
           substituters = [
             "https://cache.nixos-cuda.org"
@@ -61,6 +62,7 @@
               "benchmark"
               "big-parallel"
               "kvm"
+              "gccarch-x86-64-v3"
             ];
             systems = [
               "x86_64-linux"
@@ -79,6 +81,7 @@
               "benchmark"
               "big-parallel"
               "kvm"
+              "gccarch-x86-64-v3"
             ];
             systems = [
               "x86_64-linux"
@@ -97,6 +100,7 @@
               "benchmark"
               "big-parallel"
               "kvm"
+              "gccarch-x86-64-v3"
             ];
             systems = [
               "x86_64-linux"
