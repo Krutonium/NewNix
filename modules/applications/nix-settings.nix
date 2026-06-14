@@ -55,7 +55,6 @@
             protocol = "ssh";
             sshUser = "krutonium"; # optional if same username
             maxJobs = 2;
-            cores = 2;
             speedFactor = 1;
             supportedFeatures = [
               "nixos-test"
@@ -74,7 +73,6 @@
             protocol = "ssh";
             sshUser = "krutonium"; # optional if same username
             maxJobs = 4;
-            cores = 16;
             speedFactor = 10;
             supportedFeatures = [
               "nixos-test"
