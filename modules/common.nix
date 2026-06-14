@@ -33,7 +33,7 @@
         #openldap
       ];
       # Mass Rebuilds; The lot of ya!
-      nixpkgs.hostPlatform.gcc.arch = "x86-64-v3";
+      #nixpkgs.hostPlatform.gcc.arch = "x86-64-v3";
       home-manager = {
         extraSpecialArgs = { inherit inputs; };
         useGlobalPkgs = true;
