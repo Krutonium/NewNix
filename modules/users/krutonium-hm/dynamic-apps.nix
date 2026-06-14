@@ -51,6 +51,7 @@
           prettyName = "Plezy";
           iconName = "plex";
           category = "AudioVideo";
+          startupWMClass = "com.edde746.plezy"
         }
       ];
 
