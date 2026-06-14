@@ -29,6 +29,7 @@
       fileHosting
       simpleCpuGovernor
       satisfactory
+      zswap
     ];
   };
 
@@ -143,11 +144,6 @@
           fsType = "ext4";
         };
       } // btrfsFileSystems;
-
-      zramSwap = {
-        enable = true;
-        priority = 5;
-      };
 
       hardware = {
         cpu.intel.updateMicrocode = true;

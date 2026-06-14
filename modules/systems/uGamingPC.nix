@@ -82,8 +82,7 @@
         {
           device = "/swap";
           priority = 1;
-          size = 8192;
-          discardPolicy = "both";
+          size = 32768;
         }
       ];
       fileSystems = {

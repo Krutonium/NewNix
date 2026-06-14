@@ -3,14 +3,10 @@
   flake.nixosModules.zswap =
     { ... }:
     {
-      boot = {
-        kernelParams = [
-          # REPLACE WITH `boot.zswap` once 26.05 drops
-          "zswap.enabled=1"
-          "zswap.compressor=zstd"
-          "zswap.max_pool_percent=30"
-          "zswap.shrinker_enabled=1"
-        ];
+      boot.zswap = {
+        enable = true;
+        maxPoolPercent = 25;
+        shrinkerEnabled = true;
       };
     };
 }

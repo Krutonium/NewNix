@@ -124,10 +124,11 @@
         timeZone = "America/Toronto";
       };
       documentation.enable = false;
-      nixpkgs.hostPlatform = {
-        system = "x86_64-linux";
-        gcc.arch = "x86-64-v3";
-      };
+#      nixpkgs.hostPlatform = {
+#        system = "x86_64-linux";
+#        gcc.arch = "x86-64-v3";
+#      };
+      nixpkgs.hostPlatform = "x86_64-linux";
       system.stateVersion = "25.11";
     };
 }

@@ -15,8 +15,8 @@
       ssh
       gamemode
       root
-      zswap
       simpleCpuGovernor
+      zswap
     ];
   };
   flake.nixosModules.uMsiLaptopModule =
