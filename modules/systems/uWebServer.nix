@@ -34,31 +34,105 @@
   };
 
   flake.nixosModules.uWebServerModule =
-    { pkgs, lib, modulesPath, ... }:
+    {
+      pkgs,
+      lib,
+      modulesPath,
+      ...
+    }:
     let
       kernel = pkgs.linuxPackages;
+
       btrs = [
-        { subvol = "home";           mountPoint = "/home"; }
-        { subvol = "nix";            mountPoint = "/nix"; }
-        { subvol = "configuration";  mountPoint = "/etc/nixos"; }
-        { subvol = "postgres";       mountPoint = "/var/lib/postgresql"; }
-        { subvol = "matrix-synapse"; mountPoint = "/var/lib/matrix-synapse"; }
-        { subvol = "gitea";          mountPoint = "/var/lib/forgejo";    nodatacow = true; }
-        { subvol = "gitea";          mountPoint = "/var/lib/gitea";      nodatacow = true; }
-        { subvol = "nextcloud";      mountPoint = "/var/lib/nextcloud"; }
-        { subvol = "transmission";   mountPoint = "/transmission";       nodatacow = true; }
-        { subvol = "transmission-db"; mountPoint = "/var/lib/transmission"; nodatacow = true; }
-        { subvol = "sshd";           mountPoint = "/etc/ssh"; }
-        { subvol = "acme";           mountPoint = "/var/lib/acme"; }
-        { subvol = "plex";           mountPoint = "/var/lib/plex"; }
-        { subvol = "root";           mountPoint = "/root"; }
-        { subvol = "libvirt";        mountPoint = "/var/lib/libvirt";    nodatacow = true; }
-        { subvol = "rustdesk";       mountPoint = "/var/lib/private/rustdesk"; }
-        { subvol = "www";            mountPoint = "/var/www"; }
-        { subvol = "samba";          mountPoint = "/var/lib/samba"; }
-        { subvol = "rtorrent";       mountPoint = "/var/lib/rtorrent";}
-        { subvol = "zerotier";       mountPoint = "/var/lib/zerotier-one";}
-        { subvol = "autobrr";        mountPoint = "/var/lib/private/autobrr";}
+        {
+          subvol = "home";
+          mountPoint = "/home";
+        }
+        {
+          subvol = "nix";
+          mountPoint = "/nix";
+        }
+        {
+          subvol = "configuration";
+          mountPoint = "/etc/nixos";
+        }
+        {
+          subvol = "postgres";
+          mountPoint = "/var/lib/postgresql";
+        }
+        {
+          subvol = "matrix-synapse";
+          mountPoint = "/var/lib/matrix-synapse";
+        }
+        {
+          subvol = "gitea";
+          mountPoint = "/var/lib/forgejo";
+          nodatacow = true;
+        }
+        {
+          subvol = "gitea";
+          mountPoint = "/var/lib/gitea";
+          nodatacow = true;
+        }
+        {
+          subvol = "nextcloud";
+          mountPoint = "/var/lib/nextcloud";
+        }
+        {
+          subvol = "transmission";
+          mountPoint = "/transmission";
+          nodatacow = true;
+        }
+        {
+          subvol = "transmission-db";
+          mountPoint = "/var/lib/transmission";
+          nodatacow = true;
+        }
+        {
+          subvol = "sshd";
+          mountPoint = "/etc/ssh";
+        }
+        {
+          subvol = "acme";
+          mountPoint = "/var/lib/acme";
+        }
+        {
+          subvol = "plex";
+          mountPoint = "/var/lib/plex";
+        }
+        {
+          subvol = "root";
+          mountPoint = "/root";
+        }
+        {
+          subvol = "libvirt";
+          mountPoint = "/var/lib/libvirt";
+          nodatacow = true;
+        }
+        {
+          subvol = "rustdesk";
+          mountPoint = "/var/lib/private/rustdesk";
+        }
+        {
+          subvol = "www";
+          mountPoint = "/var/www";
+        }
+        {
+          subvol = "samba";
+          mountPoint = "/var/lib/samba";
+        }
+        {
+          subvol = "rtorrent";
+          mountPoint = "/var/lib/rtorrent";
+        }
+        {
+          subvol = "zerotier";
+          mountPoint = "/var/lib/zerotier-one";
+        }
+        {
+          subvol = "autobrr";
+          mountPoint = "/var/lib/private/autobrr";
+        }
 
       ];
       btrfsUUID = "/dev/disk/by-uuid/a018b12f-6567-4edb-8026-be9292738b4d";
@@ -71,8 +145,10 @@
             options = [
               "subvol=${entry.subvol}"
               "compress=zstd:8"
-            ] ++ (if entry ? nodatacow && entry.nodatacow then [ "nodatacow" ] else [ ]);
-          } // (if entry.mountPoint == "/home" then { neededForBoot = true; } else { });
+            ]
+            ++ (if entry ? nodatacow && entry.nodatacow then [ "nodatacow" ] else [ ]);
+          }
+          // (if entry.mountPoint == "/home" then { neededForBoot = true; } else { });
         }) btrs
       );
     in
@@ -85,12 +161,22 @@
         hostName = "uWebServer";
         hostId = "10e93c0a";
         firewall = {
-          allowedTCPPorts = [ 25565 25566 50056 9000 2468 ];
-          allowedUDPPorts = [ 50056 67 68 ];
+          allowedTCPPorts = [
+            25565
+            25566
+            50056
+            9000
+            2468
+          ];
+          allowedUDPPorts = [
+            50056
+            67
+            68
+          ];
         };
       };
       services.satisfactory = {
-        enable = false;  # server runs on uServerHost, not here
+        enable = false; # server runs on uServerHost, not here
         portForward = {
           enable = true;
           destAddr = "10.0.0.3";
@@ -115,7 +201,10 @@
           "amdgpu"
         ];
         initrd.kernelModules = [ ];
-        kernelModules = [ "kvm-intel" "wl" ];
+        kernelModules = [
+          "kvm-intel"
+          "wl"
+        ];
         #extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
         supportedFilesystems = [ "" ];
       };
@@ -124,7 +213,11 @@
         "/" = {
           device = "root";
           fsType = "tmpfs";
-          options = [ "defaults" "size=16G" "mode=755" ];
+          options = [
+            "defaults"
+            "size=16G"
+            "mode=755"
+          ];
         };
         "/persist" = {
           device = btrfsUUID;
@@ -143,7 +236,8 @@
           device = "/dev/disk/by-id/ata-WDC_WD60EDAZ-11U78B0_WD-WX92D622XA45-part1";
           fsType = "ext4";
         };
-      } // btrfsFileSystems;
+      }
+      // btrfsFileSystems;
 
       hardware = {
         cpu.intel.updateMicrocode = true;
@@ -157,6 +251,18 @@
         };
       };
 
+      swapDevices = [
+        {
+          device = "/media/swap";
+          priority = 1;
+          size = 8192;
+        }
+        {
+          device = "/media2/swap";
+          priority = 1;
+          size = 8192;
+        }
+      ];
       services.xserver.videoDrivers = [ "amdgpu" ];
       powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
     };

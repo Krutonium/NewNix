@@ -54,8 +54,28 @@
             system = "x86_64-linux";
             protocol = "ssh";
             sshUser = "krutonium"; # optional if same username
-            maxJobs = 8;
-            speedFactor = 5;
+            maxJobs = 2;
+            cores = 2;
+            speedFactor = 1;
+            supportedFeatures = [
+              "nixos-test"
+              "benchmark"
+              "big-parallel"
+              "kvm"
+            ];
+            systems = [
+              "x86_64-linux"
+              "i686-linux"
+            ];
+          }
+          {
+            hostName = "uGamingPC";
+            system = "x86_64-linux";
+            protocol = "ssh";
+            sshUser = "krutonium"; # optional if same username
+            maxJobs = 4;
+            cores = 16;
+            speedFactor = 10;
             supportedFeatures = [
               "nixos-test"
               "benchmark"
@@ -73,7 +93,7 @@
             protocol = "ssh";
             sshUser = "krutonium"; # optional if same username
             maxJobs = 16;
-            speedFactor = 10;
+            speedFactor = 6;
             supportedFeatures = [
               "nixos-test"
               "benchmark"
