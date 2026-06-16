@@ -1,6 +1,16 @@
 { self, ... }: {
   flake.overlays.dolphin-emu-git = final: prev: {
-    dolphin-emu = prev.dolphin-emu.overrideAttrs (oldAttrs: {
+    dolphin-emu = (prev.dolphin-emu.override {
+      sdl3 = prev.sdl3.overrideAttrs (_: {
+        version = "unstable-2025-06-16";
+        src = prev.fetchFromGitHub {
+          owner = "libsdl-org";
+          repo = "SDL";
+          rev = "ae3869bf85bc08c1d6bfc219dd5fde27fe18181d";
+          hash = "sha256-Z2Bl5GCe0+N6VxTphV15FkoL6O3jONhv0WHJIGW9z50=";
+        };
+      });
+    }).overrideAttrs (oldAttrs: {
       version = "144d194";
 
       src = prev.fetchFromGitHub {
@@ -18,9 +28,6 @@
         '';
       };
 
-      # Replace the WC_DESCRIBE flag that embeds the version string.
-      # All other flags (WC_REVISION, WC_BRANCH, etc.) come from preConfigure
-      # or are version-independent, so they don't need touching.
       cmakeFlags = map (flag:
         if flag == "-DDOLPHIN_WC_DESCRIBE=${oldAttrs.version}"
         then "-DDOLPHIN_WC_DESCRIBE=144d194"
