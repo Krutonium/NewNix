@@ -145,6 +145,7 @@
               "firefox.desktop"
             ];
             remember-mount-password = true;
+            always-show-log-out = true;
           };
           "org/gnome/shell/extensions/display-brightness-ddcutil" = {
             button-location = 1;
