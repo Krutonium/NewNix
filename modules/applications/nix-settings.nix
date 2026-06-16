@@ -32,9 +32,9 @@
           ];
           fallback = true;
         };
-        registry = {
-          unstable.flake = inputs.nixpkgs-unstable;
-          master.flake = inputs.nixpkgs-master;
+        # Map all Flake Inputs to Registry Entries.
+        registry = (lib.mapAttrs (_: value: { flake = value; }) inputs) // {
+          nixpkgs.flake = inputs.nixpkgs;
         };
         gc = {
           automatic = true;
