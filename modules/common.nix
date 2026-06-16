@@ -31,7 +31,7 @@
         hytale-launcher
         discord-canary-vulkan-patch
         arcmenu
-        #openldap
+        dolphin-emu-git
       ];
       home-manager = {
         extraSpecialArgs = { inherit inputs; };
