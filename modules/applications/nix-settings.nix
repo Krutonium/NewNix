@@ -1,4 +1,4 @@
-{ ... }:
+{ inputs, ... }:
 {
   flake.nixosModules.nix-settings =
     { config, lib, ... }:
@@ -32,11 +32,9 @@
           ];
           fallback = true;
         };
-        registry.unstable.to = {
-          type = "github";
-          owner = "NixOS";
-          repo = "nixpkgs";
-          ref = "nixos-unstable";
+        registry = {
+          unstable.flake = inputs.nixpkgs-unstable;
+          master.flake = inputs.nixpkgs-master;
         };
         gc = {
           automatic = true;
