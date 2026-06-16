@@ -33,12 +33,12 @@
           startupWMClass = "calibre-gui";
 
         }
-        {
-          pkg = pkgs.dolphin-emu;
-          prettyName = "Dolphin";
-          iconName = "dolphin-emu";
-          category = "Game";
-        }
+#        {
+#          pkg = pkgs.dolphin-emu;
+#          prettyName = "Dolphin";
+#          iconName = "dolphin-emu";
+#          category = "Game";
+#        }
         {
           pkg = pkgs.plex-desktop;
           prettyName = "Plex";

@@ -67,6 +67,7 @@
           # Games
           bottles
           hytaleWrapped
+          pkgs.dolphin-emu
           pkgs.shipwright
           pkgs._2ship2harkinian
           pkgs.appimage-run
