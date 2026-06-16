@@ -36,6 +36,7 @@
         registry = (lib.mapAttrs (_: value: { flake = value; }) inputs) // {
           nixpkgs.flake = inputs.nixpkgs;
         };
+        nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
         gc = {
           automatic = true;
           options = "--delete-older-than 3d";
