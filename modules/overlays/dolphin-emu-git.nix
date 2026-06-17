@@ -1,4 +1,4 @@
-{ self, ... }: {
+{ ... }: {
   flake.overlays.dolphin-emu-git = final: prev: {
     dolphin-emu = (prev.dolphin-emu.override {
       sdl3 = prev.sdl3.overrideAttrs (_: {
