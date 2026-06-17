@@ -104,7 +104,7 @@
               "extensions.startupScanScopes" = false;
 
               "browser.download.lastDir" = "/home/krutonium/Downloads";
-              "browser.nova.enabled" = true;
+              "browser.nova.enabled" = false;
               "extensions.pocket.enabled" = false;
               "browser.startup.homepage" = "about:newtab";
               "signon.rememberSignons" = false;
