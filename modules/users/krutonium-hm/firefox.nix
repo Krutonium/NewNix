@@ -58,7 +58,7 @@
       config = lib.mkIf (osConfig.services.displayManager.gdm.enable == true) {
         programs.firefox = {
           enable = true;
-          package = pkgs.firefox;
+          package = pkgs.unstable.firefox;
           policies.ExtensionSettings = forceEnabled extensions;
           configPath = "${config.xdg.configHome}/mozilla/firefox";
           profiles.krutonium = {
