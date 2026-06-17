@@ -30,6 +30,7 @@
       simpleCpuGovernor
       satisfactory
       zswap
+      wan-watchdog
     ];
   };
 
@@ -156,7 +157,7 @@
       imports = [
         (modulesPath + "/installer/scan/not-detected.nix")
       ];
-
+      services.wan-watchdog.interface = "WAN";
       networking = {
         hostName = "uWebServer";
         hostId = "10e93c0a";
