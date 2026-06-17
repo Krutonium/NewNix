@@ -117,6 +117,7 @@
 
               "browser.tabs.groups.smart.enabled" = false;
               "browser.tabs.groups.smart.userEnabled" = false;
+              "browser.newtabpage.activity-stream.showWeather" = false;
 
               "browser.cache.memory.enable" = false;
               "image.jxl.enabled" = true;
