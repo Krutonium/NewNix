@@ -18,7 +18,6 @@
         ripgrep
         btop
         killall
-        nix-index
         appimage-run
         unison
         p7zip

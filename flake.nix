@@ -45,6 +45,10 @@
       url = "github:krutonium/simple-cpu-governor";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Temporary/Provisional Extensions to be removed later
     nixpkgs-arcmenu = {
