@@ -8,14 +8,6 @@
       ...
     }:
     let
-      dotnet = (
-        with pkgs.dotnetCorePackages;
-        combinePackages [
-          dotnet_8.sdk
-          dotnet_9.sdk
-          dotnet_10.sdk
-        ]
-      );
       bottles = (pkgs.master.bottles.override { removeWarningPopup = true; });
       hytaleWrapped = pkgs.symlinkJoin {
         name = "hytale";
@@ -55,12 +47,9 @@
     in
     {
       config = lib.mkIf (osConfig.services.displayManager.gdm.enable == true) {
-        home.sessionVariables = {
-          DOTNET_ROOT = "${dotnet}/share/dotnet";
-        };
+
         home.packages = [
           # Developemnt
-          dotnet
           pkgs.jetbrains.rider
           pkgs.jetbrains.idea
 

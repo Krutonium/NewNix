@@ -23,14 +23,11 @@
         p7zip
         pciutils
         android-tools
-        nixfmt
         btrfs-progs
         cifs-utils
-        nixpkgs-review
         unrar
         ncurses
         lm_sensors
-        wl-clipboard
         sops
         cachix
         nh
