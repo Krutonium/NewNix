@@ -30,8 +30,6 @@
 
           # Quality of life
           editorconfig.editorconfig
-          usernamehw.errorlens
-          eamodio.gitlens
 
           # Visual Studio Keybindings
           (pkgs.vscode-utils.extensionFromVscodeMarketplace {
