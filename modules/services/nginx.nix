@@ -23,6 +23,7 @@
             dnsProvider = "cloudflare";
             environmentFile = "/persist/cloudflare_ddns_env";
             webroot = lib.mkForce null;
+            extraLegoFlags = [ "--dns.resolvers=1.1.1.1:53" ];
           };
         };
         acceptTerms = true;
