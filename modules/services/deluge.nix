@@ -74,7 +74,7 @@
       services.nginx.virtualHosts = {
         "torrent.${config.networking.domain}" = {
           forceSSL = true;
-          enableACME = true;
+          useACMEHost = "krutonium.ca";
           locations."/".proxyPass = "http://127.0.0.1:8112";
           locations."/robots.txt" = {
             extraConfig = ''

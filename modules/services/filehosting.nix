@@ -6,12 +6,12 @@
       services.nginx.virtualHosts = {
         "dl.${config.networking.domain}" = {
           forceSSL = true;
-          enableACME = true;
+          useACMEHost = "krutonium.ca";
           root = "/media2/fileHost";
         };
         "gryphon.${config.networking.domain}" = {
           forceSSL = true;
-          enableACME = true;
+          useACMEHost = "krutonium.ca";
           root = "/media2/fileHost/gryphon";
           locations = {
             "/" = {
@@ -39,7 +39,7 @@
         };
         "scr.${config.networking.domain}" = {
           forceSSL = true;
-          enableACME = true;
+          useACMEHost = "krutonium.ca";
           root = "/media2/screenshots";
           locations = {
             "/" = {

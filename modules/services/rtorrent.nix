@@ -59,7 +59,7 @@
       services.nginx.virtualHosts.${config.services.rutorrent.hostName} = {
         basicAuthFile = config.sops.secrets.basicAuth.path;
         forceSSL = true;
-        enableACME = true;
+        useACMEHost = "krutonium.ca";
       };
       systemd.services = {
         rtorrent = {

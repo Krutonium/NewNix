@@ -11,7 +11,7 @@
       services.nginx.virtualHosts = {
         "unreal.${config.networking.domain}" = {
           forceSSL = true;
-          enableACME = true;
+          useACMEHost = "krutonium.ca";
           locations."/" = {
             proxyPass = "http://10.0.0.3:5080";
           };

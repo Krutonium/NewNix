@@ -10,7 +10,7 @@
         nginx.virtualHosts = {
           "nextcloud.${config.networking.domain}" = {
             forceSSL = true;
-            enableACME = true;
+            useACMEHost = "krutonium.ca";
             locations."/robots.txt" = {
               extraConfig = ''
                 rewrite ^/(.*)  $1;

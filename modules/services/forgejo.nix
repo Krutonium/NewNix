@@ -77,13 +77,13 @@
       services.nginx.virtualHosts = {
         "gitea.${config.networking.domain}" = {
           forceSSL = true;
-          enableACME = true;
+          useACMEHost = "krutonium.ca";
           locations."/" = {
             return = "301 https://git.${config.networking.domain}$request_uri";
           };
         };
         "git.${config.networking.domain}" = {
-          enableACME = true; # Use ACME certs
+          useACMEHost = "krutonium.ca";
           forceSSL = true; # Force SSL
           locations."/".proxyPass = "http://unix:/run/anubis/anubis-forgejo/anubis.sock:/"; # Proxy Gitea
           extraConfig = ''

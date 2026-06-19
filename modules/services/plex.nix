@@ -16,7 +16,7 @@
       services.nginx.virtualHosts = {
         "plex.${config.networking.domain}" = {
           forceSSL = true;
-          enableACME = true;
+          useACMEHost = "krutonium.ca";
           http2 = true;
           extraConfig = ''
             #Some players don't reopen a socket and playback stops totally instead of resuming after an extended pause

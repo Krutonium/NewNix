@@ -27,7 +27,7 @@
       services.nginx.virtualHosts = {
         "search.${config.networking.domain}" = {
           forceSSL = true;
-          enableACME = true;
+          useACMEHost = "krutonium.ca";
           locations."/" = {
             proxyWebsockets = true;
             #proxyPass = "http://unix:/run/anubis/anubis-searx/anubis.sock:/"; # Proxy Searx

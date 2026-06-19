@@ -18,7 +18,7 @@
         certs = {
           "krutonium.ca" = {
             domain = "*.krutonium.ca";
-            extraDomainNames = lib.mkForce [ "*.krutonium.ca" ];
+            extraDomainNames = lib.mkForce [ "krutonium.ca" ];
             group = "nginx";
             dnsProvider = "cloudflare";
             environmentFile = "/persist/cloudflare_ddns_env";
@@ -46,7 +46,7 @@
         '';
         # This has to go here because nginx is on uWebServer while Attic is on uServerHost
         virtualHosts."cache.krutonium.ca" = {
-          enableACME = true;
+          useACMEHost = "krutonium.ca";
           forceSSL = true;
           locations."/" = {
             proxyPass = "http://10.0.0.3:8080";

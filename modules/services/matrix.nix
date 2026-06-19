@@ -20,12 +20,12 @@
       services.nginx.virtualHosts = {
         "synapse-admin.${config.networking.domain}" = {
           forceSSL = true;
-          enableACME = true;
+          useACMEHost = "krutonium.ca";
           root = "${pkgs.synapse-admin}";
         };
         "synapse.${config.networking.domain}" = {
           forceSSL = true;
-          enableACME = true;
+          useACMEHost = "krutonium.ca";
           locations."/".proxyPass = "http://127.0.0.1:8008";
           locations."/robots.txt" = {
             extraConfig = ''
@@ -78,7 +78,7 @@
         # This stays here because of existing machinery that I don't want to move yet.
         "${config.networking.domain}" = {
           forceSSL = true;
-          enableACME = true;
+          useACMEHost = "krutonium.ca";
           root = "/var/www/home/";
           serverAliases = [ "www.${config.networking.domain}" ];
           locations."= /.well-known/matrix/server".extraConfig = mkWellKnown serverConfig;
