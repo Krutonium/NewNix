@@ -18,6 +18,7 @@
         certs = {
           "krutonium.ca" = {
             domain = "*.krutonium.ca";
+            extraDomainNames = lib.mkForce [ "*.krutonium.ca" ];
             group = "nginx";
             dnsProvider = "cloudflare";
             environmentFile = "/persist/cloudflare_ddns_env";
