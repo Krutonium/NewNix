@@ -31,6 +31,7 @@
         recommendedOptimisation = true;
         recommendedGzipSettings = true;
         recommendedProxySettings = true;
+        acmeRoot = null;
         clientMaxBodySize = "0";
         appendHttpConfig = ''
           #limit_req_zone $binary_remote_addr zone=git_zone:10m rate=40r/s;
