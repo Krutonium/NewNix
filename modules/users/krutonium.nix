@@ -64,7 +64,6 @@
           packages-desktop
           packages-server
           xdg
-          vscode
         ];
       };
       systemd.services.copySshKeysForRoot = {

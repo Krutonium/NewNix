@@ -58,6 +58,8 @@
       };
       services.nginx.virtualHosts.${config.services.rutorrent.hostName} = {
         basicAuthFile = config.sops.secrets.basicAuth.path;
+        forceSSL = true;
+        enableACME = true;
       };
       systemd.services = {
         rtorrent = {

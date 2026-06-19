@@ -15,6 +15,14 @@
           renewInterval = "daily";
           email = "PFCKrutonium@gmail.com";
         };
+        certs = {
+          "krutonium.ca" = {
+            domain = "*.krutonium.ca";
+            group = "nginx";
+            dnsProvider = "cloudflare";
+            environmentFile = "/persist/cloudflare_ddns_env";
+          };
+        };
         acceptTerms = true;
       };
       services.nginx = {

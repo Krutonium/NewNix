@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ self, inputs, ... }:
 {
   flake.homeModules.packages-desktop =
     {
@@ -48,6 +48,7 @@
     {
       config = lib.mkIf (osConfig.services.displayManager.gdm.enable == true) {
 
+        imports = [ self.homeModules.vscode ];
         home.packages = [
           # Developemnt
           pkgs.jetbrains.rider
