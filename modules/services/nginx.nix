@@ -21,6 +21,7 @@
             group = "nginx";
             dnsProvider = "cloudflare";
             environmentFile = "/persist/cloudflare_ddns_env";
+            webroot = lib.mkForce null;
           };
         };
         acceptTerms = true;
@@ -31,7 +32,6 @@
         recommendedOptimisation = true;
         recommendedGzipSettings = true;
         recommendedProxySettings = true;
-        acmeRoot = null;
         clientMaxBodySize = "0";
         appendHttpConfig = ''
           #limit_req_zone $binary_remote_addr zone=git_zone:10m rate=40r/s;
