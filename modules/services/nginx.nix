@@ -1,7 +1,7 @@
 { self, ... }:
 {
   flake.nixosModules.nginx =
-    { config, ... }:
+    { lib, config, ... }:
     {
       users.groups.anubis-access = { };
       users.users.nginx.extraGroups = [ "anubis-access" ];
