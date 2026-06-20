@@ -58,7 +58,7 @@
         pkgs.via
       ];
       #kernel = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto;
-      kernel = pkgs.linuxPackages_zen;
+      kernel = pkgs.unstable.linuxPackages_zen;
     in
     {
       imports = [
