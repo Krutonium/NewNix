@@ -31,10 +31,7 @@
         "sd_mod"
       ];
       initrdRequired = [
-        #"nvidia"
-        #"nvidia_modeset"
-        #"nvidia_drm"
-        #"nvidia_uvm"
+       
       ];
       kernelModules = [
         "kvm-amd"
@@ -159,7 +156,7 @@
         graphics.enable = true;
         cpu.amd.updateMicrocode = true;
         nvidia = {
-          package = config.boot.kernelPackages.nvidiaPackages.stable;
+          package = config.boot.kernelPackages.nvidiaPackages.latest;
           open = false;
           modesetting.enable = true;
         };
