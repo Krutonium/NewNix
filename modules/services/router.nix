@@ -129,6 +129,11 @@
               proto = "udp";
               destination = "10.0.0.3:5520";
             }
+            {
+              sourcePort = 40102;
+              proto = "tcp";
+              destination = "10.0.0.3:40102";
+            }
           ];
         };
       };
