@@ -58,6 +58,7 @@
       };
       services.overte-server.enable = true;
       services.overte-server.backend = "docker";
+      services.overte-server.openFirewall = true;
       services.xserver.videoDrivers = [ "nvidia" ];
       hardware = {
         graphics.enable = true;
