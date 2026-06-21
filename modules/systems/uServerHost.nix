@@ -56,7 +56,7 @@
         port = 8000;
         reliablePort = 8888;
       };
-      services.overte-server.enable = true;
+      services.overte-server.enable = false;
       services.overte-server.backend = "docker";
       services.overte-server.openFirewall = true;
       services.xserver.videoDrivers = [ "nvidia" ];
