@@ -17,6 +17,7 @@
       attic
       satisfactory
       zswap
+      overte-server
     ];
   };
 
@@ -55,6 +56,8 @@
         port = 8000;
         reliablePort = 8888;
       };
+      services.overte-server.enable = true;
+      services.overte-server.backend = "docker";
       services.xserver.videoDrivers = [ "nvidia" ];
       hardware = {
         graphics.enable = true;
