@@ -2,6 +2,8 @@
 #! nix-shell -i bash
 #! nix-shell -p bash openssh
 
+set -euo pipefail
+
 hosts=(
     10.1
     10.2
@@ -12,8 +14,18 @@ hosts=(
 nupdate
 push-to-attic -c KruCache
 
+declare -A pids
 successful_hosts=()
 
+# Start updates in parallel
+for host in "${hosts[@]}"; do
+    ssh -o BatchMode=yes -o ConnectTimeout=10 \
+        "$host" \
+        'nboot' &
+    pids[$host]=$!
+done
+
+# Wait for updates and record successes
 for host in "${!pids[@]}"; do
     if wait "${pids[$host]}"; then
         successful_hosts+=("$host")
@@ -22,6 +34,7 @@ for host in "${!pids[@]}"; do
     fi
 done
 
+# Schedule reboots only on successful hosts
 for host in "${successful_hosts[@]}"; do
     ssh -o BatchMode=yes -o ConnectTimeout=10 \
         "$host" \
