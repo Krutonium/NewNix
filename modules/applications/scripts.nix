@@ -341,6 +341,30 @@
 
         echo "Done → $OUTPUT" >&2
       '';
+      push-to-attic = pkgs.writeShellApplication {
+        name = "push-to-attic";
+
+        runtimeInputs = with pkgs; [
+          bash
+          nix
+          attic-client
+          jq
+          coreutils
+        ];
+
+        text = builtins.readFile ./scripts/push-to-attic.sh;
+      };
+      update-switch-fleet = pkgs.writeShellApplication {
+        name = "push-to-attic";
+
+        runtimeInputs = with pkgs; [
+          bash
+          openssh
+          coreutils
+        ];
+
+        text = builtins.readFile ./scripts/update-switch-fleet.sh;
+      };
     in
     {
       sops.secrets.attic_everything_token = {
@@ -371,6 +395,8 @@
         transcode-vr
         pkgs.jq
         pkgs.git
+        push-to-attic
+        update-switch-fleet
       ];
     };
 }
