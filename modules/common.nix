@@ -32,8 +32,9 @@
         hytale-launcher
         discord-canary-vulkan-patch
         arcmenu
-        dolphin-emu-git
-        dusklight
+#        dolphin-emu-git
+#        dusklight
+        sdl3
       ];
       home-manager = {
         extraSpecialArgs = { inherit inputs; };

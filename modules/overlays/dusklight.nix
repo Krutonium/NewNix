@@ -7,8 +7,8 @@
           src = prev.fetchFromGitHub {
             owner = "libsdl-org";
             repo = "SDL";
-            rev = "ae3869bf85bc08c1d6bfc219dd5fde27fe18181d";
-            hash = "sha256-Z2Bl5GCe0+N6VxTphV15FkoL6O3jONhv0WHJIGW9z50=";
+          rev = "0fa422231de7115f9378c8efcf7e5ddfee47e916";
+          hash = "sha256-QZcppvQTfA75Vmg23GLup96nuOmOl+Sw6QOCeFoiGV8=";
           };
         });
       }
