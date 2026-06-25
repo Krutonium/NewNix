@@ -28,7 +28,7 @@
           trusted-public-keys = [
             "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
             "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
-            "KruCache:0iLixzkqYP6YOGr3yyBbmI31wV7shAiGgr0GbpSKnvQ="
+            "KruCache:iDgMvjBS9EN4/Zy3jYLFkER3UpmBw2FnYm0q9f23csw="
           ];
           fallback = true;
         };
