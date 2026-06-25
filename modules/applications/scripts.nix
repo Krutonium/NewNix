@@ -355,7 +355,7 @@
         text = builtins.readFile ./scripts/push-to-attic.sh;
       };
       update-switch-fleet = pkgs.writeShellApplication {
-        name = "push-to-attic";
+        name = "switch-fleet";
 
         runtimeInputs = with pkgs; [
           bash
