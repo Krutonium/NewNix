@@ -15,6 +15,15 @@
         owner = user;
       };
       networking.firewall.allowedTCPPorts = [ 8080 ];
+      services.postgresql = {
+        enable = true;
+        ensureDatabases = [ "atticd" ];
+        ensureUsers = [{ name = "atticd"; ensureDBOwnership = true; }];
+      };
+      systemd.services.atticd = {
+        after = [ "postgresql.service" ];
+        requires = [ "postgresql.service" ];
+      };
       services.atticd = {
         enable = true;
         environmentFile = config.sops.secrets.atticsecret.path;
@@ -25,6 +34,7 @@
             "cache.krutonium.ca"
             "10.0.0.3"
           ];
+          database.url = "postgresql:///atticd?host=/run/postgresql";
           api-endpoint = "https://cache.krutonium.ca/";
           storage = {
             type = "local";
@@ -32,9 +42,9 @@
           };
           chunking = {
             nar-size-threshold = 65536;
-            min-size = 1024 * 2; #2MB
-            avg-size = 1024 * 8; #8MB
-            max-size = 1204 * 50; #50MB
+            min-size = 1024 * 1024 * 1; #1MB
+            avg-size = 1024 * 1024 * 4; #4MB
+            max-size = 1024 * 1024 * 16; #16MB
           };
           garbage-collection = {
             interval = "12 hours";
