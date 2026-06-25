@@ -32,9 +32,9 @@
           };
           chunking = {
             nar-size-threshold = 65536;
-            min-size = 16384;
-            avg-size = 131072;
-            max-size = 1048576;
+            min-size = 1024 * 2; #2MB
+            avg-size = 1024 * 8; #8MB
+            max-size = 1204 * 50; #50MB
           };
           garbage-collection = {
             interval = "12 hours";
