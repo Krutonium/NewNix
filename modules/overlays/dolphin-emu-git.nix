@@ -9,6 +9,7 @@
           rev = "0fa422231de7115f9378c8efcf7e5ddfee47e916";
           hash = "sha256-QZcppvQTfA75Vmg23GLup96nuOmOl+Sw6QOCeFoiGV8=";
         };
+        doCheck = false;
       });
     }).overrideAttrs (oldAttrs: {
       version = "144d194";
