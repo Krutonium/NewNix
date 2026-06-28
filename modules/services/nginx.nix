@@ -46,24 +46,33 @@
           worker_connections 512;
         '';
         # This has to go here because nginx is on uWebServer while Attic is on uServerHost
-        virtualHosts."cache.krutonium.ca" = {
-          useACMEHost = "krutonium.ca";
-          forceSSL = true;
-          locations."/" = {
-            proxyPass = "http://10.0.0.3:8080";
-            extraConfig = ''
-              client_max_body_size 0;  # NARs can be large
-              keepalive_timeout 600;
-              keepalive_requests 10000;
-              proxy_read_timeout 600;  # chunked uploads take time
-              proxy_request_buffering off;
-              proxy_buffering off;
-              proxy_send_timeout 600;
-              proxy_connect_timeout 30;
-              proxy_http_version 1.1;
-              proxy_set_header Connection "";
-              proxy_force_ranges on;
-            '';
+        virtualHosts = {
+          "cache.krutonium.ca" = {
+            useACMEHost = "krutonium.ca";
+            forceSSL = true;
+            locations."/" = {
+              proxyPass = "http://10.0.0.3:8080";
+              extraConfig = ''
+                client_max_body_size 0;  # NARs can be large
+                keepalive_timeout 600;
+                keepalive_requests 10000;
+                proxy_read_timeout 600;  # chunked uploads take time
+                proxy_request_buffering off;
+                proxy_buffering off;
+                proxy_send_timeout 600;
+                proxy_connect_timeout 30;
+                proxy_http_version 1.1;
+                proxy_set_header Connection "";
+                proxy_force_ranges on;
+              '';
+            };
+          };
+          "unreal.${config.networking.domain}" = {
+            forceSSL = true;
+            useACMEHost = "krutonium.ca";
+            locations."/" = {
+              proxyPass = "http://10.0.0.3:5080";
+            };
           };
         };
       };

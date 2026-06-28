@@ -8,15 +8,6 @@
         7777
         7778
       ];
-      services.nginx.virtualHosts = {
-        "unreal.${config.networking.domain}" = {
-          forceSSL = true;
-          useACMEHost = "krutonium.ca";
-          locations."/" = {
-            proxyPass = "http://10.0.0.3:5080";
-          };
-        };
-      };
       virtualisation.oci-containers = {
         backend = "docker";
         containers.ut99 = {
