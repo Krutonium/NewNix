@@ -64,6 +64,7 @@
         extraModprobeConfig = modProbeConfig;
         initrd.kernelModules = kernelModulesInitrd;
         kernelModules = kernelModules;
+        extraModulePackages = [ config.boot.kernelPackages.msi-ec ];
         kernelPackages = kernel;
         kernelParams = kernelParams;
       };
