@@ -34,6 +34,7 @@
       ];
       kernelModules = [
         "ec_sys"
+        "msi-ec"
         "xhci_pci"
         "ehci_pci"
         "ahci"
