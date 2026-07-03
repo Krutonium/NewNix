@@ -1,4 +1,3 @@
-
 { inputs, self, ... }:
 {
   flake.nixosModules.common =
@@ -39,7 +38,7 @@
         extraSpecialArgs = { inherit inputs; };
         useGlobalPkgs = true;
       };
-      environment.systemPackages = [ 
+      environment.systemPackages = [
         pkgs.attic-client
         pkgs.hwdata
       ];
@@ -57,7 +56,10 @@
         };
       };
       systemd.user.services.pipewire = {
-        after = [ "dbus.service" "dbus-broker.service" ];
+        after = [
+          "dbus.service"
+          "dbus-broker.service"
+        ];
       };
       virtualisation.vmVariant = {
         virtualisation = {
@@ -88,6 +90,19 @@
         fuse = {
           enable = true;
           userAllowOther = true;
+        };
+        nix-ld = {
+          enable = true;
+          libraries = with pkgs; [
+            icu
+            openssl
+            zlib
+            stdenv.cc.cc.lib
+            curl
+            krb5
+            lttng-ust
+            libunwind
+          ];
         };
       };
       environment = {
