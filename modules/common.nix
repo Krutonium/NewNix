@@ -102,6 +102,17 @@
             krb5
             lttng-ust
             libunwind
+            fontconfig
+            libx11
+            libICE
+            libSM
+            libXext
+            libXi
+            libXrandr
+            libXrender
+            libXcursor
+            libXfixes
+            libXtst
           ];
         };
       };
