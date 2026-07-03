@@ -24,7 +24,7 @@
   flake.nixosModules.uServerHostModule =
     { pkgs, config, ... }:
     let
-      kernel = pkgs.linuxPackages_lts;
+      kernel = pkgs.linuxPackages;
       btrfsDisk = "/dev/disk/by-label/WorkDisk";
       Hostname = "uServerHost";
     in

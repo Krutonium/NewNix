@@ -43,7 +43,7 @@
         "rtsx_pci_sdmmc"
       ];
       #kernel = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto;
-      kernel = pkgs.linuxPackages_lts;
+      kernel = pkgs.linuxPackages;
       kernelParams = [
         "nouveau.config=NvClkMode=15" # Not using Nouveau ATM. Maybe someday?
         "mitigations=off"
