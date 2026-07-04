@@ -18,11 +18,12 @@
       satisfactory
       zswap
       overte-server
+      obs-relay
     ];
   };
 
   flake.nixosModules.uServerHostModule =
-    { pkgs, config, ... }:
+    { pkgs, ... }:
     let
       kernel = pkgs.linuxPackages;
       btrfsDisk = "/dev/disk/by-label/WorkDisk";
