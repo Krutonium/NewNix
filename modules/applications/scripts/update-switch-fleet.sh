@@ -38,7 +38,7 @@ done
 for host in "${successful_hosts[@]}"; do
     ssh -o BatchMode=yes -o ConnectTimeout=10 \
         "$host" \
-        'sudo shutdown -r +5' &
+        'sudo shutdown -r 02:00' &
 done
 
 wait
