@@ -66,7 +66,7 @@
 
         nvidia = {
           powerManagement.enable = true;
-          package = kernel.nvidiaPackages.legacy_580;
+          package = pkgs.nvidia-patch.auto-patch(kernel.nvidiaPackages.legacy_580);
           prime.offload.enable = false;
           open = false;
           nvidiaSettings = true;

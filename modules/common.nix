@@ -24,6 +24,7 @@
       nixpkgs.overlays = with inputs.self.overlays; [
         inputs.nix-cachyos-kernel.overlays.pinned
         inputs.millennium.overlays.default
+        inputs.nvidia-patch.overlays.default
         unstable
         master
         InternetRadio2Computercraft
