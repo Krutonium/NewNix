@@ -24,7 +24,7 @@
               -c:v hevc_nvenc -preset p5 -rc cbr -b:v 20000k -maxrate 20000k -bufsize 40000k \
               -g 120 -profile:v main \
               -c:a aac -b:a 192k \
-              -f flv -flvflags ext_header "rtmp://a.rtmp.youtube.com/live2/$YOUTUBE_KEY"
+              -f flv "rtmp://a.rtmp.youtube.com/live2/$YOUTUBE_KEY"
             -map 0:v -map 0:a -c copy \
               -f rtsp -rtsp_flags listen "rtsp://0.0.0.0:8554/mezzanine"
 
