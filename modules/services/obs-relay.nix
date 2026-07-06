@@ -53,12 +53,7 @@
             -c:a aac \
             -b:a 192k \
             -f flv \
-            "rtmp://a.rtmp.youtube.com/live2/$YOUTUBE_KEY" \
-            -map 0:v \
-            -map 0:a \
-            -c copy \
-            -f mpegts \
-            "tcp://0.0.0.0:8554?listen=1"
+            "rtmp://a.rtmp.youtube.com/live2/$YOUTUBE_KEY"
         '';
       };
     };
