@@ -57,9 +57,8 @@
             -map 0:v \
             -map 0:a \
             -c copy \
-            -f rtsp \
-            -rtsp_flags listen \
-            "rtsp://0.0.0.0:8554/mezzanine"
+            -f mpegts \
+            "tcp://0.0.0.0:8554?listen=1"
         '';
       };
     };
