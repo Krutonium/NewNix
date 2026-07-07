@@ -47,16 +47,11 @@
           "default.clock.max-quantum" = 1024;
         };
       };
-
-      pw_rnnoise_config = {
+      pw_rnnoise_source = {
         "context.modules" = [
           {
-            "name" = "libpipewire-module-filter-chain";
-            "flags" = [
-              "ifexists"
-              "nofail"
-            ];
-            "args" = {
+            name = "libpipewire-module-filter-chain";
+            args = {
               "node.description" = "Noise Canceling source";
               "media.name" = "Noise Canceling source";
               "filter.graph" = {
@@ -64,29 +59,34 @@
                   {
                     "type" = "ladspa";
                     "name" = "rnnoise";
-                    "plugin" = "${pkgs.rnnoise-plugin}/lib/ladspa/librnnoise_ladspa.so";
-                    "label" = "noise_suppressor_stereo";
+                    "plugin" = "librnnoise_ladspa";
+                    "label" = "noise_suppressor_mono";
                     "control" = {
-                      "VAD Threshold (%)" = 95.0;
+                      "VAD Threshold (%)" = 50.0;
                     };
                   }
                 ];
               };
-              "audio.position" = [
-                "FL"
-                "FR"
-              ];
+              "audio.channels" = 1;
+              "audio.position" = [ "MONO" ];
               "capture.props" = {
-                "node.name" = "effect_input.rnnoise";
+                "node.name" = "capture.rnnoise_source";
                 "node.passive" = true;
+                "audio.rate" = 48000;
               };
               "playback.props" = {
-                "node.name" = "effect_output.rnnoise";
+                "node.name" = "rnnoise_source";
                 "media.class" = "Audio/Source";
+                "audio.rate" = 48000;
               };
             };
           }
         ];
+      };
+      wp_set_rnnoise_default = {
+        "wireplumber.settings" = {
+          "default.configured.audio.source" = "rnnoise_source";
+        };
       };
     in
     {
@@ -99,6 +99,7 @@
           enable = true;
           extraConfig."99-disable-powersave" = wp_disable_powersaving;
           extraConfig."98-disable-sleep-laptop" = wp_disable_audio_sleep_laptop;
+          extraConfig."51-rnnoise-default" = wp_set_rnnoise_default;
         };
         audio.enable = true;
         alsa = {
@@ -108,8 +109,8 @@
         pulse.enable = true;
         jack.enable = false;
         extraConfig.pipewire = {
-          "99-input-denoise" = pw_rnnoise_config;
           "99-fix-crackle" = pw_fix_crackle;
+          "99-input-denoising" = pw_rnnoise_source;
         };
       };
     };
