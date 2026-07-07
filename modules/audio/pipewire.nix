@@ -97,9 +97,11 @@
         extraLadspaPackages = [ pkgs.rnnoise-plugin ];
         wireplumber = {
           enable = true;
-          extraConfig."99-disable-powersave" = wp_disable_powersaving;
-          extraConfig."98-disable-sleep-laptop" = wp_disable_audio_sleep_laptop;
-          extraConfig."51-rnnoise-default" = wp_set_rnnoise_default;
+          extraConfig = {
+            "99-disable-powersave" = wp_disable_powersaving;
+            "98-disable-sleep-laptop" = wp_disable_audio_sleep_laptop;
+            "51-rnnoise-default" = wp_set_rnnoise_default;
+          };
         };
         audio.enable = true;
         alsa = {
