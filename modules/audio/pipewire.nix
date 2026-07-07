@@ -62,7 +62,7 @@
                     "plugin" = "librnnoise_ladspa";
                     "label" = "noise_suppressor_mono";
                     "control" = {
-                      "VAD Threshold (%)" = 50.0;
+                      "VAD Threshold (%)" = 90.0;
                     };
                   }
                 ];
