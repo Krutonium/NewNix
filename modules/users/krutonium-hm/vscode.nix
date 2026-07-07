@@ -35,6 +35,9 @@
             # C#
             ms-dotnettools.csharp
 
+            # Rust
+            rust-lang.rust-analyzer
+
             # Quality of life
             editorconfig.editorconfig
 
@@ -67,6 +70,15 @@
                 };
               };
             };
+            "[rust]" = {
+              "editor.defaultFormatter" = "rust-lang.rust-analyzer";
+            };
+
+            # Rust / Clippy
+            "rust-analyzer.check.command" = "clippy";
+            "rust-analyzer.cargo.buildScripts.enable" = true;
+            "rust-analyzer.procMacro.enable" = true;
+            "rust-analyzer.checkOnSave" = true;
 
             # C# / OmniSharp
             "dotnet.defaultSolution" = "disable";
@@ -91,6 +103,13 @@
           nixd
           dotnet
           nixfmt
+
+          rustc
+          cargo
+          rust-analyzer
+          clippy
+          rustfmt
+          gcc
         ];
       };
     };
