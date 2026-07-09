@@ -34,6 +34,7 @@
         arcmenu
         dolphin-emu-git
         dusklight
+        firefoxNvidiaOffload
       ];
       home-manager = {
         extraSpecialArgs = { inherit inputs; };
