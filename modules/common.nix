@@ -20,6 +20,7 @@
         default-packages
         fonts
         hostKeys
+        firefoxNvidiaOffload
       ];
       nixpkgs.overlays = with inputs.self.overlays; [
         inputs.nix-cachyos-kernel.overlays.pinned
@@ -34,7 +35,6 @@
         arcmenu
         dolphin-emu-git
         dusklight
-        firefoxNvidiaOffload
       ];
       home-manager = {
         extraSpecialArgs = { inherit inputs; };
