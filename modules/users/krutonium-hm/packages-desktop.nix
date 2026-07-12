@@ -8,7 +8,7 @@
       ...
     }:
     let
-      bottles = (pkgs.unstable.bottles.override { removeWarningPopup = true; });
+      bottles = (pkgs.bottles.override { removeWarningPopup = true; });
       hytaleWrapped = pkgs.symlinkJoin {
         name = "hytale";
         paths = [ pkgs.hytale-launcher ];
