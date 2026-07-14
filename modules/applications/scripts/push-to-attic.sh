@@ -16,7 +16,7 @@
 #   -h, --help               Show this help
 
 set -euo pipefail
-
+cd ~/NixOS
 # ── Defaults ────────────────────────────────────────────────────────────────
 FLAKE_REF="."
 CACHE="${ATTIC_CACHE:-}"
