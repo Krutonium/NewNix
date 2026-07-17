@@ -52,6 +52,9 @@
             two-finger-scrolling-enabled = true;
             disable-while-typing = true;
           };
+          "org/gnome/desktop/peripherals/mouse" = {
+            accel-profile = "flat";
+          };
 
           "org/gnome/desktop/privacy" = {
             disable-microphone = false;
