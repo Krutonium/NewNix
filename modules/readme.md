@@ -25,3 +25,4 @@ What is found where?
  ### ./common.nix
  This is the common configuration for all systems. Things that are truly universal for all systems. It also imports imports that need to exist for all as well, and makes sure that overlays are applied.
  
+Build install ISO with `nix build .#nixosConfigurations.minimalInstallerIso.config.system.build.isoImage`
