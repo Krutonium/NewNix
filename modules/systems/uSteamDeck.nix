@@ -15,6 +15,7 @@
       ssh
       gnome
       sops
+      zswap
     ];
   };
   flake.nixosModules.SteamDeckModule =
