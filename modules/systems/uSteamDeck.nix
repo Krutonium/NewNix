@@ -117,6 +117,7 @@
         };
         steamos = {
           useSteamOSConfig = true;
+          enableAutoMountUdevRules = true;
           enableZram = false;
         };
         decky-loader.enable = true;
