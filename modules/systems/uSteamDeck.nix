@@ -1,6 +1,6 @@
 { inputs, self, lib, ... }:
 {
-  flake.nixosConfigurations.SteamDeck = inputs.nixpkgs.lib.nixosSystem {
+  flake.nixosConfigurations.uSteamDeck = inputs.nixpkgs.lib.nixosSystem {
     modules = with self.nixosModules; [
       common
       SteamDeckModule
