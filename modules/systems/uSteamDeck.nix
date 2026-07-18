@@ -19,7 +19,7 @@
     ];
   };
   flake.nixosModules.SteamDeckModule =
-    { lib, ... }:
+    { lib, config, ... }:
     let
       mountOptions = [
         "compress=zstd:5"
@@ -36,12 +36,10 @@
         hostName = "uSteamDeck";
         hostId = "185e48dd";
       };
-      
+
       services = {
         displayManager.gdm.enable = lib.mkForce false;
-        udisks2.enable = true;
       };
-      security.polkit.enable = true;
       nixpkgs = {
         config = {
           allowUnfree = true;
@@ -55,7 +53,21 @@
           ];
         };
       };
-      fileSystems."/home".neededForBoot = true;
+      fileSystems = {
+        "/home".neededForBoot = true;
+        "/sdcard" = {
+          device = "/dev/mmcblk0p1";
+          options = [
+            "nofail"
+            "x-systemd.automount"
+            "x-systemd.idle-timeout=60"
+            "uid=${toString config.users.users.krutonium.uid}"
+            "gid=${toString config.users.groups.users.gid}"
+            "umask=0022"
+          ];
+        };
+      };
+
       disko.devices.disk = {
         root = {
           device = "/dev/disk/by-id/nvme-Phison_ESMP512GMB47C3-E13TS_22272M51234990";
