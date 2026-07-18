@@ -50,6 +50,7 @@
           ];
         };
       };
+      fileSystems."/home".neededForBoot = true;
       disko.devices.disk = {
         root = {
           device = "/dev/disk/by-id/nvme-Phison_ESMP512GMB47C3-E13TS_22272M51234990";
