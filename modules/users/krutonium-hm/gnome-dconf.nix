@@ -24,7 +24,7 @@
       extensionUuids = map (ext: ext.extensionUuid) extensions;
     in
     {
-      config = lib.mkIf (osConfig.services.displayManager.gdm.enable == true) {
+      config = lib.mkIf (osConfig.services.desktopManager.gnome.enable == true) {
         home.packages = [
           pkgs.gnome-tweaks
           pkgs.cascadia-code # Font
