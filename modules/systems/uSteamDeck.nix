@@ -62,9 +62,6 @@
             "nofail"
             "x-systemd.automount"
             "x-systemd.idle-timeout=60"
-            "uid=${toString config.users.users.krutonium.uid}"
-            "gid=${toString config.users.groups.users.gid}"
-            "umask=0022"
           ];
         };
       };
