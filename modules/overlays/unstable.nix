@@ -1,4 +1,3 @@
-# modules/cachyos-kernel-overlay.nix
 { inputs, ... }:
 {
   flake.overlays.unstable = final: prev: {

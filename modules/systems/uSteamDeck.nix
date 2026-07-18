@@ -1,6 +1,6 @@
 { inputs, self, lib, ... }:
 {
-  flake.nixosConfigurations.SteamDeck = inputs.nixpkgs-unstable.lib.nixosSystem {
+  flake.nixosConfigurations.SteamDeck = inputs.nixpkgs.lib.nixosSystem {
     modules = with self.nixosModules; [
       common
       SteamDeckModule
@@ -22,6 +22,7 @@
       ];
     in
     {
+      nixpkgs.overlays = [ inputs.self.overlays.jovian-unstable-bits ];
       boot = {
         tmp.useTmpfs = false;
       };
@@ -93,7 +94,7 @@
         steam = {
           enable = true;
           autoStart = true;
-          user = "Krutonium";
+          user = "krutonium";
           desktopSession = "gnome";
           updater.splash = "bgrt";
         };

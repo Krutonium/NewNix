@@ -59,7 +59,9 @@
       url = "github:sgsunder/nixpkgs/arcmenu-69";
       flake = false;
     };
-    jovian-nixos.url = "github:Jovian-Experiments/Jovian-NixOS";
+    jovian-nixos = {
+      url = "github:Jovian-Experiments/Jovian-NixOS";
+    };
     disko.url = "github:nix-community/disko";
   };
 
