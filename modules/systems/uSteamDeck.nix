@@ -15,7 +15,7 @@
       ssh
       gnome
       sops
-      #zswap
+      zswap
     ];
   };
   flake.nixosModules.SteamDeckModule =
@@ -55,15 +55,6 @@
       };
       fileSystems = {
         "/home".neededForBoot = true;
-        "/sdcard" = {
-          device = "/dev/mmcblk0p1";
-          fsType = "ext4";
-          options = [
-            "nofail"
-            "x-systemd.automount"
-            "x-systemd.idle-timeout=60"
-          ];
-        };
       };
 
       disko.devices.disk = {
@@ -123,6 +114,10 @@
           user = "krutonium";
           desktopSession = "gnome";
           updater.splash = "bgrt";
+        };
+        steamos = {
+          useSteamOSConfig = true;
+          enableZram = false;
         };
         decky-loader.enable = true;
         devices.steamdeck = {
