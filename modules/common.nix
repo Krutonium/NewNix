@@ -14,6 +14,7 @@
         inputs.sops-nix.nixosModules.sops
         inputs.simple-cpu-governor.nixosModules.default
         inputs.nix-index-database.nixosModules.default
+        inputs.disko.nixosModules.default
         assets
         nix-settings
         scripts

@@ -40,38 +40,7 @@
         extra-platforms = x86_64-linux i686-linux
       '';
     };
-    systemd.services.show-ip-in-issue = {
-      description = "Write current IPv4 address(es) into /etc/issue";
-      after = [ "network.target" ];
-      wantedBy = [ "multi-user.target" "network-online.target" ];
-      partOf = [ "network-online.target" ];
-      serviceConfig.Type = "oneshot";
-      script = ''
-        {
-          echo "\S{PRETTY_NAME} \n \l"
-          echo ""
-          for ip in $(${pkgs.iproute2}/bin/ip -4 -o addr show scope global | ${pkgs.gawk}/bin/awk '{print $4}'); do
-            echo "IPv4 address: $ip"
-          done
-          echo ""
-        } > /etc/issue
-      '';
-    };
-    systemd.network.networks."99-show-ip" = lib.mkIf config.networking.useNetworkd {
-      matchConfig.Name = "*";
-      linkConfig.RequiredForOnline = false;
-    };
-    systemd.services."show-ip-on-dhcp" = {
-      description = "Refresh /etc/issue when NetworkManager reports connectivity changes";
-      after = [ "NetworkManager.service" ];
-      wantedBy = [ "multi-user.target" ];
-      serviceConfig = {
-        Type = "simple";
-        ExecStart = "${pkgs.networkmanager}/bin/nmcli monitor";
-        ExecStartPost = "${pkgs.systemd}/bin/systemctl start show-ip-in-issue.service";
-        Restart = "always";
-      };
-    };
+    boot.zfs.forceImportRoot = true;
 
     environment.systemPackages = with pkgs; [
       git

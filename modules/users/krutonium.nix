@@ -43,6 +43,7 @@
       };
       home-manager.users.krutonium = {
         home = {
+          enableNixpkgsReleaseCheck = false;
           stateVersion = "26.05";
           username = "krutonium";
           homeDirectory = "/home/krutonium";
