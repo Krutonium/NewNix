@@ -1,4 +1,9 @@
-{ inputs, self, lib, ... }:
+{
+  inputs,
+  self,
+  lib,
+  ...
+}:
 {
   flake.nixosConfigurations.uSteamDeck = inputs.nixpkgs.lib.nixosSystem {
     modules = with self.nixosModules; [
@@ -25,6 +30,10 @@
       nixpkgs.overlays = [ inputs.self.overlays.jovian-unstable-bits ];
       boot = {
         tmp.useTmpfs = false;
+      };
+      networking = {
+        hostName = "uSteamDeck";
+        hostId = "185e48dd";
       };
       services.displayManager.gdm.enable = lib.mkForce false;
       nixpkgs = {
