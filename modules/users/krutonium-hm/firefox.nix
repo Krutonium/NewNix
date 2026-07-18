@@ -55,7 +55,7 @@
 
     in
     {
-      config = lib.mkIf (osConfig.services.displayManager.gdm.enable == true) {
+      config = lib.mkIf (osConfig.services.desktopManager.gnome.enable == true) {
         programs.firefox = {
           enable = true;
           package = pkgs.unstable.firefox;
