@@ -36,7 +36,12 @@
         hostName = "uSteamDeck";
         hostId = "185e48dd";
       };
-      services.displayManager.gdm.enable = lib.mkForce false;
+      
+      services = {
+        displayManager.gdm.enable = lib.mkForce false;
+        udisks2.enable = true;
+      };
+      security.polkit.enable = true;
       nixpkgs = {
         config = {
           allowUnfree = true;
