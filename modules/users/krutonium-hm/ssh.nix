@@ -11,9 +11,8 @@
             Compression = true;
             User = "krutonium";
           };
-          "Host deck" = {
+          "uSteamDeck" = {
             HostName = "10.9";
-            User = "deck";
           };
           "uWebServer" = {
             HostName = "10.1";
