@@ -8,7 +8,7 @@
   flake.nixosConfigurations.uSteamDeck = inputs.nixpkgs.lib.nixosSystem {
     modules = with self.nixosModules; [
       common
-      #SteamDeckModule
+      SteamDeckModule
       boot
       inputs.jovian-nixos.nixosModules.default
       krutonium

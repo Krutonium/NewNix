@@ -1,6 +1,6 @@
 { self, inputs, ... }:
 {
-  flake.nixosModules.minimalInstallerIso = { config, lib, pkgs, modulesPath, ... }: {
+  flake.nixosModules.minimalInstallerIso = { lib, pkgs, modulesPath, ... }: {
     imports = [
       (modulesPath + "/installer/cd-dvd/installation-cd-minimal.nix")
     ];
@@ -17,9 +17,7 @@
         PasswordAuthentication = false;
       };
     };
-
     users.users.root.openssh.authorizedKeys.keys = [
-      # Replace with your actual public key(s)
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBGydZMghVpYF+glHje55hN0/00i9nOEA+OP4A/eneXp"
     ];
     users.users.root = {
@@ -41,10 +39,11 @@
       '';
     };
     boot.zfs.forceImportRoot = true;
-
     environment.systemPackages = with pkgs; [
       git
       disko
+      btop
+      fastfetch
     ];
     system.stateVersion = "26.05";
   };
