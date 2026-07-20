@@ -65,6 +65,13 @@
         inputs.g600-key-remap-daemon.nixosModules.g600-key-remap
       ];
       services.g600-key-remap.enable = true;
+      services.xserver.xkb = {
+        layout = "us";
+        extraLayouts.fKeysFix = {
+          description = "Restore Real F13-F24";
+          symbolsFile = ../assets/fixfkeys.xkb;
+        };
+      };
       # Hardware
       boot = {
         tmp.useTmpfs = false;
