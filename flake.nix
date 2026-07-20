@@ -63,6 +63,7 @@
     #  url = "github:Jovian-Experiments/Jovian-NixOS";
     #};
     disko.url = "github:nix-community/disko";
+    g600-key-remap-daemon.url = "github:Krutonium/G600-key-remap-daemon";
   };
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./enabled);
 }

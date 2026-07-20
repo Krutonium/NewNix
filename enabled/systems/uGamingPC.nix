@@ -62,8 +62,9 @@
     in
     {
       imports = [
-
+        inputs.g600-key-remap-daemon.nixosModules.g600-key-remap
       ];
+      services.g600-key-remap.enable = true;
       # Hardware
       boot = {
         tmp.useTmpfs = false;
@@ -152,6 +153,7 @@
         };
       };
       services.xserver.videoDrivers = [ "nvidia" ];
+      services.ratbagd.enable = true;
       hardware = {
         graphics.enable = true;
         cpu.amd.updateMicrocode = true;
