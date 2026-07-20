@@ -139,6 +139,14 @@
           "org/gnome/settings-daemon/plugins/housekeeping" = {
             donation-reminder-enabled = false;
           };
+          "org/gnome/settings-daemon/plugins/media-keys" = {
+            control-center-static = "['']";
+            mic-mute-static = "['']";
+            battery-status-static = "['']";
+            touchpad-off-static = "['']";
+            touchpad-on-static = "['']";
+            touchpad-toggle-static = "['']";
+          };
           "org/gnome/shell" = {
             disabled-extensions = [ "apps-menu@gnome-shell-extensions.gcampax.github.com" ];
             enabled-extensions = extensionUuids;
