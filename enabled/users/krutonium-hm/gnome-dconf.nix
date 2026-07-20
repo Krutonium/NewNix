@@ -13,7 +13,7 @@
       extensions = with pkgs.gnomeExtensions; [
         dash-to-panel
         ddterm
-        appindicator
+        status-tray
         arcmenu
         no-overview
         gtile
@@ -164,6 +164,11 @@
             position-system-menu = 3;
             show-all-slider = true;
             show-value-label = true;
+          };
+          "org/gnome/shell/extensions/status-tray" = {
+            icon-mode = "original";
+            icon-size = 17;
+            overflow-enabled = false;
           };
           "org/gnome/shell/extensions/arcmenu" = {
             arc-menu-placement = "DTP";
