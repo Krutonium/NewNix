@@ -63,7 +63,14 @@
     #  url = "github:Jovian-Experiments/Jovian-NixOS";
     #};
     disko.url = "github:nix-community/disko";
-    g600-key-remap-daemon.url = "github:Krutonium/G600-key-remap-daemon";
+    g600-key-remap-daemon = {
+      url = "github:Krutonium/G600-key-remap-daemon";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hanabi-src = {
+      url = "github:Aspiand/gnome-ext-hanabi/be05483b248a583de999d4d74eb982f79d2b71c3";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./enabled);
 }

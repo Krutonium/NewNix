@@ -243,7 +243,9 @@
     "g600-key-remap-daemon": {
       "inputs": {
         "flake-parts": "flake-parts_2",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1784510358,
@@ -273,6 +275,27 @@
         "owner": "GNOME",
         "repo": "gnome-shell",
         "rev": "ef02db02bf0ff342734d525b5767814770d85b49",
+        "type": "github"
+      }
+    },
+    "hanabi-src": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1782283554,
+        "narHash": "sha256-4dPWZ90156aM6yQz+8c6tdR7ohJJ2yjZro1K3tJEEL0=",
+        "owner": "Aspiand",
+        "repo": "gnome-ext-hanabi",
+        "rev": "be05483b248a583de999d4d74eb982f79d2b71c3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Aspiand",
+        "repo": "gnome-ext-hanabi",
+        "rev": "be05483b248a583de999d4d74eb982f79d2b71c3",
         "type": "github"
       }
     },
@@ -335,7 +358,7 @@
     "millennium": {
       "inputs": {
         "millennium-src": "millennium-src",
-        "nixpkgs": "nixpkgs_3"
+        "nixpkgs": "nixpkgs_2"
       },
       "locked": {
         "dir": "packages/nix",
@@ -515,22 +538,6 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1784356753,
-        "narHash": "sha256-12KrbMiWLcf8m7pCvAtZh1ZrgF85ZXDXvfR/fWTKy84=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "61b7c44c4073f0b827768aff0049561b5110ea5a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_3": {
-      "locked": {
         "lastModified": 1781577229,
         "narHash": "sha256-lrp67w8AulE9Ks53n27I45ADSzbOCn4H+CNW1Ck8B+8=",
         "owner": "nixos",
@@ -545,7 +552,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_4": {
+    "nixpkgs_3": {
       "locked": {
         "lastModified": 1784280462,
         "narHash": "sha256-DtoqIqM7VkR6NxAkcLpMwmi02USwWb3JdmNGLyhthc0=",
@@ -611,13 +618,14 @@
         "disko": "disko",
         "flake-parts": "flake-parts",
         "g600-key-remap-daemon": "g600-key-remap-daemon",
+        "hanabi-src": "hanabi-src",
         "home-manager": "home-manager",
         "hytale-launcher-nix": "hytale-launcher-nix",
         "import-tree": "import-tree",
         "millennium": "millennium",
         "nix-cachyos-kernel": "nix-cachyos-kernel",
         "nix-index-database": "nix-index-database",
-        "nixpkgs": "nixpkgs_4",
+        "nixpkgs": "nixpkgs_3",
         "nixpkgs-arcmenu": "nixpkgs-arcmenu",
         "nixpkgs-master": "nixpkgs-master",
         "nixpkgs-unstable": "nixpkgs-unstable",

@@ -36,6 +36,7 @@
         arcmenu
         dolphin-emu-git
         dusklight
+        hanabi
       ];
       home-manager = {
         extraSpecialArgs = { inherit inputs; };

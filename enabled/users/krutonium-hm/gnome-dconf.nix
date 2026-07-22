@@ -20,6 +20,7 @@
         brightness-control-using-ddcutil
         compiz-windows-effect
         compiz-alike-magic-lamp-effect
+        pkgs.gnome-ext-hanabi
       ];
       extensionUuids = map (ext: ext.extensionUuid) extensions;
     in
