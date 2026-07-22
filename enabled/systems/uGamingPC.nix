@@ -31,7 +31,7 @@
         "sd_mod"
       ];
       initrdRequired = [
-       
+
       ];
       kernelModules = [
         "kvm-amd"
@@ -64,6 +64,9 @@
       imports = [
         inputs.g600-key-remap-daemon.nixosModules.g600-key-remap
       ];
+      systemd.services.g600-key-remap.serviceConfig = {
+        TimeoutStopSec = "5s";
+      };
       services.g600-key-remap.enable = true;
       # Hardware
       boot = {
@@ -158,7 +161,7 @@
         graphics.enable = true;
         cpu.amd.updateMicrocode = true;
         nvidia = {
-          package = pkgs.nvidia-patch.auto-patch(config.boot.kernelPackages.nvidiaPackages.latest);
+          package = pkgs.nvidia-patch.auto-patch (config.boot.kernelPackages.nvidiaPackages.latest);
           open = false;
           modesetting.enable = true;
         };
