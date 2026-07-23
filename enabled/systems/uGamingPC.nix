@@ -49,6 +49,7 @@
         "mitigations=off"
         "acpi_enforce_resources=lax"
         "drm_kms_helper.poll=0" # Fix Monitors Turning themselves back on constantly
+        "udev.event-timeout=5"
         "quiet"
         "splash"
       ];
