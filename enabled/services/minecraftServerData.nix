@@ -26,8 +26,11 @@
             rconPort = 12347;
             rconPasswordFile = "/servers/rcon.password";
             port = 25565;
-            extraTCPPorts = [];
-            extraUDPPorts = [ 19132 24455 ];
+            extraTCPPorts = [ ];
+            extraUDPPorts = [
+              19132
+              24455
+            ];
           }
           {
             name = "create_chronicles";
@@ -37,8 +40,8 @@
             rconPort = 12348;
             rconPasswordFile = "/servers/rcon.password";
             port = 25568;
-            extraTCPPorts = [];
-            extraUDPPorts = [];
+            extraTCPPorts = [ ];
+            extraUDPPorts = [ ];
           }
           {
             name = "Hytale";
@@ -48,8 +51,19 @@
             rconPort = 0;
             rconPasswordFile = "/dev/null";
             port = 25565;
-            extraTCPPorts = [];
+            extraTCPPorts = [ ];
             extraUDPPorts = [ 5520 ];
+          }
+          {
+            name = "FTBSkies";
+            javaVersion = "jdk25";
+            script = "run.sh";
+            enabled = true;
+            port = 25570;
+            rconPort = 12349;
+            rconPasswordFile = "/servers/rcon.password";
+            extraTCPPorts = [ ];
+            extraUDPPorts = [ ];
           }
         ];
         description = "Minecraft server definitions, shared between minecraftServers and minecraftPortForwards.";
