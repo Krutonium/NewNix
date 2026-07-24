@@ -56,7 +56,7 @@
           }
           {
             name = "FTBSkies";
-            javaVersion = "jdk25";
+            javaVersion = "jdk21";
             script = "run.sh";
             enabled = true;
             port = 25570;
