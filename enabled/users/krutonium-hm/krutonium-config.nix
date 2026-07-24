@@ -30,11 +30,11 @@
       };
 
       atticConfig = ''
-      default-server = "KruCache"
+        default-server = "KruCache"
 
-      [servers.KruCache]
-      endpoint = "https://cache.krutonium.ca/"
-      token-file = "${osConfig.sops.secrets.attic_everything_token.path}"
+        [servers.KruCache]
+        endpoint = "https://cache.krutonium.ca/"
+        token-file = "${osConfig.sops.secrets.attic_everything_token.path}"
       '';
     in
     {
@@ -90,6 +90,26 @@
         font_size = 24
         font_size_text = 14
         font_scale = 1
+      '';
+      xdg.configFile."xkb/symbols/custom".text = ''
+        xkb_symbols "f13fix" {
+            include "pc(pc105)"
+            include "us(basic)"
+            include "inet(evdev)"
+
+            key <FK13> { [ F13 ] };
+            key <FK14> { [ F14 ] };
+            key <FK15> { [ F15 ] };
+            key <FK16> { [ F16 ] };
+            key <FK17> { [ F17 ] };
+            key <FK18> { [ F18 ] };
+            key <FK19> { [ F19 ] };
+            key <FK20> { [ F20 ] };
+            key <FK21> { [ F21 ] };
+            key <FK22> { [ F22 ] };
+            key <FK23> { [ F23 ] };
+            key <FK24> { [ F24 ] };
+        };
       '';
       xdg.configFile."nix/nix.conf".text = ''
         !include /run/secrets/rendered/nix-access-tokens.conf

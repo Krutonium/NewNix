@@ -38,6 +38,7 @@
               (mkTuple [
                 "xkb"
                 "us"
+                "custom+f13fix"
               ])
             ];
             xkb-options = [ "terminate:ctrl_alt_bksp" ];
@@ -60,7 +61,6 @@
           "org/gnome/desktop/privacy" = {
             disable-microphone = false;
           };
-
           "org/gnome/desktop/wm/preferences" = {
             num-workspaces = 1;
             visual-bell = false;
