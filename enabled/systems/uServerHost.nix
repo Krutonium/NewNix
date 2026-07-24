@@ -13,7 +13,7 @@
       minecraftServerData
       ut99
       root
-      ollama_host
+      #ollama_host
       attic
       satisfactory
       zswap
