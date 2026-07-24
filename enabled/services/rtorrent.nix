@@ -33,10 +33,18 @@
           downloadDir = "/media2/rTorrent/downloads/";
           configText = ''
             protocol.encryption.set = allow_incoming,try_outgoing,enable_retry
+            protocol.pex.set = yes
+
             throttle.max_uploads.set = 100
             throttle.max_uploads.global.set = 1000
-            throttle.min_peers.normal.set = 1000
-            throttle.max_peers.normal.set = 1000
+            
+            throttle.min_peers.normal.set = 200
+            throttle.max_peers.normal.set = 400
+            throttle.min_peers.seed.set = 200;
+            throttle.max_peers.seed.set = 400;
+
+            trackers.numwant.set = 200;
+            
             network.bind_address.set = 0.0.0.0
           '';
         }; # /run/rtorrent/rpc.sock
