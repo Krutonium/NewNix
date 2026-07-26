@@ -27,7 +27,7 @@
       minecraftPortForwards
       minecraftServerData
       fileHosting
-      simpleCpuGovernor
+      #simpleCpuGovernor
       satisfactory
       zswap
       wan-watchdog
