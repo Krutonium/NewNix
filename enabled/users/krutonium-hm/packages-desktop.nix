@@ -22,17 +22,7 @@
 
       telegramPatched =
         let
-          version = "dev-unstable";
-
-          src = pkgs.fetchFromGitHub {
-            owner = "telegramdesktop";
-            repo = "tdesktop";
-            rev = "v7.0.2";
-            hash = "sha256-G/A5J2m1sXHD50zDmMD9ehnorAGRjnQ+YGMv6DEiJcQ=";
-            fetchSubmodules = true;
-          };
           unwrapped = pkgs.unstable.telegram-desktop.unwrapped.overrideAttrs (oldAttrs: {
-            inherit version src;
             patches = (oldAttrs.patches or [ ]) ++ [
               ./patches/telegram/0001-Disable-advertisements.patch
               ./patches/telegram/0002-Disable-advertisements.patch
