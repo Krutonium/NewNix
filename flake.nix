@@ -72,8 +72,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     moonshine = {
-      #url = "github:hgaiser/moonshine";
-      url = "github:scottjab/moonshine/scottjab/fix-polkit-extra-policies";
+      url = "github:hgaiser/moonshine";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.unstable.follows = "nixpkgs-unstable";
     };
