@@ -401,16 +401,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1785248718,
+        "lastModified": 1785267133,
         "narHash": "sha256-b51omsMJvCRiWG48rNi2aaGdwAoCQYbhHFpkhwoaEQo=",
-        "owner": "scottjab",
+        "owner": "hgaiser",
         "repo": "moonshine",
-        "rev": "0c3104af65e197cc76e939a88e9c4a4ed61b1c81",
+        "rev": "6075c016f0b2a41ab577e1f427f7d483f23293c4",
         "type": "github"
       },
       "original": {
-        "owner": "scottjab",
-        "ref": "scottjab/fix-polkit-extra-policies",
+        "owner": "hgaiser",
         "repo": "moonshine",
         "type": "github"
       }
