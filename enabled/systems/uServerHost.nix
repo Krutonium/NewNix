@@ -19,6 +19,8 @@
       zswap
       overte-server
       obs-relay
+      steam
+      moonshine
     ];
   };
 

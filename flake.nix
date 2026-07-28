@@ -71,6 +71,12 @@
       url = "github:Aspiand/gnome-ext-hanabi/be05483b248a583de999d4d74eb982f79d2b71c3";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    moonshine = {
+      #url = "github:hgaiser/moonshine";
+      url = "github:scottjab/moonshine/scottjab/fix-polkit-extra-policies";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.unstable.follows = "nixpkgs-unstable";
+    };
   };
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./enabled);
 }

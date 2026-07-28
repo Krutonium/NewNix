@@ -394,6 +394,27 @@
         "type": "github"
       }
     },
+    "moonshine": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1785248718,
+        "narHash": "sha256-b51omsMJvCRiWG48rNi2aaGdwAoCQYbhHFpkhwoaEQo=",
+        "owner": "scottjab",
+        "repo": "moonshine",
+        "rev": "0c3104af65e197cc76e939a88e9c4a4ed61b1c81",
+        "type": "github"
+      },
+      "original": {
+        "owner": "scottjab",
+        "ref": "scottjab/fix-polkit-extra-policies",
+        "repo": "moonshine",
+        "type": "github"
+      }
+    },
     "nix-cachyos-kernel": {
       "inputs": {
         "cachyos-kernel": "cachyos-kernel",
@@ -623,6 +644,7 @@
         "hytale-launcher-nix": "hytale-launcher-nix",
         "import-tree": "import-tree",
         "millennium": "millennium",
+        "moonshine": "moonshine",
         "nix-cachyos-kernel": "nix-cachyos-kernel",
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs_3",
