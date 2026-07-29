@@ -99,7 +99,7 @@
               obs-multi-rtmp
               obs-vkcapture
               obs-backgroundremoval
-              distroav
+              #distroav #NDI! It works!
             ];
             package = pkgs.obs-studio;
           };
