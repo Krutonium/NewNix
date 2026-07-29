@@ -1,4 +1,4 @@
-{ self, ... }:
+{ ... }:
 {
   flake.homeModules.editors =
     {
@@ -29,13 +29,14 @@
           nixfmt
 
           dotnet
-          omnisharp
+          #omnisharp-roslyn
+          csharp-ls
 
           # Editors
           zed-editor
 
-          pkgs.jetbrains.rider
-          pkgs.jetbrains.idea
+          jetbrains.rider
+          #jetbrains.idea
         ];
 
         programs.zed-editor = {
