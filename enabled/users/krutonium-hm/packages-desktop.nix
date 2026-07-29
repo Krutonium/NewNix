@@ -48,10 +48,6 @@
     {
       config = lib.mkIf (osConfig.services.desktopManager.gnome.enable == true) {
         home.packages = [
-          # Developemnt
-          pkgs.jetbrains.rider
-          pkgs.jetbrains.idea
-
           # Games
           bottles
           hytaleWrapped
