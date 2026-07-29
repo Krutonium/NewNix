@@ -1,4 +1,4 @@
-{ self, inputs, ... }:
+{ ... }:
 {
   flake.homeModules.packages-desktop =
     {
@@ -31,7 +31,7 @@
             hash = "sha256-nN6a/TPMGmB59HS7uYvNuLVAXjn2XbJWuAqlPft0jww=";
             fetchSubmodules = true;
           };
-          unwrapped = pkgs.telegram-desktop.unwrapped.overrideAttrs (oldAttrs: {
+          unwrapped = pkgs.unstable.telegram-desktop.unwrapped.overrideAttrs (oldAttrs: {
             inherit version src;
             patches = (oldAttrs.patches or [ ]) ++ [
               ./patches/telegram/0001-Disable-advertisements.patch
