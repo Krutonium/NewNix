@@ -74,7 +74,6 @@
     moonshine = {
       url = "github:hgaiser/moonshine";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.unstable.follows = "nixpkgs-unstable";
     };
   };
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./enabled);
