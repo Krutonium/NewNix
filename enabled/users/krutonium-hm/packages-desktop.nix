@@ -22,21 +22,12 @@
 
       telegramPatched =
         let
-          version = "dev-unstable";
-
-          src = pkgs.fetchFromGitHub {
-            owner = "telegramdesktop";
-            repo = "tdesktop";
-            rev = "ae7ab838f450b73b30ade03a87cfdb6ff4b68bd3";
-            hash = "sha256-nN6a/TPMGmB59HS7uYvNuLVAXjn2XbJWuAqlPft0jww=";
-            fetchSubmodules = true;
-          };
           unwrapped = pkgs.unstable.telegram-desktop.unwrapped.overrideAttrs (oldAttrs: {
-            inherit version src;
             patches = (oldAttrs.patches or [ ]) ++ [
               ./patches/telegram/0001-Disable-advertisements.patch
               ./patches/telegram/0002-Disable-advertisements.patch
               ./patches/telegram/0003-Disable-advertisements.patch
+              ./patches/telegram/0004-Disable-saving-restrictions.patch
             ];
           });
         in
