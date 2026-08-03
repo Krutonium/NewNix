@@ -49,7 +49,7 @@
           pkgs.unstable.openrct2
           pkgs.prismlauncher
           pkgs.steam-run
-          pkgs.sgdboop
+          pkgs.unstable.sgdboop
           pkgs.dusklight
 
           # Media
