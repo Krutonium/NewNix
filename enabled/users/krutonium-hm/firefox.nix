@@ -115,6 +115,7 @@
               "browser.sessionstore.resuming_after_os_restart" = true;
               "browser.link.open_newwindow.restriction" = 0;
               "browser.tabs.groups.enabled" = false;
+              "privacy.donottrackheader.enabled" = true;
 
               "browser.tabs.groups.smart.enabled" = false;
               "browser.tabs.groups.smart.userEnabled" = false;
