@@ -5,6 +5,7 @@
       pkgs,
       lib,
       osConfig,
+      mv,
       ...
     }:
     with lib.hm.gvariant;
@@ -14,7 +15,7 @@
         dash-to-panel
         ddterm
         status-tray
-        arcmenu
+        mv.tip.gnomeExtensions.arcmenu
         no-overview
         gtile
         brightness-control-using-ddcutil
