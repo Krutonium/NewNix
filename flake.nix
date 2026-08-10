@@ -2,6 +2,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     multiverse.url = "github:fzakaria/nixpkgs-multiverse";
+    # NEW! Multiverse replaces Unstable and Master and technically every older version as well!
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";
     home-manager = {
