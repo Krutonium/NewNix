@@ -33,14 +33,14 @@
           csharp-ls
 
           # Editors
-          zed-editor
+          #zed-editor
 
           jetbrains.rider
-          #jetbrains.idea
+          jetbrains.idea
         ];
 
         programs.zed-editor = {
-          enable = true;
+          enable = false;
 
           userSettings = {
             #
