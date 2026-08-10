@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ ... }:
 {
   flake.homeModules.firefox =
     {
@@ -7,6 +7,7 @@
       osConfig,
       config,
       lib,
+      mv,
       ...
     }:
     let
@@ -58,7 +59,7 @@
       config = lib.mkIf (osConfig.services.desktopManager.gnome.enable == true) {
         programs.firefox = {
           enable = true;
-          package = pkgs.unstable.firefox;
+          package = mv.tip.firefox;
           policies.ExtensionSettings = forceEnabled extensions;
           configPath = "${config.xdg.configHome}/mozilla/firefox";
           profiles.krutonium = {

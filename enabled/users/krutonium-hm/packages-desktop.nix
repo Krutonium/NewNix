@@ -5,6 +5,7 @@
       osConfig,
       lib,
       pkgs,
+      mv,
       ...
     }:
     let
@@ -22,7 +23,7 @@
 
       telegramPatched =
         let
-          unwrapped = pkgs.unstable.telegram-desktop.unwrapped.overrideAttrs (oldAttrs: {
+          unwrapped = mv.tip.telegram-desktop.unwrapped.overrideAttrs (oldAttrs: {
             patches = (oldAttrs.patches or [ ]) ++ [
               ./patches/telegram/0001-Disable-advertisements.patch
               ./patches/telegram/0002-Disable-advertisements.patch
@@ -46,10 +47,10 @@
           pkgs.shipwright
           pkgs._2ship2harkinian
           pkgs.appimage-run
-          pkgs.unstable.openrct2
+          mv.tip.openrct2
           pkgs.prismlauncher
           pkgs.steam-run
-          pkgs.unstable.sgdboop
+          mv.tip.sgdboop
           pkgs.dusklight
 
           # Media
@@ -69,7 +70,7 @@
           pkgs.unzip
           pkgs.yt-dlp
           pkgs.atuin
-          pkgs.unstable.ollama
+          #mv.tip.ollama
           pkgs.opencode
 
           # Commuications

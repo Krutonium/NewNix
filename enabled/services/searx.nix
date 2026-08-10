@@ -5,6 +5,7 @@
       config,
       pkgs,
       lib,
+      mv,
       ...
     }:
     {
@@ -42,7 +43,7 @@
         };
       };
       services.searx = {
-        package = pkgs.unstable.searxng;
+        package = mv.tip.searxng;
         environmentFile = config.sops.secrets.searx_secret.path;
         enable = true;
         redisCreateLocally = true;

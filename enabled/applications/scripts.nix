@@ -1,7 +1,12 @@
 { ... }:
 {
   flake.nixosModules.scripts =
-    { pkgs, config, ... }:
+    {
+      pkgs,
+      config,
+      mv,
+      ...
+    }:
     let
       sshr = pkgs.writeShellScriptBin "sshr" ''
         ssh $@
@@ -116,11 +121,11 @@
       '';
 
       explain = pkgs.writeShellScriptBin "explain" ''
-        ${pkgs.unstable.gh}/bin/gh explain "$@"
+        ${mv.tip.gh}/bin/gh explain "$@"
       '';
 
       help = pkgs.writeShellScriptBin "help" ''
-        ${pkgs.unstable.gh}/bin/gh suggest "$@"
+        ${mv.tip.gh}/bin/gh suggest "$@"
       '';
 
       reboot-fw = pkgs.writeShellScriptBin "reboot-fw" "sudo systemctl reboot --firmware-setup";

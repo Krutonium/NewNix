@@ -7,14 +7,23 @@
       pkgs,
       ...
     }:
+    let
+      mv = inputs.multiverse.lib.mkMultiverse {
+        system = pkgs.system;
+        config = {
+          allowUnfree = true;
+          allowInsecure = true;
+        };
+      };
+    in
     {
+      _module.args.mv = mv;
       imports = with self.nixosModules; [
         inputs.home-manager.nixosModules.home-manager
         inputs.stylix.nixosModules.stylix
         inputs.sops-nix.nixosModules.sops
         inputs.simple-cpu-governor.nixosModules.default
         inputs.nix-index-database.nixosModules.default
-        inputs.disko.nixosModules.default
         assets
         nix-settings
         scripts
@@ -24,22 +33,17 @@
         firefoxNvidiaOffload
       ];
       nixpkgs.overlays = with inputs.self.overlays; [
-        inputs.nix-cachyos-kernel.overlays.pinned
-        inputs.millennium.overlays.default
         inputs.nvidia-patch.overlays.default
-        unstable
-        master
         InternetRadio2Computercraft
         intel-media-sdk
         hytale-launcher
         discord-canary-vulkan-patch
-        arcmenu
         dolphin-emu-git
         dusklight
         hanabi
       ];
       home-manager = {
-        extraSpecialArgs = { inherit inputs; };
+        extraSpecialArgs = { inherit inputs mv; };
         useGlobalPkgs = true;
       };
       environment.systemPackages = [

@@ -22,7 +22,12 @@
   };
 
   flake.nixosModules.uGamingPCModule =
-    { pkgs, config, ... }:
+    {
+      pkgs,
+      config,
+      mv,
+      ...
+    }:
     let
       initrdAvailable = [
         "xhci_pci"
@@ -59,8 +64,8 @@
         pkgs.logitech-udev-rules
         pkgs.via
       ];
-      #kernel = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto;
-      kernel = pkgs.unstable.linuxPackages_latest;
+      kernel = mv.tip.linuxPackages_latest;
+      #pkgs.unstable.linuxPackages_latest;
     in
     {
       imports = [

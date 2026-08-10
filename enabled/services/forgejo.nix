@@ -1,14 +1,14 @@
 { self, ... }:
 {
   flake.nixosModules.forgejo =
-    { pkgs, config, ... }:
+    { mv, config, ... }:
     {
       imports = [
         self.nixosModules.anubis
       ];
       services.forgejo = {
         enable = true;
-        package = pkgs.unstable.forgejo;
+        package = mv.tip.forgejo;
         stateDir = "/media2/forgejo/repos";
         settings = {
           server = {

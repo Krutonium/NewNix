@@ -1,13 +1,13 @@
 { ... }:
 {
   flake.nixosModules.plex =
-    { pkgs, config, ... }:
+    { mv, config, ... }:
     {
       systemd.services.plex.serviceConfig.TimeoutStopSec = "10s";
       services.plex = {
         enable = true;
         openFirewall = true;
-        package = pkgs.unstable.plex;
+        package = mv.tip.plex;
       };
       users.users.krutonium.extraGroups = [ "plex" ];
       users.users.plex.uid = 193;

@@ -1,15 +1,9 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-master.url = "github:NixOS/nixpkgs/master";
+    multiverse.url = "github:fzakaria/nixpkgs-multiverse";
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";
-    nix-cachyos-kernel = {
-      url = "github:xddxdd/nix-cachyos-kernel/release";
-      inputs.flake-parts.follows = "flake-parts";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -33,10 +27,6 @@
       url = "github:Krutonium/InternetRadio2Computercraft";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    millennium = {
-      url = "github:SteamClientHomebrew/Millennium/next?dir=packages/nix";
-      # Can't Follow nixpkgs or it breaks Bun
-    };
     hytale-launcher-nix = {
       url = "github:JPyke3/hytale-launcher-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -53,16 +43,6 @@
       url = "github:icewind1991/nvidia-patch-nixos";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # Temporary/Provisional Extensions to be removed later
-    nixpkgs-arcmenu = {
-      url = "github:sgsunder/nixpkgs/arcmenu-69";
-      flake = false;
-    };
-    #jovian-nixos = {
-    #  url = "github:Jovian-Experiments/Jovian-NixOS";
-    #};
-    disko.url = "github:nix-community/disko";
     g600-key-remap-daemon = {
       url = "github:Krutonium/G600-key-remap-daemon";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -76,5 +56,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./enabled);
+  outputs =
+    inputs:
+    inputs.flake-parts.lib.mkFlake {
+      inherit inputs;
+    } (inputs.import-tree ./enabled);
 }
