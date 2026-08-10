@@ -4,6 +4,7 @@
     multiverse.url = "github:fzakaria/nixpkgs-multiverse";
     # NEW! Multiverse replaces Unstable and Master and technically every older version as well!
     flake-parts.url = "github:hercules-ci/flake-parts";
+    flake-utils.url = "github:numtide/flake-utils"; # Purely used to deduplicate
     import-tree.url = "github:vic/import-tree";
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
@@ -35,6 +36,7 @@
     simple-cpu-governor = {
       url = "github:krutonium/simple-cpu-governor";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
     };
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
@@ -43,10 +45,12 @@
     nvidia-patch = {
       url = "github:icewind1991/nvidia-patch-nixos";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.utils.follows = "flake-utils";
     };
     g600-key-remap-daemon = {
       url = "github:Krutonium/G600-key-remap-daemon";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
     };
     hanabi-src = {
       url = "github:Aspiand/gnome-ext-hanabi/be05483b248a583de999d4d74eb982f79d2b71c3";
