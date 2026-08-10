@@ -32,10 +32,9 @@
             ];
           });
         in
-        pkgs.telegram-desktop.overrideAttrs (_: {
+        mv.tip.telegram-desktop.overrideAttrs (_: {
           unwrapped = unwrapped;
         });
-
     in
     {
       config = lib.mkIf (osConfig.services.desktopManager.gnome.enable == true) {
