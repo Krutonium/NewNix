@@ -5,6 +5,7 @@
       pkgs,
       lib,
       osConfig,
+      mv,
       ...
     }:
     let
@@ -35,8 +36,8 @@
           # Editors
           #zed-editor
 
-          jetbrains.rider
-          jetbrains.idea
+          mv.tip.jetbrains.rider
+          mv.tip.jetbrains.idea
         ];
 
         programs.zed-editor = {
