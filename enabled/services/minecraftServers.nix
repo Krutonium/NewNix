@@ -1,7 +1,12 @@
 { ... }:
 {
   flake.nixosModules.minecraftServers =
-    { config, lib, pkgs, ... }:
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
     with lib;
     let
       servers = config.minecraftServerData.servers;
@@ -11,7 +16,8 @@
 
       enabledServers = filter (s: s.enabled) servers;
 
-      mkServerService = server:
+      mkServerService =
+        server:
         let
           serverDir = "/servers/${server.name}";
           startScript = "${serverDir}/${server.script}";
@@ -29,7 +35,11 @@
               password=`${pkgs.coreutils}/bin/cat ${server.rconPasswordFile}`
               ${pkgs.mcrcon}/bin/mcrcon -H ${host} -P ${toString server.rconPort} -p "$password" -w 1 "say Shutting Down!" "say 5" "say 4" "say 3" "say 2" "say 1" stop
             '';
-            path = [ pkgs.bash pkgs.coreutils java ];
+            path = [
+              pkgs.bash
+              pkgs.coreutils
+              java
+            ];
             serviceConfig = {
               WorkingDirectory = serverDir;
               Restart = "always";
@@ -48,18 +58,27 @@
           };
         };
 
-      mkBackupService = server:
+      mkBackupService =
+        server:
         let
           serverDir = "/servers/${server.name}";
-          host = "127.0.0.1";
+          # host = "127.0.0.1";
         in
         {
           name = "backup-${server.name}";
           value = {
             description = "Backup Service for Minecraft Server (${server.name})";
-            after = [ "network.target" "minecraft-${server.name}.service" ];
+            after = [
+              "network.target"
+              "minecraft-${server.name}.service"
+            ];
             wantedBy = [ "multi-user.target" ];
-            path = [ pkgs.btrfs-progs pkgs.btrfs-snap pkgs.mcrcon pkgs.coreutils ];
+            path = [
+              pkgs.btrfs-progs
+              pkgs.btrfs-snap
+              pkgs.mcrcon
+              pkgs.coreutils
+            ];
             startAt = "*:0/15";
             serviceConfig = {
               Type = "oneshot";
@@ -73,7 +92,8 @@
           };
         };
 
-      mkDailyBackupService = server:
+      mkDailyBackupService =
+        server:
         let
           serverDir = "/servers/${server.name}";
           backupDir = "/backups/${server.name}";
@@ -84,7 +104,11 @@
           value = {
             description = "Daily Backup Service for Minecraft Server (${server.name})";
             after = [ "network.target" ];
-            path = [ pkgs.p7zip pkgs.mcrcon pkgs.coreutils ];
+            path = [
+              pkgs.p7zip
+              pkgs.mcrcon
+              pkgs.coreutils
+            ];
             startAt = "*-*-* 07:00:00";
             serviceConfig = {
               Type = "oneshot";

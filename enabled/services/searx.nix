@@ -3,7 +3,6 @@
   flake.nixosModules.searx =
     {
       config,
-      pkgs,
       lib,
       mv,
       ...

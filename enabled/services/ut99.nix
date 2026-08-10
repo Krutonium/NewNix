@@ -1,7 +1,7 @@
 { ... }:
 {
   flake.nixosModules.ut99 =
-    { config, ... }:
+    { ... }:
     {
       networking.firewall.allowedTCPPorts = [ 5080 ];
       networking.firewall.allowedUDPPorts = [

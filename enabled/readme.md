@@ -11,7 +11,7 @@ What is found where?
  ### /desktop
  This contains the configuration for the desktop environment - At this time, Gnome. It only contains the base configuration though, as actual customization is handled by the user via home manager.
  ### /overlays
- This contains overlays for nixpkgs; things like importing the nixos-unstable channel as `pkgs.unstable.` and adding extra packages to `pkgs` - Like the Hytale Launcher.
+ This contains overlays for nixpkgs. Could be anything.
  ### /secrets
  This contains a SOPS file for storing secrets. Used whenever I need to store sensitive information.
  ### /services

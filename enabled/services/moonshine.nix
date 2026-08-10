@@ -1,7 +1,7 @@
-{ self, inputs, ... }:
+{ inputs, ... }:
 {
   flake.nixosModules.moonshine =
-    { config, pkgs, ... }:
+    { ... }:
     let
     in
     {

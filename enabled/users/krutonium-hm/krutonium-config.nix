@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ ... }:
 {
   flake.homeModules.krutonium-config =
     {

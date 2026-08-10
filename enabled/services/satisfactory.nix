@@ -1,5 +1,5 @@
 # modules/nixos/satisfactory.nix
-{ self, ... }:
+{ ... }:
 {
   flake.nixosModules.satisfactory =
     {

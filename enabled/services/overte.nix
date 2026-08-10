@@ -2,9 +2,10 @@
 # service modules). Runs Overte's official OCI image via
 # virtualisation.oci-containers rather than building from source — see the
 # options below for why.
-{ self, ... }:
+{ ... }:
 {
-  flake.nixosModules.overte-server = { config, lib, pkgs, ... }:
+  flake.nixosModules.overte-server =
+    { config, lib, ... }:
     let
       cfg = config.services.overte-server;
     in
@@ -19,7 +20,10 @@
         };
 
         backend = lib.mkOption {
-          type = lib.types.enum [ "podman" "docker" ];
+          type = lib.types.enum [
+            "podman"
+            "docker"
+          ];
           default = "podman";
           description = ''
             Container backend used to run the image. Podman is rootless-friendly and
@@ -89,11 +93,20 @@
 
         networking.firewall = lib.mkIf cfg.openFirewall {
           allowedTCPPortRanges = [
-            { from = 40100; to = 40102; }
+            {
+              from = 40100;
+              to = 40102;
+            }
           ];
           allowedUDPPortRanges = [
-            { from = 40100; to = 40102; }
-            { from = 48000; to = 48006; }
+            {
+              from = 40100;
+              to = 40102;
+            }
+            {
+              from = 48000;
+              to = 48006;
+            }
           ];
         };
       };

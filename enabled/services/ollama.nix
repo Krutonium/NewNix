@@ -1,9 +1,7 @@
-{ self, ... }:
+{ ... }:
 {
   flake.nixosModules.ollama_host =
     {
-      config,
-      pkgs,
       mv,
       ...
     }:

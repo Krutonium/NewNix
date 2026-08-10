@@ -57,7 +57,6 @@
         "quiet"
         "splash"
       ];
-      btrfsDisk = "/dev/disk/by-uuid/941617ae-329b-477d-9760-09268d5cfeef";
     in
     {
       boot = {
@@ -106,7 +105,7 @@
         powerManagement.finegrained = true; # Turn GPU off when not in use (requires modesetting)
         open = false; # 950M requires proprietary driver
         nvidiaSettings = true;
-        package = pkgs.nvidia-patch.auto-patch(kernel.nvidiaPackages.legacy_580);
+        package = pkgs.nvidia-patch.auto-patch (kernel.nvidiaPackages.legacy_580);
         prime = {
           offload = {
             enable = true;

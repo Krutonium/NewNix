@@ -4,11 +4,8 @@
     {
       config,
       pkgs,
-      lib,
       ...
     }:
-    with lib;
-    with builtins;
     let
       sql_current = pkgs.postgresql_18_jit;
       sql_upgrade = pkgs.postgresql_18_jit;

@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ ... }:
 {
   flake.homeModules.gnome-dconf =
     {
