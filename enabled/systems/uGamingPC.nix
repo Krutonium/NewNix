@@ -45,9 +45,9 @@
         "i2c-piix4"
       ];
       kernelModulePackages = with config.boot.kernelPackages; [
-        #zenpower.out
+        zenpower.out
       ];
-      kernelModulesBlacklist = [ ];
+      #kernelModulesBlacklist = [ ];
       kernelParams = [
         "nvidia.NVreg_EnableResizableBar=1"
         "nvidia-drm.modeset=1"
