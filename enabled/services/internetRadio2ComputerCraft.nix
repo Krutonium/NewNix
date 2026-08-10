@@ -1,7 +1,7 @@
 { ... }:
 {
   flake.nixosModules.InternetRadio2Computercraft =
-    { pkgs, ... }:
+    { pkgs, mv, ... }:
     {
       systemd.services.InternetRadio2Computercraft = {
         description = "Stream Internet Radio for Computercraft";
@@ -15,7 +15,7 @@
         path = [
           pkgs.InternetRadio2Computercraft
           pkgs.ffmpeg-full
-          pkgs.unstable.yt-dlp
+          mv.tip.yt-dlp
         ];
         script = ''
           InternetRadio2Computercraft
