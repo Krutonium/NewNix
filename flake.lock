@@ -245,11 +245,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1786205183,
-        "narHash": "sha256-+mhhWk6V7jmLW7kXkFRYQ3yDNVxQzuiAwkD6Nwb9LnE=",
+        "lastModified": 1786458290,
+        "narHash": "sha256-gCcJ/0scVsWYJPLMBGTVY6NwS03TFc4qYWktTZrdIE8=",
         "owner": "JPyke3",
         "repo": "hytale-launcher-nix",
-        "rev": "34131e0812cde0b9335f1acafbedfa17431325e8",
+        "rev": "f620ab6680afb34f98f1cd7d31bb9604772274fa",
         "type": "github"
       },
       "original": {
@@ -295,11 +295,11 @@
     },
     "multiverse": {
       "locked": {
-        "lastModified": 1786357017,
-        "narHash": "sha256-Aqs62N2WFhqh68X8mjwgxF5ue0p6Q7d5+NNParD1t34=",
+        "lastModified": 1786504873,
+        "narHash": "sha256-EYuJp0M5oxm01l6gxyc5CCAwhHXArfbJ2f2AZCLqz/g=",
         "owner": "fzakaria",
         "repo": "nixpkgs-multiverse",
-        "rev": "bae029b0228b5ea3494e440b78255ba190a7276b",
+        "rev": "b420758478eaeec131874ffff24bd286a65a3c92",
         "type": "github"
       },
       "original": {
@@ -369,11 +369,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1786386009,
-        "narHash": "sha256-vCAj1BvbeGK/ui0Iq1MBeS0BN2exuerMjh7St6JiTuc=",
+        "lastModified": 1786503130,
+        "narHash": "sha256-IIHTaem3p1X7JonIuDMNN/dJ4ndJawa4RaK91vZOn1w=",
         "owner": "nix-community",
         "repo": "nur",
-        "rev": "241cce84f087b0480ab7e78b421e2be5cd8aff36",
+        "rev": "d04435699ae7bd2302085f625630e3db7387ff19",
         "type": "github"
       },
       "original": {
