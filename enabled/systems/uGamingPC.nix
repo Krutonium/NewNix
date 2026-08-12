@@ -18,7 +18,6 @@
       root
       zswap
       moonshine
-      zfs-support
     ];
   };
 
@@ -27,6 +26,7 @@
       pkgs,
       config,
       mv,
+      lib,
       ...
     }:
     let
@@ -65,7 +65,7 @@
         pkgs.logitech-udev-rules
         pkgs.via
       ];
-      kernel = mv.tip.zfs.latestCompatibleLinuxPackages;
+      kernel = mv.tip.linuxPackages_latest;
     in
     {
       imports = [
@@ -84,6 +84,7 @@
         kernelParams = kernelParams;
         extraModulePackages = kernelModulePackages;
         kernelPackages = kernel;
+        supportedFilesystems = [ "bcachefs" ];
       };
       virtualisation.libvirtd.enable = true;
       programs.virt-manager.enable = true;
@@ -102,6 +103,10 @@
         "/boot" = {
           device = "UUID=67C9-9661";
           fsType = "vfat";
+        };
+        "/games" = {
+          device = "UUID=2f94b423-9ca0-4ad4-a351-38e4efc4e02a";
+          fsType = "bcachefs";
         };
         "/uWebServer" = {
           device = "krutonium@krutonium.ca:/";
