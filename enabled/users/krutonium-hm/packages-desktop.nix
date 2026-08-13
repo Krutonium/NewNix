@@ -40,6 +40,7 @@
       config = lib.mkIf (osConfig.services.desktopManager.gnome.enable == true) {
         home.packages = [
           # Games
+          mv.tip.eden
           bottles
           hytaleWrapped
           pkgs.dolphin-emu

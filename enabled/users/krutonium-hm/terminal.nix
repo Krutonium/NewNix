@@ -6,6 +6,21 @@
       # Create .config/fish/config.fish with contents
       programs.fish = {
         enable = true;
+        interactiveShellInit = ''
+          function fish_greeting
+            printf '%s\n' \
+              '⠀⠀⠀⠀⠀⢠⣒⣤⠤⣀⣀' \
+              '⠀⠀⠠⣒⢤⠋⠂⠈⡷⠒⠒⣗⠢⡀' \
+              '⠀⢠⠋⠀⡇⠀⠀⣰⠁⠀⢀⠼⠠⣱' \
+              '⠀⢈⠀⠀⣧⣀⣠⣏⢀⠴⠋⠉⠙⡟⡄' \
+              '⠀⠘⣄⢠⠟⠉⠉⢻⡎⠀⠀⠀⣸⠇⢸' \
+              '⠀⢀⠜⡏⠁⠀⠀⠀⣧⣀⣠⠾⠋⠀⡜' \
+              '⠀⡜⠀⠁⠀⠀⠀⠀⠘⣷⠀⠀⡠⠊' \
+              '⠀⠹⣁⡤⢾⡀⠀⠀⢠⠏⠀⡐⠁' \
+              '⠀⠀⠃⢴⠀⠉⠒⠚⠃⠀⢠' \
+              '⠀⢸⠀⠈⠁⠀⠀⠀⠀⠀⡎'\    
+          end
+        '';
       };
       home.packages = [
         pkgs.bat
