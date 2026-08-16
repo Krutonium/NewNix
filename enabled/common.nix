@@ -24,6 +24,7 @@
         inputs.sops-nix.nixosModules.sops
         inputs.simple-cpu-governor.nixosModules.default
         inputs.nix-index-database.nixosModules.default
+        inputs.win98se-plymouth.nixosModules.default
         assets
         nix-settings
         scripts

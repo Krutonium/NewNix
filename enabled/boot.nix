@@ -28,12 +28,16 @@
       boot.plymouth = {
         enable = true;
         #theme = lib.mkForce "bgrt";
-        theme = lib.mkForce "pixels";
-        themePackages = [
-          (pkgs.adi1090x-plymouth-themes.override {
-            selected_themes = [ "pixels" ];
-          })
-        ];
+        #        theme = lib.mkForce "pixels";
+        #        themePackages = [
+        #          (pkgs.adi1090x-plymouth-themes.override {
+        #            selected_themes = [ "pixels" ];
+        #          })
+        #        ];
+        win98se.label = {
+          mode = "custom";
+          text = "2000";
+        };
       };
     };
 }

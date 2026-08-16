@@ -60,6 +60,10 @@
       url = "github:hgaiser/moonshine";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    win98se-plymouth = {
+      url = "github:nilp0inter/plymouth-theme-win98se-inspired-nixos-theme";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs =
     inputs:

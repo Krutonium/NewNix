@@ -19,6 +19,7 @@
         targets = {
           grub.enable = false;
           gnome.enable = true;
+          plymouth.enable = false;
         };
         cursor = {
           name = "oreo_spark_purple_bordered_cursors";

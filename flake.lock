@@ -423,7 +423,8 @@
         "nvidia-patch": "nvidia-patch",
         "simple-cpu-governor": "simple-cpu-governor",
         "sops-nix": "sops-nix",
-        "stylix": "stylix"
+        "stylix": "stylix",
+        "win98se-plymouth": "win98se-plymouth"
       }
     },
     "simple-cpu-governor": {
@@ -598,6 +599,26 @@
       "original": {
         "owner": "tinted-theming",
         "repo": "base16-zed",
+        "type": "github"
+      }
+    },
+    "win98se-plymouth": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1786831690,
+        "narHash": "sha256-9ZGEWz06X7t0jv3MMyUdUJ+issyDuAd69ZphDJ94FPA=",
+        "owner": "nilp0inter",
+        "repo": "plymouth-theme-win98se-inspired-nixos-theme",
+        "rev": "7c64b9ec51282478661c07469d4dc28b53d0f6f2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nilp0inter",
+        "repo": "plymouth-theme-win98se-inspired-nixos-theme",
         "type": "github"
       }
     }
