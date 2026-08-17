@@ -1,6 +1,7 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
+    #nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
+    nixpkgs.url = "https://channels.nixos.org/nixos-26.05/nixexprs.tar.zst";
     multiverse.url = "github:fzakaria/nixpkgs-multiverse";
     # NEW! Multiverse replaces Unstable and Master and technically every older version as well!
     flake-parts.url = "github:hercules-ci/flake-parts";
