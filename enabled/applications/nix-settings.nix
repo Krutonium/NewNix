@@ -23,7 +23,7 @@
           substituters = [
             "https://cache.nixos-cuda.org"
             "https://attic.xuyh0120.win/lantian"
-            "https://cache.krutonium.ca/KruCache"
+            "https://cache.krutonium.ca/KruCache?priority=1"
             "https://jovian-nixos.cachix.org"
           ];
           trusted-public-keys = [
