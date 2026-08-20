@@ -52,13 +52,13 @@
           category = "AudioVideo";
           startupWMClass = "com.edde746.plezy";
         }
-        {
-          pkg = pkgs.satisfactorymodmanager;
-          prettyName = "Satisfactory Mod Manager";
-          iconName = "steam_icon_526870";
-          category = "Game";
-          startupWMClass = "Satisfactory Mod Manager";
-        }
+        #{
+        #  pkg = pkgs.satisfactorymodmanager;
+        #  prettyName = "Satisfactory Mod Manager";
+        #  iconName = "steam_icon_526870";
+        #  category = "Game";
+        #  startupWMClass = "Satisfactory Mod Manager";
+        #}
       ];
 
       apps = map (

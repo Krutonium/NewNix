@@ -52,6 +52,7 @@
           pkgs.steam-run
           mv.tip.sgdboop
           pkgs.dusklight
+          pkgs.satisfactorymodmanager
 
           # Media
           pkgs.ffmpeg-full
