@@ -1,7 +1,6 @@
 { ... }:
 {
   flake.homeModules.dynamic-apps =
-
     # https://github.com/vinceliuice/McMojave-circle/blob/master/src/apps/scalable/youtube-music-desktop-app.svg
     # Use that to find icon names
     # https://specifications.freedesktop.org/menu-spec/latest/category-registry.html
@@ -52,6 +51,13 @@
           iconName = "plex";
           category = "AudioVideo";
           startupWMClass = "com.edde746.plezy";
+        }
+        {
+          pkg = pkgs.satisfactorymodmanager;
+          prettyName = "Satisfactory Mod Manager";
+          iconName = "steam_icon_526870";
+          category = "Game";
+          startupWMClass = "Satisfactory Mod Manager";
         }
       ];
 
