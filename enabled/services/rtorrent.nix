@@ -3,7 +3,7 @@
   flake.nixosModules.rtorrent =
     {
       config,
-      pkgs,
+      mv,
       ...
     }:
     let
@@ -24,6 +24,7 @@
           enable = true;
           openFirewall = true;
           port = peerPort;
+          package = mv.tip.rtorrent;
           user = "rtorrent";
           group = "rtorrent";
           dataPermissions = "0755";
@@ -53,7 +54,7 @@
           nginx.enable = true;
         };
         autobrr = {
-          enable = true;
+          enable = false;
           secretFile = config.sops.secrets.autobrr_secret.path;
           settings = {
             checkForUpdates = false;
