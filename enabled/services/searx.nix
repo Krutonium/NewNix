@@ -92,6 +92,7 @@
             pool_connections = 100;
             pool_maxsize = 15;
             enable_http2 = true;
+            keepalive_expiry = 10;
           };
           limiterSettings = {
             real_ip = {
