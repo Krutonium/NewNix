@@ -4,6 +4,7 @@
     {
       config,
       mv,
+      pkgs,
       ...
     }:
     let
