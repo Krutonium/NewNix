@@ -1,12 +1,31 @@
 diff --git a/Telegram/SourceFiles/api/api_peer_search.cpp b/Telegram/SourceFiles/api/api_peer_search.cpp
-index 789334681e..3a401cf047 100644
+index 73a252ab12..d577ef6a83 100644
 --- a/Telegram/SourceFiles/api/api_peer_search.cpp
 +++ b/Telegram/SourceFiles/api/api_peer_search.cpp
-@@ -93,6 +93,7 @@ void PeerSearch::requestSponsored() {
- 	).done([=](
- 			const MTPcontacts_SponsoredPeers &result,
+@@ -96,24 +96,8 @@ void PeerSearch::requestSponsored() {
  			mtpRequestId requestId) {
-+			finishSponsored(requestId, PeerSearchResult{});
  		result.match([&](const MTPDcontacts_sponsoredPeersEmpty &) {
  			finishSponsored(requestId, PeerSearchResult{});
- 		}, [&](const MTPDcontacts_sponsoredPeers &data) {
+-		}, [&](const MTPDcontacts_sponsoredPeers &data) {
+-			_session->data().processUsers(data.vusers());
+-			_session->data().processChats(data.vchats());
+-			auto parsed = PeerSearchResult();
+-			parsed.sponsored.reserve(data.vpeers().v.size());
+-			for (const auto &peer : data.vpeers().v) {
+-				const auto &data = peer.data();
+-				const auto peerId = peerFromMTP(data.vpeer());
+-				parsed.sponsored.push_back({
+-					.peer = _session->data().peer(peerId),
+-					.randomId = data.vrandom_id().v,
+-					.sponsorInfo = TextWithEntities::Simple(
+-						qs(data.vsponsor_info().value_or_empty())),
+-					.additionalInfo = TextWithEntities::Simple(
+-						qs(data.vadditional_info().value_or_empty())),
+-				});
+-			}
+-			finishSponsored(requestId, std::move(parsed));
++		}, [&](const MTPDcontacts_sponsoredPeers &) {
++			finishSponsored(requestId, PeerSearchResult{});
+ 		});
+ 	}).fail([=](const MTP::Error &error, mtpRequestId requestId) {
+ 		finishSponsored(requestId, PeerSearchResult{});
