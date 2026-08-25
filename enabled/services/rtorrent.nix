@@ -12,6 +12,13 @@
       apiPort = 1234;
     in
     {
+      disabledModules = [ "services/torrent/rtorrent.nix" ];
+
+      # ...for the one that actually matches mv.tip.rtorrent's version.
+      imports = [
+        "${mv.tip.path}/nixos/modules/services/torrent/rtorrent.nix"
+      ];
+
       sops.secrets.basicAuth = {
         owner = "nginx";
         group = "nginx";
