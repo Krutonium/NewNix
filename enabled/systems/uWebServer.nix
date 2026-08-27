@@ -233,10 +233,12 @@
         "/media" = {
           device = "/dev/disk/by-id/ata-HGST_HDN726060ALE614_K1G6YP2B-part3";
           fsType = "ext4";
+          options = [ "rw" "relatime" "nofail" "x-systemd.device-timeout=10" ];
         };
         "/media2" = {
           device = "/dev/disk/by-id/ata-WDC_WD60EDAZ-11U78B0_WD-WX92D622XA45-part1";
           fsType = "ext4";
+          options = [ "rw" "relatime" "nofail" "x-systemd.device-timeout=10" ];
         };
       }
       // btrfsFileSystems;
