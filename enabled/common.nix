@@ -5,19 +5,10 @@
       config,
       lib,
       pkgs,
+      mv,
       ...
     }:
-    let
-      mv = inputs.multiverse.lib.mkMultiverse {
-        system = pkgs.system;
-        config = {
-          allowUnfree = true;
-          allowInsecure = true;
-        };
-      };
-    in
     {
-      _module.args.mv = mv;
       imports = with self.nixosModules; [
         inputs.home-manager.nixosModules.home-manager
         inputs.stylix.nixosModules.stylix

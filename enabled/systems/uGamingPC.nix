@@ -1,6 +1,7 @@
-{ inputs, self, ... }:
+{ inputs, self, mv, ... }:
 {
   flake.nixosConfigurations.uGamingPC = inputs.nixpkgs.lib.nixosSystem {
+    specialArgs = { inherit mv; };
     modules = with self.nixosModules; [
       avahi
       boot

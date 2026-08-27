@@ -12,6 +12,12 @@
       apiPort = 1234;
     in
     {
+      disabledModules = [ "services/torrent/rtorrent.nix" ];
+
+      # ...for the one that actually matches mv.tip.rtorrent's version.
+      imports = [
+        "${toString mv.tip.path}/nixos/modules/services/torrent/rtorrent.nix"
+      ];
 
       sops.secrets.basicAuth = {
         owner = "nginx";
@@ -26,7 +32,7 @@
           enable = true;
           openFirewall = true;
           port = peerPort;
-          #package = mv.tip.rtorrent;
+          package = mv.tip.rtorrent;
           user = "rtorrent";
           group = "rtorrent";
           dataPermissions = "0755";

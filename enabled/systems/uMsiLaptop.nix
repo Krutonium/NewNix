@@ -1,6 +1,7 @@
-{ inputs, self, ... }:
+{ inputs, self, mv, ... }:
 {
   flake.nixosConfigurations.uMsiLaptop = inputs.nixpkgs.lib.nixosSystem {
+    specialArgs = { inherit mv; };
     modules = with self.nixosModules; [
       avahi
       boot

@@ -1,6 +1,7 @@
-{ inputs, self, ... }:
+{ inputs, self, mv, ... }:
 {
   flake.nixosConfigurations.uServerHost = inputs.nixpkgs.lib.nixosSystem {
+    specialArgs = { inherit mv; };
     modules = with self.nixosModules; [
       uServerHostModule
       avahi
@@ -69,7 +70,7 @@
 
         nvidia = {
           powerManagement.enable = true;
-          package = pkgs.nvidia-patch.auto-patch(kernel.nvidiaPackages.legacy_580);
+          package = pkgs.nvidia-patch.auto-patch (kernel.nvidiaPackages.legacy_580);
           prime.offload.enable = false;
           open = false;
           nvidiaSettings = true;
@@ -80,26 +81,136 @@
       nixpkgs.config.cudaSupport = true;
 
       swapDevices = [
-        { device = "/dev/disk/by-partuuid/c7fd54ef-b439-4b34-adf1-13e9392c7f3f"; priority = 1; discardPolicy = "both"; }
-        { device = "/dev/disk/by-partuuid/54e1603d-4c12-41c8-934b-06c81e4f8499"; priority = 1; discardPolicy = "both"; }
+        {
+          device = "/dev/disk/by-partuuid/c7fd54ef-b439-4b34-adf1-13e9392c7f3f";
+          priority = 1;
+          discardPolicy = "both";
+        }
+        {
+          device = "/dev/disk/by-partuuid/54e1603d-4c12-41c8-934b-06c81e4f8499";
+          priority = 1;
+          discardPolicy = "both";
+        }
       ];
 
       fileSystems = {
-        "/boot"                      = { device = "/dev/disk/by-label/BOOT";    fsType = "vfat"; };
-        "/btrfs"                     = { device = btrfsDisk; fsType = "btrfs";  options = [ "compress=zstd:15" ]; };
-        "/home"                      = { device = btrfsDisk; fsType = "btrfs";  options = [ "noatime" "compress=zstd:15" "subvol=Home" ]; neededForBoot = true; };
-        "/servers/starbound"         = { device = btrfsDisk; fsType = "btrfs";  options = [ "noatime" "compress=zstd:15" "subvol=starbound" ]; };
-        "/servers/AtM9"              = { device = btrfsDisk; fsType = "btrfs";  options = [ "noatime" "compress=zstd:15" "subvol=AtM9" ]; };
-        "/servers/AoF7"              = { device = btrfsDisk; fsType = "btrfs";  options = [ "noatime" "compress=zstd:15" "subvol=AoF7" ]; };
-        "/servers/snapshots"         = { device = btrfsDisk; fsType = "btrfs";  options = [ "noatime" "compress=zstd:15" "subvol=snapshots" ]; };
-        "/servers/vanilla"           = { device = btrfsDisk; fsType = "btrfs";  options = [ "noatime" "compress=zstd:15" "subvol=vanilla" ]; };
-        "/servers/AtM10_Sky"         = { device = btrfsDisk; fsType = "btrfs";  options = [ "noatime" "compress=zstd:15" "subvol=AtM10_Sky" ]; };
-        "/servers/create_chronicles" = { device = btrfsDisk; fsType = "btrfs";  options = [ "noatime" "compress=zstd:15" "subvol=create_chronicles" ]; };
-        "/servers/Hytale"            = { device = btrfsDisk; fsType = "btrfs";  options = [ "noatime" "compress=zstd:15" "subvol=Hytale" ]; };
-        "/servers/satisfactory"      = { device = btrfsDisk; fsType = "btrfs";  options = [ "noatime" "compress=zstd:15" "subvol=satisfactory" ]; };
-        "/backups"                   = { device = "/dev/disk/by-label/Backups"; fsType = "ext4"; };
-        "/"                          = { device = "/dev/disk/by-label/root";    fsType = "ext4"; };
-        "/attic"                     = { device = btrfsDisk; fsType = "btrfs";  options = [ "noatime" "compress=zstd:15" "subvol=attic"]; };
+        "/boot" = {
+          device = "/dev/disk/by-label/BOOT";
+          fsType = "vfat";
+        };
+        "/btrfs" = {
+          device = btrfsDisk;
+          fsType = "btrfs";
+          options = [ "compress=zstd:15" ];
+        };
+        "/home" = {
+          device = btrfsDisk;
+          fsType = "btrfs";
+          options = [
+            "noatime"
+            "compress=zstd:15"
+            "subvol=Home"
+          ];
+          neededForBoot = true;
+        };
+        "/servers/starbound" = {
+          device = btrfsDisk;
+          fsType = "btrfs";
+          options = [
+            "noatime"
+            "compress=zstd:15"
+            "subvol=starbound"
+          ];
+        };
+        "/servers/AtM9" = {
+          device = btrfsDisk;
+          fsType = "btrfs";
+          options = [
+            "noatime"
+            "compress=zstd:15"
+            "subvol=AtM9"
+          ];
+        };
+        "/servers/AoF7" = {
+          device = btrfsDisk;
+          fsType = "btrfs";
+          options = [
+            "noatime"
+            "compress=zstd:15"
+            "subvol=AoF7"
+          ];
+        };
+        "/servers/snapshots" = {
+          device = btrfsDisk;
+          fsType = "btrfs";
+          options = [
+            "noatime"
+            "compress=zstd:15"
+            "subvol=snapshots"
+          ];
+        };
+        "/servers/vanilla" = {
+          device = btrfsDisk;
+          fsType = "btrfs";
+          options = [
+            "noatime"
+            "compress=zstd:15"
+            "subvol=vanilla"
+          ];
+        };
+        "/servers/AtM10_Sky" = {
+          device = btrfsDisk;
+          fsType = "btrfs";
+          options = [
+            "noatime"
+            "compress=zstd:15"
+            "subvol=AtM10_Sky"
+          ];
+        };
+        "/servers/create_chronicles" = {
+          device = btrfsDisk;
+          fsType = "btrfs";
+          options = [
+            "noatime"
+            "compress=zstd:15"
+            "subvol=create_chronicles"
+          ];
+        };
+        "/servers/Hytale" = {
+          device = btrfsDisk;
+          fsType = "btrfs";
+          options = [
+            "noatime"
+            "compress=zstd:15"
+            "subvol=Hytale"
+          ];
+        };
+        "/servers/satisfactory" = {
+          device = btrfsDisk;
+          fsType = "btrfs";
+          options = [
+            "noatime"
+            "compress=zstd:15"
+            "subvol=satisfactory"
+          ];
+        };
+        "/backups" = {
+          device = "/dev/disk/by-label/Backups";
+          fsType = "ext4";
+        };
+        "/" = {
+          device = "/dev/disk/by-label/root";
+          fsType = "ext4";
+        };
+        "/attic" = {
+          device = btrfsDisk;
+          fsType = "btrfs";
+          options = [
+            "noatime"
+            "compress=zstd:15"
+            "subvol=attic"
+          ];
+        };
       };
     };
 }
