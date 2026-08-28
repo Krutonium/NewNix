@@ -71,6 +71,11 @@
             autocomplete = "duckduckgo";
             ban_time_on_fail = 5;
             max_ban_time_on_fail = 120;
+            suspended_times = {
+              SearxEngineCaptcha = 300;
+              SearxEngineTooManyRequests = 120;
+              SearxEngineAccessDenied = 120;
+            };
             formats = [
               "html"
               "json"
@@ -93,6 +98,7 @@
             pool_maxsize = 15;
             enable_http2 = true;
             keepalive_expiry = 10;
+            useragent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:153.0) Gecko/20100101 Firefox/153.0";
           };
           limiterSettings = {
             real_ip = {
