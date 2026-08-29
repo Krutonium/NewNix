@@ -19,6 +19,7 @@
       root
       zswap
       moonshine
+      vesktop-x11-screenshare
     ];
   };
 
