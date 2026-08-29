@@ -63,7 +63,7 @@
           #];
           settings = {
             # How hard the proof-of-work challenge is (higher = harder for bots)
-            DIFFICULTY = 10;
+            DIFFICULTY = 8;
             # Where Anubis forwards legitimate traffic
             TARGET = "http://127.0.0.1:3001";
             # Where to point NGINX
