@@ -78,7 +78,8 @@
           pkgs.fluffychat
           telegramPatched
           pkgs.signal-desktop
-          pkgs.vesktop
+          #pkgs.vesktop
+          pkgs.legcord
         ];
 
         programs = {

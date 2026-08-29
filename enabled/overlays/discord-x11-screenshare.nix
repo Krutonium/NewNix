@@ -1,6 +1,5 @@
 {
   self,
-  inputs,
   mv,
   ...
 }:
@@ -31,20 +30,17 @@
       lib,
       ...
     }:
-    let
-      xwaylandvideobridge = mv.fast.version "xwaylandvideobridge" "0.4.0";
-    in
     {
       nixpkgs.overlays = [ self.overlays.vesktop-x11-screenshare ];
 
-      environment.systemPackages = [ xwaylandvideobridge ];
+      environment.systemPackages = [ pkgs.xwaylandvideobridge ];
 
       systemd.user.services.xwaylandvideobridge = {
         description = "XWayland Video Bridge — lets XWayland clients (e.g. vesktop) capture native Wayland windows/outputs for full-screen sharing";
         wantedBy = [ "graphical-session.target" ];
         partOf = [ "graphical-session.target" ];
         serviceConfig = {
-          ExecStart = "${xwaylandvideobridge}/bin/xwaylandvideobridge";
+          ExecStart = "${pkgs.xwaylandvideobridge}/bin/xwaylandvideobridge";
           Restart = "on-failure";
         };
       };

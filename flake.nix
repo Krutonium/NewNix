@@ -65,6 +65,9 @@
       url = "github:nilp0inter/plymouth-theme-win98se-inspired-nixos-theme";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    xwaylandvideobridge = {
+      url = "github:KDE/xwaylandvideobridge";
+    };
   };
   outputs =
     inputs:

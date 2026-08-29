@@ -356,6 +356,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1787736819,
+        "narHash": "sha256-cV5xEJJK3BvhU8rEd4mC9UsmDi5qscv/kzGPhBRC5WA=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "9fbb54b33e91ee4ca368e35a78e0613c720600b3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nur": {
       "inputs": {
         "flake-parts": [
@@ -421,7 +437,8 @@
         "simple-cpu-governor": "simple-cpu-governor",
         "sops-nix": "sops-nix",
         "stylix": "stylix",
-        "win98se-plymouth": "win98se-plymouth"
+        "win98se-plymouth": "win98se-plymouth",
+        "xwaylandvideobridge": "xwaylandvideobridge"
       }
     },
     "simple-cpu-governor": {
@@ -616,6 +633,24 @@
       "original": {
         "owner": "nilp0inter",
         "repo": "plymouth-theme-win98se-inspired-nixos-theme",
+        "type": "github"
+      }
+    },
+    "xwaylandvideobridge": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1787308807,
+        "narHash": "sha256-162YHhV3SCG5CRz7zWAtEmLwOSfASajHErFlAHRzPQo=",
+        "owner": "KDE",
+        "repo": "xwaylandvideobridge",
+        "rev": "b41c71d2dc1eb2ccaa49779b0b82f09adf66d61d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "KDE",
+        "repo": "xwaylandvideobridge",
         "type": "github"
       }
     }
