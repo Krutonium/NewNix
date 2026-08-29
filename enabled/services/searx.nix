@@ -30,8 +30,8 @@
           useACMEHost = "krutonium.ca";
           locations."/" = {
             proxyWebsockets = true;
-            #proxyPass = "http://unix:/run/anubis/anubis-searx/anubis.sock:/"; # Proxy Searx
-            proxyPass = "http://127.0.0.1:60613";
+            proxyPass = "http://unix:/run/anubis/anubis-searx/anubis.sock:/"; # Proxy Searx
+            #proxyPass = "http://127.0.0.1:60613";
           };
           extraConfig = ''
             proxy_set_header Host $host;
@@ -152,7 +152,7 @@
       };
 
       services.anubis.instances.searx = {
-        enable = false;
+        enable = true;
         group = "anubis-access";
         botPolicy.bots = [
           {
