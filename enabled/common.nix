@@ -33,7 +33,6 @@
         dolphin-emu-git
         dusklight
         hanabi
-        xwaylandvideobridge
       ];
       home-manager = {
         extraSpecialArgs = { inherit inputs mv; };
