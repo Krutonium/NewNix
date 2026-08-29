@@ -160,13 +160,13 @@
             user_agent_regex = "Mozilla|Opera";
             action = "CHALLENGE";
             challenge = {
-              difficulty = 5;
+              difficulty = 10;
               algorithm = "metarefresh";
             };
           }
         ];
         settings = {
-          DIFFICULTY = 5;
+          DIFFICULTY = 10;
           TARGET = "http://127.0.0.1:60613";
           BIND = "/run/anubis/anubis-searx/anubis.sock";
           METRICS_BIND = "/run/anubis/anubis-searx/anubis-metrics.sock";
