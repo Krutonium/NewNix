@@ -28,10 +28,6 @@
         "search.${config.networking.domain}" = {
           forceSSL = true;
           useACMEHost = "krutonium.ca";
-          extraConfig = ''
-            allow 10.0.0.0/8;
-            deny all;
-          '';
           locations."/" = {
             proxyWebsockets = true;
             #proxyPass = "http://unix:/run/anubis/anubis-searx/anubis.sock:/"; # Proxy Searx
@@ -42,6 +38,8 @@
             proxy_set_header X-Real-IP $remote_addr;
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
             proxy_set_header X-Forwarded-Proto $scheme;
+            allow 10.0.0.0/8;
+            deny all;
           '';
         };
       };
