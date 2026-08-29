@@ -1,4 +1,9 @@
-{ self, inputs, ... }:
+{
+  self,
+  inputs,
+  mv,
+  ...
+}:
 {
   # Overlay: wrap vesktop so it always launches under XWayland instead of
   # native Wayland. This is the workaround for the GNOME/mutter + NVIDIA
@@ -19,19 +24,29 @@
   # NixOS module: pulls in the overlay above, installs xwaylandvideobridge,
   # and runs it as a user service so full-screen (not just single-window)
   # sharing keeps working once vesktop is forced onto X11.
-  flake.nixosModules.discord-x11-screenshare = { config, pkgs, lib, ... }: {
-    nixpkgs.overlays = [ self.overlays.vesktop-x11-screenshare ];
+  flake.nixosModules.discord-x11-screenshare =
+    {
+      config,
+      pkgs,
+      lib,
+      ...
+    }:
+    let
+      xwaylandvideobridge = mv.fast.version "xwaylandvideobridge" "0.4.0";
+    in
+    {
+      nixpkgs.overlays = [ self.overlays.vesktop-x11-screenshare ];
 
-    environment.systemPackages = [ pkgs.xwaylandvideobridge ];
+      environment.systemPackages = [ xwaylandvideobridge ];
 
-    systemd.user.services.xwaylandvideobridge = {
-      description = "XWayland Video Bridge — lets XWayland clients (e.g. vesktop) capture native Wayland windows/outputs for full-screen sharing";
-      wantedBy = [ "graphical-session.target" ];
-      partOf = [ "graphical-session.target" ];
-      serviceConfig = {
-        ExecStart = "${pkgs.xwaylandvideobridge}/bin/xwaylandvideobridge";
-        Restart = "on-failure";
+      systemd.user.services.xwaylandvideobridge = {
+        description = "XWayland Video Bridge — lets XWayland clients (e.g. vesktop) capture native Wayland windows/outputs for full-screen sharing";
+        wantedBy = [ "graphical-session.target" ];
+        partOf = [ "graphical-session.target" ];
+        serviceConfig = {
+          ExecStart = "${xwaylandvideobridge}/bin/xwaylandvideobridge";
+          Restart = "on-failure";
+        };
       };
     };
-  };
 }
