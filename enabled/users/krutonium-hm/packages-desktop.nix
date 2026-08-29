@@ -79,7 +79,7 @@
           telegramPatched
           pkgs.signal-desktop
           #pkgs.vesktop
-          pkgs.legcord
+          mv.tip.legcord
         ];
 
         programs = {

@@ -19,7 +19,6 @@
       root
       zswap
       moonshine
-      discord-x11-screenshare
     ];
   };
 
