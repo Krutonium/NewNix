@@ -5,8 +5,8 @@
     {
       config = {
         services = {
-          desktopManager.gnome.enable = false;
-          desktopManager.budgie.enable = true;
+          desktopManager.gnome.enable = true;
+          desktopManager.budgie.enable = false;
           displayManager.gdm = {
             enable = true;
             autoSuspend = false;

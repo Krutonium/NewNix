@@ -56,7 +56,7 @@
 
     in
     {
-      config = lib.mkIf (osConfig.services.desktopManager.gdm.enable == true) {
+      config = lib.mkIf (osConfig.services.desktopManager.gnome.enable == true) {
         programs.firefox = {
           enable = true;
           package = mv.tip.firefox;
