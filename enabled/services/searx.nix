@@ -101,7 +101,7 @@
             pool_maxsize = 15;
             enable_http2 = true;
             keepalive_expiry = 10;
-            useragent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:153.0) Gecko/20100101 Firefox/153.0";
+            useragent = "Mozilla/5.0 (Windows NT 11.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.6998.166 Safari/537.36";
           };
           limiterSettings = {
             real_ip = {
