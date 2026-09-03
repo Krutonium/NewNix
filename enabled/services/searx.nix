@@ -128,6 +128,10 @@
               disabled = false;
               weight = 4;
             };
+            "qwant" = {
+              disabled = false;
+              weight = 4;
+            };
             "duckduckgo images".disabled = false;
             "ddg definitions" = {
               disabled = false;
