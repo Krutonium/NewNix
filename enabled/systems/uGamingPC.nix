@@ -17,6 +17,7 @@
       v4l2loopback
       gamemode
       root
+      vr
       zswap
       moonshine
     ];
