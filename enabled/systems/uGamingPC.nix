@@ -1,4 +1,9 @@
-{ inputs, self, mv, ... }:
+{
+  inputs,
+  self,
+  mv,
+  ...
+}:
 {
   flake.nixosConfigurations.uGamingPC = inputs.nixpkgs.lib.nixosSystem {
     specialArgs = { inherit mv; };
@@ -28,7 +33,6 @@
       pkgs,
       config,
       mv,
-      lib,
       ...
     }:
     let
@@ -109,6 +113,10 @@
         "/games" = {
           device = "UUID=2f94b423-9ca0-4ad4-a351-38e4efc4e02a";
           fsType = "bcachefs";
+          options = [
+            "x-gvfs-show"
+            "x-gvfs-name=Games"
+          ];
         };
         "/uWebServer" = {
           device = "krutonium@krutonium.ca:/";
