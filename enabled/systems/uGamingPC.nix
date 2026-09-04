@@ -113,10 +113,6 @@
         "/games" = {
           device = "UUID=2f94b423-9ca0-4ad4-a351-38e4efc4e02a";
           fsType = "bcachefs";
-          options = [
-            "x-gvfs-show"
-            "x-gvfs-name=Games"
-          ];
         };
         "/uWebServer" = {
           device = "krutonium@krutonium.ca:/";
@@ -161,11 +157,6 @@
           ];
         };
       };
-      services.udev.extraRules = ''
-        ENV{ID_SERIAL}=="SPCC_Solid_State_Disk_E7CB07551A0B00129024", ENV{UDISKS_IGNORE}="1"
-        ENV{ID_SERIAL}=="ST9500325AS_S2W07D8T", ENV{UDISKS_IGNORE}="1"
-        ENV{ID_SERIAL}=="TOSHIBA_MQ01ABB200_X3TKP7X4T", ENV{UDISKS_IGNORE}="1"
-      '';
       services.xserver.videoDrivers = [ "nvidia" ];
       services.ratbagd.enable = true;
       hardware = {
