@@ -25,6 +25,7 @@
       vr
       zswap
       moonshine
+      lact
     ];
   };
 
