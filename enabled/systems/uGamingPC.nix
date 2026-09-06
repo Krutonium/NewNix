@@ -165,7 +165,7 @@
         cpu.amd.updateMicrocode = true;
         nvidia = {
           package = pkgs.nvidia-patch.auto-patch (config.boot.kernelPackages.nvidiaPackages.latest);
-          open = false;
+          open = true;
           modesetting.enable = true;
         };
       };
