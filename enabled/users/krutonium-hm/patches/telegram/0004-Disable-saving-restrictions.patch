@@ -60,14 +60,16 @@ index dcc9d77..0260ebb 100644
  
  bool HistoryInner::showCopyRestriction(HistoryItem *item) {
 diff --git a/Telegram/SourceFiles/history/history_item.cpp b/Telegram/SourceFiles/history/history_item.cpp
-index ec57dee..4f586fc 100644
+index 60c1cca41f..2f51984a62 100644
 --- a/Telegram/SourceFiles/history/history_item.cpp
 +++ b/Telegram/SourceFiles/history/history_item.cpp
-@@ -3066,11 +3066,6 @@ bool HistoryItem::forbidsForward() const {
+@@ -3262,13 +3262,6 @@ bool HistoryItem::forbidsForward() const {
  }
  
  bool HistoryItem::forbidsSaving() const {
 -	if (forbidsForward()) {
+-		return true;
+-	} else if (_media && _media->ttlSeconds()) {
 -		return true;
 -	} else if (const auto invoice = _media ? _media->invoice() : nullptr) {
 -		return HasExtendedMedia(*invoice);

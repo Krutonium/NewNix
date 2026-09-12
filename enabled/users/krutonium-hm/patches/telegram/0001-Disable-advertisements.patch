@@ -1,8 +1,8 @@
 diff --git a/Telegram/SourceFiles/data/components/sponsored_messages.cpp b/Telegram/SourceFiles/data/components/sponsored_messages.cpp
-index 4e68421fff..6431b8c5af 100644
+index 04b421ef67..dad96b0fa7 100644
 --- a/Telegram/SourceFiles/data/components/sponsored_messages.cpp
 +++ b/Telegram/SourceFiles/data/components/sponsored_messages.cpp
-@@ -239,62 +239,19 @@ void SponsoredMessages::inject(
+@@ -302,62 +302,19 @@ HistoryItem *SponsoredMessages::injectItem(
  }
  
  bool SponsoredMessages::canHaveFor(not_null<History*> history) const {
@@ -17,7 +17,7 @@ index 4e68421fff..6431b8c5af 100644
  bool SponsoredMessages::canHaveFor(not_null<HistoryItem*> item) const {
 -	return item->history()->peer->isBroadcast()
 -		&& item->isRegular();
-+        return false;
++	return false;
  }
  
  bool SponsoredMessages::isTopBarFor(not_null<History*> history) const {
@@ -40,7 +40,7 @@ index 4e68421fff..6431b8c5af 100644
 -	{
 -		const auto it = _data.find(history);
 -		if (it != end(_data)) {
--			auto &list = it->second;
+-			const auto &list = it->second;
 -			// Don't rebuild currently displayed messages.
 -			const auto proj = [](const Entry &e) {
 -				return e.item != nullptr;
@@ -63,16 +63,14 @@ index 4e68421fff..6431b8c5af 100644
 -	}).fail([=] {
 -		_requests.remove(history);
 -	}).send();
-+        return;
++	return;
  }
  
  void SponsoredMessages::requestForVideo(
-@@ -434,20 +391,8 @@ void SponsoredMessages::parseForVideo(
- 	});
- }
+@@ -499,18 +456,7 @@ void SponsoredMessages::parseForVideo(
  
--SponsoredForVideo SponsoredMessages::prepareForVideo(
--		not_null<PeerData*> peer) {
+ SponsoredForVideo SponsoredMessages::prepareForVideo(
+ 		not_null<PeerData*> peer) {
 -	const auto i = _dataForVideo.find(peer);
 -	if (i == end(_dataForVideo) || i->second.entries.empty()) {
 -		return {};
@@ -85,8 +83,7 @@ index 4e68421fff..6431b8c5af 100644
 -		.betweenDelay = i->second.betweenDelay,
 -		.state = i->second.state,
 -	};
-+SponsoredForVideo SponsoredMessages::prepareForVideo(not_null<PeerData*> peer) {
-+    return {};
++	return {};
  }
  
  FullMsgId SponsoredMessages::fillTopBar(
