@@ -3,6 +3,17 @@
   flake.nixosModules.nix-settings =
     { config, lib, ... }:
     {
+      virtualisation.vmVariant = {
+        virtualisation.forwardPorts = [
+          {
+            from = "host";
+            host.port = 2222;
+            guest.port = 22;
+          }
+        ];
+        nix.gc.automatic = lib.mkForce false;
+        systemd.services.nix-gc.enable = lib.mkForce false;
+      };
       nix = {
         settings = {
           require-sigs = false;

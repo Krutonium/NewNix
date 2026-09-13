@@ -12,6 +12,7 @@
       boot
       common
       gnome
+      #labwc
       uGamingPCModule
       stylix
       krutonium
@@ -26,6 +27,7 @@
       zswap
       moonshine
       lact
+      g600
     ];
   };
 
@@ -75,13 +77,7 @@
       kernel = mv.tip.linuxPackages_latest;
     in
     {
-      imports = [
-        inputs.g600-key-remap-daemon.nixosModules.g600-key-remap
-      ];
-      systemd.services.g600-key-remap.serviceConfig = {
-        TimeoutStopSec = "5s";
-      };
-      services.g600-key-remap.enable = true;
+
       # Hardware
       boot = {
         tmp.useTmpfs = false;
@@ -159,6 +155,7 @@
         };
       };
       services.xserver.videoDrivers = [ "nvidia" ];
+      services.g600-key-remap.enable = true;
       services.ratbagd.enable = true;
       hardware = {
         graphics.enable = true;

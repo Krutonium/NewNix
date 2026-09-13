@@ -66,6 +66,7 @@
           packages-server
           xdg
           editors
+          labwc
         ];
       };
       systemd.services.copySshKeysForRoot = {
