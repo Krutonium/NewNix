@@ -96,7 +96,7 @@
                   definedAliases = [ "@ks" ];
                 };
               };
-              default = "KruSearch";
+              default = "DuckDuckGo";
               force = true;
             };
 
