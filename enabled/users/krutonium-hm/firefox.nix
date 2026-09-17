@@ -148,6 +148,14 @@
               "browser.urlbar.trimURLs" = false;
               "browser.toolbars.bookmarks.visibility" = "never";
               "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+
+              "browser.ai.control.default" = "blocked";
+              "browser.ai.control.linkPreviewKeyPoints" = "blocked";
+              "browser.ai.control.pdfjsAltText" = "blocked";
+              "browser.ai.control.sidebarChatBot" = "blocked";
+              "browser.ai.control.smartTabGroups" = "blocked";
+              "browser.ai.control.smartWindow" = "blocked";
+              "browser.ai.control.translations" = "blocked";
             };
           };
         };
