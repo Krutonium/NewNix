@@ -12,7 +12,7 @@
     }:
     let
       pkgsUnfree = import inputs.nixpkgs {
-        inherit (pkgs) system;
+        localSystem = pkgs.stdenv.hostPlatform;
         config.allowUnfree = true;
       };
       nur = import inputs.nur {
