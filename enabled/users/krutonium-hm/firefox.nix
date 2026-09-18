@@ -96,7 +96,7 @@
                   definedAliases = [ "@ks" ];
                 };
               };
-              default = "DuckDuckGo";
+              default = "ddg";
               force = true;
             };
 
