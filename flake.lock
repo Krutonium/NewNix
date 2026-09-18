@@ -166,11 +166,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1784510358,
-        "narHash": "sha256-Z46Vp1R4K680O3rW5UQxYMaR2fOW7VWaF3eikcuMRZA=",
+        "lastModified": 1789696417,
+        "narHash": "sha256-8KlCCg5IH+mseTePQYYo1GL/M4J1fKWS4apxhWsIGuY=",
         "owner": "Krutonium",
         "repo": "G600-key-remap-daemon",
-        "rev": "64446c7be9528343d235ff99696f568485c06b84",
+        "rev": "39838d67b7af692c4fbfe601fcabcd4bd1c3d694",
         "type": "github"
       },
       "original": {
@@ -382,11 +382,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1789688564,
-        "narHash": "sha256-vibEIDn48fb28YZDmATKPnmGNB1Rub8j53eQZrzmVp8=",
+        "lastModified": 1789696220,
+        "narHash": "sha256-RTmPZbwPWl7jsSpMuroaexfuh+psLLD5wF4BP672PcA=",
         "owner": "nix-community",
         "repo": "nur",
-        "rev": "7bbde0285dafb8154b1a8449d8f7f8754831a792",
+        "rev": "2f30a51d626c35520baf95480dc9432df00c2fb5",
         "type": "github"
       },
       "original": {
