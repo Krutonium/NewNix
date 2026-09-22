@@ -29,6 +29,7 @@
               ./patches/telegram/0002-Disable-advertisements.patch
               ./patches/telegram/0003-Disable-advertisements.patch
               ./patches/telegram/0004-Disable-saving-restrictions.patch
+              ./patches/telegram/0005-extra-pins.patch
             ];
           });
         in

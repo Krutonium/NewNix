@@ -1,0 +1,1221 @@
+diff --git a/Telegram/CMakeLists.txt b/Telegram/CMakeLists.txt
+index 1f71631980..b4f4ede2d9 100644
+--- a/Telegram/CMakeLists.txt
++++ b/Telegram/CMakeLists.txt
+@@ -357,6 +357,8 @@ PRIVATE
+     boxes/phone_banned_box.h
+     boxes/pin_messages_box.cpp
+     boxes/pin_messages_box.h
++    boxes/pin_extras_box.cpp
++    boxes/pin_extras_box.h
+     boxes/premium_limits_box.cpp
+     boxes/premium_limits_box.h
+     boxes/premium_preview_box.cpp
+@@ -748,6 +750,8 @@ PRIVATE
+     data/data_peer_id.h
+     data/data_peer_values.cpp
+     data/data_peer_values.h
++    data/data_pin_extras.cpp
++    data/data_pin_extras.h
+     data/data_photo.cpp
+     data/data_photo.h
+     data/data_photo_media.cpp
+diff --git a/Telegram/Resources/langs/lang.strings b/Telegram/Resources/langs/lang.strings
+index 53aa8d9546..18670f1618 100644
+--- a/Telegram/Resources/langs/lang.strings
++++ b/Telegram/Resources/langs/lang.strings
+@@ -247,6 +247,14 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
+ "lng_fave_sticker_limit_more#one" = "An older sticker was replaced with this one.\nYou can {link} to {count} sticker.";
+ "lng_fave_sticker_limit_more#other" = "An older sticker was replaced with this one.\nYou can {link} to {count} stickers.";
+ "lng_fave_sticker_limit_link" = "increase the limit";
++"lng_pin_extras_menu" = "Pin Extras";
++"lng_pin_extras_box_title" = "Pin Extras";
++"lng_pin_extras_box_about" = "You can pin up to 20 chats and favorite up to 20 stickers locally, even beyond the server limit.\n\nUse Export to save a backup file to Saved Messages, and Import to restore it on this or another device.";
++"lng_pin_extras_export" = "Export";
++"lng_pin_extras_import" = "Import";
++"lng_pin_extras_export_done" = "Pin Extras backup sent to Saved Messages";
++"lng_pin_extras_import_none" = "No Pin Extras backup found in Saved Messages";
++"lng_pin_extras_import_done" = "Pin Extras restored from the backup";
+ 
+ "lng_saved_gif_limit_title#one" = "Limit of {count} GIF Reached";
+ "lng_saved_gif_limit_title#other" = "Limit of {count} GIFs Reached";
+diff --git a/Telegram/SourceFiles/api/api_toggling_media.cpp b/Telegram/SourceFiles/api/api_toggling_media.cpp
+index 6c28df197d..88dc6e85d8 100644
+--- a/Telegram/SourceFiles/api/api_toggling_media.cpp
++++ b/Telegram/SourceFiles/api/api_toggling_media.cpp
+@@ -24,6 +24,24 @@ void ToggleExistingMedia(
+ 		Data::FileOrigin origin,
+ 		ToggleRequestCallback toggleRequest,
+ 		DoneCallback &&done) {
++	ToggleExistingMedia(
++		document,
++		std::move(origin),
++		std::move(toggleRequest),
++		std::move(done),
++		[](const MTP::Error &) {});
++}
++
++template <
++	typename ToggleRequestCallback,
++	typename DoneCallback,
++	typename FailCallback>
++void ToggleExistingMedia(
++		not_null<DocumentData*> document,
++		Data::FileOrigin origin,
++		ToggleRequestCallback toggleRequest,
++		DoneCallback &&done,
++		FailCallback &&fail) {
+ 	const auto api = &document->session().api();
+ 
+ 	auto performRequest = [=](const auto &repeatRequest) -> void {
+@@ -39,6 +57,8 @@ void ToggleExistingMedia(
+ 					}
+ 				};
+ 				api->refreshFileReference(origin, std::move(refreshed));
++			} else {
++				fail(error);
+ 			}
+ 		}).send();
+ 	};
+@@ -69,6 +89,24 @@ void ToggleFavedSticker(
+ 	auto done = [=] {
+ 		document->owner().stickers().setFaved(show, document, faved);
+ 	};
++	if (faved) {
++		// The server rejects favorites beyond its limit, so the extras
++		// overlay keeps the sticker local in that case.
++		auto fallback = [=](const MTP::Error &error) {
++			if (error.code() == 400) {
++				document->owner().stickers().setFavedLocalExtra(document);
++			}
++		};
++		ToggleExistingMedia(
++			document,
++			std::move(origin),
++			[=, d = document] {
++				return MTPmessages_FaveSticker(d->mtpInput(), MTP_bool(!faved));
++			},
++			std::move(done),
++			std::move(fallback));
++		return;
++	}
+ 	ToggleExistingMedia(
+ 		document,
+ 		std::move(origin),
+diff --git a/Telegram/SourceFiles/apiwrap.cpp b/Telegram/SourceFiles/apiwrap.cpp
+index 25bdb0c6d5..3470f79874 100644
+--- a/Telegram/SourceFiles/apiwrap.cpp
++++ b/Telegram/SourceFiles/apiwrap.cpp
+@@ -419,10 +419,26 @@ void ApiWrap::savePinnedOrder(Data::Folder *folder) {
+ 		}
+ 		Unexpected("Key type in pinnedDialogsOrder().");
+ 	};
++	const auto peerId = [](Dialogs::Key key) {
++		if (const auto history = key.history()) {
++			return history->peer->id;
++		}
++		return PeerId();
++	};
++	auto keys = std::vector<Dialogs::Key>();
++	keys.reserve(order.size());
++	for (const auto &key : order) {
++		// Extras live only in the local overlay, sending them to the server
++		// would either be rejected or erase them from the server list.
++		if (!folder && _session->data().pinExtras().isExtraPeer(peerId(key))) {
++			continue;
++		}
++		keys.push_back(key);
++	}
+ 	auto peers = QVector<MTPInputDialogPeer>();
+-	peers.reserve(order.size());
++	peers.reserve(keys.size());
+ 	ranges::transform(
+-		order,
++		keys,
+ 		ranges::back_inserter(peers),
+ 		input);
+ 	request(MTPmessages_ReorderPinnedDialogs(
+@@ -4351,7 +4367,8 @@ void ApiWrap::sendFiles(
+ void ApiWrap::sendFile(
+ 		const QByteArray &fileContent,
+ 		SendMediaType type,
+-		const SendAction &action) {
++		const SendAction &action,
++		const QString &displayName) {
+ 	const auto to = FileLoadTaskOptions(action);
+ 	auto caption = TextWithTags();
+ 	const auto spoiler = false;
+@@ -4367,7 +4384,8 @@ void ApiWrap::sendFile(
+ 		.spoiler = spoiler,
+ 		.album = nullptr,
+ 		.forceFile = false,
+-		.idOverride = 0
++		.idOverride = 0,
++		.displayName = displayName
+ 	}));
+ }
+ 
+diff --git a/Telegram/SourceFiles/apiwrap.h b/Telegram/SourceFiles/apiwrap.h
+index 5660112e5d..ca78329107 100644
+--- a/Telegram/SourceFiles/apiwrap.h
++++ b/Telegram/SourceFiles/apiwrap.h
+@@ -371,7 +371,8 @@ public:
+ 	void sendFile(
+ 		const QByteArray &fileContent,
+ 		SendMediaType type,
+-		const SendAction &action);
++		const SendAction &action,
++		const QString &displayName = QString());
+ 
+ 	void editMedia(
+ 		Ui::PreparedList &&list,
+diff --git a/Telegram/SourceFiles/boxes/pin_extras_box.cpp b/Telegram/SourceFiles/boxes/pin_extras_box.cpp
+new file mode 100644
+index 0000000000..08e162d9e1
+--- /dev/null
++++ b/Telegram/SourceFiles/boxes/pin_extras_box.cpp
+@@ -0,0 +1,51 @@
++/*
++This file is part of Telegram Desktop,
++the official application for the Telegram messaging service.
++
++For license and copyright information please follow this link:
++https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
++*/
++#include "boxes/pin_extras_box.h"
++
++#include "chat_helpers/compose/compose_show.h"
++#include "data/data_pin_extras.h"
++#include "data/data_session.h"
++#include "main/main_session.h"
++#include "ui/text/text_utilities.h"
++#include "ui/widgets/labels.h"
++#include "styles/style_boxes.h"
++#include "styles/style_layers.h"
++
++#include <memory>
++
++void PinExtrasBox(
++		not_null<Ui::GenericBox*> box,
++		not_null<Main::Session*> session) {
++	box->setTitle(tr::lng_pin_extras_box_title());
++
++	box->addRow(
++		object_ptr<Ui::FlatLabel>(
++			box,
++			tr::lng_pin_extras_box_about(),
++			st::boxLabel),
++		st::boxRowPadding);
++
++	// The box is always created by a session controller, so the underlying
++	// show chain is a ChatHelpers::Show instance.
++	const auto show = std::static_pointer_cast<ChatHelpers::Show>(
++		box->uiShow());
++
++	box->addButton(tr::lng_pin_extras_export(), [=] {
++		session->data().pinExtras().push(show);
++		box->closeBox();
++	});
++
++	box->addButton(tr::lng_pin_extras_import(), [=] {
++		session->data().pinExtras().pull(show);
++		box->closeBox();
++	});
++
++	box->addButton(tr::lng_cancel(), [=] {
++		box->closeBox();
++	});
++}
+\ No newline at end of file
+diff --git a/Telegram/SourceFiles/boxes/pin_extras_box.h b/Telegram/SourceFiles/boxes/pin_extras_box.h
+new file mode 100644
+index 0000000000..2071e5ef51
+--- /dev/null
++++ b/Telegram/SourceFiles/boxes/pin_extras_box.h
+@@ -0,0 +1,18 @@
++/*
++This file is part of Telegram Desktop,
++the official application for the Telegram messaging service.
++
++For license and copyright information please follow this link:
++https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
++*/
++#pragma once
++
++#include "ui/layers/generic_box.h"
++
++namespace Main {
++class Session;
++} // namespace Main
++
++void PinExtrasBox(
++	not_null<Ui::GenericBox*> box,
++	not_null<Main::Session*> session);
+\ No newline at end of file
+diff --git a/Telegram/SourceFiles/data/data_pin_extras.cpp b/Telegram/SourceFiles/data/data_pin_extras.cpp
+new file mode 100644
+index 0000000000..d1113dd95d
+--- /dev/null
++++ b/Telegram/SourceFiles/data/data_pin_extras.cpp
+@@ -0,0 +1,400 @@
++/*
++This file is part of Telegram Desktop,
++the official application for the Telegram messaging service.
++
++For license and copyright information please follow this link:
++https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
++*/
++#include "data/data_pin_extras.h"
++
++#include "api/api_common.h"
++#include "apiwrap.h"
++#include "chat_helpers/compose/compose_show.h"
++#include "data/data_document.h"
++#include "data/data_file_origin.h"
++#include "data/data_media_types.h"
++#include "data/data_msg_id.h"
++#include "data/data_peer.h"
++#include "data/data_session.h"
++#include "data/stickers/data_stickers.h"
++#include "history/history.h"
++#include "history/history_item.h"
++#include "lang/lang_keys.h"
++#include "main/main_session.h"
++#include "mtproto/mtproto_response.h"
++#include "storage/localimageloader.h"
++#include "storage/storage_account.h"
++#include "ui/image/image_location.h"
++
++#include <QtCore/QDir>
++#include <QtCore/QFile>
++#include <QtCore/QJsonArray>
++#include <QtCore/QJsonDocument>
++#include <QtCore/QJsonObject>
++#include <QtCore/QTimer>
++
++namespace {
++
++constexpr auto kChatsPrefKey = "pinExtras.chats";
++constexpr auto kFavedPrefKey = "pinExtras.faved";
++constexpr auto kBackupFileName = "tdesktop-pin-extras.json";
++constexpr auto kBackupKind = "tdesktop-pin-extras";
++constexpr auto kPullLimit = 100;
++constexpr auto kPollInterval = crl::time(100);
++constexpr auto kPollAttempts = 150;
++
++[[nodiscard]] QJsonValue SerializeId(uint64 id) {
++	return QString::number(id);
++}
++
++[[nodiscard]] uint64 ParseId(const QJsonValue &value) {
++	return value.toString().toULongLong();
++}
++
++// The server caps pinned chats and faved stickers at Premium limits,
++// everything beyond is kept as the local extras overlay in this module.
++[[nodiscard]] int PinExtrasChatsLimit() {
++	return PinExtras::kPinnedChatsLimit;
++}
++
++[[nodiscard]] int PinExtrasStickersLimit() {
++	return PinExtras::kFavedStickersLimit;
++}
++
++} // namespace
++
++PinExtras::PinExtras(not_null<Main::Session*> session)
++: _session(session) {
++}
++
++Main::Session &PinExtras::session() const {
++	return *_session;
++}
++
++Data::Session &PinExtras::data() const {
++	return _session->data();
++}
++
++void PinExtras::ensureLoaded() {
++	if (_loaded) {
++		return;
++	}
++	_loaded = true;
++	const auto loadIds = [](const QByteArray &data, auto &&process) {
++		const auto document = QJsonDocument::fromJson(data);
++		if (!document.isArray()) {
++			return;
++		}
++		for (const auto &value : document.array()) {
++			process(ParseId(value));
++		}
++	};
++	loadIds(_session->local().readPref<QByteArray>(
++		kChatsPrefKey,
++		QByteArray()), [=](uint64 value) {
++		_extraPinnedChats.push_back(PeerId(PeerIdHelper(value)));
++	});
++	loadIds(_session->local().readPref<QByteArray>(
++		kFavedPrefKey,
++		QByteArray()), [=](uint64 value) {
++		_extraFavedStickers.push_back(value);
++	});
++}
++
++void PinExtras::persistChats() {
++	auto ids = QJsonArray();
++	for (const auto &peerId : _extraPinnedChats) {
++		ids.append(SerializeId(peerId.bare));
++	}
++	_session->local().writePref<QByteArray>(
++		kChatsPrefKey,
++		QJsonDocument(ids).toJson(QJsonDocument::Compact));
++}
++
++void PinExtras::persistFaved() {
++	auto ids = QJsonArray();
++	for (const auto &id : _extraFavedStickers) {
++		ids.append(SerializeId(id));
++	}
++	_session->local().writePref<QByteArray>(
++		kFavedPrefKey,
++		QJsonDocument(ids).toJson(QJsonDocument::Compact));
++}
++
++void PinExtras::serverChatsApplied(const std::vector<PeerId> &serverPinned) {
++	ensureLoaded();
++	_serverPinnedChats = base::flat_set<PeerId>(
++		serverPinned.begin(),
++		serverPinned.end());
++	auto changed = false;
++	for (auto i = _extraPinnedChats.begin(); i != _extraPinnedChats.cend();) {
++		if (_serverPinnedChats.contains(*i)) {
++			i = _extraPinnedChats.erase(i);
++			changed = true;
++		} else {
++			++i;
++		}
++	}
++	if (changed) {
++		persistChats();
++	}
++}
++
++void PinExtras::serverEntryPinned(not_null<History*> history, bool pinned) {
++	ensureLoaded();
++	const auto peerId = history->peer->id;
++	if (pinned) {
++		_serverPinnedChats.insert(peerId);
++		if (const auto index = _extraPinnedChats.indexOf(peerId); index >= 0) {
++			_extraPinnedChats.removeAt(index);
++			persistChats();
++		}
++	} else {
++		_serverPinnedChats.remove(peerId);
++	}
++}
++
++bool PinExtras::keepLocalPin(not_null<History*> history) const {
++	ensureLoaded();
++	return _extraPinnedChats.contains(history->peer->id);
++}
++
++void PinExtras::chatPinnedLocally(not_null<History*> history, bool pinned) {
++	ensureLoaded();
++	const auto peerId = history->peer->id;
++	if (pinned) {
++		if (_serverPinnedChats.contains(peerId)
++			|| _extraPinnedChats.contains(peerId)) {
++			return;
++		}
++		if (int(_extraPinnedChats.size()) < PinExtrasChatsLimit()) {
++			_extraPinnedChats.push_back(peerId);
++			persistChats();
++		}
++	} else if (const auto index = _extraPinnedChats.indexOf(peerId); index >= 0) {
++		_extraPinnedChats.removeAt(index);
++		persistChats();
++	}
++}
++
++std::vector<PeerId> PinExtras::extraPinnedPeerIds() const {
++	ensureLoaded();
++	auto result = std::vector<PeerId>();
++	result.reserve(_extraPinnedChats.size());
++	for (const auto &peerId : _extraPinnedChats) {
++		result.push_back(peerId);
++	}
++	return result;
++}
++
++bool PinExtras::isExtraPeer(PeerId peerId) const {
++	ensureLoaded();
++	return _extraPinnedChats.contains(peerId);
++}
++
++void PinExtras::serverFavedReceived(const QVector<DocumentData*> &serverFaved) {
++	ensureLoaded();
++	_serverFavedStickers.clear();
++	for (const auto &document : serverFaved) {
++		if (document) {
++			_serverFavedStickers.insert(document->id);
++		}
++	}
++	auto changed = false;
++	for (auto i = _extraFavedStickers.begin(); i != _extraFavedStickers.cend();) {
++		if (_serverFavedStickers.contains(*i)) {
++			i = _extraFavedStickers.erase(i);
++			changed = true;
++		} else {
++			++i;
++		}
++	}
++	if (changed) {
++		persistFaved();
++	}
++}
++
++void PinExtras::chatFavedLocal(not_null<DocumentData*> document) {
++	ensureLoaded();
++	if (_serverFavedStickers.contains(document->id)
++		|| _extraFavedStickers.contains(document->id)) {
++		return;
++	}
++	if (int(_extraFavedStickers.size()) < PinExtrasStickersLimit()) {
++		_extraFavedStickers.push_back(document->id);
++		persistFaved();
++	}
++}
++
++void PinExtras::chatFavedNotLocal(not_null<DocumentData*> document) {
++	ensureLoaded();
++	if (const auto index = _extraFavedStickers.indexOf(document->id); index >= 0) {
++		_extraFavedStickers.removeAt(index);
++		persistFaved();
++	}
++}
++
++QVector<DocumentData*> PinExtras::extraFavedDocuments() const {
++	ensureLoaded();
++	auto result = QVector<DocumentData*>();
++	result.reserve(_extraFavedStickers.size());
++	for (const auto &id : _extraFavedStickers) {
++		result.push_back(data().document(id));
++	}
++	return result;
++}
++
++void PinExtras::push(std::shared_ptr<ChatHelpers::Show> show) {
++	ensureLoaded();
++	auto root = QJsonObject();
++	root.insert(u"kind"_q, u"%1"_q.arg(kBackupKind));
++	root.insert(u"version"_q, 1);
++
++	auto chats = QJsonArray();
++	for (const auto &peerId : extraPinnedPeerIds()) {
++		chats.append(SerializeId(peerId.bare));
++	}
++	root.insert(u"pinnedChats"_q, chats);
++
++	auto stickers = QJsonArray();
++	for (const auto &id : _extraFavedStickers) {
++		stickers.append(SerializeId(id));
++	}
++	root.insert(u"favedStickers"_q, stickers);
++
++	const auto history = data().history(session().userPeerId());
++	session().api().sendFile(
++		QJsonDocument(root).toJson(QJsonDocument::Compact),
++		SendMediaType::File,
++		Api::SendAction(history),
++		u"%1"_q.arg(kBackupFileName));
++	show->showToast(tr::lng_pin_extras_export_done(tr::now));
++}
++
++void PinExtras::pull(std::shared_ptr<ChatHelpers::Show> show) {
++	if (_pulling) {
++		return;
++	}
++	_pulling = true;
++	session().api().request(MTPmessages_GetHistory(
++		MTP_inputPeerSelf(),
++		MTP_int(0), // offset_id
++		MTP_int(0), // offset_date
++		MTP_int(0), // add_offset
++		MTP_int(kPullLimit), // limit
++		MTP_int(0), // max_id
++		MTP_int(0), // min_id
++		MTP_long(0) // hash
++	)).done([=](const MTPmessages_Messages &result) {
++		_pulling = false;
++		auto messages = QVector<MTPMessage>();
++		result.match([&](const MTPDmessages_messages &data) {
++			messages = data.vmessages().v;
++		}, [&](const MTPDmessages_messagesSlice &data) {
++			messages = data.vmessages().v;
++		}, [](const MTPDmessages_messagesNotModified &) {
++		});
++		if (messages.isEmpty()) {
++			show->showToast(tr::lng_pin_extras_import_none(tr::now));
++			return;
++		}
++		auto messageIds = std::vector<MsgId>();
++		messageIds.reserve(messages.size());
++		for (const auto &message : messages) {
++			messageIds.push_back(MsgId(message.match([](const auto &data) {
++				return data.vid().v;
++			})));
++		}
++		data().processMessages(messages, NewMessageType::Existing);
++		readBackup(show, std::move(messageIds));
++	}).fail([=](const MTP::Error &error) {
++		_pulling = false;
++		show->showToast(error.type());
++	}).send();
++}
++
++void PinExtras::readBackup(
++		std::shared_ptr<ChatHelpers::Show> show,
++		std::vector<MsgId> messageIds) {
++	const auto peerId = session().userPeerId();
++	auto found = (HistoryItem*)nullptr;
++	for (auto i = messageIds.rbegin(); i != messageIds.rend(); ++i) {
++		const auto item = data().message(peerId, *i);
++		if (!item) {
++			continue;
++		}
++		const auto media = item->media();
++		const auto document = media ? media->document() : nullptr;
++		if (document && document->filename() == u"%1"_q.arg(kBackupFileName)) {
++			found = item;
++			break;
++		}
++	}
++	if (!found) {
++		show->showToast(tr::lng_pin_extras_import_none(tr::now));
++		return;
++	}
++	const auto path = QDir::tempPath()
++		+ u"/tdesktop-pin-extras-%1.json"_q.arg(session().userId().bare());
++	const auto document = found->media()->document();
++	document->save(
++		Data::FileOrigin(found->fullId()),
++		path,
++		Data::LoadFromCloudOrLocal,
++		false);
++	const auto check = [=](const auto &self, int attempt) -> void {
++		if (QFile::exists(path)) {
++			applyBackup(show, path);
++		} else if (attempt < kPollAttempts) {
++			QTimer::singleShot(kPollInterval, [=] {
++				self(self, attempt + 1);
++			});
++		} else {
++			show->showToast(tr::lng_pin_extras_import_none(tr::now));
++		}
++	};
++	check(check, 0);
++}
++
++void PinExtras::applyBackup(
++		std::shared_ptr<ChatHelpers::Show> show,
++		const QString &path) {
++	auto file = QFile(path);
++	if (!file.open(QIODevice::ReadOnly)) {
++		show->showToast(tr::lng_pin_extras_import_none(tr::now));
++		return;
++	}
++	const auto document = QJsonDocument::fromJson(file.readAll());
++	file.close();
++	if (!document.isObject()
++		|| document.object().value(u"kind"_q).toString() != u"%1"_q.arg(kBackupKind)) {
++		show->showToast(tr::lng_pin_extras_import_none(tr::now));
++		return;
++	}
++	auto chats = 0;
++	auto stickers = 0;
++	for (const auto &value : document.object().value(u"pinnedChats"_q).toArray()) {
++		const auto peerId = PeerId(PeerIdHelper(ParseId(value)));
++		if (const auto history = data().historyLoaded(peerId)) {
++			if (!history->isPinnedDialog(FilterId())) {
++				if (!history->folderKnown()) {
++					history->clearFolder();
++				}
++				data().setChatPinned(history, FilterId(), true);
++				++chats;
++			}
++		}
++	}
++	for (const auto &value : document.object().value(u"favedStickers"_q).toArray()) {
++		const auto sticker = data().document(ParseId(value));
++		if (sticker->sticker() && !data().stickers().isFaved(sticker)) {
++			data().stickers().setFavedLocalExtra(sticker);
++			++stickers;
++		}
++	}
++	if (chats || stickers) {
++		show->showToast(tr::lng_pin_extras_import_done(tr::now));
++	} else {
++		show->showToast(tr::lng_pin_extras_import_none(tr::now));
++	}
++}
+\ No newline at end of file
+diff --git a/Telegram/SourceFiles/data/data_pin_extras.h b/Telegram/SourceFiles/data/data_pin_extras.h
+new file mode 100644
+index 0000000000..9771eff175
+--- /dev/null
++++ b/Telegram/SourceFiles/data/data_pin_extras.h
+@@ -0,0 +1,87 @@
++/*
++This file is part of Telegram Desktop,
++the official application for the Telegram messaging service.
++
++For license and copyright information please follow this link:
++https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
++*/
++#pragma once
++
++#include "base/basic_types.h"
++#include "base/flat_set.h"
++#include "data/data_msg_id.h"
++#include "data/data_peer_id.h"
++
++#include <QVector>
++#include <memory>
++#include <vector>
++
++class DocumentData;
++class History;
++
++namespace Data {
++class Session;
++} // namespace Data
++
++namespace Main {
++class Session;
++} // namespace Main
++
++namespace ChatHelpers {
++class Show;
++} // namespace ChatHelpers
++
++class PinExtras final {
++public:
++	explicit PinExtras(not_null<Main::Session*> session);
++
++	// The server caps pinned chats and faved stickers at Premium limits,
++	// so everything beyond those limits is kept as a local "extras" overlay,
++	// persisted between launches and synced through a JSON file in the
++	// user's own Saved Messages chat.
++	static constexpr auto kPinnedChatsLimit = 20;
++	static constexpr auto kFavedStickersLimit = 20;
++
++	// Chat pins.
++	void serverChatsApplied(const std::vector<PeerId> &serverPinned);
++	void serverEntryPinned(not_null<History*> history, bool pinned);
++	[[nodiscard]] bool keepLocalPin(not_null<History*> history) const;
++	void chatPinnedLocally(not_null<History*> history, bool pinned);
++	[[nodiscard]] std::vector<PeerId> extraPinnedPeerIds() const;
++	[[nodiscard]] bool isExtraPeer(PeerId peerId) const;
++
++	// Faved stickers.
++	void serverFavedReceived(const QVector<DocumentData*> &serverFaved);
++	void chatFavedLocal(not_null<DocumentData*> document);
++	void chatFavedNotLocal(not_null<DocumentData*> document);
++	[[nodiscard]] QVector<DocumentData*> extraFavedDocuments() const;
++
++	// Sync with the Saved Messages chat.
++	void push(std::shared_ptr<ChatHelpers::Show> show);
++	void pull(std::shared_ptr<ChatHelpers::Show> show);
++
++private:
++	void ensureLoaded();
++	void persistChats();
++	void persistFaved();
++	void readBackup(
++		std::shared_ptr<ChatHelpers::Show> show,
++		std::vector<MsgId> messageIds);
++	void applyBackup(
++		std::shared_ptr<ChatHelpers::Show> show,
++		const QString &path);
++	[[nodiscard]] Main::Session &session() const;
++	[[nodiscard]] Data::Session &data() const;
++
++	const not_null<Main::Session*> _session;
++
++	QVector<PeerId> _extraPinnedChats;
++	base::flat_set<PeerId> _serverPinnedChats;
++
++	QVector<uint64> _extraFavedStickers;
++	base::flat_set<uint64> _serverFavedStickers;
++
++	bool _loaded = false;
++	bool _pulling = false;
++
++};
+\ No newline at end of file
+diff --git a/Telegram/SourceFiles/data/data_session.cpp b/Telegram/SourceFiles/data/data_session.cpp
+index 49a6a03339..2eaab667a7 100644
+--- a/Telegram/SourceFiles/data/data_session.cpp
++++ b/Telegram/SourceFiles/data/data_session.cpp
+@@ -309,6 +309,7 @@ void EnumerateStaticMediaPhotos(
+ 
+ Session::Session(not_null<Main::Session*> session)
+ : _session(session)
++, _pinExtras(session)
+ , _cache(Core::App().databases().get(
+ 	_session->local().cachePath(),
+ 	_session->local().cacheSettings()))
+@@ -2773,6 +2774,13 @@ void Session::setChatPinned(
+ 		? chatsFilters().chatsList(filterId)
+ 		: chatsListFor(key.entry()))->pinned();
+ 	list->setPinned(key, pinned);
++	if (filterId == 0) {
++		// The server refuses to pin beyond the Premium limit, so the extras
++		// are kept locally in the extras overlay.
++		if (const auto history = key.history()) {
++			_pinExtras.chatPinnedLocally(history, pinned);
++		}
++	}
+ 	notifyPinnedDialogsOrderUpdated();
+ }
+ 
+@@ -2780,10 +2788,20 @@ void Session::setPinnedFromEntryList(Dialogs::Key key, bool pinned) {
+ 	Expects(key.entry()->folderKnown());
+ 
+ 	const auto list = chatsListFor(key.entry())->pinned();
++	const auto history = key.history();
+ 	if (pinned) {
+ 		list->addPinned(key);
+-	} else {
++		if (history) {
++			_pinExtras.serverEntryPinned(history, true);
++		}
++	} else if (!history || !_pinExtras.keepLocalPin(history)) {
+ 		list->setPinned(key, false);
++		if (history) {
++			_pinExtras.serverEntryPinned(history, false);
++		}
++	} else {
++		// The server dropped the pin beyond its limit, keep it locally.
++		list->addPinned(key);
+ 	}
+ }
+ 
+@@ -2809,7 +2827,34 @@ void Session::applyPinnedChats(
+ 			}
+ 		});
+ 	}
++	auto serverPinned = std::vector<PeerId>();
++	serverPinned.reserve(list.size());
++	for (const auto &peer : list) {
++		peer.match([&](const MTPDdialogPeer &data) {
++			if (const auto peerId = peerFromMTP(data.vpeer())) {
++				serverPinned.push_back(peerId);
++			}
++		}, [](const MTPDdialogPeerFolder &) {
++		}, [](const MTPDdialogPeerCommunity &) {
++		});
++	}
++	// The main list is re-populated from the server shortly, so re-add all
++	// locally-pinned extras that the server can not hold.
++	const auto extras = (folder == nullptr)
++		? _pinExtras.extraPinnedPeerIds()
++		: std::vector<PeerId>();
+ 	chatsList(folder)->pinned()->applyList(this, list);
++	_pinExtras.serverChatsApplied(serverPinned);
++	if (!folder && !extras.empty()) {
++		auto *pinned = chatsList(nullptr)->pinned();
++		for (const auto &peerId : extras) {
++			if (_pinExtras.isExtraPeer(peerId)) {
++				if (const auto history = historyLoaded(peerId)) {
++					pinned->addPinned(history);
++				}
++			}
++		}
++	}
+ 	notifyPinnedDialogsOrderUpdated();
+ }
+ 
+@@ -2927,9 +2972,12 @@ bool Session::pinnedCanPin(
+ 
+ int Session::pinnedChatsLimit(Data::Folder *folder) const {
+ 	const auto limits = Data::PremiumLimits(_session);
+-	return folder
++	const auto current = folder
+ 		? limits.dialogsFolderPinnedCurrent()
+ 		: limits.dialogsPinnedCurrent();
++	// The main list is not capped by the server in this build, so extras
++	// are held locally instead of showing the Premium upsell.
++	return folder ? current : std::max(current, PinExtras::kPinnedChatsLimit);
+ }
+ 
+ int Session::pinnedChatsLimit(FilterId filterId) const {
+@@ -2958,9 +3006,12 @@ rpl::producer<int> Session::maxPinnedChatsLimitValue(
+ 	// premium-ly added chats from the pinned list because of sync issues.
+ 	return _session->appConfig().value(
+ 	) | rpl::map([folder, limits = Data::PremiumLimits(_session)] {
+-		return folder
++		const auto premium = folder
+ 			? limits.dialogsFolderPinnedPremium()
+ 			: limits.dialogsPinnedPremium();
++		return folder
++			? premium
++			: std::max(premium, PinExtras::kPinnedChatsLimit);
+ 	});
+ }
+ 
+diff --git a/Telegram/SourceFiles/data/data_session.h b/Telegram/SourceFiles/data/data_session.h
+index 72139bcec7..c821eb5cf2 100644
+--- a/Telegram/SourceFiles/data/data_session.h
++++ b/Telegram/SourceFiles/data/data_session.h
+@@ -11,6 +11,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
+ #include "base/timer.h"
+ #include "data/data_cloud_file.h"
+ #include "data/data_groups.h"
++#include "data/data_pin_extras.h"
+ #include "data/data_star_gift.h"
+ #include "dialogs/dialogs_main_list.h"
+ #include "history/history_location_manager.h"
+@@ -214,6 +215,12 @@ public:
+ 	[[nodiscard]] Stickers &stickers() const {
+ 		return *_stickers;
+ 	}
++	[[nodiscard]] PinExtras &pinExtras() {
++		return _pinExtras;
++	}
++	[[nodiscard]] const PinExtras &pinExtras() const {
++		return _pinExtras;
++	}
+ 	[[nodiscard]] Reactions &reactions() const {
+ 		return *_reactions;
+ 	}
+@@ -1205,6 +1212,8 @@ private:
+ 
+ 	const not_null<Main::Session*> _session;
+ 
++	PinExtras _pinExtras;
++
+ 	Storage::DatabasePointer _cache;
+ 	Storage::DatabasePointer _bigFileCache;
+ 
+diff --git a/Telegram/SourceFiles/data/stickers/data_stickers.cpp b/Telegram/SourceFiles/data/stickers/data_stickers.cpp
+index dc94eb0267..c34b2af51f 100644
+--- a/Telegram/SourceFiles/data/stickers/data_stickers.cpp
++++ b/Telegram/SourceFiles/data/stickers/data_stickers.cpp
+@@ -10,6 +10,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
+ #include "api/api_hash.h"
+ #include "chat_helpers/compose/compose_show.h"
+ #include "data/data_document.h"
++#include "data/data_pin_extras.h"
+ #include "data/data_session.h"
+ #include "data/data_user.h"
+ #include "ui/boxes/confirm_box.h"
+@@ -60,20 +61,9 @@ using SetFlag = StickersSetFlag;
+ 			tr::marked));
+ }
+ 
+-[[nodiscard]] TextWithEntities FaveStickersToast(
+-		const Data::PremiumLimits &limits) {
+-	const auto defaultLimit = limits.stickersFavedDefault();
+-	const auto premiumLimit = limits.stickersFavedPremium();
++[[nodiscard]] TextWithEntities FaveStickersToast(int limit) {
+ 	return tr::bold(
+-		tr::lng_fave_sticker_limit_title(tr::now, lt_count, defaultLimit)
+-	).append('\n').append(
+-		tr::lng_fave_sticker_limit_more(
+-			tr::now,
+-			lt_count,
+-			premiumLimit,
+-			lt_link,
+-			tr::link(tr::lng_fave_sticker_limit_link(tr::now)),
+-			tr::marked));
++		tr::lng_fave_sticker_limit_title(tr::now, lt_count, limit));
+ }
+ 
+ void MaybeShowPremiumToast(
+@@ -522,9 +512,8 @@ bool Stickers::isFaved(not_null<const DocumentData*> document) const {
+ void Stickers::checkFavedLimit(
+ 		StickersSet &set,
+ 		std::shared_ptr<ChatHelpers::Show> show) {
+-	const auto session = &_owner->session();
+-	const auto limits = Data::PremiumLimits(session);
+-	if (set.stickers.size() <= limits.stickersFavedCurrent()) {
++	const auto limit = PinExtras::kFavedStickersLimit;
++	if (set.stickers.size() <= limit) {
+ 		return;
+ 	}
+ 	auto removing = set.stickers.back();
+@@ -540,10 +529,10 @@ void Stickers::checkFavedLimit(
+ 		}
+ 		++i;
+ 	}
+-	MaybeShowPremiumToast(
+-		std::move(show),
+-		FaveStickersToast(limits),
+-		LimitsPremiumRef("stickers_faved"));
++	_owner->pinExtras().chatFavedNotLocal(removing);
++	if (show) {
++		show->showToast(FaveStickersToast(limit));
++	}
+ }
+ 
+ void Stickers::pushFavedToFront(
+@@ -613,6 +602,9 @@ void Stickers::setIsFaved(
+ 	session().local().writeFavedStickers();
+ 	notifyUpdated(StickersType::Stickers);
+ 	notifyStickerSetInstalled(FavedSetId);
++	// The server may reject this favorite beyond its limit, in which case
++	// the extras overlay keeps it local.
++	_owner->pinExtras().chatFavedLocal(document);
+ }
+ 
+ void Stickers::requestSetToPushFaved(
+@@ -666,6 +658,55 @@ void Stickers::setIsNotFaved(not_null<DocumentData*> document) {
+ 	RemoveFromSet(setsRef(), document, FavedSetId);
+ 	session().local().writeFavedStickers();
+ 	notifyUpdated(StickersType::Stickers);
++	_owner->pinExtras().chatFavedNotLocal(document);
++}
++
++void Stickers::setFavedLocalExtra(not_null<DocumentData*> document) {
++	auto &sets = setsRef();
++	auto it = sets.find(FavedSetId);
++	if (it == sets.end()) {
++		it = sets.emplace(FavedSetId, std::make_unique<StickersSet>(
++			&document->owner(),
++			FavedSetId,
++			uint64(0), // accessHash
++			uint64(0), // hash
++			Lang::Hard::FavedSetTitle(),
++			QString(),
++			0, // count
++			SetFlag::Special,
++			TimeId(0))).first;
++	}
++	const auto set = it->second.get();
++	auto index = set->stickers.indexOf(document);
++	if (index > 0) {
++		moveFavedToFront(*set, index);
++	} else if (index < 0) {
++		auto emojiList = getEmojiListFromSet(document);
++		pushFavedToFront(*set, nullptr, document,
++			emojiList ? *emojiList : std::vector<not_null<EmojiPtr>>{});
++	}
++	session().local().writeFavedStickers();
++	notifyUpdated(StickersType::Stickers);
++	notifyStickerSetInstalled(FavedSetId);
++}
++
++void Stickers::reapplyFavedExtras() {
++	auto &sets = setsRef();
++	auto it = sets.find(FavedSetId);
++	if (it == sets.end()) {
++		return;
++	}
++	const auto set = it->second.get();
++	for (const auto &document : _owner->pinExtras().extraFavedDocuments()) {
++		if (set->stickers.contains(document) || !document->sticker()) {
++			continue;
++		}
++		auto emojiList = getEmojiListFromSet(document);
++		pushFavedToFront(*set, nullptr, document,
++			emojiList ? *emojiList : std::vector<not_null<EmojiPtr>>{});
++	}
++	session().local().writeFavedStickers();
++	notifyUpdated(StickersType::Stickers);
+ }
+ 
+ void Stickers::setFaved(
+@@ -918,6 +959,10 @@ void Stickers::specialSetReceived(
+ 			}
+ 		}
+ 
++		if (setId == FavedSetId) {
++			_owner->pinExtras().serverFavedReceived(set->stickers);
++		}
++
+ 		if (pack.isEmpty()) {
+ 			sets.erase(it);
+ 		} else {
+@@ -960,6 +1005,9 @@ void Stickers::specialSetReceived(
+ 				).arg(counted));
+ 		}
+ 		session().local().writeFavedStickers();
++		// The server list replaced our local favorites, so restore the
++		// extras that the server can not store.
++		reapplyFavedExtras();
+ 	} break;
+ 	default: Unexpected("setId in SpecialSetReceived()");
+ 	}
+diff --git a/Telegram/SourceFiles/data/stickers/data_stickers.h b/Telegram/SourceFiles/data/stickers/data_stickers.h
+index 602b2b4c53..6822e061ac 100644
+--- a/Telegram/SourceFiles/data/stickers/data_stickers.h
++++ b/Telegram/SourceFiles/data/stickers/data_stickers.h
+@@ -267,6 +267,10 @@ public:
+ 
+ 	[[nodiscard]] RecentStickerPack &getRecentPack() const;
+ 
++	// A local-only favorite, the server refuses to store it beyond the
++	// Premium count, so it is kept in the extras overlay.
++	void setFavedLocalExtra(not_null<DocumentData*> document);
++
+ private:
+ 	[[nodiscard]] bool updateNeeded(crl::time last, crl::time now) const {
+ 		constexpr auto kUpdateTimeout = crl::time(3600'000);
+@@ -281,6 +285,7 @@ private:
+ 		std::optional<std::vector<not_null<EmojiPtr>>> emojiList
+ 			= std::nullopt);
+ 	void setIsNotFaved(not_null<DocumentData*> document);
++	void reapplyFavedExtras();
+ 	void pushFavedToFront(
+ 		StickersSet &set,
+ 		std::shared_ptr<ChatHelpers::Show> show,
+diff --git a/Telegram/SourceFiles/storage/localimageloader.cpp b/Telegram/SourceFiles/storage/localimageloader.cpp
+index 9410bd4d0c..1639502251 100644
+--- a/Telegram/SourceFiles/storage/localimageloader.cpp
++++ b/Telegram/SourceFiles/storage/localimageloader.cpp
+@@ -856,32 +856,36 @@ void FileLoadTask::process(ProcessArgs &&args) {
+ 			filename = filedialogDefaultName(u"round"_q, u".mp4"_q, QString(), true);
+ 			filemime = "video/mp4";
+ 		} else {
+-			if (_information) {
+-				if (auto image = std::get_if<Ui::PreparedFileInformation::Image>(
+-						&_information->media)) {
+-					fullimage = base::take(image->data);
+-					fullimagebytes = base::take(image->bytes);
+-					fullimageformat = base::take(image->format);
+-				}
+-			}
+-			const auto mimeType = Core::MimeTypeForData(_content);
+-			filemime = mimeType.name();
+-			if (!Core::IsMimeSticker(filemime)
+-				&& fullimageformat != u"jpeg"_q) {
+-				fullimage = Images::Opaque(std::move(fullimage));
+-				fullimagebytes = fullimageformat = QByteArray();
+-			}
+-			if (filemime == "image/jpeg") {
+-				filename = filedialogDefaultName(u"photo"_q, u".jpg"_q, QString(), true);
+-			} else if (filemime == "image/png") {
+-				filename = filedialogDefaultName(u"image"_q, u".png"_q, QString(), true);
++			if (!_displayName.isEmpty()) {
++				filename = _displayName;
+ 			} else {
+-				QString ext;
+-				QStringList patterns = mimeType.globPatterns();
+-				if (!patterns.isEmpty()) {
+-					ext = patterns.front().replace('*', QString());
++				if (_information) {
++					if (auto image = std::get_if<Ui::PreparedFileInformation::Image>(
++							&_information->media)) {
++						fullimage = base::take(image->data);
++						fullimagebytes = base::take(image->bytes);
++						fullimageformat = base::take(image->format);
++					}
++				}
++				const auto mimeType = Core::MimeTypeForData(_content);
++				filemime = mimeType.name();
++				if (!Core::IsMimeSticker(filemime)
++					&& fullimageformat != u"jpeg"_q) {
++					fullimage = Images::Opaque(std::move(fullimage));
++					fullimagebytes = fullimageformat = QByteArray();
++				}
++				if (filemime == "image/jpeg") {
++					filename = filedialogDefaultName(u"photo"_q, u".jpg"_q, QString(), true);
++				} else if (filemime == "image/png") {
++					filename = filedialogDefaultName(u"image"_q, u".png"_q, QString(), true);
++				} else {
++					QString ext;
++					QStringList patterns = mimeType.globPatterns();
++					if (!patterns.isEmpty()) {
++						ext = patterns.front().replace('*', QString());
++					}
++					filename = filedialogDefaultName(u"file"_q, ext, QString(), true);
+ 				}
+-				filename = filedialogDefaultName(u"file"_q, ext, QString(), true);
+ 			}
+ 		}
+ 	} else {
+diff --git a/Telegram/SourceFiles/window/window_peer_menu.cpp b/Telegram/SourceFiles/window/window_peer_menu.cpp
+index 9ab1453e8e..22d3043c72 100644
+--- a/Telegram/SourceFiles/window/window_peer_menu.cpp
++++ b/Telegram/SourceFiles/window/window_peer_menu.cpp
+@@ -40,6 +40,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
+ #include "boxes/create_poll_box.h"
+ #include "boxes/edit_todo_list_box.h"
+ #include "boxes/pin_messages_box.h"
++#include "boxes/pin_extras_box.h"
+ #include "boxes/premium_limits_box.h"
+ #include "boxes/report_messages_box.h"
+ #include "boxes/filters/edit_filter_chats_list.h"
+@@ -104,6 +105,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
+ #include "data/notify/data_notify_settings.h"
+ #include "data/stickers/data_custom_emoji.h"
+ #include "data/data_changes.h"
++#include "data/data_pin_extras.h"
+ #include "data/data_session.h"
+ #include "data/data_folder.h"
+ #include "data/data_poll.h"
+@@ -302,6 +304,7 @@ private:
+ 
+ 	void addHidePromotion();
+ 	void addTogglePin();
++	void addPinExtras();
+ 	void addToggleMuteSubmenu(bool addSeparator);
+ 	void addSupportInfo();
+ 	void addInfo();
+@@ -409,7 +412,7 @@ bool PinnedLimitReached(
+ 	} else if (folder) {
+ 		controller->show(Box(FolderPinsLimitBox, &history->session()));
+ 	} else {
+-		controller->show(Box(PinsLimitBox, &history->session()));
++		controller->show(Box(PinExtrasBox, &history->session()));
+ 	}
+ 	return true;
+ }
+@@ -581,6 +584,38 @@ void Filler::addTogglePin() {
+ 			: &st::menuIconPin));
+ }
+ 
++void Filler::addPinExtras() {
++	if (!_peer || !_peer->isSelf()) {
++		return;
++	}
++	const auto weak = base::make_weak(_controller);
++	_addAction(PeerMenuCallback::Args{
++		.text = tr::lng_pin_extras_menu(tr::now),
++		.handler = nullptr,
++		.icon = &st::menuIconExport,
++		.fillSubmenu = [=](not_null<Ui::PopupMenu*> menu) {
++			menu->addAction(
++				tr::lng_pin_extras_export(tr::now),
++				[=] {
++					if (const auto strong = weak.get()) {
++						strong->session().data().pinExtras().push(
++							strong->uiShow());
++					}
++				},
++				&st::menuIconExport);
++			menu->addAction(
++				tr::lng_pin_extras_import(tr::now),
++				[=] {
++					if (const auto strong = weak.get()) {
++						strong->session().data().pinExtras().pull(
++							strong->uiShow());
++					}
++				},
++				&st::menuIconDownload);
++		},
++	});
++}
++
+ void Filler::addToggleMuteSubmenu(bool addSeparator) {
+ 	if (!_thread
+ 		|| _thread->peer()->isSelf()
+@@ -1900,6 +1935,7 @@ void Filler::fillContextMenuActions() {
+ 	addHidePromotion();
+ 	addToggleArchive();
+ 	addTogglePin();
++	addPinExtras();
+ 	if (ViewProfileInChatsListContextMenu.value()) {
+ 		addInfo();
+ 	}
