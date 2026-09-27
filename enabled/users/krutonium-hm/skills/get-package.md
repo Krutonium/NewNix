@@ -1,7 +1,11 @@
 ---
-name: ephemeral-nix-packages
+name: get-package
 description: Use this skill whenever a command isn't found on a NixOS/Nix system and a CLI tool is needed temporarily - jq, ripgrep, a compiler, whatever - without editing any system or flake config. Trigger on "command not found" errors, requests to run one-off tools, or any task that needs a binary not currently on PATH in a Nix environment. Also consult this before reaching for `nix-shell -p` (legacy) or suggesting the user install something permanently just to run it once.
 ---
+
+# Preface
+
+Assume you're on a NixOS system. It doesn't make sense for this skill to be installed on a non-nix system.
 
 # Ephemeral Nix Packages
 

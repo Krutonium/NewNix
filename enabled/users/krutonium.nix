@@ -58,6 +58,7 @@
           firefox
           dynamic-apps
           gnome-dconf
+          opencode
           git
           ssh
           terminal

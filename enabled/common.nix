@@ -24,6 +24,9 @@
         hostKeys
         firefoxNvidiaOffload
       ];
+      boot.kernel.sysctl = {
+        "fs.inotify.max_user_watches" = 1048576;
+      };
       nixpkgs.overlays = with inputs.self.overlays; [
         inputs.nvidia-patch.overlays.default
         InternetRadio2Computercraft

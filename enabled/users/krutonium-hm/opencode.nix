@@ -12,16 +12,19 @@
         package = mv.fast.tip.opencode;
         web.enable = true;
         skills = {
-          get-package = "./skills/get-package.md";
+          get-package = ./skills/get-package.md;
         };
         enableMcpIntegration = true;
       };
-      programs.mcp.servers = {
-        playwright = {
-          command = "${pkgs.nodePackages.playwright-mcp}/bin/mcp-server-playwright";
+      programs.mcp = {
+        enable = true;
+        servers.playwright = {
+          command = "${mv.fast.tip.playwright-mcp}/bin/playwright-mcp";
           args = [
             "--browser"
-            "firefox"
+            "chromium"
+            "--user-data-dir"
+            "/home/krutonium/.local/share/playwright-mcp-profile"
           ];
         };
       };
