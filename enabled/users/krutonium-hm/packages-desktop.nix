@@ -73,7 +73,6 @@
           pkgs.yt-dlp
           pkgs.atuin
           #mv.tip.ollama
-          mv.tip.opencode
 
           # Commuications
           pkgs.fluffychat
