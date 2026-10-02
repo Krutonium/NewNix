@@ -46,6 +46,7 @@
           };
           "org/gnome/desktop/interface" = {
             clock-format = "12h";
+            clock-show-settings = true;
             font-antialiasing = "rgba";
             font-hinting = "full";
             gtk-im-module = "gtk-im-context-simple";
