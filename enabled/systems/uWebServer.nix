@@ -186,6 +186,11 @@
         port = 7778;
         reliablePort = 8888;
       };
+      services.beesd.filesystems.root = {
+        spec = "UUID=${lib.removePrefix "/dev/disk/by-uuid/" btrfsUUID}";
+        hashTableSizeMB = 512;
+        verbosity = "info";
+      };
 
       boot = {
         kernelPackages = kernel;
