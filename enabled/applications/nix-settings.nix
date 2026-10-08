@@ -33,13 +33,13 @@
           ];
           substituters = [
             "https://cache.nixos-cuda.org"
-            "https://attic.xuyh0120.win/lantian"
+            #"https://attic.xuyh0120.win/lantian"
             "https://cache.krutonium.ca/KruCache?priority=1"
             "https://jovian-nixos.cachix.org"
           ];
           trusted-public-keys = [
             "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
-            "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
+            #"lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
             "KruCache:iDgMvjBS9EN4/Zy3jYLFkER3UpmBw2FnYm0q9f23csw="
             "jovian-nixos.cachix.org-1:mAWLjAxLNlfxAnozUjOqGj4AxQwCl7MXwOfu7msVlAo="
           ];
