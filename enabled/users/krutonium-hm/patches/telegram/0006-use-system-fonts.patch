@@ -1,0 +1,22 @@
+diff --git a/ui/style/style_core_font.cpp b/ui/style/style_core_font.cpp
+index 46b65c4..99e9fcd 100644
+--- a/ui/style/style_core_font.cpp
++++ b/ui/style/style_core_font.cpp
+@@ -333,15 +333,13 @@ struct Metrics {
+ 	auto font = QFont(QFont().family());
+ 
+ 	const auto monospace = (flags & FontFlag::Monospace) != 0;
+-	const auto system = !monospace && (family == SystemFontTag());
++	const auto system = !monospace
++		&& (family.isEmpty() || family == SystemFontTag());
+ 	const auto overriden = !monospace && !system && !family.isEmpty();
+ 	if (monospace) {
+ 		font.setFamily(MonospaceFont());
+-	} else if (system) {
+ 	} else if (overriden) {
+ 		font.setFamily(family);
+-	} else {
+-		font.setFamily("Open Sans"_q);
+ 	}
+ 	font.setPixelSize(size);
+ 
