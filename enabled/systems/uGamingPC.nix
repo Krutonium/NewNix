@@ -25,7 +25,7 @@
       root
       vr
       zswap
-      moonshine
+      #moonshine
       lact
       g600
     ];
@@ -71,7 +71,7 @@
       ];
       udevPackages = [
         pkgs.qmk-udev-rules
-        pkgs.logitech-udev-rules
+        #pkgs.logitech-udev-rules
         pkgs.via
       ];
       kernel = mv.tip.linuxPackages_latest;

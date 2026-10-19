@@ -196,27 +196,6 @@
         "type": "github"
       }
     },
-    "hanabi-src": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1782283554,
-        "narHash": "sha256-4dPWZ90156aM6yQz+8c6tdR7ohJJ2yjZro1K3tJEEL0=",
-        "owner": "Aspiand",
-        "repo": "gnome-ext-hanabi",
-        "rev": "be05483b248a583de999d4d74eb982f79d2b71c3",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Aspiand",
-        "repo": "gnome-ext-hanabi",
-        "rev": "be05483b248a583de999d4d74eb982f79d2b71c3",
-        "type": "github"
-      }
-    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -270,26 +249,6 @@
       "original": {
         "owner": "vic",
         "repo": "import-tree",
-        "type": "github"
-      }
-    },
-    "moonshine": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1792364586,
-        "narHash": "sha256-K/99PICU1DqE7FYuiF+9uvFZzEmUK/kWWKh+hYboULY=",
-        "owner": "hgaiser",
-        "repo": "moonshine",
-        "rev": "485d425bfdef6ad57baf0e8860765131f25795fc",
-        "type": "github"
-      },
-      "original": {
-        "owner": "hgaiser",
-        "repo": "moonshine",
         "type": "github"
       }
     },
@@ -424,11 +383,9 @@
         "flake-parts": "flake-parts",
         "flake-utils": "flake-utils",
         "g600-key-remap-daemon": "g600-key-remap-daemon",
-        "hanabi-src": "hanabi-src",
         "home-manager": "home-manager",
         "hytale-launcher-nix": "hytale-launcher-nix",
         "import-tree": "import-tree",
-        "moonshine": "moonshine",
         "multiverse": "multiverse",
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs",

@@ -53,14 +53,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
     };
-    hanabi-src = {
-      url = "github:Aspiand/gnome-ext-hanabi/be05483b248a583de999d4d74eb982f79d2b71c3";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    moonshine = {
-      url = "github:hgaiser/moonshine";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    #hanabi-src = {
+    #  url = "github:Aspiand/gnome-ext-hanabi/be05483b248a583de999d4d74eb982f79d2b71c3";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
+    #moonshine = {
+    #  url = "github:hgaiser/moonshine";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
     win98se-plymouth = {
       url = "github:nilp0inter/plymouth-theme-win98se-inspired-nixos-theme";
       inputs.nixpkgs.follows = "nixpkgs";

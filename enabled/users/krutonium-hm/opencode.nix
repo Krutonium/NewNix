@@ -9,7 +9,7 @@
       # the washroom.
       programs.opencode = {
         enable = true;
-        package = mv.fast.tip.opencode;
+        package = mv.tip.opencode;
         web.enable = true;
         skills = {
           get-package = ./skills/get-package.md;
@@ -19,7 +19,7 @@
       programs.mcp = {
         enable = true;
         servers.playwright = {
-          command = "${mv.fast.tip.playwright-mcp}/bin/playwright-mcp";
+          command = "${mv.tip.playwright-mcp}/bin/playwright-mcp";
           args = [
             "--browser"
             "chromium"
