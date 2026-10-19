@@ -21,7 +21,7 @@
       overte-server
       obs-relay
       steam
-      moonshine
+      #moonshine
     ];
   };
 
