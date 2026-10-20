@@ -15,11 +15,11 @@
       };
 
       services.udev.extraRules = ''
-        ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="40:8d:5c:54:89:96", NAME="WAN"
+        ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="40:8d:5c:54:89:96", NAME="UNUSED"
         ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="ac:16:2d:9a:17:c0", NAME="LAN0"
         ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="ac:16:2d:9a:17:c1", NAME="LAN1"
         ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="ac:16:2d:9a:17:c2", NAME="LAN2"
-        ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="ac:16:2d:9a:17:c3", NAME="LAN3"
+        ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="ac:16:2d:9a:17:c3", NAME="WAN"
       '';
 
       networking.nftables.enable = true;
@@ -48,7 +48,7 @@
         enable = true;
         networks = {
           "10-wan" = {
-            matchConfig.PermanentMACAddress = "40:8d:5c:54:89:96";
+            matchConfig.PermanentMACAddress = "ac:16:2d:9a:17:c3";
             networkConfig = {
               DHCP = "yes";
               IPv6AcceptRA = true;
@@ -102,7 +102,6 @@
           "LAN0"
           "LAN1"
           "LAN2"
-          "LAN3"
           #"VPN"
         ];
 
@@ -174,7 +173,7 @@
             #"/${config.networking.domain}/fd00:beef::1"
           ];
           host-record = [
-            "${config.networking.domain},10.0.0.1.fd00:beef::1" # Apex Domain
+            "${config.networking.domain},10.0.0.1,fd00:beef::1" # Apex Domain
             "uWebServer.${config.networking.domain},10.0.0.1,fd00:beef::1"
             "uGamingPC.${config.networking.domain},10.0.0.2,fd00:beef::2"
             "uServerHost.${config.networking.domain},10.0.0.3,fd00:beef::3"
