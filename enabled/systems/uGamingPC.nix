@@ -20,7 +20,7 @@
       sops
       pipewire
       ssh
-      v4l2loopback
+      #v4l2loopback
       gamemode
       root
       vr
