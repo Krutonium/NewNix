@@ -12,7 +12,7 @@
       users.users.krutonium.extraGroups = [ "plex" "media" ];
       users.users.plex.uid = 193;
       users.groups.plex.gid = 193;
-      users.users.plex.extraGroups = [ "rtorrent" ];
+      users.users.plex.extraGroups = [ "rtorrent" "media" ];
       services.nginx.virtualHosts = {
         "plex.${config.networking.domain}" = {
           forceSSL = true;
