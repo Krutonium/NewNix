@@ -10,7 +10,7 @@
       ddns
       rtorrent
       forgejo
-      nextcloud
+      #nextcloud
       nginx
       plex
       postgresql
