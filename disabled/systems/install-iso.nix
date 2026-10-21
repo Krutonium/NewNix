@@ -1,12 +1,14 @@
+# TO BUILD: nix build .#nixosConfigurations.minimalInstallerIso.config.system.build.isoImage
 { self, inputs, ... }:
 {
   flake.nixosModules.minimalInstallerIso = { lib, pkgs, modulesPath, ... }: {
     imports = [
       (modulesPath + "/installer/cd-dvd/installation-cd-minimal.nix")
     ];
-
+  
     isoImage.squashfsCompression = "zstd -Xcompression-level 6";
 
+    boot.supportedFilesystems = [ "bcachefs" ];
     networking.hostName = "krutonium-installer";
     networking.networkmanager.enable = true;
 
