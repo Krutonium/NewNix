@@ -10,9 +10,10 @@
       ddns
       rtorrent
       forgejo
-      #nextcloud
+      nextcloud
       nginx
       plex
+      jellyfin
       postgresql
       searx
       ssh
@@ -198,6 +199,7 @@
         kernelParams = [
           "amdgpu.ppfeaturemask=0xffffffff"
           "mitigations=off"
+          "amdgpu.runpm=0" # GPU doesn't reliably come back from sleep
         ];
         initrd.availableKernelModules = [
           "xhci_pci"

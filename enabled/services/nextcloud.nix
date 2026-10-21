@@ -1,11 +1,15 @@
 { self, ... }:
 {
   flake.nixosModules.nextcloud =
-    { pkgs, config, ... }:
+    { config, mv, ... }:
     {
+      disabledModules = [ "services/web-apps/nextcloud.nix" ];
+
       imports = [
         self.nixosModules.postgresql
+        "${toString mv.tip.path}/nixos/modules/services/web-apps/nextcloud.nix"
       ];
+
       services = {
         nginx.virtualHosts = {
           "nextcloud.${config.networking.domain}" = {
@@ -26,12 +30,12 @@
           configureRedis = true;
           maxUploadSize = "10240M";
           hostName = "nextcloud.${config.networking.domain}";
-          package = pkgs.nextcloud33;
+          package = mv.tip.nextcloud33;
           home = "/media2/nextcloud";
           settings.log_type = "file";
           config = {
-            adminpassFile = "/persist/nextcloud-admin-pass";
-            adminuser = "root";
+#            adminpassFile = "/persist/nextcloud-admin-pass";
+#            adminuser = "root";
 
             dbuser = "nextcloud";
             dbpassFile = "/persist/nextcloud-db-pass";

@@ -88,6 +88,7 @@
         irqbalance.enable = true;
         fwupd.enable = true;
       };
+      users.groups.media = {};
       programs = {
         direnv.enable = true;
         fuse = {

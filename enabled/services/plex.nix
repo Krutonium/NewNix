@@ -9,7 +9,7 @@
         openFirewall = true;
         package = mv.tip.plex;
       };
-      users.users.krutonium.extraGroups = [ "plex" ];
+      users.users.krutonium.extraGroups = [ "plex" "media" ];
       users.users.plex.uid = 193;
       users.groups.plex.gid = 193;
       users.users.plex.extraGroups = [ "rtorrent" ];
