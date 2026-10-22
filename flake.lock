@@ -224,11 +224,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1792011798,
-        "narHash": "sha256-gLIz9KH5t8SWTkzeQPEgQQHf1L061M3tSs4IW2Xa+go=",
+        "lastModified": 1792638249,
+        "narHash": "sha256-34jxGi9m1l+rtDfT7WdRCrbIKeFJDek53T5fugb+4QQ=",
         "owner": "JPyke3",
         "repo": "hytale-launcher-nix",
-        "rev": "30eb0515625a7f03e1fdc61009933d83759fffde",
+        "rev": "dddd73423e804dade9a2312430937c1d5e1954ee",
         "type": "github"
       },
       "original": {
@@ -289,15 +289,18 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1792503283,
-        "narHash": "sha256-OtQ9jaQ9aXZDm61TqykPLZdXJa2NMykYG3d0tbT683U=",
-        "rev": "cd4ea8d57de16f4810bc5f14207bac45fbf19f67",
-        "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/26.05/nixos-26.05.12297.cd4ea8d57de1/nixexprs.tar.zst"
+        "lastModified": 1792615934,
+        "narHash": "sha256-MlvRfa1O5Cqc2/a+gG+l9TSuowEoCKCmrJ1d9oAVm0I=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "da6dc0e7b26060f2f71ce3ef7088fb56ee44fa36",
+        "type": "github"
       },
       "original": {
-        "type": "tarball",
-        "url": "https://channels.nixos.org/nixos-26.05/nixexprs.tar.zst"
+        "owner": "NixOS",
+        "ref": "nixos-26.05",
+        "repo": "nixpkgs",
+        "type": "github"
       }
     },
     "nixpkgs-lib": {
@@ -341,11 +344,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1792634982,
-        "narHash": "sha256-qbXVTF9bhGUVhNI9orYdnwjy5xCXA+FPaEP/rDwPpOA=",
+        "lastModified": 1792648524,
+        "narHash": "sha256-LfFQii4+ZOhbbgTcAw9LP9KaJ0MZixFojW5oNObTG9s=",
         "owner": "nix-community",
         "repo": "nur",
-        "rev": "5e2b5d609149800d2d1f2cef56820c8a8b2e6c8f",
+        "rev": "11f5a092b041cfa98dfc786ce6b008d208a37508",
         "type": "github"
       },
       "original": {
