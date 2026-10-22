@@ -30,7 +30,7 @@
           configureRedis = true;
           maxUploadSize = "10240M";
           hostName = "nextcloud.${config.networking.domain}";
-          package = mv.tip.nextcloud33;
+          package = mv.tip.nextcloud35;
           home = "/media2/nextcloud";
           settings.log_type = "file";
           config = {
