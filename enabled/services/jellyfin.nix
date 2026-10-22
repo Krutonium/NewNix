@@ -37,7 +37,7 @@
           };
         };
       };
-      "jellyfin.${config.networking.domain}" = {
+      services.nginx.virtualHosts."jellyfin.${config.networking.domain}" = {
         useACMEHost = "krutonium.ca";
         forceSSL = true; # Force SSL
         locations."/".proxyPass = "http://127.0.0.1:8096"; # Proxy Gitea
