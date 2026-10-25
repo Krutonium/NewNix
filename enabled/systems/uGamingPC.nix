@@ -28,6 +28,7 @@
       #moonshine
       lact
       g600
+      gpu-unlock
     ];
   };
 
@@ -158,6 +159,9 @@
       services.g600-key-remap.enable = true;
       services.ratbagd.enable = true;
       hardware = {
+        gpuUnlock = {
+          enable = true;
+        };
         graphics.enable = true;
         cpu.amd.updateMicrocode = true;
         nvidia = {

@@ -68,6 +68,10 @@
     xwaylandvideobridge = {
       url = "github:KDE/xwaylandvideobridge";
     };
+    gpu-unlock = { # https://github.com/Zagitta/gpu-unlock
+      url = "github:Zagitta/gpu-unlock";
+      flake = false;
+    };
   };
   outputs =
     inputs:

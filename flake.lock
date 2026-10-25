@@ -196,6 +196,22 @@
         "type": "github"
       }
     },
+    "gpu-unlock": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1792856848,
+        "narHash": "sha256-6FaDuPojB707ds7gkQY/g/+m4Tnz1xHZ95UjNfFxBJc=",
+        "owner": "Zagitta",
+        "repo": "gpu-unlock",
+        "rev": "af28cbbfd3d922a659227ecfb7369adfd924cf03",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Zagitta",
+        "repo": "gpu-unlock",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -386,6 +402,7 @@
         "flake-parts": "flake-parts",
         "flake-utils": "flake-utils",
         "g600-key-remap-daemon": "g600-key-remap-daemon",
+        "gpu-unlock": "gpu-unlock",
         "home-manager": "home-manager",
         "hytale-launcher-nix": "hytale-launcher-nix",
         "import-tree": "import-tree",
