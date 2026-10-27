@@ -185,6 +185,15 @@
             "subvol=Hytale"
           ];
         };
+        "/servers/FTBSkies" = {
+          device = btrfsDisk;
+          fsType = "btrfs";
+          options = [
+            "noatime"
+            "compress=zstd:15"
+            "subvol=FTBSkies"
+          ];
+        };
         "/servers/satisfactory" = {
           device = btrfsDisk;
           fsType = "btrfs";
