@@ -3,6 +3,11 @@
   flake.nixosModules.fileHosting =
     { config, ... }:
     {
+      sys.nginxAuth.sites = {
+        "gryphon.${config.networking.domain}" = [ "krutonium" "gryphon" ];
+        "nevvy.${config.networking.domain}" = [ "krutonium" "nevvy" ];
+        "scr.${config.networking.domain}" = [ "krutonium" ];
+      };
       services.nginx.virtualHosts = {
         "dl.${config.networking.domain}" = {
           forceSSL = true;
@@ -19,8 +24,6 @@
                 autoindex on;
                 autoindex_localtime on;
                 autoindex_exact_size off;
-                auth_basic "Restricted Access";
-                auth_basic_user_file /persist/httpAuth;
               '';
             };
             # Disable auth for files with an extension (e.g., .txt, .jpg, .html)
@@ -47,8 +50,6 @@
                 autoindex on;
                 autoindex_localtime on;
                 autoindex_exact_size off;
-                auth_basic "Restricted Access";
-                auth_basic_user_file /persist/httpAuth;
               '';
             };
             # Disable auth for files with an extension (e.g., .txt, .jpg, .html)
@@ -75,8 +76,6 @@
                 autoindex on;
                 autoindex_localtime on;
                 autoindex_exact_size off;
-                auth_basic "Restricted Access";
-                auth_basic_user_file /persist/httpAuth;
               '';
             };
             # Disable auth for files with an extension (e.g., .txt, .jpg, .html)

@@ -19,11 +19,8 @@
         "${toString mv.tip.path}/nixos/modules/services/torrent/rtorrent.nix"
       ];
 
-      sops.secrets.basicAuth = {
-        owner = "nginx";
-        group = "nginx";
-        mode = "0440";
-      };
+      sys.nginxAuth.sites.${config.services.rutorrent.hostName} = [ "krutonium" ];
+
       sops.secrets.autobrr_secret = {
         mode = "0770";
       };
@@ -72,7 +69,6 @@
         };
       };
       services.nginx.virtualHosts.${config.services.rutorrent.hostName} = {
-        basicAuthFile = config.sops.secrets.basicAuth.path;
         forceSSL = true;
         useACMEHost = "krutonium.ca";
       };

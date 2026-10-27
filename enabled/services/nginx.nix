@@ -1,8 +1,9 @@
-{ ... }:
+{ self, ... }:
 {
   flake.nixosModules.nginx =
     { lib, config, ... }:
     {
+      imports = [ self.nixosModules.nginxAuth ];
       users.groups.anubis-access = { };
       users.users.nginx.extraGroups = [ "anubis-access" ];
       networking.firewall.allowedTCPPorts = [
