@@ -1,6 +1,6 @@
 { inputs, ... }:
 let
-  version = "1.0.0";
+  version = "1.1.0";
   nvVersion = "610.43.03";
 
   # Firmware is generated at build time from two pinned NVIDIA inputs
@@ -20,9 +20,9 @@ let
         url = "https://download.nvidia.com/XFree86/NVIDIA-kernel-module-source/NVIDIA-kernel-module-source-${nvVersion}.tar.xz";
         hash = "sha256-fhGJI8eiPtw2EU1jJzpG4+BOmvmGlaQiA+esLf6fwdw=";
       };
-      nvUtils = fetchurl {
-        url = "https://archive.cachyos.org/archive/cachyos-v3/nvidia-utils-${nvVersion}-1-x86_64_v3.pkg.tar.zst";
-        hash = "sha256-4X58ku7/oXiw/h9A6xekcJX4/Dzkp3vxFc9b1aTfhuk=";
+      nvInstaller = fetchurl {
+        url = "https://download.nvidia.com/XFree86/Linux-x86_64/${nvVersion}/NVIDIA-Linux-x86_64-${nvVersion}-no-compat32.run";
+        hash = "sha256-4IRFHbcwpt8p09dPZVdJxNI248lF99lLUgXoQxj+L5A=";
       };
     in
     stdenvNoCC.mkDerivation {
@@ -42,7 +42,7 @@ let
         runHook preBuild
         mkdir -p assets assets.src
         tar -xf ${nvSource} -C assets.src
-        python3 firmware/generate_v67.py ${nvUtils} assets
+        python3 firmware/extract_gsp.py ${nvInstaller} assets
         python3 firmware/extract_boot_assets.py \
           assets.src/NVIDIA-kernel-module-source-${nvVersion} assets
         runHook postBuild
@@ -51,11 +51,18 @@ let
       installPhase = ''
         runHook preInstall
         install -Dm644 -t $out/lib/firmware/gpu-unlock/${nvVersion} \
+          assets/booter_load_ad102.bin \
+          assets/booter_load_ga100.bin \
           assets/booter_load_ga102.bin \
-          assets/gsp_ga10x.bin \
+          assets/falcon_loader.bin \
+          assets/gsp_boot_ad102.bin \
+          assets/gsp_boot_desc_ad102.bin \
+          assets/gsp_boot_ga100.bin \
+          assets/gsp_boot_desc_ga100.bin \
           assets/gsp_boot_ga102.bin \
           assets/gsp_boot_desc_ga102.bin \
-          assets/v67-ga102-${nvVersion}.bin
+          assets/gsp_ga10x.bin \
+          assets/gsp_tu10x.bin
         install -Dm644 assets/NVIDIA-LICENSE \
           $out/share/licenses/gpu-unlock-firmware/NVIDIA-LICENSE
         install -Dm644 firmware/NOTICE.md \
