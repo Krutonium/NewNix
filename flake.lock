@@ -199,11 +199,11 @@
     "gpu-unlock": {
       "flake": false,
       "locked": {
-        "lastModified": 1792856848,
-        "narHash": "sha256-6FaDuPojB707ds7gkQY/g/+m4Tnz1xHZ95UjNfFxBJc=",
+        "lastModified": 1793042274,
+        "narHash": "sha256-6FbsBw20/+MRP676qur+C4glwrKmqlNi3xwAzB82zoA=",
         "owner": "Zagitta",
         "repo": "gpu-unlock",
-        "rev": "af28cbbfd3d922a659227ecfb7369adfd924cf03",
+        "rev": "6081407b312aa3139a2bed62bdda354f4ffddc1d",
         "type": "github"
       },
       "original": {
@@ -360,11 +360,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1792980691,
-        "narHash": "sha256-xTYIKRQHwnqmDpHuWzMZU0cziD2yNHNg00IP5cpue8Q=",
+        "lastModified": 1793062543,
+        "narHash": "sha256-oioVo339aSt2OLLCq0TiSM7hMdeQXx5au0w6anILTNg=",
         "owner": "nix-community",
         "repo": "nur",
-        "rev": "6d65ff4d36d35d554fb20ca89fa967f6e6292a5b",
+        "rev": "627fc9f656b7f50ba569da1b8a2104b851d33ee7",
         "type": "github"
       },
       "original": {
@@ -448,11 +448,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1792809984,
-        "narHash": "sha256-KV+CaZX7QS0hcdKxwGKehDb1jmUgx6lbkTPpaoIW5Nw=",
+        "lastModified": 1793052255,
+        "narHash": "sha256-Y/JIHTnMlOabDfyaSBubWGLDIVGihLEUuoMhFvQKaDo=",
         "owner": "Mic92",
         "repo": "sops-nix",
-        "rev": "442449fa7b1fe6c692d0103ac9fc8f9e82931cf3",
+        "rev": "60182817ee048ac94b4c68ea76d5ef2e8aac730d",
         "type": "github"
       },
       "original": {
