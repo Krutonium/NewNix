@@ -46,6 +46,7 @@
 
       systemd.network = {
         enable = true;
+        wait-online.enable = false;
         networks = {
           "10-wan" = {
             matchConfig.PermanentMACAddress = "ac:16:2d:9a:17:c3";
