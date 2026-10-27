@@ -29,6 +29,7 @@
       lact
       g600
       gpu-unlock
+      v4l2loopback
     ];
   };
 
