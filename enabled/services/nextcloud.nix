@@ -46,5 +46,10 @@
           };
         };
       };
+
+      systemd.services.nextcloud-setup = {
+        after = [ "postgresql.target" ];
+        requires = [ "postgresql.target" ];
+      };
     };
 }
