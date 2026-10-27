@@ -88,7 +88,7 @@
         irqbalance.enable = true;
         fwupd.enable = true;
       };
-      users.groups.media = {};
+      users.groups.media = { gid = 989; };
       programs = {
         direnv.enable = true;
         fuse = {

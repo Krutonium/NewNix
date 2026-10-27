@@ -5,6 +5,7 @@
     {
       users.users.gryphon = {
         isNormalUser = true;
+        uid = 1000;
         home = "/home/gryphon/";
         createHome = true;
         openssh.authorizedKeys.keys = [

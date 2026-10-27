@@ -16,7 +16,7 @@
         enable = true;
         useBabelfish = true;
       };
-      users.groups.krutonium = { };
+      users.groups.krutonium = { gid = 992; };
       users.users.krutonium = {
         uid = 1002;
         home = "/home/krutonium";

@@ -1,10 +1,11 @@
 { ... }:
 {
-  flake.nixosModules.gryphon =
+  flake.nixosModules.nevvy =
     { ... }:
     {
       users.users.nevvy = {
         isNormalUser = true;
+        uid = 1003;
         home = "/home/nevvy/";
         createHome = true;
         openssh.authorizedKeys.keys = [

@@ -22,6 +22,7 @@
       krutonium
       kea
       gryphon
+      nevvy
       root
       sops
       matrix
@@ -29,6 +30,7 @@
       minecraftPortForwards
       minecraftServerData
       fileHosting
+      userIds
       #simpleCpuGovernor
       satisfactory
       zswap
