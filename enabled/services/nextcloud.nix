@@ -34,11 +34,8 @@
           home = "/media2/nextcloud";
           settings.log_type = "file";
           config = {
-#            adminpassFile = "/persist/nextcloud-admin-pass";
-#            adminuser = "root";
-
             dbuser = "nextcloud";
-            dbpassFile = "/persist/nextcloud-db-pass";
+            dbpassFile = config.sops.secrets.nextcloud_db_password.path;
             dbtype = "pgsql";
             #dbport = "5432";
             dbname = "nextcloud";

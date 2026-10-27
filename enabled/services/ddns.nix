@@ -3,6 +3,7 @@
   flake.nixosModules.ddns =
     { config, ... }:
     {
+      sops.secrets.cloudflare_ddns_token = { };
       services.ddclient = {
         enable = true;
         protocol = "cloudflare";
@@ -13,7 +14,7 @@
           "www.${config.networking.domain}"
         ];
         username = "token";
-        passwordFile = "/persist/cloudflare_ddns";
+        passwordFile = config.sops.secrets.cloudflare_ddns_token.path;
         usev4 = "webv4, webv4=ipv4.icanhazip.com";
         usev6 = "ifv6, ifv6=br0";
       };

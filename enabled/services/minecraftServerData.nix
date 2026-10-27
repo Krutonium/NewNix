@@ -13,7 +13,6 @@
           #  script = "run.sh";
           #  enabled = true;
           #  rconPort = 12370;
-          #  rconPasswordFile = "/servers/rcon.password";
           #  port = 25570;
           #  extraTCPPorts = [];
           #  extraUDPPorts = [ 24454 ];
@@ -24,7 +23,6 @@
             script = "startserver.sh";
             enabled = true;
             rconPort = 12347;
-            rconPasswordFile = "/servers/rcon.password";
             port = 25565;
             extraTCPPorts = [ ];
             extraUDPPorts = [
@@ -38,7 +36,6 @@
             script = "run.sh";
             enabled = true;
             rconPort = 12348;
-            rconPasswordFile = "/servers/rcon.password";
             port = 25568;
             extraTCPPorts = [ ];
             extraUDPPorts = [ ];
@@ -49,7 +46,6 @@
             script = "startserver.sh";
             enabled = true;
             rconPort = 0;
-            rconPasswordFile = "/dev/null";
             port = 25565;
             extraTCPPorts = [ ];
             extraUDPPorts = [ 5520 ];
@@ -61,7 +57,6 @@
             enabled = true;
             port = 25570;
             rconPort = 12349;
-            rconPasswordFile = "/servers/rcon.password";
             extraTCPPorts = [ ];
             extraUDPPorts = [ ];
           }

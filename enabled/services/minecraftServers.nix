@@ -15,6 +15,9 @@
       javaPackage = ver: pkgs.${ver} or (throw "Unknown javaVersion '${ver}' in minecraftServerData.nix");
 
       enabledServers = filter (s: s.enabled) servers;
+      rconPasswordFile =
+        server:
+        if server.rconPort == 0 then "/dev/null" else config.sops.secrets.minecraft_rcon_password.path;
 
       mkServerService =
         server:
@@ -32,7 +35,7 @@
               ${startScript}
             '';
             preStop = ''
-              password=`${pkgs.coreutils}/bin/cat ${server.rconPasswordFile}`
+              password=`${pkgs.coreutils}/bin/cat ${rconPasswordFile server}`
               ${pkgs.mcrcon}/bin/mcrcon -H ${host} -P ${toString server.rconPort} -p "$password" -w 1 "say Shutting Down!" "say 5" "say 4" "say 3" "say 2" "say 1" stop
             '';
             path = [
@@ -118,7 +121,7 @@
             };
             script = ''
               mkdir -p ${backupDir}
-              password=`${pkgs.coreutils}/bin/cat ${server.rconPasswordFile}`
+              password=`${pkgs.coreutils}/bin/cat ${rconPasswordFile server}`
               ${pkgs.mcrcon}/bin/mcrcon -H ${host} -P ${toString server.rconPort} -p "$password" -w 60 "say Daily Reboot in 2 minutes" "say Daily Reboot in 1 Minute" "say Rebooting Now (for Backup)"
               ${pkgs.mcrcon}/bin/mcrcon -H ${host} -P ${toString server.rconPort} -p "$password" -w 1 save-all
               systemctl stop minecraft-${server.name}
@@ -134,6 +137,10 @@
       udpPorts = concatMap (s: [ s.port ] ++ s.extraUDPPorts) enabledServers;
     in
     {
+      sops.secrets.minecraft_rcon_password = {
+        owner = "minecraft";
+        mode = "0400";
+      };
       users.users.minecraft = {
         isSystemUser = true;
         group = "minecraft";

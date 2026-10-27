@@ -39,18 +39,30 @@
         owner = "matrix-synapse";
         restartUnits = [ "matrix-synapse.service" ];
       };
+      sops.secrets.matrix_turn_username = { };
+      sops.secrets.matrix_turn_password = { };
+      sops.templates."matrix-turn.yaml" = {
+        content = ''
+          turn_username: ${builtins.toJSON config.sops.placeholder.matrix_turn_username}
+          turn_password: ${builtins.toJSON config.sops.placeholder.matrix_turn_password}
+        '';
+        owner = "matrix-synapse";
+        mode = "0400";
+        restartUnits = [ "matrix-synapse.service" ];
+      };
       services.matrix-synapse = {
         enable = true;
         dataDir = "/persist/matrix-data";
-        extraConfigFiles = [ config.sops.secrets.synapse_turn_shared_secret.path ];
+        extraConfigFiles = [
+          config.sops.secrets.synapse_turn_shared_secret.path
+          config.sops.templates."matrix-turn.yaml".path
+        ];
         settings = {
           database_name = "psycopg2";
           server_name = config.networking.domain;
           enable_registration = false;
           max_upload_size = "10M";
           turn_uris = [ "turn:192.158.29.39:3478?transport=udp" ];
-          turn_username = "28224511:1379330808";
-          turn_password = "JZEOEt2V3Qb0y27GRntt2u2PAYA=";
           listeners = [
             {
               port = 8008;

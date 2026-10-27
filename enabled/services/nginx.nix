@@ -11,6 +11,12 @@
         443
       ];
       systemd.services.nginx.serviceConfig.ReadWritePaths = [ "/persist/live/" ];
+      sops.secrets.cloudflare_dns_api_token = { };
+      sops.templates."cloudflare-acme.env" = {
+        content = "CLOUDFLARE_DNS_API_TOKEN=${config.sops.placeholder.cloudflare_dns_api_token}\n";
+        owner = "root";
+        mode = "0400";
+      };
       security.acme = {
         defaults = {
           renewInterval = "daily";
@@ -22,7 +28,7 @@
             extraDomainNames = lib.mkForce [ "krutonium.ca" ];
             group = "nginx";
             dnsProvider = "cloudflare";
-            environmentFile = "/persist/cloudflare_ddns_env";
+            environmentFile = config.sops.templates."cloudflare-acme.env".path;
             webroot = lib.mkForce null;
             extraLegoFlags = [ "--dns.resolvers=1.1.1.1:53" ];
           };

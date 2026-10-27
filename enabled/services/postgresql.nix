@@ -12,22 +12,27 @@
     in
     {
       key = "krutonium/nixosModules/postgresql"; # allow merges from multiple imports
+      sops.secrets = {
+        matrix_synapse_db_password = { };
+        nextcloud_db_password = { };
+      };
+      sops.templates."postgres-init.sql" = {
+        content = ''
+          CREATE ROLE "matrix-synapse" WITH LOGIN PASSWORD '${config.sops.placeholder.matrix_synapse_db_password}';
+          CREATE DATABASE "matrix-synapse" WITH OWNER = "matrix-synapse" TEMPLATE = template0 LC_COLLATE = 'C' LC_CTYPE = 'C';
+
+          CREATE ROLE "nextcloud" WITH LOGIN PASSWORD '${config.sops.placeholder.nextcloud_db_password}';
+          CREATE DATABASE "nextcloud" WITH OWNER = "nextcloud" TEMPLATE = template0 LC_COLLATE = 'C' LC_CTYPE = 'C';
+        '';
+        owner = "postgres";
+        mode = "0400";
+      };
       services = {
         postgresql = {
           enable = true;
           package = sql_current;
           enableJIT = true;
-          initialScript = pkgs.writeText "init.sql" ''
-            CREATE ROLE "matrix-synapse" WITH LOGIN PASSWORD 'synapse';
-            CREATE DATABASE "matrix-synapse" WITH OWNER "matrix-synapse"
-
-            CREATE ROLE "nextcloud" WITH LOGIN PASSWORD 'nextcloud';
-            CREATE DATABASE "nextcloud" WITH OWNER "nextcloud"
-
-            TEMPLATE template0
-            LC_COLLATE = "C"
-            LC_CTYPE = "C";
-          '';
+          initialScript = config.sops.templates."postgres-init.sql".path;
 
           settings = {
             max_connections = 16;
