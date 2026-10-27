@@ -47,4 +47,4 @@ This contains the configuration for the systems themselves. At the time of writi
 ### /users
 This contains the configuration for users. Inside it, where applicable, there is also a `username-hm` folder, which contains that users home manager configuration.
 
-Build install ISO with `nix build .#nixosConfigurations.minimalInstallerIso.config.system.build.isoImage`
+Build install ISO with `nix build .#nixosConfigurations.minimalInstallerIso.config.system.build.isoImage` (moved to `enabled/systems/`).

@@ -91,9 +91,11 @@ collect_system_outputs "packages"       ".packages"
 collect_system_outputs "devShells"      ".devShells"
 # checks.<system>.* (opt-in)
 $INCLUDE_CHECKS && collect_system_outputs "checks" ".checks"
-# nixosConfigurations.*.config.system.build.toplevel
+# nixosConfigurations.*.config.system.build.toplevel (skip ISO/install media)
 while IFS= read -r host; do
   [[ -n "$host" ]] || continue
+  # Skip installer/ISO images
+  [[ "$host" =~ ^(minimalInstallerIso|install.*iso|iso.*installer)$ ]] && continue
   ATTRS+=("${FLAKE_REF}#nixosConfigurations.${host}.config.system.build.toplevel")
 done < <(echo "$SHOW_JSON" | jq -r '.nixosConfigurations // {} | keys[]?' 2>/dev/null || true)
 # homeConfigurations.*.activationPackage
