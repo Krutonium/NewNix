@@ -341,14 +341,15 @@
             trans-gradient-top-color = "#613583";
             stockgs-keep-dash = true; # Fix for overview on startup
           };
-          "org/gnome/extensions/frostwave" = {
+          "org/gnome/shell/extensions/frostwave" = {
             other-players = true;
             background-style = "glass";
             corner-radius = 25;
             panel-position = "center";
             widget-layer = "above";
+            hide-when-inactive = true;
           };
-          "org/gnome/extensions/wack-lockscreen-clock" = {
+          "org/gnome/shell/extensions/wack-lockscreen-clock" = {
             lockscreen-mode = "wack";
             cupertino-always-show-user = true;
             #lockscreen-wallpaper-path = wallPaper;
