@@ -348,6 +348,13 @@
             panel-position = "center";
             widget-layer = "above";
           };
+          "org/gnome/extensions/wack-lockscreen-clock" = {
+            lockscreen-mode = "wack";
+            cupertino-always-show-user = true;
+            lockscreen-wallpaper-path = wallpaper;
+            prompt-animation = "rise";
+            prompt-vibrancy = "acrylic";
+          };
 
           "org/gnome/shell/weather" = {
             automatic-location = true;
