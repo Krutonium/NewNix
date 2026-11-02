@@ -351,7 +351,7 @@
           "org/gnome/extensions/wack-lockscreen-clock" = {
             lockscreen-mode = "wack";
             cupertino-always-show-user = true;
-            lockscreen-wallpaper-path = wallPaper;
+            #lockscreen-wallpaper-path = wallPaper;
             prompt-animation = "rise";
             prompt-vibrancy = "acrylic";
           };
