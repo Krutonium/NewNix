@@ -66,14 +66,17 @@
         port = 8000;
         reliablePort = 8888;
       };
-      sops.secrets.palworld_admin_password = {
+      # The palworld user is only created while the service is enabled, so
+      # only declare the secret (and point the service at it) in that case.
+      sops.secrets.palworld_admin_password = pkgs.lib.mkIf config.services.palworld.enable {
         owner = "palworld";
         mode = "0400";
       };
       services.palworld = {
         enable = false; # off for now
         dataDir = "/servers/palworld";
-        adminPasswordFile = config.sops.secrets.palworld_admin_password.path;
+        adminPasswordFile = pkgs.lib.mkIf config.services.palworld.enable
+          config.sops.secrets.palworld_admin_password.path;
       };
       services.overte-server.enable = false;
       services.overte-server.backend = "docker";
