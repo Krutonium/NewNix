@@ -1,4 +1,9 @@
-{ inputs, self, mv, ... }:
+{
+  inputs,
+  self,
+  mv,
+  ...
+}:
 {
   flake.nixosConfigurations.uServerHost = inputs.nixpkgs.lib.nixosSystem {
     specialArgs = { inherit mv; };
@@ -13,7 +18,7 @@
       minecraftServers
       minecraftServerData
       ut99
-      #palworld
+      palworld
       root
       #ollama_host
       attic
@@ -60,6 +65,15 @@
         address = "10.0.0.3";
         port = 8000;
         reliablePort = 8888;
+      };
+      sops.secrets.palworld_admin_password = {
+        owner = "palworld";
+        mode = "0400";
+      };
+      services.palworld = {
+        enable = false; # off for now
+        dataDir = "/servers/palworld";
+        adminPasswordFile = config.sops.secrets.palworld_admin_password.path;
       };
       services.overte-server.enable = false;
       services.overte-server.backend = "docker";

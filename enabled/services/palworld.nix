@@ -292,14 +292,5 @@
           '';
         })
       ];
-      sops.secrets.palworld_admin_password = {
-        owner = "palworld";
-        mode = "0400";
-      };
-      services.palworld = {
-        enable = true;
-        dataDir = "/servers/palworld";
-        adminPasswordFile = config.sops.secrets.palworld_admin_password.path;
-      };
     };
 }
