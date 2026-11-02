@@ -29,6 +29,7 @@
       InternetRadio2Computercraft
       minecraftPortForwards
       minecraftServerData
+      palworld
       fileHosting
       userIds
       #simpleCpuGovernor
@@ -188,6 +189,13 @@
         };
         port = 7778;
         reliablePort = 8888;
+      };
+      services.palworld = {
+        enable = false; # server runs on uServerHost, not here
+        portForward = {
+          enable = true;
+          destAddr = "10.0.0.3";
+        };
       };
       services.beesd.filesystems.root = {
         spec = "UUID=${lib.removePrefix "/dev/disk/by-uuid/" btrfsUUID}";

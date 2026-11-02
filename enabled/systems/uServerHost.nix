@@ -13,6 +13,7 @@
       minecraftServers
       minecraftServerData
       ut99
+      palworld
       root
       #ollama_host
       attic
@@ -26,7 +27,7 @@
   };
 
   flake.nixosModules.uServerHostModule =
-    { pkgs, ... }:
+    { config, pkgs, ... }:
     let
       kernel = pkgs.linuxPackages;
       btrfsDisk = "/dev/disk/by-label/WorkDisk";
@@ -59,6 +60,15 @@
         address = "10.0.0.3";
         port = 8000;
         reliablePort = 8888;
+      };
+      sops.secrets.palworld_admin_password = {
+        owner = "palworld";
+        mode = "0400";
+      };
+      services.palworld = {
+        enable = true;
+        dataDir = "/servers/palworld";
+        adminPasswordFile = config.sops.secrets.palworld_admin_password.path;
       };
       services.overte-server.enable = false;
       services.overte-server.backend = "docker";
@@ -201,6 +211,15 @@
             "noatime"
             "compress=zstd:15"
             "subvol=satisfactory"
+          ];
+        };
+        "/servers/palworld" = {
+          device = btrfsDisk;
+          fsType = "btrfs";
+          options = [
+            "noatime"
+            "compress=zstd:15"
+            "subvol=palworld"
           ];
         };
         "/backups" = {

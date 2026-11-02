@@ -30,6 +30,7 @@ Long-lived services, mostly used on uWebServer but applicable elsewhere. Each mo
 - `obs-relay.nix` - OBS relay service
 - `ollama.nix` - Ollama LLM service
 - `overte.nix` - Overte virtual world server
+- `palworld.nix` - Palworld dedicated server
 - `plex.nix` - Plex Media Server
 - `postgresql.nix` - PostgreSQL database
 - `router.nix` - Router/network configuration
