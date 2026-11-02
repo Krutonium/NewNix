@@ -18,9 +18,7 @@
       bool = b: if b then "True" else "False";
 
       # Escape a value for use inside a quoted Unreal ini string.
-      iniString =
-        value:
-        "\"${lib.replaceStrings [ "\\" "\"" ] [ "\\\\" "\\\"" ] value}\"";
+      iniString = value: "\"${lib.replaceStrings [ "\\" "\"" ] [ "\\\\" "\\\"" ] value}\"";
 
       generatedSettings = {
         ServerName = iniString cfg.serverName;
@@ -38,14 +36,13 @@
         lib.mapAttrsToList (name: value: "${name}=${value}") generatedSettings
       );
 
-      launchArgs =
-        [
-          "-port=${toString cfg.port}"
-          "-players=${toString cfg.maxPlayers}"
-        ]
-        ++ lib.optional cfg.publicLobby "-publiclobby"
-        ++ lib.optional (cfg.publicIP != null) "-publicip=${cfg.publicIP}"
-        ++ cfg.extraArgs;
+      launchArgs = [
+        "-port=${toString cfg.port}"
+        "-players=${toString cfg.maxPlayers}"
+      ]
+      ++ lib.optional cfg.publicLobby "-publiclobby"
+      ++ lib.optional (cfg.publicIP != null) "-publicip=${cfg.publicIP}"
+      ++ cfg.extraArgs;
     in
     {
       options.services.palworld = {
@@ -259,13 +256,13 @@
 
             script = ''
               export SteamAppId=2394010
-              exec ${pkgs.steam-run}/bin/steam-run ${serverDir}/PalServer.sh ${
-                lib.escapeShellArgs launchArgs
-              }
+              exec ${pkgs.steam-run}/bin/steam-run ${serverDir}/PalServer.sh ${lib.escapeShellArgs launchArgs}
             '';
 
             serviceConfig = {
-              WorkingDirectory = serverDir;
+              # serverDir is created by the SteamCMD pre-start hook; the data
+              # directory itself is created by the users-groups activation.
+              WorkingDirectory = cfg.dataDir;
               User = "palworld";
               Group = "palworld";
               Restart = "always";
@@ -295,5 +292,14 @@
           '';
         })
       ];
+      sops.secrets.palworld_admin_password = {
+        owner = "palworld";
+        mode = "0400";
+      };
+      services.palworld = {
+        enable = true;
+        dataDir = "/servers/palworld";
+        adminPasswordFile = config.sops.secrets.palworld_admin_password.path;
+      };
     };
 }
