@@ -152,7 +152,7 @@
           };
           "org/gnome/shell" = {
             disabled-extensions = [ "apps-menu@gnome-shell-extensions.gcampax.github.com" ];
-            enabled-extensions = extensionUuids // [ "wack-lockscreen-clock@rinzler69-wastaken.github.com" "frostwave@rohitsunil1102.github.io" ]; # TODO: In 27.05 add these as Nix packages
+            enabled-extensions = extensionUuids ++ [ "wack-lockscreen-clock@rinzler69-wastaken.github.com" "frostwave@rohitsunil1102.github.io" ]; # TODO: In 27.05 add these as Nix packages
             # favorite-apps = [ "org.gnome.Nautilus.desktop" "firefox.desktop" "element-desktop.desktop" "discord.desktop" "telegramdesktop.desktop" "org.polymc.PolyMC.desktop" "com.obsproject.Studio.desktop" "idea-ultimate.desktop" "rider.desktop" ];
             favorite-apps = [
               "org.gnome.Nautilus.desktop"
@@ -340,6 +340,13 @@
             trans-gradient-bottom-color = "#dc8add";
             trans-gradient-top-color = "#613583";
             stockgs-keep-dash = true; # Fix for overview on startup
+          };
+          "org/gnome/extensions/frostwave" = {
+            other-players = true;
+            background-style = "glass";
+            corner-radius = 25;
+            panel-position = "center";
+            widget-layer = "above";
           };
 
           "org/gnome/shell/weather" = {
