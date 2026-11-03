@@ -40,6 +40,7 @@
       home-manager = {
         extraSpecialArgs = { inherit inputs mv; };
         useGlobalPkgs = true;
+        useUserPackages = true;
       };
       environment.systemPackages = [
         pkgs.attic-client
