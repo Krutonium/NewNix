@@ -34,7 +34,7 @@
             name = "create_chronicles";
             javaVersion = "jdk21";
             script = "run.sh";
-            enabled = true;
+            enabled = false;
             rconPort = 12348;
             port = 25568;
             extraTCPPorts = [ ];
@@ -44,7 +44,7 @@
             name = "Hytale";
             javaVersion = "jdk25";
             script = "startserver.sh";
-            enabled = true;
+            enabled = false;
             rconPort = 0;
             port = 25565;
             extraTCPPorts = [ ];
@@ -54,7 +54,7 @@
             name = "FTBSkies";
             javaVersion = "jdk21";
             script = "run.sh";
-            enabled = true;
+            enabled = false;
             port = 25570;
             rconPort = 12349;
             extraTCPPorts = [ ];
