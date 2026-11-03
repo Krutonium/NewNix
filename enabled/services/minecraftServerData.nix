@@ -21,7 +21,7 @@
             name = "vanilla";
             javaVersion = "jdk21";
             script = "startserver.sh";
-            enabled = true;
+            enabled = false;
             rconPort = 12347;
             port = 25565;
             extraTCPPorts = [ ];

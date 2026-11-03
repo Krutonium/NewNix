@@ -60,7 +60,7 @@
         };
       };
       services.satisfactory = {
-        enable = true;
+        enable = false;
         dataDir = "/servers/satisfactory";
         address = "10.0.0.3";
         port = 8000;
