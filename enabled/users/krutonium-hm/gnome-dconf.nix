@@ -342,7 +342,7 @@
             stockgs-keep-dash = true; # Fix for overview on startup
           };
           "org/gnome/shell/extensions/frostwave" = {
-            other-players = true;
+            other-players = false;
             background-style = "glass";
             corner-radius = 25;
             panel-position = "center";
