@@ -36,6 +36,7 @@
         dolphin-emu-git
         dusklight
         hanabi
+        rutorrent
       ];
       home-manager = {
         extraSpecialArgs = { inherit inputs mv; };

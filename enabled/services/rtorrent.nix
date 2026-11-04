@@ -3,6 +3,7 @@
   flake.nixosModules.rtorrent =
     {
       config,
+      lib,
       mv,
       pkgs,
       ...
@@ -53,8 +54,13 @@
             # Trackerless magnets need DHT. rTorrent still excludes torrents
             # marked private from DHT and PEX, so private trackers are safe.
             dht.mode.set = auto;
+            # Advertise the peer port over DHT too; otherwise DHT picks a
+            # random UDP port that the firewall does not open.
+            dht.override_port.set = ${toString peerPort}
 
-            network.bind_address.set = 0.0.0.0
+            # Do not pin network.bind_address: libtorrent then opens both an
+            # IPv4 and an IPv6 listener. Setting it to 0.0.0.0 silently
+            # disables the IPv6 listen socket.
           '';
         }; # /run/rtorrent/rpc.sock
         rutorrent = {
@@ -66,7 +72,6 @@
             "httprpc"
             "_getdir"
             "_task"
-            "autotools"
             "bulk_magnet"
             "check_port"
             "cpuload"
@@ -76,15 +81,12 @@
             "erasedata"
             "filedrop"
             "history"
-            "mediainfo"
             "ratio"
             "retrackers"
-            "screenshots"
             "seedingtime"
             "source"
             "theme"
             "trafic"
-            "unpack"
           ];
         };
         autobrr = {
@@ -102,6 +104,10 @@
           "php_admin_value[post_max_size]" = "32M";
         };
       };
+      # services.rtorrent.openFirewall only opens TCP; DHT listens on UDP at
+      # the same peer port. The nftables rule is family-agnostic, so this
+      # covers IPv4 and IPv6.
+      networking.firewall.allowedUDPPorts = [ peerPort ];
       services.nginx.virtualHosts.${config.services.rutorrent.hostName} = {
         forceSSL = true;
         useACMEHost = "krutonium.ca";
@@ -112,9 +118,29 @@
       };
       systemd.services = {
         rtorrent = {
+          # rutorrent runs commands as the rtorrent user (scheduled plugin
+          # updates, external-program probes). Keep php on its PATH; the
+          # module already adds procps for _task's pgrep dependency.
+          path = [ config.services.phpfpm.phpPackage ];
           after = [ "media2.mount" ];
           requires = [ "media2.mount" ];
         };
+        # The module's setup script chmods the share tree to 0755, which leaves
+        # rtorrent unable to create the probe files used by ruTorrent's
+        # external-program checks. Both users share the rutorrent group.
+        # 5.3.x also ships conf/xmlrpc_proxy.php, which the 5.2.x-era module
+        # does not link into place.
+        #
+        # Drop the previous package's plugin/php trees first: the module only
+        # adds the configured plugins, so removed ones would otherwise linger
+        # and keep loading.
+        rutorrent-setup.script = lib.mkBefore ''
+          rm -rf ${config.services.rutorrent.dataDir}/plugins/* ${config.services.rutorrent.dataDir}/php
+        '';
+        rutorrent-setup.serviceConfig.ExecStartPost = [
+          "${pkgs.coreutils}/bin/ln -sf ${pkgs.rutorrent}/conf/xmlrpc_proxy.php ${config.services.rutorrent.dataDir}/conf/xmlrpc_proxy.php"
+          "${pkgs.coreutils}/bin/chmod -R g+w ${config.services.rutorrent.dataDir}/share"
+        ];
         rtorrent-scgi-bridge = {
           description = "rTorrent SCGI Unix socket to TCP bridge (socat)";
           after = [ "rtorrent.service" ];
