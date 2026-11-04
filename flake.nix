@@ -72,6 +72,10 @@
       url = "github:Zagitta/gpu-unlock";
       flake = false;
     };
+    ada305 = {
+      url = "github:Krutonium/ADA-305";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs =
     inputs:

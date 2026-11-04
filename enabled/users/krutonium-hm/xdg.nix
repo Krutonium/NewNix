@@ -20,7 +20,9 @@
             "application/json"               = [ "org.gnome.TextEditor.desktop" ];
             "application/x-cd-image"         = [ "gnome-disk-image-mounter.desktop" ];
             "application/x-ms-dos-executable" = [ "wine.desktop" ];
+            "application/x-bittorrent"       = [ "rutorrent.desktop" ];
             "x-scheme-handler/nxm"           = [ "com.nexusmods.app.desktop" ];
+            "x-scheme-handler/magnet"        = [ "rutorrent.desktop" ];
             "x-scheme-handler/http"          = [ "firefox.desktop" ];
             "x-scheme-handler/https"         = [ "firefox.desktop" ];
             "text/html"                      = [ "firefox.desktop" ];

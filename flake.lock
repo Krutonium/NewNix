@@ -20,6 +20,26 @@
         "type": "github"
       }
     },
+    "ada305": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1793753801,
+        "narHash": "sha256-H8jf4Kcxzbvf1H0nwKsHL+cx0xXgSYRvD2oHsa15yb4=",
+        "owner": "Krutonium",
+        "repo": "ADA-305",
+        "rev": "bb9efaec28074cfc91ea5769bbbff11262caa18a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Krutonium",
+        "repo": "ADA-305",
+        "type": "github"
+      }
+    },
     "base16": {
       "inputs": {
         "fromYaml": "fromYaml"
@@ -399,6 +419,7 @@
     "root": {
       "inputs": {
         "InternetRadio2Computercraft": "InternetRadio2Computercraft",
+        "ada305": "ada305",
         "flake-parts": "flake-parts",
         "flake-utils": "flake-utils",
         "g600-key-remap-daemon": "g600-key-remap-daemon",

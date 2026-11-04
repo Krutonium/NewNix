@@ -28,6 +28,7 @@
       #moonshine
       lact
       g600
+      ada305
       gpu-unlock
       v4l2loopback
     ];

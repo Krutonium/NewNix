@@ -70,6 +70,7 @@
           krutonium-config
           packages-desktop
           packages-server
+          rutorrent
           xdg
           editors
           labwc
