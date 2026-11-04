@@ -271,6 +271,16 @@
               [
                 (mkDictionaryEntry [
                   "id"
+                  "legcord.desktop"
+                ])
+                (mkDictionaryEntry [
+                  "icon"
+                  "discord"
+                ])
+              ]
+              [
+                (mkDictionaryEntry [
+                  "id"
                   "org.prismlauncher.PrismLauncher.desktop"
                 ])
               ]
