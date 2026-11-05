@@ -60,7 +60,7 @@
         };
       };
       services.satisfactory = {
-        enable = true;
+        enable = false;
         dataDir = "/servers/satisfactory";
         address = "10.0.0.3";
         port = 8000;
@@ -73,7 +73,7 @@
         mode = "0400";
       };
       services.palworld = {
-        enable = false; # off for now
+        enable = true; # off for now
         dataDir = "/servers/palworld";
         adminPasswordFile = pkgs.lib.mkIf config.services.palworld.enable
           config.sops.secrets.palworld_admin_password.path;
