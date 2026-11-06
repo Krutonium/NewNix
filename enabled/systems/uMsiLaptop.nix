@@ -86,9 +86,6 @@
       };
       nix = {
         distributedBuilds = true;
-        settings = {
-          max-jobs = 1;
-        };
       };
       swapDevices = [
         {
