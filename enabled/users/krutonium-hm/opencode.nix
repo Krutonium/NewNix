@@ -10,6 +10,7 @@
       programs.opencode = {
         enable = true;
         #package = mv.tip.opencode;
+        # TODO: Re-Enable after November 7th
         web.enable = true;
         skills = {
           get-package = ./skills/get-package.md;
