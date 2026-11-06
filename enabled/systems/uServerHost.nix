@@ -77,6 +77,7 @@
         dataDir = "/servers/palworld";
         adminPasswordFile = pkgs.lib.mkIf config.services.palworld.enable
           config.sops.secrets.palworld_admin_password.path;
+        publicLobby = true;
       };
       services.overte-server.enable = false;
       services.overte-server.backend = "docker";
