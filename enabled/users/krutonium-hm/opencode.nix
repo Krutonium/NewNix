@@ -9,7 +9,7 @@
       # the washroom.
       programs.opencode = {
         enable = true;
-        package = mv.tip.opencode;
+        #package = mv.tip.opencode;
         web.enable = true;
         skills = {
           get-package = ./skills/get-package.md;
