@@ -1,12 +1,12 @@
 { ... }:
 {
   flake.nixosModules.steam =
-    { pkgs, ... }:
+    { pkgs, mv, ... }:
     {
       programs.steam = {
         enable = true;
         extest.enable = true;
-        #package = pkgs.millennium-steam;
+        #package = mv.tip.steamWithMillennium;
         dedicatedServer.openFirewall = true;
         localNetworkGameTransfers.openFirewall = true;
         remotePlay.openFirewall = true;
