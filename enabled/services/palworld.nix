@@ -41,6 +41,7 @@
         "-players=${toString cfg.maxPlayers}"
       ]
       ++ lib.optional cfg.publicLobby "-publiclobby"
+      ++ lib.optional cfg.publicLobby "-publicport=${toString cfg.port}"
       ++ lib.optional (cfg.publicIP != null) "-publicip=${cfg.publicIP}"
       ++ cfg.extraArgs;
     in
