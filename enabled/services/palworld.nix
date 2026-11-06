@@ -41,7 +41,6 @@
         "-players=${toString cfg.maxPlayers}"
       ]
       ++ lib.optional cfg.publicLobby "-publiclobby"
-      ++ lib.optional cfg.publicLobby "EpicApp=PalServer"
       ++ lib.optional (cfg.publicIP != null) "-publicip=${cfg.publicIP}"
       ++ cfg.extraArgs;
     in
