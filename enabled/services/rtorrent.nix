@@ -11,7 +11,7 @@
     let
       peerPort = 51412;
       apiPort = 1234;
-      pinned = mv.at (mv.revOf "rtorrent" "0.16.25");
+      pinned = mv.at (mv.revOf "rtorrent" "0.16.22");
     in
     {
       disabledModules = [ "services/torrent/rtorrent.nix" ];
