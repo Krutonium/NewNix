@@ -11,13 +11,14 @@
     let
       peerPort = 51412;
       apiPort = 1234;
+      pinned = mv.at (mv.revOf "rtorrent" "0.16.25");
     in
     {
       disabledModules = [ "services/torrent/rtorrent.nix" ];
 
       # ...for the one that actually matches mv.tip.rtorrent's version.
       imports = [
-        "${toString mv.tip.path}/nixos/modules/services/torrent/rtorrent.nix"
+        "${toString pinned.path}/nixos/modules/services/torrent/rtorrent.nix"
       ];
 
       sys.nginxAuth.sites.${config.services.rutorrent.hostName} = [ "krutonium" ];
@@ -30,7 +31,7 @@
           enable = true;
           openFirewall = true;
           port = peerPort;
-          package = mv.tip.rtorrent;
+          package = pinned.rtorrent;
           user = "rtorrent";
           group = "rtorrent";
           dataPermissions = "0755";
