@@ -9,8 +9,7 @@
       # the washroom.
       programs.opencode = {
         enable = true;
-        #package = mv.tip.opencode;
-        # TODO: Re-Enable after November 7th
+        package = mv.tip.opencode;
         web.enable = true;
         skills = {
           get-package = ./skills/get-package.md;
