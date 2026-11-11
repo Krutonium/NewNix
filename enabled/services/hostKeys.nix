@@ -40,8 +40,8 @@
           ];
         };
         uSteamDeck = {
-          publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINYSSM1N25CKH8HIEsl49Vrilimzc1C7/S5oZcR37cjY";
-          sopsSecret = "ssh_host_key_uServerHost";
+          publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKHdutyMvEd/xK0tzvnm7zVhfJVZqm3Ez+QyhrI9fpGk";
+          sopsSecret = "ssh_host_key_uSteamDeck";
           aliases = [
             "10.0.0.9"
             "fd00:beef::9"

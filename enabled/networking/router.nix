@@ -156,7 +156,7 @@
           ];
           dhcp-option = [
             "option:router,10.0.0.1"
-            "option:classless-static-route,10.0.0.0/24,10.0.0.1"
+            "option:classless-static-route,0.0.0.0/0,10.0.0.1,10.0.0.0/24,10.0.0.1"
           ];
           dhcp-host = [
             "ac:16:2d:9a:17:c5,uWebServer,10.0.0.1,[fd00:beef::1]"
