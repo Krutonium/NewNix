@@ -20,7 +20,7 @@
           OnAccessPreverntion = true;
           OnAccessIncludePath = downloadDirectories;
         };
-        services.clamav.scanner.scanDirectories = [
+        scanner.scanDirectories = [
           "/home"
           "/var/lib"
           "/tmp"
