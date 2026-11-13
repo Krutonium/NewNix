@@ -1,4 +1,9 @@
-{ inputs, self, mv, ... }:
+{
+  inputs,
+  self,
+  mv,
+  ...
+}:
 {
   flake.nixosConfigurations.uWebServer = inputs.nixpkgs.lib.nixosSystem {
     specialArgs = { inherit mv; };
@@ -7,6 +12,7 @@
       router
       avahi
       blog
+      clamav
       ddns
       rtorrent
       forgejo
@@ -163,6 +169,10 @@
         (modulesPath + "/installer/scan/not-detected.nix")
       ];
       services.wan-watchdog.interface = "WAN";
+      services.clamav.scanner.scanDirectories = [
+        "/media"
+        "/media2"
+      ];
       networking = {
         hostName = "uWebServer";
         hostId = "10e93c0a";
@@ -250,12 +260,22 @@
         "/media" = {
           device = "/dev/disk/by-id/ata-HGST_HDN726060ALE614_K1G6YP2B-part3";
           fsType = "ext4";
-          options = [ "rw" "relatime" "nofail" "x-systemd.device-timeout=10" ];
+          options = [
+            "rw"
+            "relatime"
+            "nofail"
+            "x-systemd.device-timeout=10"
+          ];
         };
         "/media2" = {
           device = "/dev/disk/by-id/ata-WDC_WD60EDAZ-11U78B0_WD-WX92D622XA45-part1";
           fsType = "ext4";
-          options = [ "rw" "relatime" "nofail" "x-systemd.device-timeout=10" ];
+          options = [
+            "rw"
+            "relatime"
+            "nofail"
+            "x-systemd.device-timeout=10"
+          ];
         };
       }
       // btrfsFileSystems;
