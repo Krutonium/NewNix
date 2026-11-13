@@ -11,6 +11,7 @@
       avahi
       boot
       common
+      clamav
       gnome
       #labwc
       uGamingPCModule
