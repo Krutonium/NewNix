@@ -24,7 +24,7 @@
       #v4l2loopback
       gamemode
       root
-      vr
+      #vr
       zswap
       #moonshine
       lact
