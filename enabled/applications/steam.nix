@@ -6,7 +6,7 @@
       programs.steam = {
         enable = true;
         extest.enable = true;
-        #package = mv.tip.steamWithMillennium;
+        package = mv.tip.steamWithMillennium;
         dedicatedServer.openFirewall = true;
         localNetworkGameTransfers.openFirewall = true;
         remotePlay.openFirewall = true;
