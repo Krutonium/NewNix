@@ -1,0 +1,54 @@
+diff --git a/Telegram/SourceFiles/core/core_screenshot_protection.cpp b/Telegram/SourceFiles/core/core_screenshot_protection.cpp
+index cdb94ab14c..b96d865c92 100644
+--- a/Telegram/SourceFiles/core/core_screenshot_protection.cpp
++++ b/Telegram/SourceFiles/core/core_screenshot_protection.cpp
+@@ -58,11 +58,6 @@ void ScreenshotProtection::addReason(
+ }
+ 
+ bool ScreenshotProtection::activeFor(not_null<QWidget*> window) const {
+-	for (const auto &[id, reason] : _reasons) {
+-		if (reason.active && reason.window == window.get()) {
+-			return true;
+-		}
+-	}
+ 	return false;
+ }
+ 
+diff --git a/Telegram/SourceFiles/media/view/media_view_overlay_widget.cpp b/Telegram/SourceFiles/media/view/media_view_overlay_widget.cpp
+index a0f076ca98..b39f0e71c0 100644
+--- a/Telegram/SourceFiles/media/view/media_view_overlay_widget.cpp
++++ b/Telegram/SourceFiles/media/view/media_view_overlay_widget.cpp
+@@ -6143,19 +6143,9 @@ void OverlayWidget::setSystemMediaControls(
+ 	_smtcSink = sink;
+ }
+ 
+-bool OverlayWidget::contentNeedsScreenshotProtection() const {
+-	if (const auto story = _stories ? _stories->story() : nullptr) {
+-		return story->forbidsForward();
+-	}
+-	return (_history && !_history->peer->allowsForwarding())
+-		|| (_message && _message->forbidsSaving());
+-}
+-
+ void OverlayWidget::refreshScreenshotProtection() {
+-	_screenshotProtected = contentNeedsScreenshotProtection();
+-	Platform::SetWindowScreenshotProtection(
+-		_window,
+-		_screenshotProtected);
++	_screenshotProtected = false;
++	Platform::SetWindowScreenshotProtection(_window, false);
+ }
+ 
+ void OverlayWidget::refreshSystemMediaControls() {
+diff --git a/Telegram/SourceFiles/media/view/media_view_overlay_widget.h b/Telegram/SourceFiles/media/view/media_view_overlay_widget.h
+index 27b5d051e4..309a978db7 100644
+--- a/Telegram/SourceFiles/media/view/media_view_overlay_widget.h
++++ b/Telegram/SourceFiles/media/view/media_view_overlay_widget.h
+@@ -623,7 +623,6 @@ private:
+ 	Window::SessionController *findWindow(bool switchTo = true) const;
+ 
+ 	void refreshScreenshotProtection();
+-	[[nodiscard]] bool contentNeedsScreenshotProtection() const;
+ 
+ 	bool _opengl = false;
+ 	bool _screenshotProtected = false;

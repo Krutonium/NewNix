@@ -1,8 +1,8 @@
 diff --git a/Telegram/SourceFiles/api/api_peer_search.cpp b/Telegram/SourceFiles/api/api_peer_search.cpp
-index 73a252ab12..d577ef6a83 100644
+index 636d4bc8f2..2bbbeed06d 100644
 --- a/Telegram/SourceFiles/api/api_peer_search.cpp
 +++ b/Telegram/SourceFiles/api/api_peer_search.cpp
-@@ -96,24 +96,8 @@ void PeerSearch::requestSponsored() {
+@@ -105,24 +105,8 @@ void PeerSearch::requestSponsored() {
  			mtpRequestId requestId) {
  		result.match([&](const MTPDcontacts_sponsoredPeersEmpty &) {
  			finishSponsored(requestId, PeerSearchResult{});
