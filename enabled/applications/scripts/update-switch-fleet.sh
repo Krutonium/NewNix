@@ -1,6 +1,6 @@
 #!/usr/bin/env nix-shell
 #! nix-shell -i bash
-#! nix-shell -p bash openssh tmux curl sops
+#! nix-shell -p bash openssh tmux
 
 set -Eeuo pipefail
 
@@ -12,67 +12,25 @@ hosts=(
 )
 
 # --- Telegram -----------------------------------------------------------
-# Credentials live in a SOPS YAML file under a `fleet-notify` key, as a
-# multi-line string:
-#   fleet-notify: |
-#     TELEGRAM_BOT_TOKEN=123456:ABC...
-#     TELEGRAM_CHAT_ID=123456789
+# All credential handling and the actual send live in telegram-notify.sh;
+# see that script for the lookup order (environment, then FLEET_NOTIFY_SOPS,
+# then FLEET_NOTIFY_ENV / /run/secrets/fleet-notify).
 #
-# Lookup order:
-#   1. FLEET_NOTIFY_SOPS: path to the *encrypted* YAML file, decrypted here
-#      with the sops CLI (needs your age/ssh key available to sops)
-#   2. FLEET_NOTIFY_ENV: path to an already-decrypted file
-#      (default: /run/secrets/fleet-notify, as placed by sops-nix)
-#
-# The content is parsed as text, never executed, and both `KEY=value` and
-# YAML-style `KEY: value` lines are accepted. Any failure here only disables
-# notifications; it never aborts the update.
-parse_notify_secrets() {
-    local line key val
-    while IFS= read -r line || [ -n "$line" ]; do
-        line=${line%$'\r'}
-        if [[ $line =~ ^[[:space:]]*(TELEGRAM_BOT_TOKEN|TELEGRAM_CHAT_ID)[[:space:]]*[:=][[:space:]]*(.*)$ ]]; then
-            key=${BASH_REMATCH[1]}
-            val=${BASH_REMATCH[2]}
-            val=${val%"${val##*[![:space:]]}"}   # trim trailing whitespace
-            val=${val#[\"\']}                    # strip optional quotes
-            val=${val%[\"\']}
-            declare -gx "$key=$val"
-        fi
-    done <<< "$1"
-}
-
-load_notify_secrets() {
-    local content=""
-    if [ -n "${FLEET_NOTIFY_SOPS:-}" ]; then
-        if ! content=$(sops -d --extract '["fleet-notify"]' "$FLEET_NOTIFY_SOPS" 2>/dev/null \
-                       || sops -d "$FLEET_NOTIFY_SOPS" 2>/dev/null); then
-            echo "sops decrypt of $FLEET_NOTIFY_SOPS failed" >&2
-        fi
+# TELEGRAM_NOTIFY can point at a different copy of the helper; otherwise the
+# sibling script is used when running from the repo, falling back to PATH.
+notify_cmd="${TELEGRAM_NOTIFY:-}"
+if [ -z "$notify_cmd" ]; then
+    script_dir=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+    if [ -x "$script_dir/telegram-notify.sh" ]; then
+        notify_cmd="$script_dir/telegram-notify.sh"
     else
-        local env_file="${FLEET_NOTIFY_ENV:-/run/secrets/fleet-notify}"
-        if [ -r "$env_file" ]; then
-            content=$(cat "$env_file") || true
-        fi
+        notify_cmd=telegram-notify
     fi
-    parse_notify_secrets "$content"
-    return 0
-}
-load_notify_secrets
+fi
 
+# Never let a notification failure kill the run
 notify() {
-    local msg="$1"
-    if [ -z "${TELEGRAM_BOT_TOKEN:-}" ] || [ -z "${TELEGRAM_CHAT_ID:-}" ]; then
-        echo "telegram not configured, skipping: $msg" >&2
-        return 0
-    fi
-    # Telegram caps messages at 4096 chars; never let a notify failure kill the run
-    curl -fsS --max-time 15 \
-        "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
-        --data-urlencode "chat_id=${TELEGRAM_CHAT_ID}" \
-        --data-urlencode "text=${msg:0:4000}" \
-        >/dev/null || echo "telegram send failed" >&2
-    return 0
+    "$notify_cmd" "$@" || true
 }
 
 tmpdir=$(mktemp -d)
@@ -82,8 +40,9 @@ trap 'notify "❌ Fleet update aborted (line $LINENO): $BASH_COMMAND"' ERR
 
 # --- Start --------------------------------------------------------------
 notify "🚀 Fleet update starting: ${hosts[*]}"
-
+notify "Updating Flake..."
 nupdate
+notify "Doing Builds..."
 push-to-attic -c KruCache
 
 session="fleet-nboot-$$"

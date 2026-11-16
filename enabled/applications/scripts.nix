@@ -359,6 +359,18 @@
 
         text = builtins.readFile ./scripts/push-to-attic.sh;
       };
+      telegram-notify = pkgs.writeShellApplication {
+        name = "telegram-notify";
+
+        runtimeInputs = with pkgs; [
+          bash
+          curl
+          sops
+          coreutils
+        ];
+
+        text = builtins.readFile ./scripts/telegram-notify.sh;
+      };
       update-switch-fleet = pkgs.writeShellApplication {
         name = "switch-fleet";
 
@@ -366,6 +378,7 @@
           bash
           openssh
           coreutils
+          telegram-notify
         ];
         text = builtins.readFile ./scripts/update-switch-fleet.sh;
       };
@@ -404,6 +417,7 @@
         pkgs.jq
         pkgs.git
         push-to-attic
+        telegram-notify
         update-switch-fleet
       ];
     };
