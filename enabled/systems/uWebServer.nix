@@ -174,6 +174,13 @@
         "/media"
         "/media2"
       ];
+      services.wolSwitchFleet = {
+        enable = true;
+        host = "10.0.0.2";
+        mac = "18:c0:4d:04:05:e7";
+        user = "krutonium";
+        identityFile = "/home/krutonium/.ssh/id_ed25519";
+      };
       networking = {
         hostName = "uWebServer";
         hostId = "10e93c0a";

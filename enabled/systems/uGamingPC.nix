@@ -182,6 +182,10 @@
         gamemode.enable = true;
       };
       services = {
+        wolTargert = {
+          enable = true;
+          interface = "eno1";
+        };
         udev.packages = udevPackages;
         hardware.openrgb = {
           enable = true;
