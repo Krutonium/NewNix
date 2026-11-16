@@ -182,7 +182,7 @@
         gamemode.enable = true;
       };
       services = {
-        wolTargert = {
+        wolTarget = {
           enable = true;
           interface = "eno1";
         };
