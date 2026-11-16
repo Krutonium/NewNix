@@ -51,8 +51,13 @@
 
                     # Sessions other than our own SSH login ($XDG_SESSION_ID is expanded remotely)
                     has_other_sessions() {
-                      # shellcheck disable=SC2016  # $XDG_SESSION_ID must expand on the remote side
-                      rssh 'loginctl list-sessions --no-legend | awk -v me="$XDG_SESSION_ID" '"'"'$1 != me'"'"' | grep -q .'
+                      rssh bash -s <<'EOF'
+                      for s in $(loginctl list-sessions --no-legend | awk '{print $1}'); do
+                        [ "$s" = "$XDG_SESSION_ID" ] && continue
+                        [ "$(loginctl show-session "$s" -p Class --value)" = user ] && exit 0
+                      done
+                      exit 1
+                      EOF
                     }
 
                     cleanup_poweroff() {
