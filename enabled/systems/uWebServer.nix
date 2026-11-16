@@ -42,6 +42,7 @@
       satisfactory
       zswap
       wan-watchdog
+      wol-switch-fleet
     ];
   };
 
