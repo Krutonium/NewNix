@@ -367,7 +367,6 @@
           openssh
           coreutils
         ];
-
         text = builtins.readFile ./scripts/update-switch-fleet.sh;
       };
     in
@@ -376,6 +375,10 @@
         owner = "root";
         group = "root";
         mode = "0444";
+      };
+      sops.secrets.fleet-notify = {
+        owner = "krutonium";
+        mode = "0400";
       };
       environment.systemPackages = [
         sshr
