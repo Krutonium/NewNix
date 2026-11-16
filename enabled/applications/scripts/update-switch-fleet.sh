@@ -12,36 +12,52 @@ hosts=(
 )
 
 # --- Telegram -----------------------------------------------------------
-# Credentials are a SOPS dotenv secret containing:
-#   TELEGRAM_BOT_TOKEN=123456:ABC...
-#   TELEGRAM_CHAT_ID=123456789
+# Credentials live in a SOPS YAML file under a `fleet-notify` key, as a
+# multi-line string:
+#   fleet-notify: |
+#     TELEGRAM_BOT_TOKEN=123456:ABC...
+#     TELEGRAM_CHAT_ID=123456789
 #
 # Lookup order:
-#   1. FLEET_NOTIFY_SOPS: path to the *encrypted* file, decrypted here with
-#      the sops CLI (needs your age/ssh key available to sops)
+#   1. FLEET_NOTIFY_SOPS: path to the *encrypted* YAML file, decrypted here
+#      with the sops CLI (needs your age/ssh key available to sops)
 #   2. FLEET_NOTIFY_ENV: path to an already-decrypted file
 #      (default: /run/secrets/fleet-notify, as placed by sops-nix)
+#
+# The content is parsed as text, never executed, and both `KEY=value` and
+# YAML-style `KEY: value` lines are accepted. Any failure here only disables
+# notifications; it never aborts the update.
+parse_notify_secrets() {
+    local line key val
+    while IFS= read -r line || [ -n "$line" ]; do
+        line=${line%$'\r'}
+        if [[ $line =~ ^[[:space:]]*(TELEGRAM_BOT_TOKEN|TELEGRAM_CHAT_ID)[[:space:]]*[:=][[:space:]]*(.*)$ ]]; then
+            key=${BASH_REMATCH[1]}
+            val=${BASH_REMATCH[2]}
+            val=${val%"${val##*[![:space:]]}"}   # trim trailing whitespace
+            val=${val#[\"\']}                    # strip optional quotes
+            val=${val%[\"\']}
+            printf -v "$key" '%s' "$val"
+            export "$key"
+        fi
+    done <<< "$1"
+}
+
 load_notify_secrets() {
+    local content=""
     if [ -n "${FLEET_NOTIFY_SOPS:-}" ]; then
-        local decrypted
-        if decrypted=$(sops -d --input-type dotenv --output-type dotenv "$FLEET_NOTIFY_SOPS"); then
-            set -a
-            # shellcheck disable=SC1090
-            . <(printf '%s\n' "$decrypted")
-            set +a
-        else
+        if ! content=$(sops -d --extract '["fleet-notify"]' "$FLEET_NOTIFY_SOPS" 2>/dev/null \
+                       || sops -d "$FLEET_NOTIFY_SOPS" 2>/dev/null); then
             echo "sops decrypt of $FLEET_NOTIFY_SOPS failed" >&2
         fi
-        return 0
+    else
+        local env_file="${FLEET_NOTIFY_ENV:-/run/secrets/fleet-notify}"
+        if [ -r "$env_file" ]; then
+            content=$(cat "$env_file") || true
+        fi
     fi
-
-    local env_file="${FLEET_NOTIFY_ENV:-/run/secrets/fleet-notify}"
-    if [ -r "$env_file" ]; then
-        set -a
-        # shellcheck disable=SC1090
-        . "$env_file"
-        set +a
-    fi
+    parse_notify_secrets "$content"
+    return 0
 }
 load_notify_secrets
 
