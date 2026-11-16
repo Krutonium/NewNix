@@ -12,7 +12,7 @@
       router
       avahi
       blog
-      clamav
+      #clamav
       ddns
       rtorrent
       forgejo
