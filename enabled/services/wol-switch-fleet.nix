@@ -79,7 +79,7 @@
                     # Fires even if switch-fleet fails or times out
                     trap '[ "$was_on" -eq 0 ] && cleanup_poweroff' EXIT
 
-                    rssh 'sudo -n timeout ${toString cfg.switchTimeoutMinutes}m switch-fleet'
+                    rssh 'timeout ${toString cfg.switchTimeoutMinutes}m switch-fleet'
         '';
       };
     in
