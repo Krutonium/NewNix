@@ -37,8 +37,7 @@ parse_notify_secrets() {
             val=${val%"${val##*[![:space:]]}"}   # trim trailing whitespace
             val=${val#[\"\']}                    # strip optional quotes
             val=${val%[\"\']}
-            printf -v "$key" '%s' "$val"
-            export "$key"
+            declare -gx "$key=$val"
         fi
     done <<< "$1"
 }
