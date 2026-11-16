@@ -1,7 +1,7 @@
 { self, ... }:
 {
   # Import on uWebServer. Wakes the target at midnight, runs switch-fleet,
-  # and powers it back off afterwards only if it was off beforehand.
+  # and powers it back off afterwards only if we had to send WOL.
   flake.nixosModules.wol-switch-fleet =
     { config, lib, pkgs, ... }:
     let
@@ -9,7 +9,7 @@
 
       script = pkgs.writeShellApplication {
         name = "wol-switch-fleet";
-        runtimeInputs = with pkgs; [ wakeonlan openssh coreutils gawk gnugrep bash ];
+        runtimeInputs = with pkgs; [ wakeonlan openssh coreutils bash ];
         text = ''
           HOST=${lib.escapeShellArg cfg.host}
           MAC=${lib.escapeShellArg cfg.mac}
@@ -37,23 +37,7 @@
             done
           }
 
-          # True if another Class=user session exists (skips our own SSH login
-          # and display-manager greeters). Runs remotely via stdin.
-          has_other_sessions() {
-            local check
-            # shellcheck disable=SC2016  # must expand on the remote side
-            check='loginctl list-sessions --no-legend | while read -r s _; do
-              [ "$s" = "$XDG_SESSION_ID" ] && continue
-              [ "$(loginctl show-session "$s" -p Class --value)" = user ] && echo found
-            done | grep -q found'
-            rssh bash -s <<<"$check"
-          }
-
           cleanup_poweroff() {
-            if has_other_sessions; then
-              echo "someone is logged in on $HOST, leaving it on"
-              return 0
-            fi
             rssh 'sudo -n shutdown -c || true'   # clear the pending 2AM reboot
             rssh 'sudo -n systemctl poweroff' || true  # ssh drops as the host goes down
             echo "powered off $HOST"
@@ -71,7 +55,7 @@
             fi
           fi
 
-          # Fires even if switch-fleet fails or times out
+          # Only power off if we woke it. Fires even if switch-fleet fails or times out.
           trap '[ "$was_on" -eq 0 ] && cleanup_poweroff' EXIT
 
           # Runs as the SSH user (not root): switch-fleet cds into ~/NixOS
