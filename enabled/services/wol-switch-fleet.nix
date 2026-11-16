@@ -27,6 +27,7 @@
                     MAC=${lib.escapeShellArg cfg.mac}
                     SSH_USER=${lib.escapeShellArg cfg.user}
                     KEY=${lib.escapeShellArg (toString cfg.identityFile)}
+                    BROADCAST=${lib.escapeShellArg cfg.broadcast}
 
                     is_up() {
                       timeout 3 bash -c "exec 3<>/dev/tcp/$HOST/22" 2>/dev/null
@@ -69,7 +70,7 @@
 
                     if [ "$was_on" -eq 0 ]; then
                       echo "$HOST is down, sending WOL"
-                      wakeonlan "$MAC"
+                      wakeonlan -i "$BROADCAST" "$MAC"
                       if ! wait_for_ssh ${toString cfg.bootTimeoutSeconds}; then
                         echo "$HOST never came up" >&2
                         exit 1
@@ -89,6 +90,11 @@
         host = lib.mkOption {
           type = lib.types.str;
           example = "ugamingpc";
+        };
+        broadcast = lib.mkOption {
+          type = lib.types.str;
+          default = "10.0.0.255";
+          description = "Subnet broadcast address of the target's LAN.";
         };
         mac = lib.mkOption {
           type = lib.types.str;
