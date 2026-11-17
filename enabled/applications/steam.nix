@@ -3,6 +3,11 @@
   flake.nixosModules.steam =
     { pkgs, mv, ... }:
     {
+      nixpkgs.overlays = [
+        (final: prev: {
+          extest = mv.tip.extest;
+        })
+      ];
       programs.steam = {
         enable = true;
         extest.enable = true;
