@@ -191,8 +191,13 @@
           enable = true;
           motherboard = "amd";
           package = pkgs.openrgb-with-all-plugins;
+          startupProfile = "Default";
         };
       };
+      systemd.tmpfiles.rules = [
+        "d /var/lib/OpenRGB 0755 root root -"
+        "C+ /var/lib/OpenRGB/Default.orp 0644 root root - ${self}/enabled/assets/Default.orp"
+      ];
       networking = {
         hostName = "uGamingPC";
         hostId = "2f68fbd7";
