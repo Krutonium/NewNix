@@ -380,11 +380,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1795244923,
-        "narHash": "sha256-sMvttcu9aO8sUAmkfP3oPjff8nuZaxPRa8rWhEdbGYM=",
+        "lastModified": 1795265384,
+        "narHash": "sha256-uScjlaVG4TPKtAVCdHdvyPu6AzzVcucsbakVh0wSrj8=",
         "owner": "nix-community",
         "repo": "nur",
-        "rev": "ca4aefe28d6ee0f893f7184bb8657656a9ca3acd",
+        "rev": "94896a3d58efc1601dbe6283d98c17580b2d5816",
         "type": "github"
       },
       "original": {
@@ -625,11 +625,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1795263681,
-        "narHash": "sha256-w6zdRhIhaqmpBYbwNXiXZcb5a0fyfNVjlAmM/cpZj7k=",
+        "lastModified": 1795265393,
+        "narHash": "sha256-pkUDH+OSJ+R2hkmWQVn0D+/F79HJdOZ+nCmaM+zWIxg=",
         "owner": "Krutonium",
         "repo": "unified-chat-overlay",
-        "rev": "fd1d32059235592afa47129542136f3e5fe9a5f4",
+        "rev": "03208a953378b5d7ab958d758a7299c0a96f7bab",
         "type": "github"
       },
       "original": {
