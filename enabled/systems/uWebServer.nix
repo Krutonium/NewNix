@@ -33,6 +33,7 @@
       sops
       matrix
       InternetRadio2Computercraft
+      unifiedChatOverlay
       minecraftPortForwards
       minecraftServerData
       palworld

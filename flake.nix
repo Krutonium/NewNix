@@ -76,6 +76,11 @@
       url = "github:Krutonium/ADA-305";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    unified-chat-overlay = {
+      url = "github:Krutonium/unified-chat-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
   };
   outputs =
     inputs:

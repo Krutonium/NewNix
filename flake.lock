@@ -435,6 +435,7 @@
         "simple-cpu-governor": "simple-cpu-governor",
         "sops-nix": "sops-nix",
         "stylix": "stylix",
+        "unified-chat-overlay": "unified-chat-overlay",
         "win98se-plymouth": "win98se-plymouth",
         "xwaylandvideobridge": "xwaylandvideobridge"
       }
@@ -611,6 +612,29 @@
       "original": {
         "owner": "tinted-theming",
         "repo": "base16-zed",
+        "type": "github"
+      }
+    },
+    "unified-chat-overlay": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1795263681,
+        "narHash": "sha256-w6zdRhIhaqmpBYbwNXiXZcb5a0fyfNVjlAmM/cpZj7k=",
+        "owner": "Krutonium",
+        "repo": "unified-chat-overlay",
+        "rev": "fd1d32059235592afa47129542136f3e5fe9a5f4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Krutonium",
+        "repo": "unified-chat-overlay",
         "type": "github"
       }
     },
