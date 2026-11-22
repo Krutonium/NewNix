@@ -101,6 +101,7 @@
             enable = true;
             enableFishIntegration = true;
           };
+          gh.enable = true;
         };
       };
     };
