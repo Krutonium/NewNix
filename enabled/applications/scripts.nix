@@ -382,6 +382,17 @@
         ];
         text = builtins.readFile ./scripts/update-switch-fleet.sh;
       };
+
+      twofa = pkgs.writeShellScriptBin "2fa" ''
+        set -euo pipefail
+        dir="$HOME/Nextcloud/Aegis"
+        newest="$(find "$dir" -maxdepth 1 -type f -printf '%T@ %p\n' | sort -rn | head -n 1 | sed 's/^[^ ]* //')"
+        if [ -z "$newest" ]; then
+          echo "No vault files found in $dir" >&2
+          exit 1
+        fi
+        exec ${pkgs.aegis-rs}/bin/aegis-rs "$newest" "$@"
+      '';
     in
     {
       sops.secrets.attic_everything_token = {
@@ -419,6 +430,7 @@
         push-to-attic
         telegram-notify
         update-switch-fleet
+        twofa
       ];
     };
 }
