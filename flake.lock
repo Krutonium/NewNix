@@ -310,11 +310,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1794739050,
-        "narHash": "sha256-PCGNIyAydZcdUXCxEXTjrS1+wWS+k9E+ENqBkUK2Mpg=",
+        "lastModified": 1795345257,
+        "narHash": "sha256-p1dA8lUFQTLJfDI2gaTZQ+CcMKw3nxvyHNbwpVMy2rY=",
         "owner": "nix-community",
         "repo": "nix-index-database",
-        "rev": "9bd074026d6db75b59aae8cd6071b5f2fe27a36c",
+        "rev": "905f3e6f1e78165e79457c0bbe7ec4b885a5fce1",
         "type": "github"
       },
       "original": {
@@ -380,11 +380,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1795325576,
-        "narHash": "sha256-sN90KBZ+jJ0rGVkVVUSXc9tCZbSzOhCE3QCCnVCvsSE=",
+        "lastModified": 1795409895,
+        "narHash": "sha256-H2meAjP6LJNh1z9LLaxV3qzUuqp2YMdPWNHgWx6ulPs=",
         "owner": "nix-community",
         "repo": "nur",
-        "rev": "1065d8c0d748bbaf1222810e9d1806902ea405d5",
+        "rev": "f4e7a483e8928e7d48df31e1ccd3f25a68d35326",
         "type": "github"
       },
       "original": {
