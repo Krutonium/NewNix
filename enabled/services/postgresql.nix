@@ -8,7 +8,7 @@
     }:
     let
       sql_current = pkgs.postgresql_18_jit;
-      sql_upgrade = pkgs.postgresql_18_jit;
+      sql_upgrade = pkgs.postgresql_19_jit;
     in
     {
       key = "krutonium/nixosModules/postgresql"; # allow merges from multiple imports
