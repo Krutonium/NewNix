@@ -44,6 +44,11 @@
       ...
     }:
     let
+      modProbeConfig = ''
+        # IT8686E fan controller has no upstream driver; expose it as the
+        # register-compatible IT8689E, and leave the IT8792E (0x4e) untouched.
+        options it87 force_id=0x8689,0
+      '';
       initrdAvailable = [
         "xhci_pci"
         "ahci"
@@ -58,6 +63,7 @@
         "kvm-amd"
         "i2c-dev" # RGB
         "i2c-piix4"
+        "it87" # IT8686E/IT8792E fan + temperature monitoring
       ];
       kernelModulePackages = with config.boot.kernelPackages; [
         zenpower.out
@@ -86,6 +92,7 @@
       # Hardware
       boot = {
         tmp.useTmpfs = false;
+        extraModprobeConfig = modProbeConfig;
         initrd.availableKernelModules = initrdAvailable;
         initrd.kernelModules = initrdRequired;
         kernelModules = kernelModules;
