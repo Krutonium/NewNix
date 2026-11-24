@@ -78,7 +78,6 @@
         services = {
           "getty@tty1".enable = lib.mkDefault false;
           "autovt@tty1".enable = lib.mkDefault false;
-          #"NetworkManager-wait-online".wantedBy = lib.mkForce []; # No longer blocks boot
           "NetworkManager-wait-online".enable = lib.mkForce false;
           "systemd-networkd-wait-online".enable = lib.mkForce false;
         };
