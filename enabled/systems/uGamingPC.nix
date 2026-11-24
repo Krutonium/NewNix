@@ -88,7 +88,6 @@
       kernel = mv.tip.linuxPackages_latest;
     in
     {
-
       # Hardware
       boot = {
         tmp.useTmpfs = false;
@@ -102,7 +101,6 @@
         supportedFilesystems = [ "bcachefs" ];
       };
       virtualisation.libvirtd.enable = true;
-      programs.virt-manager.enable = true;
       swapDevices = [
         {
           device = "/swap";
@@ -166,9 +164,25 @@
           ];
         };
       };
-      services.xserver.videoDrivers = [ "nvidia" ];
-      services.g600-key-remap.enable = true;
-      services.ratbagd.enable = true;
+      programs = {
+        virt-manager.enable = true;
+        gamemode.enable = true;
+      };
+      services = {
+        xserver.videoDrivers = [ "nvidia" ];
+        g600-key-remap.enable = true;
+        wolTarget = {
+          enable = true;
+          interface = "eno1";
+        };
+        udev.packages = udevPackages;
+        hardware.openrgb = {
+          enable = true;
+          motherboard = "amd";
+          package = pkgs.openrgb-with-all-plugins;
+          startupProfile = "Default";
+        };
+      };
       hardware = {
         gpuUnlock = {
           enable = true;
@@ -185,22 +199,6 @@
         distributedBuilds = false;
       };
       nixpkgs.config.cudaSupport = true;
-      programs = {
-        gamemode.enable = true;
-      };
-      services = {
-        wolTarget = {
-          enable = true;
-          interface = "eno1";
-        };
-        udev.packages = udevPackages;
-        hardware.openrgb = {
-          enable = true;
-          motherboard = "amd";
-          package = pkgs.openrgb-with-all-plugins;
-          startupProfile = "Default";
-        };
-      };
       systemd.tmpfiles.rules = [
         "d /var/lib/OpenRGB 0755 root root -"
         "C+ /var/lib/OpenRGB/Default.orp 0644 root root - ${self}/enabled/assets/Default.orp"
