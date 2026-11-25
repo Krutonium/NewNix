@@ -4,4 +4,4 @@ Security-related configuration.
 
 ## Files
 
-- `hostKeys.nix` - Host SSH keys management
+- `pinpam.nix` - PIN for Login

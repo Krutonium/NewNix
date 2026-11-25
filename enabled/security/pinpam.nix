@@ -3,7 +3,12 @@
 { inputs, ... }:
 {
   flake.nixosModules.pinpam =
-    { config, lib, pkgs, ... }:
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
     let
       cfg = config.sys.pinpam;
     in
@@ -37,6 +42,17 @@
               maxLength = 6;
               maxAttempts = 5;
             };
+            masterKey = {
+              enable = true;
+              services.login = {
+                enable = true;
+                successRules = [
+                  "pinpam"
+                  "unix"
+                ];
+                postAuthRules = [ "gnome_keyring" ];
+              };
+            };
           };
         }
 
@@ -53,10 +69,12 @@
             ];
             serviceConfig = {
               Type = "simple";
-              ExecStart =
+              serviceConfig.ExecStart = lib.mkForce (
                 "${pkgs.swtpm}/bin/swtpm chardev --vtpm-proxy --tpm2"
                 + " --tpmstate dir=/var/lib/swtpm"
-                + " --ctrl type=unixio,path=/run/swtpm/ctrl,mode=0600,uid=0,gid=0";
+                + " --flags not-need-init,startup-clear"
+                + " --ctrl type=unixio,path=/run/swtpm/ctrl,mode=0600,uid=0,gid=0"
+              );
               StateDirectory = "swtpm";
               RuntimeDirectory = "swtpm";
               RuntimeDirectoryMode = "0700";
