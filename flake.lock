@@ -260,11 +260,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1794870127,
-        "narHash": "sha256-rTrSZhqtD7+QlFnp8BLVp8VOeph0zdWUvHXRW/QPN2c=",
+        "lastModified": 1795546920,
+        "narHash": "sha256-nudRmZ8RqT67xGQqjjw5/pK7GijqmeokS8ELTirXMcM=",
         "owner": "JPyke3",
         "repo": "hytale-launcher-nix",
-        "rev": "95328a09f0f882d9418d1455aa6dc54b4465e502",
+        "rev": "84f95fb9c9e949e1b55223916ee182a82d7ed1b8",
         "type": "github"
       },
       "original": {
@@ -380,11 +380,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1795495926,
-        "narHash": "sha256-MAgDhqdx/YT940/fYDBzKELDM2uwnjuSFdmf6L60FoY=",
+        "lastModified": 1795582790,
+        "narHash": "sha256-B5mY0npJki4x/kG/h0gczL1WuoB5yEEcA7TCfcfwsFg=",
         "owner": "nix-community",
         "repo": "nur",
-        "rev": "3cadf676e1dfab487b3cea4fbda2c229d395ccd2",
+        "rev": "8cd3b2aac280c60fec7cbbae76a75f5c24d3760c",
         "type": "github"
       },
       "original": {
