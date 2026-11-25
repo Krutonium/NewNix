@@ -2,16 +2,23 @@
 {
   flake.nixosModules.steam =
     { pkgs, mv, ... }:
+    let
+      pkgSource = mv.tip;
+    in
     {
       nixpkgs.overlays = [
         (final: prev: {
-          extest = mv.tip.extest;
+          extest = pkgSource.extest;
         })
       ];
+#      disabledModules = [ "programs/steam.nix" ];
+#      imports = [
+#        "${toString pkgSource.path}/nixos/modules/programs/steam.nix"
+#      ];
       programs.steam = {
         enable = true;
         extest.enable = true;
-        package = mv.tip.steamWithMillennium;
+        package = pkgSource.steamWithMillennium;
         dedicatedServer.openFirewall = true;
         localNetworkGameTransfers.openFirewall = true;
         remotePlay.openFirewall = true;
