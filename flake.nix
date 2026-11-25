@@ -81,6 +81,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
+    pinpam = {
+      url = "github:RazeLighter777/pinpam/v0.0.5";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.rust-overlay.inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs =
     inputs:

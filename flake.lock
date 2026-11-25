@@ -416,6 +416,28 @@
         "type": "github"
       }
     },
+    "pinpam": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "rust-overlay": "rust-overlay"
+      },
+      "locked": {
+        "lastModified": 1780858283,
+        "narHash": "sha256-5w4g+6ZG8bRehseLB7AiC4TbtLEEdeIznl5Jkfg1hpc=",
+        "owner": "RazeLighter777",
+        "repo": "pinpam",
+        "rev": "f9e0fb2ec60af5ee6b76413bdcad421aefa202f4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "RazeLighter777",
+        "ref": "v0.0.5",
+        "repo": "pinpam",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "InternetRadio2Computercraft": "InternetRadio2Computercraft",
@@ -432,12 +454,33 @@
         "nixpkgs": "nixpkgs",
         "nur": "nur",
         "nvidia-patch": "nvidia-patch",
+        "pinpam": "pinpam",
         "simple-cpu-governor": "simple-cpu-governor",
         "sops-nix": "sops-nix",
         "stylix": "stylix",
         "unified-chat-overlay": "unified-chat-overlay",
         "win98se-plymouth": "win98se-plymouth",
         "xwaylandvideobridge": "xwaylandvideobridge"
+      }
+    },
+    "rust-overlay": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1771470520,
+        "narHash": "sha256-PvytHcaYN5cPUll7FB70mXv1rRsIBRmu47fFfq3haxA=",
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "rev": "a1d4cc1f264c45d3745af0d2ca5e59d460e58777",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "type": "github"
       }
     },
     "simple-cpu-governor": {

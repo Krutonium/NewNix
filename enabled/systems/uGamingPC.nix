@@ -21,6 +21,7 @@
       sops
       pipewire
       ssh
+      pinpam
       #v4l2loopback
       gamemode
       root
@@ -88,6 +89,8 @@
       kernel = mv.tip.linuxPackages_latest;
     in
     {
+      sys.pinpam.backend = "device"; # hardware fTPM
+
       # Hardware
       boot = {
         tmp.useTmpfs = false;

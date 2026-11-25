@@ -14,6 +14,7 @@
       sops
       pipewire
       ssh
+      pinpam
       gamemode
       root
       simpleCpuGovernor
@@ -60,6 +61,9 @@
       ];
     in
     {
+      # No hardware TPM on this model: use swtpm via the vTPM proxy.
+      sys.pinpam.backend = "swtpm";
+
       boot = {
         extraModprobeConfig = modProbeConfig;
         initrd.kernelModules = kernelModulesInitrd;
