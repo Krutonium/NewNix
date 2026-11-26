@@ -60,6 +60,16 @@
             extraTCPPorts = [ ];
             extraUDPPorts = [ ];
           }
+          {
+            name = "StoneBlock4";
+            javaVersion = "jdk21";
+            script = "run.sh";
+            enabled = true;
+            rconPort = 12350;
+            port = 25571;
+            extraTCPPorts = [ ];
+            extraUDPPorts = [ ];
+          }
         ];
         description = "Minecraft server definitions, shared between minecraftServers and minecraftPortForwards.";
       };

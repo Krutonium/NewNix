@@ -213,6 +213,15 @@
             "subvol=FTBSkies"
           ];
         };
+        "/servers/StoneBlock4" = {
+          device = btrfsDisk;
+          fsType = "btrfs";
+          options = [
+            "noatime"
+            "compress=zstd:15"
+            "subvol=StoneBlock4"
+          ];
+        };
         "/servers/satisfactory" = {
           device = btrfsDisk;
           fsType = "btrfs";
