@@ -51,7 +51,6 @@
               Group = "minecraft";
               Environment = [
                 "JAVA_HOME=${java.home}"
-                "PATH=${java}/bin:$PATH"
               ];
             };
             wantedBy = [ "multi-user.target" ];
