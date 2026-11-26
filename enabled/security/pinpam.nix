@@ -69,7 +69,7 @@
             ];
             serviceConfig = {
               Type = "simple";
-              serviceConfig.ExecStart = lib.mkForce (
+              ExecStart = lib.mkForce (
                 "${pkgs.swtpm}/bin/swtpm chardev --vtpm-proxy --tpm2"
                 + " --tpmstate dir=/var/lib/swtpm"
                 + " --flags not-need-init,startup-clear"
