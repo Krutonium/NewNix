@@ -32,7 +32,7 @@
         {
           security.pinpam = {
             enable = true;
-            pinPolicy  = {
+            pin.policy  = {
               minLength = 4;
               maxLength = 6;
               maxAttempts = 5;
