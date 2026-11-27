@@ -32,25 +32,37 @@
         {
           security.pinpam = {
             enable = true;
-            auth = {
-              enable = true;
-              services = [ "login" ];
-              control = "sufficient"; # password login stays available
-            };
-            pin.policy = {
+            pinPolicy  = {
               minLength = 4;
               maxLength = 6;
               maxAttempts = 5;
+            };
+            auth = {
+              enable = true;
+              services = [
+                "sudo"
+                "login"
+              ];
             };
             masterKey = {
               enable = true;
               services.login = {
                 enable = true;
+                # Auth methods whose success should route into the master-key stage.
+                # Each is copied into the decision substack as `sufficient` and disabled
+                # in the parent stack. List exactly the methods you use; add network /
+                # identity methods (e.g. "systemd_home", "ldap", "sss") here too.
                 successRules = [
                   "pinpam"
                   "unix"
                 ];
-                postAuthRules = [ "gnome_keyring" ];
+                # Keyring rules moved to run after master-key so they capture the
+                # stamped token. Defaults to the common keyring/secret modules.
+                postAuthRules = [
+                  "kwallet"
+                  "gnome_keyring"
+                  "gnupg"
+                ];
               };
             };
           };
