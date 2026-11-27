@@ -89,7 +89,7 @@
       kernel = mv.tip.linuxPackages_latest;
     in
     {
-      sys.pinpam.backend = "device"; # hardware fTPM
+      #sys.pinpam.backend = "device"; # hardware fTPM
 
       # Hardware
       boot = {

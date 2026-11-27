@@ -62,7 +62,7 @@
     in
     {
       # No hardware TPM on this model: use swtpm via the vTPM proxy.
-      sys.pinpam.backend = "swtpm";
+      #sys.pinpam.backend = "swtpm";
 
       boot = {
         extraModprobeConfig = modProbeConfig;
