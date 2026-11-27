@@ -14,7 +14,7 @@
       sops
       pipewire
       ssh
-      pinpam
+      #pinpam
       gamemode
       root
       simpleCpuGovernor

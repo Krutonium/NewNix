@@ -21,7 +21,7 @@
       sops
       pipewire
       ssh
-      pinpam
+      #pinpam
       #v4l2loopback
       gamemode
       root
