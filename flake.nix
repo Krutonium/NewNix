@@ -61,10 +61,10 @@
     #  url = "github:hgaiser/moonshine";
     #  inputs.nixpkgs.follows = "nixpkgs";
     #};
-    win98se-plymouth = {
-      url = "github:nilp0inter/plymouth-theme-win98se-inspired-nixos-theme";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+#    win98se-plymouth = {
+#      url = "github:nilp0inter/plymouth-theme-win98se-inspired-nixos-theme";
+#      inputs.nixpkgs.follows = "nixpkgs";
+#    };
     xwaylandvideobridge = {
       url = "github:KDE/xwaylandvideobridge";
     };
@@ -85,6 +85,10 @@
       url = "github:RazeLighter777/pinpam/v0.0.5";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.rust-overlay.inputs.nixpkgs.follows = "nixpkgs";
+    };
+    plymouth-nixos-chase = {
+      url = "github:DanielTallon/nix-packages";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
   outputs =

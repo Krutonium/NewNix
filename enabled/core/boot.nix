@@ -1,7 +1,7 @@
-{ ... }:
+{ inputs, ... }:
 {
   flake.nixosModules.boot =
-    { pkgs, lib, ... }:
+    { pkgs, ... }:
     {
       boot = {
         loader = {
@@ -27,17 +27,21 @@
       environment.systemPackages = [ pkgs.plymouth ];
       boot.plymouth = {
         enable = true;
-        #theme = lib.mkForce "bgrt";
-        #        theme = lib.mkForce "pixels";
-        #        themePackages = [
-        #          (pkgs.adi1090x-plymouth-themes.override {
-        #            selected_themes = [ "pixels" ];
-        #          })
-        #        ];
-        win98se.label = {
-          mode = "custom";
-          text = "2000";
-        };
+        theme = "nixos-chase-glitch"; # or "nixos-chase-glitch"
+        themePackages = [
+          inputs.plymouth-nixos-chase.packages.${pkgs.stdenv.hostPlatform.system}.plymouth-nixos-chase-glitch
+        ];
       };
+      #theme = lib.mkForce "bgrt";
+      #        theme = lib.mkForce "pixels";
+      #        themePackages = [
+      #          (pkgs.adi1090x-plymouth-themes.override {
+      #            selected_themes = [ "pixels" ];
+      #          })
+      #        ];
+      #        win98se.label = {
+      #          mode = "custom";
+      #          text = "2000";
+      #        };
     };
 }
