@@ -2,6 +2,21 @@
 {
   flake.nixosModules.gamemode =
     { lib, pkgs, ... }:
+    let
+      notify = lib.getExe' pkgs.libnotify "notify-send";
+      dconf = lib.getExe pkgs.dconf;
+      key = "/org/gnome/desktop/peripherals/touchpad/disable-while-typing";
+
+      startScript = pkgs.writeShellScript "gamemode-start" ''
+        ${dconf} write ${key} false
+        ${notify} "Gamemode Started"
+      '';
+
+      endScript = pkgs.writeShellScript "gamemode-end" ''
+        ${dconf} write ${key} true
+        ${notify} "Gamemode Ended"
+      '';
+    in
     {
       programs.gamemode = {
         enable = true;
@@ -21,8 +36,8 @@
             softrealtime = "on";
           };
           custom = {
-            start = "${lib.getExe' pkgs.libnotify "notify-send"} \"Gamemode Started\"";
-            end = "${lib.getExe' pkgs.libnotify "notify-send"} \"Gamemode Ended\"";
+            start = "${startScript}";
+            end = "${endScript}";
           };
         };
       };
